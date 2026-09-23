@@ -1,6 +1,6 @@
 # High Grade global workflow v2 — implementation plan
 
-Status: ACTIVE. Authority: user requested implementation and GitHub publication on 2026-09-23. Target projects (SNAF, PlantsNotify) are deferred. Source: docs/workflow/SPECIFICATION.md, docs/workflow/CONTEXT.md, and the agreed global-toolkit decisions in the current session.
+Status: COMPLETE (source release; target-project pilots deferred). Authority: user requested implementation and GitHub publication on 2026-09-23. Target projects (SNAF, PlantsNotify) are deferred. Source: docs/workflow/SPECIFICATION.md, docs/workflow/CONTEXT.md, and the agreed global-toolkit decisions in the current session.
 
 ## Outcome
 
