@@ -117,10 +117,25 @@ fn registry(root: &Path) -> Value {
         ("engineering", "engineering-rules", "docs/ENGINEERING.md"),
         ("development", "commands-procedures", "docs/DEVELOPMENT.md"),
     ] {
-        write(root, file, "# Заголовок\r\n\r\nТекст\r\n".as_bytes());
+        let content = match file {
+            "README.md" => {
+                "# Заголовок\r\n\r\n[Agent](AGENTS.md) [Architecture](docs/ARCHITECTURE.md) [Engineering](docs/ENGINEERING.md) [Development](docs/DEVELOPMENT.md)\r\n"
+            }
+            "AGENTS.md" => {
+                "# Заголовок\r\n\r\n[Project instruction](.highgrade/project/INSTRUCTIONS.md)\r\n"
+            }
+            _ => "# Заголовок\r\n\r\nТекст\r\n",
+        };
+        write(root, file, content.as_bytes());
         docs.push(json!({"id":id,"role":role,"path":file,"budget":b(1000),"scope":["src"],"loading":"task"}));
     }
     let value = json!({"schema_version":1,"documents":docs,"route_budget":b(10000)});
+    write(
+        root,
+        ".highgrade/project/INSTRUCTIONS.md",
+        b"[Registry](documents.json)\n",
+    );
+    save(root, ".highgrade/project/documents.json", &value);
     save(root, "registry.json", &value);
     value
 }
@@ -371,19 +386,27 @@ fn colocated_document_does_not_cover_its_parent() {
 fn install_requires_audit_before_writes() {
     let (root, source) = fixture();
     save(&root, "audit.json", &json!({"status":"pending"}));
+    let before = inventory(&paths::root(&root).unwrap(), "audit.json").unwrap();
     assert!(install(&root, &source, "audit.json", None).is_err());
-    assert!(!root.join(".highgrade").exists());
+    assert_eq!(
+        before,
+        inventory(&paths::root(&root).unwrap(), "audit.json").unwrap()
+    );
 }
 #[test]
 fn install_rejects_stale_audit() {
     let (root, source) = fixture();
     write(&root, "new.md", b"new");
+    let before = inventory(&paths::root(&root).unwrap(), "audit.json").unwrap();
     assert!(
         install(&root, &source, "audit.json", None)
             .unwrap_err()
             .contains("AuditStale")
     );
-    assert!(!root.join(".highgrade").exists());
+    assert_eq!(
+        before,
+        inventory(&paths::root(&root).unwrap(), "audit.json").unwrap()
+    );
 }
 #[test]
 fn install_preserves_agents_and_repeats_without_duplicates() {
@@ -447,12 +470,16 @@ fn package_hash_failure_writes_nothing() {
         write(&bad, name, &fs::read(source.join(name)).unwrap());
     }
     write(&bad, "rules.md", b"changed");
+    let before = inventory(&paths::root(&root).unwrap(), "audit.json").unwrap();
     assert!(
         install(&root, &bad, "audit.json", None)
             .unwrap_err()
             .contains("ManifestHashMismatch")
     );
-    assert!(!root.join(".highgrade").exists());
+    assert_eq!(
+        before,
+        inventory(&paths::root(&root).unwrap(), "audit.json").unwrap()
+    );
 }
 #[test]
 fn source_inventory_is_case_sensitive_and_stable() {

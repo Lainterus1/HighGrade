@@ -43,7 +43,7 @@ try {
       verified++;
     }
   }
-  console.log(JSON.stringify({scope:'repository-structure',status:errors.length?'FAILED':'PASSED',observations,import_files_verified:verified,errors,limitations:['No functional plugin tests executed','No semantic documentation review','Document budgets not agreed; sizes are measurements only']},null,2));
+  console.log(JSON.stringify({scope:'repository-structure',status:errors.length?'FAILED':'PASSED',observations,import_files_verified:verified,errors,limitations:['No functional plugin tests executed','No semantic documentation review','Document budgets are not assessed here; run highgrade inspect']},null,2));
   process.exitCode = errors.length ? 1 : 0;
 } catch (error) {
   console.error(JSON.stringify({status:'INCOMPLETE',error:error.message}));

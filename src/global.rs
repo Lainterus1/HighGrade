@@ -1,14 +1,24 @@
 use crate::{Report, Result, hash, install, package, paths};
 use serde_json::{Value, json};
 use std::{
-    collections::BTreeMap,
+    collections::{BTreeMap, BTreeSet},
     fs::{self, File},
     path::Path,
 };
 
 const ACTIVE: &str = ".highgrade/global/active.json";
 const LOCK: &str = ".highgrade/global/install.lock";
-const SKILLS: [&str; 6] = [
+const DEPLOY_SKILL: &str = "skills/deploy/SKILL.md";
+const SKILLS: [&str; 7] = [
+    "highgrade-init",
+    "highgrade-task",
+    "highgrade-spec",
+    "highgrade-work",
+    "highgrade-clear",
+    "highgrade-update",
+    "deploy",
+];
+const PREVIOUS_SKILLS: [&str; 6] = [
     "highgrade-init",
     "highgrade-task",
     "highgrade-spec",
@@ -16,7 +26,26 @@ const SKILLS: [&str; 6] = [
     "highgrade-clear",
     "highgrade-update",
 ];
-const MATERIALS: [&str; 16] = [
+const MATERIALS: [&str; 17] = [
+    "rules.md",
+    "procedures/init.md",
+    "procedures/task.md",
+    "procedures/spec.md",
+    "procedures/work.md",
+    "procedures/clear.md",
+    "procedures/update.md",
+    "procedures/deploy.md",
+    "procedures/archive.md",
+    "references/audit.md",
+    "references/cli.md",
+    "templates/README.md",
+    "templates/AGENTS.md",
+    "templates/ARCHITECTURE.md",
+    "templates/ENGINEERING.md",
+    "templates/DEVELOPMENT.md",
+    "templates/INSTRUCTIONS.md",
+];
+const PREVIOUS_MATERIALS: [&str; 16] = [
     "rules.md",
     "procedures/init.md",
     "procedures/task.md",
@@ -105,6 +134,10 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
         };
         files.insert(target, data);
     }
+    files.insert(
+        release_file(release, DEPLOY_SKILL),
+        paths::read_limited(&paths::safe(&source, DEPLOY_SKILL)?, 8 * 1024 * 1024)?,
+    );
     let executable_bytes = paths::read_limited(executable, 128 * 1024 * 1024)?;
     let manifest_hash = hash(&manifest_bytes);
     let candidate_sha256 =
@@ -142,15 +175,27 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     let files = journal["files"]
         .as_object()
         .ok_or("GlobalJournalInvalid: files")?;
-    if files.len() != SKILLS.len() + MATERIALS.len() + 1 {
-        return Err("GlobalJournalInvalid: count".into());
+    let actual: BTreeSet<&str> = files.keys().map(String::as_str).collect();
+    let expected = |skills: &[&str], materials: &[&str]| -> BTreeSet<String> {
+        materials
+            .iter()
+            .map(|rel| release_file(release, rel))
+            .chain(skills.iter().map(|name| router(name)))
+            .chain(std::iter::once(release_file(
+                release,
+                &format!("highgrade{}", std::env::consts::EXE_SUFFIX),
+            )))
+            .collect()
+    };
+    let mut current = expected(&SKILLS, &MATERIALS);
+    current.insert(release_file(release, DEPLOY_SKILL));
+    let previous = expected(&PREVIOUS_SKILLS, &PREVIOUS_MATERIALS);
+    if actual != current.iter().map(String::as_str).collect()
+        && actual != previous.iter().map(String::as_str).collect()
+    {
+        return Err("GlobalJournalInvalid: files".into());
     }
     for (rel, expected) in files {
-        if !rel.starts_with(&format!(".highgrade/global/releases/{release}/"))
-            && !SKILLS.iter().any(|s| rel == &router(s))
-        {
-            return Err("GlobalJournalInvalid: path".into());
-        }
         let expected = expected.as_str().ok_or("GlobalJournalInvalid: hash")?;
         if hash(&paths::read_limited(
             &paths::safe(profile, rel)?,
@@ -202,24 +247,35 @@ fn lock(profile: &Path) -> Result<File> {
 }
 fn stage(profile: &Path, c: &Candidate) -> Result<()> {
     install::put_once(profile, &journal_file(&c.release), &c.journal)?;
+    let deploy_path = router("deploy");
     for (rel, data) in &c.files {
-        install::put_once(profile, rel, data)?;
+        if rel != &deploy_path {
+            install::put_once(profile, rel, data)?;
+        }
     }
-    verify_release(profile, &c.release)?;
-    let installed_exe = paths::safe(
-        profile,
-        &release_file(
-            &c.release,
-            &format!("highgrade{}", std::env::consts::EXE_SUFFIX),
-        ),
-    )?;
-    package::verify_binary(&installed_exe, &c.cli_version)?;
-    let probe_root = paths::safe(
-        profile,
-        &format!(".highgrade/global/releases/{}", c.release),
-    )?;
-    package::verify_doctor(&installed_exe, &probe_root)?;
-    Ok(())
+    let deploy_existed = paths::safe(profile, &deploy_path)?.exists();
+    install::put_once(profile, &deploy_path, &c.files[&deploy_path])?;
+    let checked = (|| {
+        verify_release(profile, &c.release)?;
+        let installed_exe = paths::safe(
+            profile,
+            &release_file(
+                &c.release,
+                &format!("highgrade{}", std::env::consts::EXE_SUFFIX),
+            ),
+        )?;
+        package::verify_binary(&installed_exe, &c.cli_version)?;
+        let probe_root = paths::safe(
+            profile,
+            &format!(".highgrade/global/releases/{}", c.release),
+        )?;
+        package::verify_doctor(&installed_exe, &probe_root)
+    })();
+    if checked.is_err() && !deploy_existed {
+        fs::remove_file(paths::safe(profile, &deploy_path)?)
+            .map_err(|e| format!("GlobalStageRouterCleanupFailed: {e}"))?;
+    }
+    checked
 }
 pub fn status(profile: &Path) -> Result<Report> {
     let profile = paths::root(profile)?;
@@ -293,15 +349,63 @@ pub fn update(
         {
             return Err("Usage: rollback accepts only release".into());
         }
-        let journal = verify_release(&profile, release)?;
+        let target_bytes = paths::read_limited(
+            &paths::safe(&profile, &journal_file(release))?,
+            8 * 1024 * 1024,
+        )?;
+        let target: Value = serde_json::from_slice(&target_bytes).map_err(|e| e.to_string())?;
+        let deploy_path = router("deploy");
+        let target_deploy_hash = target["files"][deploy_path.as_str()].as_str();
+        let old_bytes = paths::read_limited(
+            &paths::safe(&profile, &journal_file(&old))?,
+            8 * 1024 * 1024,
+        )?;
+        let old_journal: Value = serde_json::from_slice(&old_bytes).map_err(|e| e.to_string())?;
+        let old_has_deploy = old_journal["files"][deploy_path.as_str()].is_string();
         let _guard = lock(&profile)?;
         if active(&profile)? != Some((old.clone(), old_hash.clone())) {
             return Err("GlobalActiveChanged".into());
         }
-        package::replace_active(
-            &paths::safe(&profile, ACTIVE)?,
-            &active_bytes(release, &journal),
-        )?;
+        let router_path = paths::safe(&profile, &deploy_path)?;
+        let mut restored = false;
+        if let Some(expected) = target_deploy_hash {
+            if !router_path.exists() {
+                let backup = paths::read_limited(
+                    &paths::safe(&profile, &release_file(release, DEPLOY_SKILL))?,
+                    8 * 1024 * 1024,
+                )?;
+                if hash(&backup) != expected {
+                    return Err("GlobalRollbackRouterBackupChanged".into());
+                }
+                install::put_once(&profile, &deploy_path, &backup)?;
+                restored = true;
+            }
+        }
+        let journal = match verify_release(&profile, release) {
+            Ok(journal) => journal,
+            Err(error) => {
+                if restored {
+                    fs::remove_file(&router_path).map_err(|e| e.to_string())?;
+                }
+                return Err(error);
+            }
+        };
+        let active_path = paths::safe(&profile, ACTIVE)?;
+        if let Err(error) = package::replace_active(&active_path, &active_bytes(release, &journal))
+        {
+            if restored {
+                fs::remove_file(&router_path)
+                    .map_err(|e| format!("GlobalRollbackRouterCleanupFailed: {error}; {e}"))?;
+            }
+            return Err(error);
+        }
+        if target_deploy_hash.is_none() && old_has_deploy {
+            if let Err(error) = fs::remove_file(&router_path) {
+                package::replace_active(&active_path, &active_bytes(&old, &old_bytes))
+                    .map_err(|restore| format!("GlobalRollbackRouterCleanupFailed: {error}; pointer restore failed: {restore}"))?;
+                return Err(format!("GlobalRollbackRouterCleanupFailed: {error}"));
+            }
+        }
         let mut r = status(&profile)?;
         r.operation = "global-update".into();
         r.measurements
@@ -322,13 +426,21 @@ pub fn update(
     if !apply && expected_sha256.is_some() {
         return Err("Usage: --candidate-sha256 requires --apply true".into());
     }
+    let old_journal: Value = serde_json::from_slice(&paths::read_limited(
+        &paths::safe(&profile, &journal_file(&old))?,
+        8 * 1024 * 1024,
+    )?)
+    .map_err(|e| e.to_string())?;
+    let old_has_deploy = old_journal["files"][router("deploy").as_str()].is_string();
+    let candidate_journal = paths::safe(&profile, &journal_file(&c.release))?;
+    let resuming = candidate_journal.exists()
+        && paths::read_limited(&candidate_journal, 8 * 1024 * 1024)? == c.journal;
     for s in SKILLS {
         let rel = router(s);
-        if c.files.get(&rel)
-            != Some(&paths::read_limited(
-                &paths::safe(&profile, &rel)?,
-                8 * 1024 * 1024,
-            )?)
+        let target = paths::safe(&profile, &rel)?;
+        if target.exists()
+            && (!old_journal["files"][rel.as_str()].is_string() && !resuming
+                || c.files.get(&rel) != Some(&paths::read_limited(&target, 8 * 1024 * 1024)?))
         {
             return Err(format!("GlobalRouterIncompatible: {s}"));
         }
@@ -351,10 +463,16 @@ pub fn update(
         return Err("GlobalActiveChanged".into());
     }
     stage(&profile, &c)?;
-    package::replace_active(
-        &paths::safe(&profile, ACTIVE)?,
-        &active_bytes(&c.release, &c.journal),
-    )?;
+    let active_path = paths::safe(&profile, ACTIVE)?;
+    if let Err(error) = package::replace_active(&active_path, &active_bytes(&c.release, &c.journal))
+    {
+        if !old_has_deploy {
+            fs::remove_file(paths::safe(&profile, &router("deploy"))?).map_err(|cleanup| {
+                format!("GlobalActivationRouterCleanupFailed: {error}; {cleanup}")
+            })?;
+        }
+        return Err(error);
+    }
     let installed_exe = paths::safe(
         &profile,
         &release_file(
@@ -371,10 +489,11 @@ pub fn update(
         .and_then(|_| package::verify_doctor(&installed_exe, &probe_root))
     {
         let old_journal = verify_release(&profile, &old)?;
-        package::replace_active(
-            &paths::safe(&profile, ACTIVE)?,
-            &active_bytes(&old, &old_journal),
-        )?;
+        package::replace_active(&active_path, &active_bytes(&old, &old_journal))?;
+        if !old_has_deploy {
+            fs::remove_file(paths::safe(&profile, &router("deploy"))?)
+                .map_err(|cleanup| format!("GlobalPostcheckRouterCleanupFailed: {e}; {cleanup}"))?;
+        }
         return Err(format!("GlobalPostcheckFailedRollback: {e}"));
     }
     r.measurements

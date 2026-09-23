@@ -1,6 +1,6 @@
 # Session state: High Grade global workflow
 
-Plan: docs/plans/2026-09-23-global-workflow.md
+Plan: docs/archive/plans/2026-09-23-global-workflow.md
 Workspace: D:/my_projects/MyCodex
 Status: COMPLETE
 Current: G1–G6 complete for source release

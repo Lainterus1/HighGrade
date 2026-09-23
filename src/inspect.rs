@@ -63,7 +63,7 @@ fn decode(s: &str) -> Result<String> {
     }
     String::from_utf8(b).map_err(|e| e.to_string())
 }
-fn link_target(doc: &str, dest: &str) -> Result<(String, Option<String>)> {
+pub(crate) fn link_target(doc: &str, dest: &str) -> Result<(String, Option<String>)> {
     let (path, anchor) = dest
         .split_once('#')
         .map_or((dest, None), |(p, a)| (p, Some(a)));
@@ -273,6 +273,7 @@ pub fn inspect(root: &Path, registry: Option<&str>, scope: Option<&str>) -> Resu
     let mut r = Report::new("inspect");
     let mut ids = BTreeSet::new();
     let mut roles = BTreeSet::new();
+    let mut role_paths = BTreeMap::<String, String>::new();
     let mut known_paths = BTreeSet::new();
     let mut rows: Vec<&Value> = docs.iter().collect();
     if let Some(extra) = config.get("additional_sources") {
@@ -300,6 +301,7 @@ pub fn inspect(root: &Path, registry: Option<&str>, scope: Option<&str>) -> Resu
             if !roles.insert(role) {
                 r.finding("failed", "DuplicateRole", path, role);
             }
+            role_paths.insert(role.to_owned(), path.to_owned());
         }
         if !known_paths.insert(path.to_lowercase()) {
             r.finding("failed", "DuplicatePath", path, "Путь назначен повторно.");
@@ -366,6 +368,7 @@ pub fn inspect(root: &Path, registry: Option<&str>, scope: Option<&str>) -> Resu
             r.finding("failed", "RequiredRoleMissing", &reg, role);
         }
     }
+    crate::bootstrap::check_connected(&root, &role_paths, &mut r);
     if scope.is_some() && !scope_covered {
         r.finding(
             "unknown",

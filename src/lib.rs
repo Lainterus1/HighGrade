@@ -1,3 +1,4 @@
+pub mod bootstrap;
 pub mod global;
 pub mod inspect;
 pub mod install;

@@ -3,7 +3,10 @@ use serde_json::{Value, json};
 use std::{
     fs,
     path::{Path, PathBuf},
-    sync::atomic::{AtomicU64, Ordering},
+    sync::{
+        OnceLock,
+        atomic::{AtomicU64, Ordering},
+    },
 };
 static NEXT: AtomicU64 = AtomicU64::new(0);
 fn temp() -> PathBuf {
@@ -16,7 +19,25 @@ fn temp() -> PathBuf {
     p
 }
 fn source() -> PathBuf {
-    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("bundle")
+    static SOURCE: OnceLock<PathBuf> = OnceLock::new();
+    SOURCE
+        .get_or_init(|| {
+            let dst = temp();
+            copy_tree(
+                &PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("bundle"),
+                &dst,
+            );
+            let manifest_path = dst.join("manifest.json");
+            let mut manifest: Value =
+                serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
+            manifest["cli_version"] = json!(env!("CARGO_PKG_VERSION"));
+            write(
+                &manifest_path,
+                &serde_json::to_vec_pretty(&manifest).unwrap(),
+            );
+            dst
+        })
+        .clone()
 }
 #[test]
 fn bundled_skill_frontmatter_uses_safe_scalars() {

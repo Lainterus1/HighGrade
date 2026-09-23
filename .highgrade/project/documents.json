@@ -1,12 +1,12 @@
 {
-  "status": "global-workflow-source-in-progress",
+  "status": "self-hosting-complete",
   "documents": [
     {
       "id": "readme",
       "path": "README.md",
       "role": "purpose-navigation",
-      "budget": null,
-      "budget_status": "not-agreed",
+      "budget": {"unit":"bytes","agreed":true,"min":4550,"baseline":6500,"current":6500,"ceiling":9000,"history":[],"review_trigger":"after two real tasks using the High Grade workflow"},
+      "budget_status": "agreed",
       "loading": "entry",
       "scope": []
     },
@@ -14,8 +14,8 @@
       "id": "agents",
       "path": "AGENTS.md",
       "role": "agent-rules",
-      "budget": null,
-      "budget_status": "not-agreed",
+      "budget": {"unit":"bytes","agreed":true,"min":4200,"baseline":6000,"current":6000,"ceiling":8000,"history":[],"review_trigger":"after two real tasks using the High Grade workflow"},
+      "budget_status": "agreed",
       "loading": "entry",
       "scope": []
     },
@@ -23,8 +23,8 @@
       "id": "architecture",
       "path": "docs/ARCHITECTURE.md",
       "role": "current-architecture",
-      "budget": null,
-      "budget_status": "not-agreed",
+      "budget": {"unit":"bytes","agreed":true,"min":4900,"baseline":7000,"current":7000,"ceiling":10000,"history":[],"review_trigger":"after two real tasks using the High Grade workflow"},
+      "budget_status": "agreed",
       "loading": "task",
       "scope": [
         "src",
@@ -38,8 +38,8 @@
       "id": "engineering",
       "path": "docs/ENGINEERING.md",
       "role": "engineering-rules",
-      "budget": null,
-      "budget_status": "not-agreed",
+      "budget": {"unit":"bytes","agreed":true,"min":4900,"baseline":7000,"current":7000,"ceiling":10000,"history":[],"review_trigger":"after two real tasks using the High Grade workflow"},
+      "budget_status": "agreed",
       "loading": "task",
       "scope": [
         "src",
@@ -53,8 +53,8 @@
       "id": "development",
       "path": "docs/DEVELOPMENT.md",
       "role": "commands-procedures",
-      "budget": null,
-      "budget_status": "not-agreed",
+      "budget": {"unit":"bytes","agreed":true,"min":4200,"baseline":6000,"current":6000,"ceiling":9000,"history":[],"review_trigger":"after two real tasks using the High Grade workflow"},
+      "budget_status": "agreed",
       "loading": "task",
       "scope": [
         "scripts",
@@ -94,7 +94,10 @@
       "path": "docs/archive/README.md",
       "role": "archive-navigation",
       "active": true,
-      "loading": "task"
+      "loading": "history",
+      "scope": [
+        "openspec/changes/archive"
+      ]
     },
     {
       "path": "docs/reviews/project-organization-review.md",
@@ -126,8 +129,8 @@
       "loading": "history"
     },
     {
-      "path": "docs/plans/2026-09-23-p0-p2.state.md",
-      "role": "current-execution-state",
+      "path": "docs/archive/plans/2026-09-23-p0-p2.state.md",
+      "role": "historical-execution-state",
       "active": false,
       "loading": "history"
     },
@@ -143,15 +146,142 @@
       "loading": "task"
     },
     {
-      "role": "current-workflow-plan",
+      "role": "project-openspec-configuration",
       "active": true,
-      "path": "docs/plans/2026-09-23-global-workflow.md",
+      "path": "openspec/config.yaml",
       "scope": [
-        "kit",
-        "src",
-        "tests"
+        "openspec/specs/.gitkeep",
+        "openspec/changes/archive/.gitkeep"
       ],
       "loading": "task"
+    },
+    {
+      "role": "current-openspec-spec",
+      "active": true,
+      "path": "openspec/specs/self-hosted-workflow/spec.md",
+      "scope": [
+        "openspec/specs/self-hosted-workflow"
+      ],
+      "loading": "task"
+    },
+    {
+      "role": "project-bootstrap-requirements",
+      "active": true,
+      "path": "openspec/specs/project-bootstrap/spec.md",
+      "scope": ["src", "kit", "tests", "docs"],
+      "loading": "task"
+    },
+    {
+      "role": "current-deploy-release-contract",
+      "active": true,
+      "path": "openspec/specs/release-workflow/spec.md",
+      "scope": ["src", "kit", "tests", "docs"],
+      "loading": "task"
+    },
+    {
+      "role": "bootstrap-init-handoff-change",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/proposal.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "bootstrap-init-handoff-review",
+      "active": false,
+      "path": "docs/reviews/bootstrap-init-handoff-review.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "bootstrap-document-structure-change",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-bootstrap-document-structure/proposal.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "bootstrap-document-structure-review",
+      "active": false,
+      "path": "docs/reviews/bootstrap-document-structure-review.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-tasks",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-repository-map/tasks.md",
+      "scope": ["src", "kit", "tests", "docs"],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-change-metadata",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-repository-map/.openspec.yaml",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-proposal",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-repository-map/proposal.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-design",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-repository-map/design.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-review",
+      "active": false,
+      "path": "docs/reviews/repository-map-review.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-project-context-requirements",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-repository-map-project-context/specs/repository-map/spec.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-project-context-tasks",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-repository-map-project-context/tasks.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-project-context-proposal",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-repository-map-project-context/proposal.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-project-context-design",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-repository-map-project-context/design.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "repository-map-project-context-review",
+      "active": false,
+      "path": "docs/reviews/repository-map-project-context-review.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "historical-self-hosting-plan",
+      "active": false,
+      "path": "docs/archive/plans/2026-09-23-self-hosting.md",
+      "scope": [],
+      "loading": "history"
     },
     {
       "role": "historical-candidate-responsibilities",
@@ -170,11 +300,11 @@
     {
       "role": "historical-candidate-plan",
       "active": false,
-      "path": "docs/plans/first-release.md",
+      "path": "docs/archive/plans/first-release.md",
       "scope": [],
       "loading": "history"
     }
   ],
   "schema_version": 1,
-  "route_budget": null
+  "route_budget": {"unit":"bytes","agreed":true,"min":50400,"baseline":72000,"current":90000,"ceiling":96000,"history":[{"from":72000,"to":80000,"reason":"Active repository-map spec and tasks add 9430 bytes to the route; proposal and design stay historical. Reviewed for duplication: requirements and implementation tasks have distinct roles; no safe reduction found without losing task context.","reduction_considered":"Keep proposal and design outside the normal route; recheck active spec and tasks after archiving the change.","next_review":"After archiving repository-map or after two real tasks, whichever comes first."},{"from":80000,"to":78000,"reason":"After archiving repository-map, active tasks left the route; measured route 77234 bytes. Reduced the budget while retaining room for normal document maintenance.","reduction_considered":"Keep only the final repository-map spec active; archived tasks, proposal, design and review remain historical.","next_review":"After two real tasks using the High Grade workflow."},{"from":78000,"to":84000,"reason":"Active repository-map-project-context spec and tasks add 4925 bytes to the measured 77234-byte route; both are needed until implementation and archiving.","reduction_considered":"Proposal and design stay historical; review the route again after archiving this change.","next_review":"After archiving repository-map-project-context."},{"from":84000,"to":83000,"reason":"After archiving the project-context change, the measured active route is 81889 bytes; the task list and delta are historical.","reduction_considered":"Keep the merged repository-map spec active and the archived change plus review historical.","next_review":"After two real tasks using the High Grade workflow."},{"from":83000,"to":94000,"reason":"Active bootstrap-document-structure specs and tasks raised the measured route to 92446 bytes after moving archive navigation to history. The active contract and checklist are needed for implementation.","reduction_considered":"Moved archive navigation (9574 bytes) out of the normal route; proposal and design remain historical. Further removal would hide active requirements or tasks.","next_review":"After archiving bootstrap-document-structure or two real uses."},{"from":94000,"to":78000,"reason":"After archiving bootstrap-document-structure, the measured active route is 74578 bytes; only the final project-bootstrap spec remains active.","reduction_considered":"Archived delta and tasks are historical; no further active source is redundant.","next_review":"After two real tasks using the High Grade workflow."},{"from":78000,"to":82000,"reason":"Active improve-bootstrap-init-handoff spec and tasks raised the measured route to 80786 bytes; proposal and design remain historical.","reduction_considered":"Keep only delta spec and tasks active until archive, then return to the final merged spec.","next_review":"After archiving improve-bootstrap-init-handoff."},{"from":82000,"to":80000,"reason":"After archiving improve-bootstrap-init-handoff, the measured active route is 78804 bytes with the merged project-bootstrap spec.","reduction_considered":"Archived delta and tasks are historical; keep only the final spec active.","next_review":"After two real tasks using the High Grade workflow."},{"from":80000,"to":90000,"reason":"After archiving deploy, the final release-workflow spec adds a durable capability; measured route 86675 bytes against 80000. A 90000-byte working budget stays within the agreed 96000 ceiling.","reduction_considered":"Archived delta, tasks, proposal and design remain historical; entry documents were shortened and no active contract can be removed without hiding applicable requirements.","next_review":"After two real deploy tasks or the next workflow consolidation."}],"review_trigger":"after two real tasks using the High Grade workflow"}
 }

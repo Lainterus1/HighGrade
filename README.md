@@ -2,7 +2,7 @@
 
 [Исходники на GitHub](https://github.com/Lainterus1/HighGrade). High Grade — переносимый набор навыков Codex и инструментов для работы над разными проектами. Общие навыки и Rust CLI устанавливаются один раз у пользователя; каждый проект хранит только собственную инструкцию, документы, OpenSpec, тесты и допустимые профильные дополнения. High Grade не ведёт центральный реестр проектов.
 
-**Состояние:** исходники глобальной поставки v0-2-1 опубликованы в `main`; локальные проверки пройдены. Практические пилоты в целевых проектах и согласование бюджетов ещё впереди. Прежний P0–P6-кандидат копировал четыре навыка и CLI в каждый проект; его испытания остаются историческим доказательством, но не подтверждают новый маршрут. Согласованное поведение — в [глобальном контракте](docs/workflow/GLOBAL.md), текущая работа — в [плане](docs/plans/2026-09-23-global-workflow.md) и [состоянии](docs/plans/2026-09-23-global-workflow.state.md).
+**Состояние:** исходная поставка v0-2-5 включает [проверку структуры документов](openspec/specs/project-bootstrap/spec.md) и общий этап `deploy` для выпуска принятой работы. Прежняя карта и её [проверка на SNAF](docs/reviews/repository-map-project-context-review.md) остаются историей. [Самоприменение](openspec/specs/self-hosted-workflow/spec.md) завершено, практические пилоты отложены. Версию пользовательской установки проверяет `global-status`; согласованный маршрут — в [глобальном контракте](docs/workflow/GLOBAL.md).
 
 ## Состав
 
@@ -13,9 +13,10 @@
 | `highgrade-spec` | Спецификация согласованного изменения в OpenSpec |
 | `highgrade-work` | Выполнение с проверками, документами, архивом и ревью |
 | `highgrade-clear` | Дополнительный обзор и актуализация состояния проекта |
-| `highgrade-update` | Добровольное обновление общей поставки |
+| `deploy` | Выпуск принятой доработки: состав, документы, Git и проектная активация |
+| `highgrade-update` | Переключение общей установки на выбранный пакет |
 
-CLI проверяет готовность (`doctor`), маршруты документов и бюджеты (`inspect`), связи OpenSpec-сценариев с результатами поддерживаемых тестов (`trace`) и управляет глобальной установкой. Он не запускает все тесты проекта и не заменяет их смысловую оценку.
+CLI проверяет готовность (`doctor`), показывает обязательную структуру до реестра (`inspect --bootstrap`), проверяет канонические пути, ссылки и бюджеты (`inspect`), связывает OpenSpec-сценарии с результатами поддерживаемых тестов (`trace`) и управляет глобальной установкой. Он не запускает все тесты проекта и не заменяет их смысловую оценку.
 
 ## Установка из исходников
 
@@ -31,7 +32,7 @@ cargo build --release --locked
 
 ## Разработка High Grade
 
-[AGENTS](AGENTS.md) задаёт работу в этом исходном проекте. [ARCHITECTURE](docs/ARCHITECTURE.md) показывает фактическое устройство, [ENGINEERING](docs/ENGINEERING.md) — правила изменений, [DEVELOPMENT](docs/DEVELOPMENT.md) — команды. [SPECIFICATION](docs/workflow/SPECIFICATION.md) и [CONTEXT](docs/workflow/CONTEXT.md) сохраняют действующие требования вне изменённой поставки. История исследования BDD — в [research](docs/research/bdd-workflow.md); архив — в [archive](docs/archive/README.md). Исходники SVG Vectorizer и Code Health Audit поддерживаются отдельно под [plugins](plugins/README.md) и не обязательны для основного маршрута.
+[AGENTS](AGENTS.md) задаёт работу в этом исходном проекте. [ARCHITECTURE](docs/ARCHITECTURE.md) показывает фактическое устройство, [ENGINEERING](docs/ENGINEERING.md) — правила изменений, [DEVELOPMENT](docs/DEVELOPMENT.md) — команды OpenSpec и Rust. [SPECIFICATION](docs/workflow/SPECIFICATION.md) и [CONTEXT](docs/workflow/CONTEXT.md) сохраняют действующие требования вне изменённой поставки. История исследования BDD — в [research](docs/research/bdd-workflow.md); архив — в [archive](docs/archive/README.md). Исходники SVG Vectorizer и Code Health Audit поддерживаются отдельно под [plugins](plugins/README.md) и не обязательны для основного маршрута.
 
 
 ## Лицензия

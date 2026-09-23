@@ -15,19 +15,31 @@ fn run() -> Result<Report> {
         return Ok(r);
     }
     let mut options = BTreeMap::new();
-    for key in args.by_ref().collect::<Vec<_>>().chunks(2) {
-        if key.len() != 2
-            || !key[0].starts_with("--")
-            || options.insert(key[0].clone(), key[1].clone()).is_some()
-        {
-            return Err(
-                "Usage: пары --root PATH [--registry REL | --source PATH --audit REL]".into(),
-            );
+    let input: Vec<String> = args.collect();
+    let mut index = 0;
+    while index < input.len() {
+        let key = &input[index];
+        if !key.starts_with("--") {
+            return Err("Usage: ожидается параметр --name".into());
+        }
+        if key == "--bootstrap" {
+            if options.insert(key.clone(), "true".into()).is_some() {
+                return Err("Usage: повторный параметр".into());
+            }
+            index += 1;
+        } else {
+            let Some(value) = input.get(index + 1) else {
+                return Err("Usage: отсутствует значение параметра".into());
+            };
+            if value.starts_with("--") || options.insert(key.clone(), value.clone()).is_some() {
+                return Err("Usage: неверная пара или повторный параметр".into());
+            }
+            index += 2;
         }
     }
     let allowed = match op.as_str() {
         "doctor" => vec!["--root"],
-        "inspect" => vec!["--root", "--registry", "--scope"],
+        "inspect" => vec!["--root", "--registry", "--scope", "--bootstrap"],
         "global-install" => vec!["--profile", "--source", "--candidate-exe"],
         "global-update" => vec![
             "--profile",
@@ -49,7 +61,11 @@ fn run() -> Result<Report> {
         ],
         "inventory" => vec!["--root"],
         "trace" => vec!["--root", "--record"],
-        _ => return Err("Usage: highgrade doctor|inspect|install --root PATH; --version".into()),
+        _ => {
+            return Err(
+                "Usage: highgrade doctor|inspect|inventory|trace --root PATH; --version".into(),
+            );
+        }
     };
     if options.keys().any(|k| !allowed.contains(&k.as_str())) {
         return Err("Usage: неизвестный параметр".into());
@@ -58,6 +74,11 @@ fn run() -> Result<Report> {
         if value != "true" {
             return Err("Usage: --apply принимает только true".into());
         }
+    }
+    if options.contains_key("--bootstrap")
+        && (options.contains_key("--registry") || options.contains_key("--scope"))
+    {
+        return Err("Usage: --bootstrap нельзя сочетать с --registry или --scope".into());
     }
     let get = |key: &str| {
         options
@@ -86,6 +107,7 @@ fn run() -> Result<Report> {
             options.get("--rollback").map(String::as_str),
         ),
         "doctor" => highgrade::doctor(root),
+        "inspect" if options.contains_key("--bootstrap") => highgrade::bootstrap::bootstrap(root),
         "inspect" => highgrade::inspect::inspect(
             root,
             options.get("--registry").map(String::as_str),

@@ -21,7 +21,33 @@
 
 ## Завершённая организация
 
-[План](plans/2026-09-22-project-organization.md) и [состояние DONE](plans/2026-09-22-project-organization.state.md). Результат и пределы проверки: [ревью](../reviews/project-organization-review.md). Действующая последовательность работы — [план первого выпуска](../plans/first-release.md); завершённая организация не возобновляется.
+[План](plans/2026-09-22-project-organization.md) и [состояние DONE](plans/2026-09-22-project-organization.state.md). Результат и пределы проверки: [ревью](../reviews/project-organization-review.md). Прежняя последовательность первого выпуска тоже сохранена [в архиве](plans/first-release.md); завершённая организация не возобновляется.
+
+## Планы заменённой поставки
+
+[План первого выпуска](plans/first-release.md) и [состояния P0–P2](plans/2026-09-23-p0-p2.state.md), [P3–P6](plans/2026-09-23-p3-p6.state.md) сохранены как история проектного кандидата. P3–P6 не считается целиком завершённым: пилот SNAF ожидал приёмки, PlantsNotify не начинался; новый глобальный маршрут заменил этот план, а пилоты остаются отложенными.
+
+[План глобальной поставки](plans/2026-09-23-global-workflow.md) и [состояние COMPLETE](plans/2026-09-23-global-workflow.state.md) архивированы после подтверждённой публикации v0-2-1. Их старые указания о следующем действии и о неподключённом OpenSpec отражают момент завершения, а не текущее состояние. Действующий маршрут — в [GLOBAL](../workflow/GLOBAL.md), текущий источник задач поведения — в проектном `openspec/`.
+
+## Самоприменение workflow, 2026-09-23
+
+Проверенное изменение [self-host-highgrade](../../openspec/changes/archive/2026-09-23-self-host-highgrade/proposal.md) завершено и штатно архивировано OpenSpec; действующая [спецификация](../../openspec/specs/self-hosted-workflow/spec.md) находится в `openspec/specs/`. Завершённые [план](plans/2026-09-23-self-hosting.md) и [состояние](plans/2026-09-23-self-hosting.state.md) сохранены здесь. Итоговые проверки и их пределы — в [ревью](../reviews/self-hosting-review.md). Архивные задачи не образуют текущий backlog.
+
+## Карта репозитория, 2026-09-23
+
+[Изменение repository-map](../../openspec/changes/archive/2026-09-23-repository-map/proposal.md) завершено и архивировано OpenSpec. Его [спецификация](../../openspec/changes/archive/2026-09-23-repository-map/specs/repository-map/spec.md) и [ревью кандидата](../reviews/repository-map-review.md) сохраняют историческое поведение карты. Пользовательская поставка v0-2-1 этим архивированием не переключена.
+
+[Уточнение по SNAF](../../openspec/changes/archive/2026-09-23-repository-map-project-context/proposal.md) также завершено и архивировано. Его результат и пределы проверки — в [отдельном ревью](../reviews/repository-map-project-context-review.md); карта затем заменена проверкой структуры документов. Пользовательская поставка остаётся v0-2-1.
+
+## Структура документов перед инициализацией, 2026-09-23
+
+[Изменение bootstrap-document-structure](../../openspec/changes/archive/2026-09-23-bootstrap-document-structure/proposal.md) завершено и архивировано OpenSpec. Публичная карта удалена; действующая [спецификация](../../openspec/specs/project-bootstrap/spec.md) и [ревью кандидата](../reviews/bootstrap-document-structure-review.md) описывают `inspect --bootstrap`, канонические пути, ограничения сканирования и проверку SNAF. Пользовательская поставка не переключена.
+
+[Уточнение передачи bootstrap в init](../../openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/proposal.md) также архивировано. Итоги временного пилота, проверки кандидата v0-2-4 и границы доказательства — в [ревью](../reviews/bootstrap-init-handoff-review.md); действующий контракт объединён в спецификации `project-bootstrap`. Временный проект удалён, пользовательская поставка не переключена.
+
+## Выпуск принятой доработки, 2026-09-23
+
+[Изменение deploy](../../openspec/changes/archive/2026-09-23-deploy-accepted-work/proposal.md) завершено и архивировано OpenSpec. Действующий [контракт выпуска](../../openspec/specs/release-workflow/spec.md) и [ревью кандидата](../reviews/deploy-release-review.md) описывают отбор, очистку, публикацию и активацию. Фактические push и локальная активация проверяются отдельно.
 
 ## Сведение первого выпуска, 2026-09-23
 

@@ -18,7 +18,12 @@ pub fn exclusions(root: &Path) -> Result<(BTreeSet<String>, Option<String>)> {
         return Ok((BTreeSet::new(), None));
     }
     let bytes = paths::read_limited(&path, 8 * 1024 * 1024)?;
-    let config: Value = serde_json::from_slice(&bytes).map_err(|e| e.to_string())?;
+    let excluded = parse_exclusions(&bytes)?;
+    Ok((excluded, Some(hash(&bytes))))
+}
+
+pub(crate) fn parse_exclusions(bytes: &[u8]) -> Result<BTreeSet<String>> {
+    let config: Value = serde_json::from_slice(bytes).map_err(|e| e.to_string())?;
     if config["schema_version"] != 1 {
         return Err("InventoryExclusionsInvalid: schema_version".into());
     }
@@ -45,7 +50,21 @@ pub fn exclusions(root: &Path) -> Result<(BTreeSet<String>, Option<String>)> {
             return Err(format!("InventoryExclusionsInvalid: {rel}"));
         }
     }
-    Ok((excluded, Some(hash(&bytes))))
+    Ok(excluded)
+}
+
+pub(crate) fn contains_exclusion(exclusions: &BTreeSet<String>, rel: &str) -> bool {
+    if exclusions.contains(rel) {
+        return true;
+    }
+    #[cfg(windows)]
+    {
+        exclusions.iter().any(|path| path.eq_ignore_ascii_case(rel))
+    }
+    #[cfg(not(windows))]
+    {
+        false
+    }
 }
 
 pub fn verify_audit_exclusions(root: &Path, audit: &Value) -> Result<()> {
@@ -85,7 +104,7 @@ pub fn inventory(root: &Path, audit_rel: &str) -> Result<BTreeMap<String, String
             } else {
                 format!("{rel}/{name}")
             };
-            if exclusions.contains(&child)
+            if contains_exclusion(exclusions, &child)
                 || child == audit
                 || [
                     "highgrade-init",
