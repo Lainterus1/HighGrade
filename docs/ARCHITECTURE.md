@@ -11,13 +11,13 @@ MyCodex/                         локальное имя каталога High
   Cargo.toml, Cargo.lock          Rust CLI и закреплённые зависимости
   src/                            doctor, inspect с bootstrap, trace, безопасные пути, global install/update
   tests/                          контрактные проверки на изолированных данных
-  kit/                            семь глобальных навыков, процедуры, шаблоны, manifest v3
+  kit/                            восемь глобальных навыков, процедуры, шаблоны, manifest v3
   bundle/                         исторический проектный кандидат manifest v2
   plugins/                        отдельные исходники SVG и Code Health Audit
   scripts/check-repository.mjs    структурная проверка исходного проекта
 ```
 
-Общий набор устанавливается в профиль пользователя: маршрутизаторы навыков — в `.agents/skills/highgrade-*`, неизменяемые материалы и CLI — в `.highgrade/global/releases/<release>/`, активный указатель — в `.highgrade/global/active.json`. При переходе с v0-2-5 прежний `.agents/skills/deploy` удаляется после проверки новой версии. Проектный `.highgrade/project/INSTRUCTIONS.md` содержит только местную адаптацию. Rust CLI не сканирует домашний каталог целиком и не управляет соседними проектами. Команды `global-install`, `global-update`, `global-status` отделены от `doctor`, `inspect`, `inventory` и `trace`. Последние четыре не изменяют проект.
+Общий набор устанавливается в профиль пользователя: маршрутизаторы навыков — в `.agents/skills/highgrade-*`, неизменяемые материалы и CLI — в `.highgrade/global/releases/<release>/`, активный указатель — в `.highgrade/global/active.json`. Выпуск v0-2-7 создаёт `highgrade-approve` и `highgrade-push` до переключения указателя, затем удаляет принадлежащий прежнему релизу `highgrade-deploy`; откат восстанавливает прежний путь из проверенной копии. Проектный `.highgrade/project/INSTRUCTIONS.md` содержит только местную адаптацию. Rust CLI не сканирует домашний каталог целиком и не управляет соседними проектами. Команды `global-install`, `global-update`, `global-status` отделены от `doctor`, `inspect`, `inventory` и `trace`. Последние четыре не изменяют проект.
 
 Старые `package` и `install` модули, `bundle/` и явные команды `legacy-install`/`legacy-update` пока сохранены для проверяемой истории прежней поставки и уже подключённого пилота; новый маршрут их не использует. Удаление этого совместимого слоя возможно после отдельной миграционной проверки. Его наличие не означает, что новые проекты получают копии навыков.
 
@@ -27,4 +27,4 @@ SVG Vectorizer и Code Health Audit — самостоятельные исхо�
 
 ## Владение знаниями
 
-[GLOBAL](workflow/GLOBAL.md) задаёт общий маршрут; [SPECIFICATION](workflow/SPECIFICATION.md) сохраняет прежние принятые требования, [CONTEXT](workflow/CONTEXT.md) — контекст и архив. Этот документ описывает фактическую структуру. [ENGINEERING](ENGINEERING.md) устанавливает правила изменений, [DEVELOPMENT](DEVELOPMENT.md) — команды. Новые задачи поведения получают проектное OpenSpec-изменение; действующая [спецификация самоприменения](../openspec/specs/self-hosted-workflow/spec.md) уже перенесена в `openspec/specs/`. [Завершённая глобальная поставка](archive/plans/2026-09-23-global-workflow.md) и [проверка самоприменения](reviews/self-hosting-review.md) — история и доказательство, а не текущие задачи.
+[GLOBAL](workflow/GLOBAL.md) задаёт общий маршрут; [QUALITY](workflow/QUALITY.md) и [CONTEXT](workflow/CONTEXT.md) — действующие проверки, контекст и архив, [SPECIFICATION](workflow/SPECIFICATION.md) — история решений. Этот документ описывает фактическую структуру. [ENGINEERING](ENGINEERING.md) устанавливает правила изменений, [DEVELOPMENT](DEVELOPMENT.md) — команды. Новые задачи поведения получают проектное OpenSpec-изменение; действующая [спецификация самоприменения](../openspec/specs/self-hosted-workflow/spec.md) уже перенесена в `openspec/specs/`. [Завершённая глобальная поставка](archive/plans/2026-09-23-global-workflow.md) и [проверка самоприменения](reviews/self-hosting-review.md) — история и доказательство, а не текущие задачи.

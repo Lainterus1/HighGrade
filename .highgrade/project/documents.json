@@ -75,8 +75,29 @@
     {
       "path": "docs/workflow/SPECIFICATION.md",
       "role": "accepted-workflow-requirements",
-      "active": true,
+      "active": false,
       "loading": "history"
+    },
+    {
+      "path": "docs/workflow/QUALITY.md",
+      "role": "current-quality-and-evidence-rules",
+      "active": true,
+      "loading": "task",
+      "scope": ["kit", "src", "tests", "docs"]
+    },
+    {
+      "path": "docs/releases/v0-2-6.md",
+      "role": "published-release-receipt",
+      "active": false,
+      "loading": "history",
+      "scope": []
+    },
+    {
+      "path": "docs/releases/v0-2-7.md",
+      "role": "v0-2-7-release-receipt",
+      "active": false,
+      "loading": "history",
+      "scope": []
     },
     {
       "path": "docs/workflow/CONTEXT.md",
@@ -172,11 +193,81 @@
       "loading": "task"
     },
     {
-      "role": "current-deploy-release-contract",
+      "role": "current-release-workflow-requirements",
       "active": true,
       "path": "openspec/specs/release-workflow/spec.md",
       "scope": ["src", "kit", "tests", "docs"],
       "loading": "task"
+    },
+    {
+      "role": "current-task-workflow-requirements",
+      "active": true,
+      "path": "openspec/specs/task-workflow/spec.md",
+      "scope": ["kit", "docs"],
+      "loading": "task"
+    },
+    {
+      "role": "current-tool-readiness-requirements",
+      "active": true,
+      "path": "openspec/specs/tool-readiness/spec.md",
+      "scope": ["src", "kit", "tests", "docs", ".github"],
+      "loading": "task"
+    },
+    {
+      "role": "archived-approve-push-requirements",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-approve-push-workflow/specs/release-workflow/spec.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "archived-task-handoff-requirements",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-approve-push-workflow/specs/task-workflow/spec.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "archived-tool-readiness-requirements",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-approve-push-workflow/specs/tool-readiness/spec.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "archived-approve-push-tasks",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-approve-push-workflow/tasks.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "approve-push-proposal",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-approve-push-workflow/proposal.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "approve-push-design",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-approve-push-workflow/design.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "approve-push-metadata",
+      "active": false,
+      "path": "openspec/changes/archive/2026-09-23-approve-push-workflow/.openspec.yaml",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "approve-push-interim-review",
+      "active": false,
+      "path": "docs/reviews/approve-push-workflow-review.md",
+      "scope": [],
+      "loading": "history"
     },
     {
       "role": "deploy-publication-consent-change",

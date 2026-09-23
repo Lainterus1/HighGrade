@@ -8,9 +8,27 @@ use std::{
 
 const ACTIVE: &str = ".highgrade/global/active.json";
 const LOCK: &str = ".highgrade/global/install.lock";
+const APPROVE_SKILL: &str = "skills/highgrade-approve/SKILL.md";
+const PUSH_SKILL: &str = "skills/highgrade-push/SKILL.md";
 const DEPLOY_SKILL: &str = "skills/highgrade-deploy/SKILL.md";
 const LEGACY_DEPLOY_SKILL: &str = "skills/deploy/SKILL.md";
-const SKILLS: [&str; 7] = [
+const TRANSITION_SKILLS: [(&str, &str); 4] = [
+    ("deploy", LEGACY_DEPLOY_SKILL),
+    ("highgrade-deploy", DEPLOY_SKILL),
+    ("highgrade-approve", APPROVE_SKILL),
+    ("highgrade-push", PUSH_SKILL),
+];
+const SKILLS: [&str; 8] = [
+    "highgrade-init",
+    "highgrade-task",
+    "highgrade-spec",
+    "highgrade-work",
+    "highgrade-clear",
+    "highgrade-update",
+    "highgrade-approve",
+    "highgrade-push",
+];
+const DEPLOY_SKILLS: [&str; 7] = [
     "highgrade-init",
     "highgrade-task",
     "highgrade-spec",
@@ -36,7 +54,27 @@ const PREVIOUS_SKILLS: [&str; 6] = [
     "highgrade-clear",
     "highgrade-update",
 ];
-const MATERIALS: [&str; 17] = [
+const MATERIALS: [&str; 18] = [
+    "rules.md",
+    "procedures/init.md",
+    "procedures/task.md",
+    "procedures/spec.md",
+    "procedures/work.md",
+    "procedures/clear.md",
+    "procedures/update.md",
+    "procedures/approve.md",
+    "procedures/push.md",
+    "procedures/archive.md",
+    "references/audit.md",
+    "references/cli.md",
+    "templates/README.md",
+    "templates/AGENTS.md",
+    "templates/ARCHITECTURE.md",
+    "templates/ENGINEERING.md",
+    "templates/DEVELOPMENT.md",
+    "templates/INSTRUCTIONS.md",
+];
+const DEPLOY_MATERIALS: [&str; 17] = [
     "rules.md",
     "procedures/init.md",
     "procedures/task.md",
@@ -87,6 +125,31 @@ fn router(name: &str) -> String {
 }
 fn release_file(release: &str, rel: &str) -> String {
     format!(".highgrade/global/releases/{release}/{rel}")
+}
+fn owned_routers(journal: &Value) -> Vec<(String, &'static str)> {
+    TRANSITION_SKILLS
+        .iter()
+        .filter_map(|(name, backup)| {
+            let rel = router(name);
+            journal["files"][rel.as_str()]
+                .is_string()
+                .then_some((rel, *backup))
+        })
+        .collect()
+}
+fn remove_new_routers(profile: &Path, old_journal: &Value, candidate: &Candidate) -> Result<()> {
+    for name in ["highgrade-approve", "highgrade-push"] {
+        let rel = router(name);
+        if !old_journal["files"][rel.as_str()].is_string() {
+            let expected = candidate
+                .files
+                .get(&rel)
+                .ok_or("GlobalCandidateRouterMissing")?;
+            retire_router(profile, &rel, &hash(expected))
+                .map_err(|e| format!("GlobalNewRouterCleanupFailed: {e}"))?;
+        }
+    }
+    Ok(())
 }
 fn journal_file(release: &str) -> String {
     release_file(release, "journal.json")
@@ -162,10 +225,12 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
         };
         files.insert(target, data);
     }
-    files.insert(
-        release_file(release, DEPLOY_SKILL),
-        paths::read_limited(&paths::safe(&source, DEPLOY_SKILL)?, 8 * 1024 * 1024)?,
-    );
+    for rel in [APPROVE_SKILL, PUSH_SKILL] {
+        files.insert(
+            release_file(release, rel),
+            paths::read_limited(&paths::safe(&source, rel)?, 8 * 1024 * 1024)?,
+        );
+    }
     let executable_bytes = paths::read_limited(executable, 128 * 1024 * 1024)?;
     let manifest_hash = hash(&manifest_bytes);
     let candidate_sha256 =
@@ -212,11 +277,16 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
             .collect()
     };
     let mut current = expected(&SKILLS, &MATERIALS);
-    current.insert(release_file(release, DEPLOY_SKILL));
-    let mut legacy = expected(&LEGACY_SKILLS, &MATERIALS);
+    for rel in [APPROVE_SKILL, PUSH_SKILL] {
+        current.insert(release_file(release, rel));
+    }
+    let mut deploy = expected(&DEPLOY_SKILLS, &DEPLOY_MATERIALS);
+    deploy.insert(release_file(release, DEPLOY_SKILL));
+    let mut legacy = expected(&LEGACY_SKILLS, &DEPLOY_MATERIALS);
     legacy.insert(release_file(release, LEGACY_DEPLOY_SKILL));
     let previous = expected(&PREVIOUS_SKILLS, &PREVIOUS_MATERIALS);
     if actual != current.iter().map(String::as_str).collect()
+        && actual != deploy.iter().map(String::as_str).collect()
         && actual != legacy.iter().map(String::as_str).collect()
         && actual != previous.iter().map(String::as_str).collect()
     {
@@ -284,15 +354,21 @@ fn retire_router(profile: &Path, rel: &str, expected: &str) -> Result<()> {
 }
 fn stage(profile: &Path, c: &Candidate) -> Result<()> {
     install::put_once(profile, &journal_file(&c.release), &c.journal)?;
-    let deploy_path = router("highgrade-deploy");
+    let new_routers = [router("highgrade-approve"), router("highgrade-push")];
     for (rel, data) in &c.files {
-        if rel != &deploy_path {
+        if !new_routers.contains(rel) {
             install::put_once(profile, rel, data)?;
         }
     }
-    let deploy_existed = paths::safe(profile, &deploy_path)?.exists();
-    install::put_once(profile, &deploy_path, &c.files[&deploy_path])?;
+    let mut created = Vec::new();
     let checked = (|| {
+        for rel in &new_routers {
+            let existed = paths::safe(profile, rel)?.exists();
+            install::put_once(profile, rel, &c.files[rel])?;
+            if !existed {
+                created.push(rel.clone());
+            }
+        }
         verify_release(profile, &c.release)?;
         let installed_exe = paths::safe(
             profile,
@@ -308,9 +384,11 @@ fn stage(profile: &Path, c: &Candidate) -> Result<()> {
         )?;
         package::verify_doctor(&installed_exe, &probe_root)
     })();
-    if checked.is_err() && !deploy_existed {
-        fs::remove_file(paths::safe(profile, &deploy_path)?)
-            .map_err(|e| format!("GlobalStageRouterCleanupFailed: {e}"))?;
+    if checked.is_err() {
+        for rel in created {
+            retire_router(profile, &rel, &hash(&c.files[&rel]))
+                .map_err(|e| format!("GlobalStageRouterCleanupFailed: {e}"))?;
+        }
     }
     checked
 }
@@ -324,7 +402,12 @@ pub fn status(profile: &Path) -> Result<Report> {
                 8 * 1024 * 1024,
             )?)
             .map_err(|e| e.to_string())?;
-            for name in ["deploy", "highgrade-deploy"] {
+            for name in [
+                "deploy",
+                "highgrade-deploy",
+                "highgrade-approve",
+                "highgrade-push",
+            ] {
                 let rel = router(name);
                 if !journal["files"][rel.as_str()].is_string()
                     && paths::safe(&profile, &rel)?.exists()
@@ -363,7 +446,7 @@ pub fn install(profile: &Path, source: &Path, executable: &Path) -> Result<Repor
     let resuming = existing_journal.exists()
         && paths::read_limited(&existing_journal, 8 * 1024 * 1024)? == c.journal;
     if !resuming {
-        for s in SKILLS {
+        for s in SKILLS.into_iter().chain(["deploy", "highgrade-deploy"]) {
             if paths::safe(&profile, &router(s))?.exists() {
                 return Err(format!("GlobalSkillConflict: {s}"));
             }
@@ -410,46 +493,51 @@ pub fn update(
             8 * 1024 * 1024,
         )?;
         let target: Value = serde_json::from_slice(&target_bytes).map_err(|e| e.to_string())?;
-        let target_router = [
-            (router("highgrade-deploy"), DEPLOY_SKILL),
-            (router("deploy"), LEGACY_DEPLOY_SKILL),
-        ]
-        .into_iter()
-        .find(|(rel, _)| target["files"][rel.as_str()].is_string());
+        let target_routers = owned_routers(&target);
         let old_bytes = paths::read_limited(
             &paths::safe(&profile, &journal_file(&old))?,
             8 * 1024 * 1024,
         )?;
         let old_journal: Value = serde_json::from_slice(&old_bytes).map_err(|e| e.to_string())?;
-        let old_router = [router("highgrade-deploy"), router("deploy")]
-            .into_iter()
-            .find(|rel| old_journal["files"][rel.as_str()].is_string());
+        let old_routers = owned_routers(&old_journal);
         let _guard = lock(&profile)?;
         if active(&profile)? != Some((old.clone(), old_hash.clone())) {
             return Err("GlobalActiveChanged".into());
         }
-        let mut restored = false;
-        if let Some((rel, backup_rel)) = &target_router {
-            let expected = target["files"][rel.as_str()]
-                .as_str()
-                .ok_or("GlobalRollbackRouterHashMissing")?;
-            let backup = paths::read_limited(
-                &paths::safe(&profile, &release_file(release, backup_rel))?,
-                8 * 1024 * 1024,
-            )?;
-            if hash(&backup) != expected {
-                return Err("GlobalRollbackRouterBackupChanged".into());
+        let mut restored = Vec::new();
+        let restore_result: Result<()> = (|| {
+            for (rel, backup_rel) in &target_routers {
+                let expected = target["files"][rel.as_str()]
+                    .as_str()
+                    .ok_or("GlobalRollbackRouterHashMissing")?;
+                let backup = paths::read_limited(
+                    &paths::safe(&profile, &release_file(release, backup_rel))?,
+                    8 * 1024 * 1024,
+                )?;
+                if hash(&backup) != expected {
+                    return Err("GlobalRollbackRouterBackupChanged".into());
+                }
+                let path = paths::safe(&profile, rel)?;
+                let was_missing = !path.exists();
+                install::put_once(&profile, rel, &backup)?;
+                if was_missing {
+                    restored.push(rel.clone());
+                }
             }
-            let path = paths::safe(&profile, rel)?;
-            restored = !path.exists();
-            install::put_once(&profile, rel, &backup)?;
+            Ok(())
+        })();
+        if let Err(error) = restore_result {
+            for rel in &restored {
+                fs::remove_file(paths::safe(&profile, rel)?)
+                    .map_err(|e| format!("GlobalRollbackRouterCleanupFailed: {error}; {e}"))?;
+            }
+            return Err(error);
         }
         let journal = match verify_release(&profile, release) {
             Ok(journal) => journal,
             Err(error) => {
-                if restored {
-                    fs::remove_file(paths::safe(&profile, &target_router.as_ref().unwrap().0)?)
-                        .map_err(|e| e.to_string())?;
+                for rel in &restored {
+                    fs::remove_file(paths::safe(&profile, rel)?).map_err(|e| e.to_string())?;
                 }
                 return Err(error);
             }
@@ -457,27 +545,24 @@ pub fn update(
         let active_path = paths::safe(&profile, ACTIVE)?;
         if let Err(error) = package::replace_active(&active_path, &active_bytes(release, &journal))
         {
-            if restored {
-                fs::remove_file(paths::safe(&profile, &target_router.as_ref().unwrap().0)?)
+            for rel in &restored {
+                fs::remove_file(paths::safe(&profile, rel)?)
                     .map_err(|e| format!("GlobalRollbackRouterCleanupFailed: {error}; {e}"))?;
             }
             return Err(error);
         }
-        let mut cleanup_error = None;
-        if let Some(rel) = &old_router {
-            if target_router
-                .as_ref()
-                .is_none_or(|(target, _)| target != rel)
-            {
+        let mut cleanup_errors = Vec::new();
+        for (rel, _) in &old_routers {
+            if !target_routers.iter().any(|(target, _)| target == rel) {
                 let expected = old_journal["files"][rel.as_str()].as_str().unwrap();
                 if let Err(error) = retire_router(&profile, rel, expected) {
-                    cleanup_error = Some((rel.clone(), error));
+                    cleanup_errors.push((rel.clone(), error));
                 }
             }
         }
         let mut r = status(&profile)?;
         r.operation = "global-update".into();
-        if let Some((rel, error)) = cleanup_error {
+        for (rel, error) in cleanup_errors {
             r.finding("warning", "LegacyRouterCleanupPending", &rel, &error);
         }
         r.measurements
@@ -521,10 +606,7 @@ pub fn update(
     if adapted {
         c.journal = journal_bytes(&c.release, &c.manifest_hash, &c.files)?;
     }
-    let old_has_new_router = old_journal["files"][router("highgrade-deploy").as_str()].is_string();
-    let old_legacy_hash = old_journal["files"][router("deploy").as_str()]
-        .as_str()
-        .map(str::to_owned);
+    let old_routers = owned_routers(&old_journal);
     let candidate_journal = paths::safe(&profile, &journal_file(&c.release))?;
     let resuming = candidate_journal.exists()
         && paths::read_limited(&candidate_journal, 8 * 1024 * 1024)? == c.journal;
@@ -559,11 +641,9 @@ pub fn update(
     let active_path = paths::safe(&profile, ACTIVE)?;
     if let Err(error) = package::replace_active(&active_path, &active_bytes(&c.release, &c.journal))
     {
-        if !old_has_new_router {
-            fs::remove_file(paths::safe(&profile, &router("highgrade-deploy"))?).map_err(
-                |cleanup| format!("GlobalActivationRouterCleanupFailed: {error}; {cleanup}"),
-            )?;
-        }
+        remove_new_routers(&profile, &old_journal, &c).map_err(|cleanup| {
+            format!("GlobalActivationRouterCleanupFailed: {error}; {cleanup}")
+        })?;
         return Err(error);
     }
     let installed_exe = paths::safe(
@@ -581,18 +661,18 @@ pub fn update(
         .and_then(|_| package::verify_binary(&installed_exe, &c.cli_version))
         .and_then(|_| package::verify_doctor(&installed_exe, &probe_root))
     {
-        let old_journal = verify_release(&profile, &old)?;
-        package::replace_active(&active_path, &active_bytes(&old, &old_journal))?;
-        if !old_has_new_router {
-            fs::remove_file(paths::safe(&profile, &router("highgrade-deploy"))?)
-                .map_err(|cleanup| format!("GlobalPostcheckRouterCleanupFailed: {e}; {cleanup}"))?;
-        }
+        let old_journal_bytes = verify_release(&profile, &old)?;
+        package::replace_active(&active_path, &active_bytes(&old, &old_journal_bytes))?;
+        remove_new_routers(&profile, &old_journal, &c)
+            .map_err(|cleanup| format!("GlobalPostcheckRouterCleanupFailed: {e}; {cleanup}"))?;
         return Err(format!("GlobalPostcheckFailedRollback: {e}"));
     }
-    if let Some(expected) = old_legacy_hash {
-        let rel = router("deploy");
-        if let Err(error) = retire_router(&profile, &rel, &expected) {
-            r.finding("warning", "LegacyRouterCleanupPending", &rel, &error);
+    for (rel, _) in old_routers {
+        if !c.files.contains_key(&rel) {
+            let expected = old_journal["files"][rel.as_str()].as_str().unwrap();
+            if let Err(error) = retire_router(&profile, &rel, expected) {
+                r.finding("warning", "LegacyRouterCleanupPending", &rel, &error);
+            }
         }
     }
     r.measurements

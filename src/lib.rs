@@ -93,7 +93,7 @@ pub fn doctor(root: &Path) -> Result<Report> {
                 "unknown",
                 "DependencyMissing",
                 name,
-                "Не найден в PATH; ничего не установлено.",
+                "Не найден в PATH; наличие установки и версия не проверены.",
             );
         }
     }

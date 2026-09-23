@@ -4,7 +4,7 @@
 
 ## Источники и полномочия
 
-Начни с [README](README.md) и [проектной инструкции](.highgrade/project/INSTRUCTIONS.md), когда она создана. Согласованный глобальный маршрут — в [GLOBAL](docs/workflow/GLOBAL.md); прежние подробные требования — в [SPECIFICATION](docs/workflow/SPECIFICATION.md), политика контекста — в [CONTEXT](docs/workflow/CONTEXT.md). Устройство существующего проекта — в [ARCHITECTURE](docs/ARCHITECTURE.md), инженерные правила — в [ENGINEERING](docs/ENGINEERING.md), команды — в [DEVELOPMENT](docs/DEVELOPMENT.md).
+Начни с [README](README.md) и [проектной инструкции](.highgrade/project/INSTRUCTIONS.md), когда она создана. Согласованный глобальный маршрут — в [GLOBAL](docs/workflow/GLOBAL.md), правила доказательств — в [QUALITY](docs/workflow/QUALITY.md), политика контекста — в [CONTEXT](docs/workflow/CONTEXT.md); [SPECIFICATION](docs/workflow/SPECIFICATION.md) хранит историю решений. Устройство существующего проекта — в [ARCHITECTURE](docs/ARCHITECTURE.md), инженерные правила — в [ENGINEERING](docs/ENGINEERING.md), команды — в [DEVELOPMENT](docs/DEVELOPMENT.md).
 
 [TOOLING](docs/proposals/TOOLING.md) описывает исторического проектного кандидата; технический проект сохраняет проектные гипотезы. Исторические контракты: [P0–P2](docs/implementation/p0-p2-contract.md) и [P3–P5](docs/implementation/p3-p5-contract.md). Выпуск глобальной поставки подтверждён в [ревью](docs/reviews/global-workflow-release.md). Новые изменения выполняются в пределах конкретного поручения; GitHub push, переключение установленных SVG/CHA и пилотные проекты не подразумеваются автоматически.
 
@@ -12,7 +12,7 @@
 
 ## Маршрут High Grade в этом репозитории
 
-Новую неясную задачу прорабатывай через `highgrade-task` с одним раундом дополнений. Согласованное изменение поведения оформляй через `highgrade-spec` в OpenSpec и выполняй через `highgrade-work`; малую ясную техническую задачу можно выполнить через `highgrade-work` прямо. Принятую работу заверши через `highgrade-deploy`: состав, документы, архив и локальный коммит. Push и активация требуют отдельного явного поручения и местного маршрута. `highgrade-clear` — обзор по запросу, `highgrade-update` — отдельное переключение общей поставки. Местные команды — в [проектной инструкции](.highgrade/project/INSTRUCTIONS.md) и [DEVELOPMENT](docs/DEVELOPMENT.md); вторые навыки для тех же обязанностей не создавай.
+Новую неясную задачу прорабатывай через `highgrade-task`; уже ясное и разрешённое поручение не переспрашивай. Изменение поведения оформляй через `highgrade-spec` в OpenSpec и выполняй через `highgrade-work`; малую ясную техническую задачу можно выполнить прямо. Готовую задачу завершай через `highgrade-approve`: точный локальный коммит и местная активация из его SHA. Для первого v0-2-7 до установки навыка следуй переходному маршруту в [проектной инструкции](.highgrade/project/INSTRUCTIONS.md). Выбранный диапазон готовых коммитов отправляет отдельный `highgrade-push` по явному поручению. `highgrade-clear` — обзор по запросу, `highgrade-update` — отдельное переключение общей поставки. Команды — в [DEVELOPMENT](docs/DEVELOPMENT.md); вторые навыки для тех же обязанностей не создавай.
 
 ## Штатная работа
 

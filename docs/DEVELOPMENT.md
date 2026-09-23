@@ -1,6 +1,6 @@
 # Разработка и проверки
 
-Область: воспроизводимые команды для исходного High Grade. Архитектура — в [ARCHITECTURE](ARCHITECTURE.md); текущие задачи поведения — в проектном `openspec/changes/`, зависимые технические планы — в `docs/plans/`. Команды выполняются из корня проекта. Rust 1.97.0 Windows MSVC использовался для проверенного кандидата; первый выпуск остаётся Windows/source-only.
+Команды исходного High Grade выполняются из корня проекта. Устройство — в [ARCHITECTURE](ARCHITECTURE.md), задачи поведения — в `openspec/changes/`. Первый выпуск остаётся Windows/source-only.
 
 ## Проектный OpenSpec
 
@@ -15,7 +15,7 @@ $env:PATH = "$(npm.cmd prefix -g);$env:PATH"
 & $openspecBin validate --all --strict --no-interactive
 ```
 
-Ожидаемая версия — `1.13.1`. У OpenSpec по умолчанию включена анонимная телеметрия; `OPENSPEC_TELEMETRY=0` отключает её для этой сессии и проверки обновлений CLI. Устанавливай эту переменную перед каждым вызовом OpenSpec в работе над High Grade. Проектный `openspec/config.yaml` уже создан командой `openspec init --tools none --language Russian`; повторять init в обычной работе не нужно. `--tools none` не создаёт параллельные навыки OpenSpec для Codex: используйте общие `highgrade-task/spec/work`. Перед реализацией изменения проверь `& $openspecBin validate <имя-изменения> --strict --no-interactive`; после проверки результата архивируй завершённое изменение штатным OpenSpec. `highgrade doctor` видит OpenSpec только когда каталог npm CLI есть в `PATH`.
+Ожидаемая версия — `1.13.1`. Перед каждым вызовом отключай телеметрию через `OPENSPEC_TELEMETRY=0`. Проект уже инициализирован с `--tools none`; новые навыки OpenSpec здесь не нужны. Изменение проверяй командой `& $openspecBin validate <имя> --strict --no-interactive`, завершённое архивируй штатным OpenSpec. `highgrade doctor` обнаруживает CLI в `PATH`, но не проверяет его версию; её показывает `& $openspecBin --version`.
 
 ## Rust CLI и глобальная поставка
 
@@ -30,7 +30,7 @@ cargo build --release --locked
 .\target\release\highgrade.exe inspect --bootstrap --root "$PWD"
 ```
 
-Сначала проверяй установку в изолированном профиле. После этого пользовательскую установку можно обновить явным маршрутом. [Справочник](../kit/references/cli.md) содержит команды preview, применения, отката и пределы `inspect --bootstrap`. Общие навыки и CLI не копируются в проект. `doctor`/`inspect` могут вернуть unknown из-за неполного измерения или недоступного входа; код 2 не является PASS. Native тесты Rust и Playwright выполняются своими командами, затем `trace` читает их отчёты. Старые проектные команды находятся в `bundle/` только для исторической проверки.
+Сначала проверяй установку в изолированном профиле. [Справочник](../kit/references/cli.md) описывает обновление, откат и пределы bootstrap. `doctor`/`inspect` могут вернуть unknown; код 2 не является PASS. Rust и Playwright запускаются штатно, затем `trace` читает отчёты. `bundle/` — история прежней поставки.
 
 ## Структура и документы
 
@@ -43,8 +43,8 @@ node scripts/check-repository.mjs --verify-import
 
 ## Отдельные плагины
 
-Исходник SVG Vectorizer — [README](../plugins/svg-vectorizer/README.md). Вход Code Health Audit — [SKILL.md](../plugins/code-health-audit/skills/code-health-audit/SKILL.md) и [toolchain](../plugins/code-health-audit/skills/code-health-audit/references/toolchain.md). Эти плагины тестируются в своих окружениях. Структурная сверка импорта не подтверждает их функциональное поведение; изменение исходников здесь не переключает установленные копии.
+SVG Vectorizer — [README](../plugins/svg-vectorizer/README.md); Code Health Audit — [SKILL.md](../plugins/code-health-audit/skills/code-health-audit/SKILL.md). Их тестируют в собственных окружениях. Сверка импорта не проверяет поведение и не переключает установленные копии.
 
 ## Публикация
 
-`highgrade-deploy` по [проектной инструкции](../.highgrade/project/INSTRUCTIONS.md) завершается локальным коммитом. Push и активация требуют отдельных поручений. Перед публикацией проверь состав, лицензию, происхождение, секреты и кэши; хеши `kit/` сверь с архивом SHA (`.gitattributes` закрепляет LF). После разрешённого push сверь удалённый SHA; после разрешённой активации проверь `global-status`. Это не означает приёмку целевых проектов.
+`highgrade-approve` по [проектной инструкции](../.highgrade/project/INSTRUCTIONS.md) создаёт коммит и локально активирует его из изолированного SHA. `highgrade-push` по отдельному поручению отправляет выбранный диапазон готовых коммитов. Перед публикацией проверь состав, лицензию, происхождение, секреты и кэши; хеши `kit/` сверь с архивом SHA (`.gitattributes` закрепляет LF). После push сверь удалённый SHA, после местной активации — `global-status`. CI в `.github/workflows/verify.yml` проверяет отправленный исходник, но не активирует его. Это не означает приёмку целевых проектов.

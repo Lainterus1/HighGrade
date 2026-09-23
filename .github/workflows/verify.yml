@@ -1,0 +1,33 @@
+name: Verify source
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check format
+        run: cargo fmt --all -- --check
+      - name: Test and verify kit hashes
+        run: cargo test --locked
+      - name: Build release
+        run: cargo build --release --locked
+      - name: Check repository structure
+        run: node scripts/check-repository.mjs
+      - name: Validate OpenSpec
+        env:
+          OPENSPEC_TELEMETRY: '0'
+        run: |
+          npm.cmd install -g @fission-ai/openspec@1.13.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          openspec.cmd validate --all --strict --no-interactive
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Get-ChildItem openspec/changes -Directory | Where-Object Name -ne 'archive' | ForEach-Object { openspec.cmd validate $_.Name --strict --no-interactive; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }
