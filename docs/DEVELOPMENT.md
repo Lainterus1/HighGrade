@@ -47,4 +47,4 @@ node scripts/check-repository.mjs --verify-import
 
 ## Публикация
 
-Выпуск выполняет `deploy` по [проектной процедуре](../.highgrade/project/INSTRUCTIONS.md). До GitHub push проверь состав коммита, лицензию, происхождение кода, секреты и кэши. После push сверь удалённый SHA; затем активируй поставку через preview/apply `global-update` и проверь `global-status`. Это не означает приёмку целевых проектов.
+Выпуск выполняет `deploy` по [проектной процедуре](../.highgrade/project/INSTRUCTIONS.md). До GitHub push проверь состав коммита, лицензию, происхождение кода, секреты и кэши. Проверяй хеши `kit/` из архива SHA; `.gitattributes` закрепляет LF. После push сверь удалённый SHA; затем активируй поставку через preview/apply `global-update` и проверь `global-status`. Это не означает приёмку целевых проектов.

@@ -20,6 +20,22 @@ fn temp() -> PathBuf {
 fn source() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("kit")
 }
+#[test]
+fn kit_manifest_uses_stable_lf_bytes() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let attributes = fs::read_to_string(root.join(".gitattributes")).unwrap();
+    assert!(attributes.lines().any(|line| line == "kit/** text eol=lf"));
+    let manifest: Value =
+        serde_json::from_slice(&fs::read(source().join("manifest.json")).unwrap()).unwrap();
+    for (rel, expected) in manifest["files"].as_object().unwrap() {
+        let data = fs::read(source().join(rel)).unwrap();
+        assert!(
+            !data.windows(2).any(|bytes| bytes == b"\r\n"),
+            "{rel} must use LF"
+        );
+        assert_eq!(hash(&data), expected.as_str().unwrap(), "{rel}");
+    }
+}
 fn exe() -> PathBuf {
     PathBuf::from(env!("CARGO_BIN_EXE_highgrade"))
 }
@@ -225,6 +241,66 @@ fn six_skill_profile() -> PathBuf {
         .unwrap(),
     );
     profile
+}
+fn six_skill_profile_with_crlf_routers() -> PathBuf {
+    let profile = six_skill_profile();
+    let release = "v0-2-1";
+    let journal_path = profile.join(format!(".highgrade/global/releases/{release}/journal.json"));
+    let mut journal: Value = serde_json::from_slice(&fs::read(&journal_path).unwrap()).unwrap();
+    for name in [
+        "highgrade-init",
+        "highgrade-task",
+        "highgrade-spec",
+        "highgrade-work",
+        "highgrade-clear",
+        "highgrade-update",
+    ] {
+        let rel = format!(".agents/skills/{name}/SKILL.md");
+        let path = profile.join(&rel);
+        let lf = String::from_utf8(fs::read(&path).unwrap()).unwrap();
+        let crlf = lf.replace("\r\n", "\n").replace('\n', "\r\n").into_bytes();
+        write(&path, &crlf);
+        journal["files"][&rel] = json!(hash(&crlf));
+    }
+    let journal_bytes = serde_json::to_vec_pretty(&journal).unwrap();
+    write(&journal_path, &journal_bytes);
+    let active_path = profile.join(".highgrade/global/active.json");
+    let mut active: Value = serde_json::from_slice(&fs::read(&active_path).unwrap()).unwrap();
+    active["journal_sha256"] = json!(hash(&journal_bytes));
+    write(&active_path, &serde_json::to_vec_pretty(&active).unwrap());
+    profile
+}
+
+#[test]
+fn six_skill_release_preserves_owned_crlf_routers() {
+    let profile = six_skill_profile_with_crlf_routers();
+    let init = profile.join(".agents/skills/highgrade-init/SKILL.md");
+    let old_bytes = fs::read(&init).unwrap();
+    assert!(old_bytes.windows(2).any(|bytes| bytes == b"\r\n"));
+    let preview =
+        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
+    let fingerprint = preview.measurements[0]["candidate_sha256"]
+        .as_str()
+        .unwrap();
+    global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        Some(fingerprint),
+        None,
+    )
+    .unwrap();
+    assert_eq!(fs::read(&init).unwrap(), old_bytes);
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-2-5"
+    );
+    global::update(&profile, None, None, false, None, Some("v0-2-1")).unwrap();
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-2-1"
+    );
 }
 
 #[test]

@@ -87,6 +87,24 @@ fn valid_release(s: &str) -> bool {
         && s.bytes()
             .all(|b| b.is_ascii_lowercase() || b.is_ascii_digit() || b == b'-')
 }
+fn journal_bytes(
+    release: &str,
+    manifest_hash: &str,
+    files: &BTreeMap<String, Vec<u8>>,
+) -> Result<Vec<u8>> {
+    let checksums: BTreeMap<String, String> = files
+        .iter()
+        .map(|(path, data)| (path.clone(), hash(data)))
+        .collect();
+    serde_json::to_vec_pretty(&json!({"schema_version":3,"release":release,"manifest_sha256":manifest_hash,"files":checksums}))
+        .map_err(|e| e.to_string())
+}
+fn newline_equivalent(a: &[u8], b: &[u8]) -> bool {
+    match (std::str::from_utf8(a), std::str::from_utf8(b)) {
+        (Ok(a), Ok(b)) => a.replace("\r\n", "\n") == b.replace("\r\n", "\n"),
+        _ => false,
+    }
+}
 fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
     let source = paths::root(source)?;
     let manifest_bytes =
@@ -149,11 +167,7 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
         ),
         executable_bytes,
     );
-    let checksums: BTreeMap<String, String> = files
-        .iter()
-        .map(|(p, data)| (p.clone(), hash(data)))
-        .collect();
-    let journal = serde_json::to_vec_pretty(&json!({"schema_version":3,"release":release,"manifest_sha256":hash(&manifest_bytes),"files":checksums})).map_err(|e| e.to_string())?;
+    let journal = journal_bytes(release, &manifest_hash, &files)?;
     Ok(Candidate {
         release: release.into(),
         cli_version: version.into(),
@@ -412,7 +426,7 @@ pub fn update(
             .push(json!({"from":old,"to":release,"rolled_back":true}));
         return Ok(r);
     }
-    let c = candidate(
+    let mut c = candidate(
         source.ok_or("Usage: --source required")?,
         executable.ok_or("Usage: --candidate-exe required")?,
     )?;
@@ -431,6 +445,24 @@ pub fn update(
         8 * 1024 * 1024,
     )?)
     .map_err(|e| e.to_string())?;
+    let mut adapted = false;
+    for name in PREVIOUS_SKILLS {
+        let rel = router(name);
+        if old_journal["files"][rel.as_str()].is_string() {
+            let installed = paths::read_limited(&paths::safe(&profile, &rel)?, 8 * 1024 * 1024)?;
+            let candidate_router = c
+                .files
+                .get_mut(&rel)
+                .ok_or("GlobalCandidateRouterMissing")?;
+            if *candidate_router != installed && newline_equivalent(candidate_router, &installed) {
+                *candidate_router = installed;
+                adapted = true;
+            }
+        }
+    }
+    if adapted {
+        c.journal = journal_bytes(&c.release, &c.manifest_hash, &c.files)?;
+    }
     let old_has_deploy = old_journal["files"][router("deploy").as_str()].is_string();
     let candidate_journal = paths::safe(&profile, &journal_file(&c.release))?;
     let resuming = candidate_journal.exists()
