@@ -1,0 +1,45 @@
+{
+  "observed": "2026-09-23",
+  "scope": "P0-P2",
+  "source_sha256": {
+    "Cargo.toml": "9f57a55b2c4a9b2c436afd31a2af39a1fd447c13a3bf42825fd6b20d372feb87",
+    "Cargo.lock": "0c4da73a7537222d0a7be45d1a0bcb926334bfa87f11e2ea571831a3f350fa78",
+    "src/lib.rs": "8dc13d46358204a848f11101dbf2b1af7836a5fdfe3263b06dd84fcebd532674",
+    "src/main.rs": "ec77b9a52292bfd8da093a13ff562cbab21bad990eb856a54533c6840775cca5",
+    "src/paths.rs": "8e7e7c1f3a4d2f6c773033c08b05a7d962397c3eabfadcf14355fb9c5daff9a7",
+    "src/inspect.rs": "66b9065a0721cbf2367fd2f46b042b72e86685aaddad2168d8fa107d26d229b2",
+    "src/install.rs": "c47e5fb05870eb09f75ac7274394dd39bd0c1c67819e79d77cd058b9b1708999",
+    "tests/contracts.rs": "8fc8705067e89a52cf5aa4a12c49f1e75236fd0bead1bdefed7c35acce5d6c74",
+    "bundle/SKILL.md": "885f2c422cf5b3f2125f95000c83af8d5f9e7e2cf33395643be8a5002eb7af70",
+    "bundle/rules.md": "66a2e2c46978d94ec1df509307dbf0beb7e410b33d344cc5dfea0275743ade96",
+    "bundle/manifest.json": "237206f5f994df64d02a00b69838a27cc8f3e21454b9a28cfacfdbd54c8fa5ae"
+  },
+  "cargo_tests": {
+    "passed": 30,
+    "failed": 0
+  },
+  "cargo_fmt_check": "passed",
+  "release_build": "passed",
+  "independent_review": "REVIEW_GO including final task-list fix",
+  "discovery": "app packaged backend and installed CLI; same binary SHA; no GUI scenario",
+  "archive_original_documents": 12,
+  "protected_original_files_unchanged": 56,
+  "project_diagnostics": {
+    "inspect": "unknown: budgets not agreed",
+    "doctor": "unknown: OpenSpec missing, development repository not connected",
+    "structural_errors": 0,
+    "read_only_verified": true,
+    "registered_sources": 18
+  },
+  "limits": [
+    "Full workflow P3-P6 not implemented",
+    "Context budgets not agreed",
+    "OpenSpec runtime absent",
+    "GUI skill invocation unverified",
+    "Partial writes can require manual recovery"
+  ],
+  "git_actions": "none",
+  "global_plugin_changes": "none",
+  "release_executable_sha256": "dd340381286ce2e7d85b528a564e04ba885d30c81f2f1f5852250e55bd7af927",
+  "import_files_verified": 54
+}

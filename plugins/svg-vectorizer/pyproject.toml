@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codex-svg-vectorizer"
+version = "0.1.0"
+description = "Deterministic local raster to SVG pipeline for Codex"
+requires-python = ">=3.10"
+dependencies = ["vtracer==1.0.0a4", "Pillow==12.3.0"]
+
+[project.scripts]
+vectorize = "svg_vectorizer.vectorize:main"
+
+[tool.setuptools]
+packages = ["svg_vectorizer"]
+package-dir = {svg_vectorizer = "scripts"}
+
+[tool.setuptools.package-data]
+svg_vectorizer = ["*.mjs"]

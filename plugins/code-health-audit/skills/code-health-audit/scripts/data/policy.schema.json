@@ -1,0 +1,442 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "policy_version",
+    "watch_hotspot_limit",
+    "include_pyi_loc",
+    "excluded_directories",
+    "excluded_paths",
+    "source_roots",
+    "test_paths",
+    "include_paths",
+    "analyzer_timeout_seconds",
+    "subprocess_timeout_seconds",
+    "metrics"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "watch_hotspot_limit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "include_pyi_loc": {
+      "type": "boolean"
+    },
+    "excluded_directories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "excluded_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_roots": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "test_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "include_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "analyzer_timeout_seconds": {
+      "type": "number",
+      "minimum": 0.01,
+      "maximum": 3600
+    },
+    "subprocess_timeout_seconds": {
+      "type": "number",
+      "minimum": 0.01,
+      "maximum": 3600
+    },
+    "metrics": {
+      "type": "object",
+      "required": [
+        "branch_coverage",
+        "cognitive_complexity",
+        "cyclomatic_complexity",
+        "dependency_cycle",
+        "duplication_block_lines",
+        "duplication_percent",
+        "file_nloc",
+        "function_nloc",
+        "line_coverage",
+        "nesting_depth",
+        "suppression"
+      ],
+      "properties": {
+        "branch_coverage": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "low"
+            },
+            "unit": {
+              "const": "percent"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "cognitive_complexity": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "high"
+            },
+            "unit": {
+              "const": "count"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "cyclomatic_complexity": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "high"
+            },
+            "unit": {
+              "const": "count"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "dependency_cycle": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "high"
+            },
+            "unit": {
+              "const": "modules"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "duplication_block_lines": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "high"
+            },
+            "unit": {
+              "const": "lines"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "duplication_percent": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "high"
+            },
+            "unit": {
+              "const": "percent"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "file_nloc": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "high"
+            },
+            "unit": {
+              "const": "lines"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "function_nloc": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "high"
+            },
+            "unit": {
+              "const": "lines"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "line_coverage": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "low"
+            },
+            "unit": {
+              "const": "percent"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "nesting_depth": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "high"
+            },
+            "unit": {
+              "const": "levels"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "suppression": {
+          "type": "object",
+          "required": [
+            "direction",
+            "unit",
+            "watch",
+            "refactor",
+            "critical"
+          ],
+          "properties": {
+            "direction": {
+              "const": "high"
+            },
+            "unit": {
+              "const": "count"
+            },
+            "watch": {
+              "type": "number",
+              "minimum": 0
+            },
+            "refactor": {
+              "type": "number",
+              "minimum": 0
+            },
+            "critical": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

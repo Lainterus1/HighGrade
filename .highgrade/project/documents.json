@@ -1,0 +1,180 @@
+{
+  "status": "global-workflow-source-in-progress",
+  "documents": [
+    {
+      "id": "readme",
+      "path": "README.md",
+      "role": "purpose-navigation",
+      "budget": null,
+      "budget_status": "not-agreed",
+      "loading": "entry",
+      "scope": []
+    },
+    {
+      "id": "agents",
+      "path": "AGENTS.md",
+      "role": "agent-rules",
+      "budget": null,
+      "budget_status": "not-agreed",
+      "loading": "entry",
+      "scope": []
+    },
+    {
+      "id": "architecture",
+      "path": "docs/ARCHITECTURE.md",
+      "role": "current-architecture",
+      "budget": null,
+      "budget_status": "not-agreed",
+      "loading": "task",
+      "scope": [
+        "src",
+        "kit",
+        "bundle",
+        "docs",
+        "tests"
+      ]
+    },
+    {
+      "id": "engineering",
+      "path": "docs/ENGINEERING.md",
+      "role": "engineering-rules",
+      "budget": null,
+      "budget_status": "not-agreed",
+      "loading": "task",
+      "scope": [
+        "src",
+        "kit",
+        "bundle",
+        "docs",
+        "tests"
+      ]
+    },
+    {
+      "id": "development",
+      "path": "docs/DEVELOPMENT.md",
+      "role": "commands-procedures",
+      "budget": null,
+      "budget_status": "not-agreed",
+      "loading": "task",
+      "scope": [
+        "scripts",
+        "tests"
+      ]
+    }
+  ],
+  "additional_sources": [
+    {
+      "path": "plugins/README.md",
+      "role": "component-navigation",
+      "active": true,
+      "loading": "task",
+      "scope": [
+        "plugins"
+      ]
+    },
+    {
+      "path": "docs/workflow/SPECIFICATION.md",
+      "role": "accepted-workflow-requirements",
+      "active": true,
+      "loading": "history"
+    },
+    {
+      "path": "docs/workflow/CONTEXT.md",
+      "role": "accepted-context-policy",
+      "active": true,
+      "loading": "task"
+    },
+    {
+      "path": "docs/research/bdd-workflow.md",
+      "role": "research-evidence",
+      "active": true,
+      "loading": "history"
+    },
+    {
+      "path": "docs/archive/README.md",
+      "role": "archive-navigation",
+      "active": true,
+      "loading": "task"
+    },
+    {
+      "path": "docs/reviews/project-organization-review.md",
+      "role": "organization-evidence",
+      "active": true,
+      "loading": "history"
+    },
+    {
+      "path": "docs/reviews/first-release-review.md",
+      "role": "first-release-document-review",
+      "active": true,
+      "loading": "history"
+    },
+    {
+      "path": "docs/implementation/p0-p2-contract.md",
+      "role": "implemented-technical-contract",
+      "active": false,
+      "loading": "history",
+      "scope": [
+        "src",
+        "bundle",
+        "tests"
+      ]
+    },
+    {
+      "path": "docs/reviews/p0-p2-review.md",
+      "role": "p0-p2-evidence",
+      "active": true,
+      "loading": "history"
+    },
+    {
+      "path": "docs/plans/2026-09-23-p0-p2.state.md",
+      "role": "current-execution-state",
+      "active": false,
+      "loading": "history"
+    },
+    {
+      "role": "current-global-workflow-contract",
+      "active": true,
+      "path": "docs/workflow/GLOBAL.md",
+      "scope": [
+        "kit",
+        "src",
+        "tests"
+      ],
+      "loading": "task"
+    },
+    {
+      "role": "current-workflow-plan",
+      "active": true,
+      "path": "docs/plans/2026-09-23-global-workflow.md",
+      "scope": [
+        "kit",
+        "src",
+        "tests"
+      ],
+      "loading": "task"
+    },
+    {
+      "role": "historical-candidate-responsibilities",
+      "active": false,
+      "path": "docs/proposals/TOOLING.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "historical-candidate-technical-design",
+      "active": false,
+      "path": "docs/proposals/technical-design.md",
+      "scope": [],
+      "loading": "history"
+    },
+    {
+      "role": "historical-candidate-plan",
+      "active": false,
+      "path": "docs/plans/first-release.md",
+      "scope": [],
+      "loading": "history"
+    }
+  ],
+  "schema_version": 1,
+  "route_budget": null
+}
