@@ -17,7 +17,7 @@ MyCodex/                         локальное имя каталога High
   scripts/check-repository.mjs    структурная проверка исходного проекта
 ```
 
-Общий набор устанавливается в профиль пользователя: маршрутизаторы навыков — в `.agents/skills/highgrade-*` и `.agents/skills/deploy`, неизменяемые материалы и CLI — в `.highgrade/global/releases/<release>/`, активный указатель — в `.highgrade/global/active.json`. Проектный `.highgrade/project/INSTRUCTIONS.md` содержит только местную адаптацию. Rust CLI не сканирует домашний каталог целиком и не управляет соседними проектами. Новые команды `global-install`, `global-update`, `global-status` отделены от `doctor`, `inspect`, `inventory` и `trace`. Последние четыре не изменяют проект.
+Общий набор устанавливается в профиль пользователя: маршрутизаторы навыков — в `.agents/skills/highgrade-*`, неизменяемые материалы и CLI — в `.highgrade/global/releases/<release>/`, активный указатель — в `.highgrade/global/active.json`. При переходе с v0-2-5 прежний `.agents/skills/deploy` удаляется после проверки новой версии. Проектный `.highgrade/project/INSTRUCTIONS.md` содержит только местную адаптацию. Rust CLI не сканирует домашний каталог целиком и не управляет соседними проектами. Команды `global-install`, `global-update`, `global-status` отделены от `doctor`, `inspect`, `inventory` и `trace`. Последние четыре не изменяют проект.
 
 Старые `package` и `install` модули, `bundle/` и явные команды `legacy-install`/`legacy-update` пока сохранены для проверяемой истории прежней поставки и уже подключённого пилота; новый маршрут их не использует. Удаление этого совместимого слоя возможно после отдельной миграционной проверки. Его наличие не означает, что новые проекты получают копии навыков.
 

@@ -60,7 +60,7 @@ fn candidate() -> PathBuf {
     copy_tree(&source(), &dst);
     let manifest_path = dst.join("manifest.json");
     let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
-    manifest["release"] = json!("v0-2-6");
+    manifest["release"] = json!("v0-2-7");
     let rules = dst.join("rules.md");
     write(&rules, b"# New shared rules\n");
     manifest["files"]["rules.md"] = json!(hash(&fs::read(&rules).unwrap()));
@@ -89,8 +89,16 @@ fn global_install_does_not_touch_project_and_checks_adapter() {
                 .exists()
         );
     }
-    assert!(profile.join(".agents/skills/deploy/SKILL.md").is_file());
-    assert!(!project.join(".agents/skills/deploy/SKILL.md").exists());
+    assert!(
+        profile
+            .join(".agents/skills/highgrade-deploy/SKILL.md")
+            .is_file()
+    );
+    assert!(
+        !project
+            .join(".agents/skills/highgrade-deploy/SKILL.md")
+            .exists()
+    );
     assert_eq!(
         fs::read(project.join("README.md")).unwrap(),
         b"project-owned"
@@ -123,7 +131,7 @@ fn global_update_preview_switch_and_rollback_keep_unrelated_files() {
     assert_eq!(preview.status, "unknown");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-5"
+        "v0-2-6"
     );
     let preview_hash = preview.measurements[0]["candidate_sha256"]
         .as_str()
@@ -177,15 +185,102 @@ fn global_update_preview_switch_and_rollback_keep_unrelated_files() {
     assert_eq!(applied.status, "passed");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-2-7"
+    );
+    let reverted = global::update(&profile, None, None, false, None, Some("v0-2-6")).unwrap();
+    assert_eq!(reverted.status, "passed");
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
         "v0-2-6"
     );
-    let reverted = global::update(&profile, None, None, false, None, Some("v0-2-5")).unwrap();
-    assert_eq!(reverted.status, "passed");
+    assert_eq!(fs::read(profile.join("personal.txt")).unwrap(), b"keep");
+}
+#[test]
+fn legacy_deploy_renames_and_rolls_back() {
+    let profile = legacy_deploy_profile();
+    let legacy = profile.join(".agents/skills/deploy/SKILL.md");
+    let new_router = profile.join(".agents/skills/highgrade-deploy/SKILL.md");
+    let original = fs::read(&legacy).unwrap();
+    let preview =
+        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
+    let fingerprint = preview.measurements[0]["candidate_sha256"]
+        .as_str()
+        .unwrap();
+    #[cfg(windows)]
+    {
+        let temp_active = profile.join(format!(
+            ".highgrade/global/active.{}.part",
+            std::process::id()
+        ));
+        write(&temp_active, b"block pointer replacement");
+        assert!(
+            global::update(
+                &profile,
+                Some(&source()),
+                Some(&exe()),
+                true,
+                Some(fingerprint),
+                None,
+            )
+            .is_err()
+        );
+        assert_eq!(fs::read(&legacy).unwrap(), original);
+        assert!(!new_router.exists());
+        assert_eq!(
+            global::status(&profile).unwrap().measurements[0]["release"],
+            "v0-2-5"
+        );
+        fs::remove_file(temp_active).unwrap();
+    }
+    global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        Some(fingerprint),
+        None,
+    )
+    .unwrap();
+    assert!(new_router.is_file());
+    assert!(!legacy.exists());
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-2-6"
+    );
+
+    global::update(&profile, None, None, false, None, Some("v0-2-5")).unwrap();
+    assert_eq!(fs::read(&legacy).unwrap(), original);
+    assert!(!new_router.exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
         "v0-2-5"
     );
-    assert_eq!(fs::read(profile.join("personal.txt")).unwrap(), b"keep");
+
+    write(
+        &new_router,
+        &fs::read(source().join("skills/highgrade-deploy/SKILL.md")).unwrap(),
+    );
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-2-5"
+    );
+    assert_eq!(global::status(&profile).unwrap().status, "warning");
+    global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        Some(fingerprint),
+        None,
+    )
+    .unwrap();
+    assert!(!legacy.exists());
+    write(&legacy, &original);
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-2-6"
+    );
+    assert_eq!(global::status(&profile).unwrap().status, "warning");
 }
 fn six_skill_profile() -> PathBuf {
     let profile = temp();
@@ -197,7 +292,7 @@ fn six_skill_profile() -> PathBuf {
             .as_object()
             .unwrap()
     {
-        if rel == "procedures/deploy.md" || rel == "skills/deploy/SKILL.md" {
+        if rel == "procedures/deploy.md" || rel == "skills/highgrade-deploy/SKILL.md" {
             continue;
         }
         let dest = if let Some(name) = rel
@@ -223,6 +318,66 @@ fn six_skill_profile() -> PathBuf {
         "schema_version": 3,
         "release": release,
         "manifest_sha256": hash(&fs::read(source().join("manifest.json")).unwrap()),
+        "files": checksums
+    }))
+    .unwrap();
+    write(
+        &profile.join(format!(".highgrade/global/releases/{release}/journal.json")),
+        &journal,
+    );
+    write(
+        &profile.join(".highgrade/global/active.json"),
+        &serde_json::to_vec_pretty(&json!({
+            "schema_version": 3,
+            "status": "connected",
+            "release": release,
+            "journal_sha256": hash(&journal)
+        }))
+        .unwrap(),
+    );
+    profile
+}
+fn legacy_deploy_profile() -> PathBuf {
+    let profile = temp();
+    let release = "v0-2-5";
+    let mut checksums = BTreeMap::new();
+    let manifest_bytes = fs::read(source().join("manifest.json")).unwrap();
+    let manifest: Value = serde_json::from_slice(&manifest_bytes).unwrap();
+    for (rel, _) in manifest["files"].as_object().unwrap() {
+        if rel == "skills/highgrade-deploy/SKILL.md" {
+            continue;
+        }
+        let dest = if let Some(name) = rel
+            .strip_prefix("skills/")
+            .and_then(|path| path.strip_suffix("/SKILL.md"))
+        {
+            format!(".agents/skills/{name}/SKILL.md")
+        } else {
+            format!(".highgrade/global/releases/{release}/{rel}")
+        };
+        let data = fs::read(source().join(rel)).unwrap();
+        write(&profile.join(&dest), &data);
+        checksums.insert(dest, hash(&data));
+    }
+    let legacy = b"---\nname: deploy\ndescription: legacy release route\n---\n\n# Legacy deploy\n";
+    for rel in [
+        ".agents/skills/deploy/SKILL.md".to_string(),
+        format!(".highgrade/global/releases/{release}/skills/deploy/SKILL.md"),
+    ] {
+        write(&profile.join(&rel), legacy);
+        checksums.insert(rel, hash(legacy));
+    }
+    let exe_rel = format!(
+        ".highgrade/global/releases/{release}/highgrade{}",
+        std::env::consts::EXE_SUFFIX
+    );
+    let exe_data = fs::read(exe()).unwrap();
+    write(&profile.join(&exe_rel), &exe_data);
+    checksums.insert(exe_rel, hash(&exe_data));
+    let journal = serde_json::to_vec_pretty(&json!({
+        "schema_version": 3,
+        "release": release,
+        "manifest_sha256": hash(&manifest_bytes),
         "files": checksums
     }))
     .unwrap();
@@ -294,7 +449,7 @@ fn six_skill_release_preserves_owned_crlf_routers() {
     assert_eq!(fs::read(&init).unwrap(), old_bytes);
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-5"
+        "v0-2-6"
     );
     global::update(&profile, None, None, false, None, Some("v0-2-1")).unwrap();
     assert_eq!(
@@ -308,12 +463,12 @@ fn six_skill_release_updates_to_deploy_and_can_roll_back() {
     let profile = six_skill_profile();
     let release = "v0-2-1";
 
-    let deploy = profile.join(".agents/skills/deploy/SKILL.md");
+    let deploy = profile.join(".agents/skills/highgrade-deploy/SKILL.md");
     write(&deploy, b"foreign skill");
     assert!(
         global::update(&profile, Some(&source()), Some(&exe()), false, None, None)
             .unwrap_err()
-            .contains("GlobalRouterIncompatible: deploy")
+            .contains("GlobalRouterIncompatible: highgrade-deploy")
     );
     assert_eq!(fs::read(&deploy).unwrap(), b"foreign skill");
     fs::remove_file(&deploy).unwrap();
@@ -334,7 +489,7 @@ fn six_skill_release_updates_to_deploy_and_can_roll_back() {
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-5"
+        "v0-2-6"
     );
     assert!(deploy.is_file());
     global::update(&profile, None, None, false, None, Some(release)).unwrap();
@@ -343,17 +498,17 @@ fn six_skill_release_updates_to_deploy_and_can_roll_back() {
         release
     );
     assert!(!deploy.exists());
-    global::update(&profile, None, None, false, None, Some("v0-2-5")).unwrap();
+    global::update(&profile, None, None, false, None, Some("v0-2-6")).unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-5"
+        "v0-2-6"
     );
     assert!(deploy.is_file());
 }
 #[test]
 fn failed_stage_does_not_leave_a_deploy_router() {
     let profile = six_skill_profile();
-    let blocked = profile.join(".highgrade/global/releases/v0-2-5/rules.md");
+    let blocked = profile.join(".highgrade/global/releases/v0-2-6/rules.md");
     write(&blocked, b"foreign content");
     let preview =
         global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
@@ -371,7 +526,11 @@ fn failed_stage_does_not_leave_a_deploy_router() {
         )
         .is_err()
     );
-    assert!(!profile.join(".agents/skills/deploy/SKILL.md").exists());
+    assert!(
+        !profile
+            .join(".agents/skills/highgrade-deploy/SKILL.md")
+            .exists()
+    );
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
         "v0-2-1"
@@ -388,7 +547,7 @@ fn failed_stage_does_not_leave_a_deploy_router() {
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-5"
+        "v0-2-6"
     );
 }
 #[cfg(windows)]
@@ -420,14 +579,18 @@ fn failed_forward_pointer_change_allows_a_different_candidate() {
         global::status(&profile).unwrap().measurements[0]["release"],
         "v0-2-1"
     );
-    assert!(!profile.join(".agents/skills/deploy/SKILL.md").exists());
+    assert!(
+        !profile
+            .join(".agents/skills/highgrade-deploy/SKILL.md")
+            .exists()
+    );
     fs::remove_file(temp_active).unwrap();
     let different = candidate();
     assert!(global::update(&profile, Some(&different), Some(&exe()), false, None, None).is_ok());
 }
 #[cfg(windows)]
 #[test]
-fn failed_router_and_pointer_changes_preserve_active_release() {
+fn router_cleanup_warning_and_pointer_failure_preserve_active_release() {
     let profile = six_skill_profile();
     let preview =
         global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
@@ -443,36 +606,38 @@ fn failed_router_and_pointer_changes_preserve_active_release() {
         None,
     )
     .unwrap();
-    let deploy = profile.join(".agents/skills/deploy/SKILL.md");
+    let deploy = profile.join(".agents/skills/highgrade-deploy/SKILL.md");
     use std::os::windows::fs::OpenOptionsExt;
     let handle = fs::OpenOptions::new()
         .read(true)
         .share_mode(1)
         .open(&deploy)
         .unwrap();
-    assert!(global::update(&profile, None, None, false, None, Some("v0-2-1")).is_err());
+    let rolled_back = global::update(&profile, None, None, false, None, Some("v0-2-1")).unwrap();
+    assert_eq!(rolled_back.status, "warning");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-5"
+        "v0-2-1"
     );
+    assert!(deploy.exists());
     drop(handle);
-    global::update(&profile, None, None, false, None, Some("v0-2-1")).unwrap();
+    fs::remove_file(&deploy).unwrap();
     let temp_active = profile.join(format!(
         ".highgrade/global/active.{}.part",
         std::process::id()
     ));
     write(&temp_active, b"block pointer replacement");
-    assert!(global::update(&profile, None, None, false, None, Some("v0-2-5")).is_err());
+    assert!(global::update(&profile, None, None, false, None, Some("v0-2-6")).is_err());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
         "v0-2-1"
     );
     assert!(!deploy.exists());
     fs::remove_file(temp_active).unwrap();
-    global::update(&profile, None, None, false, None, Some("v0-2-5")).unwrap();
+    global::update(&profile, None, None, false, None, Some("v0-2-6")).unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-5"
+        "v0-2-6"
     );
     assert!(deploy.is_file());
 }

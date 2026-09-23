@@ -8,8 +8,18 @@ use std::{
 
 const ACTIVE: &str = ".highgrade/global/active.json";
 const LOCK: &str = ".highgrade/global/install.lock";
-const DEPLOY_SKILL: &str = "skills/deploy/SKILL.md";
+const DEPLOY_SKILL: &str = "skills/highgrade-deploy/SKILL.md";
+const LEGACY_DEPLOY_SKILL: &str = "skills/deploy/SKILL.md";
 const SKILLS: [&str; 7] = [
+    "highgrade-init",
+    "highgrade-task",
+    "highgrade-spec",
+    "highgrade-work",
+    "highgrade-clear",
+    "highgrade-update",
+    "highgrade-deploy",
+];
+const LEGACY_SKILLS: [&str; 7] = [
     "highgrade-init",
     "highgrade-task",
     "highgrade-spec",
@@ -203,8 +213,11 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     };
     let mut current = expected(&SKILLS, &MATERIALS);
     current.insert(release_file(release, DEPLOY_SKILL));
+    let mut legacy = expected(&LEGACY_SKILLS, &MATERIALS);
+    legacy.insert(release_file(release, LEGACY_DEPLOY_SKILL));
     let previous = expected(&PREVIOUS_SKILLS, &PREVIOUS_MATERIALS);
     if actual != current.iter().map(String::as_str).collect()
+        && actual != legacy.iter().map(String::as_str).collect()
         && actual != previous.iter().map(String::as_str).collect()
     {
         return Err("GlobalJournalInvalid: files".into());
@@ -259,9 +272,19 @@ fn lock(profile: &Path) -> Result<File> {
         .map_err(|e| format!("GlobalInstallationBusy: {e}"))?;
     Ok(f)
 }
+fn retire_router(profile: &Path, rel: &str, expected: &str) -> Result<()> {
+    let path = paths::safe(profile, rel)?;
+    if !path.exists() {
+        return Ok(());
+    }
+    if hash(&paths::read_limited(&path, 8 * 1024 * 1024)?) != expected {
+        return Err(format!("GlobalRouterChanged: {rel}"));
+    }
+    fs::remove_file(path).map_err(|e| format!("GlobalRouterCleanupFailed: {rel}: {e}"))
+}
 fn stage(profile: &Path, c: &Candidate) -> Result<()> {
     install::put_once(profile, &journal_file(&c.release), &c.journal)?;
-    let deploy_path = router("deploy");
+    let deploy_path = router("highgrade-deploy");
     for (rel, data) in &c.files {
         if rel != &deploy_path {
             install::put_once(profile, rel, data)?;
@@ -295,9 +318,28 @@ pub fn status(profile: &Path) -> Result<Report> {
     let profile = paths::root(profile)?;
     let mut r = Report::new("global-status");
     match active(&profile)? {
-        Some((release, _)) => r
-            .measurements
-            .push(json!({"profile":profile,"release":release,"connected":true})),
+        Some((release, _)) => {
+            let journal: Value = serde_json::from_slice(&paths::read_limited(
+                &paths::safe(&profile, &journal_file(&release))?,
+                8 * 1024 * 1024,
+            )?)
+            .map_err(|e| e.to_string())?;
+            for name in ["deploy", "highgrade-deploy"] {
+                let rel = router(name);
+                if !journal["files"][rel.as_str()].is_string()
+                    && paths::safe(&profile, &rel)?.exists()
+                {
+                    r.finding(
+                        "warning",
+                        "InactiveRouterRemains",
+                        &rel,
+                        "Этот путь не принадлежит активной поставке; проверьте происхождение перед любым удалением.",
+                    );
+                }
+            }
+            r.measurements
+                .push(json!({"profile":profile,"release":release,"connected":true}));
+        }
         None => r.finding(
             "unknown",
             "GlobalNotInstalled",
@@ -368,38 +410,46 @@ pub fn update(
             8 * 1024 * 1024,
         )?;
         let target: Value = serde_json::from_slice(&target_bytes).map_err(|e| e.to_string())?;
-        let deploy_path = router("deploy");
-        let target_deploy_hash = target["files"][deploy_path.as_str()].as_str();
+        let target_router = [
+            (router("highgrade-deploy"), DEPLOY_SKILL),
+            (router("deploy"), LEGACY_DEPLOY_SKILL),
+        ]
+        .into_iter()
+        .find(|(rel, _)| target["files"][rel.as_str()].is_string());
         let old_bytes = paths::read_limited(
             &paths::safe(&profile, &journal_file(&old))?,
             8 * 1024 * 1024,
         )?;
         let old_journal: Value = serde_json::from_slice(&old_bytes).map_err(|e| e.to_string())?;
-        let old_has_deploy = old_journal["files"][deploy_path.as_str()].is_string();
+        let old_router = [router("highgrade-deploy"), router("deploy")]
+            .into_iter()
+            .find(|rel| old_journal["files"][rel.as_str()].is_string());
         let _guard = lock(&profile)?;
         if active(&profile)? != Some((old.clone(), old_hash.clone())) {
             return Err("GlobalActiveChanged".into());
         }
-        let router_path = paths::safe(&profile, &deploy_path)?;
         let mut restored = false;
-        if let Some(expected) = target_deploy_hash {
-            if !router_path.exists() {
-                let backup = paths::read_limited(
-                    &paths::safe(&profile, &release_file(release, DEPLOY_SKILL))?,
-                    8 * 1024 * 1024,
-                )?;
-                if hash(&backup) != expected {
-                    return Err("GlobalRollbackRouterBackupChanged".into());
-                }
-                install::put_once(&profile, &deploy_path, &backup)?;
-                restored = true;
+        if let Some((rel, backup_rel)) = &target_router {
+            let expected = target["files"][rel.as_str()]
+                .as_str()
+                .ok_or("GlobalRollbackRouterHashMissing")?;
+            let backup = paths::read_limited(
+                &paths::safe(&profile, &release_file(release, backup_rel))?,
+                8 * 1024 * 1024,
+            )?;
+            if hash(&backup) != expected {
+                return Err("GlobalRollbackRouterBackupChanged".into());
             }
+            let path = paths::safe(&profile, rel)?;
+            restored = !path.exists();
+            install::put_once(&profile, rel, &backup)?;
         }
         let journal = match verify_release(&profile, release) {
             Ok(journal) => journal,
             Err(error) => {
                 if restored {
-                    fs::remove_file(&router_path).map_err(|e| e.to_string())?;
+                    fs::remove_file(paths::safe(&profile, &target_router.as_ref().unwrap().0)?)
+                        .map_err(|e| e.to_string())?;
                 }
                 return Err(error);
             }
@@ -408,20 +458,28 @@ pub fn update(
         if let Err(error) = package::replace_active(&active_path, &active_bytes(release, &journal))
         {
             if restored {
-                fs::remove_file(&router_path)
+                fs::remove_file(paths::safe(&profile, &target_router.as_ref().unwrap().0)?)
                     .map_err(|e| format!("GlobalRollbackRouterCleanupFailed: {error}; {e}"))?;
             }
             return Err(error);
         }
-        if target_deploy_hash.is_none() && old_has_deploy {
-            if let Err(error) = fs::remove_file(&router_path) {
-                package::replace_active(&active_path, &active_bytes(&old, &old_bytes))
-                    .map_err(|restore| format!("GlobalRollbackRouterCleanupFailed: {error}; pointer restore failed: {restore}"))?;
-                return Err(format!("GlobalRollbackRouterCleanupFailed: {error}"));
+        let mut cleanup_error = None;
+        if let Some(rel) = &old_router {
+            if target_router
+                .as_ref()
+                .is_none_or(|(target, _)| target != rel)
+            {
+                let expected = old_journal["files"][rel.as_str()].as_str().unwrap();
+                if let Err(error) = retire_router(&profile, rel, expected) {
+                    cleanup_error = Some((rel.clone(), error));
+                }
             }
         }
         let mut r = status(&profile)?;
         r.operation = "global-update".into();
+        if let Some((rel, error)) = cleanup_error {
+            r.finding("warning", "LegacyRouterCleanupPending", &rel, &error);
+        }
         r.measurements
             .push(json!({"from":old,"to":release,"rolled_back":true}));
         return Ok(r);
@@ -463,7 +521,10 @@ pub fn update(
     if adapted {
         c.journal = journal_bytes(&c.release, &c.manifest_hash, &c.files)?;
     }
-    let old_has_deploy = old_journal["files"][router("deploy").as_str()].is_string();
+    let old_has_new_router = old_journal["files"][router("highgrade-deploy").as_str()].is_string();
+    let old_legacy_hash = old_journal["files"][router("deploy").as_str()]
+        .as_str()
+        .map(str::to_owned);
     let candidate_journal = paths::safe(&profile, &journal_file(&c.release))?;
     let resuming = candidate_journal.exists()
         && paths::read_limited(&candidate_journal, 8 * 1024 * 1024)? == c.journal;
@@ -498,10 +559,10 @@ pub fn update(
     let active_path = paths::safe(&profile, ACTIVE)?;
     if let Err(error) = package::replace_active(&active_path, &active_bytes(&c.release, &c.journal))
     {
-        if !old_has_deploy {
-            fs::remove_file(paths::safe(&profile, &router("deploy"))?).map_err(|cleanup| {
-                format!("GlobalActivationRouterCleanupFailed: {error}; {cleanup}")
-            })?;
+        if !old_has_new_router {
+            fs::remove_file(paths::safe(&profile, &router("highgrade-deploy"))?).map_err(
+                |cleanup| format!("GlobalActivationRouterCleanupFailed: {error}; {cleanup}"),
+            )?;
         }
         return Err(error);
     }
@@ -522,11 +583,17 @@ pub fn update(
     {
         let old_journal = verify_release(&profile, &old)?;
         package::replace_active(&active_path, &active_bytes(&old, &old_journal))?;
-        if !old_has_deploy {
-            fs::remove_file(paths::safe(&profile, &router("deploy"))?)
+        if !old_has_new_router {
+            fs::remove_file(paths::safe(&profile, &router("highgrade-deploy"))?)
                 .map_err(|cleanup| format!("GlobalPostcheckRouterCleanupFailed: {e}; {cleanup}"))?;
         }
         return Err(format!("GlobalPostcheckFailedRollback: {e}"));
+    }
+    if let Some(expected) = old_legacy_hash {
+        let rel = router("deploy");
+        if let Err(error) = retire_router(&profile, &rel, &expected) {
+            r.finding("warning", "LegacyRouterCleanupPending", &rel, &error);
+        }
     }
     r.measurements
         .push(json!({"active_release":c.release,"previous_release_retained":old}));
