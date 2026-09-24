@@ -1,10 +1,10 @@
 # Разработка и проверки
 
-Команды выполняются из корня Проекта. Задачи — в `specs/changes/<ID>/spec.json`, результаты — в соседнем `results.json`; устройство — в [ARCHITECTURE](ARCHITECTURE.md).
+Команды — из корня Проекта; нужен Python 3.12. Задачи — в `specs/changes/<ID>/spec.json`, результаты — в соседнем `results.json`; устройство — в [ARCHITECTURE](ARCHITECTURE.md).
 
 ## Новые задачи: нативные спецификации
 
-Используй CLI активной Поставки, чтобы поведение не зависело от незавершённых правок исходников:
+Используй CLI активной Поставки:
 
 ```powershell
 $hgProfile = $env:USERPROFILE
@@ -14,7 +14,7 @@ $hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.e
 & $hgExe spec-schema --root "$PWD"
 ```
 
-Каталог v3 обслуживает установленная CLI 0.2.14. При разработке инструмента используй исходную CLI после cargo build --locked. Первый spec-list в пустом проекте возвращает store_sha256=absent. Маршрут: spec-new --title с хешем → spec-read → редактирование change → spec-save с хешем этого снимка. Не редактируй документы каталога напрямую. Полные параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
+Каталог v3 обслуживает CLI 0.2.14; при её разработке используй исходную сборку. В пустом проекте spec-list возвращает store_sha256=absent. Маршрут: spec-new --title с хешем → spec-read → редактирование change → spec-save с хешем этого снимка. Не редактируй документы каталога напрямую. Полные параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
 
 Маршрут: spec-validate → реализация и штатные тесты → spec-evidence → независимое ревью и spec-review → spec-check → spec-integrate. Пустой шаблон остаётся черновиком. Включение требований не разрешает commit/push. spec-decide сохраняет человеческое решение, spec-list — JSON-прогресс; переход store v1/v2 → каталог через spec-migrate --to directory с точным backup. Повторная проверка интегрированной спеки обновляет результаты и требует свежего ревью; прежняя приёмка не переносится автоматически. Фокусные тесты самого инструмента: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
 
@@ -29,15 +29,15 @@ $openspecBin = Join-Path (npm.cmd prefix -g) 'openspec.cmd'
 & $openspecBin validate --all --strict --no-interactive
 ```
 
-Версия закреплена: 1.13.1; телеметрию отключай перед каждым вызовом. Проверка сохранённого каталога не подтверждает готовность JSON-изменения.
+Версия 1.13.1; отключай телеметрию при каждом вызове. OpenSpec не подтверждает готовность JSON-изменения.
 
 ## Сценарии и исходные результаты
 
 Метка `// highgrade: HG-...` связывает сценарий с настоящим Rust-тестом. Требования к доказательствам — в [QUALITY](workflow/QUALITY.md).
 
-Связка ниже проверяет прежний каталог. JSON-сценарии — через spec-evidence/check; нативный trace описан в справочнике.
+Ниже — проверка прежнего каталога; JSON-сценарии — через spec-evidence/check.
 
-Локально установи закреплённый `cargo-nextest` 0.9.146, затем из корня репозитория выполни команды. Для изолированной установки используй путь к `cargo-nextest.exe` и аргумент `nextest`.
+Нужен `cargo-nextest` 0.9.146; команды выполняются из корня. При изолированной установке вызывай `cargo-nextest.exe` с аргументом `nextest`.
 
 ```powershell
 New-Item -ItemType Directory -Force target/nextest/highgrade | Out-Null
@@ -56,6 +56,8 @@ if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
 `prepare` отвергает устаревший отчёт: повтори затронутые тесты. `trace` возвращает 2 при ручных пробелах; `verify` допускает только известные ручные сценарии и требует успеха автоматических. Ручные доказательства сохраняй по QUALITY.
 
 ## Rust CLI и глобальная поставка
+
+Для активации и проверки её сборки — [BUILD](BUILD.md). Ниже — разработка и изолированные испытания.
 
 ```powershell
 cargo fmt --all -- --check

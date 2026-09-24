@@ -605,7 +605,8 @@ fn runner_fixture(root: &Path) {
     fs::write(root.join("runner.py"),r#"import importlib.util, sys, unittest, xml.etree.ElementTree as ET, pathlib, time
 source, selector, report = sys.argv[1:]
 mode = pathlib.Path('mode.txt').read_text()
-if mode == 'timeout': time.sleep(4)
+if mode == 'timeout': time.sleep(60)
+if mode == 'slow-start': time.sleep(2)
 spec=importlib.util.spec_from_file_location('test_math',source)
 module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
 suite=unittest.defaultTestLoader.loadTestsFromName(selector.replace('::','.'),module)
@@ -623,7 +624,7 @@ sys.exit(0 if result.wasSuccessful() else 1)
     put(
         root,
         "runner.json",
-        &json!({"program":"python","args":["runner.py","{file}","{selector}","{report}"],"cwd":".","format":"junit","timeout_seconds":1}),
+        &json!({"program":"python","args":["runner.py","{file}","{selector}","{report}"],"cwd":".","format":"junit","timeout_seconds":30}),
     );
     call(
         root,
@@ -662,12 +663,17 @@ fn explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift() {
     let good = fs::read(root.join("test_math.py")).unwrap();
     for (mode,code,expected) in [
         ("normal",String::from_utf8(good.clone()).unwrap(),"passed"),
+        ("slow-start",String::from_utf8(good.clone()).unwrap(),"passed"),
         ("normal","import unittest\nclass Cases(unittest.TestCase):\n    def test_sum(self): self.fail('real assertion failure')\n".into(),"failed"),
         ("normal","import unittest\nclass Cases(unittest.TestCase):\n    @unittest.skip('explicit skip')\n    def test_sum(self): pass\n".into(),"skipped"),
         ("empty",String::from_utf8(good.clone()).unwrap(),"unknown"),
         ("timeout",String::from_utf8(good.clone()).unwrap(),"failed"),
         ("drift",String::from_utf8(good.clone()).unwrap(),"unknown"),
     ] {
+        let mut runner = json(&root, "runner.json");
+        runner["timeout_seconds"] = json!(if mode == "timeout" { 1 } else { 30 });
+        put(&root, "runner.json", &runner);
+        call(&root, "spec-runner-set", &[("--id", "unit"), ("--input", "runner.json"), ("--expected", &sha(&root))]).unwrap();
         fs::write(root.join("mode.txt"),mode).unwrap(); fs::write(root.join("test_math.py"),code).unwrap();
         let report=call(&root,"spec-run",&[("--id","HG-0001"),("--check","all"),("--expected",&sha(&root))]).unwrap();
         assert_eq!(report.status=="passed",expected=="passed","{mode}: {report:?}");
@@ -675,10 +681,11 @@ fn explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift() {
         let run=state.changes["HG-0001"].runs.last().unwrap();
         assert_eq!(serde_json::to_value(&run.outcome).unwrap(),expected,"{mode}");
         assert!(root.join(&run.report).exists());
+        if mode == "timeout" { assert!(run.observation.contains("RunnerTimeout")); }
     }
     assert_eq!(
         specs::load(&root).unwrap().0.changes["HG-0001"].runs.len(),
-        6
+        7
     );
     fs::remove_dir_all(root).unwrap();
 }

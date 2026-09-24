@@ -1,0 +1,51 @@
+TAP version 13
+# Subtest: EX-CAT-S01 valid update normalizes title
+ok 1 - EX-CAT-S01 valid update normalizes title
+  ---
+  duration_ms: 0.9383
+  type: 'test'
+  ...
+# Subtest: EX-CAT-S02 rejected update preserves saved object
+not ok 2 - EX-CAT-S02 rejected update preserves saved object
+  ---
+  duration_ms: 0.8679
+  type: 'test'
+  location: 'C:\\Users\\user\\AppData\\Local\\Temp\\highgrade-portable-20260924\\p2-mutant\\catalog.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        items: 3,
+    +   title: ''
+    -   title: 'old'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    title: 'old'
+    items: 3
+  actual:
+    title: ''
+    items: 3
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/user/AppData/Local/Temp/highgrade-portable-20260924/p2-mutant/catalog.test.mjs:14:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1201:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+    Test.postRun (node:internal/test_runner/test:1330:19)
+    Test.run (node:internal/test_runner/test:1258:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 95.8285

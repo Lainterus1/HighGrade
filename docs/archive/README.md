@@ -1,13 +1,13 @@
 # Архив High Grade
 
-Назначение: сохранить историю и доказательства, не включать заменённые инструкции в обычный маршрут работы. Действующий маршрут — в [GLOBAL](../workflow/GLOBAL.md), правила контекста — в [CONTEXT](../workflow/CONTEXT.md), история решений — в [SPECIFICATION](../workflow/SPECIFICATION.md). Последний подтверждённый выпуск описан в [записи v0-2-7](../releases/v0-2-7.md).
+Назначение: сохранить историю и доказательства, не включать заменённые инструкции в обычный маршрут работы. Действующий маршрут — в [GLOBAL](../workflow/GLOBAL.md), правила контекста — в [CONTEXT](../workflow/CONTEXT.md), история решений — в [SPECIFICATION](../workflow/SPECIFICATION.md). Текущая активация и результат CI описаны в [записи v0-2-14](../releases/v0-2-14.md).
 
 | Материал | Почему здесь | Замена или статус |
 |---|---|---|
 | [Ранний проект организации](designs/2026-09-22/mycodex-organization.md) | Автор уточнил: сначала отдельное сопровождение плагинов, распределение по направлениям позже | [ARCHITECTURE](../ARCHITECTURE.md) и [plugins/README](../../plugins/README.md) |
 | [Исходный протокол концепции](designs/2026-09-22/codex-workflow-design.md) | Накопил обсуждение, промежуточные статусы и отчёты; сохранён без редактирования | История — [SPECIFICATION](../workflow/SPECIFICATION.md), действующие правила — [CONTEXT](../workflow/CONTEXT.md) |
 | [Протокол дополнения о контексте](designs/2026-09-22/context-governance-proposal.md) | Обсуждение завершено, действующие правила выделены | [CONTEXT](../workflow/CONTEXT.md) |
-| [Исходный технический проект](designs/2026-09-22/mycodex-technical-design.md) | Снимок, по которому проводилось прежнее ревью | [Технический проект](../proposals/technical-design.md) — исторический кандидат |
+| [Исходный технический проект](designs/2026-09-22/mycodex-technical-design.md) | Снимок, по которому проводилось прежнее ревью | [Технический проект](legacy-workflow/proposals/technical-design.md) — исторический кандидат |
 | [Предыдущее ревью концепции](designs/2026-09-22/codex-workflow-review.md) | Исторический обзор более ранней концепции | [Ревью организации](../reviews/project-organization-review.md) |
 | [Завершённый bootstrap](plans/bootstrap.md) | Перенос плагинов и начальные документы уже выполнены | [Манифест импорта](../imports/plugins-import.json) и действующая документация |
 
@@ -41,21 +41,21 @@
 
 ## Карта репозитория, 2026-09-23
 
-[Изменение repository-map](../../openspec/changes/archive/2026-09-23-repository-map/proposal.md) завершено и архивировано OpenSpec. Его [спецификация](../../openspec/changes/archive/2026-09-23-repository-map/specs/repository-map/spec.md) и [ревью кандидата](../reviews/repository-map-review.md) сохраняют историческое поведение карты.
+[Изменение repository-map](../../openspec/changes/archive/2026-09-23-repository-map/proposal.md) завершено и архивировано OpenSpec. Его [спецификация](../../openspec/changes/archive/2026-09-23-repository-map/specs/repository-map/spec.md) и [ревью кандидата](reviews/repository-map-review.md) сохраняют историческое поведение карты.
 
-[Уточнение по SNAF](../../openspec/changes/archive/2026-09-23-repository-map-project-context/proposal.md) также завершено и архивировано. Его результат и пределы проверки — в [отдельном ревью](../reviews/repository-map-project-context-review.md); карта затем заменена проверкой структуры документов.
+[Уточнение по SNAF](../../openspec/changes/archive/2026-09-23-repository-map-project-context/proposal.md) также завершено и архивировано. Его результат и пределы проверки — в [отдельном ревью](reviews/repository-map-project-context-review.md); карта затем заменена проверкой структуры документов.
 
 ## Структура документов перед инициализацией, 2026-09-23
 
-[Изменение bootstrap-document-structure](../../openspec/changes/archive/2026-09-23-bootstrap-document-structure/proposal.md) завершено и архивировано OpenSpec. Публичная карта удалена; действующая [спецификация](../../openspec/specs/project-bootstrap/spec.md) и [ревью кандидата](../reviews/bootstrap-document-structure-review.md) описывают `inspect --bootstrap`, канонические пути, ограничения сканирования и проверку SNAF.
+[Изменение bootstrap-document-structure](../../openspec/changes/archive/2026-09-23-bootstrap-document-structure/proposal.md) завершено и архивировано OpenSpec. Публичная карта удалена; действующая [спецификация](../../openspec/specs/project-bootstrap/spec.md) и [ревью кандидата](reviews/bootstrap-document-structure-review.md) описывают `inspect --bootstrap`, канонические пути, ограничения сканирования и проверку SNAF.
 
-[Уточнение передачи bootstrap в init](../../openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/proposal.md) также архивировано. Итоги временного пилота, проверки кандидата v0-2-4 и границы доказательства — в [ревью](../reviews/bootstrap-init-handoff-review.md); действующий контракт объединён в спецификации `project-bootstrap`. Временный проект удалён.
+[Уточнение передачи bootstrap в init](../../openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/proposal.md) также архивировано. Итоги временного пилота, проверки кандидата v0-2-4 и границы доказательства — в [ревью](reviews/bootstrap-init-handoff-review.md); действующий контракт объединён в спецификации `project-bootstrap`. Временный проект удалён.
 
 ## Выпуск принятой доработки, 2026-09-23
 
 [Изменение deploy](../../openspec/changes/archive/2026-09-23-deploy-accepted-work/proposal.md) завершено и архивировано OpenSpec. Действующий [контракт выпуска](../../openspec/specs/release-workflow/spec.md) и [ревью кандидата](../reviews/deploy-release-review.md) описывают отбор, очистку, публикацию и активацию. Фактические push и локальная активация проверяются отдельно.
 
-[Уточнение highgrade-deploy](../../openspec/changes/archive/2026-09-23-deploy-publication-consent/proposal.md) задаёт локальный коммит по умолчанию, отдельные полномочия на публикацию и активацию и переименование маршрутизатора. Итоговое [ревью](../reviews/deploy-publication-consent-review.md) фиксирует проверки кандидата v0-2-6 и границу с пользовательской установкой; действующие требования объединены в контракте выпуска.
+[Уточнение highgrade-deploy](../../openspec/changes/archive/2026-09-23-deploy-publication-consent/proposal.md) задаёт локальный коммит по умолчанию, отдельные полномочия на публикацию и активацию и переименование маршрутизатора. Итоговое [ревью](reviews/deploy-publication-consent-review.md) фиксирует проверки кандидата v0-2-6 и границу с пользовательской установкой; действующие требования объединены в контракте выпуска.
 
 ## Сведение первого выпуска, 2026-09-23
 
@@ -65,8 +65,14 @@
 
 ## Реализация P0–P2, 2026-09-23
 
-Исходные изменяемые документы сохранены в `project-docs/2026-09-23-before-p0-p2/` с manifest.json и SHA256. Причина: прежние указания «код не разрешён/не создан» заменены по явному поручению автора. Текущие указания находятся в основных документах; [контракт P0–P2](../implementation/p0-p2-contract.md) сохраняет историю этапа. Это восстановительный снимок; его относительные ссылки относятся к прежнему расположению.
+Исходные изменяемые документы сохранены в `project-docs/2026-09-23-before-p0-p2/` с manifest.json и SHA256. Причина: прежние указания «код не разрешён/не создан» заменены по явному поручению автора. Текущие указания находятся в основных документах; [контракт P0–P2](legacy-workflow/implementation/p0-p2-contract.md) сохраняет историю этапа. Это восстановительный снимок; его относительные ссылки относятся к прежнему расположению.
 
 ## Реализация P3–P6a, 2026-09-23
 
-Прежние версии семи основных документов сохранены в `project-docs/2026-09-23-before-p3-p6/` с manifest.json и SHA256. Действующие указания находятся в основных документах; [контракт P3–P5](../implementation/p3-p5-contract.md) и [проверка кандидата](../reviews/p3-p6-candidate-review.md) сохраняют историю этапа. Снимок сохраняет первоначальные относительные ссылки и не заменяет текущий план.
+Прежние версии семи основных документов сохранены в `project-docs/2026-09-23-before-p3-p6/` с manifest.json и SHA256. Действующие указания находятся в основных документах; [контракт P3–P5](legacy-workflow/implementation/p3-p5-contract.md) и [проверка кандидата](../reviews/p3-p6-candidate-review.md) сохраняют историю этапа. Снимок сохраняет первоначальные относительные ссылки и не заменяет текущий план.
+
+## Уборка 2026-09-25
+
+Завершённые планы 24 сентября — в plans/2026-09-24; заменённые проекты и контракты — в legacy-workflow, неактивные ревью — в reviews. Пример v1 — [в архиве](examples/native-specification/README.md), действующий v3 — [в документации](../examples/spec-catalog/README.md). Две одинаковые миграционные копии store v2 сведены к одной в data. [Пути и хеши](../imports/repository-hygiene.json) фиксируют переносы; у этих Markdown исправлены относительные ссылки, JSON сохранён побайтно.
+
+[Манифест очистки target](../imports/target-cleanup.json) связывает старые пути с сохранёнными первичными результатами. Полные журналы пилотов и профили сохранены локально в .highgrade/local/archive/target-history.zip; они не входят в Git. Два файла, на которые напрямую ссылается неизменяемая OpenSpec-история, также оставлены по прежним путям. Сборочные копии воспроизводимы из Git; основной кэш Cargo сохранён.

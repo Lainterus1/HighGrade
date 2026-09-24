@@ -1,0 +1,54 @@
+{
+  "local_archive": ".highgrade/local/archive/target-history.zip",
+  "archive_sha256": "14bed006f24d5dad295729bfba1dcdea3ba18dadab5703006529ff2556dbe565",
+  "archive_files": 435,
+  "reproducible_build_files_removed": 2455,
+  "removed_bytes": 434502886,
+  "public_evidence": [
+    {
+      "from": "target/portable-delivery/check-update-safety.ps1",
+      "to": "docs/archive/evidence/portable-delivery/check-update-safety.ps1",
+      "sha256": "cf67068ed7d7a83470ad6eb66c1ce253c489778dbb1d5d654bf38009e5d908e5"
+    },
+    {
+      "from": "target/portable-delivery/update-safety-results.json",
+      "to": "docs/archive/evidence/portable-delivery/update-safety-results.json",
+      "sha256": "5b5f17bcb930900d4e4e95aa1fa0c57cdbf8ea13a2a07ab1457bdd943d8db816"
+    },
+    {
+      "from": "target/portable-delivery/p2-mutant.tap",
+      "to": "docs/archive/evidence/portable-delivery/p2-mutant.tap",
+      "sha256": "72a5444ff59329f078d20062977493f6c6e8dc79a6efb5fec6054cce25d87b2f"
+    },
+    {
+      "from": "target/structured-specifications/nextest.log",
+      "to": "docs/archive/evidence/structured-specifications/nextest.log",
+      "sha256": "4b2c24aab474ce1d8c26f0c784831935a2bc9ca8a85721750c036596cbbe3402"
+    },
+    {
+      "from": "target/spec-progress/nextest.log",
+      "to": "docs/archive/evidence/spec-progress/nextest.log",
+      "sha256": "71f3c13abbde8a2aa1fb9f685b04c9541d790868377afc8120e3f97eb5a0976a"
+    },
+    {
+      "from": "target/activation-v0-2-14/apply.json",
+      "to": "docs/archive/evidence/activation-v0-2-14/apply.json",
+      "sha256": "c9516a54af26508f9a1fa42a940a25d7bba7c3f0e362924edc9ebeb1d212a337"
+    },
+    {
+      "from": "target/activation-v0-2-14/preview.json",
+      "to": "docs/archive/evidence/activation-v0-2-14/preview.json",
+      "sha256": "3635ba20ca7d667c2b294ba73023bb899dd18f266790c905a325b85a442e025e"
+    },
+    {
+      "from": "target/activation-v0-2-14/source-sha.txt",
+      "to": "docs/archive/evidence/activation-v0-2-14/source-sha.txt",
+      "sha256": "2d689d8c99ed41078ec113d23b54ee49abd26e931dd08857383f4bc9d66d8d15"
+    }
+  ],
+  "preserved_original_paths": [
+    "target/portable-delivery/update-safety-results.json",
+    "target/portable-delivery/check-update-safety.ps1"
+  ],
+  "notes": "Архив локальный, игнорируется Git: содержит исходные журналы пилотов и профили. Публичные первичные результаты сохранены отдельно. Удалены только воспроизводимые git archive и Cargo-копии; основной кэш, tools и nextest сохранены."
+}

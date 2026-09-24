@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "captured_at": "2026-09-24T19:29:14Z",
+  "scope": "HG-0005-S2 revalidation after staged documentation and whitespace-attribute edits",
+  "checks": {
+    "repository_verify_import": "PASSED; 54 plugin files verified",
+    "archive_sha256": "PASSED; 21 moved destinations match docs/imports/repository-hygiene.json",
+    "doctor": "passed",
+    "inspect_bootstrap": "passed",
+    "inspect": "warning; no failed findings; only ExternalLinkUnchecked",
+    "openspec_strict": "7 passed, 0 failed",
+    "development_budget_bytes": 7820,
+    "development_budget_limit": 8000
+  },
+  "retained_prior_evidence": "docs/evidence/repository-hygiene/verification.json",
+  "limitations": [
+    "Network links not verified",
+    "Local archived ZIP was verified in prior retained report; not re-opened in this revalidation"
+  ]
+}

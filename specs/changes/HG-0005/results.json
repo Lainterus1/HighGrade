@@ -1,0 +1,386 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0005-S1": {
+      "captured_at": "1790275273",
+      "command": "nextest run --locked --profile highgrade",
+      "files": {
+        ".github/workflows/verify.yml": "38cb92e0550c33bdfd08bff20a987f2ceb8fb23ed60347149fa6240388cdabc0",
+        "docs/evidence/repository-hygiene/nextest.xml": "ce846bfbefb26ab3594d981ead20a9bdff6f9b30cbbb34eacb32cee3803e6a3f",
+        "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+      },
+      "method": "manual",
+      "observation": "113 passed; обычный и slow-start запуск прошли, отдельный timeout проверяет RunnerTimeout",
+      "outcome": "passed",
+      "report": "docs/evidence/repository-hygiene/nextest.xml",
+      "scenario": "HG-0005-S1",
+      "scenario_sha256": "995c8e5a7c2e388930df1f979d2999067f6a4a2d2d4c65760dc8f631a266cc69"
+    },
+    "HG-0005-S2": {
+      "captured_at": "2026-09-24T19:29:51Z",
+      "command": "node scripts/check-repository.mjs --verify-import; highgrade doctor; highgrade inspect; highgrade inspect --bootstrap; openspec.cmd validate --all --strict --no-interactive; archive SHA256 verification",
+      "files": {
+        ".gitattributes": "bdd091749e2051bff7150c0e5a113e25ba678d3e7924b29d318c557d13c692f3",
+        ".highgrade/project/INSTRUCTIONS.md": "b06a26643275251fd47c46b7cc1564803943ddf1c64cf046918793e08b0710fa",
+        ".highgrade/project/documents.json": "dac60e4599eb249cd3b0ddb855d49c59fdd71f5870f969ba0288957073619470",
+        "docs/DEVELOPMENT.md": "947d1096f1452ebf9a2f760fa42826034cfa4becd974a814ce7cd3bd4a3ab3b0",
+        "docs/archive/README.md": "85b3f7bfacfa9d8dc2e70f21697ea5768f1703819159314857b9e9ae1ca40177",
+        "docs/evidence/repository-hygiene/revalidation.json": "39b76a7704331af28904b82e32fe0e4ddb9e225952351e4d1f1febce64ef4f90",
+        "docs/evidence/repository-hygiene/verification.json": "159d635bbd4734a4a2ea2ff1acff7c587c2ef0f181a5389cb3b13163d7c7245a",
+        "docs/imports/repository-hygiene.json": "e2e0819c573b6ef24b141a461847e99013f5cdcac5a7b78e284e94090eda12dc",
+        "docs/imports/target-cleanup.json": "847067fb23374675b209f385c987e65217a8148877b235367511e77c5ddf37e3",
+        "docs/workflow/CONTEXT.md": "f3fabcec0109c3db3671ada81c5a7e9cfdad2842488706e0ab1e861402ecedda"
+      },
+      "method": "manual",
+      "observation": "21 архивный файл и 54 импортированных файла сверены; doctor/bootstrap прошли, inspect без ошибок и превышения бюджета; OpenSpec strict 7/7. Ранее проверенные исходные копии и ZIP сохранены.",
+      "outcome": "passed",
+      "report": "docs/evidence/repository-hygiene/revalidation.json",
+      "scenario": "HG-0005-S2",
+      "scenario_sha256": "1cb0cf91e2d8ba3291fc899997a1b9a08fd2cd678cb729b79143c3b20f7b226b"
+    },
+    "HG-0005-S3": {
+      "captured_at": "2026-09-24T19:43:13Z",
+      "command": "python -m unittest discover -s scripts/tests -v",
+      "files": {
+        "docs/BUILD.md": "c98065d9c307dbab9fc2832638742a9e58ca741700fe39793ca79ef92f7896ad",
+        "docs/evidence/repository-hygiene/build-tests-revalidation.log": "fd79b03e0441b94862a1811c89ee8febf24513eceb4b67959b6edb5aafec1274",
+        "docs/evidence/repository-hygiene/build-tests.log": "25903e02dd9d4530aeee64b94587df5837ba6f84ee03d09a253cc76415497937",
+        "scripts/build-release.py": "45e97e0b9905d33a061cc7dcfb428817135f41a5e2bb789ec9f76d85ab0f0b13",
+        "scripts/tests/test_build_release.py": "d1564078bb913a209117c418535659d51360664af404ba686783b972f7137fe6"
+      },
+      "method": "manual",
+      "observation": "7 реальных Git/Cargo тестов прошли: точный SHA и повтор; ошибка сборки; чужие файлы и junction; двойной отказ; конкурентная сборка; CARGO_BUILD_TARGET с двумя разными коммитами копирует бинарник текущего запуска.",
+      "outcome": "passed",
+      "report": "docs/evidence/repository-hygiene/build-tests-revalidation.log",
+      "scenario": "HG-0005-S3",
+      "scenario_sha256": "1d0b39ff41cf73abc46485cd2fca34cce5df24de9f8cc5f1e932030bdb8591e1"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790275273,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0005-S1": {
+          "captured_at": "1790275273",
+          "command": "nextest run --locked --profile highgrade",
+          "files": {
+            ".github/workflows/verify.yml": "38cb92e0550c33bdfd08bff20a987f2ceb8fb23ed60347149fa6240388cdabc0",
+            "docs/evidence/repository-hygiene/nextest.xml": "ce846bfbefb26ab3594d981ead20a9bdff6f9b30cbbb34eacb32cee3803e6a3f",
+            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+          },
+          "method": "manual",
+          "observation": "113 passed; обычный и slow-start запуск прошли, отдельный timeout проверяет RunnerTimeout",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/nextest.xml",
+          "scenario": "HG-0005-S1",
+          "scenario_sha256": "995c8e5a7c2e388930df1f979d2999067f6a4a2d2d4c65760dc8f631a266cc69"
+        }
+      },
+      "recorded_at": 1790275273,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0005-S1": {
+          "captured_at": "1790275273",
+          "command": "nextest run --locked --profile highgrade",
+          "files": {
+            ".github/workflows/verify.yml": "38cb92e0550c33bdfd08bff20a987f2ceb8fb23ed60347149fa6240388cdabc0",
+            "docs/evidence/repository-hygiene/nextest.xml": "ce846bfbefb26ab3594d981ead20a9bdff6f9b30cbbb34eacb32cee3803e6a3f",
+            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+          },
+          "method": "manual",
+          "observation": "113 passed; обычный и slow-start запуск прошли, отдельный timeout проверяет RunnerTimeout",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/nextest.xml",
+          "scenario": "HG-0005-S1",
+          "scenario_sha256": "995c8e5a7c2e388930df1f979d2999067f6a4a2d2d4c65760dc8f631a266cc69"
+        },
+        "HG-0005-S2": {
+          "captured_at": "1790275273",
+          "command": "Проверка исходных и архивных SHA256; inspect/doctor/bootstrap; OpenSpec strict; repository --verify-import",
+          "files": {
+            ".gitattributes": "8893bb0bd80ab170089651f67d4cba7c5c89cc80c220fb7953d719464220e558",
+            ".highgrade/project/INSTRUCTIONS.md": "b06a26643275251fd47c46b7cc1564803943ddf1c64cf046918793e08b0710fa",
+            ".highgrade/project/documents.json": "dac60e4599eb249cd3b0ddb855d49c59fdd71f5870f969ba0288957073619470",
+            "docs/DEVELOPMENT.md": "e9968e8c23d6b0f179fb356c7c50cb4ea576b188dfbad39f9e8a0c5593eabc56",
+            "docs/archive/README.md": "85b3f7bfacfa9d8dc2e70f21697ea5768f1703819159314857b9e9ae1ca40177",
+            "docs/evidence/repository-hygiene/verification.json": "159d635bbd4734a4a2ea2ff1acff7c587c2ef0f181a5389cb3b13163d7c7245a",
+            "docs/imports/repository-hygiene.json": "e2e0819c573b6ef24b141a461847e99013f5cdcac5a7b78e284e94090eda12dc",
+            "docs/imports/target-cleanup.json": "847067fb23374675b209f385c987e65217a8148877b235367511e77c5ddf37e3",
+            "docs/workflow/CONTEXT.md": "f3fabcec0109c3db3671ada81c5a7e9cfdad2842488706e0ab1e861402ecedda"
+          },
+          "method": "manual",
+          "observation": "21 архивная запись и 8 первичных материалов проверены; локальный ZIP сверён до удаления; OpenSpec/kit/bundle/src без изменений; ссылки и бюджеты согласованы",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/verification.json",
+          "scenario": "HG-0005-S2",
+          "scenario_sha256": "1cb0cf91e2d8ba3291fc899997a1b9a08fd2cd678cb729b79143c3b20f7b226b"
+        }
+      },
+      "recorded_at": 1790275274,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0005-S1": {
+          "captured_at": "1790275273",
+          "command": "nextest run --locked --profile highgrade",
+          "files": {
+            ".github/workflows/verify.yml": "38cb92e0550c33bdfd08bff20a987f2ceb8fb23ed60347149fa6240388cdabc0",
+            "docs/evidence/repository-hygiene/nextest.xml": "ce846bfbefb26ab3594d981ead20a9bdff6f9b30cbbb34eacb32cee3803e6a3f",
+            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+          },
+          "method": "manual",
+          "observation": "113 passed; обычный и slow-start запуск прошли, отдельный timeout проверяет RunnerTimeout",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/nextest.xml",
+          "scenario": "HG-0005-S1",
+          "scenario_sha256": "995c8e5a7c2e388930df1f979d2999067f6a4a2d2d4c65760dc8f631a266cc69"
+        },
+        "HG-0005-S2": {
+          "captured_at": "1790275273",
+          "command": "Проверка исходных и архивных SHA256; inspect/doctor/bootstrap; OpenSpec strict; repository --verify-import",
+          "files": {
+            ".gitattributes": "8893bb0bd80ab170089651f67d4cba7c5c89cc80c220fb7953d719464220e558",
+            ".highgrade/project/INSTRUCTIONS.md": "b06a26643275251fd47c46b7cc1564803943ddf1c64cf046918793e08b0710fa",
+            ".highgrade/project/documents.json": "dac60e4599eb249cd3b0ddb855d49c59fdd71f5870f969ba0288957073619470",
+            "docs/DEVELOPMENT.md": "e9968e8c23d6b0f179fb356c7c50cb4ea576b188dfbad39f9e8a0c5593eabc56",
+            "docs/archive/README.md": "85b3f7bfacfa9d8dc2e70f21697ea5768f1703819159314857b9e9ae1ca40177",
+            "docs/evidence/repository-hygiene/verification.json": "159d635bbd4734a4a2ea2ff1acff7c587c2ef0f181a5389cb3b13163d7c7245a",
+            "docs/imports/repository-hygiene.json": "e2e0819c573b6ef24b141a461847e99013f5cdcac5a7b78e284e94090eda12dc",
+            "docs/imports/target-cleanup.json": "847067fb23374675b209f385c987e65217a8148877b235367511e77c5ddf37e3",
+            "docs/workflow/CONTEXT.md": "f3fabcec0109c3db3671ada81c5a7e9cfdad2842488706e0ab1e861402ecedda"
+          },
+          "method": "manual",
+          "observation": "21 архивная запись и 8 первичных материалов проверены; локальный ZIP сверён до удаления; OpenSpec/kit/bundle/src без изменений; ссылки и бюджеты согласованы",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/verification.json",
+          "scenario": "HG-0005-S2",
+          "scenario_sha256": "1cb0cf91e2d8ba3291fc899997a1b9a08fd2cd678cb729b79143c3b20f7b226b"
+        },
+        "HG-0005-S3": {
+          "captured_at": "1790275274",
+          "command": "python -m unittest discover -s scripts/tests -v; python scripts/build-release.py b3f3f702c9cc8437e36cd57f89a9ffd52ea369a0",
+          "files": {
+            "docs/BUILD.md": "b810cf53e951a07dcb05df4429058182f701210004dcba6ef870003115ef413c",
+            "docs/evidence/repository-hygiene/build-tests.log": "25903e02dd9d4530aeee64b94587df5837ba6f84ee03d09a253cc76415497937",
+            "scripts/build-release.py": "dee736a739016990ed3145f079fbec09fc7b137f5c7c87d151751a184a975d6c",
+            "scripts/tests/test_build_release.py": "6c5798f0e66741d9e874880775e02d53257dfd1e4e2e5fd4d2496481a72311d8"
+          },
+          "method": "manual",
+          "observation": "6 tests passed: точный SHA и повтор; ошибка; чужие файлы; junction; двойной отказ; конкурирующая обычная сборка. Реальная сборка High Grade passed; target/work пуст",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/build-tests.log",
+          "scenario": "HG-0005-S3",
+          "scenario_sha256": "1d0b39ff41cf73abc46485cd2fca34cce5df24de9f8cc5f1e932030bdb8591e1"
+        }
+      },
+      "recorded_at": 1790275274,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0005-S1": {
+          "captured_at": "1790275273",
+          "command": "nextest run --locked --profile highgrade",
+          "files": {
+            ".github/workflows/verify.yml": "38cb92e0550c33bdfd08bff20a987f2ceb8fb23ed60347149fa6240388cdabc0",
+            "docs/evidence/repository-hygiene/nextest.xml": "ce846bfbefb26ab3594d981ead20a9bdff6f9b30cbbb34eacb32cee3803e6a3f",
+            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+          },
+          "method": "manual",
+          "observation": "113 passed; обычный и slow-start запуск прошли, отдельный timeout проверяет RunnerTimeout",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/nextest.xml",
+          "scenario": "HG-0005-S1",
+          "scenario_sha256": "995c8e5a7c2e388930df1f979d2999067f6a4a2d2d4c65760dc8f631a266cc69"
+        },
+        "HG-0005-S2": {
+          "captured_at": "1790275273",
+          "command": "Проверка исходных и архивных SHA256; inspect/doctor/bootstrap; OpenSpec strict; repository --verify-import",
+          "files": {
+            ".gitattributes": "8893bb0bd80ab170089651f67d4cba7c5c89cc80c220fb7953d719464220e558",
+            ".highgrade/project/INSTRUCTIONS.md": "b06a26643275251fd47c46b7cc1564803943ddf1c64cf046918793e08b0710fa",
+            ".highgrade/project/documents.json": "dac60e4599eb249cd3b0ddb855d49c59fdd71f5870f969ba0288957073619470",
+            "docs/DEVELOPMENT.md": "e9968e8c23d6b0f179fb356c7c50cb4ea576b188dfbad39f9e8a0c5593eabc56",
+            "docs/archive/README.md": "85b3f7bfacfa9d8dc2e70f21697ea5768f1703819159314857b9e9ae1ca40177",
+            "docs/evidence/repository-hygiene/verification.json": "159d635bbd4734a4a2ea2ff1acff7c587c2ef0f181a5389cb3b13163d7c7245a",
+            "docs/imports/repository-hygiene.json": "e2e0819c573b6ef24b141a461847e99013f5cdcac5a7b78e284e94090eda12dc",
+            "docs/imports/target-cleanup.json": "847067fb23374675b209f385c987e65217a8148877b235367511e77c5ddf37e3",
+            "docs/workflow/CONTEXT.md": "f3fabcec0109c3db3671ada81c5a7e9cfdad2842488706e0ab1e861402ecedda"
+          },
+          "method": "manual",
+          "observation": "21 архивная запись и 8 первичных материалов проверены; локальный ZIP сверён до удаления; OpenSpec/kit/bundle/src без изменений; ссылки и бюджеты согласованы",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/verification.json",
+          "scenario": "HG-0005-S2",
+          "scenario_sha256": "1cb0cf91e2d8ba3291fc899997a1b9a08fd2cd678cb729b79143c3b20f7b226b"
+        },
+        "HG-0005-S3": {
+          "captured_at": "1790275274",
+          "command": "python -m unittest discover -s scripts/tests -v; python scripts/build-release.py b3f3f702c9cc8437e36cd57f89a9ffd52ea369a0",
+          "files": {
+            "docs/BUILD.md": "b810cf53e951a07dcb05df4429058182f701210004dcba6ef870003115ef413c",
+            "docs/evidence/repository-hygiene/build-tests.log": "25903e02dd9d4530aeee64b94587df5837ba6f84ee03d09a253cc76415497937",
+            "scripts/build-release.py": "dee736a739016990ed3145f079fbec09fc7b137f5c7c87d151751a184a975d6c",
+            "scripts/tests/test_build_release.py": "6c5798f0e66741d9e874880775e02d53257dfd1e4e2e5fd4d2496481a72311d8"
+          },
+          "method": "manual",
+          "observation": "6 tests passed: точный SHA и повтор; ошибка; чужие файлы; junction; двойной отказ; конкурирующая обычная сборка. Реальная сборка High Grade passed; target/work пуст",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/build-tests.log",
+          "scenario": "HG-0005-S3",
+          "scenario_sha256": "1d0b39ff41cf73abc46485cd2fca34cce5df24de9f8cc5f1e932030bdb8591e1"
+        }
+      },
+      "recorded_at": 1790278191,
+      "review": {
+        "change_sha256": "72a920c0956f7c0b2a11ffa6fb3efd794f831197d1c597497491d80515da6144",
+        "conclusion": "Независимое REVIEW_GO. Два P1 исправлены и покрыты регрессиями; замечаний P1/P2 нет. Реальная сборка исходного SHA подтверждена после ревью.",
+        "reviewer": "delivery_review",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0005-S1": {
+          "captured_at": "1790275273",
+          "command": "nextest run --locked --profile highgrade",
+          "files": {
+            ".github/workflows/verify.yml": "38cb92e0550c33bdfd08bff20a987f2ceb8fb23ed60347149fa6240388cdabc0",
+            "docs/evidence/repository-hygiene/nextest.xml": "ce846bfbefb26ab3594d981ead20a9bdff6f9b30cbbb34eacb32cee3803e6a3f",
+            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+          },
+          "method": "manual",
+          "observation": "113 passed; обычный и slow-start запуск прошли, отдельный timeout проверяет RunnerTimeout",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/nextest.xml",
+          "scenario": "HG-0005-S1",
+          "scenario_sha256": "995c8e5a7c2e388930df1f979d2999067f6a4a2d2d4c65760dc8f631a266cc69"
+        },
+        "HG-0005-S2": {
+          "captured_at": "2026-09-24T19:29:51Z",
+          "command": "node scripts/check-repository.mjs --verify-import; highgrade doctor; highgrade inspect; highgrade inspect --bootstrap; openspec.cmd validate --all --strict --no-interactive; archive SHA256 verification",
+          "files": {
+            ".gitattributes": "bdd091749e2051bff7150c0e5a113e25ba678d3e7924b29d318c557d13c692f3",
+            ".highgrade/project/INSTRUCTIONS.md": "b06a26643275251fd47c46b7cc1564803943ddf1c64cf046918793e08b0710fa",
+            ".highgrade/project/documents.json": "dac60e4599eb249cd3b0ddb855d49c59fdd71f5870f969ba0288957073619470",
+            "docs/DEVELOPMENT.md": "947d1096f1452ebf9a2f760fa42826034cfa4becd974a814ce7cd3bd4a3ab3b0",
+            "docs/archive/README.md": "85b3f7bfacfa9d8dc2e70f21697ea5768f1703819159314857b9e9ae1ca40177",
+            "docs/evidence/repository-hygiene/revalidation.json": "39b76a7704331af28904b82e32fe0e4ddb9e225952351e4d1f1febce64ef4f90",
+            "docs/evidence/repository-hygiene/verification.json": "159d635bbd4734a4a2ea2ff1acff7c587c2ef0f181a5389cb3b13163d7c7245a",
+            "docs/imports/repository-hygiene.json": "e2e0819c573b6ef24b141a461847e99013f5cdcac5a7b78e284e94090eda12dc",
+            "docs/imports/target-cleanup.json": "847067fb23374675b209f385c987e65217a8148877b235367511e77c5ddf37e3",
+            "docs/workflow/CONTEXT.md": "f3fabcec0109c3db3671ada81c5a7e9cfdad2842488706e0ab1e861402ecedda"
+          },
+          "method": "manual",
+          "observation": "21 архивный файл и 54 импортированных файла сверены; doctor/bootstrap прошли, inspect без ошибок и превышения бюджета; OpenSpec strict 7/7. Ранее проверенные исходные копии и ZIP сохранены.",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/revalidation.json",
+          "scenario": "HG-0005-S2",
+          "scenario_sha256": "1cb0cf91e2d8ba3291fc899997a1b9a08fd2cd678cb729b79143c3b20f7b226b"
+        },
+        "HG-0005-S3": {
+          "captured_at": "1790275274",
+          "command": "python -m unittest discover -s scripts/tests -v; python scripts/build-release.py b3f3f702c9cc8437e36cd57f89a9ffd52ea369a0",
+          "files": {
+            "docs/BUILD.md": "b810cf53e951a07dcb05df4429058182f701210004dcba6ef870003115ef413c",
+            "docs/evidence/repository-hygiene/build-tests.log": "25903e02dd9d4530aeee64b94587df5837ba6f84ee03d09a253cc76415497937",
+            "scripts/build-release.py": "dee736a739016990ed3145f079fbec09fc7b137f5c7c87d151751a184a975d6c",
+            "scripts/tests/test_build_release.py": "6c5798f0e66741d9e874880775e02d53257dfd1e4e2e5fd4d2496481a72311d8"
+          },
+          "method": "manual",
+          "observation": "6 tests passed: точный SHA и повтор; ошибка; чужие файлы; junction; двойной отказ; конкурирующая обычная сборка. Реальная сборка High Grade passed; target/work пуст",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/build-tests.log",
+          "scenario": "HG-0005-S3",
+          "scenario_sha256": "1d0b39ff41cf73abc46485cd2fca34cce5df24de9f8cc5f1e932030bdb8591e1"
+        }
+      },
+      "recorded_at": 1790278993,
+      "review": {
+        "change_sha256": "72a920c0956f7c0b2a11ffa6fb3efd794f831197d1c597497491d80515da6144",
+        "conclusion": "Независимое REVIEW_GO. Два P1 исправлены и покрыты регрессиями; замечаний P1/P2 нет. Реальная сборка исходного SHA подтверждена после ревью.",
+        "reviewer": "delivery_review",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0005-S1": {
+          "captured_at": "1790275273",
+          "command": "nextest run --locked --profile highgrade",
+          "files": {
+            ".github/workflows/verify.yml": "38cb92e0550c33bdfd08bff20a987f2ceb8fb23ed60347149fa6240388cdabc0",
+            "docs/evidence/repository-hygiene/nextest.xml": "ce846bfbefb26ab3594d981ead20a9bdff6f9b30cbbb34eacb32cee3803e6a3f",
+            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+          },
+          "method": "manual",
+          "observation": "113 passed; обычный и slow-start запуск прошли, отдельный timeout проверяет RunnerTimeout",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/nextest.xml",
+          "scenario": "HG-0005-S1",
+          "scenario_sha256": "995c8e5a7c2e388930df1f979d2999067f6a4a2d2d4c65760dc8f631a266cc69"
+        },
+        "HG-0005-S2": {
+          "captured_at": "2026-09-24T19:29:51Z",
+          "command": "node scripts/check-repository.mjs --verify-import; highgrade doctor; highgrade inspect; highgrade inspect --bootstrap; openspec.cmd validate --all --strict --no-interactive; archive SHA256 verification",
+          "files": {
+            ".gitattributes": "bdd091749e2051bff7150c0e5a113e25ba678d3e7924b29d318c557d13c692f3",
+            ".highgrade/project/INSTRUCTIONS.md": "b06a26643275251fd47c46b7cc1564803943ddf1c64cf046918793e08b0710fa",
+            ".highgrade/project/documents.json": "dac60e4599eb249cd3b0ddb855d49c59fdd71f5870f969ba0288957073619470",
+            "docs/DEVELOPMENT.md": "947d1096f1452ebf9a2f760fa42826034cfa4becd974a814ce7cd3bd4a3ab3b0",
+            "docs/archive/README.md": "85b3f7bfacfa9d8dc2e70f21697ea5768f1703819159314857b9e9ae1ca40177",
+            "docs/evidence/repository-hygiene/revalidation.json": "39b76a7704331af28904b82e32fe0e4ddb9e225952351e4d1f1febce64ef4f90",
+            "docs/evidence/repository-hygiene/verification.json": "159d635bbd4734a4a2ea2ff1acff7c587c2ef0f181a5389cb3b13163d7c7245a",
+            "docs/imports/repository-hygiene.json": "e2e0819c573b6ef24b141a461847e99013f5cdcac5a7b78e284e94090eda12dc",
+            "docs/imports/target-cleanup.json": "847067fb23374675b209f385c987e65217a8148877b235367511e77c5ddf37e3",
+            "docs/workflow/CONTEXT.md": "f3fabcec0109c3db3671ada81c5a7e9cfdad2842488706e0ab1e861402ecedda"
+          },
+          "method": "manual",
+          "observation": "21 архивный файл и 54 импортированных файла сверены; doctor/bootstrap прошли, inspect без ошибок и превышения бюджета; OpenSpec strict 7/7. Ранее проверенные исходные копии и ZIP сохранены.",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/revalidation.json",
+          "scenario": "HG-0005-S2",
+          "scenario_sha256": "1cb0cf91e2d8ba3291fc899997a1b9a08fd2cd678cb729b79143c3b20f7b226b"
+        },
+        "HG-0005-S3": {
+          "captured_at": "2026-09-24T19:43:13Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "c98065d9c307dbab9fc2832638742a9e58ca741700fe39793ca79ef92f7896ad",
+            "docs/evidence/repository-hygiene/build-tests-revalidation.log": "fd79b03e0441b94862a1811c89ee8febf24513eceb4b67959b6edb5aafec1274",
+            "docs/evidence/repository-hygiene/build-tests.log": "25903e02dd9d4530aeee64b94587df5837ba6f84ee03d09a253cc76415497937",
+            "scripts/build-release.py": "45e97e0b9905d33a061cc7dcfb428817135f41a5e2bb789ec9f76d85ab0f0b13",
+            "scripts/tests/test_build_release.py": "d1564078bb913a209117c418535659d51360664af404ba686783b972f7137fe6"
+          },
+          "method": "manual",
+          "observation": "7 реальных Git/Cargo тестов прошли: точный SHA и повтор; ошибка сборки; чужие файлы и junction; двойной отказ; конкурентная сборка; CARGO_BUILD_TARGET с двумя разными коммитами копирует бинарник текущего запуска.",
+          "outcome": "passed",
+          "report": "docs/evidence/repository-hygiene/build-tests-revalidation.log",
+          "scenario": "HG-0005-S3",
+          "scenario_sha256": "1d0b39ff41cf73abc46485cd2fca34cce5df24de9f8cc5f1e932030bdb8591e1"
+        }
+      },
+      "recorded_at": 1790279299,
+      "review": {
+        "change_sha256": "72a920c0956f7c0b2a11ffa6fb3efd794f831197d1c597497491d80515da6144",
+        "conclusion": "Независимое REVIEW_GO. Два P1 исправлены и покрыты регрессиями; замечаний P1/P2 нет. Реальная сборка исходного SHA подтверждена после ревью.",
+        "reviewer": "delivery_review",
+        "verdict": "go"
+      }
+    }
+  ],
+  "review": {
+    "change_sha256": "e9fe7f93e46b8c208e8c994cfea09531dd330a9d5185792dcef8025366884c76",
+    "conclusion": "REVIEW_GO for updated 16-file HG-0005 patch after P2 fix. Real target-override regression and seven build tests passed; 113 Rust tests, release build, strict OpenSpec and repository checks passed. Review covered this patch only.",
+    "reviewer": "Codex API independent patch review",
+    "verdict": "go"
+  },
+  "runs": []
+}

@@ -1,0 +1,102 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+────────────
+ Nextest run ID 18609b86-27a9-4aa3-b6d0-447f7fb3e1e5 with nextest profile: highgrade
+    Starting 96 tests across 8 binaries
+        PASS [   0.035s] ( 1/96) highgrade trace::id_tests::accepts_project_ids_and_rejects_malformed_ids
+        PASS [   0.040s] ( 2/96) highgrade::bootstrap_contracts migrated_architecture_with_old_readme_link_is_reported
+        PASS [   0.041s] ( 3/96) highgrade::bootstrap_contracts bundled_templates_match_the_canonical_bootstrap_contract
+        PASS [   0.084s] ( 4/96) highgrade::bootstrap_contracts bootstrap_does_not_read_excluded_sources_or_offer_excluded_link_targets
+        PASS [   0.097s] ( 5/96) highgrade::bootstrap_contracts bootstrap_reports_all_slots_before_registry_exists
+        PASS [   0.101s] ( 6/96) highgrade::bootstrap_contracts candidate_and_input_limits_keep_partial_evidence
+        PASS [   0.120s] ( 7/96) highgrade::bootstrap_contracts exclusions_are_safe_and_bad_registry_does_not_hide_candidates
+        PASS [   0.120s] ( 8/96) highgrade::bootstrap_contracts complete_project_still_reports_missing_navigation_without_candidate_walk
+        PASS [   0.121s] ( 9/96) highgrade::bootstrap_contracts cli_accepts_bootstrap_without_registry_and_rejects_map_and_conflicts
+        PASS [   0.126s] (10/96) highgrade::bootstrap_contracts alternative_name_is_candidate_but_never_accepted_as_role
+        PASS [   0.151s] (11/96) highgrade::bootstrap_contracts missing_link_is_distinct_from_missing_file_and_registry_path_mismatch
+        PASS [   0.154s] (12/96) highgrade::bootstrap_contracts bootstrap_skips_generated_skill_outputs
+        PASS [   0.160s] (13/96) highgrade::bootstrap_contracts complete_project_still_checks_exclusion_input_without_walking_tree
+        PASS [   0.178s] (14/96) highgrade::bootstrap_contracts canonical_project_has_separate_path_and_link_evidence
+        PASS [   0.167s] (15/96) highgrade::contracts broken_links_and_anchors_are_failures
+        PASS [   0.188s] (16/96) highgrade::contracts budget_history_cannot_skip_or_exceed_ceiling
+        PASS [   0.154s] (17/96) highgrade::contracts colocated_document_does_not_cover_its_parent
+        PASS [   0.227s] (18/96) highgrade::contracts cli_errors_keep_the_report_contract
+        PASS [   0.156s] (19/96) highgrade::contracts entry_does_not_hide_unmapped_sibling
+        PASS [   0.174s] (20/96) highgrade::contracts exceeding_agreed_budget_warns_without_raising_it
+        PASS [   0.151s] (21/96) highgrade::contracts install_rejects_stale_audit
+        PASS [   0.159s] (22/96) highgrade::contracts install_requires_audit_before_writes
+        PASS [   0.143s] (23/96) highgrade::contracts links_support_reference_unicode_parent_and_code_exclusion
+        PASS [   0.119s] (24/96) highgrade::contracts malformed_registry_and_multiple_defaults_do_not_fallback
+        PASS [   0.252s] (25/96) highgrade::contracts conflicting_skill_is_not_adopted_even_if_equal
+        PASS [   0.194s] (26/96) highgrade::contracts junction_is_not_followed
+        PASS [   0.147s] (27/96) highgrade::contracts measures_utf8_crlf_and_does_not_modify_inputs
+        PASS [   0.124s] (28/96) highgrade::contracts missing_budget_is_unknown_not_success
+        PASS [   0.124s] (29/96) highgrade::contracts missing_roles_duplicates_and_files_are_reported
+        PASS [   0.118s] (30/96) highgrade::contracts new_area_is_unknown
+        PASS [   0.149s] (31/96) highgrade::contracts package_hash_failure_writes_nothing
+        PASS [   0.124s] (32/96) highgrade::contracts parent_scope_reads_child_documents
+        PASS [   0.117s] (33/96) highgrade::contracts scenario_ids_in_headings_are_not_broken_markdown_links
+        PASS [   0.090s] (34/96) highgrade::contracts source_inventory_is_case_sensitive_and_stable
+        PASS [   0.086s] (35/96) highgrade::contracts traversal_and_ads_are_rejected
+        PASS [   0.489s] (36/96) highgrade::bootstrap_contracts bootstrap_reports_multiple_unvisited_locations_with_a_count
+        PASS [   0.100s] (37/96) highgrade::contracts task_checkboxes_and_inline_code_are_not_references
+        PASS [   0.121s] (38/96) highgrade::contracts scoped_inspection_selects_sources_and_reports_unmapped_scope
+        PASS [   0.099s] (39/96) highgrade::contracts unresolved_reference_is_not_silent
+        PASS [   0.067s] (40/96) highgrade::contracts valid_budget_history_passes
+        PASS [   0.409s] (41/96) highgrade::contracts incomplete_temp_is_preserved_and_not_activated
+        PASS [   0.153s] (42/96) highgrade::global_contracts doctor_keeps_unavailable_openspec_version_unknown
+        PASS [   0.342s] (43/96) highgrade::contracts recovery_does_not_overwrite_foreign_edit
+        PASS [   0.183s] (44/96) highgrade::global_contracts kit_manifest_uses_stable_lf_bytes
+        PASS [   0.335s] (45/96) highgrade::global_contracts global_update_rejects_manual_rollback_option
+        PASS [   0.923s] (46/96) highgrade::bootstrap_contracts bootstrap_skips_junction_and_matches_exclusion_case
+        PASS [   0.866s] (47/96) highgrade::contracts complete_temp_can_resume_publication
+        PASS [   0.878s] (48/96) highgrade::contracts modified_installed_file_is_detected
+        PASS [   1.164s] (49/96) highgrade::contracts install_preserves_agents_and_repeats_without_duplicates
+        PASS [   0.181s] (50/96) highgrade::global_contracts supported_adapter_does_not_claim_semantic_readiness
+        PASS [   0.183s] (51/96) highgrade::global_contracts unsupported_project_adapter_is_a_failure
+        PASS [   1.307s] (52/96) highgrade::global_contracts global_install_rejects_hash_and_foreign_router_without_activation
+        PASS [   0.274s] (53/96) highgrade::package_contracts bundled_skill_frontmatter_uses_safe_scalars
+        PASS [   2.227s] (54/96) highgrade::global_contracts shipped_registry_example_is_accepted_without_inventing_budgets
+        PASS [   2.736s] (55/96) highgrade::global_contracts installed_runtime_references_survive_removal_of_source_copy
+        PASS [   3.028s] (56/96) highgrade::global_contracts failed_stage_preserves_foreign_candidate_journal
+        PASS [   3.479s] (57/96) highgrade::contracts interruption_at_each_publication_boundary_resumes
+        PASS [   1.630s] (58/96) highgrade::package_contracts candidate_conflict_never_changes_active_release
+        PASS [   0.461s] (59/96) highgrade::package_contracts full_install_rejects_pending_audit_and_foreign_skill
+        PASS [   0.440s] (60/96) highgrade::spec_contracts automatic_numbers_survive_abandon_failure_and_competing_cli_writers
+        PASS [   1.158s] (61/96) highgrade::package_contracts full_install_keeps_project_files_and_repeats
+        PASS [   0.183s] (62/96) highgrade::spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write
+        PASS [   0.960s] (63/96) highgrade::package_contracts project_exclusions_require_an_explicit_reason_and_fresh_audit
+        PASS [   0.307s] (64/96) highgrade::spec_contracts competing_processes_and_failed_replace_preserve_whole_store
+        PASS [   4.143s] (65/96) highgrade::global_contracts global_install_does_not_touch_project_and_checks_adapter
+        PASS [   0.490s] (66/96) highgrade::spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations
+        PASS [   0.785s] (67/96) highgrade::spec_contracts integration_rejects_stale_base_and_requires_removal_reason
+        PASS [   0.789s] (68/96) highgrade::spec_contracts human_history_is_atomic_protected_and_bound_to_spec_and_implementation
+        PASS [   0.130s] (69/96) highgrade::spec_contracts native_doctor_does_not_require_openspec_or_execute_external_tools
+        PASS [   0.978s] (70/96) highgrade::spec_contracts isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work
+        PASS [   0.737s] (71/96) highgrade::spec_contracts json_progress_rejects_missing_skipped_unknown_and_negative_review
+        PASS [   0.398s] (72/96) highgrade::spec_contracts negative_review_and_sibling_scenario_regressions
+        PASS [   4.888s] (73/96) highgrade::global_contracts locked_v026_router_is_inactive_after_switch
+        PASS [   0.163s] (74/96) highgrade::trace_contracts active_modified_requirement_replaces_base_for_trace
+        PASS [   0.228s] (75/96) highgrade::spec_contracts v1_migration_preserves_exact_backup_ids_evidence_and_review_digest
+        PASS [   0.274s] (76/96) highgrade::spec_contracts selected_import_retains_source_and_leaves_other_legacy_requirements
+        PASS [   0.114s] (77/96) highgrade::trace_contracts duplicate_and_unknown_scenario_ids_do_not_pass
+        PASS [   4.520s] (78/96) highgrade::global_contracts v026_deploy_migrates_to_two_routes_and_removes_old_release
+        PASS [   0.467s] (79/96) highgrade::spec_contracts returned_integrated_spec_is_corrected_by_a_new_change_without_rewriting_history
+        PASS [   0.121s] (80/96) highgrade::trace_contracts playwright_resolves_source_relative_to_report_root
+        PASS [   0.165s] (81/96) highgrade::trace_contracts native_reports_remain_readable_after_checkout_moves
+        PASS [   0.211s] (82/96) highgrade::trace_contracts native_owner_replaces_only_imported_markdown_and_ignores_evidence_metadata
+        PASS [   2.553s] (83/96) highgrade::package_contracts update_rejects_manifest_cli_version_mismatch
+        PASS [   0.200s] (84/96) highgrade::trace_contracts playwright_uses_annotation_and_result_not_just_link
+        PASS [   0.117s] (85/96) highgrade::trace_contracts rust_requires_real_listed_passing_result
+        PASS [   5.857s] (86/96) highgrade::global_contracts failed_forward_pointer_change_allows_a_different_candidate
+        PASS [   0.241s] (87/96) highgrade::trace_contracts rust_skip_failure_unknown_and_empty_are_unconfirmed
+        PASS [   5.425s] (88/96) highgrade::global_contracts six_skill_release_preserves_owned_crlf_routers
+        PASS [   5.717s] (89/96) highgrade::global_contracts six_skill_release_updates_to_approve_push_and_cleans_old_release
+        PASS [   6.307s] (90/96) highgrade::global_contracts failed_stage_does_not_leave_new_routers
+        PASS [   1.515s] (91/96) highgrade::spec_contracts read_payload_and_cas_always_describe_the_same_snapshot
+        PASS [   6.497s] (92/96) highgrade::global_contracts global_update_preserves_project_adaptation_in_profile
+        PASS [   6.798s] (93/96) highgrade::global_contracts legacy_deploy_migrates_to_approve_push_and_cleans_old_release
+        PASS [   8.051s] (94/96) highgrade::global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files
+        PASS [   7.829s] (95/96) highgrade::global_contracts update_preserves_foreign_file_in_old_release
+        PASS [   6.220s] (96/96) highgrade::package_contracts update_requires_fresh_explicit_decision_and_preserves_adaptation
+────────────
+     Summary [   9.925s] 96 tests run: 96 passed, 0 skipped
