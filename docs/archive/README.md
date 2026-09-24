@@ -33,6 +33,10 @@
 
 Проверенное изменение [self-host-highgrade](../../openspec/changes/archive/2026-09-23-self-host-highgrade/proposal.md) завершено и штатно архивировано OpenSpec; действующая [спецификация](../../openspec/specs/self-hosted-workflow/spec.md) находится в `openspec/specs/`. Завершённые [план](plans/2026-09-23-self-hosting.md) и [состояние](plans/2026-09-23-self-hosting.state.md) сохранены здесь. Итоговые проверки и их пределы — в [ревью](../reviews/self-hosting-review.md). Архивные задачи не образуют текущий backlog.
 
+## Проверяемые сценарии, 2026-09-24
+
+[Изменение adopt-executable-scenarios](../../openspec/changes/archive/2026-09-24-adopt-executable-scenarios/proposal.md) архивировано после переноса действующих требований и независимого ревью. Его требования объединены с [действующей спекой](../../openspec/specs/self-hosted-workflow/spec.md); [проверки и открытые ручные пробелы](../reviews/executable-scenarios-review.md) сохраняют границу доказательства, а [состояние задачи](plans/2026-09-24-executable-scenarios.state.md) — ход работы. Установленная v0-2-7 не переключалась; исходный кандидат v0-2-8 не опубликован.
+
 ## Карта репозитория, 2026-09-23
 
 [Изменение repository-map](../../openspec/changes/archive/2026-09-23-repository-map/proposal.md) завершено и архивировано OpenSpec. Его [спецификация](../../openspec/changes/archive/2026-09-23-repository-map/specs/repository-map/spec.md) и [ревью кандидата](../reviews/repository-map-review.md) сохраняют историческое поведение карты.

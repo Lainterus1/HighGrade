@@ -92,6 +92,19 @@ pub(crate) fn link_target(doc: &str, dest: &str) -> Result<(String, Option<Strin
 fn links(root: &Path, doc: &str, text: &str, r: &mut Report) {
     let unresolved = std::cell::RefCell::new(vec![]);
     let callback = |link: pulldown_cmark::BrokenLink<'_>| {
+        let prefix = text[..link.span.start]
+            .rsplit('\n')
+            .next()
+            .unwrap_or_default();
+        let spec = doc.ends_with("/spec.md")
+            && (doc.starts_with("openspec/specs/") || doc.starts_with("openspec/changes/"));
+        let id_heading = spec
+            && crate::trace::valid_id(link.reference.as_ref())
+            && matches!(prefix, "### Requirement: " | "#### Scenario: ")
+            && text[link.span.clone()] == format!("[{}]", link.reference);
+        if id_heading {
+            return None;
+        }
         unresolved.borrow_mut().push(link.reference.to_string());
         None
     };

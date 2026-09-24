@@ -27,6 +27,30 @@ fn task_checkboxes_and_inline_code_are_not_references() {
 }
 
 #[test]
+fn scenario_ids_in_headings_are_not_broken_markdown_links() {
+    let root = dir();
+    let mut reg = registry(&root);
+    write(&root, "README.md", b"### Requirement: [setup] Example\n");
+    let spec = "openspec/specs/example/spec.md";
+    write(&root, spec, b"### Requirement: [HG-SCALE-R001] Example\n#### Scenario: [HG-SCALE-S001] Example\n\n[missing-link]\n");
+    reg["additional_sources"] = json!([{"path":spec,"role":"example-spec","active":true,"loading":"task","scope":["openspec/specs/example"]}]);
+    save(&root, "registry.json", &reg);
+    let report = inspect(&root, Some("registry.json"), None).unwrap();
+    let unresolved: Vec<_> = report
+        .findings
+        .iter()
+        .filter(|item| item["code"] == "UnresolvedReference")
+        .collect();
+    assert_eq!(unresolved.len(), 2);
+    assert!(unresolved.iter().any(|item| item["message"] == "setup"));
+    assert!(
+        unresolved
+            .iter()
+            .any(|item| item["message"] == "missing-link")
+    );
+}
+
+#[test]
 fn cli_errors_keep_the_report_contract() {
     for args in [
         vec!["doctor", "--bad", "x"],
@@ -185,6 +209,7 @@ fn missing_budget_is_unknown_not_success() {
     assert!(has(&r, "BudgetNotAgreed"));
     assert_eq!(r.exit_code(), 2);
 }
+// highgrade: HG-SH-S06
 #[test]
 fn exceeding_agreed_budget_warns_without_raising_it() {
     let root = dir();

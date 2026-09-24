@@ -41,7 +41,7 @@ fn ids(value: &Value, key: &str) -> Result<Vec<String>> {
         })
         .collect()
 }
-fn valid_id(s: &str) -> bool {
+pub(crate) fn valid_id(s: &str) -> bool {
     if !(6..=80).contains(&s.len()) {
         return false;
     }

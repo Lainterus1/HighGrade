@@ -4,18 +4,29 @@ use std::{
     collections::BTreeMap,
     fs,
     path::{Path, PathBuf},
+    process::Command,
     sync::atomic::{AtomicU64, Ordering},
+    time::{SystemTime, UNIX_EPOCH},
 };
 
 static NEXT: AtomicU64 = AtomicU64::new(0);
 fn temp() -> PathBuf {
-    let p = std::env::temp_dir().join(format!(
-        "hg-global-{}-{}",
-        std::process::id(),
-        NEXT.fetch_add(1, Ordering::Relaxed)
-    ));
-    fs::create_dir_all(&p).unwrap();
-    p
+    loop {
+        let nanos = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_nanos();
+        let p = std::env::temp_dir().join(format!(
+            "hg-global-{}-{nanos}-{}",
+            std::process::id(),
+            NEXT.fetch_add(1, Ordering::Relaxed)
+        ));
+        match fs::create_dir(&p) {
+            Ok(()) => return p,
+            Err(error) if error.kind() == std::io::ErrorKind::AlreadyExists => continue,
+            Err(error) => panic!("could not create isolated test directory: {error}"),
+        }
+    }
 }
 fn source() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("kit")
@@ -60,7 +71,7 @@ fn candidate() -> PathBuf {
     copy_tree(&source(), &dst);
     let manifest_path = dst.join("manifest.json");
     let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
-    manifest["release"] = json!("v0-2-8");
+    manifest["release"] = json!("v0-2-9");
     let rules = dst.join("rules.md");
     write(&rules, b"# New shared rules\n");
     manifest["files"]["rules.md"] = json!(hash(&fs::read(&rules).unwrap()));
@@ -118,6 +129,33 @@ fn global_install_does_not_touch_project_and_checks_adapter() {
         "passed"
     );
 }
+
+// highgrade: HG-TR-S01
+#[test]
+fn doctor_keeps_unavailable_openspec_version_unknown() {
+    let project = temp();
+    let output = Command::new(env!("CARGO_BIN_EXE_highgrade"))
+        .args(["doctor", "--root", project.to_str().unwrap()])
+        .env("PATH", "")
+        .output()
+        .unwrap();
+    assert_eq!(output.status.code(), Some(2));
+    let report: Value = serde_json::from_slice(&output.stdout).unwrap();
+    let openspec = report["measurements"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|entry| entry["tool"] == "openspec")
+        .unwrap();
+    assert_eq!(openspec["found_in_path"], false);
+    assert_eq!(openspec["executed"], false);
+    assert_eq!(openspec["version"], Value::Null);
+    assert!(report["findings"].as_array().unwrap().iter().any(|entry| {
+        entry["code"] == "DependencyMissing"
+            && entry["location"] == "openspec"
+            && entry["status"] == "unknown"
+    }));
+}
 #[test]
 fn global_update_preview_switch_and_rollback_keep_unrelated_files() {
     let profile = temp();
@@ -128,7 +166,7 @@ fn global_update_preview_switch_and_rollback_keep_unrelated_files() {
     assert_eq!(preview.status, "unknown");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
     let preview_hash = preview.measurements[0]["candidate_sha256"]
         .as_str()
@@ -182,13 +220,13 @@ fn global_update_preview_switch_and_rollback_keep_unrelated_files() {
     assert_eq!(applied.status, "passed");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
+        "v0-2-9"
     );
-    let reverted = global::update(&profile, None, None, false, None, Some("v0-2-7")).unwrap();
+    let reverted = global::update(&profile, None, None, false, None, Some("v0-2-8")).unwrap();
     assert_eq!(reverted.status, "passed");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
     assert_eq!(fs::read(profile.join("personal.txt")).unwrap(), b"keep");
 }
@@ -245,7 +283,7 @@ fn legacy_deploy_migrates_to_approve_push_and_rolls_back() {
     assert!(!legacy.exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
 
     global::update(&profile, None, None, false, None, Some("v0-2-5")).unwrap();
@@ -280,10 +318,11 @@ fn legacy_deploy_migrates_to_approve_push_and_rolls_back() {
     write(&legacy, &original);
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
     assert_eq!(global::status(&profile).unwrap().status, "warning");
 }
+// highgrade: HG-RW-S07
 #[test]
 fn v026_deploy_migrates_to_two_routes_and_restores_on_rollback() {
     let profile = deploy_profile();
@@ -310,7 +349,7 @@ fn v026_deploy_migrates_to_two_routes_and_restores_on_rollback() {
     assert!(!old.exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
     global::update(&profile, None, None, false, None, Some("v0-2-6")).unwrap();
     assert_eq!(fs::read(&old).unwrap(), old_bytes);
@@ -319,7 +358,7 @@ fn v026_deploy_migrates_to_two_routes_and_restores_on_rollback() {
     assert_eq!(global::status(&profile).unwrap().status, "passed");
 
     write(&push, b"foreign skill");
-    assert!(global::update(&profile, None, None, false, None, Some("v0-2-7")).is_err());
+    assert!(global::update(&profile, None, None, false, None, Some("v0-2-8")).is_err());
     assert!(!approve.exists());
     assert_eq!(fs::read(&push).unwrap(), b"foreign skill");
     assert_eq!(
@@ -365,7 +404,7 @@ fn locked_v026_router_is_inactive_after_switch() {
             .is_file()
     );
     let status = global::status(&profile).unwrap();
-    assert_eq!(status.measurements[0]["release"], "v0-2-7");
+    assert_eq!(status.measurements[0]["release"], "v0-2-8");
     assert!(
         status
             .findings
@@ -566,7 +605,7 @@ fn six_skill_release_preserves_owned_crlf_routers() {
     assert_eq!(fs::read(&init).unwrap(), old_bytes);
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
     global::update(&profile, None, None, false, None, Some("v0-2-1")).unwrap();
     assert_eq!(
@@ -607,7 +646,7 @@ fn six_skill_release_updates_to_approve_push_and_can_roll_back() {
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
     assert!(approve.is_file());
     assert!(push.is_file());
@@ -618,10 +657,10 @@ fn six_skill_release_updates_to_approve_push_and_can_roll_back() {
     );
     assert!(!approve.exists());
     assert!(!push.exists());
-    global::update(&profile, None, None, false, None, Some("v0-2-7")).unwrap();
+    global::update(&profile, None, None, false, None, Some("v0-2-8")).unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
     assert!(approve.is_file());
     assert!(push.is_file());
@@ -629,7 +668,7 @@ fn six_skill_release_updates_to_approve_push_and_can_roll_back() {
 #[test]
 fn failed_stage_does_not_leave_new_routers() {
     let profile = six_skill_profile();
-    let blocked = profile.join(".highgrade/global/releases/v0-2-7/rules.md");
+    let blocked = profile.join(".highgrade/global/releases/v0-2-8/rules.md");
     write(&blocked, b"foreign content");
     let preview =
         global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
@@ -673,7 +712,7 @@ fn failed_stage_does_not_leave_new_routers() {
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
 }
 #[cfg(windows)]
@@ -760,7 +799,7 @@ fn router_cleanup_warning_and_pointer_failure_preserve_active_release() {
         std::process::id()
     ));
     write(&temp_active, b"block pointer replacement");
-    assert!(global::update(&profile, None, None, false, None, Some("v0-2-7")).is_err());
+    assert!(global::update(&profile, None, None, false, None, Some("v0-2-8")).is_err());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
         "v0-2-1"
@@ -768,10 +807,10 @@ fn router_cleanup_warning_and_pointer_failure_preserve_active_release() {
     assert!(!approve.exists());
     assert!(!push.exists());
     fs::remove_file(temp_active).unwrap();
-    global::update(&profile, None, None, false, None, Some("v0-2-7")).unwrap();
+    global::update(&profile, None, None, false, None, Some("v0-2-8")).unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-7"
+        "v0-2-8"
     );
     assert!(approve.is_file());
     assert!(push.is_file());

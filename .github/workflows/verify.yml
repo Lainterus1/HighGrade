@@ -16,12 +16,34 @@ jobs:
           persist-credentials: false
       - name: Check format
         run: cargo fmt --all -- --check
+      - name: Install native Rust test reporter
+        run: cargo install cargo-nextest --version 0.9.146 --locked
       - name: Test and verify kit hashes
-        run: cargo test --locked
+        run: |
+          New-Item -ItemType Directory -Force target/nextest/highgrade | Out-Null
+          cargo nextest list --locked --message-format json | Set-Content -Encoding utf8 target/nextest/highgrade/list.json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo nextest run --locked --profile highgrade
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify executable scenario links
+        run: |
+          node scripts/source-scenarios.mjs prepare
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          target/debug/highgrade.exe trace --root "$PWD" --record target/nextest/highgrade/run.json | Set-Content -Encoding utf8 target/nextest/highgrade/trace.json
+          if ($LASTEXITCODE -notin @(0, 2)) { exit $LASTEXITCODE }
+          node scripts/source-scenarios.mjs verify
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Check selective context with 100 and 200 specs
+        run: node scripts/check-scenario-scale.mjs
       - name: Build release
         run: cargo build --release --locked
       - name: Check repository structure
         run: node scripts/check-repository.mjs
+      - name: Inspect registered project context
+        run: |
+          $report = target/debug/highgrade.exe inspect --root "$PWD" | ConvertFrom-Json
+          if ($LASTEXITCODE -notin @(0, 2)) { exit $LASTEXITCODE }
+          if ($report.findings | Where-Object { $_.status -in @('failed', 'unknown') }) { throw 'inspect found failed or unknown project context' }
       - name: Validate OpenSpec
         env:
           OPENSPEC_TELEMETRY: '0'
