@@ -813,8 +813,12 @@ pub fn project_check(root: &Path, r: &mut Report) -> Result<bool> {
             "Нужна актуализация через highgrade-clear.",
         );
     } else {
-        r.measurements
-            .push(json!({"project_instruction":"compatible","schema_version":1}));
+        r.measurements.push(json!({
+            "project_instruction":"compatible",
+            "schema_version":1,
+            "compatibility_scope":"schema-only",
+            "semantic_compatibility":"not_assessed"
+        }));
     }
     Ok(true)
 }
