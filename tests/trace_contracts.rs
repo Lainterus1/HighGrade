@@ -66,6 +66,40 @@ fn rust_requires_real_listed_passing_result() {
     assert_ne!(result.status, "passed");
 }
 #[test]
+fn active_modified_requirement_replaces_base_for_trace() {
+    let root = root();
+    let src = "tests/math.rs";
+    let list = "evidence/list.json";
+    let report = "evidence/junit.xml";
+    let delta = "openspec/changes/change-math/specs/math/spec.md";
+    put(
+        &root,
+        src,
+        b"// highgrade: HG-MATH-002\n#[test]\nfn adds() {}\n",
+    );
+    save(&root, list, &rust_list(&root));
+    put(&root, report, br#"<testsuites><testsuite name="math"><testcase classname="math" name="adds"/></testsuite></testsuites>"#);
+    put(&root, delta, b"## MODIFIED Requirements\n\n### Requirement: [HG-MATH-REQ] Add integers\nThe system SHALL add integers.\n\n#### Scenario: [HG-MATH-002] Adds two values\n- WHEN two values are added\n- THEN the sum is returned\n");
+    let mut run = base(&root, "rust-nextest", src, report, Some(list));
+    run["spec_files"].as_array_mut().unwrap().push(json!(delta));
+    run["source_hashes"][delta] = json!(hash(&fs::read(root.join(delta)).unwrap()));
+    save(&root, "run.json", &run);
+    let result = trace(&root, "run.json").unwrap();
+    assert_eq!(result.status, "passed", "{:?}", result.findings);
+    assert!(
+        result
+            .measurements
+            .iter()
+            .any(|m| m["scenario_id"] == "HG-MATH-002" && m["status"] == "passed")
+    );
+    assert!(
+        !result
+            .measurements
+            .iter()
+            .any(|m| m["scenario_id"] == "HG-MATH-001")
+    );
+}
+#[test]
 fn rust_skip_failure_unknown_and_empty_are_unconfirmed() {
     for (element, expected) in [
         ("<skipped/>", "skipped"),

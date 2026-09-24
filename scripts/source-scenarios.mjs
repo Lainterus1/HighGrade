@@ -31,6 +31,23 @@ function activeSources() {
     }
   }
   specFiles.sort();
+  const replaced = new Map();
+  for (const file of specFiles.filter((item) => item.startsWith('openspec/changes/'))) {
+    const capability = file.match(/^openspec\/changes\/[^/]+\/specs\/([^/]+)\/spec\.md$/)?.[1];
+    if (!capability) continue;
+    const base = `openspec/specs/${capability}/spec.md`;
+    if (!specFiles.includes(base)) continue;
+    let section = '';
+    for (const line of readFileSync(absolute(file), 'utf8').split(/\r?\n/)) {
+      if (line.startsWith('## ')) section = line;
+      if (section !== '## MODIFIED Requirements' || !line.startsWith('### Requirement:')) continue;
+      const id = line.match(/^### Requirement: \[([^\]]+)\]/)?.[1];
+      if (!id) error(`${file}: invalid modified requirement heading: ${line}`);
+      if (!replaced.has(base)) replaced.set(base, new Set());
+      if (replaced.get(base).has(id)) error(`${file}: duplicate modified requirement ${id}`);
+      replaced.get(base).add(id);
+    }
+  }
   const testRoot = absolute('tests');
   const testSources = readdirSync(testRoot, { withFileTypes: true })
     .filter((entry) => entry.isFile() && entry.name.endsWith('.rs'))
@@ -41,6 +58,7 @@ function activeSources() {
   for (const file of specFiles) {
     const lines = readFileSync(absolute(file), 'utf8').split(/\r?\n/);
     let current = null;
+    let skip = false;
     const finish = () => {
       if (current && current.methods.length !== 1) {
         error(`${file}: ${current.id} needs exactly one verification method`);
@@ -52,17 +70,20 @@ function activeSources() {
         finish(); current = null;
         const match = line.match(/^### Requirement: \[([^\]]+)\] \S/);
         if (!match || !validId(match[1])) error(`${file}: invalid requirement heading: ${line}`);
+        skip = replaced.get(file)?.has(match[1]) ?? false;
+        if (skip) continue;
         if (ids.has(match[1])) error(`${file}: duplicate ID ${match[1]} in ${ids.get(match[1])}`);
         ids.set(match[1], file);
         requirements++;
       } else if (line.startsWith('#### Scenario:')) {
+        if (skip) continue;
         finish();
         const match = line.match(/^#### Scenario: \[([^\]]+)\] \S/);
         if (!match || !validId(match[1])) error(`${file}: invalid scenario heading: ${line}`);
         if (ids.has(match[1])) error(`${file}: duplicate ID ${match[1]} in ${ids.get(match[1])}`);
         ids.set(match[1], file);
         current = { id: match[1], methods: [] };
-      } else if (current && line.startsWith('**Проверка:**')) {
+      } else if (!skip && current && line.startsWith('**Проверка:**')) {
         const match = line.match(/^\*\*Проверка:\*\* `(rust-nextest|ручная)`$/);
         if (!match) error(`${file}: invalid verification method for ${current.id}: ${line}`);
         current.methods.push(match[1]);

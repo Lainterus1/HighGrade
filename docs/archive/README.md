@@ -37,6 +37,8 @@
 
 [Изменение adopt-executable-scenarios](../../openspec/changes/archive/2026-09-24-adopt-executable-scenarios/proposal.md) архивировано после переноса действующих требований и независимого ревью. Его требования объединены с [действующей спекой](../../openspec/specs/self-hosted-workflow/spec.md); [проверки и открытые ручные пробелы](../reviews/executable-scenarios-review.md) сохраняют границу доказательства, а [состояние задачи](plans/2026-09-24-executable-scenarios.state.md) — ход работы. Установленная v0-2-7 не переключалась; исходный кандидат v0-2-8 не опубликован.
 
+[Упрощение маршрута High Grade](../../openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/proposal.md) завершено и архивировано; требования объединены в действующие спеки bootstrap, task и release. Независимое ревью выявило ошибку повторной очистки выпуска, исправленную до архивации. На момент архивации исходный кандидат v0-2-9 не активирован и не опубликован.
+
 ## Карта репозитория, 2026-09-23
 
 [Изменение repository-map](../../openspec/changes/archive/2026-09-23-repository-map/proposal.md) завершено и архивировано OpenSpec. Его [спецификация](../../openspec/changes/archive/2026-09-23-repository-map/specs/repository-map/spec.md) и [ревью кандидата](../reviews/repository-map-review.md) сохраняют историческое поведение карты.

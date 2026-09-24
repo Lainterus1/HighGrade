@@ -392,6 +392,204 @@ fn stage(profile: &Path, c: &Candidate) -> Result<()> {
     }
     checked
 }
+
+fn retire_release(profile: &Path, release: &str) -> Result<()> {
+    let prefix = format!(".highgrade/global/releases/{release}/");
+    let journal_path = paths::safe(profile, &journal_file(release))?;
+    let journal_bytes = paths::read_limited(&journal_path, 8 * 1024 * 1024)?;
+    let journal: Value = serde_json::from_slice(&journal_bytes)
+        .map_err(|e| format!("GlobalRetireJournalInvalid: {e}"))?;
+    if journal["schema_version"] != 3 || journal["release"] != release {
+        return Err("GlobalRetireJournalInvalid".into());
+    }
+    let files = journal["files"]
+        .as_object()
+        .ok_or("GlobalRetireJournalInvalid: files")?;
+    let allowed: BTreeSet<String> = MATERIALS
+        .iter()
+        .chain(DEPLOY_MATERIALS.iter())
+        .chain(PREVIOUS_MATERIALS.iter())
+        .map(|s| (*s).to_owned())
+        .chain(
+            SKILLS
+                .iter()
+                .chain(DEPLOY_SKILLS.iter())
+                .chain(LEGACY_SKILLS.iter())
+                .chain(PREVIOUS_SKILLS.iter())
+                .map(|name| format!("skills/{name}/SKILL.md")),
+        )
+        .chain(std::iter::once(format!(
+            "highgrade{}",
+            std::env::consts::EXE_SUFFIX
+        )))
+        .collect();
+    let mut owned = Vec::new();
+    for (rel, expected) in files {
+        if let Some(suffix) = rel.strip_prefix(&prefix) {
+            if !allowed.contains(suffix)
+                || !expected
+                    .as_str()
+                    .is_some_and(|s| s.len() == 64 && s.bytes().all(|b| b.is_ascii_hexdigit()))
+            {
+                return Err(format!("GlobalRetireJournalInvalid: {rel}"));
+            }
+            owned.push((rel.as_str(), expected.as_str().unwrap()));
+        } else if !SKILLS
+            .iter()
+            .chain(DEPLOY_SKILLS.iter())
+            .chain(LEGACY_SKILLS.iter())
+            .chain(PREVIOUS_SKILLS.iter())
+            .any(|name| router(name) == *rel)
+        {
+            return Err(format!("GlobalRetireJournalInvalid: {rel}"));
+        }
+    }
+    // Journal paths are constrained to known release files. Remove only files
+    // whose current bytes still match the journal, leaving foreign edits alone.
+    let mut directories = BTreeSet::new();
+    let release_dir = paths::safe(profile, prefix.trim_end_matches('/'))?;
+    let mut issues = Vec::new();
+    for (rel, expected) in &owned {
+        let path = match paths::safe(profile, rel) {
+            Ok(path) => path,
+            Err(error) => {
+                issues.push(error);
+                continue;
+            }
+        };
+        if path.exists() {
+            match paths::read_limited(&path, 128 * 1024 * 1024) {
+                Ok(bytes) if hash(&bytes) == *expected => {}
+                Ok(_) => {
+                    issues.push(format!("GlobalRetireFileChanged: {rel}"));
+                    continue;
+                }
+                Err(error) => {
+                    issues.push(error);
+                    continue;
+                }
+            }
+            if let Err(error) = fs::remove_file(&path) {
+                issues.push(format!("GlobalRetireFileFailed: {rel}: {error}"));
+                continue;
+            }
+        }
+        let mut parent = path.parent();
+        while let Some(dir) = parent {
+            if !dir.starts_with(&release_dir) {
+                break;
+            }
+            directories.insert(dir.to_path_buf());
+            parent = dir.parent();
+        }
+    }
+    directories.insert(release_dir.clone());
+    if !issues.is_empty() {
+        return Err(issues.join("; "));
+    }
+    let mut directories: Vec<_> = directories.into_iter().collect();
+    directories.sort_by_key(|path| std::cmp::Reverse(path.components().count()));
+    for dir in directories {
+        if dir == release_dir {
+            continue;
+        }
+        match fs::remove_dir(&dir) {
+            Ok(()) => {}
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
+            Err(e) if e.kind() == std::io::ErrorKind::DirectoryNotEmpty => {}
+            Err(e) => {
+                return Err(format!(
+                    "GlobalRetireDirectoryFailed: {}: {e}",
+                    dir.display()
+                ));
+            }
+        }
+    }
+    let remaining = fs::read_dir(&release_dir).map_err(|e| {
+        format!(
+            "GlobalRetireDirectoryFailed: {}: {e}",
+            release_dir.display()
+        )
+    })?;
+    for entry in remaining {
+        let entry = entry.map_err(|e| format!("GlobalRetireDirectoryFailed: {e}"))?;
+        if entry.path() != journal_path {
+            return Err(format!(
+                "GlobalRetireForeignContent: {}",
+                entry.path().display()
+            ));
+        }
+    }
+    fs::remove_file(&journal_path).map_err(|e| format!("GlobalRetireJournalFailed: {e}"))?;
+    if let Err(error) = fs::remove_dir(&release_dir) {
+        fs::write(&journal_path, &journal_bytes).map_err(|restore| {
+            format!(
+                "GlobalRetireDirectoryFailed: {error}; GlobalRetireJournalRestoreFailed: {restore}"
+            )
+        })?;
+        return Err(format!("GlobalRetireDirectoryFailed: {error}"));
+    }
+    Ok(())
+}
+
+fn retire_inactive_releases(profile: &Path, active_release: &str, report: &mut Report) {
+    let base = match paths::safe(profile, ".highgrade/global/releases") {
+        Ok(path) => path,
+        Err(error) => {
+            report.finding(
+                "warning",
+                "OldReleaseCleanupPending",
+                ".highgrade/global/releases",
+                &error,
+            );
+            return;
+        }
+    };
+    let entries = match fs::read_dir(&base) {
+        Ok(entries) => entries,
+        Err(error) => {
+            report.finding(
+                "warning",
+                "OldReleaseCleanupPending",
+                ".highgrade/global/releases",
+                &error.to_string(),
+            );
+            return;
+        }
+    };
+    for entry in entries {
+        let entry = match entry {
+            Ok(entry) => entry,
+            Err(error) => {
+                report.finding(
+                    "warning",
+                    "OldReleaseCleanupPending",
+                    ".highgrade/global/releases",
+                    &error.to_string(),
+                );
+                continue;
+            }
+        };
+        let release = entry.file_name().to_string_lossy().into_owned();
+        if release == active_release || !valid_release(&release) {
+            continue;
+        }
+        if let Err(error) = retire_release(profile, &release) {
+            report.finding("warning", "OldReleaseCleanupPending", &release, &error);
+        }
+    }
+}
+fn retire_failed_candidate(profile: &Path, candidate: &Candidate) -> Result<()> {
+    let journal = paths::safe(profile, &journal_file(&candidate.release))?;
+    if journal.exists() {
+        if paths::read_limited(&journal, 8 * 1024 * 1024)? != candidate.journal {
+            return Err("GlobalCandidateJournalChanged: cleanup skipped".into());
+        }
+        retire_release(profile, &candidate.release)
+    } else {
+        Ok(())
+    }
+}
 pub fn status(profile: &Path) -> Result<Report> {
     let profile = paths::root(profile)?;
     let mut r = Report::new("global-status");
@@ -475,100 +673,9 @@ pub fn update(
     executable: Option<&Path>,
     apply: bool,
     expected_sha256: Option<&str>,
-    rollback: Option<&str>,
 ) -> Result<Report> {
     let profile = paths::root(profile)?;
     let (old, old_hash) = active(&profile)?.ok_or("GlobalNotInstalled")?;
-    if let Some(release) = rollback {
-        if source.is_some()
-            || executable.is_some()
-            || apply
-            || expected_sha256.is_some()
-            || !valid_release(release)
-        {
-            return Err("Usage: rollback accepts only release".into());
-        }
-        let target_bytes = paths::read_limited(
-            &paths::safe(&profile, &journal_file(release))?,
-            8 * 1024 * 1024,
-        )?;
-        let target: Value = serde_json::from_slice(&target_bytes).map_err(|e| e.to_string())?;
-        let target_routers = owned_routers(&target);
-        let old_bytes = paths::read_limited(
-            &paths::safe(&profile, &journal_file(&old))?,
-            8 * 1024 * 1024,
-        )?;
-        let old_journal: Value = serde_json::from_slice(&old_bytes).map_err(|e| e.to_string())?;
-        let old_routers = owned_routers(&old_journal);
-        let _guard = lock(&profile)?;
-        if active(&profile)? != Some((old.clone(), old_hash.clone())) {
-            return Err("GlobalActiveChanged".into());
-        }
-        let mut restored = Vec::new();
-        let restore_result: Result<()> = (|| {
-            for (rel, backup_rel) in &target_routers {
-                let expected = target["files"][rel.as_str()]
-                    .as_str()
-                    .ok_or("GlobalRollbackRouterHashMissing")?;
-                let backup = paths::read_limited(
-                    &paths::safe(&profile, &release_file(release, backup_rel))?,
-                    8 * 1024 * 1024,
-                )?;
-                if hash(&backup) != expected {
-                    return Err("GlobalRollbackRouterBackupChanged".into());
-                }
-                let path = paths::safe(&profile, rel)?;
-                let was_missing = !path.exists();
-                install::put_once(&profile, rel, &backup)?;
-                if was_missing {
-                    restored.push(rel.clone());
-                }
-            }
-            Ok(())
-        })();
-        if let Err(error) = restore_result {
-            for rel in &restored {
-                fs::remove_file(paths::safe(&profile, rel)?)
-                    .map_err(|e| format!("GlobalRollbackRouterCleanupFailed: {error}; {e}"))?;
-            }
-            return Err(error);
-        }
-        let journal = match verify_release(&profile, release) {
-            Ok(journal) => journal,
-            Err(error) => {
-                for rel in &restored {
-                    fs::remove_file(paths::safe(&profile, rel)?).map_err(|e| e.to_string())?;
-                }
-                return Err(error);
-            }
-        };
-        let active_path = paths::safe(&profile, ACTIVE)?;
-        if let Err(error) = package::replace_active(&active_path, &active_bytes(release, &journal))
-        {
-            for rel in &restored {
-                fs::remove_file(paths::safe(&profile, rel)?)
-                    .map_err(|e| format!("GlobalRollbackRouterCleanupFailed: {error}; {e}"))?;
-            }
-            return Err(error);
-        }
-        let mut cleanup_errors = Vec::new();
-        for (rel, _) in &old_routers {
-            if !target_routers.iter().any(|(target, _)| target == rel) {
-                let expected = old_journal["files"][rel.as_str()].as_str().unwrap();
-                if let Err(error) = retire_router(&profile, rel, expected) {
-                    cleanup_errors.push((rel.clone(), error));
-                }
-            }
-        }
-        let mut r = status(&profile)?;
-        r.operation = "global-update".into();
-        for (rel, error) in cleanup_errors {
-            r.finding("warning", "LegacyRouterCleanupPending", &rel, &error);
-        }
-        r.measurements
-            .push(json!({"from":old,"to":release,"rolled_back":true}));
-        return Ok(r);
-    }
     let mut c = candidate(
         source.ok_or("Usage: --source required")?,
         executable.ok_or("Usage: --candidate-exe required")?,
@@ -637,13 +744,19 @@ pub fn update(
     if active(&profile)? != Some((old.clone(), old_hash.clone())) {
         return Err("GlobalActiveChanged".into());
     }
-    stage(&profile, &c)?;
+    if let Err(error) = stage(&profile, &c) {
+        retire_failed_candidate(&profile, &c)
+            .map_err(|cleanup| format!("GlobalStageFailed: {error}; {cleanup}"))?;
+        return Err(error);
+    }
     let active_path = paths::safe(&profile, ACTIVE)?;
     if let Err(error) = package::replace_active(&active_path, &active_bytes(&c.release, &c.journal))
     {
-        remove_new_routers(&profile, &old_journal, &c).map_err(|cleanup| {
-            format!("GlobalActivationRouterCleanupFailed: {error}; {cleanup}")
-        })?;
+        let routers = remove_new_routers(&profile, &old_journal, &c);
+        let release = retire_failed_candidate(&profile, &c);
+        if let Err(cleanup) = routers.and(release) {
+            return Err(format!("GlobalActivationCleanupFailed: {error}; {cleanup}"));
+        }
         return Err(error);
     }
     let installed_exe = paths::safe(
@@ -663,9 +776,12 @@ pub fn update(
     {
         let old_journal_bytes = verify_release(&profile, &old)?;
         package::replace_active(&active_path, &active_bytes(&old, &old_journal_bytes))?;
-        remove_new_routers(&profile, &old_journal, &c)
-            .map_err(|cleanup| format!("GlobalPostcheckRouterCleanupFailed: {e}; {cleanup}"))?;
-        return Err(format!("GlobalPostcheckFailedRollback: {e}"));
+        let routers = remove_new_routers(&profile, &old_journal, &c);
+        let release = retire_failed_candidate(&profile, &c);
+        if let Err(cleanup) = routers.and(release) {
+            return Err(format!("GlobalPostcheckCleanupFailed: {e}; {cleanup}"));
+        }
+        return Err(format!("GlobalPostcheckFailedRestoredPrevious: {e}"));
     }
     for (rel, _) in old_routers {
         if !c.files.contains_key(&rel) {
@@ -675,8 +791,8 @@ pub fn update(
             }
         }
     }
-    r.measurements
-        .push(json!({"active_release":c.release,"previous_release_retained":old}));
+    retire_inactive_releases(&profile, &c.release, &mut r);
+    r.measurements.push(json!({"active_release":c.release}));
     Ok(r)
 }
 

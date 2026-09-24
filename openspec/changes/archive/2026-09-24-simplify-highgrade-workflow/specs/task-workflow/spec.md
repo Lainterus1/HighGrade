@@ -1,9 +1,4 @@
-# task-workflow Specification
-
-## Purpose
-Определяет, когда High Grade уточняет задачу и когда передаёт уже ясное поручение к спецификации или работе без повторного согласования.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: [HG-TW-R01] Вопросы только при нерешённом выборе
 

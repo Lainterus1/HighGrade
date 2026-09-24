@@ -71,7 +71,7 @@ fn candidate() -> PathBuf {
     copy_tree(&source(), &dst);
     let manifest_path = dst.join("manifest.json");
     let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
-    manifest["release"] = json!("v0-2-9");
+    manifest["release"] = json!("v0-2-10");
     let rules = dst.join("rules.md");
     write(&rules, b"# New shared rules\n");
     manifest["files"]["rules.md"] = json!(hash(&fs::read(&rules).unwrap()));
@@ -157,31 +157,24 @@ fn doctor_keeps_unavailable_openspec_version_unknown() {
     }));
 }
 #[test]
-fn global_update_preview_switch_and_rollback_keep_unrelated_files() {
+fn global_update_preview_switch_and_cleanup_keep_unrelated_files() {
     let profile = temp();
     write(&profile.join("personal.txt"), b"keep");
     global::install(&profile, &source(), &exe()).unwrap();
     let next = candidate();
-    let preview = global::update(&profile, Some(&next), Some(&exe()), false, None, None).unwrap();
+    let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
     assert_eq!(preview.status, "unknown");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
+        "v0-2-9"
     );
     let preview_hash = preview.measurements[0]["candidate_sha256"]
         .as_str()
         .unwrap();
     assert!(
-        global::update(
-            &profile,
-            Some(&next),
-            Some(&exe()),
-            true,
-            Some("wrong"),
-            None
-        )
-        .unwrap_err()
-        .contains("GlobalCandidateChanged")
+        global::update(&profile, Some(&next), Some(&exe()), true, Some("wrong"),)
+            .unwrap_err()
+            .contains("GlobalCandidateChanged")
     );
     let rules_path = next.join("rules.md");
     let manifest_path = next.join("manifest.json");
@@ -201,7 +194,6 @@ fn global_update_preview_switch_and_rollback_keep_unrelated_files() {
             Some(&exe()),
             true,
             Some(preview_hash),
-            None
         )
         .unwrap_err()
         .contains("GlobalCandidateChanged")
@@ -214,31 +206,99 @@ fn global_update_preview_switch_and_rollback_keep_unrelated_files() {
         Some(&exe()),
         true,
         Some(preview_hash),
-        None,
     )
     .unwrap();
     assert_eq!(applied.status, "passed");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-9"
+        "v0-2-10"
     );
-    let reverted = global::update(&profile, None, None, false, None, Some("v0-2-8")).unwrap();
-    assert_eq!(reverted.status, "passed");
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
-    );
+    assert!(!profile.join(".highgrade/global/releases/v0-2-9").exists());
     assert_eq!(fs::read(profile.join("personal.txt")).unwrap(), b"keep");
 }
+// highgrade: HG-RW-S12
 #[test]
-fn legacy_deploy_migrates_to_approve_push_and_rolls_back() {
+fn update_preserves_foreign_file_in_old_release() {
+    let profile = temp();
+    global::install(&profile, &source(), &exe()).unwrap();
+    let foreign = profile.join(".highgrade/global/releases/v0-2-9/personal.txt");
+    write(&foreign, b"keep");
+    let next = candidate();
+    let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
+    let fingerprint = preview.measurements[0]["candidate_sha256"]
+        .as_str()
+        .unwrap();
+    let applied =
+        global::update(&profile, Some(&next), Some(&exe()), true, Some(fingerprint)).unwrap();
+    assert_eq!(applied.status, "warning");
+    assert!(
+        applied
+            .findings
+            .iter()
+            .any(|finding| finding["code"] == "OldReleaseCleanupPending")
+    );
+    assert_eq!(fs::read(&foreign).unwrap(), b"keep");
+    let old_release = profile.join(".highgrade/global/releases/v0-2-9");
+    assert!(old_release.join("journal.json").exists());
+    assert!(!old_release.join("rules.md").exists());
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-2-10"
+    );
+    fs::remove_file(&foreign).unwrap();
+    let following = candidate();
+    let manifest_path = following.join("manifest.json");
+    let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
+    manifest["release"] = json!("v0-2-11");
+    write(
+        &manifest_path,
+        &serde_json::to_vec_pretty(&manifest).unwrap(),
+    );
+    let preview = global::update(&profile, Some(&following), Some(&exe()), false, None).unwrap();
+    let fingerprint = preview.measurements[0]["candidate_sha256"]
+        .as_str()
+        .unwrap();
+    let applied = global::update(
+        &profile,
+        Some(&following),
+        Some(&exe()),
+        true,
+        Some(fingerprint),
+    )
+    .unwrap();
+    assert_eq!(applied.status, "passed", "{:?}", applied.findings);
+    assert!(!old_release.exists());
+}
+#[test]
+fn global_update_rejects_manual_rollback_option() {
+    let output = Command::new(exe())
+        .args([
+            "global-update",
+            "--profile",
+            "unused",
+            "--rollback",
+            "v0-2-8",
+        ])
+        .output()
+        .unwrap();
+    assert_eq!(output.status.code(), Some(1));
+    let report: Value = serde_json::from_slice(&output.stdout).unwrap();
+    assert_eq!(report["status"], "failed");
+    assert!(
+        report["findings"][0]["message"]
+            .as_str()
+            .unwrap()
+            .contains("неизвестный параметр")
+    );
+}
+#[test]
+fn legacy_deploy_migrates_to_approve_push_and_cleans_old_release() {
     let profile = legacy_deploy_profile();
     let legacy = profile.join(".agents/skills/deploy/SKILL.md");
     let approve = profile.join(".agents/skills/highgrade-approve/SKILL.md");
     let push = profile.join(".agents/skills/highgrade-push/SKILL.md");
     let original = fs::read(&legacy).unwrap();
-    let preview =
-        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
         .as_str()
         .unwrap();
@@ -256,7 +316,6 @@ fn legacy_deploy_migrates_to_approve_push_and_rolls_back() {
                 Some(&exe()),
                 true,
                 Some(fingerprint),
-                None,
             )
             .is_err()
         );
@@ -275,7 +334,6 @@ fn legacy_deploy_migrates_to_approve_push_and_rolls_back() {
         Some(&exe()),
         true,
         Some(fingerprint),
-        None,
     )
     .unwrap();
     assert!(approve.is_file());
@@ -283,55 +341,19 @@ fn legacy_deploy_migrates_to_approve_push_and_rolls_back() {
     assert!(!legacy.exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
+        "v0-2-9"
     );
-
-    global::update(&profile, None, None, false, None, Some("v0-2-5")).unwrap();
-    assert_eq!(fs::read(&legacy).unwrap(), original);
-    assert!(!approve.exists());
-    assert!(!push.exists());
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-5"
-    );
-
-    write(
-        &approve,
-        &fs::read(source().join("skills/highgrade-approve/SKILL.md")).unwrap(),
-    );
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-5"
-    );
-    assert_eq!(global::status(&profile).unwrap().status, "warning");
-    fs::remove_file(&approve).unwrap();
-    global::update(
-        &profile,
-        Some(&source()),
-        Some(&exe()),
-        true,
-        Some(fingerprint),
-        None,
-    )
-    .unwrap();
-    assert!(!legacy.exists());
-    write(&legacy, &original);
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
-    );
-    assert_eq!(global::status(&profile).unwrap().status, "warning");
+    assert!(!profile.join(".highgrade/global/releases/v0-2-5").exists());
+    assert_ne!(fs::read(&approve).unwrap(), original);
 }
 // highgrade: HG-RW-S07
 #[test]
-fn v026_deploy_migrates_to_two_routes_and_restores_on_rollback() {
+fn v026_deploy_migrates_to_two_routes_and_removes_old_release() {
     let profile = deploy_profile();
     let old = profile.join(".agents/skills/highgrade-deploy/SKILL.md");
     let approve = profile.join(".agents/skills/highgrade-approve/SKILL.md");
     let push = profile.join(".agents/skills/highgrade-push/SKILL.md");
-    let old_bytes = fs::read(&old).unwrap();
-    let preview =
-        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
         .as_str()
         .unwrap();
@@ -341,7 +363,6 @@ fn v026_deploy_migrates_to_two_routes_and_restores_on_rollback() {
         Some(&exe()),
         true,
         Some(fingerprint),
-        None,
     )
     .unwrap();
     assert!(approve.is_file());
@@ -349,22 +370,9 @@ fn v026_deploy_migrates_to_two_routes_and_restores_on_rollback() {
     assert!(!old.exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
+        "v0-2-9"
     );
-    global::update(&profile, None, None, false, None, Some("v0-2-6")).unwrap();
-    assert_eq!(fs::read(&old).unwrap(), old_bytes);
-    assert!(!approve.exists());
-    assert!(!push.exists());
-    assert_eq!(global::status(&profile).unwrap().status, "passed");
-
-    write(&push, b"foreign skill");
-    assert!(global::update(&profile, None, None, false, None, Some("v0-2-8")).is_err());
-    assert!(!approve.exists());
-    assert_eq!(fs::read(&push).unwrap(), b"foreign skill");
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-6"
-    );
+    assert!(!profile.join(".highgrade/global/releases/v0-2-6").exists());
 }
 #[cfg(windows)]
 #[test]
@@ -377,8 +385,7 @@ fn locked_v026_router_is_inactive_after_switch() {
         .share_mode(1)
         .open(&old)
         .unwrap();
-    let preview =
-        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
         .as_str()
         .unwrap();
@@ -388,7 +395,6 @@ fn locked_v026_router_is_inactive_after_switch() {
         Some(&exe()),
         true,
         Some(fingerprint),
-        None,
     )
     .unwrap();
     assert_eq!(applied.status, "warning");
@@ -404,7 +410,7 @@ fn locked_v026_router_is_inactive_after_switch() {
             .is_file()
     );
     let status = global::status(&profile).unwrap();
-    assert_eq!(status.measurements[0]["release"], "v0-2-8");
+    assert_eq!(status.measurements[0]["release"], "v0-2-9");
     assert!(
         status
             .findings
@@ -588,8 +594,7 @@ fn six_skill_release_preserves_owned_crlf_routers() {
     let init = profile.join(".agents/skills/highgrade-init/SKILL.md");
     let old_bytes = fs::read(&init).unwrap();
     assert!(old_bytes.windows(2).any(|bytes| bytes == b"\r\n"));
-    let preview =
-        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
         .as_str()
         .unwrap();
@@ -599,39 +604,32 @@ fn six_skill_release_preserves_owned_crlf_routers() {
         Some(&exe()),
         true,
         Some(fingerprint),
-        None,
     )
     .unwrap();
     assert_eq!(fs::read(&init).unwrap(), old_bytes);
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
+        "v0-2-9"
     );
-    global::update(&profile, None, None, false, None, Some("v0-2-1")).unwrap();
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-1"
-    );
+    assert!(!profile.join(".highgrade/global/releases/v0-2-1").exists());
 }
 
 #[test]
-fn six_skill_release_updates_to_approve_push_and_can_roll_back() {
+fn six_skill_release_updates_to_approve_push_and_cleans_old_release() {
     let profile = six_skill_profile();
-    let release = "v0-2-1";
 
     let approve = profile.join(".agents/skills/highgrade-approve/SKILL.md");
     let push = profile.join(".agents/skills/highgrade-push/SKILL.md");
     write(&approve, b"foreign skill");
     assert!(
-        global::update(&profile, Some(&source()), Some(&exe()), false, None, None)
+        global::update(&profile, Some(&source()), Some(&exe()), false, None)
             .unwrap_err()
             .contains("GlobalRouterIncompatible: highgrade-approve")
     );
     assert_eq!(fs::read(&approve).unwrap(), b"foreign skill");
     fs::remove_file(&approve).unwrap();
 
-    let preview =
-        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
         .as_str()
         .unwrap();
@@ -641,37 +639,22 @@ fn six_skill_release_updates_to_approve_push_and_can_roll_back() {
         Some(&exe()),
         true,
         Some(fingerprint),
-        None,
     )
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
+        "v0-2-9"
     );
     assert!(approve.is_file());
     assert!(push.is_file());
-    global::update(&profile, None, None, false, None, Some(release)).unwrap();
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        release
-    );
-    assert!(!approve.exists());
-    assert!(!push.exists());
-    global::update(&profile, None, None, false, None, Some("v0-2-8")).unwrap();
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
-    );
-    assert!(approve.is_file());
-    assert!(push.is_file());
+    assert!(!profile.join(".highgrade/global/releases/v0-2-1").exists());
 }
 #[test]
 fn failed_stage_does_not_leave_new_routers() {
     let profile = six_skill_profile();
-    let blocked = profile.join(".highgrade/global/releases/v0-2-8/rules.md");
+    let blocked = profile.join(".highgrade/global/releases/v0-2-9/rules.md");
     write(&blocked, b"foreign content");
-    let preview =
-        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
         .as_str()
         .unwrap();
@@ -682,7 +665,6 @@ fn failed_stage_does_not_leave_new_routers() {
             Some(&exe()),
             true,
             Some(fingerprint),
-            None
         )
         .is_err()
     );
@@ -707,20 +689,42 @@ fn failed_stage_does_not_leave_new_routers() {
         Some(&exe()),
         true,
         Some(fingerprint),
-        None,
     )
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
+        "v0-2-9"
+    );
+}
+#[test]
+fn failed_stage_preserves_foreign_candidate_journal() {
+    let profile = six_skill_profile();
+    let foreign = profile.join(".highgrade/global/releases/v0-2-9/journal.json");
+    write(&foreign, b"foreign journal");
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
+    let fingerprint = preview.measurements[0]["candidate_sha256"]
+        .as_str()
+        .unwrap();
+    let error = global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        Some(fingerprint),
+    )
+    .unwrap_err();
+    assert!(error.contains("GlobalCandidateJournalChanged"));
+    assert_eq!(fs::read(&foreign).unwrap(), b"foreign journal");
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-2-1"
     );
 }
 #[cfg(windows)]
 #[test]
 fn failed_forward_pointer_change_allows_a_different_candidate() {
     let profile = six_skill_profile();
-    let preview =
-        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
         .as_str()
         .unwrap();
@@ -736,7 +740,6 @@ fn failed_forward_pointer_change_allows_a_different_candidate() {
             Some(&exe()),
             true,
             Some(fingerprint),
-            None
         )
         .is_err()
     );
@@ -756,64 +759,7 @@ fn failed_forward_pointer_change_allows_a_different_candidate() {
     );
     fs::remove_file(temp_active).unwrap();
     let different = candidate();
-    assert!(global::update(&profile, Some(&different), Some(&exe()), false, None, None).is_ok());
-}
-#[cfg(windows)]
-#[test]
-fn router_cleanup_warning_and_pointer_failure_preserve_active_release() {
-    let profile = six_skill_profile();
-    let preview =
-        global::update(&profile, Some(&source()), Some(&exe()), false, None, None).unwrap();
-    let fingerprint = preview.measurements[0]["candidate_sha256"]
-        .as_str()
-        .unwrap();
-    global::update(
-        &profile,
-        Some(&source()),
-        Some(&exe()),
-        true,
-        Some(fingerprint),
-        None,
-    )
-    .unwrap();
-    let approve = profile.join(".agents/skills/highgrade-approve/SKILL.md");
-    let push = profile.join(".agents/skills/highgrade-push/SKILL.md");
-    use std::os::windows::fs::OpenOptionsExt;
-    let handle = fs::OpenOptions::new()
-        .read(true)
-        .share_mode(1)
-        .open(&approve)
-        .unwrap();
-    let rolled_back = global::update(&profile, None, None, false, None, Some("v0-2-1")).unwrap();
-    assert_eq!(rolled_back.status, "warning");
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-1"
-    );
-    assert!(approve.exists());
-    assert!(!push.exists());
-    drop(handle);
-    fs::remove_file(&approve).unwrap();
-    let temp_active = profile.join(format!(
-        ".highgrade/global/active.{}.part",
-        std::process::id()
-    ));
-    write(&temp_active, b"block pointer replacement");
-    assert!(global::update(&profile, None, None, false, None, Some("v0-2-8")).is_err());
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-1"
-    );
-    assert!(!approve.exists());
-    assert!(!push.exists());
-    fs::remove_file(temp_active).unwrap();
-    global::update(&profile, None, None, false, None, Some("v0-2-8")).unwrap();
-    assert_eq!(
-        global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-8"
-    );
-    assert!(approve.is_file());
-    assert!(push.is_file());
+    assert!(global::update(&profile, Some(&different), Some(&exe()), false, None).is_ok());
 }
 #[test]
 fn global_install_rejects_hash_and_foreign_router_without_activation() {

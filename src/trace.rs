@@ -80,8 +80,10 @@ fn spec_ids(
     r: &mut Report,
     requirements: &mut BTreeSet<String>,
     scenarios: &mut BTreeMap<String, String>,
+    replaced: Option<&BTreeSet<String>>,
 ) {
     let mut heading: Option<(HeadingLevel, String)> = None;
+    let mut skip_requirement = false;
     for event in Parser::new(text) {
         match event {
             Event::Start(Tag::Heading { level, .. }) => heading = Some((level, String::new())),
@@ -114,10 +116,16 @@ fn spec_ids(
                         continue;
                     }
                     if level == HeadingLevel::H3 {
+                        skip_requirement = replaced.is_some_and(|ids| ids.contains(id));
+                        if skip_requirement {
+                            continue;
+                        }
                         if !requirements.insert(id.into()) {
                             r.finding("failed", "DuplicateRequirementId", source, id);
                         }
-                    } else if scenarios.insert(id.into(), source.into()).is_some() {
+                    } else if !skip_requirement
+                        && scenarios.insert(id.into(), source.into()).is_some()
+                    {
                         r.finding("failed", "DuplicateScenarioId", source, id);
                     }
                 }
@@ -445,10 +453,48 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
     }
     let mut requirements = BTreeSet::new();
     let mut scenarios = BTreeMap::new();
+    let mut replaced: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
+    for rel in &specs {
+        let parts: Vec<_> = rel.split('/').collect();
+        if parts.len() != 6
+            || parts[0] != "openspec"
+            || parts[1] != "changes"
+            || parts[3] != "specs"
+            || parts[5] != "spec.md"
+        {
+            continue;
+        }
+        let base = format!("openspec/specs/{}/spec.md", parts[4]);
+        if !specs.contains(&base) {
+            continue;
+        }
+        let bytes = load(&root, rel, 8 * 1024 * 1024)?;
+        let text = String::from_utf8(bytes).map_err(|e| e.to_string())?;
+        let mut modified = false;
+        for line in text.lines() {
+            if line.starts_with("## ") {
+                modified = line == "## MODIFIED Requirements";
+            } else if modified {
+                if let Some(id) = line
+                    .strip_prefix("### Requirement: [")
+                    .and_then(|s| s.split_once(']').map(|v| v.0))
+                {
+                    replaced.entry(base.clone()).or_default().insert(id.into());
+                }
+            }
+        }
+    }
     for rel in &specs {
         let bytes = load(&root, rel, 8 * 1024 * 1024)?;
         let text = String::from_utf8(bytes).map_err(|e| e.to_string())?;
-        spec_ids(&text, rel, &mut r, &mut requirements, &mut scenarios);
+        spec_ids(
+            &text,
+            rel,
+            &mut r,
+            &mut requirements,
+            &mut scenarios,
+            replaced.get(rel),
+        );
     }
     if scenarios.is_empty() {
         r.finding(
