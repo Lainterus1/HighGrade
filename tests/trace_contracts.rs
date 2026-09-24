@@ -29,6 +29,82 @@ fn spec() -> &'static [u8] {
 fn rust_list(root: &Path) -> Value {
     json!({"rust-suites":{"math":{"kind":"test","cwd":root.to_string_lossy(),"binary-name":"math","testcases":{"adds":{"filter-match":{"status":"matches"},"ignored":false}}}}})
 }
+
+#[test]
+fn native_owner_replaces_only_imported_markdown_and_ignores_evidence_metadata() {
+    use highgrade::specs::{Origin, Requirement, STORE, Scenario, Store};
+    let root = root();
+    let src = "tests/math.rs";
+    let list = "evidence/list.json";
+    let report = "evidence/junit.xml";
+    put(
+        &root,
+        src,
+        b"// highgrade: HG-MATH-001\n#[test]\nfn adds() { assert_eq!(1+1,2); }\n",
+    );
+    save(&root, list, &rust_list(&root));
+    put(&root, report, br#"<testsuites><testsuite name="math"><testcase classname="math" name="adds"/></testsuite></testsuites>"#);
+    let mut run = base(&root, "rust-nextest", src, report, Some(list));
+    let mut store = Store::default();
+    store.requirements.insert(
+        "HG-MATH-REQ".into(),
+        Requirement {
+            id: "HG-MATH-REQ".into(),
+            title: "Add".into(),
+            statement: "Return sum".into(),
+            scenarios: vec![Scenario {
+                id: "HG-MATH-001".into(),
+                given: "1,1".into(),
+                when: "Add".into(),
+                then: "2".into(),
+                verification: "math::adds".into(),
+            }],
+        },
+    );
+    store.origins.insert(
+        "HG-MATH-REQ".into(),
+        Origin {
+            path: "openspec/specs/math/spec.md".into(),
+            sha256: hash(spec()),
+            original_text: String::from_utf8(spec().to_vec()).unwrap(),
+        },
+    );
+    save(
+        &root,
+        "selected.json",
+        &serde_json::to_value(&store.requirements["HG-MATH-REQ"]).unwrap(),
+    );
+    let args = [
+        ("--id", "HG-IMPORT"),
+        ("--expected", "absent"),
+        ("--input", "selected.json"),
+        ("--source", "openspec/specs/math/spec.md"),
+    ]
+    .into_iter()
+    .map(|(k, v)| (k.to_string(), v.to_string()))
+    .collect();
+    highgrade::specs::command(&root, "spec-import", &args).unwrap();
+    run["spec_files"].as_array_mut().unwrap().push(json!(STORE));
+    run["source_hashes"][STORE] = json!(highgrade::specs::trace_hash(&root).unwrap());
+    save(&root, "run.json", &run);
+    let r = trace(&root, "run.json").unwrap();
+    assert_eq!(r.status, "passed", "{r:?}");
+    // The completed owner has the same effective contract as the imported draft.
+    save(&root, STORE, &serde_json::to_value(&store).unwrap());
+    assert_eq!(trace(&root, "run.json").unwrap().status, "passed");
+    // Historical provenance metadata does not change the effective contract fingerprint.
+    store
+        .origins
+        .get_mut("HG-MATH-REQ")
+        .unwrap()
+        .original_text
+        .push_str("\n");
+    save(&root, STORE, &serde_json::to_value(&store).unwrap());
+    assert_eq!(trace(&root, "run.json").unwrap().status, "passed");
+    store.requirements.get_mut("HG-MATH-REQ").unwrap().statement = "Changed expectation".into();
+    save(&root, STORE, &serde_json::to_value(&store).unwrap());
+    assert_ne!(trace(&root, "run.json").unwrap().status, "passed");
+}
 fn base(root: &Path, tool: &str, source: &str, report: &str, inventory: Option<&str>) -> Value {
     let spec_path = "openspec/specs/math/spec.md";
     put(root, spec_path, spec());

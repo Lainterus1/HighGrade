@@ -412,10 +412,15 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
     if source_hashes.is_empty() {
         return Err("RunInvalid: source_hashes empty".into());
     }
+    let (native, native_sha) = crate::specs::load(&root)?;
     let mut stale = false;
     for (rel, expected) in source_hashes {
-        let bytes = load(&root, rel, 32 * 1024 * 1024)?;
-        if expected.as_str() != Some(&hash(&bytes)) {
+        let current_hash = if rel == crate::specs::STORE {
+            crate::specs::catalog_hash(&native)?
+        } else {
+            hash(&load(&root, rel, 32 * 1024 * 1024)?)
+        };
+        if expected.as_str() != Some(&current_hash) {
             stale = true;
             r.finding(
                 "unknown",
@@ -484,7 +489,48 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
             }
         }
     }
+    if native_sha != "absent" {
+        for (id, origin) in native.origins.iter().chain(
+            native
+                .changes
+                .values()
+                .filter(|c| !c.archived)
+                .flat_map(|c| c.imports.iter()),
+        ) {
+            replaced
+                .entry(origin.path.clone())
+                .or_default()
+                .insert(id.clone());
+        }
+        if (!native.origins.is_empty()
+            || native
+                .changes
+                .values()
+                .any(|c| !c.archived && !c.imports.is_empty()))
+            && !specs.iter().any(|p| p == crate::specs::STORE)
+        {
+            r.finding(
+                "unknown",
+                "NativeSpecsUnpinned",
+                crate::specs::STORE,
+                "Include the current owner in spec_files and source_hashes.",
+            );
+        }
+    }
     for rel in &specs {
+        if rel == crate::specs::STORE {
+            for req in crate::specs::catalog(&native)?.values() {
+                if !requirements.insert(req.id.clone()) {
+                    r.finding("failed", "DuplicateId", rel, &req.id);
+                }
+                for sc in &req.scenarios {
+                    if scenarios.insert(sc.id.clone(), rel.clone()).is_some() {
+                        r.finding("failed", "DuplicateId", rel, &sc.id);
+                    }
+                }
+            }
+            continue;
+        }
         let bytes = load(&root, rel, 8 * 1024 * 1024)?;
         let text = String::from_utf8(bytes).map_err(|e| e.to_string())?;
         spec_ids(

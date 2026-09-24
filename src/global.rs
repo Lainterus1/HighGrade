@@ -803,9 +803,15 @@ pub fn project_check(root: &Path, r: &mut Report) -> Result<bool> {
     }
     let data = paths::read_limited(&p, 1024 * 1024)?;
     let text = std::str::from_utf8(&data).map_err(|_| "ProjectInstructionInvalidUtf8")?;
-    if !text.starts_with("---\nhighgrade_project_schema: 1\n---\n")
-        && !text.starts_with("---\r\nhighgrade_project_schema: 1\r\n---\r\n")
-    {
+    let normalized = text.replace("\r\n", "\n");
+    let header = normalized
+        .strip_prefix("---\n")
+        .and_then(|s| s.split_once("\n---\n").map(|p| p.0));
+    let supported = header.is_some_and(|h| {
+        h == "highgrade_project_schema: 1"
+            || h == "highgrade_project_schema: 1\nhighgrade_spec_format: native-v1"
+    });
+    if !supported {
         r.finding(
             "failed",
             "ProjectInstructionSchemaUnsupported",

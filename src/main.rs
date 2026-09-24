@@ -5,6 +5,21 @@ use std::{collections::BTreeMap, path::Path};
 fn run() -> Result<Report> {
     let mut args = std::env::args().skip(1);
     let op = args.next().unwrap_or_default();
+    if op == "--help" {
+        if args.next().is_some() {
+            return Err("Usage: --help takes no options".into());
+        }
+        let mut r = Report::new("help");
+        r.measurements.push(json!({
+            "project_commands":"doctor inspect inventory trace spec-list spec-new spec-read spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-abandon spec-schema",
+            "installation_commands":"global-install global-update global-status legacy-install legacy-update",
+            "project_root":"--root PATH",
+            "spec_start":"spec-list --root PATH; spec-new --root PATH --id HG-CHANGE --expected HASH",
+            "spec_formats":"spec-schema --root PATH",
+            "reference":"Installed release references/cli.md; --version"
+        }));
+        return Ok(r);
+    }
     if op == "--version" {
         if args.next().is_some() {
             return Err("Usage: --version не принимает параметры".into());
@@ -60,6 +75,21 @@ fn run() -> Result<Report> {
         ],
         "inventory" => vec!["--root"],
         "trace" => vec!["--root", "--record"],
+        "spec-schema" | "spec-list" => vec!["--root"],
+        "spec-new" | "spec-integrate" => vec!["--root", "--id", "--expected"],
+        "spec-read" => vec!["--root", "--id", "--requirement"],
+        "spec-diff" | "spec-check" | "spec-validate" => vec!["--root", "--id"],
+        "spec-save" | "spec-evidence" => vec!["--root", "--id", "--expected", "--input"],
+        "spec-review" => vec![
+            "--root",
+            "--id",
+            "--expected",
+            "--reviewer",
+            "--conclusion",
+            "--verdict",
+        ],
+        "spec-abandon" => vec!["--root", "--id", "--expected", "--reason"],
+        "spec-import" => vec!["--root", "--expected", "--input", "--source", "--id"],
         _ => {
             return Err(
                 "Usage: highgrade doctor|inspect|inventory|trace --root PATH; --version".into(),
@@ -91,6 +121,7 @@ fn run() -> Result<Report> {
         Path::new(get("--root")?)
     };
     match op.as_str() {
+        _ if op.starts_with("spec-") => highgrade::specs::command(root, &op, &options),
         "global-status" => highgrade::global::status(Path::new(get("--profile")?)),
         "global-install" => highgrade::global::install(
             Path::new(get("--profile")?),

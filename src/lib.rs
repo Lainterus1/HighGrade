@@ -4,6 +4,7 @@ pub mod inspect;
 pub mod install;
 pub mod package;
 pub mod paths;
+pub mod specs;
 pub mod trace;
 
 use serde::Serialize;
@@ -66,6 +67,21 @@ pub fn doctor(root: &Path) -> Result<Report> {
     r.measurements.push(
         json!({"highgrade_version":env!("CARGO_PKG_VERSION"),"platform":std::env::consts::OS}),
     );
+    let native_specs = paths::safe(&root, specs::STORE)?.exists()
+        || paths::safe(&root, ".highgrade/project/INSTRUCTIONS.md")
+            .ok()
+            .and_then(|p| paths::read_limited(&p, 1024 * 1024).ok())
+            .is_some_and(|b| {
+                String::from_utf8_lossy(&b)
+                    .lines()
+                    .any(|l| l.trim() == "highgrade_spec_format: native-v1")
+            });
+    if native_specs {
+        match specs::load(&root) {
+            Ok((_, sha)) => r.measurements.push(json!({"spec_format":"native-v1","store_sha256":sha,"semantic_readiness":"not_assessed"})),
+            Err(e) => r.finding("failed", "NativeSpecsInvalid", specs::STORE, &e),
+        }
+    }
     for name in ["cargo", "codex", "node", "openspec"] {
         let found = std::env::var_os("PATH")
             .into_iter()
@@ -87,8 +103,8 @@ pub fn doctor(root: &Path) -> Result<Report> {
                 })
             });
         r.measurements
-            .push(json!({"tool":name,"found_in_path":found,"version":null,"executed":false}));
-        if !found {
+            .push(json!({"tool":name,"found_in_path":found,"version":null,"executed":false,"required_by_legacy_probe":!native_specs}));
+        if !found && !native_specs {
             r.finding(
                 "unknown",
                 "DependencyMissing",

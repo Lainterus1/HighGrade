@@ -10,14 +10,24 @@ use std::{
 };
 static NEXT: AtomicU64 = AtomicU64::new(0);
 fn temp() -> PathBuf {
-    let p = std::env::temp_dir().join(format!(
-        "hg-package-{}-{}",
-        std::process::id(),
-        NEXT.fetch_add(1, Ordering::Relaxed)
-    ));
-    fs::create_dir_all(&p).unwrap();
-    p
+    loop {
+        let nanos = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos();
+        let p = std::env::temp_dir().join(format!(
+            "hg-package-{}-{nanos}-{}",
+            std::process::id(),
+            NEXT.fetch_add(1, Ordering::Relaxed)
+        ));
+        match fs::create_dir(&p) {
+            Ok(()) => return p,
+            Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => continue,
+            Err(e) => panic!("isolated test directory: {e}"),
+        }
+    }
 }
+
 fn source() -> PathBuf {
     static SOURCE: OnceLock<PathBuf> = OnceLock::new();
     SOURCE
