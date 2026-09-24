@@ -7,13 +7,14 @@
 Используй CLI активной Поставки, чтобы поведение не зависело от незавершённых правок исходников:
 
 ```powershell
-cargo build --locked
-$hgExe = Join-Path $PWD "target/debug/highgrade.exe"
+$hgProfile = $env:USERPROFILE
+$hgActive = Get-Content "$hgProfile/.highgrade/global/active.json" -Raw | ConvertFrom-Json
+$hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.exe"
 & $hgExe spec-list --root "$PWD"
 & $hgExe spec-schema --root "$PWD"
 ```
 
-Каталог v3 обслуживает собранная CLI 0.2.14: `target/debug/highgrade.exe` (или release). Общая установленная 0.2.13 остаётся прежней и для записи нового каталога непригодна; активация — отдельное действие. Первый spec-list в пустом проекте возвращает store_sha256=absent. Маршрут: spec-new --title с хешем → spec-read → редактирование change → spec-save с хешем этого снимка. Не редактируй документы каталога напрямую. Полные параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
+Каталог v3 обслуживает установленная CLI 0.2.14. При разработке инструмента используй исходную CLI после cargo build --locked. Первый spec-list в пустом проекте возвращает store_sha256=absent. Маршрут: spec-new --title с хешем → spec-read → редактирование change → spec-save с хешем этого снимка. Не редактируй документы каталога напрямую. Полные параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
 
 Маршрут: spec-validate → реализация и штатные тесты → spec-evidence → независимое ревью и spec-review → spec-check → spec-integrate. Пустой шаблон остаётся черновиком. Включение требований не разрешает commit/push. spec-decide сохраняет человеческое решение, spec-list — JSON-прогресс; переход store v1/v2 → каталог через spec-migrate --to directory с точным backup. Повторная проверка интегрированной спеки обновляет результаты и требует свежего ревью; прежняя приёмка не переносится автоматически. Фокусные тесты самого инструмента: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
 
