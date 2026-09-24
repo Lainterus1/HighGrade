@@ -1,25 +1,42 @@
 # Разработка и проверки
 
-Команды исходного High Grade выполняются из корня проекта. Устройство — в [ARCHITECTURE](ARCHITECTURE.md), задачи поведения — в `openspec/changes/`.
+Команды выполняются из корня Проекта. Задачи — в `.highgrade/specs/store.json`; устройство — в [ARCHITECTURE](ARCHITECTURE.md).
 
-## Проектный OpenSpec
+## Новые задачи: нативные спецификации
 
-Нужен Node.js 20.19.0 или новее. На Windows установи закреплённый CLI в пользовательский npm-профиль; это не копирует общие навыки в репозиторий:
+Используй CLI активной Поставки, чтобы поведение не зависело от незавершённых правок исходников:
+
+```powershell
+$hgProfile = $env:USERPROFILE
+$hgActive = Get-Content "$hgProfile/.highgrade/global/active.json" -Raw | ConvertFrom-Json
+$hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.exe"
+& $hgExe global-status --profile $hgProfile
+& $hgExe spec-list --root "$PWD"
+& $hgExe spec-schema --root "$PWD"
+```
+
+Для текущего store v2 до активации новой Поставки используй `target/debug/highgrade.exe` из проверенной сборки 0.2.13. Первый spec-list в пустом проекте возвращает store_sha256=absent. Для разрешённой задачи вызови spec-new с --title и этим хешем; номер назначает CLI; затем spec-read, редактирование объекта change и spec-save с хешем прочитанного снимка. Не редактируй store напрямую. Полные параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
+
+Маршрут: spec-validate → реализация и штатные тесты → spec-evidence → независимое ревью и spec-review → spec-check → spec-integrate. Пустой шаблон остаётся черновиком. Включение требований не разрешает commit/push. spec-decide сохраняет человеческое решение, spec-list — JSON-прогресс; миграция v1 → v2 через spec-migrate с backup. Фокусные тесты самого инструмента: `cargo test --locked --test spec_contracts --test trace_contracts`.
+
+## Сохранённый OpenSpec-каталог
+
+Старые спеки остаются без изменений и переноса. Эти команды и CI проверяют сохранённый каталог; новые задачи не используют OpenSpec. Нужен Node.js 20.19+:
 
 ```powershell
 npm.cmd install -g @fission-ai/openspec@1.13.1
 $env:OPENSPEC_TELEMETRY = '0'
 $openspecBin = Join-Path (npm.cmd prefix -g) 'openspec.cmd'
-& $openspecBin --version
-$env:PATH = "$(npm.cmd prefix -g);$env:PATH"
 & $openspecBin validate --all --strict --no-interactive
 ```
 
-Ожидаемая версия — `1.13.1`. Перед каждым вызовом отключай телеметрию через `OPENSPEC_TELEMETRY=0`. Проект уже инициализирован с `--tools none`; новые навыки OpenSpec здесь не нужны. Изменение проверяй командой `& $openspecBin validate <имя> --strict --no-interactive`, завершённое архивируй штатным OpenSpec. `highgrade doctor` обнаруживает CLI в `PATH`, но не проверяет его версию; её показывает `& $openspecBin --version`.
+Версия закреплена: 1.13.1; телеметрию отключай перед каждым вызовом. Проверка сохранённого каталога не подтверждает готовность JSON-изменения.
 
 ## Сценарии и исходные результаты
 
-У действующих требований и сценариев OpenSpec есть устойчивые ID. У каждого сценария указан способ проверки. Метка `// highgrade: HG-...` ставится рядом с содержательным интеграционным Rust-тестом. `trace` сверяет её с инвентарём, исполнением и хешами исходников; `ручная` означает отдельное наблюдение, а не автоматический успех. Порядок и критерии — в [QUALITY](workflow/QUALITY.md).
+Метка `// highgrade: HG-...` связывает сценарий с настоящим Rust-тестом. Требования к доказательствам — в [QUALITY](workflow/QUALITY.md).
+
+Связка ниже проверяет прежний каталог. JSON-сценарии — через spec-evidence/check; нативный trace описан в справочнике.
 
 Локально установи закреплённый `cargo-nextest` 0.9.146, затем из корня репозитория выполни команды. Для изолированной установки используй путь к `cargo-nextest.exe` и аргумент `nextest`.
 
@@ -37,7 +54,7 @@ node scripts/source-scenarios.mjs verify
 if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
 ```
 
-`prepare` отвергает отчёт, если после него изменены спеки, тесты или закреплённые исходники; запусти native тесты повторно. `trace` может вернуть 2, когда остаются ручные сценарии; заключительный `verify` принимает только известные ручные пробелы и требует реального успеха всех помеченных автоматических сценариев. Ручное упражнение записывай с входным состоянием, действием, наблюдением, временем и SHA либо перечнем изменённых файлов. Сверка исходника не подменяет просмотр содержательности теста.
+`prepare` отвергает устаревший отчёт: повтори затронутые тесты. `trace` возвращает 2 при ручных пробелах; `verify` допускает только известные ручные сценарии и требует успеха автоматических. Ручные доказательства сохраняй по QUALITY.
 
 ## Rust CLI и глобальная поставка
 
@@ -52,7 +69,7 @@ cargo build --release --locked
 .\target\release\highgrade.exe inspect --bootstrap --root "$PWD"
 ```
 
-Сначала проверяй установку в изолированном профиле. [Справочник](../kit/references/cli.md) описывает обновление, очистку старых выпусков и пределы bootstrap. `doctor`/`inspect` могут вернуть unknown; код 2 не является PASS. Rust и Playwright запускаются штатно, затем `trace` читает отчёты. `bundle/` — история прежней поставки.
+Установку проверяй в изолированном профиле; обновление описано в [справочнике](../kit/references/cli.md). Код 2/unknown у диагностики не является PASS.
 
 Профиль `dev`/`test` сохраняет номера строк и отключает incremental для ограничения размера `target/debug`; `release` независим.
 
@@ -72,7 +89,3 @@ SVG Vectorizer — [README](../plugins/svg-vectorizer/README.md); Code Health Au
 ## Публикация
 
 `highgrade-approve` по [проектной инструкции](../.highgrade/project/INSTRUCTIONS.md) создаёт коммит и локально активирует его из изолированного SHA. `highgrade-push` по отдельному поручению отправляет выбранный диапазон готовых коммитов. Перед публикацией проверь состав, лицензию, происхождение, секреты и кэши; хеши `kit/` сверь с архивом SHA (`.gitattributes` закрепляет LF). После push сверь удалённый SHA, после местной активации — `global-status`. CI в `.github/workflows/verify.yml` проверяет отправленный исходник, но не активирует его. Это не означает приёмку целевых проектов.
-
-## Нативные спецификации
-
-Фокусная проверка: `cargo test --locked --test spec_contracts --test trace_contracts`. Формат и команды — в [справочнике Поставки](../kit/references/cli.md#структурированные-спецификации). Переносимость проверяется установленным кандидатом в изолированном профиле и временном проекте.

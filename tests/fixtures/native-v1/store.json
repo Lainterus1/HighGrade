@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "requirements": {},
+  "changes": {
+    "HG-0042": {
+      "id": "HG-0042",
+      "goal": "Read CLI version",
+      "rationale": "Observe executable build identifier",
+      "scope": "Isolated migration fixture",
+      "questions": [],
+      "tasks": [
+        {
+          "id": "HG-0042-T1",
+          "description": "Execute version command",
+          "done": true
+        }
+      ],
+      "operations": [
+        {
+          "action": "add",
+          "requirement": {
+            "id": "HG-0042-R1",
+            "title": "Version report",
+            "statement": "CLI returns its version",
+            "scenarios": [
+              {
+                "id": "HG-0042-S1",
+                "given": "Built CLI",
+                "when": "Run --version",
+                "then": "JSON status passed",
+                "verification": "Inspect actual stdout and exit code"
+              }
+            ]
+          }
+        }
+      ],
+      "baseline": {},
+      "imports": {},
+      "evidence": {
+        "HG-0042-S1": {
+          "command": "highgrade --version",
+          "captured_at": "2026-09-24T00:00:00Z",
+          "method": "native_report",
+          "scenario": "HG-0042-S1",
+          "outcome": "passed",
+          "observation": "Actual v0.2.12 CLI returned passed JSON",
+          "scenario_sha256": "c68bf3d147a8b0dc127080469fb5d2b758a7e7f6aa7e8c45660a92110aa849ac",
+          "files": {
+            "logic.txt": "c0b699030689ffb7d110f38191431965949e4785ef1c2c5a0d170651dd5bfe9b",
+            "result.txt": "7c22f879bd4534076a4e31499624ad92fdc771bea1f33217267429291b2565dd"
+          },
+          "report": "result.txt"
+        }
+      },
+      "review": {
+        "verdict": "go",
+        "reviewer": "migration fixture",
+        "conclusion": "Synthetic review used only to test digest compatibility",
+        "change_sha256": "9550cf746971824a33e3ef21d43a86587556d5d85c4d166466a303a498829c64"
+      },
+      "archived": false,
+      "abandoned_reason": null
+    }
+  },
+  "retired_ids": [],
+  "origins": {}
+}

@@ -110,6 +110,13 @@ function activeSources() {
   return { specFiles, testSources, requirements, scenarios, automatic, manual };
 }
 
+function filesUnder(dir) {
+  return readdirSync(absolute(dir), { withFileTypes: true }).flatMap((entry) => {
+    const file = `${dir}/${entry.name}`;
+    return entry.isDirectory() ? filesUnder(file) : entry.isFile() ? [file] : [];
+  });
+}
+
 function prepare(sources) {
   const inventory = 'target/nextest/highgrade/list.json';
   const report = 'target/nextest/highgrade/junit.xml';
@@ -140,7 +147,8 @@ function prepare(sources) {
   if (listedTests !== totals.tests) error(`nextest JUnit has ${totals.tests}/${listedTests} listed tests`);
   const pinned = [
     ...sources.specFiles, ...sources.testSources, inventory,
-    ...readdirSync(absolute('src')).filter((name) => name.endsWith('.rs')).map((name) => `src/${name}`),
+    ...filesUnder('src').filter((name) => name.endsWith('.rs')),
+    ...filesUnder('tests/fixtures/native-v1'),
     'Cargo.toml', 'Cargo.lock', '.config/nextest.toml', 'openspec/config.yaml',
   ];
   const reportTime = statSync(absolute(report)).mtimeMs;

@@ -1,8 +1,8 @@
 # High Grade
 
-[Исходники на GitHub](https://github.com/Lainterus1/HighGrade). High Grade — переносимый набор навыков Codex и инструментов для работы над разными проектами. Общие навыки и Rust CLI устанавливаются один раз у пользователя; каждый подключаемый проект хранит собственную инструкцию, документы, спецификации, тесты и допустимые профильные дополнения. High Grade не ведёт центральный реестр проектов.
+[Исходники на GitHub](https://github.com/Lainterus1/HighGrade). High Grade — переносимый workflow на навыках Codex и CLI. Общие навыки и Rust CLI устанавливаются один раз у пользователя; каждый подключаемый проект хранит собственную инструкцию, документы, спецификации, тесты и допустимые профильные дополнения.
 
-**Состояние:** выпуск `v0-2-12` / CLI `0.2.12` активирован локально из проверенного коммита; [запись выпуска](docs/releases/v0-2-12.md). Новая Поставка использует JSON-спецификации и собственный CLI; прежние OpenSpec-материалы сохранены. Текущую установленную версию проверяет `global-status`. Маршрут — в [глобальном контракте](docs/workflow/GLOBAL.md).
+**Состояние:** выпуск `v0-2-12` / CLI `0.2.12` активирован локально из проверенного коммита; [запись выпуска](docs/releases/v0-2-12.md). Новая Поставка использует JSON-спецификации и собственный CLI; прежние OpenSpec-материалы сохранены. Исходная 0.2.13 с JSON v2 и приёмкой ещё не активирована и не опубликована. Установленную версию показывает `global-status`. Маршрут — в [глобальном контракте](docs/workflow/GLOBAL.md).
 
 ## Термины и границы
 
@@ -37,7 +37,7 @@ cargo build --release --locked
 
 ## Разработка High Grade
 
-[AGENTS](AGENTS.md) задаёт работу в Проекте. [ARCHITECTURE](docs/ARCHITECTURE.md) показывает его фактическое устройство, [ENGINEERING](docs/ENGINEERING.md) — правила изменений, [DEVELOPMENT](docs/DEVELOPMENT.md) — команды OpenSpec и Rust. [QUALITY](docs/workflow/QUALITY.md) и [CONTEXT](docs/workflow/CONTEXT.md) задают местные проверки и контекст Проекта; общие правила принадлежат `kit/`; [SPECIFICATION](docs/workflow/SPECIFICATION.md) хранит историю решений. Эти файлы не входят в установленную Поставку. История исследования BDD — в [research](docs/research/bdd-workflow.md); архив — в [archive](docs/archive/README.md). Исходники SVG Vectorizer и Code Health Audit поддерживаются отдельно под [plugins](plugins/README.md) и не обязательны для основного маршрута.
+[AGENTS](AGENTS.md) задаёт работу в Проекте. [ARCHITECTURE](docs/ARCHITECTURE.md) показывает его фактическое устройство, [ENGINEERING](docs/ENGINEERING.md) — правила изменений, [DEVELOPMENT](docs/DEVELOPMENT.md) — команды нативных спецификаций, Rust и проверки прежнего каталога. [QUALITY](docs/workflow/QUALITY.md) и [CONTEXT](docs/workflow/CONTEXT.md) задают местные проверки и контекст Проекта; общие правила принадлежат `kit/`; [SPECIFICATION](docs/workflow/SPECIFICATION.md) хранит историю решений. Эти файлы не входят в установленную Поставку. История исследования BDD — в [research](docs/research/bdd-workflow.md); архив — в [archive](docs/archive/README.md). Исходники SVG Vectorizer и Code Health Audit поддерживаются отдельно под [plugins](plugins/README.md) и не обязательны для основного маршрута.
 
 
 ## Лицензия

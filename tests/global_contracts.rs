@@ -71,7 +71,7 @@ fn candidate() -> PathBuf {
     copy_tree(&source(), &dst);
     let manifest_path = dst.join("manifest.json");
     let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
-    manifest["release"] = json!("v0-2-13");
+    manifest["release"] = json!("v0-2-14");
     let rules = dst.join("rules.md");
     write(&rules, b"# New shared rules\n");
     manifest["files"]["rules.md"] = json!(hash(&fs::read(&rules).unwrap()));
@@ -277,7 +277,7 @@ fn global_update_preview_switch_and_cleanup_keep_unrelated_files() {
     assert_eq!(preview.status, "unknown");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-12"
+        "v0-2-13"
     );
     let preview_hash = preview.measurements[0]["candidate_sha256"]
         .as_str()
@@ -322,9 +322,9 @@ fn global_update_preview_switch_and_cleanup_keep_unrelated_files() {
     assert_eq!(applied.status, "passed");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-13"
+        "v0-2-14"
     );
-    assert!(!profile.join(".highgrade/global/releases/v0-2-12").exists());
+    assert!(!profile.join(".highgrade/global/releases/v0-2-13").exists());
     assert_eq!(fs::read(profile.join("personal.txt")).unwrap(), b"keep");
 }
 // highgrade: HG-RW-S12
@@ -332,7 +332,7 @@ fn global_update_preview_switch_and_cleanup_keep_unrelated_files() {
 fn update_preserves_foreign_file_in_old_release() {
     let profile = temp();
     global::install(&profile, &source(), &exe()).unwrap();
-    let foreign = profile.join(".highgrade/global/releases/v0-2-12/personal.txt");
+    let foreign = profile.join(".highgrade/global/releases/v0-2-13/personal.txt");
     write(&foreign, b"keep");
     let next = candidate();
     let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
@@ -349,18 +349,18 @@ fn update_preserves_foreign_file_in_old_release() {
             .any(|finding| finding["code"] == "OldReleaseCleanupPending")
     );
     assert_eq!(fs::read(&foreign).unwrap(), b"keep");
-    let old_release = profile.join(".highgrade/global/releases/v0-2-12");
+    let old_release = profile.join(".highgrade/global/releases/v0-2-13");
     assert!(old_release.join("journal.json").exists());
     assert!(!old_release.join("rules.md").exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-13"
+        "v0-2-14"
     );
     fs::remove_file(&foreign).unwrap();
     let following = candidate();
     let manifest_path = following.join("manifest.json");
     let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
-    manifest["release"] = json!("v0-2-14");
+    manifest["release"] = json!("v0-2-15");
     write(
         &manifest_path,
         &serde_json::to_vec_pretty(&manifest).unwrap(),
@@ -452,7 +452,7 @@ fn legacy_deploy_migrates_to_approve_push_and_cleans_old_release() {
     assert!(!legacy.exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-12"
+        "v0-2-13"
     );
     assert!(!profile.join(".highgrade/global/releases/v0-2-5").exists());
     assert_ne!(fs::read(&approve).unwrap(), original);
@@ -481,7 +481,7 @@ fn v026_deploy_migrates_to_two_routes_and_removes_old_release() {
     assert!(!old.exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-12"
+        "v0-2-13"
     );
     assert!(!profile.join(".highgrade/global/releases/v0-2-6").exists());
 }
@@ -521,7 +521,7 @@ fn locked_v026_router_is_inactive_after_switch() {
             .is_file()
     );
     let status = global::status(&profile).unwrap();
-    assert_eq!(status.measurements[0]["release"], "v0-2-12");
+    assert_eq!(status.measurements[0]["release"], "v0-2-13");
     assert!(
         status
             .findings
@@ -720,7 +720,7 @@ fn six_skill_release_preserves_owned_crlf_routers() {
     assert_eq!(fs::read(&init).unwrap(), old_bytes);
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-12"
+        "v0-2-13"
     );
     assert!(!profile.join(".highgrade/global/releases/v0-2-1").exists());
 }
@@ -754,7 +754,7 @@ fn six_skill_release_updates_to_approve_push_and_cleans_old_release() {
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-12"
+        "v0-2-13"
     );
     assert!(approve.is_file());
     assert!(push.is_file());
@@ -763,7 +763,7 @@ fn six_skill_release_updates_to_approve_push_and_cleans_old_release() {
 #[test]
 fn failed_stage_does_not_leave_new_routers() {
     let profile = six_skill_profile();
-    let blocked = profile.join(".highgrade/global/releases/v0-2-12/rules.md");
+    let blocked = profile.join(".highgrade/global/releases/v0-2-13/rules.md");
     write(&blocked, b"foreign content");
     let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
@@ -804,13 +804,13 @@ fn failed_stage_does_not_leave_new_routers() {
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-12"
+        "v0-2-13"
     );
 }
 #[test]
 fn failed_stage_preserves_foreign_candidate_journal() {
     let profile = six_skill_profile();
-    let foreign = profile.join(".highgrade/global/releases/v0-2-12/journal.json");
+    let foreign = profile.join(".highgrade/global/releases/v0-2-13/journal.json");
     write(&foreign, b"foreign journal");
     let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
@@ -939,7 +939,7 @@ fn global_update_preserves_project_adaptation_in_profile() {
     assert_eq!(updated.status, "passed");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-13"
+        "v0-2-14"
     );
     assert_eq!(fs::read(adapter).unwrap(), bytes);
 }

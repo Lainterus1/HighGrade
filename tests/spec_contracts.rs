@@ -69,6 +69,7 @@ fn save(root: &Path, id: &str, c: &Value) {
 }
 fn fill(root: &Path, id: &str) {
     let mut c = change(root, id);
+    c["title"] = json!("Sum");
     c["goal"] = json!("Add numbers");
     c["rationale"] = json!("A caller needs a correct sum");
     c["scope"] = json!("calculator");
@@ -524,5 +525,446 @@ fn native_doctor_does_not_require_openspec_or_execute_external_tools() {
             .unwrap()
             .iter()
             .any(|m| m["project_instruction"] == "compatible")
+    );
+}
+
+fn automatic(root: &Path, title: &str) -> String {
+    let r = call(
+        root,
+        "spec-new",
+        &[("--title", title), ("--expected", &sha(root))],
+    )
+    .unwrap();
+    r.measurements.iter().find_map(|m| m.get("change")).unwrap()["id"]
+        .as_str()
+        .unwrap()
+        .into()
+}
+fn item(root: &Path, id: &str, decision: &str) -> Value {
+    let r = call(root, "spec-read", &[("--id", id)]).unwrap();
+    let m = r
+        .measurements
+        .iter()
+        .find(|m| m.get("change").is_some())
+        .unwrap();
+    json!({"id":id,"decision":decision,"decided_by":"simulated human in isolated test","change_sha256":m["change_sha256"],"inputs_sha256":m["inputs_sha256"],"verified_revision":"fixture-build-1","comment":if decision=="needs_changes" {"Needs clearer behavior"} else {""}})
+}
+fn decide(root: &Path, items: Vec<Value>) -> highgrade::Result<highgrade::Report> {
+    write(root, "decision.json", &json!({"decisions":items}));
+    call(
+        root,
+        "spec-decide",
+        &[("--expected", &sha(root)), ("--input", "decision.json")],
+    )
+}
+fn listing(root: &Path) -> Value {
+    call(root, "spec-list", &[]).unwrap().measurements[0].clone()
+}
+
+#[test]
+fn automatic_numbers_survive_abandon_failure_and_competing_cli_writers() {
+    let root = root();
+    let first = automatic(&root, "First");
+    assert_eq!(first, "HG-0001");
+    let original = change(&root, &first);
+    assert!(original["created_at"].as_u64().unwrap() > 0);
+    assert_eq!(original["title"], "First");
+    call(
+        &root,
+        "spec-abandon",
+        &[
+            ("--id", &first),
+            ("--expected", &sha(&root)),
+            ("--reason", "Cancelled"),
+        ],
+    )
+    .unwrap();
+    let expected = sha(&root);
+    let launch = || {
+        Command::new(env!("CARGO_BIN_EXE_highgrade"))
+            .args([
+                "spec-new",
+                "--root",
+                root.to_str().unwrap(),
+                "--title",
+                "Concurrent",
+                "--expected",
+                &expected,
+            ])
+            .stdout(std::process::Stdio::null())
+            .spawn()
+            .unwrap()
+    };
+    let mut a = launch();
+    let mut b = launch();
+    assert_eq!(
+        usize::from(a.wait().unwrap().success()) + usize::from(b.wait().unwrap().success()),
+        1
+    );
+    assert!(
+        specs::load(&root)
+            .unwrap()
+            .0
+            .changes
+            .contains_key("HG-0002")
+    );
+    let before = fs::read(root.join(specs::STORE)).unwrap();
+    let expected = sha(&root);
+    let temp = if cfg!(windows) {
+        root.join(specs::STORE)
+            .with_extension(format!("{}.part", std::process::id()))
+    } else {
+        root.join(specs::STORE).with_extension("next")
+    };
+    fs::create_dir(&temp).unwrap();
+    assert!(call(&root, "spec-new", &[("--expected", &expected)]).is_err());
+    assert_eq!(before, fs::read(root.join(specs::STORE)).unwrap());
+    fs::remove_dir(temp).unwrap();
+    assert_eq!(automatic(&root, "Next"), "HG-0003");
+    let mut c = change(&root, "HG-0003");
+    c["title"] = json!("Renamed");
+    save(&root, "HG-0003", &c);
+    assert_eq!(change(&root, "HG-0003")["id"], "HG-0003");
+    c["created_at"] = json!(0);
+    write(&root, "edit.json", &c);
+    assert!(
+        call(
+            &root,
+            "spec-save",
+            &[
+                ("--id", "HG-0003"),
+                ("--expected", &sha(&root)),
+                ("--input", "edit.json")
+            ]
+        )
+        .unwrap_err()
+        .contains("ProtectedField")
+    );
+}
+
+#[test]
+fn human_history_is_atomic_protected_and_bound_to_spec_and_implementation() {
+    let root = root();
+    complete(&root, "HG-A");
+    complete(&root, "HG-B");
+    let initial = listing(&root);
+    assert_eq!(initial["summary"]["ready"], 2);
+    assert_eq!(initial["summary"]["pending"], 2);
+    let a = item(&root, "HG-A", "accepted");
+    let mut b = item(&root, "HG-B", "needs_changes");
+    let before = fs::read(root.join(specs::STORE)).unwrap();
+    b["comment"] = json!("");
+    assert!(
+        decide(&root, vec![a.clone(), b])
+            .unwrap_err()
+            .contains("DecisionIncomplete")
+    );
+    assert_eq!(before, fs::read(root.join(specs::STORE)).unwrap());
+    assert!(
+        decide(&root, vec![a.clone(), a.clone()])
+            .unwrap_err()
+            .contains("DuplicateDecision")
+    );
+    let b = item(&root, "HG-B", "needs_changes");
+    decide(&root, vec![a.clone(), b]).unwrap();
+    assert_eq!(listing(&root)["summary"]["accepted"], 1);
+    assert_eq!(listing(&root)["summary"]["needs_changes"], 1);
+    assert_eq!(check(&root, "HG-A").status, "passed");
+    assert_eq!(integrate(&root, "HG-A").status, "passed");
+    assert_eq!(listing(&root)["summary"]["accepted"], 1);
+    let mut edit = change(&root, "HG-B");
+    edit["acceptance"] = json!([]);
+    write(&root, "edit.json", &edit);
+    assert!(
+        call(
+            &root,
+            "spec-save",
+            &[
+                ("--id", "HG-B"),
+                ("--expected", &sha(&root)),
+                ("--input", "edit.json")
+            ]
+        )
+        .unwrap_err()
+        .contains("ProtectedField")
+    );
+    let stale = item(&root, "HG-B", "accepted");
+    let mut edit = change(&root, "HG-B");
+    edit["goal"] = json!("Revised goal");
+    save(&root, "HG-B", &edit);
+    assert_eq!(listing(&root)["summary"]["stale"], 1);
+    assert!(
+        decide(&root, vec![stale])
+            .unwrap_err()
+            .contains("DecisionStale")
+    );
+    review(&root, "HG-B");
+    decide(&root, vec![item(&root, "HG-B", "accepted")]).unwrap();
+    let c = change(&root, "HG-B");
+    assert_eq!(c["acceptance"].as_array().unwrap().len(), 2);
+    assert!(c["acceptance"][1]["decided_at"].as_u64().unwrap() > 0);
+    fs::write(root.join("logic.txt"), "different implementation").unwrap();
+    assert_eq!(listing(&root)["summary"]["accepted"], 0);
+    assert_eq!(listing(&root)["summary"]["stale"], 2);
+    assert!(
+        decide(&root, vec![a])
+            .unwrap_err()
+            .contains("DecisionStale")
+    );
+    let current = item(&root, "HG-B", "accepted");
+    assert!(
+        decide(&root, vec![current])
+            .unwrap_err()
+            .contains("DecisionNotReady")
+    );
+}
+
+#[test]
+fn json_progress_rejects_missing_skipped_unknown_and_negative_review() {
+    let root = root();
+    let draft = automatic(&root, "Draft");
+    complete(&root, "HG-A");
+    for outcome in ["skipped", "unknown", "failed"] {
+        evidence(&root, "HG-A", outcome);
+        review(&root, "HG-A");
+        assert_eq!(listing(&root)["summary"]["ready"], 0);
+        assert!(decide(&root, vec![item(&root, "HG-A", "accepted")]).is_err());
+    }
+    evidence(&root, "HG-A", "passed");
+    review(&root, "HG-A");
+    assert_eq!(listing(&root)["summary"]["ready"], 1);
+    call(
+        &root,
+        "spec-review",
+        &[
+            ("--id", "HG-A"),
+            ("--expected", &sha(&root)),
+            ("--verdict", "no_go"),
+            ("--reviewer", "reviewer"),
+            ("--conclusion", "Issue found"),
+        ],
+    )
+    .unwrap();
+    assert_eq!(listing(&root)["summary"]["ready"], 0);
+    review(&root, "HG-A");
+    assert_eq!(integrate(&root, "HG-A").status, "passed");
+    decide(&root, vec![item(&root, "HG-A", "accepted")]).unwrap();
+    fs::remove_file(root.join("result.txt")).unwrap();
+    let l = listing(&root);
+    assert_eq!(l["summary"]["ready"], 0);
+    assert_eq!(l["summary"]["stale"], 1);
+    call(
+        &root,
+        "spec-abandon",
+        &[
+            ("--id", &draft),
+            ("--expected", &sha(&root)),
+            ("--reason", "Not needed"),
+        ],
+    )
+    .unwrap();
+    let l = listing(&root);
+    assert_eq!(l["summary"]["abandoned"], 1);
+    assert_eq!(l["summary"]["total"], 2);
+}
+
+#[test]
+fn isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work() {
+    let root = root();
+    let mut ids = vec![];
+    for title in ["First", "Second", "Third"] {
+        let id = automatic(&root, title);
+        fill(&root, &id);
+        // Exercise the actual executable, recording its real machine report as evidence.
+        let output = Command::new(env!("CARGO_BIN_EXE_highgrade"))
+            .arg("--version")
+            .output()
+            .unwrap();
+        assert!(output.status.success());
+        let report: Value = serde_json::from_slice(&output.stdout).unwrap();
+        assert_eq!(report["status"], "passed");
+        fs::write(root.join("result.txt"), &output.stdout).unwrap();
+        fs::write(root.join("logic.txt"), "CLI version fixture").unwrap();
+        let mut c = change(&root, &id);
+        let sc = &mut c["operations"][0]["requirement"]["scenarios"][0];
+        sc["given"] = json!("Built highgrade CLI");
+        sc["when"] = json!("Run --version");
+        sc["then"] = json!("Exit 0 and JSON status passed");
+        sc["verification"] = json!("Spawn real executable and parse stdout");
+        save(&root, &id, &c);
+        write(
+            &root,
+            "evidence.json",
+            &json!({"command":"highgrade --version","captured_at":"2026-09-24T00:00:00Z","method":"native_report","scenario":format!("{id}-S1"),"outcome":"passed","observation":"Real CLI exited 0 with status passed","inputs":["logic.txt"],"report":"result.txt"}),
+        );
+        call(
+            &root,
+            "spec-evidence",
+            &[
+                ("--id", &id),
+                ("--expected", &sha(&root)),
+                ("--input", "evidence.json"),
+            ],
+        )
+        .unwrap();
+        review(&root, &id);
+        if title != "Third" {
+            assert_eq!(integrate(&root, &id).status, "passed");
+        }
+        ids.push(id);
+    }
+    assert_eq!(listing(&root)["summary"]["pending"], 3);
+    decide(
+        &root,
+        vec![
+            item(&root, &ids[0], "accepted"),
+            item(&root, &ids[1], "accepted"),
+            item(&root, &ids[2], "needs_changes"),
+        ],
+    )
+    .unwrap();
+    assert_eq!(listing(&root)["summary"]["accepted"], 2);
+    // Revise the returned active specification and re-review before the next decision.
+    let mut edited = change(&root, &ids[2]);
+    edited["title"] = json!("Third: clarified version check");
+    save(&root, &ids[2], &edited);
+    assert_eq!(listing(&root)["summary"]["stale"], 1);
+    review(&root, &ids[2]);
+    decide(&root, vec![item(&root, &ids[2], "accepted")]).unwrap();
+    assert_eq!(listing(&root)["summary"]["accepted"], 3);
+    assert_eq!(integrate(&root, &ids[2]).status, "passed");
+    assert_eq!(
+        change(&root, &ids[2])["acceptance"]
+            .as_array()
+            .unwrap()
+            .len(),
+        2
+    );
+}
+
+#[test]
+fn v1_migration_preserves_exact_backup_ids_evidence_and_review_digest() {
+    let root = root();
+    fs::create_dir_all(root.join(".highgrade/specs")).unwrap();
+    let original = include_bytes!("fixtures/native-v1/store.json");
+    fs::write(root.join(specs::STORE), original).unwrap();
+    fs::write(
+        root.join("logic.txt"),
+        include_bytes!("fixtures/native-v1/logic.txt"),
+    )
+    .unwrap();
+    fs::write(
+        root.join("result.txt"),
+        include_bytes!("fixtures/native-v1/result.txt"),
+    )
+    .unwrap();
+    let before = specs::load(&root).unwrap();
+    assert_eq!(check(&root, "HG-0042").status, "passed");
+    assert_eq!(listing(&root)["summary"]["pending"], 1);
+    assert_eq!(
+        original.as_slice(),
+        fs::read(root.join(specs::STORE)).unwrap()
+    );
+    assert!(
+        call(&root, "spec-new", &[("--expected", &before.1)])
+            .unwrap_err()
+            .contains("MigrationRequired")
+    );
+    let backup = root.join(format!(".highgrade/specs/backups/v1-{}.json", before.1));
+    fs::create_dir_all(backup.parent().unwrap()).unwrap();
+    fs::write(&backup, "unrelated backup").unwrap();
+    assert!(
+        call(&root, "spec-migrate", &[("--expected", &before.1)])
+            .unwrap_err()
+            .contains("BackupConflict")
+    );
+    assert_eq!(
+        original.as_slice(),
+        fs::read(root.join(specs::STORE)).unwrap()
+    );
+    fs::remove_file(&backup).unwrap();
+    // Migration writes the backup first; a failed atomic replacement leaves v1 intact.
+    let temp = if cfg!(windows) {
+        root.join(specs::STORE)
+            .with_extension(format!("{}.part", std::process::id()))
+    } else {
+        root.join(specs::STORE).with_extension("next")
+    };
+    fs::create_dir(&temp).unwrap();
+    assert!(call(&root, "spec-migrate", &[("--expected", &before.1)]).is_err());
+    assert_eq!(
+        original.as_slice(),
+        fs::read(root.join(specs::STORE)).unwrap()
+    );
+    assert_eq!(original.as_slice(), fs::read(&backup).unwrap());
+    fs::remove_dir(temp).unwrap();
+    call(&root, "spec-migrate", &[("--expected", &before.1)]).unwrap();
+    let after = specs::load(&root).unwrap();
+    assert_eq!(after.0.schema_version, 2);
+    assert_eq!(after.0.next_number, 43);
+    assert_eq!(after.0.changes, before.0.changes);
+    assert_eq!(check(&root, "HG-0042").status, "passed");
+    assert!(after.0.changes["HG-0042"].created_at.is_none());
+    assert!(after.0.changes["HG-0042"].acceptance.is_empty());
+    assert!(
+        call(&root, "spec-migrate", &[("--expected", &before.1)])
+            .unwrap_err()
+            .contains("StoreConflict")
+    );
+    call(&root, "spec-migrate", &[("--expected", &after.1)]).unwrap();
+    assert_eq!(sha(&root), after.1);
+    assert_eq!(automatic(&root, "New"), "HG-0043");
+    // v2 fields must be explicit, while unknown fields in v1 stay unsupported.
+    let mut malformed: Value = serde_json::from_slice(original).unwrap();
+    malformed["changes"]["HG-0042"]["title"] = json!("injected");
+    write(&root, specs::STORE, &malformed);
+    assert!(specs::load(&root).unwrap_err().contains("InvalidFormat"));
+    let mut malformed = serde_json::to_value(after.0).unwrap();
+    malformed.as_object_mut().unwrap().remove("next_number");
+    write(&root, specs::STORE, &malformed);
+    assert!(specs::load(&root).is_err());
+}
+
+#[test]
+fn returned_integrated_spec_is_corrected_by_a_new_change_without_rewriting_history() {
+    let root = root();
+    complete(&root, "HG-A");
+    assert_eq!(integrate(&root, "HG-A").status, "passed");
+    decide(&root, vec![item(&root, "HG-A", "needs_changes")]).unwrap();
+    let historical = change(&root, "HG-A");
+    let correction = automatic(&root, "Correction of HG-A");
+    fill(&root, &correction);
+    let mut c = change(&root, &correction);
+    let mut req =
+        serde_json::to_value(&specs::load(&root).unwrap().0.requirements["HG-A-R1"]).unwrap();
+    req["statement"] = json!("Return a checked sum including zero inputs");
+    c["operations"] = json!([{"action":"modify","requirement":req}]);
+    save(&root, &correction, &c);
+    fs::write(root.join("logic.txt"), "corrected calculator").unwrap();
+    fs::write(root.join("result.txt"), "corrected fixture: 0+3=3").unwrap();
+    write(
+        &root,
+        "evidence.json",
+        &json!({"command":"isolated correction fixture","captured_at":"2026-09-24T00:00:00Z","method":"manual","scenario":"HG-A-S1","outcome":"passed","observation":"Synthetic evidence used only to exercise store lifecycle","inputs":["logic.txt"],"report":"result.txt"}),
+    );
+    call(
+        &root,
+        "spec-evidence",
+        &[
+            ("--id", &correction),
+            ("--expected", &sha(&root)),
+            ("--input", "evidence.json"),
+        ],
+    )
+    .unwrap();
+    review(&root, &correction);
+    assert_eq!(integrate(&root, &correction).status, "passed");
+    decide(&root, vec![item(&root, &correction, "accepted")]).unwrap();
+    assert_eq!(change(&root, "HG-A"), historical);
+    assert_eq!(listing(&root)["summary"]["accepted"], 1);
+    assert_eq!(listing(&root)["summary"]["stale"], 1);
+    assert_eq!(
+        change(&root, "HG-A")["acceptance"][0]["decision"],
+        "needs_changes"
     );
 }

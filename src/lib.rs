@@ -78,7 +78,7 @@ pub fn doctor(root: &Path) -> Result<Report> {
             });
     if native_specs {
         match specs::load(&root) {
-            Ok((_, sha)) => r.measurements.push(json!({"spec_format":"native-v1","store_sha256":sha,"semantic_readiness":"not_assessed"})),
+            Ok((store, sha)) => r.measurements.push(json!({"spec_format":"native-v1","store_schema_version":store.schema_version,"store_sha256":sha,"semantic_readiness":"not_assessed"})),
             Err(e) => r.finding("failed", "NativeSpecsInvalid", specs::STORE, &e),
         }
     }

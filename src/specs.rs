@@ -9,6 +9,7 @@ use std::{
     io::Write,
     path::{Path, PathBuf},
 };
+mod progress;
 
 pub const STORE: &str = ".highgrade/specs/store.json";
 const LIMIT: u64 = 8 * 1024 * 1024;
@@ -109,6 +110,9 @@ pub struct Change {
     pub review: Option<Review>,
     pub archived: bool,
     pub abandoned_reason: Option<String>,
+    pub title: String,
+    pub created_at: Option<u64>,
+    pub acceptance: Vec<progress::Decision>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -121,6 +125,7 @@ pub struct Origin {
 #[serde(deny_unknown_fields)]
 pub struct Store {
     pub schema_version: u32,
+    pub next_number: u64,
     pub requirements: BTreeMap<String, Requirement>,
     pub changes: BTreeMap<String, Change>,
     pub retired_ids: BTreeSet<String>,
@@ -129,7 +134,8 @@ pub struct Store {
 impl Default for Store {
     fn default() -> Self {
         Self {
-            schema_version: 1,
+            schema_version: 2,
+            next_number: 1,
             requirements: BTreeMap::new(),
             changes: BTreeMap::new(),
             retired_ids: BTreeSet::new(),
@@ -167,11 +173,7 @@ fn load_unlocked(root: &Path) -> Result<(Store, String)> {
         return Ok((Store::default(), "absent".into()));
     }
     let bytes = paths::read_limited(&p, LIMIT)?;
-    let v: Value = decode(&bytes, STORE)?;
-    if v["schema_version"] != 1 {
-        return Err("UnsupportedVersion: /schema_version; supported: 1".into());
-    }
-    let s: Store = decode(&bytes, STORE)?;
+    let s = progress::decode_store(&bytes)?;
     integrity(&s)?;
     Ok((s, hash(&bytes)))
 }
@@ -195,6 +197,14 @@ fn requirement_ids(r: &Requirement, ids: &mut BTreeSet<String>) -> Result<()> {
     Ok(())
 }
 fn integrity(s: &Store) -> Result<()> {
+    if s.next_number == 0
+        || s.changes
+            .keys()
+            .filter_map(|id| progress::number(id))
+            .any(|n| n >= s.next_number)
+    {
+        return Err("InvalidCounter: next_number must exceed every assigned HG number".into());
+    }
     let mut ids = s.retired_ids.clone();
     for (key, r) in &s.requirements {
         if key != &r.id {
@@ -283,10 +293,7 @@ fn baseline(s: &Store) -> BTreeMap<String, String> {
         .collect()
 }
 fn revision(c: &Change) -> String {
-    let mut c = c.clone();
-    c.review = None;
-    c.archived = false;
-    digest(&c)
+    progress::revision(c)
 }
 fn change_mut<'a>(s: &'a mut Store, id: &str) -> Result<&'a mut Change> {
     let c = s
@@ -313,9 +320,9 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
     if op == "spec-schema" {
         let mut schema =
             serde_json::to_value(schemars::schema_for!(Store)).map_err(|e| e.to_string())?;
-        schema["properties"]["schema_version"]["const"] = json!(1);
+        schema["properties"]["schema_version"]["const"] = json!(2);
         report.measurements.push(
-            json!({"store":schema,"change":schemars::schema_for!(Change),"evidence_input":schemars::schema_for!(EvidenceInput)}),
+            json!({"store":schema,"change":schemars::schema_for!(Change),"evidence_input":schemars::schema_for!(EvidenceInput),"decision_input":schemars::schema_for!(progress::DecisionInput)}),
         );
         return Ok(report);
     }
@@ -328,6 +335,8 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             | "spec-integrate"
             | "spec-import"
             | "spec-abandon"
+            | "spec-migrate"
+            | "spec-decide"
     );
     let _guard = if mutation || paths::safe(&root, ".highgrade/specs")?.exists() {
         Some(lock(&root)?)
@@ -342,7 +351,18 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
     if mutation && get("--expected")? != sha {
         return Err(format!("StoreConflict: /; current_sha256={sha}"));
     }
-    let change_id = options.get("--id").map(String::as_str);
+    if mutation && store.schema_version == 1 && op != "spec-migrate" {
+        return Err("MigrationRequired: use spec-migrate with the observed store hash".into());
+    }
+    let allocated = if op == "spec-new" && !options.contains_key("--id") {
+        Some(format!("HG-{:04}", store.next_number))
+    } else {
+        None
+    };
+    let change_id = options
+        .get("--id")
+        .map(String::as_str)
+        .or(allocated.as_deref());
     if matches!(op, "spec-diff" | "spec-check" | "spec-validate") {
         get("--id")?;
     }
@@ -351,14 +371,14 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
     }
     match op {
         "spec-list" => {
-            report.measurements.push(json!({"requirements":store.requirements.keys().collect::<Vec<_>>(),"changes":store.changes.values().map(|c| json!({"id":c.id,"goal":c.goal,"archived":c.archived})).collect::<Vec<_>>(),"origins":store.origins.iter().map(|(id, origin)| (id, &origin.path)).collect::<BTreeMap<_,_>>()}));
+            report.measurements.push(progress::list(&root, &store));
             match catalog(&store) {
                 Ok(c) => report.measurements.push(json!({"trace_sha256":digest(&c)})),
                 Err(e) => report.finding("unknown", "ActiveSpecConflict", "/changes", &e),
             }
         }
         "spec-new" => {
-            let key = get("--id")?;
+            let key = change_id.expect("allocated id");
             check_id(key, "/changes/id")?;
             if store.changes.contains_key(key) {
                 return Err("ChangeExists: /changes/id".into());
@@ -377,6 +397,9 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             };
             let c = Change {
                 id: key.into(),
+                title: options.get("--title").cloned().unwrap_or_default(),
+                created_at: Some(progress::now()?),
+                acceptance: vec![],
                 goal: String::new(),
                 rationale: String::new(),
                 scope: String::new(),
@@ -395,6 +418,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 abandoned_reason: None,
             };
             store.changes.insert(key.into(), c);
+            progress::advance(&mut store, key)?;
         }
         "spec-save" => {
             let input = paths::safe(&root, get("--input")?)?;
@@ -407,6 +431,8 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 || incoming.review != c.review
                 || incoming.archived != c.archived
                 || incoming.abandoned_reason != c.abandoned_reason
+                || incoming.created_at != c.created_at
+                || incoming.acceptance != c.acceptance
             {
                 return Err(
                     "ProtectedField: /change; preserve id, baseline, evidence, review, archived"
@@ -503,6 +529,10 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             get("--input")?,
             get("--source")?,
         )?,
+        "spec-migrate" => progress::migrate(&root, &mut store, &sha, &mut report)?,
+        "spec-decide" => {
+            progress::decide(&root, &mut store, &paths::safe(&root, get("--input")?)?)?
+        }
         _ => return Err("Usage: unknown spec operation".into()),
     }
     if mutation {
@@ -515,12 +545,12 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
     };
     report
         .measurements
-        .push(json!({"store_sha256":current_sha,"schema_version":1}));
+        .push(json!({"store_sha256":current_sha,"schema_version":store.schema_version}));
     if let Some(key) = change_id {
         if let Some(c) = store.changes.get(key) {
             report
                 .measurements
-                .push(json!({"change":c,"change_sha256":revision(c)}));
+                .push(json!({"change":c,"change_sha256":revision(c),"inputs_sha256":progress::inputs_hash(&root,c).ok()}));
         }
     }
     Ok(report)
@@ -535,9 +565,12 @@ fn readiness(root: &Path, store: &Store, c: &Change, report: &mut Report, comple
             "Change is not ready for integration.",
         )
     };
-    if c.archived {
+    if c.abandoned_reason.is_some() {
         missing("/archived", "AlreadyIntegrated");
         return;
+    }
+    if c.created_at.is_some() && c.title.trim().is_empty() {
+        missing("/title", "DraftIncomplete");
     }
     for (field, value) in [
         ("goal", &c.goal),
@@ -574,6 +607,7 @@ fn readiness(root: &Path, store: &Store, c: &Change, report: &mut Report, comple
         let loc = format!("/operations/{i}");
         let old = store.requirements.get(d.id());
         match d {
+            _ if c.archived => {}
             Delta::Add { .. } => {
                 if old.is_some()
                     || store.retired_ids.contains(d.id())
@@ -623,10 +657,12 @@ fn readiness(root: &Path, store: &Store, c: &Change, report: &mut Report, comple
             }
         }
     }
-    let mut ids = store.retired_ids.clone();
-    for r in candidate.values() {
-        if requirement_ids(r, &mut ids).is_err() {
-            missing("/operations", "IdConflict");
+    if !c.archived {
+        let mut ids = store.retired_ids.clone();
+        for r in candidate.values() {
+            if requirement_ids(r, &mut ids).is_err() {
+                missing("/operations", "IdConflict");
+            }
         }
     }
     if complete
@@ -777,6 +813,9 @@ fn import(root: &Path, store: &mut Store, key: &str, input: &str, source: &str) 
     );
     let c = Change {
         id: key.into(),
+        title: format!("Transfer {}", r.id),
+        created_at: Some(progress::now()?),
+        acceptance: vec![],
         goal: format!("Transfer {} without changing its contract", r.id),
         rationale:
             "Explicit selected legacy transfer; compare original_text during independent review"
@@ -797,6 +836,7 @@ fn import(root: &Path, store: &mut Store, key: &str, input: &str, source: &str) 
         abandoned_reason: None,
     };
     store.changes.insert(key.into(), c);
+    progress::advance(store, key)?;
     Ok(())
 }
 
