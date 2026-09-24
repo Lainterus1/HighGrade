@@ -1,0 +1,17 @@
+{
+  "rust-contracts": {
+    "program": "cargo",
+    "args": [
+      "test",
+      "--locked",
+      "--test",
+      "{target}",
+      "{selector}",
+      "--",
+      "--exact"
+    ],
+    "cwd": ".",
+    "format": "cargo-test",
+    "timeout_seconds": 60
+  }
+}

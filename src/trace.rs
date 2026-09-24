@@ -415,11 +415,12 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
     let (native, native_sha) = crate::specs::load(&root)?;
     let mut stale = false;
     for (rel, expected) in source_hashes {
-        let current_hash = if rel == crate::specs::STORE {
-            crate::specs::catalog_hash(&native)?
-        } else {
-            hash(&load(&root, rel, 32 * 1024 * 1024)?)
-        };
+        let current_hash =
+            if rel == crate::specs::STORE || rel == &crate::specs::catalog_path(&root)? {
+                crate::specs::catalog_hash(&native)?
+            } else {
+                hash(&load(&root, rel, 32 * 1024 * 1024)?)
+            };
         if expected.as_str() != Some(&current_hash) {
             stale = true;
             r.finding(
@@ -507,7 +508,10 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
                 .changes
                 .values()
                 .any(|c| !c.archived && !c.imports.is_empty()))
-            && !specs.iter().any(|p| p == crate::specs::STORE)
+            && !specs.iter().any(|p| {
+                p == crate::specs::STORE
+                    || p == &crate::specs::catalog_path(&root).unwrap_or_default()
+            })
         {
             r.finding(
                 "unknown",
@@ -518,7 +522,7 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
         }
     }
     for rel in &specs {
-        if rel == crate::specs::STORE {
+        if rel == crate::specs::STORE || rel == &crate::specs::catalog_path(&root)? {
             for req in crate::specs::catalog(&native)?.values() {
                 if !requirements.insert(req.id.clone()) {
                     r.finding("failed", "DuplicateId", rel, &req.id);

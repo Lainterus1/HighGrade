@@ -1,0 +1,63 @@
+{
+  "abandoned_reason": null,
+  "archived": true,
+  "baseline": {},
+  "checks": [
+    {
+      "action": "Вызвать sum",
+      "file": "tests/math.rs",
+      "id": "sum",
+      "inputs": [
+        "Cargo.toml",
+        "src/lib.rs",
+        "tests/math.rs"
+      ],
+      "observation": "Результат равен 5",
+      "preparation": "Передать числа 2 и 3",
+      "runner": "cargo",
+      "scenario_ids": [
+        "HG-0001-S1"
+      ],
+      "selector": "sum"
+    }
+  ],
+  "created_at": 1790270849,
+  "depends_on": [],
+  "goal": "Вычислять сумму двух чисел",
+  "id": "HG-0001",
+  "imports": {},
+  "operations": [
+    {
+      "action": "add",
+      "requirement": {
+        "id": "HG-0001-R1",
+        "scenarios": [
+          {
+            "given": "Числа 2 и 3",
+            "id": "HG-0001-S1",
+            "then": "Получено 5",
+            "verification": "cargo test --test math sum -- --exact",
+            "when": "Вызвана sum(2, 3)"
+          }
+        ],
+        "statement": "Функция возвращает сумму двух переданных чисел",
+        "title": "Сложение целых чисел"
+      }
+    }
+  ],
+  "questions": [],
+  "rationale": "Пользователю нужен проверяемый расчёт",
+  "related_to": [],
+  "scope": "Функция sum без внешних зависимостей",
+  "tags": [
+    "math"
+  ],
+  "tasks": [
+    {
+      "description": "Реализовать и проверить сложение",
+      "done": true,
+      "id": "HG-0001-T1"
+    }
+  ],
+  "title": "Сумма двух целых чисел"
+}

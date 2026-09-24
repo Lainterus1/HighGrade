@@ -74,9 +74,15 @@ fn native_owner_replaces_only_imported_markdown_and_ignores_evidence_metadata() 
         "selected.json",
         &serde_json::to_value(&store.requirements["HG-MATH-REQ"]).unwrap(),
     );
+    save(
+        &root,
+        STORE,
+        &serde_json::to_value(Store::default()).unwrap(),
+    );
+    let expected = highgrade::specs::load(&root).unwrap().1;
     let args = [
         ("--id", "HG-IMPORT"),
-        ("--expected", "absent"),
+        ("--expected", &expected),
         ("--input", "selected.json"),
         ("--source", "openspec/specs/math/spec.md"),
     ]

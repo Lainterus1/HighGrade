@@ -20,7 +20,15 @@ fn root() -> PathBuf {
             NEXT.fetch_add(1, Ordering::Relaxed)
         ));
         match fs::create_dir(&p) {
-            Ok(()) => return p,
+            Ok(()) => {
+                fs::create_dir_all(p.join(".highgrade/specs")).unwrap();
+                fs::write(
+                    p.join(specs::STORE),
+                    serde_json::to_vec_pretty(&Store::default()).unwrap(),
+                )
+                .unwrap();
+                return p;
+            }
             Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => continue,
             Err(e) => panic!("isolated test directory: {e}"),
         }

@@ -116,6 +116,18 @@ pub(super) fn revision(c: &Change) -> String {
             if !c.title.is_empty() {
                 s.serialize_field("title", &c.title)?;
             }
+            if !c.depends_on.is_empty() {
+                s.serialize_field("depends_on", &c.depends_on)?;
+            }
+            if !c.related_to.is_empty() {
+                s.serialize_field("related_to", &c.related_to)?;
+            }
+            if !c.checks.is_empty() {
+                s.serialize_field("checks", &c.checks)?;
+            }
+            if !c.runs.is_empty() {
+                s.serialize_field("runs", &c.runs)?;
+            }
             s.end()
         }
     }

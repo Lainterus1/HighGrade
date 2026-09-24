@@ -67,7 +67,8 @@ pub fn doctor(root: &Path) -> Result<Report> {
     r.measurements.push(
         json!({"highgrade_version":env!("CARGO_PKG_VERSION"),"platform":std::env::consts::OS}),
     );
-    let native_specs = paths::safe(&root, specs::STORE)?.exists()
+    let native_specs = paths::safe(&root, &specs::catalog_path(&root)?)?.exists()
+        || paths::safe(&root, specs::STORE)?.exists()
         || paths::safe(&root, ".highgrade/project/INSTRUCTIONS.md")
             .ok()
             .and_then(|p| paths::read_limited(&p, 1024 * 1024).ok())

@@ -1,0 +1,848 @@
+{
+  "operation": "spec-run",
+  "status": "passed",
+  "findings": [],
+  "measurements": [
+    {
+      "check": "check-1",
+      "run": {
+        "check": "check-1",
+        "check_sha256": "8eb08dd00295d533e25ddc3e9c65d75cc0625b8a04ff65bec29838fa5dad8f9f",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--test",
+          "catalog_contracts",
+          "multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit",
+          "--",
+          "--exact"
+        ],
+        "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0004/evidence/check-1-1790271131306568000.log": "66c96e811ddbe205512b1206fefaa44034cdc36ef4d2a9866a9631c225c8df93",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "inputs_after": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0004/evidence/check-1-1790271131306568000.log",
+        "started_at": 1790271131
+      }
+    },
+    {
+      "check": "check-2",
+      "run": {
+        "check": "check-2",
+        "check_sha256": "5e42d1f50c4fe874dd27790190069ec52cb9a7842f8d304eeca572d5556795d4",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--test",
+          "catalog_contracts",
+          "explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift",
+          "--",
+          "--exact"
+        ],
+        "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0004/evidence/check-2-1790271132255178000.log": "0a09ac1b48a45412097d2145d107c92da49cae0b6c5bcc9fbec22c1c83852e32",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "inputs_after": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0004/evidence/check-2-1790271132255178000.log",
+        "started_at": 1790271132
+      }
+    },
+    {
+      "check": "check-3",
+      "run": {
+        "check": "check-3",
+        "check_sha256": "2f8874cee456a38fa3cdbc60cbe19673bcddf3ab7e8e00ae58935d38b99c7a1a",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--test",
+          "catalog_contracts",
+          "batch_failure_keeps_prior_results_and_each_scenario_owns_its_report",
+          "--",
+          "--exact"
+        ],
+        "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0004/evidence/check-3-1790271134578991900.log": "3f51a7475ce1e3a404b986634f67123484a6084515ab8a34c51c0e91080c39b6",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "inputs_after": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0004/evidence/check-3-1790271134578991900.log",
+        "started_at": 1790271134
+      }
+    },
+    {
+      "check": "check-4",
+      "run": {
+        "check": "check-4",
+        "check_sha256": "b7d62c2bd832eaecf8f118a65112723886f70ab5abed683fbe364a535bafa392",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--test",
+          "catalog_contracts",
+          "cargo_runner_requires_a_real_exact_test",
+          "--",
+          "--exact"
+        ],
+        "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0004/evidence/check-4-1790271135439190900.log": "a8ece737748be2148eb15aef582d9d1d4edbe442a72d500eef6862f8b55f4805",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "inputs_after": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0004/evidence/check-4-1790271135439190900.log",
+        "started_at": 1790271135
+      }
+    },
+    {
+      "schema_version": 3,
+      "store_sha256": "b3f6eca65b424c31c38256376fd8e2c641459a7e1ada0c9ff64942fe21e661d0"
+    },
+    {
+      "change": {
+        "abandoned_reason": null,
+        "acceptance": [],
+        "archived": false,
+        "baseline": {
+          "HG-SP-R1": "dd39985dd4a3ed551b81f93bc4753e69943b8d8f25d66bc8e5654935052b36a1",
+          "HG-SP-R2": "5a07b1b8d4cffbb296ed53a3dcf06c7049ae05cedba3a687fc32384dce14eff7",
+          "HG-SP-R3": "f06be0b5f8966594ef9affd877b0128cc27b3e27a7a588b14c5b4f7b04d44ec6",
+          "HG-SP-R4": "e05bfe285bd85c023a9462849bfb752b9b282b11b0f719de80020a3b87a2aea1",
+          "HG-SP-R5": "51e9705811989ed06b7d50879fea6c1191208e971b933e641c0a16b9742dace9"
+        },
+        "checks": [
+          {
+            "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+            "file": "tests/catalog_contracts.rs",
+            "id": "check-1",
+            "inputs": [
+              "Cargo.lock",
+              "Cargo.toml",
+              "src/bootstrap.rs",
+              "src/global.rs",
+              "src/inspect.rs",
+              "src/install.rs",
+              "src/lib.rs",
+              "src/main.rs",
+              "src/package.rs",
+              "src/paths.rs",
+              "src/specs.rs",
+              "src/specs/checks.rs",
+              "src/specs/progress.rs",
+              "src/specs/relations.rs",
+              "src/specs/storage.rs",
+              "src/trace.rs",
+              "tests/catalog_contracts.rs",
+              "tests/fixtures/native-v1/store.json"
+            ],
+            "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+            "preparation": "Изолированный временный проект и явно заданные входы сценария",
+            "runner": "rust-contracts",
+            "scenario_ids": [
+              "HG-0004-S1"
+            ],
+            "selector": "multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit"
+          },
+          {
+            "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+            "file": "tests/catalog_contracts.rs",
+            "id": "check-2",
+            "inputs": [
+              "Cargo.lock",
+              "Cargo.toml",
+              "src/bootstrap.rs",
+              "src/global.rs",
+              "src/inspect.rs",
+              "src/install.rs",
+              "src/lib.rs",
+              "src/main.rs",
+              "src/package.rs",
+              "src/paths.rs",
+              "src/specs.rs",
+              "src/specs/checks.rs",
+              "src/specs/progress.rs",
+              "src/specs/relations.rs",
+              "src/specs/storage.rs",
+              "src/trace.rs",
+              "tests/catalog_contracts.rs",
+              "tests/fixtures/native-v1/store.json"
+            ],
+            "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+            "preparation": "Изолированный временный проект и явно заданные входы сценария",
+            "runner": "rust-contracts",
+            "scenario_ids": [
+              "HG-0004-S2"
+            ],
+            "selector": "explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift"
+          },
+          {
+            "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+            "file": "tests/catalog_contracts.rs",
+            "id": "check-3",
+            "inputs": [
+              "Cargo.lock",
+              "Cargo.toml",
+              "src/bootstrap.rs",
+              "src/global.rs",
+              "src/inspect.rs",
+              "src/install.rs",
+              "src/lib.rs",
+              "src/main.rs",
+              "src/package.rs",
+              "src/paths.rs",
+              "src/specs.rs",
+              "src/specs/checks.rs",
+              "src/specs/progress.rs",
+              "src/specs/relations.rs",
+              "src/specs/storage.rs",
+              "src/trace.rs",
+              "tests/catalog_contracts.rs",
+              "tests/fixtures/native-v1/store.json"
+            ],
+            "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+            "preparation": "Изолированный временный проект и явно заданные входы сценария",
+            "runner": "rust-contracts",
+            "scenario_ids": [
+              "HG-0004-S2"
+            ],
+            "selector": "batch_failure_keeps_prior_results_and_each_scenario_owns_its_report"
+          },
+          {
+            "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+            "file": "tests/catalog_contracts.rs",
+            "id": "check-4",
+            "inputs": [
+              "Cargo.lock",
+              "Cargo.toml",
+              "src/bootstrap.rs",
+              "src/global.rs",
+              "src/inspect.rs",
+              "src/install.rs",
+              "src/lib.rs",
+              "src/main.rs",
+              "src/package.rs",
+              "src/paths.rs",
+              "src/specs.rs",
+              "src/specs/checks.rs",
+              "src/specs/progress.rs",
+              "src/specs/relations.rs",
+              "src/specs/storage.rs",
+              "src/trace.rs",
+              "tests/catalog_contracts.rs",
+              "tests/fixtures/native-v1/store.json"
+            ],
+            "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+            "preparation": "Изолированный временный проект и явно заданные входы сценария",
+            "runner": "rust-contracts",
+            "scenario_ids": [
+              "HG-0004-S1",
+              "HG-0004-S2"
+            ],
+            "selector": "cargo_runner_requires_a_real_exact_test"
+          }
+        ],
+        "created_at": 1790269057,
+        "depends_on": [
+          {
+            "id": "HG-0003",
+            "reason": "Используется каталог и метаданные предыдущего этапа"
+          }
+        ],
+        "evidence": {
+          "HG-0004-S1": {
+            "captured_at": "1790271135",
+            "command": "spec-run --id HG-0004 --check all",
+            "files": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/changes/HG-0004/evidence/check-1-1790271131306568000.log": "66c96e811ddbe205512b1206fefaa44034cdc36ef4d2a9866a9631c225c8df93",
+              "specs/changes/HG-0004/evidence/check-4-1790271135439190900.log": "a8ece737748be2148eb15aef582d9d1d4edbe442a72d500eef6862f8b55f4805",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "method": "native_report",
+            "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+            "outcome": "passed",
+            "report": "specs/changes/HG-0004/evidence/check-4-1790271135439190900.log",
+            "scenario": "HG-0004-S1",
+            "scenario_sha256": "854bba39d0ed767a2b7e48da6d1b50e3a59e05d91b59150b6e00745acd070598"
+          },
+          "HG-0004-S2": {
+            "captured_at": "1790271135",
+            "command": "spec-run --id HG-0004 --check all",
+            "files": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/changes/HG-0004/evidence/check-2-1790271132255178000.log": "0a09ac1b48a45412097d2145d107c92da49cae0b6c5bcc9fbec22c1c83852e32",
+              "specs/changes/HG-0004/evidence/check-3-1790271134578991900.log": "3f51a7475ce1e3a404b986634f67123484a6084515ab8a34c51c0e91080c39b6",
+              "specs/changes/HG-0004/evidence/check-4-1790271135439190900.log": "a8ece737748be2148eb15aef582d9d1d4edbe442a72d500eef6862f8b55f4805",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "method": "native_report",
+            "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+            "outcome": "passed",
+            "report": "specs/changes/HG-0004/evidence/check-4-1790271135439190900.log",
+            "scenario": "HG-0004-S2",
+            "scenario_sha256": "dde68e20a8d55d1ae8514610911a72485e765b19f3b0549f2a4cd0cde948c39a"
+          }
+        },
+        "goal": "Привязки проверок и самостоятельный workflow",
+        "history": [
+          {
+            "evidence": {},
+            "recorded_at": 1790271136,
+            "review": null
+          }
+        ],
+        "id": "HG-0004",
+        "imports": {},
+        "operations": [
+          {
+            "action": "add",
+            "requirement": {
+              "id": "HG-0004-R1",
+              "scenarios": [
+                {
+                  "given": "Сценарии, штатные тесты и конфигурация проекта",
+                  "id": "HG-0004-S1",
+                  "then": "Неверные ссылки обнаружены; чтение каталога ничего не запускает, выбранные тесты реально исполняются",
+                  "verification": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+                  "when": "Сохранить привязку и вызвать явную команду запуска"
+                }
+              ],
+              "statement": "Спека связывает сценарии с проектным раннером, относительным файлом и селектором теста; один тест может относиться к нескольким сценариям, ручная проверка допустима.",
+              "title": "Проверки сценариев"
+            }
+          },
+          {
+            "action": "add",
+            "requirement": {
+              "id": "HG-0004-R2",
+              "scenarios": [
+                {
+                  "given": "Изолированный проект с настоящими проходящим, падающим и пропускаемым тестами",
+                  "id": "HG-0004-S2",
+                  "then": "Исходы различимы и связаны со сценариями; результаты сохраняются отдельно; команда чтения не выполняет код",
+                  "verification": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+                  "when": "Запустить выбранную проверку и всю спеку"
+                }
+              ],
+              "statement": "Запуск проверок фиксирует команду, входы до/после, фактический результат и отчёт. Пустой набор, skip, сбой раннера, таймаут и дрейф не означают успешное доказательство.",
+              "title": "Честный запуск"
+            }
+          },
+          {
+            "action": "add",
+            "requirement": {
+              "id": "HG-0004-R3",
+              "scenarios": [
+                {
+                  "given": "Установленная в изолированном профиле Поставка и проект без исходников High Grade",
+                  "id": "HG-0004-S3",
+                  "then": "Данные доступны, результат объясним, структура и ссылки согласованы; актуальный русский пример и документация показывают реальный формат",
+                  "verification": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+                  "when": "Пройти создание, поиск, проверку и повторную проверку; удалить служебную конфигурацию и прочитать каталог"
+                }
+              ],
+              "statement": "Поставка и init/task/spec/work/clear/approve/update используют проектный каталог, язык проекта, связи, теги и проверки; миграция конкретного проекта явная, установка не переносит данные молча.",
+              "title": "Процедуры и документы"
+            }
+          }
+        ],
+        "questions": [],
+        "rationale": "Согласованная переработка по запросу автора: переносимость проектных данных, удобный контекст и проверки без лишней сложности.",
+        "review": null,
+        "runs": [
+          {
+            "check": "check-1",
+            "check_sha256": "8eb08dd00295d533e25ddc3e9c65d75cc0625b8a04ff65bec29838fa5dad8f9f",
+            "command": [
+              "cargo",
+              "test",
+              "--locked",
+              "--test",
+              "catalog_contracts",
+              "multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit",
+              "--",
+              "--exact"
+            ],
+            "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+            "files": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/changes/HG-0004/evidence/check-1-1790271131306568000.log": "66c96e811ddbe205512b1206fefaa44034cdc36ef4d2a9866a9631c225c8df93",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "inputs_after": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+            "outcome": "passed",
+            "report": "specs/changes/HG-0004/evidence/check-1-1790271131306568000.log",
+            "started_at": 1790271131
+          },
+          {
+            "check": "check-2",
+            "check_sha256": "5e42d1f50c4fe874dd27790190069ec52cb9a7842f8d304eeca572d5556795d4",
+            "command": [
+              "cargo",
+              "test",
+              "--locked",
+              "--test",
+              "catalog_contracts",
+              "explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift",
+              "--",
+              "--exact"
+            ],
+            "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+            "files": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/changes/HG-0004/evidence/check-2-1790271132255178000.log": "0a09ac1b48a45412097d2145d107c92da49cae0b6c5bcc9fbec22c1c83852e32",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "inputs_after": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+            "outcome": "passed",
+            "report": "specs/changes/HG-0004/evidence/check-2-1790271132255178000.log",
+            "started_at": 1790271132
+          },
+          {
+            "check": "check-3",
+            "check_sha256": "2f8874cee456a38fa3cdbc60cbe19673bcddf3ab7e8e00ae58935d38b99c7a1a",
+            "command": [
+              "cargo",
+              "test",
+              "--locked",
+              "--test",
+              "catalog_contracts",
+              "batch_failure_keeps_prior_results_and_each_scenario_owns_its_report",
+              "--",
+              "--exact"
+            ],
+            "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+            "files": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/changes/HG-0004/evidence/check-3-1790271134578991900.log": "3f51a7475ce1e3a404b986634f67123484a6084515ab8a34c51c0e91080c39b6",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "inputs_after": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+            "outcome": "passed",
+            "report": "specs/changes/HG-0004/evidence/check-3-1790271134578991900.log",
+            "started_at": 1790271134
+          },
+          {
+            "check": "check-4",
+            "check_sha256": "b7d62c2bd832eaecf8f118a65112723886f70ab5abed683fbe364a535bafa392",
+            "command": [
+              "cargo",
+              "test",
+              "--locked",
+              "--test",
+              "catalog_contracts",
+              "cargo_runner_requires_a_real_exact_test",
+              "--",
+              "--exact"
+            ],
+            "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+            "files": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/changes/HG-0004/evidence/check-4-1790271135439190900.log": "a8ece737748be2148eb15aef582d9d1d4edbe442a72d500eef6862f8b55f4805",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "inputs_after": {
+              "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+              "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+              "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+              "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+              "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+              "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+              "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+              "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+              "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+              "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+              "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+              "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+              "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+              "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+              "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+              "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+              "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+              "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+              "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+            },
+            "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+            "outcome": "passed",
+            "report": "specs/changes/HG-0004/evidence/check-4-1790271135439190900.log",
+            "started_at": 1790271135
+          }
+        ],
+        "scope": "CLI, процедуры Поставки, шаблоны, документация и изолированные проверки; без публикации, глобальной активации, UI, наследования и изменения OpenSpec/других проектов.",
+        "tags": [
+          "delivery",
+          "verification"
+        ],
+        "tasks": [
+          {
+            "description": "Реализация согласованного поведения",
+            "done": true,
+            "id": "HG-0004-T1"
+          },
+          {
+            "description": "Фокусные проверки сохранности и отрицательных исходов",
+            "done": true,
+            "id": "HG-0004-T2"
+          },
+          {
+            "description": "Документы, доказательства, независимое ревью и техническое включение",
+            "done": true,
+            "id": "HG-0004-T3"
+          }
+        ],
+        "title": "Привязки проверок и самостоятельный workflow"
+      },
+      "change_sha256": "6af5f7a6b083cb3c9baf26c0dc32aa0d05851f7ce4cb45d18d6bd87c06870003",
+      "inputs_sha256": "fed478ce2f47c5fee3e9260de09272d242877f61d71f1ebc8adee605b8f9f566",
+      "links": {
+        "depends_on": [
+          {
+            "id": "HG-0003",
+            "integrated": true,
+            "reason": "Используется каталог и метаданные предыдущего этапа",
+            "title": "Связи, теги и выборочный контекст"
+          }
+        ],
+        "related_to": [],
+        "same_requirements": []
+      }
+    }
+  ],
+  "limitations": [
+    "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+  ]
+}

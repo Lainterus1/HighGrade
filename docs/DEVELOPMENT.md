@@ -1,23 +1,21 @@
 # Разработка и проверки
 
-Команды выполняются из корня Проекта. Задачи — в `.highgrade/specs/store.json`; устройство — в [ARCHITECTURE](ARCHITECTURE.md).
+Команды выполняются из корня Проекта. Задачи — в `specs/changes/<ID>/spec.json`, результаты — в соседнем `results.json`; устройство — в [ARCHITECTURE](ARCHITECTURE.md).
 
 ## Новые задачи: нативные спецификации
 
 Используй CLI активной Поставки, чтобы поведение не зависело от незавершённых правок исходников:
 
 ```powershell
-$hgProfile = $env:USERPROFILE
-$hgActive = Get-Content "$hgProfile/.highgrade/global/active.json" -Raw | ConvertFrom-Json
-$hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.exe"
-& $hgExe global-status --profile $hgProfile
+cargo build --locked
+$hgExe = Join-Path $PWD "target/debug/highgrade.exe"
 & $hgExe spec-list --root "$PWD"
 & $hgExe spec-schema --root "$PWD"
 ```
 
-Текущий store v2 обслуживает установленная Поставка 0.2.13; исходную CLI используй при разработке инструмента. Первый spec-list в пустом проекте возвращает store_sha256=absent. Для разрешённой задачи вызови spec-new с --title и этим хешем; номер назначает CLI; затем spec-read, редактирование объекта change и spec-save с хешем прочитанного снимка. Не редактируй store напрямую. Полные параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
+Каталог v3 обслуживает собранная CLI 0.2.14: `target/debug/highgrade.exe` (или release). Общая установленная 0.2.13 остаётся прежней и для записи нового каталога непригодна; активация — отдельное действие. Первый spec-list в пустом проекте возвращает store_sha256=absent. Маршрут: spec-new --title с хешем → spec-read → редактирование change → spec-save с хешем этого снимка. Не редактируй документы каталога напрямую. Полные параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
 
-Маршрут: spec-validate → реализация и штатные тесты → spec-evidence → независимое ревью и spec-review → spec-check → spec-integrate. Пустой шаблон остаётся черновиком. Включение требований не разрешает commit/push. spec-decide сохраняет человеческое решение, spec-list — JSON-прогресс; миграция v1 → v2 через spec-migrate с backup. Фокусные тесты самого инструмента: `cargo test --locked --test spec_contracts --test trace_contracts`.
+Маршрут: spec-validate → реализация и штатные тесты → spec-evidence → независимое ревью и spec-review → spec-check → spec-integrate. Пустой шаблон остаётся черновиком. Включение требований не разрешает commit/push. spec-decide сохраняет человеческое решение, spec-list — JSON-прогресс; переход store v1/v2 → каталог через spec-migrate --to directory с точным backup. Повторная проверка интегрированной спеки обновляет результаты и требует свежего ревью; прежняя приёмка не переносится автоматически. Фокусные тесты самого инструмента: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
 
 ## Сохранённый OpenSpec-каталог
 
@@ -70,8 +68,6 @@ cargo build --release --locked
 ```
 
 Установку проверяй в изолированном профиле; обновление описано в [справочнике](../kit/references/cli.md). Код 2/unknown у диагностики не является PASS.
-
-Профиль `dev`/`test` сохраняет номера строк и отключает incremental для ограничения размера `target/debug`; `release` независим.
 
 ## Структура и документы
 

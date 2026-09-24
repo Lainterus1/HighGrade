@@ -1,4 +1,4 @@
-//! Native specifications. One atomic store is the authority; reports remain external.
+//! Native specifications. Project-owned catalog with legacy store compatibility; reports remain external.
 use crate::{Report, Result, hash, paths};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
@@ -9,7 +9,11 @@ use std::{
     io::Write,
     path::{Path, PathBuf},
 };
+mod checks;
 mod progress;
+mod relations;
+mod storage;
+pub use storage::{CATALOG, catalog_path};
 
 pub const STORE: &str = ".highgrade/specs/store.json";
 const LIMIT: u64 = 8 * 1024 * 1024;
@@ -113,6 +117,40 @@ pub struct Change {
     pub title: String,
     pub created_at: Option<u64>,
     pub acceptance: Vec<progress::Decision>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub history: Vec<ResultSnapshot>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub depends_on: Vec<relations::Link>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub related_to: Vec<relations::Link>,
+    #[serde(default, skip_serializing_if = "BTreeSet::is_empty")]
+    pub tags: BTreeSet<String>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub checks: Vec<checks::Check>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub runs: Vec<checks::Run>,
+}
+#[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct ResultSnapshot {
+    pub recorded_at: u64,
+    pub evidence: BTreeMap<String, Evidence>,
+    pub review: Option<Review>,
+}
+fn result_mut<'a>(s: &'a mut Store, key: &str) -> Result<&'a mut Change> {
+    if s.schema_version != 3 {
+        return change_mut(s, key);
+    }
+    let c = s.changes.get_mut(key).ok_or("ChangeMissing")?;
+    if c.abandoned_reason.is_some() {
+        return Err("AbandonedChange".into());
+    }
+    c.history.push(ResultSnapshot {
+        recorded_at: progress::now()?,
+        evidence: c.evidence.clone(),
+        review: c.review.clone(),
+    });
+    Ok(c)
 }
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -130,6 +168,10 @@ pub struct Store {
     pub changes: BTreeMap<String, Change>,
     pub retired_ids: BTreeSet<String>,
     pub origins: BTreeMap<String, Origin>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub tags: BTreeMap<String, relations::Tag>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub runners: BTreeMap<String, checks::Runner>,
 }
 impl Default for Store {
     fn default() -> Self {
@@ -140,6 +182,8 @@ impl Default for Store {
             changes: BTreeMap::new(),
             retired_ids: BTreeSet::new(),
             origins: BTreeMap::new(),
+            tags: BTreeMap::new(),
+            runners: BTreeMap::new(),
         }
     }
 }
@@ -161,16 +205,31 @@ fn decode<T: serde::de::DeserializeOwned>(bytes: &[u8], field: &str) -> Result<T
 }
 pub fn load(root: &Path) -> Result<(Store, String)> {
     let parent = paths::safe(root, ".highgrade/specs")?;
-    if !parent.exists() {
-        return Ok((Store::default(), "absent".into()));
+    if !parent.exists() && !storage::exists(root)? {
+        return Ok((
+            Store {
+                schema_version: 3,
+                ..Store::default()
+            },
+            "absent".into(),
+        ));
     }
     let _guard = lock(root)?;
     load_unlocked(root)
 }
 fn load_unlocked(root: &Path) -> Result<(Store, String)> {
+    if storage::exists(root)? {
+        return storage::load(root);
+    }
     let p = paths::safe(root, STORE)?;
     if !p.exists() {
-        return Ok((Store::default(), "absent".into()));
+        return Ok((
+            Store {
+                schema_version: 3,
+                ..Store::default()
+            },
+            "absent".into(),
+        ));
     }
     let bytes = paths::read_limited(&p, LIMIT)?;
     let s = progress::decode_store(&bytes)?;
@@ -197,6 +256,15 @@ fn requirement_ids(r: &Requirement, ids: &mut BTreeSet<String>) -> Result<()> {
     Ok(())
 }
 fn integrity(s: &Store) -> Result<()> {
+    relations::validate(s)?;
+    checks::validate(s)?;
+    let mut names = BTreeSet::new();
+    for key in s.changes.keys() {
+        if !names.insert(key.to_ascii_lowercase()) {
+            return Err("CaseInsensitiveIdConflict: changes".into());
+        }
+    }
+
     if s.next_number == 0
         || s.changes
             .keys()
@@ -265,6 +333,9 @@ fn lock(root: &Path) -> Result<Lock> {
 }
 fn write(root: &Path, s: &Store) -> Result<()> {
     integrity(s)?;
+    if s.schema_version == 3 {
+        return storage::write(root, s);
+    }
     let bytes = serde_json::to_vec_pretty(s).map_err(|e| e.to_string())?;
     if bytes.len() as u64 > LIMIT {
         return Err("StoreTooLarge: split project scope before extending store".into());
@@ -322,8 +393,30 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             serde_json::to_value(schemars::schema_for!(Store)).map_err(|e| e.to_string())?;
         schema["properties"]["schema_version"]["const"] = json!(2);
         report.measurements.push(
-            json!({"store":schema,"change":schemars::schema_for!(Change),"evidence_input":schemars::schema_for!(EvidenceInput),"decision_input":schemars::schema_for!(progress::DecisionInput)}),
+            json!({"directory_format":storage::schema(),"store":schema,"change":schemars::schema_for!(Change),"evidence_input":schemars::schema_for!(EvidenceInput),"decision_input":schemars::schema_for!(progress::DecisionInput)}),
         );
+        return Ok(report);
+    }
+    if op == "spec-init" {
+        let _guard = lock(&root)?;
+        storage::init(
+            &root,
+            options
+                .get("--directory")
+                .map(String::as_str)
+                .unwrap_or("specs"),
+        )?;
+        report.measurements.push(
+            json!({"catalog_path":catalog_path(&root)?,"store_sha256":load_unlocked(&root)?.1}),
+        );
+        return Ok(report);
+    }
+    if op == "spec-recover" {
+        let _guard = lock(&root)?;
+        storage::recover(&root, get("--expected")?)?;
+        report
+            .measurements
+            .push(json!({"store_sha256":load_unlocked(&root)?.1}));
         return Ok(report);
     }
     let mutation = matches!(
@@ -337,8 +430,16 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             | "spec-abandon"
             | "spec-migrate"
             | "spec-decide"
+            | "spec-tag-set"
+            | "spec-tag-remove"
+            | "spec-tag-merge"
+            | "spec-runner-set"
+            | "spec-run"
     );
-    let _guard = if mutation || paths::safe(&root, ".highgrade/specs")?.exists() {
+    let _guard = if mutation
+        || paths::safe(&root, ".highgrade/specs")?.exists()
+        || storage::exists(&root)?
+    {
         Some(lock(&root)?)
     } else {
         None
@@ -346,7 +447,13 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
     let (mut store, sha) = if _guard.is_some() {
         load_unlocked(&root)?
     } else {
-        (Store::default(), "absent".into())
+        (
+            Store {
+                schema_version: 3,
+                ..Store::default()
+            },
+            "absent".into(),
+        )
     };
     if mutation && get("--expected")? != sha {
         return Err(format!("StoreConflict: /; current_sha256={sha}"));
@@ -371,11 +478,31 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
     }
     match op {
         "spec-list" => {
-            report.measurements.push(progress::list(&root, &store));
+            report
+                .measurements
+                .push(relations::list(&root, &store, options)?);
             match catalog(&store) {
                 Ok(c) => report.measurements.push(json!({"trace_sha256":digest(&c)})),
                 Err(e) => report.finding("unknown", "ActiveSpecConflict", "/changes", &e),
             }
+        }
+        "spec-runner-set" => {
+            let runner = decode(
+                &paths::read_limited(&paths::safe(&root, get("--input")?)?, LIMIT)?,
+                "runner",
+            )?;
+            store.runners.insert(get("--id")?.into(), runner);
+        }
+        "spec-run" => checks::execute(
+            &root,
+            &mut store,
+            get("--id")?,
+            get("--check")?,
+            &mut report,
+        )?,
+        "spec-tags" => report.measurements.push(json!({"tags":store.tags})),
+        "spec-tag-set" | "spec-tag-remove" | "spec-tag-merge" => {
+            relations::mutation(&mut store, op, options)?
         }
         "spec-new" => {
             let key = change_id.expect("allocated id");
@@ -400,6 +527,12 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 title: options.get("--title").cloned().unwrap_or_default(),
                 created_at: Some(progress::now()?),
                 acceptance: vec![],
+                history: vec![],
+                depends_on: vec![],
+                related_to: vec![],
+                tags: BTreeSet::new(),
+                checks: vec![],
+                runs: vec![],
                 goal: String::new(),
                 rationale: String::new(),
                 scope: String::new(),
@@ -433,6 +566,8 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 || incoming.abandoned_reason != c.abandoned_reason
                 || incoming.created_at != c.created_at
                 || incoming.acceptance != c.acceptance
+                || incoming.history != c.history
+                || incoming.runs != c.runs
             {
                 return Err(
                     "ProtectedField: /change; preserve id, baseline, evidence, review, archived"
@@ -458,11 +593,11 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         }
         "spec-evidence" => record_evidence(
             &root,
-            change_mut(&mut store, get("--id")?)?,
+            result_mut(&mut store, get("--id")?)?,
             &paths::safe(&root, get("--input")?)?,
         )?,
         "spec-review" => {
-            let c = change_mut(&mut store, get("--id")?)?;
+            let c = result_mut(&mut store, get("--id")?)?;
             let reviewer = get("--reviewer")?;
             let conclusion = get("--conclusion")?;
             if reviewer.trim().is_empty() || conclusion.trim().is_empty() {
@@ -529,13 +664,23 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             get("--input")?,
             get("--source")?,
         )?,
-        "spec-migrate" => progress::migrate(&root, &mut store, &sha, &mut report)?,
+        "spec-migrate" => match options.get("--to").map(String::as_str) {
+            Some("directory") => storage::migrate(&root, &mut store, &sha)?,
+            None if store.schema_version != 3 => {
+                progress::migrate(&root, &mut store, &sha, &mut report)?
+            }
+            None => {}
+            _ => return Err("Usage: --to directory".into()),
+        },
         "spec-decide" => {
             progress::decide(&root, &mut store, &paths::safe(&root, get("--input")?)?)?
         }
         _ => return Err("Usage: unknown spec operation".into()),
     }
     if mutation {
+        if load_unlocked(&root)?.1 != sha {
+            return Err("StoreConflict: inputs changed during operation".into());
+        }
         write(&root, &store)?;
     }
     let current_sha = if mutation {
@@ -550,7 +695,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         if let Some(c) = store.changes.get(key) {
             report
                 .measurements
-                .push(json!({"change":c,"change_sha256":revision(c),"inputs_sha256":progress::inputs_hash(&root,c).ok()}));
+                .push(json!({"change":c,"links":relations::metadata(&store,c),"change_sha256":revision(c),"inputs_sha256":progress::inputs_hash(&root,c).ok()}));
         }
     }
     Ok(report)
@@ -565,6 +710,22 @@ fn readiness(root: &Path, store: &Store, c: &Change, report: &mut Report, comple
             "Change is not ready for integration.",
         )
     };
+    if complete {
+        for binding in &c.checks {
+            if !checks::fresh(root, store, c, binding) {
+                missing("/checks", "CheckMissingOrStale");
+            }
+        }
+        for link in &c.depends_on {
+            if !store
+                .changes
+                .get(&link.id)
+                .is_some_and(|d| d.archived && d.abandoned_reason.is_none())
+            {
+                missing("/depends_on", "DependencyNotIntegrated");
+            }
+        }
+    }
     if c.abandoned_reason.is_some() {
         missing("/archived", "AlreadyIntegrated");
         return;
@@ -816,6 +977,12 @@ fn import(root: &Path, store: &mut Store, key: &str, input: &str, source: &str) 
         title: format!("Transfer {}", r.id),
         created_at: Some(progress::now()?),
         acceptance: vec![],
+        history: vec![],
+        depends_on: vec![],
+        related_to: vec![],
+        tags: BTreeSet::new(),
+        checks: vec![],
+        runs: vec![],
         goal: format!("Transfer {} without changing its contract", r.id),
         rationale:
             "Explicit selected legacy transfer; compare original_text during independent review"

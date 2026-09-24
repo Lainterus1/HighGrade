@@ -1,0 +1,167 @@
+{
+  "operation": "spec-list",
+  "status": "passed",
+  "findings": [],
+  "measurements": [
+    {
+      "changes": [
+        {
+          "archived": true,
+          "change_sha256": "30a2a52e6325f07c10e30f921f5d7ebcabf334e845d753963d4f6d7f90affd93",
+          "created_at": 1790265625,
+          "goal": "Подтвердить принятые автором требования HG-SP-R1–R5 на актуальной Поставке 0.2.13 после уточнения языка документов.",
+          "human": "stale",
+          "id": "HG-0001",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-SPEC-PROGRESS",
+                "title": "Номера, прогресс и человеческая приёмка спецификаций"
+              }
+            ]
+          },
+          "tags": [],
+          "technical": "in_progress",
+          "title": "Проверка принятой спецификации перед выпуском 0.2.13"
+        },
+        {
+          "archived": true,
+          "change_sha256": "51e06f6e37dbbc06b62fd8c6fde21ceb4305f28d72818b424dc28591e48b260d",
+          "created_at": 1790269056,
+          "goal": "Проектный каталог спецификаций и миграция",
+          "human": "pending",
+          "id": "HG-0002",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "tags": [
+            "specifications"
+          ],
+          "technical": "ready",
+          "title": "Проектный каталог спецификаций и миграция"
+        },
+        {
+          "archived": true,
+          "change_sha256": "71f4cb9705550af876981453aae1e9f88b89e3b62c80e35821debb4a8875608b",
+          "created_at": 1790269056,
+          "goal": "Связи, теги и выборочный контекст",
+          "human": "pending",
+          "id": "HG-0003",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0002",
+                "integrated": true,
+                "reason": "Используется каталог и метаданные предыдущего этапа",
+                "title": "Проектный каталог спецификаций и миграция"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "tags": [
+            "specifications"
+          ],
+          "technical": "ready",
+          "title": "Связи, теги и выборочный контекст"
+        },
+        {
+          "archived": true,
+          "change_sha256": "47496ddc6b674caac2cacfb69936303349103587a6c073fc7233ee61c0fa23fb",
+          "created_at": 1790269057,
+          "goal": "Привязки проверок и самостоятельный workflow",
+          "human": "pending",
+          "id": "HG-0004",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0003",
+                "integrated": true,
+                "reason": "Используется каталог и метаданные предыдущего этапа",
+                "title": "Связи, теги и выборочный контекст"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "tags": [
+            "delivery",
+            "verification"
+          ],
+          "technical": "ready",
+          "title": "Привязки проверок и самостоятельный workflow"
+        },
+        {
+          "archived": true,
+          "change_sha256": "ec9953d16095d23f525f03581e9890e50c803f79087edeacbc841be7ddb90bf3",
+          "created_at": null,
+          "goal": "Автоматические номера спецификаций, честный прогресс и история человеческой приёмки в переносимой Поставке.",
+          "human": "pending",
+          "id": "HG-SPEC-PROGRESS",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0001",
+                "title": "Проверка принятой спецификации перед выпуском 0.2.13"
+              }
+            ]
+          },
+          "tags": [],
+          "technical": "in_progress",
+          "title": "Номера, прогресс и человеческая приёмка спецификаций"
+        }
+      ],
+      "origins": {},
+      "requirements": [
+        "HG-0002-R1",
+        "HG-0002-R2",
+        "HG-0002-R3",
+        "HG-0003-R1",
+        "HG-0003-R2",
+        "HG-0003-R3",
+        "HG-0004-R1",
+        "HG-0004-R2",
+        "HG-0004-R3",
+        "HG-SP-R1",
+        "HG-SP-R2",
+        "HG-SP-R3",
+        "HG-SP-R4",
+        "HG-SP-R5"
+      ],
+      "selection": {
+        "context_complete": false,
+        "filters": {
+          "--root": "D:\\my_projects\\MyCodex"
+        },
+        "selected": 5,
+        "total": 5
+      },
+      "summary": {
+        "abandoned": 0,
+        "accepted": 0,
+        "in_progress": 2,
+        "needs_changes": 0,
+        "pending": 4,
+        "ready": 3,
+        "stale": 1,
+        "total": 5
+      }
+    },
+    {
+      "trace_sha256": "d281a415a8e1ef9795db2b44f2b584778343d49dbc855a31bbdd2358be4383a8"
+    },
+    {
+      "schema_version": 3,
+      "store_sha256": "d2c1490cabe827c35dcaf1967e1cb8b4c4abb6db363ef51d61bd14834d59fad9"
+    }
+  ],
+  "limitations": [
+    "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+  ]
+}
