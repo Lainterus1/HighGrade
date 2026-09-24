@@ -15,7 +15,7 @@ $hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.e
 & $hgExe spec-schema --root "$PWD"
 ```
 
-Для текущего store v2 до активации новой Поставки используй `target/debug/highgrade.exe` из проверенной сборки 0.2.13. Первый spec-list в пустом проекте возвращает store_sha256=absent. Для разрешённой задачи вызови spec-new с --title и этим хешем; номер назначает CLI; затем spec-read, редактирование объекта change и spec-save с хешем прочитанного снимка. Не редактируй store напрямую. Полные параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
+Текущий store v2 обслуживает установленная Поставка 0.2.13; исходную CLI используй при разработке инструмента. Первый spec-list в пустом проекте возвращает store_sha256=absent. Для разрешённой задачи вызови spec-new с --title и этим хешем; номер назначает CLI; затем spec-read, редактирование объекта change и spec-save с хешем прочитанного снимка. Не редактируй store напрямую. Полные параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
 
 Маршрут: spec-validate → реализация и штатные тесты → spec-evidence → независимое ревью и spec-review → spec-check → spec-integrate. Пустой шаблон остаётся черновиком. Включение требований не разрешает commit/push. spec-decide сохраняет человеческое решение, spec-list — JSON-прогресс; миграция v1 → v2 через spec-migrate с backup. Фокусные тесты самого инструмента: `cargo test --locked --test spec_contracts --test trace_contracts`.
 
