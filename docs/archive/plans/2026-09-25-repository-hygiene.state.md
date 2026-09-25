@@ -22,10 +22,10 @@ CI 36038750322: 20 passed, 2 failed, 91 not run; обычный Python-тест 
 ## Проверено
 
 - Этап 1 VERIFIED: оба прежних падавших теста проходят; normal timeout 30 с, отдельный timeout 1 с и slow-start 2 с. Python 3.12 объявлен в CI.
-- Этап 2 VERIFIED: [переносы](../imports/repository-hygiene.json), [сохранение target](../imports/target-cleanup.json). Архив ZIP проверен по каждому исходному файлу перед удалением. Освобождено 434502886 байт; два исторически адресуемых файла оставлены.
+- Этап 2 VERIFIED: [переносы](../../imports/repository-hygiene.json), [сохранение target](../../imports/target-cleanup.json). Архив ZIP проверен по каждому исходному файлу перед удалением. Освобождено 434502886 байт; два исторически адресуемых файла оставлены.
 - Этап 3 VERIFIED: семь Git/Cargo-тестов прошли, включая повтор, ошибку, чужие данные, Windows junction, конкурентную обычную сборку, двойную ошибку замены и выбор бинарника из фактического Cargo artifact при смене target. Реальная сборка b3f3f70 прошла; временных исходников нет. Бинарные хеши повторных сборок могут отличаться (линковка/временный путь); требуется точность исходного SHA, не побитовая воспроизводимость бинарника.
 
-- Этап 4 VERIFIED: 113 Rust tests, 7 Python tests, trace 25/25, scale 100/200, OpenSpec strict 7/7, doctor/bootstrap/repository прошли. inspect: только внешние ссылки без сетевой проверки. После исправления P2 на фактический Cargo artifact обновлённый пакет получил независимое REVIEW_GO. [Доказательства](../evidence/repository-hygiene/revalidation.json).
+- Этап 4 VERIFIED: 113 Rust tests, 7 Python tests, trace 25/25, scale 100/200, OpenSpec strict 7/7, doctor/bootstrap/repository прошли. inspect: только внешние ссылки без сетевой проверки. После исправления P2 на фактический Cargo artifact обновлённый пакет получил независимое REVIEW_GO. [Доказательства](../../evidence/repository-hygiene/revalidation.json).
 - HG-0005 integrated, spec-check passed в изолированном составе без HG-0006; человеческая приёмка фиксируется отдельно. target после проверок 1373894682 байта против исходных 1670591003; старых копий удалено 434502886 байт, часть места занял один общий кэш кандидатов.
 
 ## Замечания ревью и решения

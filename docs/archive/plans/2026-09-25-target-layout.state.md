@@ -1,6 +1,6 @@
 # Состояние: управляемый каталог `target/`
 
-План: `docs/plans/2026-09-25-target-layout.md`, версия 4
+План: `docs/archive/plans/2026-09-25-target-layout.md`, версия 4
 Workspace: `D:\my_projects\MyCodex`
 Observed: HEAD `88b4c23427142f53e39432b430181565e971bcee`, исходное рабочее дерево чистое; `target/` 761,5 МиБ, 16 каталогов и 139 файлов верхнего уровня.
 Status: COMPLETE

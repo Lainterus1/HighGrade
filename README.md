@@ -62,6 +62,6 @@ cargo build --release --locked
 
 ## Для разработчиков Поставки
 
-[AGENTS](AGENTS.md) задаёт правила работы здесь; [ARCHITECTURE](docs/ARCHITECTURE.md) — устройство, [ENGINEERING](docs/ENGINEERING.md) — инженерные правила, [DEVELOPMENT](docs/DEVELOPMENT.md) — команды проверки. Общие устанавливаемые материалы находятся в [`kit/`](kit/), CLI — в [`src/`](src/), его тесты — в [`tests/`](tests/). Действующие требования Проекта — в [`specs/`](specs/README.md), история — в [архиве](docs/archive/README.md).
+[AGENTS](AGENTS.md) задаёт правила работы здесь; [ARCHITECTURE](docs/ARCHITECTURE.md) — устройство, [ENGINEERING](docs/ENGINEERING.md) — инженерные правила, [DEVELOPMENT](docs/DEVELOPMENT.md) — команды проверки. [Карта документов](docs/README.md) — остальное. Общие устанавливаемые материалы находятся в [`kit/`](kit/), CLI — в [`src/`](src/), его тесты — в [`tests/`](tests/). Действующие требования Проекта — в [`specs/`](specs/README.md).
 
 Собственные исходники распространяются по [MIT](LICENSE). Происхождение импортированных плагинов указано в [NOTICE](NOTICE.md).

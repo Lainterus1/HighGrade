@@ -4,7 +4,7 @@
 
 ## Источники и полномочия
 
-Начни с [README](README.md) и [проектной инструкции](.highgrade/project/INSTRUCTIONS.md), когда она создана. Согласованный глобальный маршрут — в [GLOBAL](docs/workflow/GLOBAL.md), правила доказательств — в [QUALITY](docs/workflow/QUALITY.md), политика контекста — в [CONTEXT](docs/workflow/CONTEXT.md); [SPECIFICATION](docs/workflow/SPECIFICATION.md) хранит историю решений. Устройство существующего проекта — в [ARCHITECTURE](docs/ARCHITECTURE.md), инженерные правила — в [ENGINEERING](docs/ENGINEERING.md), команды — в [DEVELOPMENT](docs/DEVELOPMENT.md).
+Начни с [README](README.md) и [проектной инструкции](.highgrade/project/INSTRUCTIONS.md), когда она создана. Согласованный глобальный маршрут — в [GLOBAL](docs/workflow/GLOBAL.md), правила доказательств — в [QUALITY](docs/workflow/QUALITY.md), политика контекста — в [CONTEXT](docs/workflow/CONTEXT.md); [SPECIFICATION](docs/archive/workflow/SPECIFICATION.md) хранит историю решений. Устройство существующего проекта — в [ARCHITECTURE](docs/ARCHITECTURE.md), инженерные правила — в [ENGINEERING](docs/ENGINEERING.md), команды — в [DEVELOPMENT](docs/DEVELOPMENT.md).
 
 Читай только контекст затронутой области. Архив — история, не действующая инструкция; не загружай его целиком без причины. Для плагина читай его входные документы и тесты, но не запускай сам навык аудита/векторизации только из-за работы с его исходниками.
 

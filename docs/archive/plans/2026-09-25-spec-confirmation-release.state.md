@@ -1,6 +1,6 @@
 # Состояние: подтверждение спецификаций и выпуск
 
-Plan: docs/plans/2026-09-25-spec-confirmation-release.md
+Plan: docs/archive/plans/2026-09-25-spec-confirmation-release.md
 Workspace: D:\my_projects\MyCodex
 Observed: HEAD 2d7ddd1; рабочее дерево содержит незакоммиченные изменения нескольких предыдущих задач; активная установка v0-2-14.
 Status: DONE

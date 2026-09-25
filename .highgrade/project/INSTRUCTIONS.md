@@ -12,7 +12,7 @@ highgrade_spec_format: native-v1
 - Агентские правила: [AGENTS](../../AGENTS.md).
 - Фактическое устройство: [ARCHITECTURE](../../docs/ARCHITECTURE.md).
 - Инженерные правила и команды: [ENGINEERING](../../docs/ENGINEERING.md) и [DEVELOPMENT](../../docs/DEVELOPMENT.md).
-- Общий продуктовый контракт: [GLOBAL](../../docs/workflow/GLOBAL.md). Действующие правила доказательств и контекста: [QUALITY](../../docs/workflow/QUALITY.md) и [CONTEXT](../../docs/workflow/CONTEXT.md); [SPECIFICATION](../../docs/workflow/SPECIFICATION.md) — история решений.
+- Общий продуктовый контракт: [GLOBAL](../../docs/workflow/GLOBAL.md). Действующие правила доказательств и контекста: [QUALITY](../../docs/workflow/QUALITY.md) и [CONTEXT](../../docs/workflow/CONTEXT.md); [SPECIFICATION](../../docs/archive/workflow/SPECIFICATION.md) — история решений.
 - Реестр ролей, областей и бюджетов: [documents.json](documents.json). Текущий статус и основание бюджетов приведены в реестре; исходные измерения и предложенные диапазоны — в [обосновании](../../docs/proposals/context-budget-2026-09-23.md).
 
 ## Работа над задачей и спецификацией

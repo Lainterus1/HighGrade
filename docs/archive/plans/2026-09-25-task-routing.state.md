@@ -11,7 +11,7 @@
 - VERIFIED: маршруты и багфиксы согласованы в task/spec/work/approve, общих правилах, справочнике и шаблонах. CLI и схема не изменялись.
 - VERIFIED: 49 Rust tests (bootstrap 15, global 20, spec 14), включая дрейф приёмки; временный Cargo cache удалён. Изолированная установка финального kit и global-status passed. fmt/repository/doctor passed; inspect — только внешние ссылки.
 - VERIFIED: локальное упражнение CLI: ошибка воспроизведена, исправление прошло тест, spec-evidence/review/check обновили результаты; байты интегрированной спеки и требования сохранены, новый change не создан.
-- VERIFIED: независимое REVIEW_GO после исправления двух P2. Отчёты: [сводка](../evidence/task-routing/summary.json), [ревью](../evidence/task-routing/review.md).
+- VERIFIED: независимое REVIEW_GO после исправления двух P2. Отчёты: [сводка](../../evidence/task-routing/summary.json), [ревью](../../evidence/task-routing/review.md).
 
 ## Изменение границ проверки
 

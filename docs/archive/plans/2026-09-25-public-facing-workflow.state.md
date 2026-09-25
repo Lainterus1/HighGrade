@@ -1,6 +1,6 @@
 # Состояние: публичный вход и ревью High Grade
 
-Plan: docs/plans/2026-09-25-public-facing-workflow.md
+Plan: docs/archive/plans/2026-09-25-public-facing-workflow.md
 Workspace: текущий checkout Проекта High Grade
 Observed: HEAD 2d7ddd1; рабочее дерево содержит незакоммиченные изменения предыдущей задачи.
 Status: COMPLETE
