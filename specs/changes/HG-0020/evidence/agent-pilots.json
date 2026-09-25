@@ -1,0 +1,309 @@
+{
+  "captured_at": "2026-09-25T15:29:06Z",
+  "tool": "Codex CLI 0.155.0-alpha.16.4, High Grade candidate v0-2-17",
+  "scope": "isolated synthetic projects under temporary highgrade-planner-pilot-20260925; local Codex rollout IDs refer to raw sessions outside this repository",
+  "sessions": {
+    "explicit": {
+      "session_id": "01a0d919-4f73-7270-bd2f-98a17b1e8d7d",
+      "goal_tool_calls": {
+        "get_goal": 2,
+        "create_goal": 1,
+        "update_goal": 1
+      }
+    },
+    "automatic": {
+      "session_id": "01a0d920-addb-7302-bae9-ab3445e32f73",
+      "goal_tool_calls": {
+        "get_goal": 1,
+        "create_goal": 1,
+        "update_goal": 1
+      }
+    },
+    "two_specs": {
+      "session_id": "01a0d923-4d46-72a1-adce-56cbdb9793f5",
+      "goal_tool_calls": {
+        "get_goal": 2,
+        "create_goal": 1,
+        "update_goal": 1
+      }
+    },
+    "resume_conflict_drift": {
+      "session_id": "01a0d924-6942-7312-8887-126d198e8788",
+      "goal_tool_calls": {
+        "get_goal": 6,
+        "create_goal": 1,
+        "update_goal": 1
+      }
+    },
+    "plan_only": {
+      "session_id": "01a0d929-3e32-7661-b6b4-50d34c013b47",
+      "goal_tool_calls": {
+        "get_goal": 1,
+        "create_goal": 1,
+        "update_goal": 1
+      }
+    },
+    "one_step": {
+      "session_id": "01a0d92e-2363-7753-b4f7-29e3818f2924",
+      "goal_tool_calls": {
+        "get_goal": 1,
+        "create_goal": 0,
+        "update_goal": 0
+      }
+    }
+  },
+  "artifacts": {
+    "auto-project/docs/first.txt": {
+      "sha256": "267d3b81a9dcd937f3b46a17a57fc0ca2133373389336861142673a73fc17bc6",
+      "bytes": 5
+    },
+    "auto-project/docs/second.txt": {
+      "sha256": "091f9eec03b54f6a4d1996c29539d9379d5b0eea06c78dc6ebb643521ab0e771",
+      "bytes": 12
+    },
+    "auto-project/docs/plans/2026-09-25-dependent-files.state.md": {
+      "sha256": "117d468145c8b810e2dd3f2066075668aae95c7feb67f78267be429c38325a44",
+      "bytes": 1330
+    },
+    "spec-project/docs/a.txt": {
+      "sha256": "26ffd5886253906a36a7ea0f6e26056fc36472626cb4894bcb100a34dc69d1db",
+      "bytes": 3
+    },
+    "spec-project/docs/b.txt": {
+      "sha256": "88066939ce3279c92524ecb7f9b179314ea8388cd84a8f3f3109d7e31d4c7186",
+      "bytes": 5
+    },
+    "spec-project/.codex/plans/2026-09-25-hg-0001-0002.state.md": {
+      "sha256": "538620fe0b84a42e2048fd3e6c7083060946e36c1dac13c478c6a784c3c21d79",
+      "bytes": 1418
+    },
+    "resume-project/docs/base.txt": {
+      "sha256": "cbf36a964ba8c0894fcc9ec491b4d1dd94d221a7dc88308e9c6b892445a8574b",
+      "bytes": 4
+    },
+    "resume-project/docs/derived.txt": {
+      "sha256": "83b9489a548e3bb943bfa32bbd619cbf677ec77cfaf8f15b659b67307ffc41bc",
+      "bytes": 12
+    },
+    "resume-project/docs/plans/base-derived.state.md": {
+      "sha256": "c276880345c0de2e9b95de7fa08470d013da2487663c45adf642da16b404c1e2",
+      "bytes": 1734
+    },
+    "plan-project/docs/plans/p-q-chain.md": {
+      "sha256": "7f4a6dfd79a3dd717b08fbdedb68d71aaf2be69d845d97c5b1e9620c23ce2ce0",
+      "bytes": 2553
+    },
+    "one-project/docs/one.txt": {
+      "sha256": "2192e8955d5e1ad1651f2f0c637e6f1ac82855747a5f42f978db28669595dc21",
+      "bytes": 3
+    }
+  },
+  "absent": [
+    "resume-project/docs/other-a.txt",
+    "resume-project/docs/other-b.txt",
+    "plan-project/docs/p.txt",
+    "plan-project/docs/q.txt",
+    "one-project/docs/plans"
+  ],
+  "observations": {
+    "automatic": "Project AGENTS accepted Planner+Goal. Prompt requested dependent files without invoking the skill. One Goal created and completed; final state Next: none.",
+    "two_specs": "One Goal covered HG-0001-T1 and HG-0002-T1. Agent reread native specs, completed both tasks, checked files, recorded evidence and left specs in_progress/pending without integration.",
+    "resume_conflict_drift": "First turn stopped with Goal active and one Next. Separate chain did not replace Goal or create other files. Before resume, base.txt was deliberately changed to BROKEN; agent detected and repaired it before deriving second file and completing Goal.",
+    "plan_only": "Explicit Planner plan-only request created and completed a Goal limited to verified plan; implementation files absent.",
+    "one_step": "Independent one-step request used direct route; no create_goal call, no plan directory, exact ONE content verified.",
+    "explicit": "Explicit skill path invocation created one staged Goal and finished two dependent files; no commit or publication."
+  },
+  "limitations": [
+    "Raw Codex session logs were not copied into the repository because they contain unrelated context. Session IDs and exact synthetic inputs are retained here; the temporary project directories were removed after extraction and independent review.",
+    "Manual agent observations do not by themselves prove future model behavior in every prompt or every host."
+  ],
+  "candidate": {
+    "release": "v0-2-17",
+    "journal_sha256": "786db1a433aa7fd1579713606ec9279ca3af09a475c689eeb8be0dbb43ae5226",
+    "installed_exe_sha256": "4aac96b591fa777572bb2ce54f6ab224388b769520ae29d641f75fb1be72ed85",
+    "profile_kind": "isolated temporary profile"
+  },
+  "fixtures": {
+    "explicit": {
+      "prompts": [
+        "Это изолированный пилот Highgrade Planner. Явно вызываю навык по пути C:\\Users\\user\\AppData\\Local\\Temp\\highgrade-planner-pilot-20260925\\profile\\.agents\\skills\\highgrade-planner\\SKILL.md и прошу создать Goal для всей цепочки. Выполни в проекте два зависимых этапа: сначала запиши docs/alpha.txt со строкой ALPHA, затем создай docs/beta.txt со строкой BETA:ALPHA, взяв ALPHA из первого файла. Проверь обе строки и зависимость PowerShell-командой. Сохрани один технический план и краткое состояние с одним Next. Не делай коммит, публикацию или внешние действия. При завершении сообщи фактический статус Goal и файлы проверки."
+      ],
+      "project_files": {
+        "README.md": {
+          "sha256": "cdf0105a7362de721e86c90f170a073bb354c1526cb247ce15d716f39b3be4d1",
+          "text": "# Изолированный проект Planner\n\nСоздать две зависимые текстовые записи и проверить связь."
+        },
+        "AGENTS.md": {
+          "sha256": "cdc923aee730378fe0986509a38273309092dabb6569d6c61c44b3a361cfd1e7",
+          "text": "# Пилот High Grade\n\nДля последовательной задачи используй Highgrade Planner и один Goal. Это явное разрешение на Goal в этой изолированной проверке. Сохраняй файлы проекта; не коммить и не публикуй."
+        },
+        ".highgrade/project/INSTRUCTIONS.md": {
+          "sha256": "6dbee8e9f6cf393b8d0ea4dc31aee89d790df550930f235c0cefcc0ee96c596b",
+          "text": "---\nhighgrade_project_schema: 1\nhighgrade_spec_format: native-v1\n---\n# Пилот\n\nЯзык — русский. Технический план хранить в docs/plans. Проверка: сравнить содержимое двух созданных файлов штатной командой PowerShell."
+        }
+      }
+    },
+    "automatic": {
+      "prompts": [
+        "Выполни в этом проекте зависимую техническую задачу: запиши docs/first.txt со строкой FIRST; только после проверки первого файла прочитай его и создай docs/second.txt со строкой SECOND:FIRST на основе прочитанного. Затем проверь оба файла и зависимость. Сохрани точку продолжения. Не коммить и не публикуй."
+      ],
+      "project_files": {
+        "README.md": {
+          "sha256": "e06e68223e638ec856704c8b07462b7dd929f5c6102edccbcdf4ed30436796d7",
+          "text": "# Автоматический пилот Planner"
+        },
+        "AGENTS.md": {
+          "sha256": "752c21d483f2b1a145493f8f680b5edfbd0f288ee5ae240a66a859b7f0a63b81",
+          "text": "# Пилот High Grade\n\nДля последовательной зависимой работы автоматически используй Highgrade Planner и один Goal. Это принятое проектом разрешение на Goal. Установленный навык расположен в C:\\Users\\user\\AppData\\Local\\Temp\\highgrade-planner-pilot-20260925\\profile\\.agents\\skills\\highgrade-planner\\SKILL.md. Не создавай коммит и не публикуй."
+        },
+        ".highgrade/project/INSTRUCTIONS.md": {
+          "sha256": "7621fc01518f4fca0cc9346b8dfd4ae076d9525fb108268adae48d11305b433a",
+          "text": "---\nhighgrade_project_schema: 1\nhighgrade_spec_format: native-v1\n---\n# Пилот\nЯзык русский. Технический план хранить в docs/plans. Проверка: сравнить строки штатной PowerShell-командой."
+        }
+      }
+    },
+    "two_specs": {
+      "prompts": [
+        "Выполни технические задачи двух связанных нативных изменений HG-0001 и HG-0002 строго по порядку. Создай docs/a.txt со строкой A; проверь её, затем на основе прочитанного A создай docs/b.txt со строкой B:A; проверь оба файла. Веди один Goal для всей цепочки, ссылайся на ID спек и их задачи, сохраняй одну точку Next. Этот пилот ограничен техническими задачами: не выполняй spec-integrate, коммит или публикацию. Перед каждым этапом перечитай соответствующую спеку.",
+        "Продолжай прерванную цепочку HG-0001 → HG-0002 с первого неподтверждённого шага. Перед продолжением перечитай план, состояние, обе спеки, файлы и действующие доказательства. docs/b.txt мог быть уже создан до прерывания — проверь факт и не повторяй подтверждённую работу. Если понадобится spec-save/spec-evidence, передавай --input как относительный к корню проекта путь (например, .codex/plans/edit.json), абсолютный CLI отвергает. Не коммить, не интегрируй спеки и не публикуй."
+      ],
+      "project_files": {
+        "README.md": {
+          "sha256": "05cea3da0fe298e62db3d6553533842b79a16ab6c14f2b8192e1fe4f565ab44f",
+          "text": "# Пилот двух спек"
+        },
+        "AGENTS.md": {
+          "sha256": "ff7f805ac45754ee5fd5e075241dfb516ec42123afb81d2d704caf7aad06acd7",
+          "text": "# Пилот High Grade\n\nДля зависимых спек автоматически используй Highgrade Planner и один Goal на цепочку. Это принятое проектом разрешение. Навык: C:\\Users\\user\\AppData\\Local\\Temp\\highgrade-planner-pilot-20260925\\profile\\.agents\\skills\\highgrade-planner\\SKILL.md. Не коммить и не публикуй."
+        },
+        ".highgrade/project/INSTRUCTIONS.md": {
+          "sha256": "1529ceec557ccc4c140aea2d06a60549cff1271f6848c17d9668149d21a89928",
+          "text": "---\nhighgrade_project_schema: 1\nhighgrade_spec_format: native-v1\n---\n# Пилот\nЯзык русский. Спецификации в specs/changes; проверяй строки PowerShell."
+        }
+      },
+      "initial_spec_contracts": {
+        "HG-0001": {
+          "goal": "Сохранить подтверждённый этап A в docs/a.txt",
+          "requirements": [
+            {
+              "id": "HG-0001-R1",
+              "scenarios": [
+                {
+                  "given": "Изолированный проект готов",
+                  "id": "HG-0001-S1",
+                  "then": "docs/a.txt содержит A",
+                  "verification": "Прочитать файл штатной PowerShell-командой",
+                  "when": "Выполняется задача спецификации"
+                }
+              ],
+              "statement": "Агент должен создать docs/a.txt со строкой A",
+              "title": "Этап A"
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "Создать и проверить docs/a.txt",
+              "initial_done": false
+            }
+          ],
+          "related_to": [],
+          "depends_on": []
+        },
+        "HG-0002": {
+          "goal": "Сохранить подтверждённый этап B в docs/b.txt",
+          "requirements": [
+            {
+              "id": "HG-0002-R1",
+              "scenarios": [
+                {
+                  "given": "Первый этап подтверждён",
+                  "id": "HG-0002-S1",
+                  "then": "docs/b.txt содержит B:A",
+                  "verification": "Прочитать файл штатной PowerShell-командой",
+                  "when": "Выполняется задача спецификации"
+                }
+              ],
+              "statement": "Агент должен создать docs/b.txt со строкой B:A",
+              "title": "Этап B"
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0002-T1",
+              "description": "Создать и проверить docs/b.txt",
+              "initial_done": false
+            }
+          ],
+          "related_to": [
+            {
+              "id": "HG-0001",
+              "reason": "Второй файл использует результат первого этапа"
+            }
+          ],
+          "depends_on": []
+        }
+      }
+    },
+    "resume_conflict_drift": {
+      "prompts": [
+        "Начни зависимую цепочку из двух этапов: этап 1 — создать docs/base.txt с BASE и проверить; этап 2 — прочитать BASE из первого файла и создать docs/derived.txt с DERIVED:BASE, проверить зависимость. Создай один Goal на всю цепочку, план и состояние. В этом ходе выполни только этап 1 и остановись для моего следующего сообщения; Goal оставь незавершённым, Next должен быть один конкретный шаг этапа 2. Не коммить и не публикуй.",
+        "Новая отдельная зависимая цепочка, не связанная с base/derived: создай docs/other-a.txt со строкой X, затем docs/other-b.txt со строкой Y:X, проверь. Выполняй как новую задачу сейчас.",
+        "Продолжай исходную цепочку base/derived с сохранённого Next. Перед этапом 2 проверь действительный первый файл и состояние, затем выполни всё разрешённое до конца. Новая цепочка other-a/other-b остаётся отдельной, её не выполняй. Не коммить и не публикуй."
+      ],
+      "project_files": {
+        "README.md": {
+          "sha256": "1d2cf09cf3f9abcaf9eae5697186a06b7745deae66405fc2cf4e8a66559c101b",
+          "text": "# Пилот возобновления"
+        },
+        "AGENTS.md": {
+          "sha256": "6931bbd96b11bbce429fc96f103057bac5f9cbef0efc6466872a7fe9aa583793",
+          "text": "# Пилот High Grade\n\nДля зависимой цепочки используй Highgrade Planner и один Goal. Это принятое разрешение. Навык: C:\\Users\\user\\AppData\\Local\\Temp\\highgrade-planner-pilot-20260925\\profile\\.agents\\skills\\highgrade-planner\\SKILL.md. Не коммить и не публикуй."
+        },
+        ".highgrade/project/INSTRUCTIONS.md": {
+          "sha256": "2fadc17682f4c9b4ffb4b0ec16912b9b444f749170fd87be68c2b4b7cd37be61",
+          "text": "---\nhighgrade_project_schema: 1\nhighgrade_spec_format: native-v1\n---\n# Пилот\nЯзык русский. Технический план и состояние в docs/plans. Проверка PowerShell."
+        }
+      }
+    },
+    "plan_only": {
+      "prompts": [
+        "Явно вызываю установленный Highgrade Planner. Мне нужен только проверяемый план для будущей цепочки: сначала создать docs/p.txt со строкой P, затем на его основе docs/q.txt со строкой Q:P. Сейчас ничего не реализуй и не создавай эти файлы. Оформи Goal по этапам только для планирования и заверши его после проверки плана. Не коммить и не публикуй."
+      ],
+      "project_files": {
+        "README.md": {
+          "sha256": "4f0f11bb9a4a27c7ddb9c0aba46b8ee9f8cd68ec329568929bbf1c3487ba3f82",
+          "text": "# Пилот только плана"
+        },
+        "AGENTS.md": {
+          "sha256": "b953f2461df44be3d93d15ec3341cb62d33a98c70267c25597ebc2ea877dcf82",
+          "text": "# Пилот High Grade\n\nДля последовательной задачи используй Highgrade Planner и Goal. Это принятое разрешение. Установленный навык: C:\\Users\\user\\AppData\\Local\\Temp\\highgrade-planner-pilot-20260925\\profile\\.agents\\skills\\highgrade-planner\\SKILL.md. Не коммить и не публикуй."
+        },
+        ".highgrade/project/INSTRUCTIONS.md": {
+          "sha256": "328991e79ce1de6e9e3fb407816531b513cfa822debb54d577268e02a0906587",
+          "text": "---\nhighgrade_project_schema: 1\nhighgrade_spec_format: native-v1\n---\n# Пилот\nЯзык русский. План в docs/plans."
+        }
+      }
+    },
+    "one_step": {
+      "prompts": [
+        "Создай только docs/one.txt с точным содержимым ONE и проверь его PowerShell. Это независимая разовая правка. Сообщи фактический статус Goal. Не коммить и не публикуй."
+      ],
+      "project_files": {
+        "README.md": {
+          "sha256": "d557cbf5b870f58f6fb55c07ffd9fabfa9488bfe401db8716e59175173872f71",
+          "text": "# Пилот разовой задачи"
+        },
+        "AGENTS.md": {
+          "sha256": "4528646c1bd189ff42368a7f9ab1c7c7779425d091453b90abd6e9e42fa710d0",
+          "text": "# Пилот High Grade\n\nДля зависимой цепочки автоматически используй Highgrade Planner и Goal. Разовую независимую задачу выполняй прямым маршрутом. Навык: C:\\Users\\user\\AppData\\Local\\Temp\\highgrade-planner-pilot-20260925\\profile\\.agents\\skills\\highgrade-planner\\SKILL.md. Не коммить и не публикуй."
+        },
+        ".highgrade/project/INSTRUCTIONS.md": {
+          "sha256": "2f4dc47a95a8c30848db4ec52a1d438cc9c60b212ef1de2f98be94fd78b0dd28",
+          "text": "---\nhighgrade_project_schema: 1\nhighgrade_spec_format: native-v1\n---\n# Пилот\nЯзык русский. Проверка PowerShell."
+        }
+      }
+    }
+  },
+  "cleanup": "Temporary highgrade-planner-pilot-20260925 directory removed after independent verification; local Codex rollout sessions remain by ID."
+}

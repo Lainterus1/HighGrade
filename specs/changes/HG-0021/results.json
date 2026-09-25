@@ -1,0 +1,866 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0021-S1": {
+      "captured_at": "2026-09-25T17:15:28.890169+00:00",
+      "command": "HG-0021: compare evidence hashes; change docs/DEVELOPMENT.md; recheck changed documentation; refresh only S3; remove isolated pilot; verify shared raw report unchanged before final review",
+      "files": {
+        "docs/DEVELOPMENT.md": "693002eea63e649d1744b6279dcf97e29ec0a041dfb6996f3610925b933f5c57",
+        "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+        "specs/changes/HG-0021/evidence/doc-recheck.json": "530a60ab8ae62f7182d2b2a4d57387e7c65e6874c644da8947889d36575ea0df",
+        "specs/changes/HG-0021/evidence/raw-doc-recheck.jsonl": "f3d05b3ad51d0e352f125816506376a8dbb61f721945aa04a549455af3e2f748",
+        "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+        "specs/changes/HG-0021/evidence/staleness-observation.json": "d0f6f14083509ff79d1a0ee31f3d501b0fdf541cb061e45150d88a4f8800c544",
+        "specs/changes/HG-0021/evidence/workflow-exercise-v3.json": "d86bdfd98837b941ee0779bb63c6d2a207fad6bdf8daef326b045195cb121151"
+      },
+      "method": "manual",
+      "observation": "S2-S4 evidence and fresh S3 documentation recheck preceded final review. Shared pilot journal remained unchanged after cleanup. The local doc edit made S3 stale while S2/S4 remained current; only S3 was rechecked and rerecorded.",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0021/evidence/workflow-exercise-v3.json",
+      "scenario": "HG-0021-S1",
+      "scenario_sha256": "1355178ff7face6e5521c515433d448a83448a87e61a9f0b151b3042202e1c9f"
+    },
+    "HG-0021-S2": {
+      "captured_at": "2026-09-25T17:09:25.119219+00:00",
+      "command": "python specs/changes/HG-0021/evidence/exercise.py",
+      "files": {
+        "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+        "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+        "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+        "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+        "specs/changes/HG-0021/evidence/scenario-selection.json": "3ede75b5105857e99d4e7014caabb19fa7310d314ad0c7bee38d257406b9027d"
+      },
+      "method": "manual",
+      "observation": "Из двух эквивалентных примеров сложения выбран один нормативный исход и отдельный исход TypeError; полный прогон наблюдал оба в одном запуске.",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0021/evidence/scenario-selection.json",
+      "scenario": "HG-0021-S2",
+      "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+    },
+    "HG-0021-S3": {
+      "captured_at": "2026-09-25T17:14:47.912715+00:00",
+      "command": "python specs/changes/HG-0021/evidence/exercise.py; after docs/DEVELOPMENT.md edit: node scripts/check-repository.mjs, highgrade inspect, git diff --check",
+      "files": {
+        "docs/DEVELOPMENT.md": "693002eea63e649d1744b6279dcf97e29ec0a041dfb6996f3610925b933f5c57",
+        "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+        "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+        "specs/changes/HG-0021/evidence/check-selection-v2.json": "ffeaefe481e219aeef00a5f3e221ec861a7a2daafb3335d3b9c96e69c10490ef",
+        "specs/changes/HG-0021/evidence/doc-recheck.json": "530a60ab8ae62f7182d2b2a4d57387e7c65e6874c644da8947889d36575ea0df",
+        "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+        "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+        "specs/changes/HG-0021/evidence/raw-doc-recheck.jsonl": "f3d05b3ad51d0e352f125816506376a8dbb61f721945aa04a549455af3e2f748",
+        "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+      },
+      "method": "manual",
+      "observation": "Исходный пилот наблюдал сбой, адресный повтор, полный барьер и отдельную проверку схемы; дублирующая обёртка пропущена. После изменения локальной инструкции заново выполнены и сохранены относящиеся документальные проверки: структура PASSED, бюджет без превышения, diff --check 0. Неизменённый синтетический код повторно не запускался.",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0021/evidence/check-selection-v2.json",
+      "scenario": "HG-0021-S3",
+      "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+    },
+    "HG-0021-S4": {
+      "captured_at": "2026-09-25T17:09:26.676150+00:00",
+      "command": "python specs/changes/HG-0021/evidence/exercise.py",
+      "files": {
+        "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+        "specs/changes/HG-0021/evidence/agent-call.jsonl": "c4f62dff48f55eaee6a82b25c2ca6b8bf9c0ad6ba6ebb348db34bbc337c40b62",
+        "specs/changes/HG-0021/evidence/agent-preflight.json": "ee89f6b013134f3207f2bf21b14e605f226d233eb2bdf04e5c6a12e78c2ccfa5",
+        "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+        "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+        "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+      },
+      "method": "manual",
+      "observation": "Два неверных предзапуска отклонены до тестовых команд; допустимый агентный прогон работал в изолированном каталоге, полный журнал действий и сырой вызов Codex сохранены, краткий итог есть.",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0021/evidence/agent-preflight.json",
+      "scenario": "HG-0021-S4",
+      "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790355260,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T16:54:20.692068+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Из двух примеров сложения выбран один нормативный исход и отдельный исход ошибки типа; общий полный прогон наблюдает оба, каждое наблюдение перечислено в pilot-result.json.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        }
+      },
+      "recorded_at": 1790355261,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T16:54:20.692068+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Из двух примеров сложения выбран один нормативный исход и отдельный исход ошибки типа; общий полный прогон наблюдает оба, каждое наблюдение перечислено в pilot-result.json.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T16:54:21.366762+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Выполнены фокусный тест, один полный unittest-прогон и независимая проверка схемы; дублирующая обёртка того же набора пропущена, все три фактических кода выхода равны 0.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        }
+      },
+      "recorded_at": 1790355262,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T16:54:20.692068+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Из двух примеров сложения выбран один нормативный исход и отдельный исход ошибки типа; общий полный прогон наблюдает оба, каждое наблюдение перечислено в pilot-result.json.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T16:54:21.366762+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Выполнены фокусный тест, один полный unittest-прогон и независимая проверка схемы; дублирующая обёртка того же набора пропущена, все три фактических кода выхода равны 0.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        },
+        "HG-0021-S4": {
+          "captured_at": "2026-09-25T16:54:22.013547+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Проверены изолированный cwd, наличие входов и сохраняемый режим; отдельный CLI-сеанс без событий остановлен, затем упражнение завершено текущим агентом. Полный raw-checks.log сохранён, краткий итог содержит статус и путь; ограничение отдельного сеанса явно записано.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S4",
+          "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+        }
+      },
+      "recorded_at": 1790355397,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S1": {
+          "captured_at": "2026-09-25T16:56:37.752815+00:00",
+          "command": "HG-0021 self-hosting: verify S2-S4 evidence and source hashes, remove temporary fixture, compare source report before formal review",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76",
+            "specs/changes/HG-0021/evidence/workflow-exercise.json": "c596f273e3a8bde0729860b0b4cfcd110ae269a74f3ee98bb13ee183033b9665"
+          },
+          "method": "manual",
+          "observation": "S2-S4 записаны до итогового ревью, 7 файлов каждого доказательства актуальны; временный каталог упражнения удалён, исходные отчёты и их хеши не изменились. Полный состав S1-S4 теперь готов к независимому ревью.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/workflow-exercise.json",
+          "scenario": "HG-0021-S1",
+          "scenario_sha256": "1355178ff7face6e5521c515433d448a83448a87e61a9f0b151b3042202e1c9f"
+        },
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T16:54:20.692068+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Из двух примеров сложения выбран один нормативный исход и отдельный исход ошибки типа; общий полный прогон наблюдает оба, каждое наблюдение перечислено в pilot-result.json.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T16:54:21.366762+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Выполнены фокусный тест, один полный unittest-прогон и независимая проверка схемы; дублирующая обёртка того же набора пропущена, все три фактических кода выхода равны 0.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        },
+        "HG-0021-S4": {
+          "captured_at": "2026-09-25T16:54:22.013547+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Проверены изолированный cwd, наличие входов и сохраняемый режим; отдельный CLI-сеанс без событий остановлен, затем упражнение завершено текущим агентом. Полный raw-checks.log сохранён, краткий итог содержит статус и путь; ограничение отдельного сеанса явно записано.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S4",
+          "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+        }
+      },
+      "recorded_at": 1790356165,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S1": {
+          "captured_at": "2026-09-25T16:56:37.752815+00:00",
+          "command": "HG-0021 self-hosting: verify S2-S4 evidence and source hashes, remove temporary fixture, compare source report before formal review",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76",
+            "specs/changes/HG-0021/evidence/workflow-exercise.json": "c596f273e3a8bde0729860b0b4cfcd110ae269a74f3ee98bb13ee183033b9665"
+          },
+          "method": "manual",
+          "observation": "S2-S4 записаны до итогового ревью, 7 файлов каждого доказательства актуальны; временный каталог упражнения удалён, исходные отчёты и их хеши не изменились. Полный состав S1-S4 теперь готов к независимому ревью.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/workflow-exercise.json",
+          "scenario": "HG-0021-S1",
+          "scenario_sha256": "1355178ff7face6e5521c515433d448a83448a87e61a9f0b151b3042202e1c9f"
+        },
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T17:09:25.119219+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/scenario-selection.json": "3ede75b5105857e99d4e7014caabb19fa7310d314ad0c7bee38d257406b9027d"
+          },
+          "method": "manual",
+          "observation": "Из двух эквивалентных примеров сложения выбран один нормативный исход и отдельный исход TypeError; полный прогон наблюдал оба в одном запуске.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/scenario-selection.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T16:54:21.366762+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Выполнены фокусный тест, один полный unittest-прогон и независимая проверка схемы; дублирующая обёртка того же набора пропущена, все три фактических кода выхода равны 0.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        },
+        "HG-0021-S4": {
+          "captured_at": "2026-09-25T16:54:22.013547+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Проверены изолированный cwd, наличие входов и сохраняемый режим; отдельный CLI-сеанс без событий остановлен, затем упражнение завершено текущим агентом. Полный raw-checks.log сохранён, краткий итог содержит статус и путь; ограничение отдельного сеанса явно записано.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S4",
+          "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+        }
+      },
+      "recorded_at": 1790356165,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S1": {
+          "captured_at": "2026-09-25T16:56:37.752815+00:00",
+          "command": "HG-0021 self-hosting: verify S2-S4 evidence and source hashes, remove temporary fixture, compare source report before formal review",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76",
+            "specs/changes/HG-0021/evidence/workflow-exercise.json": "c596f273e3a8bde0729860b0b4cfcd110ae269a74f3ee98bb13ee183033b9665"
+          },
+          "method": "manual",
+          "observation": "S2-S4 записаны до итогового ревью, 7 файлов каждого доказательства актуальны; временный каталог упражнения удалён, исходные отчёты и их хеши не изменились. Полный состав S1-S4 теперь готов к независимому ревью.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/workflow-exercise.json",
+          "scenario": "HG-0021-S1",
+          "scenario_sha256": "1355178ff7face6e5521c515433d448a83448a87e61a9f0b151b3042202e1c9f"
+        },
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T17:09:25.119219+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/scenario-selection.json": "3ede75b5105857e99d4e7014caabb19fa7310d314ad0c7bee38d257406b9027d"
+          },
+          "method": "manual",
+          "observation": "Из двух эквивалентных примеров сложения выбран один нормативный исход и отдельный исход TypeError; полный прогон наблюдал оба в одном запуске.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/scenario-selection.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T17:09:25.809796+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/check-selection.json": "e6d3fb0520c5929689f3c5d483bb0423fe0bc2257c6a09942cbaca43ed9f5314",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Контролируемый сбой фокусного теста исправлен адресно; повторный фокусный и итоговый полный прогон прошли, независимая проверка схемы прошла, дублирующая обёртка пропущена.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/check-selection.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        },
+        "HG-0021-S4": {
+          "captured_at": "2026-09-25T16:54:22.013547+00:00",
+          "command": "Изолированное упражнение HG-0021: preflight; python unittest focus/full; python scripts/check_schema.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76"
+          },
+          "method": "manual",
+          "observation": "Проверены изолированный cwd, наличие входов и сохраняемый режим; отдельный CLI-сеанс без событий остановлен, затем упражнение завершено текущим агентом. Полный raw-checks.log сохранён, краткий итог содержит статус и путь; ограничение отдельного сеанса явно записано.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/pilot-result.json",
+          "scenario": "HG-0021-S4",
+          "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+        }
+      },
+      "recorded_at": 1790356166,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S1": {
+          "captured_at": "2026-09-25T16:56:37.752815+00:00",
+          "command": "HG-0021 self-hosting: verify S2-S4 evidence and source hashes, remove temporary fixture, compare source report before formal review",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76",
+            "specs/changes/HG-0021/evidence/workflow-exercise.json": "c596f273e3a8bde0729860b0b4cfcd110ae269a74f3ee98bb13ee183033b9665"
+          },
+          "method": "manual",
+          "observation": "S2-S4 записаны до итогового ревью, 7 файлов каждого доказательства актуальны; временный каталог упражнения удалён, исходные отчёты и их хеши не изменились. Полный состав S1-S4 теперь готов к независимому ревью.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/workflow-exercise.json",
+          "scenario": "HG-0021-S1",
+          "scenario_sha256": "1355178ff7face6e5521c515433d448a83448a87e61a9f0b151b3042202e1c9f"
+        },
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T17:09:25.119219+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/scenario-selection.json": "3ede75b5105857e99d4e7014caabb19fa7310d314ad0c7bee38d257406b9027d"
+          },
+          "method": "manual",
+          "observation": "Из двух эквивалентных примеров сложения выбран один нормативный исход и отдельный исход TypeError; полный прогон наблюдал оба в одном запуске.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/scenario-selection.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T17:09:25.809796+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/check-selection.json": "e6d3fb0520c5929689f3c5d483bb0423fe0bc2257c6a09942cbaca43ed9f5314",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Контролируемый сбой фокусного теста исправлен адресно; повторный фокусный и итоговый полный прогон прошли, независимая проверка схемы прошла, дублирующая обёртка пропущена.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/check-selection.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        },
+        "HG-0021-S4": {
+          "captured_at": "2026-09-25T17:09:26.676150+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "specs/changes/HG-0021/evidence/agent-call.jsonl": "c4f62dff48f55eaee6a82b25c2ca6b8bf9c0ad6ba6ebb348db34bbc337c40b62",
+            "specs/changes/HG-0021/evidence/agent-preflight.json": "ee89f6b013134f3207f2bf21b14e605f226d233eb2bdf04e5c6a12e78c2ccfa5",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Два неверных предзапуска отклонены до тестовых команд; допустимый агентный прогон работал в изолированном каталоге, полный журнал действий и сырой вызов Codex сохранены, краткий итог есть.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/agent-preflight.json",
+          "scenario": "HG-0021-S4",
+          "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+        }
+      },
+      "recorded_at": 1790356248,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S1": {
+          "captured_at": "2026-09-25T16:56:37.752815+00:00",
+          "command": "HG-0021 self-hosting: verify S2-S4 evidence and source hashes, remove temporary fixture, compare source report before formal review",
+          "files": {
+            "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e",
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/pilot-result.json": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+            "specs/changes/HG-0021/evidence/raw-checks.log": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76",
+            "specs/changes/HG-0021/evidence/workflow-exercise.json": "c596f273e3a8bde0729860b0b4cfcd110ae269a74f3ee98bb13ee183033b9665"
+          },
+          "method": "manual",
+          "observation": "S2-S4 записаны до итогового ревью, 7 файлов каждого доказательства актуальны; временный каталог упражнения удалён, исходные отчёты и их хеши не изменились. Полный состав S1-S4 теперь готов к независимому ревью.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/workflow-exercise.json",
+          "scenario": "HG-0021-S1",
+          "scenario_sha256": "1355178ff7face6e5521c515433d448a83448a87e61a9f0b151b3042202e1c9f"
+        },
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T17:09:25.119219+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/scenario-selection.json": "3ede75b5105857e99d4e7014caabb19fa7310d314ad0c7bee38d257406b9027d"
+          },
+          "method": "manual",
+          "observation": "Из двух эквивалентных примеров сложения выбран один нормативный исход и отдельный исход TypeError; полный прогон наблюдал оба в одном запуске.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/scenario-selection.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T17:10:48.555068+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "693002eea63e649d1744b6279dcf97e29ec0a041dfb6996f3610925b933f5c57",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/check-selection.json": "e6d3fb0520c5929689f3c5d483bb0423fe0bc2257c6a09942cbaca43ed9f5314",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Контролируемый сбой фокусного теста исправлен адресно; повторный фокусный и итоговый полный прогон прошли, независимая проверка схемы прошла, дублирующая обёртка пропущена. Локальная инструкция уточнена; check-repository и бюджет inspect пройдены, прежний пилотный отчёт не изменился.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/check-selection.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        },
+        "HG-0021-S4": {
+          "captured_at": "2026-09-25T17:09:26.676150+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "specs/changes/HG-0021/evidence/agent-call.jsonl": "c4f62dff48f55eaee6a82b25c2ca6b8bf9c0ad6ba6ebb348db34bbc337c40b62",
+            "specs/changes/HG-0021/evidence/agent-preflight.json": "ee89f6b013134f3207f2bf21b14e605f226d233eb2bdf04e5c6a12e78c2ccfa5",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Два неверных предзапуска отклонены до тестовых команд; допустимый агентный прогон работал в изолированном каталоге, полный журнал действий и сырой вызов Codex сохранены, краткий итог есть.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/agent-preflight.json",
+          "scenario": "HG-0021-S4",
+          "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+        }
+      },
+      "recorded_at": 1790356306,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S1": {
+          "captured_at": "2026-09-25T17:11:46.689232+00:00",
+          "command": "HG-0021: compare recorded evidence hashes, demonstrate S3-only staleness after docs edit, refresh S3, remove isolated pilot, verify shared raw report unchanged",
+          "files": {
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/staleness-observation.json": "d0f6f14083509ff79d1a0ee31f3d501b0fdf541cb061e45150d88a4f8800c544",
+            "specs/changes/HG-0021/evidence/workflow-exercise-v2.json": "c1f2cb9ce64ae9208e7fe37eefa595f49c83602948906659e73d69e34fc2915c"
+          },
+          "method": "manual",
+          "observation": "S2-S4 evidence preceded final review. Shared raw report retained its SHA after cleanup. A change in docs/DEVELOPMENT.md made only S3 stale; S2/S4 stayed current, then only S3 evidence was refreshed. All four scenario records are current before final review.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/workflow-exercise-v2.json",
+          "scenario": "HG-0021-S1",
+          "scenario_sha256": "1355178ff7face6e5521c515433d448a83448a87e61a9f0b151b3042202e1c9f"
+        },
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T17:09:25.119219+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/scenario-selection.json": "3ede75b5105857e99d4e7014caabb19fa7310d314ad0c7bee38d257406b9027d"
+          },
+          "method": "manual",
+          "observation": "Из двух эквивалентных примеров сложения выбран один нормативный исход и отдельный исход TypeError; полный прогон наблюдал оба в одном запуске.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/scenario-selection.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T17:10:48.555068+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "docs/DEVELOPMENT.md": "693002eea63e649d1744b6279dcf97e29ec0a041dfb6996f3610925b933f5c57",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/check-selection.json": "e6d3fb0520c5929689f3c5d483bb0423fe0bc2257c6a09942cbaca43ed9f5314",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Контролируемый сбой фокусного теста исправлен адресно; повторный фокусный и итоговый полный прогон прошли, независимая проверка схемы прошла, дублирующая обёртка пропущена. Локальная инструкция уточнена; check-repository и бюджет inspect пройдены, прежний пилотный отчёт не изменился.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/check-selection.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        },
+        "HG-0021-S4": {
+          "captured_at": "2026-09-25T17:09:26.676150+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "specs/changes/HG-0021/evidence/agent-call.jsonl": "c4f62dff48f55eaee6a82b25c2ca6b8bf9c0ad6ba6ebb348db34bbc337c40b62",
+            "specs/changes/HG-0021/evidence/agent-preflight.json": "ee89f6b013134f3207f2bf21b14e605f226d233eb2bdf04e5c6a12e78c2ccfa5",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Два неверных предзапуска отклонены до тестовых команд; допустимый агентный прогон работал в изолированном каталоге, полный журнал действий и сырой вызов Codex сохранены, краткий итог есть.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/agent-preflight.json",
+          "scenario": "HG-0021-S4",
+          "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+        }
+      },
+      "recorded_at": 1790356488,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S1": {
+          "captured_at": "2026-09-25T17:11:46.689232+00:00",
+          "command": "HG-0021: compare recorded evidence hashes, demonstrate S3-only staleness after docs edit, refresh S3, remove isolated pilot, verify shared raw report unchanged",
+          "files": {
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/staleness-observation.json": "d0f6f14083509ff79d1a0ee31f3d501b0fdf541cb061e45150d88a4f8800c544",
+            "specs/changes/HG-0021/evidence/workflow-exercise-v2.json": "c1f2cb9ce64ae9208e7fe37eefa595f49c83602948906659e73d69e34fc2915c"
+          },
+          "method": "manual",
+          "observation": "S2-S4 evidence preceded final review. Shared raw report retained its SHA after cleanup. A change in docs/DEVELOPMENT.md made only S3 stale; S2/S4 stayed current, then only S3 evidence was refreshed. All four scenario records are current before final review.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/workflow-exercise-v2.json",
+          "scenario": "HG-0021-S1",
+          "scenario_sha256": "1355178ff7face6e5521c515433d448a83448a87e61a9f0b151b3042202e1c9f"
+        },
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T17:09:25.119219+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/scenario-selection.json": "3ede75b5105857e99d4e7014caabb19fa7310d314ad0c7bee38d257406b9027d"
+          },
+          "method": "manual",
+          "observation": "Из двух эквивалентных примеров сложения выбран один нормативный исход и отдельный исход TypeError; полный прогон наблюдал оба в одном запуске.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/scenario-selection.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T17:14:47.912715+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py; after docs/DEVELOPMENT.md edit: node scripts/check-repository.mjs, highgrade inspect, git diff --check",
+          "files": {
+            "docs/DEVELOPMENT.md": "693002eea63e649d1744b6279dcf97e29ec0a041dfb6996f3610925b933f5c57",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/check-selection-v2.json": "ffeaefe481e219aeef00a5f3e221ec861a7a2daafb3335d3b9c96e69c10490ef",
+            "specs/changes/HG-0021/evidence/doc-recheck.json": "530a60ab8ae62f7182d2b2a4d57387e7c65e6874c644da8947889d36575ea0df",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-doc-recheck.jsonl": "f3d05b3ad51d0e352f125816506376a8dbb61f721945aa04a549455af3e2f748",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Исходный пилот наблюдал сбой, адресный повтор, полный барьер и отдельную проверку схемы; дублирующая обёртка пропущена. После изменения локальной инструкции заново выполнены и сохранены относящиеся документальные проверки: структура PASSED, бюджет без превышения, diff --check 0. Неизменённый синтетический код повторно не запускался.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/check-selection-v2.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        },
+        "HG-0021-S4": {
+          "captured_at": "2026-09-25T17:09:26.676150+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "specs/changes/HG-0021/evidence/agent-call.jsonl": "c4f62dff48f55eaee6a82b25c2ca6b8bf9c0ad6ba6ebb348db34bbc337c40b62",
+            "specs/changes/HG-0021/evidence/agent-preflight.json": "ee89f6b013134f3207f2bf21b14e605f226d233eb2bdf04e5c6a12e78c2ccfa5",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Два неверных предзапуска отклонены до тестовых команд; допустимый агентный прогон работал в изолированном каталоге, полный журнал действий и сырой вызов Codex сохранены, краткий итог есть.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/agent-preflight.json",
+          "scenario": "HG-0021-S4",
+          "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+        }
+      },
+      "recorded_at": 1790356528,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0021-S1": {
+          "captured_at": "2026-09-25T17:15:28.890169+00:00",
+          "command": "HG-0021: compare evidence hashes; change docs/DEVELOPMENT.md; recheck changed documentation; refresh only S3; remove isolated pilot; verify shared raw report unchanged before final review",
+          "files": {
+            "docs/DEVELOPMENT.md": "693002eea63e649d1744b6279dcf97e29ec0a041dfb6996f3610925b933f5c57",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "specs/changes/HG-0021/evidence/doc-recheck.json": "530a60ab8ae62f7182d2b2a4d57387e7c65e6874c644da8947889d36575ea0df",
+            "specs/changes/HG-0021/evidence/raw-doc-recheck.jsonl": "f3d05b3ad51d0e352f125816506376a8dbb61f721945aa04a549455af3e2f748",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/staleness-observation.json": "d0f6f14083509ff79d1a0ee31f3d501b0fdf541cb061e45150d88a4f8800c544",
+            "specs/changes/HG-0021/evidence/workflow-exercise-v3.json": "d86bdfd98837b941ee0779bb63c6d2a207fad6bdf8daef326b045195cb121151"
+          },
+          "method": "manual",
+          "observation": "S2-S4 evidence and fresh S3 documentation recheck preceded final review. Shared pilot journal remained unchanged after cleanup. The local doc edit made S3 stale while S2/S4 remained current; only S3 was rechecked and rerecorded.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/workflow-exercise-v3.json",
+          "scenario": "HG-0021-S1",
+          "scenario_sha256": "1355178ff7face6e5521c515433d448a83448a87e61a9f0b151b3042202e1c9f"
+        },
+        "HG-0021-S2": {
+          "captured_at": "2026-09-25T17:09:25.119219+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+            "specs/changes/HG-0021/evidence/scenario-selection.json": "3ede75b5105857e99d4e7014caabb19fa7310d314ad0c7bee38d257406b9027d"
+          },
+          "method": "manual",
+          "observation": "Из двух эквивалентных примеров сложения выбран один нормативный исход и отдельный исход TypeError; полный прогон наблюдал оба в одном запуске.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/scenario-selection.json",
+          "scenario": "HG-0021-S2",
+          "scenario_sha256": "13a353398e848a7771ebb52d38ba9c8cc4c5262b03b894c510ca1432f2c35a20"
+        },
+        "HG-0021-S3": {
+          "captured_at": "2026-09-25T17:14:47.912715+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py; after docs/DEVELOPMENT.md edit: node scripts/check-repository.mjs, highgrade inspect, git diff --check",
+          "files": {
+            "docs/DEVELOPMENT.md": "693002eea63e649d1744b6279dcf97e29ec0a041dfb6996f3610925b933f5c57",
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+            "specs/changes/HG-0021/evidence/check-selection-v2.json": "ffeaefe481e219aeef00a5f3e221ec861a7a2daafb3335d3b9c96e69c10490ef",
+            "specs/changes/HG-0021/evidence/doc-recheck.json": "530a60ab8ae62f7182d2b2a4d57387e7c65e6874c644da8947889d36575ea0df",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-doc-recheck.jsonl": "f3d05b3ad51d0e352f125816506376a8dbb61f721945aa04a549455af3e2f748",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Исходный пилот наблюдал сбой, адресный повтор, полный барьер и отдельную проверку схемы; дублирующая обёртка пропущена. После изменения локальной инструкции заново выполнены и сохранены относящиеся документальные проверки: структура PASSED, бюджет без превышения, diff --check 0. Неизменённый синтетический код повторно не запускался.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/check-selection-v2.json",
+          "scenario": "HG-0021-S3",
+          "scenario_sha256": "aca861b78a252a72d12f2c8d79325c3126391aa19ba2c1438062c122cf2444f4"
+        },
+        "HG-0021-S4": {
+          "captured_at": "2026-09-25T17:09:26.676150+00:00",
+          "command": "python specs/changes/HG-0021/evidence/exercise.py",
+          "files": {
+            "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+            "specs/changes/HG-0021/evidence/agent-call.jsonl": "c4f62dff48f55eaee6a82b25c2ca6b8bf9c0ad6ba6ebb348db34bbc337c40b62",
+            "specs/changes/HG-0021/evidence/agent-preflight.json": "ee89f6b013134f3207f2bf21b14e605f226d233eb2bdf04e5c6a12e78c2ccfa5",
+            "specs/changes/HG-0021/evidence/exercise.py": "a57f2b2795470de6258384f6c950cc31b33937f5b04deab6782d319542da0a34",
+            "specs/changes/HG-0021/evidence/fixture.json": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d",
+            "specs/changes/HG-0021/evidence/raw-pilot-actions.jsonl": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694"
+          },
+          "method": "manual",
+          "observation": "Два неверных предзапуска отклонены до тестовых команд; допустимый агентный прогон работал в изолированном каталоге, полный журнал действий и сырой вызов Codex сохранены, краткий итог есть.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0021/evidence/agent-preflight.json",
+          "scenario": "HG-0021-S4",
+          "scenario_sha256": "cefbbcbdbd33963c6c606115b30e8253c5196b87d9ad48b8b8a80cba06d0b9bb"
+        }
+      },
+      "recorded_at": 1790356603,
+      "review": null
+    }
+  ],
+  "review": {
+    "change_sha256": "2643fa741755e18b8e62120806d4f80e45ee60684841171f93a59e67fffcf4a5",
+    "conclusion": "REVIEW_GO: C1-C4 and S1-S4 current; controlled failure and targeted retry, two rejected preflights, isolated agent exercise and raw journals verified; no material findings. One fixture does not prove future-session reliability or automatic skill discovery.",
+    "reviewer": "/root/hg0021_review",
+    "verdict": "go"
+  },
+  "runs": []
+}

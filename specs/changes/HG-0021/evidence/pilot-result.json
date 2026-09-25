@@ -1,0 +1,81 @@
+{
+  "captured_at": "2026-09-25T16:52:12.993386+00:00",
+  "preflight": {
+    "workspace": "D:\\my_projects\\MyCodex\\target\\highgrade\\tmp\\HG-0021\\pilot",
+    "isolated_under_target": true,
+    "required_files_present": true,
+    "expected": [
+      "add_int(2,3)==5",
+      "TypeError for non-integer input",
+      "schema argument_type=integer"
+    ],
+    "separate_cli_attempt": "stopped after no events; current session executed fixture"
+  },
+  "selected_scenarios": [
+    {
+      "id": "P-S1",
+      "rule": "integer addition",
+      "observed_by": [
+        "focus",
+        "full"
+      ]
+    },
+    {
+      "id": "P-S2",
+      "rule": "reject non-integer argument",
+      "observed_by": [
+        "full"
+      ]
+    }
+  ],
+  "commands_run": [
+    {
+      "name": "focus",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "tests.test_toy.ToyTests.test_add",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.094,
+      "output_sha256": "224d4b5dc412200778a654bdfb50d6c26f7759896c0543f3f13a57da6a2c8cd6"
+    },
+    {
+      "name": "full",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.094,
+      "output_sha256": "0f15a1bbb6f38743fd020dbc5c7123ae5f27de8e54b3049449e1543d8fa228e9"
+    },
+    {
+      "name": "schema",
+      "command": [
+        "python",
+        "scripts/check_schema.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.062,
+      "output_sha256": "937b7b7253088eadf1e5aa20f5d9ce3d743bde7fa37af2314d2e3ff012f19c42"
+    }
+  ],
+  "skipped_duplicate": "python scripts/run_full.py; same unittest discovery as full, no additional coverage",
+  "raw_report": "raw-checks.log",
+  "raw_report_sha256": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76",
+  "source_inputs_sha256": {
+    "kit/procedures/spec.md": "3ea87f04dc2dbab2a69b9bad6709dee00058b3e76ce2de6c6764e4b737367d08",
+    "kit/procedures/work.md": "1c74063dfb8b1c3c1a8db096629d9137105299eb8b34401f4182a2b95592b85c",
+    "kit/templates/DEVELOPMENT.md": "d3325656903ad2de954444a885c59c49f4fe7b2b6d9134b8a58030f29b80123a",
+    "docs/DEVELOPMENT.md": "211752fba8375809f52e9480c7eff3de196e815ec775c00ec412a36dc037306e"
+  },
+  "limit": "One controlled fixture demonstrates this run, not reliability across future agent sessions."
+}

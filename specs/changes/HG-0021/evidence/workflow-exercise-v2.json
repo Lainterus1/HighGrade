@@ -1,0 +1,45 @@
+{
+  "captured_at": "2026-09-25T17:11:32.530334+00:00",
+  "raw_shared_report": "raw-pilot-actions.jsonl",
+  "raw_report_sha256": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+  "cleanup": {
+    "temporary_pilot_removed": true,
+    "shared_report_unchanged": true
+  },
+  "before_final_review": {
+    "HG-0021-S2": {
+      "outcome": "passed",
+      "stale": [],
+      "file_count": 5,
+      "captured_at": "2026-09-25T17:09:25.119219+00:00"
+    },
+    "HG-0021-S3": {
+      "outcome": "passed",
+      "stale": [],
+      "file_count": 7,
+      "captured_at": "2026-09-25T17:10:48.555068+00:00"
+    },
+    "HG-0021-S4": {
+      "outcome": "passed",
+      "stale": [],
+      "file_count": 6,
+      "captured_at": "2026-09-25T17:09:26.676150+00:00"
+    }
+  },
+  "dependent_change": {
+    "changed_input": "docs/DEVELOPMENT.md",
+    "before_refresh": "Only S3 stale; S2 and S4 remained current",
+    "after_refresh": "S3 re-recorded; S2 and S4 reused without re-running fixture",
+    "observation": "staleness-observation.json"
+  },
+  "final_review_at_capture": "not yet requested",
+  "checks": {
+    "check_repository": "PASSED",
+    "inspect_budget": "no exceedance",
+    "git_diff_check": "passed",
+    "docs_development_bytes": 7969
+  },
+  "limits": [
+    "The pilot is one synthetic fixture; it establishes this workflow instance only."
+  ]
+}

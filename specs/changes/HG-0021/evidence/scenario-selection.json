@@ -1,0 +1,26 @@
+{
+  "fixture": "fixture.json",
+  "raw_actions": "raw-pilot-actions.jsonl",
+  "raw_actions_sha256": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+  "selected": [
+    {
+      "id": "P-S1",
+      "outcome": "integer addition",
+      "examples": [
+        "2+3=5",
+        "4+1=5"
+      ],
+      "observed_in": "full_barrier"
+    },
+    {
+      "id": "P-S2",
+      "outcome": "non-integer rejected",
+      "examples": [
+        "add_int('2',3) raises TypeError"
+      ],
+      "observed_in": "full_barrier"
+    }
+  ],
+  "full_barrier_exit_code": 0,
+  "limit": "Synthetic fixture demonstrates one execution, not future agent reliability."
+}

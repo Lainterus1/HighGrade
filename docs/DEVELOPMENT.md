@@ -4,7 +4,7 @@
 
 ## Изменения требований: нативные спецификации
 
-[Выбор маршрута](../kit/procedures/task.md#выбор-достаточного-маршрута): технические задачи идут прямо в work либо через план. spec-list учитывает специфицированные изменения. CLI активной Поставки:
+[Выбор маршрута](../kit/procedures/task.md#выбор-достаточного-маршрута): технические задачи идут прямо в work либо через план; зависимую цепочку ведёт [Planner](../kit/procedures/planner.md) под одним Goal. spec-list учитывает специфицированные изменения. CLI активной Поставки:
 
 ```powershell
 $hgProfile = $env:USERPROFILE
@@ -49,13 +49,16 @@ if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
 
 `prepare` отвергает устаревший отчёт. `trace` возвращает 2 при неподтверждённых сценариях; `verify` требует успеха автоматических связей и не выдаёт ручные пробелы за PASS. Ручные доказательства — по QUALITY.
 
+## Выбор проверок
+
+`kit/` и документы: `check-repository`, `inspect` бюджета; при новом поведении — упражнение. Rust: фокусный тест и Nextest/trace; `cargo test` только для дополнительного покрытия. `spec-run` считай тестовым запуском. Сбой: адресный повтор.
+
 ## Rust CLI и глобальная поставка
 
 Активация — в [BUILD](BUILD.md). Для правки только навыков/документов Cargo не нужен. При изменении Rust проверь также `cargo build --release --locked`; кандидат принятия собирается отдельно из точного SHA. Ниже — изолированные испытания CLI.
 
 ```powershell
 cargo fmt --all -- --check
-cargo test --locked
 cargo build --locked
 .\target\debug\highgrade.exe global-install --profile '<пустой-временный-профиль>' --source (Join-Path $PWD 'kit') --candidate-exe (Join-Path $PWD 'target\debug\highgrade.exe')
 .\target\debug\highgrade.exe global-status --profile '<пустой-временный-профиль>'

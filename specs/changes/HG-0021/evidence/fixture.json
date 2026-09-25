@@ -1,0 +1,40 @@
+{
+  "files": {
+    "AGENTS.md": {
+      "content": "# Изолированное упражнение\n\nРаботай только внутри этого каталога. Это синтетическая проверка процедуры; не меняй исходники High Grade и не создавай спецификацию в основном репозитории. Результат пиши по-русски.\n",
+      "sha256": "847ca328b381d5498b005fe78aa9d7a49590666d81724075b16d05857b9d4a7b"
+    },
+    "DEVELOPMENT.md": {
+      "content": "# Проверки\n\nФокусный тест: `python -m unittest tests.test_toy.ToyTests.test_add -v`.\nОсновной полный набор: `python -m unittest discover -s tests -v`.\nДублирующая обёртка того же набора: `python scripts/run_full.py`. Её запуск не добавляет покрытия.\nДополнительная независимая проверка схемы: `python scripts/check_schema.py`.\nВсе команды выполняются из этого каталога; успех — exit 0. Сохраняй сырой вывод в `raw-checks.log`.\n",
+      "sha256": "663ef1ada5015a1ad5d5bd9a275240e5b0280812a2cef2c3906ebc1a10de83fd"
+    },
+    "schema.json": {
+      "content": "{\"argument_type\":\"integer\"}\n",
+      "sha256": "23e23f81a5100b205b7f278af00223600dd5f3678c4f5f56342475210a0030c8"
+    },
+    "scripts/check_schema.py": {
+      "content": "import json, pathlib\nroot = pathlib.Path(__file__).resolve().parents[1]\nobj = json.loads((root / \"schema.json\").read_text(encoding=\"utf-8\"))\nassert obj == {\"argument_type\": \"integer\"}\nprint(\"schema: passed\")\n",
+      "sha256": "7fc519704fc5bd8843ff2363fad6a6b5e3fdcbf610d1b44e5b0c72eb2b5ad87f"
+    },
+    "scripts/run_full.py": {
+      "content": "import pathlib, subprocess, sys\nroot = pathlib.Path(__file__).resolve().parents[1]\nraise SystemExit(subprocess.call([sys.executable, \"-m\", \"unittest\", \"discover\", \"-s\", \"tests\", \"-v\"], cwd=root))\n",
+      "sha256": "db1ed092f2e56b837662f86530e2559294850e657431667843044e2c63786e24"
+    },
+    "TASK.md": {
+      "content": "# Задание\n\nФункция `add_int` должна складывать два целых числа и отвергать нецелые аргументы. Примеры `2+3=5` и `4+1=5` проверяют одно правило; ошибка типа — отдельный исход. Код уже готов: выбери достаточные сценарии и проверки, исполни их и оставь `pilot-result.json` с наблюдениями. Перед затратным шагом сверь cwd, режим сеанса и пути. Полный вывод команд сохрани в `raw-checks.log`, в итоговом ответе дай только статус и путь.\n",
+      "sha256": "c4e63abf0801123e400c25b6138af5341444b50345196b40af3dea49573463b7"
+    },
+    "tests/__init__.py": {
+      "content": "",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tests/test_toy.py": {
+      "content": "import unittest\nfrom toy import add_int\n\nclass ToyTests(unittest.TestCase):\n    def test_add(self):\n        self.assertEqual(add_int(2, 3), 5)\n        self.assertEqual(add_int(4, 1), 5)\n\n    def test_invalid_type(self):\n        with self.assertRaises(TypeError):\n            add_int(\"2\", 3)\n",
+      "sha256": "f80baddfec018ed698822c6ed94524c50bdeb10e43a2f400cb2b6d5ac8c1bd85"
+    },
+    "toy.py": {
+      "content": "def add_int(a: int, b: int) -> int:\n    if not isinstance(a, int) or not isinstance(b, int):\n        raise TypeError(\"integers required\")\n    return a + b\n",
+      "sha256": "ef8648f3743c10f815eddcd74df890cb116e413c30ef3dec0266c7f9b656eb72"
+    }
+  }
+}

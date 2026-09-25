@@ -1,0 +1,41 @@
+{
+  "driver": "current Codex agent session",
+  "fixture": "fixture.json",
+  "raw_actions": "raw-pilot-actions.jsonl",
+  "raw_actions_sha256": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+  "preflight_cases": [
+    {
+      "case": "wrong_cwd",
+      "cwd": "D:\\my_projects\\MyCodex",
+      "mode": "persistent",
+      "result": "reject: cwd outside isolated pilot"
+    },
+    {
+      "case": "ephemeral_mode",
+      "cwd": "D:\\my_projects\\MyCodex\\target\\highgrade\\tmp\\HG-0021\\pilot2",
+      "mode": "ephemeral",
+      "result": "reject: mode cannot retain required Goal"
+    },
+    {
+      "case": "valid",
+      "cwd": "D:\\my_projects\\MyCodex\\target\\highgrade\\tmp\\HG-0021\\pilot2",
+      "mode": "persistent",
+      "result": "accept"
+    }
+  ],
+  "actual_command_cwd": "D:\\my_projects\\MyCodex\\target\\highgrade\\tmp\\HG-0021\\pilot2",
+  "summary": "Two invalid preparations rejected before test commands; valid isolated run completed, including expected fault and repair.",
+  "separate_cli_attempt": "Earlier separate CLI session yielded no events and was stopped; it is not used as success evidence.",
+  "agent_call_excerpt": "agent-call.jsonl",
+  "agent_call_excerpt_sha256": "c4f62dff48f55eaee6a82b25c2ca6b8bf9c0ad6ba6ebb348db34bbc337c40b62",
+  "codex_journal_source": "C:\\Users\\user\\.codex\\sessions\\2026\\09\\25\\rollout-2026-09-25T23-23-58-01a0d8e9-0d9a-73b3-9fef-b0c1c89f06a0_01a0d961-76ec-7f40-a00c-c0d9339a2070.jsonl",
+  "codex_journal_lines": [
+    951,
+    954,
+    972,
+    975,
+    1000,
+    1003
+  ],
+  "journal_scope": "agent-call.jsonl preserves the raw Codex call/output pairs for this bounded pilot; raw-pilot-actions.jsonl preserves every fixture action and command output. Full Codex session journal stays at codex_journal_source on this host."
+}

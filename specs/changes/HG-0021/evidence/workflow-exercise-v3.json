@@ -1,0 +1,52 @@
+{
+  "captured_at": "2026-09-25T17:15:12.468541+00:00",
+  "raw_shared_report": "raw-pilot-actions.jsonl",
+  "raw_report_sha256": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+  "cleanup": {
+    "temporary_pilot_removed": true,
+    "shared_report_unchanged": true
+  },
+  "before_final_review": {
+    "HG-0021-S2": {
+      "outcome": "passed",
+      "stale": [],
+      "file_count": 5,
+      "captured_at": "2026-09-25T17:09:25.119219+00:00",
+      "report": "specs/changes/HG-0021/evidence/scenario-selection.json"
+    },
+    "HG-0021-S3": {
+      "outcome": "passed",
+      "stale": [],
+      "file_count": 9,
+      "captured_at": "2026-09-25T17:14:47.912715+00:00",
+      "report": "specs/changes/HG-0021/evidence/check-selection-v2.json"
+    },
+    "HG-0021-S4": {
+      "outcome": "passed",
+      "stale": [],
+      "file_count": 6,
+      "captured_at": "2026-09-25T17:09:26.676150+00:00",
+      "report": "specs/changes/HG-0021/evidence/agent-preflight.json"
+    }
+  },
+  "dependent_change": {
+    "changed_input": "docs/DEVELOPMENT.md",
+    "before_refresh": "Only S3 stale; S2 and S4 remained current",
+    "after_refresh": "Only S3 was refreshed, with a new source report containing the fresh documentation checks.",
+    "observation": "staleness-observation.json",
+    "recheck_report": "doc-recheck.json",
+    "recheck_raw": "raw-doc-recheck.jsonl",
+    "recheck_report_sha256": "530a60ab8ae62f7182d2b2a4d57387e7c65e6874c644da8947889d36575ea0df"
+  },
+  "final_review_at_capture": "not yet requested",
+  "checks": {
+    "check_repository": "PASSED",
+    "inspect_budget": "no exceedance",
+    "git_diff_check": "passed",
+    "docs_development_bytes": 7969,
+    "document_recheck": "PASSED: check-repository, inspect budget, diff --check"
+  },
+  "limits": [
+    "The pilot is one synthetic fixture; it establishes this workflow instance only."
+  ]
+}

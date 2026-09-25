@@ -1,0 +1,26 @@
+{
+  "fixture": "fixture.json",
+  "raw_actions": "raw-pilot-actions.jsonl",
+  "raw_actions_sha256": "e76d79c2b39e0872eb640de9fcf9613c0d7249f5a8bc0a855f5a312763bef694",
+  "command_outcomes": [
+    {
+      "name": "focus_expected_failure",
+      "exit_code": 1
+    },
+    {
+      "name": "focus_retry",
+      "exit_code": 0
+    },
+    {
+      "name": "full_barrier",
+      "exit_code": 0
+    },
+    {
+      "name": "unique_schema",
+      "exit_code": 0
+    }
+  ],
+  "failure_handling": "Controlled subtraction fault failed focus; restored input passed focus retry and final full barrier.",
+  "unique_coverage": "schema check passed",
+  "duplicate_wrapper": "skipped because it runs the same full unittest discovery"
+}

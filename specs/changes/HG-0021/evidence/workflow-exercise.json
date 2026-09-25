@@ -1,0 +1,49 @@
+{
+  "captured_at": "2026-09-25T16:56:18.100049+00:00",
+  "task": "HG-0021: actual workflow exercise before formal review",
+  "source_reports": {
+    "pilot_result_sha256": "29d62e8d91e91f75173f565fa824130ac1fe512e110b8c7c609732d5f0c9c02c",
+    "raw_checks_sha256": "ced9892964a5244eb3c5d9cfd38e00b6aa7fe9e2b67c16ab04ae52097db51e76",
+    "fixture_sha256": "63d69cf8f226c6e85ccfb2be14655aa3aa21c58555cfb038ab6c74329db9348d"
+  },
+  "evidence_before_formal_review": {
+    "HG-0021-S2": {
+      "outcome": "passed",
+      "files_checked": 7,
+      "stale_files": []
+    },
+    "HG-0021-S3": {
+      "outcome": "passed",
+      "files_checked": 7,
+      "stale_files": []
+    },
+    "HG-0021-S4": {
+      "outcome": "passed",
+      "files_checked": 7,
+      "stale_files": []
+    }
+  },
+  "cleanup": {
+    "temporary_pilot_removed": true,
+    "source_reports_retained_in_evidence": true,
+    "pilot_report_unchanged_after_cleanup": true
+  },
+  "route": {
+    "one_goal": true,
+    "plan_source": "specs/changes/HG-0021/spec.json",
+    "session_state": "docs/plans/2026-09-25-hg0021.state.md",
+    "formal_review": "pending until HG-0021-S1 evidence is recorded"
+  },
+  "checks": {
+    "spec_validate": "passed",
+    "check_repository": "PASSED",
+    "source_scenarios_check": "passed",
+    "git_diff_check": "passed",
+    "docs_development_bytes": 7928,
+    "docs_development_budget_bytes": 8000
+  },
+  "limitations": [
+    "Separate Codex CLI pilot was stopped after no events; no successful separate-agent behavior is claimed.",
+    "One controlled fixture and this task show observed behavior, not statistical reliability."
+  ]
+}

@@ -12,7 +12,7 @@ HighGrade/                       имя репозитория High Grade на G
   Cargo.toml, Cargo.lock          Rust CLI и закреплённые зависимости
   src/                            doctor, inspect с bootstrap, trace, безопасные пути, global install/update
   tests/                          контрактные проверки на изолированных данных
-  kit/                            восемь глобальных навыков, процедуры, шаблоны, manifest v3
+  kit/                            девять глобальных навыков, процедуры, шаблоны, manifest v3
   bundle/                         исторический проектный кандидат manifest v2
   plugins/                        отдельные исходники SVG и Code Health Audit
   scripts/check-repository.mjs    структурная проверка исходного проекта
