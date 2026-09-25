@@ -1,0 +1,8 @@
+diff --git a/evidence/hg10-s8-stale/before/counter.py b/counter.py
+index 9f0f6fb..a6aad96 100644
+--- a/evidence/hg10-s8-stale/before/counter.py
++++ b/counter.py
+@@ -1,2 +1,2 @@
+ def count_orders(orders: list[str]) -> int:
+-    return len(set(orders))
++    return len({order.strip() for order in orders})

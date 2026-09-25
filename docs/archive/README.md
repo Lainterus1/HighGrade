@@ -10,8 +10,9 @@
 | [Исходный технический проект](designs/2026-09-22/mycodex-technical-design.md) | Снимок, по которому проводилось прежнее ревью | [Технический проект](legacy-workflow/proposals/technical-design.md) — исторический кандидат |
 | [Предыдущее ревью концепции](designs/2026-09-22/codex-workflow-review.md) | Исторический обзор более ранней концепции | [Ревью организации](../reviews/project-organization-review.md) |
 | [Завершённый bootstrap](plans/bootstrap.md) | Перенос плагинов и начальные документы уже выполнены | [Манифест импорта](../imports/plugins-import.json) и действующая документация |
+| [Проверка и канонизация спек](plans/2026-09-25-spec-verification.md) | Завершён поштучный разбор прежних правил и сценариев | [Итог](plans/2026-09-25-spec-verification.state.md), [архивная карта и ревью](legacy-native-specs/2026-09-25/README.md); действующее поведение — в `specs/` |
 
-Перенесённые оригиналы сохраняют исходные байты. Их внутренние утверждения о статусах и следующих шагах относятся к моменту записи. Ссылки внутри одного снимка сохраняются; обычная работа не должна брать из него действующие указания.
+Перенесённые оригиналы сохраняют исходные байты. Их внутренние утверждения о статусах и следующих шагах относятся к моменту записи. Ссылки внутри одного снимка сохраняются; обычная работа не должна брать из него действующие указания. Текущие требования — в [нативном каталоге](../../specs/README.md). История первого переноса — в [карте](legacy-openspec/migration.json), история канонизации — в [архивном снимке](legacy-native-specs/2026-09-25/README.md).
 
 Планы многоэтапных задач до завершения находятся в `docs/plans/`, затем архивируются. Документальные снимки в этом архиве не доказывают наличие Git-истории. Исполняемый код плагинов и существующий скрипт сюда не перемещались.
 
@@ -27,35 +28,35 @@
 
 [План первого выпуска](plans/first-release.md) и [состояния P0–P2](plans/2026-09-23-p0-p2.state.md), [P3–P6](plans/2026-09-23-p3-p6.state.md) сохранены как история проектного кандидата. P3–P6 не считается целиком завершённым: пилот SNAF ожидал приёмки, PlantsNotify не начинался; новый глобальный маршрут заменил этот план, а пилоты остаются отложенными.
 
-[План глобальной поставки](plans/2026-09-23-global-workflow.md) и [состояние COMPLETE](plans/2026-09-23-global-workflow.state.md) архивированы после подтверждённой публикации v0-2-1. Их старые указания о следующем действии и о неподключённом OpenSpec отражают момент завершения, а не текущее состояние. Действующий маршрут — в [GLOBAL](../workflow/GLOBAL.md), текущий источник задач поведения — в проектном `openspec/`.
+[План глобальной поставки](plans/2026-09-23-global-workflow.md) и [состояние COMPLETE](plans/2026-09-23-global-workflow.state.md) архивированы после публикации v0-2-1. Их указания о неподключённом OpenSpec отражают момент записи. Действующий маршрут — в [GLOBAL](../workflow/GLOBAL.md), требования — в `specs/`.
 
 ## Самоприменение workflow, 2026-09-23
 
-Проверенное изменение [self-host-highgrade](../../openspec/changes/archive/2026-09-23-self-host-highgrade/proposal.md) завершено и штатно архивировано OpenSpec; действующая [спецификация](../../openspec/specs/self-hosted-workflow/spec.md) находится в `openspec/specs/`. Завершённые [план](plans/2026-09-23-self-hosting.md) и [состояние](plans/2026-09-23-self-hosting.state.md) сохранены здесь. Итоговые проверки и их пределы — в [ревью](../reviews/self-hosting-review.md). Архивные задачи не образуют текущий backlog.
+Проверенное изменение [self-host-highgrade](legacy-openspec/changes/archive/2026-09-23-self-host-highgrade/proposal.md) было архивировано OpenSpec; его тогдашняя [спецификация](legacy-openspec/specs/self-hosted-workflow/spec.md) теперь также историческая. Завершённые [план](plans/2026-09-23-self-hosting.md) и [состояние](plans/2026-09-23-self-hosting.state.md) сохранены здесь. Итоговые проверки и их пределы — в [ревью](../reviews/self-hosting-review.md).
 
 ## Проверяемые сценарии, 2026-09-24
 
-[Изменение adopt-executable-scenarios](../../openspec/changes/archive/2026-09-24-adopt-executable-scenarios/proposal.md) архивировано после переноса действующих требований и независимого ревью. Его требования объединены с [действующей спекой](../../openspec/specs/self-hosted-workflow/spec.md); [проверки и открытые ручные пробелы](../reviews/executable-scenarios-review.md) сохраняют границу доказательства, а [состояние задачи](plans/2026-09-24-executable-scenarios.state.md) — ход работы. Установленная v0-2-7 не переключалась; исходный кандидат v0-2-8 не опубликован.
+[Изменение adopt-executable-scenarios](legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/proposal.md) архивировано после тогдашнего объединения требований с [исходной спекой](legacy-openspec/specs/self-hosted-workflow/spec.md). [Проверки и открытые ручные пробелы](../reviews/executable-scenarios-review.md) сохраняют границу доказательства, а [состояние задачи](plans/2026-09-24-executable-scenarios.state.md) — ход работы. Установленная v0-2-7 не переключалась; исходный кандидат v0-2-8 не опубликован.
 
-[Упрощение маршрута High Grade](../../openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/proposal.md) завершено и архивировано; требования объединены в действующие спеки bootstrap, task и release. Независимое ревью выявило ошибку повторной очистки выпуска, исправленную до архивации. На момент архивации исходный кандидат v0-2-9 не активирован и не опубликован.
+[Упрощение маршрута High Grade](legacy-openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/proposal.md) завершено и архивировано; требования объединены в действующие спеки bootstrap, task и release. Независимое ревью выявило ошибку повторной очистки выпуска, исправленную до архивации. На момент архивации исходный кандидат v0-2-9 не активирован и не опубликован.
 
 ## Карта репозитория, 2026-09-23
 
-[Изменение repository-map](../../openspec/changes/archive/2026-09-23-repository-map/proposal.md) завершено и архивировано OpenSpec. Его [спецификация](../../openspec/changes/archive/2026-09-23-repository-map/specs/repository-map/spec.md) и [ревью кандидата](reviews/repository-map-review.md) сохраняют историческое поведение карты.
+[Изменение repository-map](legacy-openspec/changes/archive/2026-09-23-repository-map/proposal.md) завершено и архивировано OpenSpec. Его [спецификация](legacy-openspec/changes/archive/2026-09-23-repository-map/specs/repository-map/spec.md) и [ревью кандидата](reviews/repository-map-review.md) сохраняют историческое поведение карты.
 
-[Уточнение по SNAF](../../openspec/changes/archive/2026-09-23-repository-map-project-context/proposal.md) также завершено и архивировано. Его результат и пределы проверки — в [отдельном ревью](reviews/repository-map-project-context-review.md); карта затем заменена проверкой структуры документов.
+[Уточнение по SNAF](legacy-openspec/changes/archive/2026-09-23-repository-map-project-context/proposal.md) также завершено и архивировано. Его результат и пределы проверки — в [отдельном ревью](reviews/repository-map-project-context-review.md); карта затем заменена проверкой структуры документов.
 
 ## Структура документов перед инициализацией, 2026-09-23
 
-[Изменение bootstrap-document-structure](../../openspec/changes/archive/2026-09-23-bootstrap-document-structure/proposal.md) завершено и архивировано OpenSpec. Публичная карта удалена; действующая [спецификация](../../openspec/specs/project-bootstrap/spec.md) и [ревью кандидата](reviews/bootstrap-document-structure-review.md) описывают `inspect --bootstrap`, канонические пути, ограничения сканирования и проверку SNAF.
+[Изменение bootstrap-document-structure](legacy-openspec/changes/archive/2026-09-23-bootstrap-document-structure/proposal.md) завершено и архивировано OpenSpec. Публичная карта удалена; прежняя [спецификация](legacy-openspec/specs/project-bootstrap/spec.md) и [ревью кандидата](reviews/bootstrap-document-structure-review.md) описывают `inspect --bootstrap`, канонические пути, ограничения сканирования и проверку SNAF.
 
-[Уточнение передачи bootstrap в init](../../openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/proposal.md) также архивировано. Итоги временного пилота, проверки кандидата v0-2-4 и границы доказательства — в [ревью](reviews/bootstrap-init-handoff-review.md); действующий контракт объединён в спецификации `project-bootstrap`. Временный проект удалён.
+[Уточнение передачи bootstrap в init](legacy-openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/proposal.md) также архивировано. Итоги временного пилота, проверки кандидата v0-2-4 и границы доказательства — в [ревью](reviews/bootstrap-init-handoff-review.md); действующий контракт объединён в спецификации `project-bootstrap`. Временный проект удалён.
 
 ## Выпуск принятой доработки, 2026-09-23
 
-[Изменение deploy](../../openspec/changes/archive/2026-09-23-deploy-accepted-work/proposal.md) завершено и архивировано OpenSpec. Действующий [контракт выпуска](../../openspec/specs/release-workflow/spec.md) и [ревью кандидата](../reviews/deploy-release-review.md) описывают отбор, очистку, публикацию и активацию. Фактические push и локальная активация проверяются отдельно.
+[Изменение deploy](legacy-openspec/changes/archive/2026-09-23-deploy-accepted-work/proposal.md) завершено и архивировано OpenSpec. Прежний [контракт выпуска](legacy-openspec/specs/release-workflow/spec.md) и [ревью кандидата](../reviews/deploy-release-review.md) описывают отбор, очистку, публикацию и активацию. Фактические push и локальная активация проверяются отдельно.
 
-[Уточнение highgrade-deploy](../../openspec/changes/archive/2026-09-23-deploy-publication-consent/proposal.md) задаёт локальный коммит по умолчанию, отдельные полномочия на публикацию и активацию и переименование маршрутизатора. Итоговое [ревью](reviews/deploy-publication-consent-review.md) фиксирует проверки кандидата v0-2-6 и границу с пользовательской установкой; действующие требования объединены в контракте выпуска.
+[Уточнение highgrade-deploy](legacy-openspec/changes/archive/2026-09-23-deploy-publication-consent/proposal.md) задаёт локальный коммит по умолчанию, отдельные полномочия на публикацию и активацию и переименование маршрутизатора. Итоговое [ревью](reviews/deploy-publication-consent-review.md) фиксирует проверки кандидата v0-2-6 и границу с пользовательской установкой; действующие требования объединены в контракте выпуска.
 
 ## Сведение первого выпуска, 2026-09-23
 

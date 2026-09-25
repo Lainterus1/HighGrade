@@ -1,0 +1,30 @@
+{
+  "operation": "spec-read",
+  "status": "passed",
+  "findings": [],
+  "measurements": [
+    {
+      "requirement": {
+        "id": "HG-0001-R1",
+        "scenarios": [
+          {
+            "given": "Список идентификаторов заказов с повтором и без повтора",
+            "id": "HG-0001-S1",
+            "then": "Повторный идентификатор учитывается один раз; обычный список и пустой список сохраняют прежний результат",
+            "verification": "Запустить python -B -m unittest -v; связать тест с HG-0001-S1, записать исходники и реальный вывод",
+            "when": "Вызвать count_orders"
+          }
+        ],
+        "statement": "count_orders возвращает число различных строковых идентификаторов в переданном списке; пустой список даёт ноль.",
+        "title": "Уникальные заказы"
+      }
+    },
+    {
+      "schema_version": 3,
+      "store_sha256": "9f26f65bf3aa4ba386af86d17d7c5102231a4cc199b8aff3aaa19a299a50705f"
+    }
+  ],
+  "limitations": [
+    "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+  ]
+}

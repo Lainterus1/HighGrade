@@ -1,0 +1,23 @@
+Working directory: target/agent-pilot/s4
+Command: python -m unittest -v test_codec
+Exit code: 1
+
+test_unknown (test_codec.CodecTests.test_unknown) ... ok
+test_v1 (test_codec.CodecTests.test_v1) ... ok
+test_v2 (test_codec.CodecTests.test_v2) ... ERROR
+
+======================================================================
+ERROR: test_v2 (test_codec.CodecTests.test_v2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\my_projects\MyCodex\target\agent-pilot\s4\test_codec.py", line 11, in test_v2
+    self.assertEqual(parse_version("v2:текст"), "текст")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\my_projects\MyCodex\target\agent-pilot\s4\codec.py", line 4, in parse_version
+    raise ValueError("unsupported message")
+ValueError: unsupported message
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (errors=1)

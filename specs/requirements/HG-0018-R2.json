@@ -1,0 +1,21 @@
+{
+  "id": "HG-0018-R2",
+  "title": "Единственный действующий каталог проекта",
+  "statement": "При поиске реестра проекта без явного --registry команда inspect SHALL использовать только .highgrade/project/documents.json. Прежний каталог SHALL не служить вторым значением по умолчанию и не исключаться из структурного обзора только из-за старого имени; явный --registry REL SHALL сохранять возможность проверить выбранный пользователем путь.",
+  "scenarios": [
+    {
+      "id": "HG-0018-S3",
+      "given": "В проекте есть действующий реестр .highgrade/project/documents.json и отдельный каталог старого формата",
+      "when": "Запустить inspect без --registry",
+      "then": "Команда выбирает реестр High Grade без неоднозначности, а посторонний каталог не скрывается автоматически",
+      "verification": "Запустить cargo test --locked --test contracts default_inspect_uses_only_highgrade_registry -- --exact и проверить выбранный путь и обнаружение постороннего каталога"
+    },
+    {
+      "id": "HG-0018-S4",
+      "given": "В проекте нет .highgrade/project/documents.json, но существует сторонний каталог с реестром",
+      "when": "Запустить inspect без --registry",
+      "then": "Команда сообщает об отсутствии стандартного реестра, не выбирая сторонний каталог",
+      "verification": "Запустить cargo test --locked --test contracts default_inspect_uses_only_highgrade_registry -- --exact и проверить отказ до явного выбора"
+    }
+  ]
+}

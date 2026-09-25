@@ -1,0 +1,13 @@
+{
+  "scenario": "HG-0001-S1",
+  "method": "native_report",
+  "command": "python -B -m unittest -v",
+  "captured_at": "2026-09-25T08:31:48Z",
+  "outcome": "passed",
+  "observation": "Выполнены 3 теста: пустой список дает 0, разные ID дают 2, повторные ID дают 2 и 1; тест test_unique_order_ids помечен HG-0001-S1. До исправления этот тест падал: 4 вместо 2.",
+  "inputs": [
+    "counter.py",
+    "test_counter.py"
+  ],
+  "report": "evidence/s7-continuation-unittest-verbose.txt"
+}

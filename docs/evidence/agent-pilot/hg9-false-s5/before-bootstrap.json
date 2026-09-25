@@ -1,0 +1,181 @@
+{
+  "operation": "inspect",
+  "status": "failed",
+  "findings": [
+    {
+      "code": "CanonicalPathMissing",
+      "location": "docs/ARCHITECTURE.md",
+      "message": "Обязательный путь отсутствует или не является файлом.",
+      "status": "failed"
+    },
+    {
+      "code": "CanonicalPathMissing",
+      "location": "docs/ENGINEERING.md",
+      "message": "Обязательный путь отсутствует или не является файлом.",
+      "status": "failed"
+    },
+    {
+      "code": "CanonicalPathMissing",
+      "location": "docs/DEVELOPMENT.md",
+      "message": "Обязательный путь отсутствует или не является файлом.",
+      "status": "failed"
+    },
+    {
+      "code": "CanonicalPathMissing",
+      "location": ".highgrade/project/INSTRUCTIONS.md",
+      "message": "Обязательный путь отсутствует или не является файлом.",
+      "status": "failed"
+    },
+    {
+      "code": "CanonicalPathMissing",
+      "location": ".highgrade/project/documents.json",
+      "message": "Обязательный путь отсутствует или не является файлом.",
+      "status": "failed"
+    },
+    {
+      "code": "RequiredLinkMissingOrInvalid",
+      "location": "README.md",
+      "message": "AGENTS.md",
+      "status": "failed"
+    },
+    {
+      "code": "RequiredLinkMissingOrInvalid",
+      "location": "README.md",
+      "message": "docs/ARCHITECTURE.md",
+      "status": "failed"
+    },
+    {
+      "code": "RequiredLinkMissingOrInvalid",
+      "location": "README.md",
+      "message": "docs/ENGINEERING.md",
+      "status": "failed"
+    },
+    {
+      "code": "RequiredLinkMissingOrInvalid",
+      "location": "README.md",
+      "message": "docs/DEVELOPMENT.md",
+      "status": "failed"
+    },
+    {
+      "code": "RequiredLinkMissingOrInvalid",
+      "location": "AGENTS.md",
+      "message": ".highgrade/project/INSTRUCTIONS.md",
+      "status": "failed"
+    }
+  ],
+  "measurements": [
+    {
+      "candidate_scan": "performed",
+      "directories_seen": 8,
+      "exclusion_counts": {},
+      "exclusions": [],
+      "files_seen": 24,
+      "limits": {
+        "candidates_per_slot": 12,
+        "depth": 64,
+        "entries": 50000,
+        "exclusion_paths": 32,
+        "output_bytes": 65536,
+        "path_bytes": 200,
+        "read_bytes_per_file": 65536,
+        "read_files": 128
+      },
+      "mode": "bootstrap",
+      "read_files": 4,
+      "required_links": [
+        {
+          "from": "README.md",
+          "status": "missing",
+          "to": "AGENTS.md"
+        },
+        {
+          "from": "README.md",
+          "status": "missing",
+          "to": "docs/ARCHITECTURE.md"
+        },
+        {
+          "from": "README.md",
+          "status": "missing",
+          "to": "docs/ENGINEERING.md"
+        },
+        {
+          "from": "README.md",
+          "status": "missing",
+          "to": "docs/DEVELOPMENT.md"
+        },
+        {
+          "from": "AGENTS.md",
+          "status": "missing",
+          "to": ".highgrade/project/INSTRUCTIONS.md"
+        },
+        {
+          "from": ".highgrade/project/INSTRUCTIONS.md",
+          "status": "unknown",
+          "to": ".highgrade/project/documents.json"
+        }
+      ],
+      "schema_version": 1,
+      "slots": [
+        {
+          "candidate_status": "not_needed",
+          "candidates": [],
+          "expected_path": "README.md",
+          "path_state": "present",
+          "role": "purpose-navigation"
+        },
+        {
+          "candidate_status": "not_needed",
+          "candidates": [],
+          "expected_path": "AGENTS.md",
+          "path_state": "present",
+          "role": "agent-rules"
+        },
+        {
+          "candidate_status": "candidate_found",
+          "candidates": [
+            {
+              "evidence": "filename",
+              "path": "legacy/architecture.md"
+            }
+          ],
+          "expected_path": "docs/ARCHITECTURE.md",
+          "path_state": "absent",
+          "role": "current-architecture"
+        },
+        {
+          "candidate_status": "not_found_in_scan",
+          "candidates": [],
+          "expected_path": "docs/ENGINEERING.md",
+          "path_state": "absent",
+          "role": "engineering-rules"
+        },
+        {
+          "candidate_status": "not_found_in_scan",
+          "candidates": [],
+          "expected_path": "docs/DEVELOPMENT.md",
+          "path_state": "absent",
+          "role": "commands-procedures"
+        },
+        {
+          "candidate_status": "not_found_in_scan",
+          "candidates": [],
+          "expected_path": ".highgrade/project/INSTRUCTIONS.md",
+          "path_state": "absent",
+          "role": null
+        },
+        {
+          "candidate_status": "not_found_in_scan",
+          "candidates": [],
+          "expected_path": ".highgrade/project/documents.json",
+          "path_state": "absent",
+          "role": null
+        }
+      ],
+      "unknown_counts": {},
+      "visited_entries": 32
+    }
+  ],
+  "limitations": [
+    "Структурный поиск не доказывает отсутствие содержания, полноту аудита или смысловую правильность документов. Кандидатов проверяет агент."
+  ]
+}

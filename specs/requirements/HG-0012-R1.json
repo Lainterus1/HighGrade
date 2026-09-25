@@ -1,0 +1,14 @@
+{
+  "id": "HG-0012-R1",
+  "title": "Номер и заголовок",
+  "statement": "CLI атомарно назначает следующий HG-номер, created_at и шаблон; title редактируется независимо. Старые ID сохраняются, использованные не переиспользуются.",
+  "scenarios": [
+    {
+      "id": "HG-0012-S1",
+      "given": "Временная фикстура теста tests/spec_contracts.rs::automatic_numbers_survive_abandon_failure_and_competing_cli_writers создана с исходными данными указанного случая",
+      "when": "Создать изменения, одновременно повторить создание от одного снимка и вызвать сбой записи",
+      "then": "Успешные создания имеют разные последовательные ID; конфликт/сбой сохраняет целый store и счётчик; отменённый номер не используется вновь",
+      "verification": "Запустить cargo test --locked --test spec_contracts automatic_numbers_survive_abandon_failure_and_competing_cli_writers -- --exact; проверить фактические утверждения о результате и границах сценария"
+    }
+  ]
+}

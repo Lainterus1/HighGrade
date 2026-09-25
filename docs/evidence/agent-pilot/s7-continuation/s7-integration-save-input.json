@@ -1,0 +1,75 @@
+{
+  "abandoned_reason": null,
+  "acceptance": [],
+  "archived": false,
+  "baseline": {},
+  "created_at": 1790324366,
+  "evidence": {
+    "HG-0001-S1": {
+      "captured_at": "2026-09-25T08:31:48Z",
+      "command": "python -B -m unittest -v",
+      "files": {
+        "counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+        "evidence/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+        "test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615"
+      },
+      "method": "native_report",
+      "observation": "Выполнены 3 теста: пустой список дает 0, разные ID дают 2, повторные ID дают 2 и 1; тест test_unique_order_ids помечен HG-0001-S1. До исправления этот тест падал: 4 вместо 2.",
+      "outcome": "passed",
+      "report": "evidence/s7-continuation-unittest-verbose.txt",
+      "scenario": "HG-0001-S1",
+      "scenario_sha256": "a9fd1e408f2fe69edf4b352c6f6984ffda3da3ac2b72faba5a72efc64cfcda82"
+    }
+  },
+  "goal": "Считать уникальные идентификаторы заказов при сохранении прежнего результата для обычных списков",
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790325189,
+      "review": null
+    }
+  ],
+  "id": "HG-0001",
+  "imports": {},
+  "operations": [
+    {
+      "action": "add",
+      "requirement": {
+        "id": "HG-0001-R1",
+        "scenarios": [
+          {
+            "given": "Список идентификаторов заказов с повтором и без повтора",
+            "id": "HG-0001-S1",
+            "then": "Повторный идентификатор учитывается один раз; обычный список и пустой список сохраняют прежний результат",
+            "verification": "Запустить python -B -m unittest -v; связать тест с HG-0001-S1, записать исходники и реальный вывод",
+            "when": "Вызвать count_orders"
+          }
+        ],
+        "statement": "count_orders возвращает число различных строковых идентификаторов в переданном списке; пустой список даёт ноль.",
+        "title": "Уникальные заказы"
+      }
+    }
+  ],
+  "questions": [],
+  "rationale": "Повтор одного ID должен обозначать тот же заказ, а не новый",
+  "review": null,
+  "scope": "Синтетический счётчик заказов: count_orders и его локальные тесты; без публикации и активации",
+  "tasks": [
+    {
+      "description": "Согласовать правило и сохранить нативную спецификацию",
+      "done": true,
+      "id": "HG-0001-T1"
+    },
+    {
+      "description": "Реализовать правило и добавить регрессионный тест",
+      "done": true,
+      "id": "HG-0001-T2"
+    },
+    {
+      "description": "Проверить поведение, доказательства и получить независимое ревью",
+      "done": true,
+      "id": "HG-0001-T3"
+    }
+  ],
+  "title": "Счёт уникальных заказов"
+}

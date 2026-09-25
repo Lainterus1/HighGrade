@@ -1,0 +1,145 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0015-S1": {
+      "captured_at": "2026-09-25T05:18:44+00:00",
+      "command": "cargo test --locked --test global_contracts doctor_reports_unavailable_tool_without_claiming_version -- --exact",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log": "3a13794d318882bb6a7fcd8a2cb7be89cee143fe6277c6cc4cff4b046ae1cbbb",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+        "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+        "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+        "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+      },
+      "method": "native_report",
+      "observation": "Реальный тест doctor_reports_unavailable_tool_without_claiming_version прошёл; дополнительные исходники включены в отпечаток для текущей редакции. Следующий spec-run потребует повторить это дополнение.",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log",
+      "scenario": "HG-0015-S1",
+      "scenario_sha256": "e258b085619d14d755e8be998603ad0fe3b696909775c9a4f893aae03daa652d"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790313524,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0015-S1": {
+          "captured_at": "1790313524",
+          "command": "spec-run --id HG-0015 --check HG-0015-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log": "3a13794d318882bb6a7fcd8a2cb7be89cee143fe6277c6cc4cff4b046ae1cbbb",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log",
+          "scenario": "HG-0015-S1",
+          "scenario_sha256": "e258b085619d14d755e8be998603ad0fe3b696909775c9a4f893aae03daa652d"
+        }
+      },
+      "recorded_at": 1790313681,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0015-S1": {
+          "captured_at": "2026-09-25T05:18:44Z",
+          "command": "cargo test --locked --test global_contracts doctor_reports_unavailable_tool_without_claiming_version -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log": "3a13794d318882bb6a7fcd8a2cb7be89cee143fe6277c6cc4cff4b046ae1cbbb",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+          },
+          "method": "native_report",
+          "observation": "Точный тест doctor_reports_unavailable_tool_without_claiming_version выполнен; ожидаемый исход: отчёт показывает только ограничение обнаружения, executed=false и version=null, не выдавая неизвестную версию за проверенную",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log",
+          "scenario": "HG-0015-S1",
+          "scenario_sha256": "e258b085619d14d755e8be998603ad0fe3b696909775c9a4f893aae03daa652d"
+        }
+      },
+      "recorded_at": 1790321917,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0015-S1": {
+          "captured_at": "2026-09-25T05:18:44+00:00",
+          "command": "cargo test --locked --test global_contracts doctor_reports_unavailable_tool_without_claiming_version -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log": "3a13794d318882bb6a7fcd8a2cb7be89cee143fe6277c6cc4cff4b046ae1cbbb",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+          },
+          "method": "native_report",
+          "observation": "Реальный тест doctor_reports_unavailable_tool_without_claiming_version прошёл; дополнительные исходники включены в отпечаток для текущей редакции. Следующий spec-run потребует повторить это дополнение.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log",
+          "scenario": "HG-0015-S1",
+          "scenario_sha256": "e258b085619d14d755e8be998603ad0fe3b696909775c9a4f893aae03daa652d"
+        }
+      },
+      "recorded_at": 1790322043,
+      "review": null
+    }
+  ],
+  "review": {
+    "change_sha256": "1f2854be36c1fe823e6047e8681f5d37a52d162008a70778101fb9ce71b463fa",
+    "conclusion": "Независимое ревью подтвердило точные Cargo-логи и добавленные отпечатки исходников для текущей редакции; следующий spec-run потребует повторного дополнения входов.",
+    "reviewer": "local_spec_review",
+    "verdict": "go"
+  },
+  "runs": [
+    {
+      "check": "HG-0015-C1",
+      "check_sha256": "ebd85f388a67412fe4557fb4866228c3e059a70dbf451af5b509e6c5084d0946",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "global_contracts",
+        "doctor_reports_unavailable_tool_without_claiming_version",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log": "3a13794d318882bb6a7fcd8a2cb7be89cee143fe6277c6cc4cff4b046ae1cbbb",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0015/evidence/HG-0015-C1-1790313524085905500.log",
+      "started_at": 1790313524
+    }
+  ]
+}

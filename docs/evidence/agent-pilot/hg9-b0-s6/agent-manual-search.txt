@@ -1,0 +1,14 @@
+test_store.py:6:from store import save
+test_store.py:10:    def test_save(self):
+test_store.py:12:            path = Path(directory) / "settings.json"
+test_store.py:13:            save(path, {"theme": "dark"})
+test_store.py:16:    def test_failed_save_preserves_existing_file(self):
+test_store.py:18:            path = Path(directory) / "settings.json"
+test_store.py:23:                save(path, {"theme": "dark"}, fail_after_write=True)
+test_store.py:30:            path = Path(directory) / "settings.json"
+test_store.py:36:                    save(path, {"theme": "dark"})
+store.py:7:def save(path, data, fail_after_write=False):
+README.md:3:Существующее правило: при ошибке сохранения прежний `settings.json` остаётся побайтово неизменным.
+AGENTS.md:3:Пользуйся процедурами High Grade. Язык проекта — русский. Запускай тесты и не публикуй изменения.
+notes/mechanism.txt:1:Устройство синтетического хранилища настроек
+notes/mechanism.txt:3:Публичная операция save(path, data) записывает JSON. Перед заменой целевого файла она пишет данные во временный файл в той же папке. При ошибке записи или замены исходный settings.json должен остаться побайтово неизменным, а временный файл удаляется. Поведение проверяют test_store.py и команда python -B -m unittest -v.

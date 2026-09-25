@@ -1,0 +1,289 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0017-S1": {
+      "captured_at": "2026-09-25T08:41:39.282428+00:00",
+      "command": "synthetic s7 continuation with installed High Grade CLI; python -B -m unittest -v",
+      "files": {
+        "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json": "f0ffcb976750134d6805b0698a1a0818b59678b6174c8d84674aa3dd89445e15",
+        "docs/evidence/agent-pilot/s7-continuation/doctor.json": "a32be104fd80b6fa53ea91313c8b65533bef31a2ed0f6607864768c09b70d407",
+        "docs/evidence/agent-pilot/s7-continuation/final/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+        "docs/evidence/agent-pilot/s7-continuation/final/results.json": "27c35b320c5f5e860ec5f92792b6a6d512cb18fef16d927a03178a2897a0fc6a",
+        "docs/evidence/agent-pilot/s7-continuation/final/spec.json": "a6d1dd1a07dfbdae5627e546439435a004ee876a8cf2806fc6ee483b943f1984",
+        "docs/evidence/agent-pilot/s7-continuation/final/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
+        "docs/evidence/agent-pilot/s7-continuation/profile-status.json": "de6ab489618ab9a1cadeb15fa4349cf231dac666d99200dab65e8e5a3e4089ad",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/counter.py": "d677347b7f9c268bc6ed1213e35926a83cac443fc4a630be7800060c5064c25d",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/manifest.json": "22e4035499cd21bbc72b4a78a576146dc0a99ec37c06070584893dbc35768f94",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/specs/changes/HG-0001/spec.json": "b91dfbf35b121b079e4559bf568a5cb7fe62ec404b67b9215600962ea1d932b2",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/test_counter.py": "e0bcad85abbbae52393d46ed7000ee2ae55a09cdcabda4153711a39ce57b5e25",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-evidence-input.json": "294b569d7c74558001bb73147106a41bcbb529d53bc55a3671c3b8bf595f02d9",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-final.diff": "3c79fe906c2e2cdf075488a643105a7df434295fb1644b5773373b678b26ee6b",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-red.txt": "c66f5d7842679c762456a2fa41eb029a7d19218bcbb5b29857ba38128d11a96b",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-result.md": "82386d85c3cfc31944df6684f7252280677fb9ff8126bfbf336d0bb06b6ac3e1",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-spec-check.json": "21a333872f2d63370a70ea67e8c6dfba03905852133758930a41afa4f2ff39cd",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-unittest-verbose.json": "dd500c0e30348de2b93d5e7529681b44a43f243536279100192e0a678fb059ee",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af"
+      },
+      "method": "manual",
+      "observation": "Стабильный HG-0001-S1 связан с содержательным тестом; тест сначала упал 4!=2, после изменения прошёл в общем 3/3 прогоне, а native_report записал реальные исходники и отчёт.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/s7-continuation/s7-continuation-result.md",
+      "scenario": "HG-0017-S1",
+      "scenario_sha256": "fd47958832b706795d0157a800900ed2d1f40022341c0d4963df2551e4ceca7b"
+    },
+    "HG-0017-S2": {
+      "captured_at": "2026-09-25T08:36:37.330420+00:00",
+      "command": "synthetic s5 agent pilot and source-scenarios trace boundary",
+      "files": {
+        "docs/evidence/agent-pilot/manual-trace/HG-0016-check.json": "0ab2c304336eab5db86bf85ac8a02b7c9ba038ce9eeb5bd0083d92abd715553e",
+        "docs/evidence/agent-pilot/manual-trace/HG-0016-results.json": "be17521dc0fd3ad832090f469f48cd13347d40547aff5c7a2fed901a2d66f6b8",
+        "docs/evidence/agent-pilot/manual-trace/list.json": "510759466d2b8fd0457e3f13f98e41470464ef4a0d8434de7595806b93a67694",
+        "docs/evidence/agent-pilot/manual-trace/report.md": "500262ca7edff911b988e16474b840e360f02ab2a08ebabeaa28bcfaebbad113",
+        "docs/evidence/agent-pilot/manual-trace/run.json": "af3cb9a43f41fd6c1d23f03a72047108df1d13dd95ef0f0be1616ddbb745acfb",
+        "docs/evidence/agent-pilot/manual-trace/trace.json": "1f5d6e62369567740cddd16dfbec5f36adacda0b98813ef321f4c9d370393436",
+        "docs/evidence/agent-pilot/s5-csv/baseline.json": "a2c60a6df4bed6ee94910d19013d4d4d2b22e2d93f66350465f97190953254d5",
+        "docs/evidence/agent-pilot/s5-csv/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+        "docs/evidence/agent-pilot/s5-csv/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+        "docs/evidence/agent-pilot/s5-csv/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+        "docs/evidence/agent-pilot/s5-csv/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+        "docs/evidence/agent-pilot/s5-csv/questions.md": "3ddcdeb1f1e0894d6117cd4274e026d9a2a8eb325d61fd6656d3e8aaa669d8e8",
+        "docs/evidence/agent-pilot/s5-csv/report.md": "64017dc3ed8c1cd930fce54d482a3c0108861cf13a95204093d14b5033ad25d2",
+        "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+        "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+        "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece"
+      },
+      "method": "manual",
+      "observation": "Ручное наблюдение называет отправленные D1/D2, ответ владельца и неизменность входа; структурный trace оставил HG-0016-S3 unlinked, не присвоив автоматический PASS.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/manual-trace/report.md",
+      "scenario": "HG-0017-S2",
+      "scenario_sha256": "4ce027e45f24ea447a9d445281fb7acfb1caac8797540eef8a7ac78e87599ed3"
+    },
+    "HG-0017-S3": {
+      "captured_at": "2026-09-25T09:05:34.144363+00:00",
+      "command": "synthetic s7 installed CLI spec-check/spec-list with missing and restored evidence report",
+      "files": {
+        "docs/evidence/agent-pilot/s7-stale-case/agent-final-manifest.json": "eb344b8f907fe31b32bcd06929302c7ccef414ae32b9e0633e321a10bc2825be",
+        "docs/evidence/agent-pilot/s7-stale-case/agent-missing-spec-check.json": "d1ef29b64f7d47d36966cffdadd3ec6a7ce664f9c14cb8bf33961cebb11d69fe",
+        "docs/evidence/agent-pilot/s7-stale-case/agent-missing-spec-list.json": "69b23006087777f4f22e11fede4a37b9ba0f8c15b1ebf57aee506f72811fe9bb",
+        "docs/evidence/agent-pilot/s7-stale-case/agent-restore.json": "beb1fa22e4da892512a56a82e906d624614bc71f32bdfeb7ac1dd9cbf52028cd",
+        "docs/evidence/agent-pilot/s7-stale-case/agent-restored-spec-check.json": "36acce20e68f547c4fe227d76e1db3369a148a44ebf1540efeb2270fc71db50e",
+        "docs/evidence/agent-pilot/s7-stale-case/agent-restored-spec-list.json": "a250c5cda4ee2c6e6b1622098cf5fdd392644081a4a173137a72214e15397795",
+        "docs/evidence/agent-pilot/s7-stale-case/agent-result.md": "8ca417212144dbbd92e2af059621926df69dc209531f005a44501a5a67c0efaa",
+        "docs/evidence/agent-pilot/s7-stale-case/before-report.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+        "docs/evidence/agent-pilot/s7-stale-case/before-spec-check.json": "36acce20e68f547c4fe227d76e1db3369a148a44ebf1540efeb2270fc71db50e",
+        "docs/evidence/agent-pilot/s7-stale-case/held-report.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+        "docs/evidence/agent-pilot/s7-stale-case/independent-review.md": "a8d6b91f6571d42039ddf743a48f384f7bc5c65af6bafca048e65eeca6e1e419",
+        "docs/evidence/agent-pilot/s7-stale-case/missing-spec-check.json": "d1ef29b64f7d47d36966cffdadd3ec6a7ce664f9c14cb8bf33961cebb11d69fe",
+        "docs/evidence/agent-pilot/s7-stale-case/setup.json": "4a6a086453b57150b35be01807fbb9bd4a853f822e03aa3de2a44e54a2af23df"
+      },
+      "method": "manual",
+      "observation": "При отсутствии заявленного отчёта установленный CLI дважды вернул EvidenceMissingOrStale, technical=in_progress; агент не объявил сценарий подтверждённым. После побайтового восстановления исходного отчёта spec-check passed, technical=ready. Проверена ветка отсутствующего файла с указанными в отчёте границами.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/s7-stale-case/independent-review.md",
+      "scenario": "HG-0017-S3",
+      "scenario_sha256": "c79ba3d491494bb0532c5cc5a7e4df89885d71b5717b81be28f0a80ff56bc48a"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790325397,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0017-S2": {
+          "captured_at": "2026-09-25T08:36:37.330420+00:00",
+          "command": "synthetic s5 agent pilot and source-scenarios trace boundary",
+          "files": {
+            "docs/evidence/agent-pilot/manual-trace/HG-0016-check.json": "0ab2c304336eab5db86bf85ac8a02b7c9ba038ce9eeb5bd0083d92abd715553e",
+            "docs/evidence/agent-pilot/manual-trace/HG-0016-results.json": "be17521dc0fd3ad832090f469f48cd13347d40547aff5c7a2fed901a2d66f6b8",
+            "docs/evidence/agent-pilot/manual-trace/list.json": "510759466d2b8fd0457e3f13f98e41470464ef4a0d8434de7595806b93a67694",
+            "docs/evidence/agent-pilot/manual-trace/report.md": "500262ca7edff911b988e16474b840e360f02ab2a08ebabeaa28bcfaebbad113",
+            "docs/evidence/agent-pilot/manual-trace/run.json": "af3cb9a43f41fd6c1d23f03a72047108df1d13dd95ef0f0be1616ddbb745acfb",
+            "docs/evidence/agent-pilot/manual-trace/trace.json": "1f5d6e62369567740cddd16dfbec5f36adacda0b98813ef321f4c9d370393436",
+            "docs/evidence/agent-pilot/s5-csv/baseline.json": "a2c60a6df4bed6ee94910d19013d4d4d2b22e2d93f66350465f97190953254d5",
+            "docs/evidence/agent-pilot/s5-csv/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+            "docs/evidence/agent-pilot/s5-csv/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+            "docs/evidence/agent-pilot/s5-csv/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+            "docs/evidence/agent-pilot/s5-csv/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "docs/evidence/agent-pilot/s5-csv/questions.md": "3ddcdeb1f1e0894d6117cd4274e026d9a2a8eb325d61fd6656d3e8aaa669d8e8",
+            "docs/evidence/agent-pilot/s5-csv/report.md": "64017dc3ed8c1cd930fce54d482a3c0108861cf13a95204093d14b5033ad25d2",
+            "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece"
+          },
+          "method": "manual",
+          "observation": "Ручное наблюдение называет отправленные D1/D2, ответ владельца и неизменность входа; структурный trace оставил HG-0016-S3 unlinked, не присвоив автоматический PASS.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/manual-trace/report.md",
+          "scenario": "HG-0017-S2",
+          "scenario_sha256": "4ce027e45f24ea447a9d445281fb7acfb1caac8797540eef8a7ac78e87599ed3"
+        }
+      },
+      "recorded_at": 1790325699,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0017-S1": {
+          "captured_at": "2026-09-25T08:41:39.282428+00:00",
+          "command": "synthetic s7 continuation with installed High Grade CLI; python -B -m unittest -v",
+          "files": {
+            "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json": "f0ffcb976750134d6805b0698a1a0818b59678b6174c8d84674aa3dd89445e15",
+            "docs/evidence/agent-pilot/s7-continuation/doctor.json": "a32be104fd80b6fa53ea91313c8b65533bef31a2ed0f6607864768c09b70d407",
+            "docs/evidence/agent-pilot/s7-continuation/final/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+            "docs/evidence/agent-pilot/s7-continuation/final/results.json": "27c35b320c5f5e860ec5f92792b6a6d512cb18fef16d927a03178a2897a0fc6a",
+            "docs/evidence/agent-pilot/s7-continuation/final/spec.json": "a6d1dd1a07dfbdae5627e546439435a004ee876a8cf2806fc6ee483b943f1984",
+            "docs/evidence/agent-pilot/s7-continuation/final/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
+            "docs/evidence/agent-pilot/s7-continuation/profile-status.json": "de6ab489618ab9a1cadeb15fa4349cf231dac666d99200dab65e8e5a3e4089ad",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/counter.py": "d677347b7f9c268bc6ed1213e35926a83cac443fc4a630be7800060c5064c25d",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/manifest.json": "22e4035499cd21bbc72b4a78a576146dc0a99ec37c06070584893dbc35768f94",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/specs/changes/HG-0001/spec.json": "b91dfbf35b121b079e4559bf568a5cb7fe62ec404b67b9215600962ea1d932b2",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/test_counter.py": "e0bcad85abbbae52393d46ed7000ee2ae55a09cdcabda4153711a39ce57b5e25",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-evidence-input.json": "294b569d7c74558001bb73147106a41bcbb529d53bc55a3671c3b8bf595f02d9",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-final.diff": "3c79fe906c2e2cdf075488a643105a7df434295fb1644b5773373b678b26ee6b",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-red.txt": "c66f5d7842679c762456a2fa41eb029a7d19218bcbb5b29857ba38128d11a96b",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-result.md": "82386d85c3cfc31944df6684f7252280677fb9ff8126bfbf336d0bb06b6ac3e1",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-spec-check.json": "21a333872f2d63370a70ea67e8c6dfba03905852133758930a41afa4f2ff39cd",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-unittest-verbose.json": "dd500c0e30348de2b93d5e7529681b44a43f243536279100192e0a678fb059ee",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af"
+          },
+          "method": "manual",
+          "observation": "Стабильный HG-0001-S1 связан с содержательным тестом; тест сначала упал 4!=2, после изменения прошёл в общем 3/3 прогоне, а native_report записал реальные исходники и отчёт.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/s7-continuation/s7-continuation-result.md",
+          "scenario": "HG-0017-S1",
+          "scenario_sha256": "fd47958832b706795d0157a800900ed2d1f40022341c0d4963df2551e4ceca7b"
+        },
+        "HG-0017-S2": {
+          "captured_at": "2026-09-25T08:36:37.330420+00:00",
+          "command": "synthetic s5 agent pilot and source-scenarios trace boundary",
+          "files": {
+            "docs/evidence/agent-pilot/manual-trace/HG-0016-check.json": "0ab2c304336eab5db86bf85ac8a02b7c9ba038ce9eeb5bd0083d92abd715553e",
+            "docs/evidence/agent-pilot/manual-trace/HG-0016-results.json": "be17521dc0fd3ad832090f469f48cd13347d40547aff5c7a2fed901a2d66f6b8",
+            "docs/evidence/agent-pilot/manual-trace/list.json": "510759466d2b8fd0457e3f13f98e41470464ef4a0d8434de7595806b93a67694",
+            "docs/evidence/agent-pilot/manual-trace/report.md": "500262ca7edff911b988e16474b840e360f02ab2a08ebabeaa28bcfaebbad113",
+            "docs/evidence/agent-pilot/manual-trace/run.json": "af3cb9a43f41fd6c1d23f03a72047108df1d13dd95ef0f0be1616ddbb745acfb",
+            "docs/evidence/agent-pilot/manual-trace/trace.json": "1f5d6e62369567740cddd16dfbec5f36adacda0b98813ef321f4c9d370393436",
+            "docs/evidence/agent-pilot/s5-csv/baseline.json": "a2c60a6df4bed6ee94910d19013d4d4d2b22e2d93f66350465f97190953254d5",
+            "docs/evidence/agent-pilot/s5-csv/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+            "docs/evidence/agent-pilot/s5-csv/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+            "docs/evidence/agent-pilot/s5-csv/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+            "docs/evidence/agent-pilot/s5-csv/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "docs/evidence/agent-pilot/s5-csv/questions.md": "3ddcdeb1f1e0894d6117cd4274e026d9a2a8eb325d61fd6656d3e8aaa669d8e8",
+            "docs/evidence/agent-pilot/s5-csv/report.md": "64017dc3ed8c1cd930fce54d482a3c0108861cf13a95204093d14b5033ad25d2",
+            "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece"
+          },
+          "method": "manual",
+          "observation": "Ручное наблюдение называет отправленные D1/D2, ответ владельца и неизменность входа; структурный trace оставил HG-0016-S3 unlinked, не присвоив автоматический PASS.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/manual-trace/report.md",
+          "scenario": "HG-0017-S2",
+          "scenario_sha256": "4ce027e45f24ea447a9d445281fb7acfb1caac8797540eef8a7ac78e87599ed3"
+        }
+      },
+      "recorded_at": 1790327134,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0017-S1": {
+          "captured_at": "2026-09-25T08:41:39.282428+00:00",
+          "command": "synthetic s7 continuation with installed High Grade CLI; python -B -m unittest -v",
+          "files": {
+            "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json": "f0ffcb976750134d6805b0698a1a0818b59678b6174c8d84674aa3dd89445e15",
+            "docs/evidence/agent-pilot/s7-continuation/doctor.json": "a32be104fd80b6fa53ea91313c8b65533bef31a2ed0f6607864768c09b70d407",
+            "docs/evidence/agent-pilot/s7-continuation/final/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+            "docs/evidence/agent-pilot/s7-continuation/final/results.json": "27c35b320c5f5e860ec5f92792b6a6d512cb18fef16d927a03178a2897a0fc6a",
+            "docs/evidence/agent-pilot/s7-continuation/final/spec.json": "a6d1dd1a07dfbdae5627e546439435a004ee876a8cf2806fc6ee483b943f1984",
+            "docs/evidence/agent-pilot/s7-continuation/final/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
+            "docs/evidence/agent-pilot/s7-continuation/profile-status.json": "de6ab489618ab9a1cadeb15fa4349cf231dac666d99200dab65e8e5a3e4089ad",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/counter.py": "d677347b7f9c268bc6ed1213e35926a83cac443fc4a630be7800060c5064c25d",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/manifest.json": "22e4035499cd21bbc72b4a78a576146dc0a99ec37c06070584893dbc35768f94",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/specs/changes/HG-0001/spec.json": "b91dfbf35b121b079e4559bf568a5cb7fe62ec404b67b9215600962ea1d932b2",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/test_counter.py": "e0bcad85abbbae52393d46ed7000ee2ae55a09cdcabda4153711a39ce57b5e25",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-evidence-input.json": "294b569d7c74558001bb73147106a41bcbb529d53bc55a3671c3b8bf595f02d9",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-final.diff": "3c79fe906c2e2cdf075488a643105a7df434295fb1644b5773373b678b26ee6b",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-red.txt": "c66f5d7842679c762456a2fa41eb029a7d19218bcbb5b29857ba38128d11a96b",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-result.md": "82386d85c3cfc31944df6684f7252280677fb9ff8126bfbf336d0bb06b6ac3e1",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-spec-check.json": "21a333872f2d63370a70ea67e8c6dfba03905852133758930a41afa4f2ff39cd",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-unittest-verbose.json": "dd500c0e30348de2b93d5e7529681b44a43f243536279100192e0a678fb059ee",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af"
+          },
+          "method": "manual",
+          "observation": "Стабильный HG-0001-S1 связан с содержательным тестом; тест сначала упал 4!=2, после изменения прошёл в общем 3/3 прогоне, а native_report записал реальные исходники и отчёт.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/s7-continuation/s7-continuation-result.md",
+          "scenario": "HG-0017-S1",
+          "scenario_sha256": "fd47958832b706795d0157a800900ed2d1f40022341c0d4963df2551e4ceca7b"
+        },
+        "HG-0017-S2": {
+          "captured_at": "2026-09-25T08:36:37.330420+00:00",
+          "command": "synthetic s5 agent pilot and source-scenarios trace boundary",
+          "files": {
+            "docs/evidence/agent-pilot/manual-trace/HG-0016-check.json": "0ab2c304336eab5db86bf85ac8a02b7c9ba038ce9eeb5bd0083d92abd715553e",
+            "docs/evidence/agent-pilot/manual-trace/HG-0016-results.json": "be17521dc0fd3ad832090f469f48cd13347d40547aff5c7a2fed901a2d66f6b8",
+            "docs/evidence/agent-pilot/manual-trace/list.json": "510759466d2b8fd0457e3f13f98e41470464ef4a0d8434de7595806b93a67694",
+            "docs/evidence/agent-pilot/manual-trace/report.md": "500262ca7edff911b988e16474b840e360f02ab2a08ebabeaa28bcfaebbad113",
+            "docs/evidence/agent-pilot/manual-trace/run.json": "af3cb9a43f41fd6c1d23f03a72047108df1d13dd95ef0f0be1616ddbb745acfb",
+            "docs/evidence/agent-pilot/manual-trace/trace.json": "1f5d6e62369567740cddd16dfbec5f36adacda0b98813ef321f4c9d370393436",
+            "docs/evidence/agent-pilot/s5-csv/baseline.json": "a2c60a6df4bed6ee94910d19013d4d4d2b22e2d93f66350465f97190953254d5",
+            "docs/evidence/agent-pilot/s5-csv/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+            "docs/evidence/agent-pilot/s5-csv/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+            "docs/evidence/agent-pilot/s5-csv/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+            "docs/evidence/agent-pilot/s5-csv/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "docs/evidence/agent-pilot/s5-csv/questions.md": "3ddcdeb1f1e0894d6117cd4274e026d9a2a8eb325d61fd6656d3e8aaa669d8e8",
+            "docs/evidence/agent-pilot/s5-csv/report.md": "64017dc3ed8c1cd930fce54d482a3c0108861cf13a95204093d14b5033ad25d2",
+            "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece"
+          },
+          "method": "manual",
+          "observation": "Ручное наблюдение называет отправленные D1/D2, ответ владельца и неизменность входа; структурный trace оставил HG-0016-S3 unlinked, не присвоив автоматический PASS.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/manual-trace/report.md",
+          "scenario": "HG-0017-S2",
+          "scenario_sha256": "4ce027e45f24ea447a9d445281fb7acfb1caac8797540eef8a7ac78e87599ed3"
+        },
+        "HG-0017-S3": {
+          "captured_at": "2026-09-25T09:05:34.144363+00:00",
+          "command": "synthetic s7 installed CLI spec-check/spec-list with missing and restored evidence report",
+          "files": {
+            "docs/evidence/agent-pilot/s7-stale-case/agent-final-manifest.json": "eb344b8f907fe31b32bcd06929302c7ccef414ae32b9e0633e321a10bc2825be",
+            "docs/evidence/agent-pilot/s7-stale-case/agent-missing-spec-check.json": "d1ef29b64f7d47d36966cffdadd3ec6a7ce664f9c14cb8bf33961cebb11d69fe",
+            "docs/evidence/agent-pilot/s7-stale-case/agent-missing-spec-list.json": "69b23006087777f4f22e11fede4a37b9ba0f8c15b1ebf57aee506f72811fe9bb",
+            "docs/evidence/agent-pilot/s7-stale-case/agent-restore.json": "beb1fa22e4da892512a56a82e906d624614bc71f32bdfeb7ac1dd9cbf52028cd",
+            "docs/evidence/agent-pilot/s7-stale-case/agent-restored-spec-check.json": "36acce20e68f547c4fe227d76e1db3369a148a44ebf1540efeb2270fc71db50e",
+            "docs/evidence/agent-pilot/s7-stale-case/agent-restored-spec-list.json": "a250c5cda4ee2c6e6b1622098cf5fdd392644081a4a173137a72214e15397795",
+            "docs/evidence/agent-pilot/s7-stale-case/agent-result.md": "8ca417212144dbbd92e2af059621926df69dc209531f005a44501a5a67c0efaa",
+            "docs/evidence/agent-pilot/s7-stale-case/before-report.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+            "docs/evidence/agent-pilot/s7-stale-case/before-spec-check.json": "36acce20e68f547c4fe227d76e1db3369a148a44ebf1540efeb2270fc71db50e",
+            "docs/evidence/agent-pilot/s7-stale-case/held-report.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+            "docs/evidence/agent-pilot/s7-stale-case/independent-review.md": "a8d6b91f6571d42039ddf743a48f384f7bc5c65af6bafca048e65eeca6e1e419",
+            "docs/evidence/agent-pilot/s7-stale-case/missing-spec-check.json": "d1ef29b64f7d47d36966cffdadd3ec6a7ce664f9c14cb8bf33961cebb11d69fe",
+            "docs/evidence/agent-pilot/s7-stale-case/setup.json": "4a6a086453b57150b35be01807fbb9bd4a853f822e03aa3de2a44e54a2af23df"
+          },
+          "method": "manual",
+          "observation": "При отсутствии заявленного отчёта установленный CLI дважды вернул EvidenceMissingOrStale, technical=in_progress; агент не объявил сценарий подтверждённым. После побайтового восстановления исходного отчёта spec-check passed, technical=ready. Проверена ветка отсутствующего файла с указанными в отчёте границами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/s7-stale-case/independent-review.md",
+          "scenario": "HG-0017-S3",
+          "scenario_sha256": "c79ba3d491494bb0532c5cc5a7e4df89885d71b5717b81be28f0a80ff56bc48a"
+        }
+      },
+      "recorded_at": 1790327212,
+      "review": null
+    }
+  ],
+  "review": {
+    "change_sha256": "9ba8c9706eae8b54b9022ebb026c9a507ff7a667f2a77297f1322cc914cf89e1",
+    "conclusion": "S1-S3 имеют актуальные доказательства и независимое GO. S3 проверяет отсутствие файла отчёта; остальные границы перечислены в отчётах.",
+    "reviewer": "local_spec_review",
+    "verdict": "go"
+  },
+  "runs": []
+}

@@ -426,6 +426,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             | "spec-evidence"
             | "spec-review"
             | "spec-integrate"
+            | "spec-transfer"
             | "spec-import"
             | "spec-abandon"
             | "spec-migrate"
@@ -647,6 +648,78 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             }
             store.origins.extend(c.imports.clone());
             store.changes.get_mut(&c.id).unwrap().archived = true;
+        }
+        "spec-transfer" => {
+            let c = change_mut(&mut store, get("--id")?)?.clone();
+            readiness(&root, &store, &c, &mut report, false);
+            let imported_adds = !c.imports.is_empty()
+                && c.imports.len() == c.operations.len()
+                && c.operations.iter().all(|d| matches!(d, Delta::Add { .. }));
+            if !imported_adds {
+                report.finding(
+                    "failed",
+                    "TransferRequiresImports",
+                    "/operations",
+                    "Only imported add requirements can be transferred.",
+                );
+            }
+            if c.tasks.iter().any(|t| !t.done) {
+                report.finding(
+                    "failed",
+                    "TransferTasksIncomplete",
+                    "/tasks",
+                    "Complete the contract transfer tasks before transfer.",
+                );
+            }
+            if !c
+                .review
+                .as_ref()
+                .is_some_and(|r| r.verdict == Verdict::Go && r.change_sha256 == revision(&c))
+            {
+                report.finding(
+                    "failed",
+                    "TransferReviewMissingOrStale",
+                    "/review",
+                    "A current independent equivalence review is required.",
+                );
+            }
+            for link in &c.depends_on {
+                if !store
+                    .changes
+                    .get(&link.id)
+                    .is_some_and(|d| d.archived && d.abandoned_reason.is_none())
+                {
+                    report.finding(
+                        "failed",
+                        "DependencyNotIntegrated",
+                        "/depends_on",
+                        "A dependency is not integrated.",
+                    );
+                }
+            }
+            if report.exit_code() != 0 {
+                return Ok(report);
+            }
+            for d in &c.operations {
+                if let Delta::Add { requirement } = d {
+                    store
+                        .requirements
+                        .insert(requirement.id.clone(), requirement.clone());
+                }
+            }
+            store.origins.extend(c.imports.clone());
+            store.changes.get_mut(&c.id).unwrap().archived = true;
+            report.finding(
+                "warning",
+                "BehaviorUnconfirmed",
+                &c.id,
+                "The contract was transferred; scenario behavior is not certified.",
+            );
+            report.measurements.push(json!({
+                "transferred_requirements":c.imports.keys().collect::<Vec<_>>(),
+                "behavior_verified":false,
+                "human_accepted":false
+            }));
         }
         "spec-abandon" => {
             let reason = get("--reason")?;

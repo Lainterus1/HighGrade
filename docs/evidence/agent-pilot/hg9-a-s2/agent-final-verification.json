@@ -1,0 +1,67 @@
+{
+  "source_hashes_match_manifest": true,
+  "all_unchanged_paths_match_input": true,
+  "all_local_link_targets_exist": true,
+  "doctor_status": "passed",
+  "doctor_semantic_readiness": "not_assessed",
+  "inspect_status": "unknown",
+  "inspect_findings": [
+    {
+      "code": "BudgetNotAgreed",
+      "location": "README.md"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "AGENTS.md"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "docs/ARCHITECTURE.md"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "docs/ENGINEERING.md"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "docs/DEVELOPMENT.md"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "context-route"
+    }
+  ],
+  "required_links": [
+    {
+      "from": "README.md",
+      "status": "present",
+      "to": "AGENTS.md"
+    },
+    {
+      "from": "README.md",
+      "status": "present",
+      "to": "docs/ARCHITECTURE.md"
+    },
+    {
+      "from": "README.md",
+      "status": "present",
+      "to": "docs/ENGINEERING.md"
+    },
+    {
+      "from": "README.md",
+      "status": "present",
+      "to": "docs/DEVELOPMENT.md"
+    },
+    {
+      "from": "AGENTS.md",
+      "status": "present",
+      "to": ".highgrade/project/INSTRUCTIONS.md"
+    },
+    {
+      "from": ".highgrade/project/INSTRUCTIONS.md",
+      "status": "present",
+      "to": ".highgrade/project/documents.json"
+    }
+  ],
+  "test_exit_code": 0
+}

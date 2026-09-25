@@ -1,0 +1,34 @@
+[
+  {
+    "name": "global-status",
+    "command": "& $cli global-status --profile D:\\my_projects\\MyCodex\\target\\agent-pilot\\s7\\.pilot-profile",
+    "started_at_utc": "2026-09-25T09:30:54.5687494Z",
+    "ended_at_utc": "2026-09-25T09:30:54.7422337Z",
+    "exit_code": 0,
+    "report": "evidence/hg9-a/agent-global-status.json"
+  },
+  {
+    "name": "bootstrap",
+    "command": "& $cli inspect --bootstrap --root D:\\my_projects\\MyCodex\\target\\agent-pilot\\s2",
+    "started_at_utc": "2026-09-25T09:30:54.7429150Z",
+    "ended_at_utc": "2026-09-25T09:30:54.7614059Z",
+    "exit_code": 1,
+    "report": "evidence/hg9-a/agent-bootstrap.json"
+  },
+  {
+    "name": "inventory",
+    "command": "& $cli inventory --root D:\\my_projects\\MyCodex\\target\\agent-pilot\\s2",
+    "started_at_utc": "2026-09-25T09:30:54.7615819Z",
+    "ended_at_utc": "2026-09-25T09:30:54.7845255Z",
+    "exit_code": 0,
+    "report": "evidence/hg9-a/agent-inventory.json"
+  },
+  {
+    "name": "doctor-before",
+    "command": "& $cli doctor --root D:\\my_projects\\MyCodex\\target\\agent-pilot\\s2",
+    "started_at_utc": "2026-09-25T09:30:54.7846744Z",
+    "ended_at_utc": "2026-09-25T09:30:54.8055837Z",
+    "exit_code": 2,
+    "report": "evidence/hg9-a/agent-doctor-before.json"
+  }
+]

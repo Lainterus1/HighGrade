@@ -1,0 +1,51 @@
+{
+  "captured_at": "2026-09-25T09:51:06.124198+00:00",
+  "synthetic_root": "D:\\my_projects\\MyCodex\\target\\agent-pilot\\s6",
+  "before_sha256": {
+    "AGENTS.md": "8677a7789640d6ed8932733fe49cd297803be454d2f7fc571323ae7cf7824bc0",
+    "README.md": "8dca6aa738b5169cbed6bfe033c75d16be3a1f92bc9a510d63c63bf86a7f5dc9",
+    ".highgrade/project/INSTRUCTIONS.md": "af76c0f45c8a136dc35e9699d67ca0287eeaa45824522c8ee0e88d21068e64c1",
+    "store.py": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+    "test_store.py": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+    "docs/ARCHITECTURE.md": "aba6e3e1f0da510e2539139d8c59d639b57ede6ce068bf40d4452ada8b47bc6d",
+    "docs/ENGINEERING.md": "7728748b60bbdb0fb8cb293f41e04744dfc7a7a635d1546fb3eb69745f7889ee",
+    "docs/DEVELOPMENT.md": "6857e24ed10e7ec3a4c32729efa9e64de080909ae06fd720027ac99ef5d7b3b1"
+  },
+  "after_sha256": {
+    "AGENTS.md": "8677a7789640d6ed8932733fe49cd297803be454d2f7fc571323ae7cf7824bc0",
+    "README.md": "8dca6aa738b5169cbed6bfe033c75d16be3a1f92bc9a510d63c63bf86a7f5dc9",
+    ".highgrade/project/INSTRUCTIONS.md": "af76c0f45c8a136dc35e9699d67ca0287eeaa45824522c8ee0e88d21068e64c1",
+    "store.py": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+    "test_store.py": "cb46d36411bc005b31f15a60875aea5078e60090ef7b74a1b8982e566952c5f5",
+    "docs/ARCHITECTURE.md": "aba6e3e1f0da510e2539139d8c59d639b57ede6ce068bf40d4452ada8b47bc6d",
+    "docs/ENGINEERING.md": "6284111124ed38afe50fbe6ca26394fd705118c820fff69879f0b9cfa559a252",
+    "docs/DEVELOPMENT.md": "feab1682c26d9e32d0529f3a8d08a268d5064cb7d031d2b05f7757335ea9cf25"
+  },
+  "changed_paths": [
+    "docs/DEVELOPMENT.md",
+    "docs/ENGINEERING.md",
+    "test_store.py"
+  ],
+  "store_py_unchanged": true,
+  "additional_dependency_sha256": {
+    "notes/mechanism.txt": "eafbf87842dc7ba8ef4a80c452bd4fc2f3e463da3813ebd6c807b62b4c4e3dcd"
+  },
+  "python_executable": "D:\\Progs\\Python3.12\\python.exe",
+  "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "native_checks": [
+    {
+      "command": "python -B -m unittest -v test_store.StoreTests.test_invalid_data_preserves_existing_file",
+      "observed_exit_code": 0,
+      "report": "evidence/hg10-s6-invalid-input/targeted-unittest.txt",
+      "report_sha256": "3fdf8dbe38097aabe2ecdf332eb2e889b0a3a86a33365523ff06e6905738da3b"
+    },
+    {
+      "command": "python -B -m unittest -v",
+      "observed_exit_code": 0,
+      "report": "evidence/hg10-s6-invalid-input/full-unittest.txt",
+      "report_sha256": "693a7d8366a1ed119e4b90096bcef2c30d6aed7c84b53d12b41d7c899c61b53d"
+    }
+  ],
+  "formal_pass_assigned": false,
+  "commit_or_publish": false
+}

@@ -209,7 +209,6 @@ fn missing_budget_is_unknown_not_success() {
     assert!(has(&r, "BudgetNotAgreed"));
     assert_eq!(r.exit_code(), 2);
 }
-// highgrade: HG-SH-S06
 #[test]
 fn exceeding_agreed_budget_warns_without_raising_it() {
     let root = dir();
@@ -347,15 +346,29 @@ fn scoped_inspection_selects_sources_and_reports_unmapped_scope() {
     let r = inspect(&root, Some("registry.json"), Some("other")).unwrap();
     assert!(has(&r, "ScopeUnclassified"));
 }
+// highgrade: HG-0018-S3, HG-0018-S4
 #[test]
-fn malformed_registry_and_multiple_defaults_do_not_fallback() {
+fn default_inspect_uses_only_highgrade_registry() {
     let root = dir();
-    registry(&root);
+    save(&root, ".mycodex/project/documents.json", &json!({}));
+    assert!(
+        inspect(&root, None, None)
+            .unwrap_err()
+            .contains("RegistryMissing")
+    );
+    let valid = registry(&root);
     write(&root, "bad.json", b"{");
     assert!(inspect(&root, Some("bad.json"), None).is_err());
-    save(&root, ".highgrade/project/documents.json", &json!({}));
-    save(&root, ".mycodex/project/documents.json", &json!({}));
-    assert!(inspect(&root, None, None).is_err());
+    save(&root, ".mycodex/project/documents.json", &valid);
+    let report = inspect(&root, None, None).unwrap();
+    assert!(has(&report, "AreaUnclassified"));
+    assert!(
+        report
+            .measurements
+            .iter()
+            .any(|item| item["registry"] == ".highgrade/project/documents.json")
+    );
+    assert!(inspect(&root, Some(".mycodex/project/documents.json"), None).is_ok());
 }
 #[test]
 fn parent_scope_reads_child_documents() {

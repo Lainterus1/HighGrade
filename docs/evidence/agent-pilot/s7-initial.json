@@ -1,0 +1,12 @@
+{
+  "kind": "synthetic-project-initial-snapshot",
+  "project": "s7",
+  "files": {
+    "README.md": "# Счётчик заказов\n\nОписание системы и команды находятся в [обзоре](docs/overview.md). Отдельная инструкция по выкладке — [deployment guide](docs/deployment-guide.md).\n",
+    "AGENTS.md": "# Правила проекта\n\nЯзык проекта — русский. Подключение High Grade для этого синтетического проекта разрешено. Действующее правило: счётчик никогда не выдаёт отрицательное значение. Рабочие проверки: `python -m unittest discover`. Документация может быть перестроена при сохранении исходного смысла и проверке ссылок. Внешняя публикация не разрешена.\n",
+    "docs/overview.md": "# Устройство и работа\n\nАрхитектура: `counter.py` содержит функцию `count_orders`; она получает список заказов и возвращает его длину. Пустой список даёт 0. Слой хранения в этой учебной системе отсутствует.\n\nРазработка: тесты запускаются `python -m unittest discover`. Изменения поведения проверяются тестом `test_counter.py`. На уровне кода соблюдается правило не возвращать отрицательные значения.\n",
+    "docs/deployment-guide.md": "# Выкладка учебного примера\n\nЭтот пример не развёртывается на сервере. Для передачи другому разработчику достаточно исходных файлов и запуска `python -m unittest discover`. Документ остаётся отдельной справкой по передаче.\n",
+    "counter.py": "def count_orders(orders: list[str]) -> int:\n    return len(orders)\n",
+    "test_counter.py": "import unittest\n\nfrom counter import count_orders\n\n\nclass CounterTests(unittest.TestCase):\n    def test_empty(self):\n        self.assertEqual(count_orders([]), 0)\n\n    def test_two(self):\n        self.assertEqual(count_orders([\"a\", \"b\"]), 2)\n"
+  }
+}

@@ -1,0 +1,10 @@
+--- before/test_codec.py
++++ temporary/test_codec.py
+@@ -8,6 +8,7 @@
+         """HG-0001-S2: сообщение v1 возвращает текст."""
+         self.assertEqual(parse_version("v1:hello"), "hello")
+ 
++    @unittest.skip("HG-0010-S8 synthetic skip probe")
+     def test_v2(self):
+         """HG-0001-S1: сообщение v2 возвращает текст."""
+         self.assertEqual(parse_version("v2:текст"), "текст")

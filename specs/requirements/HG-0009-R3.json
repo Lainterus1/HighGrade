@@ -1,0 +1,21 @@
+{
+  "id": "HG-0009-R3",
+  "title": "Проверяемая навигация",
+  "statement": "Предварительная проверка SHALL отдельно показывать проверяемые внутренние связи основных документов: из `README.md` к `AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/ENGINEERING.md` и `docs/DEVELOPMENT.md`; из `AGENTS.md` к `.highgrade/project/INSTRUCTIONS.md`; из проектной инструкции к `.highgrade/project/documents.json`. Отсутствующая или неразрешимая связь SHALL отличаться от отсутствующего файла. Обход ссылок SHALL ограничиваться локальными Markdown-ссылками; семантическую полезность навигации проверяет агент.",
+  "scenarios": [
+    {
+      "id": "HG-0009-S7",
+      "given": "Временная фикстура теста tests/bootstrap_contracts.rs::complete_project_still_reports_missing_navigation_without_candidate_walk создана с исходными данными указанного случая",
+      "when": "`docs/ENGINEERING.md` существует, но `README.md` не ссылается на него",
+      "then": "отчёт показывает файл как существующий и отдельно отмечает отсутствующую обязательную связь",
+      "verification": "Запустить cargo test --locked --test bootstrap_contracts complete_project_still_reports_missing_navigation_without_candidate_walk -- --exact; проверить фактические утверждения о результате и границах сценария"
+    },
+    {
+      "id": "HG-0009-S8",
+      "given": "Временная фикстура теста tests/bootstrap_contracts.rs::migrated_architecture_with_old_readme_link_is_reported создана с исходными данными указанного случая",
+      "when": "документ перенесён на канонический путь, а ссылка указывает на прежний путь",
+      "then": "проверка отмечает неразрешимую либо неканоническую связь до исправления навигации",
+      "verification": "Запустить cargo test --locked --test bootstrap_contracts migrated_architecture_with_old_readme_link_is_reported -- --exact; проверить фактические утверждения о результате и границах сценария"
+    }
+  ]
+}

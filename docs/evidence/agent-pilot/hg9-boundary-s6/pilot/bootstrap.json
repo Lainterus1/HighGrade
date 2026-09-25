@@ -1,0 +1,117 @@
+{
+  "operation": "inspect",
+  "status": "passed",
+  "findings": [],
+  "measurements": [
+    {
+      "candidate_scan": "not_needed",
+      "directories_seen": 0,
+      "exclusion_counts": {},
+      "exclusions": [],
+      "files_seen": 0,
+      "limits": {
+        "candidates_per_slot": 12,
+        "depth": 64,
+        "entries": 50000,
+        "exclusion_paths": 32,
+        "output_bytes": 65536,
+        "path_bytes": 200,
+        "read_bytes_per_file": 65536,
+        "read_files": 128
+      },
+      "mode": "bootstrap",
+      "read_files": 4,
+      "required_links": [
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "AGENTS.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/ARCHITECTURE.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/ENGINEERING.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/DEVELOPMENT.md"
+        },
+        {
+          "from": "AGENTS.md",
+          "status": "present",
+          "to": ".highgrade/project/INSTRUCTIONS.md"
+        },
+        {
+          "from": ".highgrade/project/INSTRUCTIONS.md",
+          "status": "present",
+          "to": ".highgrade/project/documents.json"
+        }
+      ],
+      "schema_version": 1,
+      "slots": [
+        {
+          "candidate_status": "not_needed",
+          "candidates": [],
+          "expected_path": "README.md",
+          "path_state": "present",
+          "role": "purpose-navigation"
+        },
+        {
+          "candidate_status": "not_needed",
+          "candidates": [],
+          "expected_path": "AGENTS.md",
+          "path_state": "present",
+          "role": "agent-rules"
+        },
+        {
+          "candidate_status": "not_needed",
+          "candidates": [],
+          "expected_path": "docs/ARCHITECTURE.md",
+          "path_state": "present",
+          "role": "current-architecture"
+        },
+        {
+          "candidate_status": "not_needed",
+          "candidates": [],
+          "expected_path": "docs/ENGINEERING.md",
+          "path_state": "present",
+          "role": "engineering-rules"
+        },
+        {
+          "candidate_status": "not_needed",
+          "candidates": [],
+          "expected_path": "docs/DEVELOPMENT.md",
+          "path_state": "present",
+          "role": "commands-procedures"
+        },
+        {
+          "candidate_status": "not_needed",
+          "candidates": [],
+          "expected_path": ".highgrade/project/INSTRUCTIONS.md",
+          "path_state": "present",
+          "role": null
+        },
+        {
+          "candidate_status": "not_needed",
+          "candidates": [],
+          "expected_path": ".highgrade/project/documents.json",
+          "path_state": "present",
+          "role": null
+        }
+      ],
+      "unknown_counts": {},
+      "visited_entries": 0
+    }
+  ],
+  "limitations": [
+    "Структурный поиск не доказывает отсутствие содержания, полноту аудита или смысловую правильность документов. Кандидатов проверяет агент.",
+    "Все обязательные пути найдены: дерево не обходилось для поиска альтернатив; это не полный аудит проекта.",
+    "Проектные исключения применены как пути; одобрение аудита и актуальность receipt не проверялись."
+  ]
+}

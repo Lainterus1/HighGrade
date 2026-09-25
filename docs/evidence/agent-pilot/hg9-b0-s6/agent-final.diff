@@ -1,0 +1,121 @@
+--- before/AGENTS.md
++++ after/AGENTS.md
+@@ -1,3 +1,5 @@
+ # Правила проекта
+ 
+ Пользуйся процедурами High Grade. Язык проекта — русский. Запускай тесты и не публикуй изменения.
++
++Местные источники, маршрут работы и открытые решения — в [проектной инструкции](.highgrade/project/INSTRUCTIONS.md).
+--- before/README.md
++++ after/README.md
+@@ -1,3 +1,5 @@
+ # Хранение настроек
+ 
+ Существующее правило: при ошибке сохранения прежний `settings.json` остаётся побайтово неизменным.
++
++Документы проекта: [правила агента](AGENTS.md), [устройство](docs/ARCHITECTURE.md), [инженерные соглашения](docs/ENGINEERING.md), [подготовка и проверки](docs/DEVELOPMENT.md).
+--- before/docs/ARCHITECTURE.md
++++ after/docs/ARCHITECTURE.md
+@@ -0,0 +1,5 @@
++# Действующее устройство
++
++`store.py` содержит публичную операцию `save(path, data)`. Она сериализует данные в JSON, пишет их во временный файл в каталоге целевого файла и затем заменяет целевой файл через `os.replace`. Если запись или замена завершается ошибкой, временный файл удаляется. Существующий `settings.json` остаётся побайтово неизменным; исходное правило записано в [README](../README.md).
++
++Описание устройства перенесено по смыслу из [исходной заметки](../notes/mechanism.txt) и сверено с `store.py` и `test_store.py`. Заметка сохранена как источник. Проверки и команда запуска — в [документе разработки](DEVELOPMENT.md). Гарантии восстановления после сбоя питания и работа внешнего сервиса в проекте не заданы.
+--- before/docs/ENGINEERING.md
++++ after/docs/ENGINEERING.md
+@@ -0,0 +1,5 @@
++# Инженерные соглашения
++
++При изменении сохранения настроек соблюдай [действующее правило сохранности](../README.md): ошибка записи или замены не меняет байты прежнего `settings.json`. `test_store.py` проверяет ошибку после записи во временный файл, ошибку `os.replace` и удаление временного файла в обоих случаях.
++
++Штатный тест запускается по [инструкции разработки](DEVELOPMENT.md). Другие правила формата, эксплуатации и совместимости для этого синтетического проекта не установлены; не выводи их из текущей реализации.
+--- before/docs/DEVELOPMENT.md
++++ after/docs/DEVELOPMENT.md
+@@ -0,0 +1,9 @@
++# Подготовка и проверки
++
++Для локальной проверки нужен Python со стандартным модулем `unittest`; отдельный список зависимостей в проекте не обнаружен. Из корня проекта запусти:
++
++```powershell
++python -B -m unittest -v
++```
++
++`test_store.py` содержит три теста: успешная запись JSON, сохранение прежних байтов при ошибке записи и при ошибке замены. Эти тесты проверяют локальное поведение `store.py`; они не подтверждают работу внешнего сервиса или восстановление после сбоя питания. Действующее правило и устройство приведены в [README](../README.md) и [архитектуре](ARCHITECTURE.md).
+--- before/.highgrade/project/INSTRUCTIONS.md
++++ after/.highgrade/project/INSTRUCTIONS.md
+@@ -0,0 +1,28 @@
++---
++highgrade_project_schema: 1
++highgrade_spec_format: native-v1
++---
++
++# Проектная инструкция High Grade
++
++Подключение разрешено для этого синтетического проекта. Эта инструкция фиксирует проверенные местные факты, а не пользовательскую приёмку.
++
++## Источники и границы
++
++- Язык документов, планов и отчётов — русский по [правилам проекта](../../AGENTS.md).
++- Назначение и действующее правило сохранности — в [README](../../README.md). В [архитектуре](../../docs/ARCHITECTURE.md) описан механизм `save`; его исходный текст сохранён в [заметке](../../notes/mechanism.txt). Проверки сохранности — в [инженерных соглашениях](../../docs/ENGINEERING.md), команды — в [документе разработки](../../docs/DEVELOPMENT.md).
++- Проект — локальное синтетическое хранилище настроек. В обследованных исходниках нет установленного приложения, службы, сети или инструкции по развёртыванию. Это не доказывает их отсутствие за пределами обследованной области.
++- Реестр документов и бюджетов — [documents.json](documents.json). Числовые бюджеты не согласованы; `null` означает открытое решение, а не успешную проверку.
++- Формат и владение проектным каталогом спецификаций описаны в [его README](../../specs/README.md). Материалы только этого синтетического пилота собраны в [аудите и плане](../../evidence/hg9-b0/agent-audit-plan.md); каталог `evidence` хранит историю проверки, а не новое продуктовое требование.
++
++## Маршрут работы
++
++- Новые изменения требований веди в проектном каталоге `specs/` в нативном формате High Grade. Прежних спецификаций в обследованном проекте нет, перенос не требуется. Для неизменного контракта применяй прямую техническую работу по процедуре task установленной Поставки.
++- Штатный тест: `python -B -m unittest -v` из корня по [документу разработки](../../docs/DEVELOPMENT.md). Проектный runner для `spec-run` не настроен; тест запускается напрямую. Одного структурного `doctor` или `inspect` недостаточно для проверки поведения.
++- Местных навыков, пересекающихся с High Grade, в обследованном списке файлов нет. Дополнительные теги для одного небольшого домена пока не установлены.
++
++## Полномочия и открытые решения
++
++- В этом пилоте разрешена локальная адаптация документов и конфигурации s6; коммит, публикация, глобальное переключение и активация не разрешены. Общее право на будущие коммиты остаётся неизвестным.
++- [AGENTS.md](../../AGENTS.md) запрещает публикацию. Человеческая приёмка и эксплуатационная активация не следуют из локальных проверок; их условия не определены.
++- Бюджеты контекста, внешняя CI и условия эксплуатации не согласованы. Неизвестное не считай PASS и не подменяй придуманными значениями.
+--- before/.highgrade/project/documents.json
++++ after/.highgrade/project/documents.json
+@@ -0,0 +1,17 @@
++{
++  "schema_version": 1,
++  "documents": [
++    {"id":"readme","path":"README.md","role":"purpose-navigation","loading":"entry","scope":[],"budget":null},
++    {"id":"agents","path":"AGENTS.md","role":"agent-rules","loading":"entry","scope":[],"budget":null},
++    {"id":"architecture","path":"docs/ARCHITECTURE.md","role":"current-architecture","loading":"task","scope":["store.py","notes/mechanism.txt"],"budget":null},
++    {"id":"engineering","path":"docs/ENGINEERING.md","role":"engineering-rules","loading":"task","scope":["store.py","test_store.py"],"budget":null},
++    {"id":"development","path":"docs/DEVELOPMENT.md","role":"commands-procedures","loading":"task","scope":["test_store.py"],"budget":null}
++  ],
++  "additional_sources": [
++    {"path":".highgrade/project/INSTRUCTIONS.md","role":"project-adaptation","active":true,"loading":"entry","scope":[".highgrade/project/documents.json"]},
++    {"path":"notes/mechanism.txt","role":"architecture-source","active":true,"loading":"history","scope":[]},
++    {"path":"specs/README.md","role":"specification-store","active":true,"loading":"task","scope":["specs"]},
++    {"path":"evidence/hg9-b0/agent-audit-plan.md","role":"pilot-evidence","active":true,"loading":"history","scope":["evidence"]}
++  ],
++  "route_budget": null
++}
+--- before/specs/README.md
++++ after/specs/README.md
+@@ -0,0 +1,7 @@
++# Спецификации проекта
++
++Данные принадлежат проекту и сохраняются при удалении High Grade.
++`catalog.json` — версия и счётчик; `requirements/` — действующие требования;
++`changes/<ID>/spec.json` — изменение, `results.json` — проверки и решения.
++Записывайте через инструмент с проверкой ожидаемого хеша. При наличии
++`transaction.json` чтение заблокировано до явного `spec-recover`.
+--- before/specs/catalog.json
++++ after/specs/catalog.json
+@@ -0,0 +1,7 @@
++{
++  "schema_version": 3,
++  "next_number": 1,
++  "retired_ids": [],
++  "origins": {},
++  "legacy_sha256": null
++}--- before/specs/runners.json
++++ after/specs/runners.json
+@@ -0,0 +1 @@
++{}--- before/specs/tags.json
++++ after/specs/tags.json
+@@ -0,0 +1 @@
++{}

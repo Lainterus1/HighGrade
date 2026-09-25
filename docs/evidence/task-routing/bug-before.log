@@ -1,0 +1,18 @@
+test_spaces (test_app.Tests.test_spaces) ... FAIL
+
+======================================================================
+FAIL: test_spaces (test_app.Tests.test_spaces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Temp\hg-routing-_eq5z6wg\case-4-bug\test_app.py", line 5, in test_spaces
+    self.assertEqual(render(" Alice "), "Alice")
+AssertionError: ' Alice ' != 'Alice'
+-  Alice 
+? -     -
++ Alice
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

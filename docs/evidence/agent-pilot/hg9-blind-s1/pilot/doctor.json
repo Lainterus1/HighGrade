@@ -1,0 +1,55 @@
+{
+  "operation": "doctor",
+  "status": "unknown",
+  "findings": [
+    {
+      "code": "DependencyMissing",
+      "location": "openspec",
+      "message": "Не найден в PATH; наличие установки и версия не проверены.",
+      "status": "unknown"
+    },
+    {
+      "code": "NotConnected",
+      "location": ".highgrade",
+      "message": "Основа не подключена; отдельные диагностические команды доступны.",
+      "status": "unknown"
+    }
+  ],
+  "measurements": [
+    {
+      "highgrade_version": "0.2.14",
+      "platform": "windows"
+    },
+    {
+      "executed": false,
+      "found_in_path": true,
+      "required_by_legacy_probe": true,
+      "tool": "cargo",
+      "version": null
+    },
+    {
+      "executed": false,
+      "found_in_path": true,
+      "required_by_legacy_probe": true,
+      "tool": "codex",
+      "version": null
+    },
+    {
+      "executed": false,
+      "found_in_path": true,
+      "required_by_legacy_probe": true,
+      "tool": "node",
+      "version": null
+    },
+    {
+      "executed": false,
+      "found_in_path": false,
+      "required_by_legacy_probe": true,
+      "tool": "openspec",
+      "version": null
+    }
+  ],
+  "limitations": [
+    "Обнаружение команды в PATH не подтверждает её версию или работоспособность; применимые проверки выполняются отдельно."
+  ]
+}

@@ -1,0 +1,907 @@
+{
+  "operation": "spec-check",
+  "status": "passed",
+  "findings": [],
+  "measurements": [
+    {
+      "schema_version": 3,
+      "store_sha256": "c5f7ebb7888a28da339455c3b4bb59ba9a6916ce22876f21b6e4c5c83af412e6"
+    },
+    {
+      "change": {
+        "abandoned_reason": null,
+        "acceptance": [],
+        "archived": true,
+        "baseline": {},
+        "checks": [
+          {
+            "action": "Выполнить highgrade-task с заданными исходными условиями и проверить вопросы и переход к работе",
+            "file": "",
+            "id": "HG-0016-C1",
+            "inputs": [],
+            "observation": "task передаёт результат в spec или work без повторного запроса того же разрешения",
+            "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: автор указал цель, границы и разрешил работу, а новых вопросов не обнаружено",
+            "runner": null,
+            "scenario_ids": [
+              "HG-0016-S1"
+            ],
+            "selector": ""
+          },
+          {
+            "action": "Выполнить highgrade-task с заданными исходными условиями и проверить вопросы и переход к работе",
+            "file": "",
+            "id": "HG-0016-C2",
+            "inputs": [],
+            "observation": "агент показывает карточку с последствиями и ожидает решение автора до зависимого действия",
+            "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: существенный вариант меняет поведение или последствия задачи",
+            "runner": null,
+            "scenario_ids": [
+              "HG-0016-S2"
+            ],
+            "selector": ""
+          },
+          {
+            "action": "Выполнить highgrade-task с заданными исходными условиями и проверить вопросы и переход к работе",
+            "file": "",
+            "id": "HG-0016-C3",
+            "inputs": [],
+            "observation": "агент представляет их одним коротким раундом с вариантами и последствиями, не растягивая задачу на два ожидания",
+            "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: два нерешённых решения не зависят друг от друга",
+            "runner": null,
+            "scenario_ids": [
+              "HG-0016-S3"
+            ],
+            "selector": ""
+          }
+        ],
+        "created_at": 1790312534,
+        "evidence": {
+          "HG-0016-S1": {
+            "captured_at": "2026-09-25T08:31:34.919232+00:00",
+            "command": "local agent pilot on synthetic projects; independent review",
+            "files": {
+              "docs/evidence/agent-pilot/s1-authorized/assignment-current-pilot.md": "f7f706c196f3c15385c9abdda9b98423578c9efa09e8ade7c8601daa13a2305e",
+              "docs/evidence/agent-pilot/s1-authorized/readme-after-current-pilot.md": "91927dddf71bc051abb799a5b8080f64d01369a0b92430e6df3876d8be09a9ce",
+              "docs/evidence/agent-pilot/s1-authorized/readme-before-current-pilot.md": "412ea9b0d0113a23da1fa89389dbd84fa5cdfb6f86aeffbf89e4adf6b7955800",
+              "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md": "1487dcb2a6ba3a2eeb3b9663db74543f99d1ff73fcc07bf57a1e6e52aecef6e6",
+              "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+              "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+              "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+            },
+            "method": "manual",
+            "observation": "Явное разрешение сохранено до исправления; агент без повторного вопроса выполнил прямой work, сохранил diff и проверил целевую ссылку.",
+            "outcome": "passed",
+            "report": "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md",
+            "scenario": "HG-0016-S1",
+            "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+          },
+          "HG-0016-S2": {
+            "captured_at": "2026-09-25T08:31:36.187031+00:00",
+            "command": "local agent pilot on synthetic projects; independent review",
+            "files": {
+              "docs/evidence/agent-pilot/s5-rounding/after.json": "a63fadb81428704cae69d7d1a08b2cb8c80f3d238f05ef3f03b517948c852f38",
+              "docs/evidence/agent-pilot/s5-rounding/assignment.txt": "3e74154dbc492429269e40ad50ceb8a2aa39a7273a655c8f869af29049d75c24",
+              "docs/evidence/agent-pilot/s5-rounding/baseline.json": "385c7d4bd9a28a558cfa6864ec9650975ca7e172a396881902b8062e035faf3f",
+              "docs/evidence/agent-pilot/s5-rounding/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+              "docs/evidence/agent-pilot/s5-rounding/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+              "docs/evidence/agent-pilot/s5-rounding/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+              "docs/evidence/agent-pilot/s5-rounding/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+              "docs/evidence/agent-pilot/s5-rounding/owner-response.txt": "91a26f4292d57045eded957e47906124d488ae0a93dbd804f76026e55361b676",
+              "docs/evidence/agent-pilot/s5-rounding/question.txt": "32534bad73fcfd0fbc08afca643d73e7747c6a8b01d1fe99d0da9d0b9aca37f3",
+              "docs/evidence/agent-pilot/s5-rounding/report.md": "293350a6da8de869e228810a6243026f7c5749399a4c92f8940688d6c7d2e95a",
+              "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+              "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+              "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+            },
+            "method": "manual",
+            "observation": "Неопределённое правило округления меняет денежную сумму; агент отправил владельцу вопрос с тремя вариантами и остановил зависимую правку; исходные четыре файла побайтово сохранены.",
+            "outcome": "passed",
+            "report": "docs/evidence/agent-pilot/s5-rounding/report.md",
+            "scenario": "HG-0016-S2",
+            "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+          },
+          "HG-0016-S3": {
+            "captured_at": "2026-09-25T08:31:37.521616+00:00",
+            "command": "local agent pilot on synthetic projects; independent review",
+            "files": {
+              "docs/evidence/agent-pilot/s5-csv/baseline.json": "a2c60a6df4bed6ee94910d19013d4d4d2b22e2d93f66350465f97190953254d5",
+              "docs/evidence/agent-pilot/s5-csv/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+              "docs/evidence/agent-pilot/s5-csv/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+              "docs/evidence/agent-pilot/s5-csv/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+              "docs/evidence/agent-pilot/s5-csv/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+              "docs/evidence/agent-pilot/s5-csv/questions.md": "3ddcdeb1f1e0894d6117cd4274e026d9a2a8eb325d61fd6656d3e8aaa669d8e8",
+              "docs/evidence/agent-pilot/s5-csv/report.md": "64017dc3ed8c1cd930fce54d482a3c0108861cf13a95204093d14b5033ad25d2",
+              "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+              "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+              "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+            },
+            "method": "manual",
+            "observation": "Агент отправил координатору как владельцу два независимых вопроса одним сообщением; до ответа и после отсрочки решения исходные файлы не менялись.",
+            "outcome": "passed",
+            "report": "docs/evidence/agent-pilot/s5-csv/report.md",
+            "scenario": "HG-0016-S3",
+            "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+          }
+        },
+        "goal": "Действующие требования области «Вопросы при проработке задачи» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "history": [
+          {
+            "evidence": {},
+            "recorded_at": 1790323894,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:11:34.206690+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+                  "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+                  "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+                  "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+                  "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Ясная разрешённая задача о внутренней модели заказа перешла к одному техническому плану и work без повторного вопроса; 7/7 тестов и независимое GO.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              }
+            },
+            "recorded_at": 1790323895,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:11:34.206690+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+                  "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+                  "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+                  "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+                  "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Ясная разрешённая задача о внутренней модели заказа перешла к одному техническому плану и work без повторного вопроса; 7/7 тестов и независимое GO.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:11:35.468867+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+                  "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+                  "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет сумму; агент показал разные последствия, варианты и не изменил код до ответа.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-agent-response.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              }
+            },
+            "recorded_at": 1790323897,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:11:34.206690+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+                  "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+                  "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+                  "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+                  "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Ясная разрешённая задача о внутренней модели заказа перешла к одному техническому плану и work без повторного вопроса; 7/7 тестов и независимое GO.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:11:35.468867+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+                  "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+                  "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет сумму; агент показал разные последствия, варианты и не изменил код до ответа.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-agent-response.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:11:36.737554+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-second-agent-response.md": "88a2252b6572d5305fc7c2e659083417e9cfefbecd6c7e66401c0c43f90a4a91",
+                  "docs/evidence/agent-pilot/s5-second-orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Для CSV агент в одном ответе сформулировал два независимых решения о разделителе и часовом поясе с последствиями; изменений до ответа нет.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-second-agent-response.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790324147,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:15:47.259249+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+                  "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+                  "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+                  "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+                  "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "План, код и 7/7 тестов сохранены, но исходное разрешение и журнал вопросов агента не записаны; отсутствие повторного запроса пока не доказано.",
+                "outcome": "unknown",
+                "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:11:35.468867+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+                  "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+                  "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет сумму; агент показал разные последствия, варианты и не изменил код до ответа.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-agent-response.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:11:36.737554+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-second-agent-response.md": "88a2252b6572d5305fc7c2e659083417e9cfefbecd6c7e66401c0c43f90a4a91",
+                  "docs/evidence/agent-pilot/s5-second-orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Для CSV агент в одном ответе сформулировал два независимых решения о разделителе и часовом поясе с последствиями; изменений до ответа нет.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-second-agent-response.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790324148,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:15:47.259249+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+                  "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+                  "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+                  "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+                  "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "План, код и 7/7 тестов сохранены, но исходное разрешение и журнал вопросов агента не записаны; отсутствие повторного запроса пока не доказано.",
+                "outcome": "unknown",
+                "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:15:48.532986+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+                  "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+                  "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет сумму; агент показал разные последствия, варианты и не изменил код до ответа.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-agent-response.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:11:36.737554+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-second-agent-response.md": "88a2252b6572d5305fc7c2e659083417e9cfefbecd6c7e66401c0c43f90a4a91",
+                  "docs/evidence/agent-pilot/s5-second-orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Для CSV агент в одном ответе сформулировал два независимых решения о разделителе и часовом поясе с последствиями; изменений до ответа нет.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-second-agent-response.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790324150,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:15:47.259249+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+                  "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+                  "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+                  "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+                  "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "План, код и 7/7 тестов сохранены, но исходное разрешение и журнал вопросов агента не записаны; отсутствие повторного запроса пока не доказано.",
+                "outcome": "unknown",
+                "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:15:48.532986+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+                  "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+                  "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет сумму; агент показал разные последствия, варианты и не изменил код до ответа.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-agent-response.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:15:49.803337+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-second-agent-response.md": "88a2252b6572d5305fc7c2e659083417e9cfefbecd6c7e66401c0c43f90a4a91",
+                  "docs/evidence/agent-pilot/s5-second-orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Агент сформулировал два независимых решения в одном ответе, но не отправил вопросы пользователю; один пользовательский раунд пока не доказан.",
+                "outcome": "unknown",
+                "report": "docs/evidence/agent-pilot/s5-second-agent-response.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790324681,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:24:41.049005+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s1-authorized/assignment-current-pilot.md": "f7f706c196f3c15385c9abdda9b98423578c9efa09e8ade7c8601daa13a2305e",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-after-current-pilot.md": "91927dddf71bc051abb799a5b8080f64d01369a0b92430e6df3876d8be09a9ce",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-before-current-pilot.md": "412ea9b0d0113a23da1fa89389dbd84fa5cdfb6f86aeffbf89e4adf6b7955800",
+                  "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md": "1487dcb2a6ba3a2eeb3b9663db74543f99d1ff73fcc07bf57a1e6e52aecef6e6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Явное разрешение сохранено до исправления; агент без повторного вопроса выполнил прямой work, сохранил diff и проверил целевую ссылку.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:15:48.532986+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+                  "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+                  "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет сумму; агент показал разные последствия, варианты и не изменил код до ответа.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-agent-response.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:15:49.803337+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-second-agent-response.md": "88a2252b6572d5305fc7c2e659083417e9cfefbecd6c7e66401c0c43f90a4a91",
+                  "docs/evidence/agent-pilot/s5-second-orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Агент сформулировал два независимых решения в одном ответе, но не отправил вопросы пользователю; один пользовательский раунд пока не доказан.",
+                "outcome": "unknown",
+                "report": "docs/evidence/agent-pilot/s5-second-agent-response.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790324682,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:24:41.049005+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s1-authorized/assignment-current-pilot.md": "f7f706c196f3c15385c9abdda9b98423578c9efa09e8ade7c8601daa13a2305e",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-after-current-pilot.md": "91927dddf71bc051abb799a5b8080f64d01369a0b92430e6df3876d8be09a9ce",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-before-current-pilot.md": "412ea9b0d0113a23da1fa89389dbd84fa5cdfb6f86aeffbf89e4adf6b7955800",
+                  "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md": "1487dcb2a6ba3a2eeb3b9663db74543f99d1ff73fcc07bf57a1e6e52aecef6e6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Явное разрешение сохранено до исправления; агент без повторного вопроса выполнил прямой work, сохранил diff и проверил целевую ссылку.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:24:42.345189+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+                  "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+                  "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет сумму; агент показал разные последствия, варианты и не изменил код до ответа.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-agent-response.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:15:49.803337+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-second-agent-response.md": "88a2252b6572d5305fc7c2e659083417e9cfefbecd6c7e66401c0c43f90a4a91",
+                  "docs/evidence/agent-pilot/s5-second-orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Агент сформулировал два независимых решения в одном ответе, но не отправил вопросы пользователю; один пользовательский раунд пока не доказан.",
+                "outcome": "unknown",
+                "report": "docs/evidence/agent-pilot/s5-second-agent-response.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790324683,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:24:41.049005+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s1-authorized/assignment-current-pilot.md": "f7f706c196f3c15385c9abdda9b98423578c9efa09e8ade7c8601daa13a2305e",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-after-current-pilot.md": "91927dddf71bc051abb799a5b8080f64d01369a0b92430e6df3876d8be09a9ce",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-before-current-pilot.md": "412ea9b0d0113a23da1fa89389dbd84fa5cdfb6f86aeffbf89e4adf6b7955800",
+                  "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md": "1487dcb2a6ba3a2eeb3b9663db74543f99d1ff73fcc07bf57a1e6e52aecef6e6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Явное разрешение сохранено до исправления; агент без повторного вопроса выполнил прямой work, сохранил diff и проверил целевую ссылку.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:24:42.345189+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+                  "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+                  "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет сумму; агент показал разные последствия, варианты и не изменил код до ответа.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-agent-response.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:24:43.586282+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-csv/baseline.json": "a2c60a6df4bed6ee94910d19013d4d4d2b22e2d93f66350465f97190953254d5",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "docs/evidence/agent-pilot/s5-csv/questions.md": "3ddcdeb1f1e0894d6117cd4274e026d9a2a8eb325d61fd6656d3e8aaa669d8e8",
+                  "docs/evidence/agent-pilot/s5-csv/report.md": "64017dc3ed8c1cd930fce54d482a3c0108861cf13a95204093d14b5033ad25d2",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Агент отправил координатору как владельцу два независимых вопроса одним сообщением; до ответа и после отсрочки решения исходные файлы не менялись.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-csv/report.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790325095,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:31:34.919232+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s1-authorized/assignment-current-pilot.md": "f7f706c196f3c15385c9abdda9b98423578c9efa09e8ade7c8601daa13a2305e",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-after-current-pilot.md": "91927dddf71bc051abb799a5b8080f64d01369a0b92430e6df3876d8be09a9ce",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-before-current-pilot.md": "412ea9b0d0113a23da1fa89389dbd84fa5cdfb6f86aeffbf89e4adf6b7955800",
+                  "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md": "1487dcb2a6ba3a2eeb3b9663db74543f99d1ff73fcc07bf57a1e6e52aecef6e6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Явное разрешение сохранено до исправления; агент без повторного вопроса выполнил прямой work, сохранил diff и проверил целевую ссылку.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:24:42.345189+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+                  "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+                  "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет сумму; агент показал разные последствия, варианты и не изменил код до ответа.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-agent-response.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:24:43.586282+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-csv/baseline.json": "a2c60a6df4bed6ee94910d19013d4d4d2b22e2d93f66350465f97190953254d5",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "docs/evidence/agent-pilot/s5-csv/questions.md": "3ddcdeb1f1e0894d6117cd4274e026d9a2a8eb325d61fd6656d3e8aaa669d8e8",
+                  "docs/evidence/agent-pilot/s5-csv/report.md": "64017dc3ed8c1cd930fce54d482a3c0108861cf13a95204093d14b5033ad25d2",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Агент отправил координатору как владельцу два независимых вопроса одним сообщением; до ответа и после отсрочки решения исходные файлы не менялись.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-csv/report.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790325096,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:31:34.919232+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s1-authorized/assignment-current-pilot.md": "f7f706c196f3c15385c9abdda9b98423578c9efa09e8ade7c8601daa13a2305e",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-after-current-pilot.md": "91927dddf71bc051abb799a5b8080f64d01369a0b92430e6df3876d8be09a9ce",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-before-current-pilot.md": "412ea9b0d0113a23da1fa89389dbd84fa5cdfb6f86aeffbf89e4adf6b7955800",
+                  "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md": "1487dcb2a6ba3a2eeb3b9663db74543f99d1ff73fcc07bf57a1e6e52aecef6e6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Явное разрешение сохранено до исправления; агент без повторного вопроса выполнил прямой work, сохранил diff и проверил целевую ссылку.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:31:36.187031+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-rounding/after.json": "a63fadb81428704cae69d7d1a08b2cb8c80f3d238f05ef3f03b517948c852f38",
+                  "docs/evidence/agent-pilot/s5-rounding/assignment.txt": "3e74154dbc492429269e40ad50ceb8a2aa39a7273a655c8f869af29049d75c24",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline.json": "385c7d4bd9a28a558cfa6864ec9650975ca7e172a396881902b8062e035faf3f",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "docs/evidence/agent-pilot/s5-rounding/owner-response.txt": "91a26f4292d57045eded957e47906124d488ae0a93dbd804f76026e55361b676",
+                  "docs/evidence/agent-pilot/s5-rounding/question.txt": "32534bad73fcfd0fbc08afca643d73e7747c6a8b01d1fe99d0da9d0b9aca37f3",
+                  "docs/evidence/agent-pilot/s5-rounding/report.md": "293350a6da8de869e228810a6243026f7c5749399a4c92f8940688d6c7d2e95a",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет денежную сумму; агент отправил владельцу вопрос с тремя вариантами и остановил зависимую правку; исходные четыре файла побайтово сохранены.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-rounding/report.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:24:43.586282+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-csv/baseline.json": "a2c60a6df4bed6ee94910d19013d4d4d2b22e2d93f66350465f97190953254d5",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "docs/evidence/agent-pilot/s5-csv/questions.md": "3ddcdeb1f1e0894d6117cd4274e026d9a2a8eb325d61fd6656d3e8aaa669d8e8",
+                  "docs/evidence/agent-pilot/s5-csv/report.md": "64017dc3ed8c1cd930fce54d482a3c0108861cf13a95204093d14b5033ad25d2",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Агент отправил координатору как владельцу два независимых вопроса одним сообщением; до ответа и после отсрочки решения исходные файлы не менялись.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-csv/report.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790325097,
+            "review": null
+          },
+          {
+            "evidence": {
+              "HG-0016-S1": {
+                "captured_at": "2026-09-25T08:31:34.919232+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s1-authorized/assignment-current-pilot.md": "f7f706c196f3c15385c9abdda9b98423578c9efa09e8ade7c8601daa13a2305e",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-after-current-pilot.md": "91927dddf71bc051abb799a5b8080f64d01369a0b92430e6df3876d8be09a9ce",
+                  "docs/evidence/agent-pilot/s1-authorized/readme-before-current-pilot.md": "412ea9b0d0113a23da1fa89389dbd84fa5cdfb6f86aeffbf89e4adf6b7955800",
+                  "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md": "1487dcb2a6ba3a2eeb3b9663db74543f99d1ff73fcc07bf57a1e6e52aecef6e6",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Явное разрешение сохранено до исправления; агент без повторного вопроса выполнил прямой work, сохранил diff и проверил целевую ссылку.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s1-authorized/result-current-pilot.md",
+                "scenario": "HG-0016-S1",
+                "scenario_sha256": "ea15170dd6da5bcb0c4ec9f576851d987d436daff623565e171e63a09553f33e"
+              },
+              "HG-0016-S2": {
+                "captured_at": "2026-09-25T08:31:36.187031+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-rounding/after.json": "a63fadb81428704cae69d7d1a08b2cb8c80f3d238f05ef3f03b517948c852f38",
+                  "docs/evidence/agent-pilot/s5-rounding/assignment.txt": "3e74154dbc492429269e40ad50ceb8a2aa39a7273a655c8f869af29049d75c24",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline.json": "385c7d4bd9a28a558cfa6864ec9650975ca7e172a396881902b8062e035faf3f",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "docs/evidence/agent-pilot/s5-rounding/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "docs/evidence/agent-pilot/s5-rounding/owner-response.txt": "91a26f4292d57045eded957e47906124d488ae0a93dbd804f76026e55361b676",
+                  "docs/evidence/agent-pilot/s5-rounding/question.txt": "32534bad73fcfd0fbc08afca643d73e7747c6a8b01d1fe99d0da9d0b9aca37f3",
+                  "docs/evidence/agent-pilot/s5-rounding/report.md": "293350a6da8de869e228810a6243026f7c5749399a4c92f8940688d6c7d2e95a",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Неопределённое правило округления меняет денежную сумму; агент отправил владельцу вопрос с тремя вариантами и остановил зависимую правку; исходные четыре файла побайтово сохранены.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-rounding/report.md",
+                "scenario": "HG-0016-S2",
+                "scenario_sha256": "e450aabcda8b1edd79bcf9425c3f512b2a578a9a89bd2b487554a59c004a0a48"
+              },
+              "HG-0016-S3": {
+                "captured_at": "2026-09-25T08:31:37.521616+00:00",
+                "command": "local agent pilot on synthetic projects; independent review",
+                "files": {
+                  "docs/evidence/agent-pilot/s5-csv/baseline.json": "a2c60a6df4bed6ee94910d19013d4d4d2b22e2d93f66350465f97190953254d5",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/AGENTS.md": "e624e791c979b4bf9419375fed21d3fc6c8f560ffff98709e51006ca68aa2abe",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/README.md": "023f14412bf6a92b8a56771ac12d9d78b50a4644735cd613bd10f4029124c15b",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/orders.json": "829a3fd8269a1c9ba737bf3c669784b53c70ffb638fad00dab8d2e6134a1a980",
+                  "docs/evidence/agent-pilot/s5-csv/baseline/total.py": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+                  "docs/evidence/agent-pilot/s5-csv/questions.md": "3ddcdeb1f1e0894d6117cd4274e026d9a2a8eb325d61fd6656d3e8aaa669d8e8",
+                  "docs/evidence/agent-pilot/s5-csv/report.md": "64017dc3ed8c1cd930fce54d482a3c0108861cf13a95204093d14b5033ad25d2",
+                  "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+                  "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+                  "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+                },
+                "method": "manual",
+                "observation": "Агент отправил координатору как владельцу два независимых вопроса одним сообщением; до ответа и после отсрочки решения исходные файлы не менялись.",
+                "outcome": "passed",
+                "report": "docs/evidence/agent-pilot/s5-csv/report.md",
+                "scenario": "HG-0016-S3",
+                "scenario_sha256": "e2d4120637fb91892282d2cc0dbf612f4edc7e61cdabaed2fb3566bc580dbe53"
+              }
+            },
+            "recorded_at": 1790325178,
+            "review": null
+          }
+        ],
+        "id": "HG-0016",
+        "imports": {},
+        "operations": [
+          {
+            "action": "add",
+            "requirement": {
+              "id": "HG-0016-R1",
+              "scenarios": [
+                {
+                  "given": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: автор указал цель, границы и разрешил работу, а новых вопросов не обнаружено",
+                  "id": "HG-0016-S1",
+                  "then": "task передаёт результат в spec или work без повторного запроса того же разрешения",
+                  "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым",
+                  "when": "Выполнить highgrade-task с заданными исходными условиями и проверить вопросы и переход к работе"
+                },
+                {
+                  "given": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: существенный вариант меняет поведение или последствия задачи",
+                  "id": "HG-0016-S2",
+                  "then": "агент показывает карточку с последствиями и ожидает решение автора до зависимого действия",
+                  "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым",
+                  "when": "Выполнить highgrade-task с заданными исходными условиями и проверить вопросы и переход к работе"
+                },
+                {
+                  "given": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: два нерешённых решения не зависят друг от друга",
+                  "id": "HG-0016-S3",
+                  "then": "агент представляет их одним коротким раундом с вариантами и последствиями, не растягивая задачу на два ожидания",
+                  "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым",
+                  "when": "Выполнить highgrade-task с заданными исходными условиями и проверить вопросы и переход к работе"
+                }
+              ],
+              "statement": "`highgrade-task` SHALL задавать только вопросы, ответы на которые меняют результат или последствия. Независимые вопросы SHALL собираться в один раунд; зависимые SHALL задаваться после ответа на предпосылку. Ясное разрешённое поручение SHALL переходить в spec или work без повторного согласования. Запрос только на анализ SHALL оставаться только чтением.",
+              "title": "Вопросы только при нерешённом выборе"
+            }
+          }
+        ],
+        "questions": [],
+        "rationale": "Актуализация действующего контракта по аудиту завершённых правил; отсутствие проверки не считается успехом",
+        "review": {
+          "change_sha256": "dbac2bff94223ef427f55644f3392036028d72f0c1e473f15cb14f76638e990e",
+          "conclusion": "Независимое ревью: S1 подтверждён явным разрешением и прямой работой без повторного вопроса; S2 — отправленным денежным вопросом и неизменностью исходных файлов; S3 — одним раундом двух независимых вопросов координатору. Хеши входов совпадают; это по одной синтетической пробе на сценарий.",
+          "reviewer": "local_spec_review",
+          "verdict": "go"
+        },
+        "scope": "Действующее поведение области «Вопросы при проработке задачи»; старые источники и решения остаются только в архиве",
+        "tasks": [
+          {
+            "description": "Сверить актуальность правил и качество имеющихся проверок, сохранить соответствие в архиве",
+            "done": true,
+            "id": "HG-0016-T1"
+          }
+        ],
+        "title": "Вопросы при проработке задачи"
+      },
+      "change_sha256": "dbac2bff94223ef427f55644f3392036028d72f0c1e473f15cb14f76638e990e",
+      "inputs_sha256": "2c0162b553ae3bf71475e62b1a707b95bf5203cf53145c80a1cf4e422cc4fb8f",
+      "links": {
+        "depends_on": [],
+        "related_to": [],
+        "same_requirements": []
+      }
+    }
+  ],
+  "limitations": [
+    "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+  ]
+}

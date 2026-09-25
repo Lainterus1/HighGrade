@@ -1,0 +1,41 @@
+{
+  "captured_at": "2026-09-25T09:36:12.9053184Z",
+  "branch": "code_drift_only",
+  "before_sha256": {
+    "counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+    "test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
+    "specs/changes/HG-0001/spec.json": "b9f2f42d515abe40bbe552b53d3c59bb23b5206f80aae1d9a1ce80d479932abd",
+    "specs/changes/HG-0001/results.json": "f2733ad9618e5e759cf90ed1379425641fa812608b85b29db5eaeb0eadaf3606",
+    "specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
+    "evidence/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+    ".highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
+    "AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0"
+  },
+  "changed_sha256": {
+    "counter.py": "97f35629976767c9b148ec2c1a177c61705a668bbf8fbdb863bfdb5c50c48f63",
+    "test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
+    "specs/changes/HG-0001/spec.json": "b9f2f42d515abe40bbe552b53d3c59bb23b5206f80aae1d9a1ce80d479932abd",
+    "specs/changes/HG-0001/results.json": "f2733ad9618e5e759cf90ed1379425641fa812608b85b29db5eaeb0eadaf3606",
+    "specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
+    "evidence/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+    ".highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
+    "AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0"
+  },
+  "evidence_counter_sha256": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+  "actual_counter_sha256": "97f35629976767c9b148ec2c1a177c61705a668bbf8fbdb863bfdb5c50c48f63",
+  "previous_native_report": "evidence/s7-continuation-unittest-verbose.txt",
+  "previous_native_report_sha256": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+  "previous_native_result_applicability": "stale_after_counter_change",
+  "spec_check_command": "highgrade.exe spec-check --root D:\\my_projects\\MyCodex\\target\\agent-pilot\\s7 --id HG-0001",
+  "spec_check_exit_code": 1,
+  "spec_check_status": "failed",
+  "spec_check_codes": [
+    "EvidenceMissingOrStale"
+  ],
+  "spec_list_command": "highgrade.exe spec-list --root D:\\my_projects\\MyCodex\\target\\agent-pilot\\s7",
+  "spec_list_exit_code": 0,
+  "spec_list_technical": "in_progress",
+  "scenario": "HG-0001-S1",
+  "scenario_state": "unknown",
+  "changed_diff": "evidence/hg10-s8-stale/changed-counter.diff"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "HG-0009-R8",
+  "title": "Поиск кандидатов только при структурной необходимости",
+  "statement": "Если все семь канонических путей существуют как обычные файлы, предварительная проверка SHALL пропускать обход дерева ради альтернативных кандидатов и сообщать `candidate_scan=not_needed`; она SHALL продолжать проверять обязательные Markdown-связи и входной список исключений. Если хотя бы один точный путь отсутствует, некорректен или не может быть подтверждён, ограниченный обход SHALL выполняться с прежними правилами исключений и `candidate_scan=performed`. Пропуск обхода SHALL не считаться доказательством полноты аудита.",
+  "scenarios": [
+    {
+      "id": "HG-0009-S19",
+      "given": "Временная фикстура теста tests/bootstrap_contracts.rs::canonical_project_has_separate_path_and_link_evidence создана с исходными данными указанного случая",
+      "when": "все семь точных путей существуют",
+      "then": "bootstrap показывает `candidate_scan=not_needed`, не обходит дерево ради кандидатов и отдельно проверяет шесть связей",
+      "verification": "Запустить cargo test --locked --test bootstrap_contracts canonical_project_has_separate_path_and_link_evidence -- --exact; проверить фактические утверждения о результате и границах сценария"
+    },
+    {
+      "id": "HG-0009-S20",
+      "given": "Временная фикстура теста tests/bootstrap_contracts.rs::bootstrap_reports_multiple_unvisited_locations_with_a_count содержит несколько обязательных путей за пределом глубины обхода",
+      "when": "хотя бы один обязательный путь не подтверждён",
+      "then": "bootstrap выполняет ограниченный поиск кандидатов и отмечает непросмотренные области по действующему контракту",
+      "verification": "Запустить cargo test --locked --test bootstrap_contracts bootstrap_reports_multiple_unvisited_locations_with_a_count -- --exact; проверить фактические утверждения о результате и границах сценария"
+    }
+  ]
+}

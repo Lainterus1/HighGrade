@@ -1,0 +1,1353 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0008-S1": {
+      "captured_at": "2026-09-25T05:59:32.609000Z",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "method": "native_report",
+      "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+      "outcome": "passed",
+      "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+      "scenario": "HG-0008-S1",
+      "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+    },
+    "HG-0008-S2": {
+      "captured_at": "2026-09-25T05:59:32.609000Z",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "method": "native_report",
+      "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+      "outcome": "passed",
+      "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+      "scenario": "HG-0008-S2",
+      "scenario_sha256": "f054157e4d070cbd547cc14465b8981964d58029797562d2626472352f6ca548"
+    },
+    "HG-0008-S3": {
+      "captured_at": "2026-09-25T05:59:18+00:00",
+      "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+      },
+      "method": "native_report",
+      "observation": "Реальный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor прошёл; дополнительные исходники включены в отпечаток для текущей редакции. Следующий spec-run потребует повторить это дополнение.",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log",
+      "scenario": "HG-0008-S3",
+      "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790308321,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T03:52:01.560Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "2fff6f72d871b990131f8a63c2b86da0f1293e1161ed5a0a86d6c9cd840f9b44",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aab8db7ae892907fad9ec15f109ab0f9ea45fdd40db2da40404bea33f2ab6644"
+          },
+          "method": "native_report",
+          "observation": "Directory-catalog and legacy-store tests passed: native requirement and origin stored, source bytes retained, status in_progress and human pending.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        }
+      },
+      "recorded_at": 1790308322,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T03:52:01.560Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "2fff6f72d871b990131f8a63c2b86da0f1293e1161ed5a0a86d6c9cd840f9b44",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aab8db7ae892907fad9ec15f109ab0f9ea45fdd40db2da40404bea33f2ab6644"
+          },
+          "method": "native_report",
+          "observation": "Directory-catalog and legacy-store tests passed: native requirement and origin stored, source bytes retained, status in_progress and human pending.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T03:52:02.288Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "2fff6f72d871b990131f8a63c2b86da0f1293e1161ed5a0a86d6c9cd840f9b44",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aab8db7ae892907fad9ec15f109ab0f9ea45fdd40db2da40404bea33f2ab6644"
+          },
+          "method": "native_report",
+          "observation": "Negative test passed: missing evidence, incomplete task, absent/stale review, source drift and mixed operations rejected without transfer.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        }
+      },
+      "recorded_at": 1790308372,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T03:52:01.560Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "2fff6f72d871b990131f8a63c2b86da0f1293e1161ed5a0a86d6c9cd840f9b44",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aab8db7ae892907fad9ec15f109ab0f9ea45fdd40db2da40404bea33f2ab6644"
+          },
+          "method": "native_report",
+          "observation": "Directory-catalog and legacy-store tests passed: native requirement and origin stored, source bytes retained, status in_progress and human pending.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T03:52:02.288Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "2fff6f72d871b990131f8a63c2b86da0f1293e1161ed5a0a86d6c9cd840f9b44",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aab8db7ae892907fad9ec15f109ab0f9ea45fdd40db2da40404bea33f2ab6644"
+          },
+          "method": "native_report",
+          "observation": "Negative test passed: missing evidence, incomplete task, absent/stale review, source drift and mixed operations rejected without transfer.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        }
+      },
+      "recorded_at": 1790308957,
+      "review": {
+        "change_sha256": "d89fbf05197d9609e1b9d331ef3c752e744627fcbf69f3de2ee05c953b15e4ef",
+        "conclusion": "GO: exact transfer behavior and negative paths reviewed; 2/2 focused tests pass; no behavior claimed for historical imports",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T04:02:37.825Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "b0209d694cb4db709e9d62a0ce97279572457e90f0b2ba9c2407efa5f68f4ca1",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aa7594dd7315a56a3e02db7655b2f36c121487c225ca63def75c5cfbd9cb3ea2"
+          },
+          "method": "native_report",
+          "observation": "Directory-catalog and legacy-store tests passed: native requirement and origin stored, source bytes retained, status in_progress and human pending.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T03:52:02.288Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "2fff6f72d871b990131f8a63c2b86da0f1293e1161ed5a0a86d6c9cd840f9b44",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aab8db7ae892907fad9ec15f109ab0f9ea45fdd40db2da40404bea33f2ab6644"
+          },
+          "method": "native_report",
+          "observation": "Negative test passed: missing evidence, incomplete task, absent/stale review, source drift and mixed operations rejected without transfer.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        }
+      },
+      "recorded_at": 1790308958,
+      "review": {
+        "change_sha256": "d89fbf05197d9609e1b9d331ef3c752e744627fcbf69f3de2ee05c953b15e4ef",
+        "conclusion": "GO: exact transfer behavior and negative paths reviewed; 2/2 focused tests pass; no behavior claimed for historical imports",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T04:02:37.825Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "b0209d694cb4db709e9d62a0ce97279572457e90f0b2ba9c2407efa5f68f4ca1",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aa7594dd7315a56a3e02db7655b2f36c121487c225ca63def75c5cfbd9cb3ea2"
+          },
+          "method": "native_report",
+          "observation": "Directory-catalog and legacy-store tests passed: native requirement and origin stored, source bytes retained, status in_progress and human pending.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T04:02:38.689Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "b0209d694cb4db709e9d62a0ce97279572457e90f0b2ba9c2407efa5f68f4ca1",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aa7594dd7315a56a3e02db7655b2f36c121487c225ca63def75c5cfbd9cb3ea2"
+          },
+          "method": "native_report",
+          "observation": "Negative test passed: missing evidence, incomplete task, absent/stale review, source drift, mismatched scenario ID and mixed operations rejected without transfer.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        }
+      },
+      "recorded_at": 1790309001,
+      "review": {
+        "change_sha256": "d89fbf05197d9609e1b9d331ef3c752e744627fcbf69f3de2ee05c953b15e4ef",
+        "conclusion": "GO: exact transfer behavior and negative paths reviewed; 2/2 focused tests pass; no behavior claimed for historical imports",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T04:02:37.825Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "b0209d694cb4db709e9d62a0ce97279572457e90f0b2ba9c2407efa5f68f4ca1",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aa7594dd7315a56a3e02db7655b2f36c121487c225ca63def75c5cfbd9cb3ea2"
+          },
+          "method": "native_report",
+          "observation": "Directory-catalog and legacy-store tests passed: native requirement and origin stored, source bytes retained, status in_progress and human pending.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T04:02:38.689Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "b0209d694cb4db709e9d62a0ce97279572457e90f0b2ba9c2407efa5f68f4ca1",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aa7594dd7315a56a3e02db7655b2f36c121487c225ca63def75c5cfbd9cb3ea2"
+          },
+          "method": "native_report",
+          "observation": "Negative test passed: missing evidence, incomplete task, absent/stale review, source drift, mismatched scenario ID and mixed operations rejected without transfer.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        }
+      },
+      "recorded_at": 1790313396,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:10:39.193000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T04:02:38.689Z",
+          "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/transfer-tests.txt": "b0209d694cb4db709e9d62a0ce97279572457e90f0b2ba9c2407efa5f68f4ca1",
+            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "tests/spec_contracts.rs": "aa7594dd7315a56a3e02db7655b2f36c121487c225ca63def75c5cfbd9cb3ea2"
+          },
+          "method": "native_report",
+          "observation": "Negative test passed: missing evidence, incomplete task, absent/stale review, source drift, mismatched scenario ID and mixed operations rejected without transfer.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/transfer-tests.txt",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        }
+      },
+      "recorded_at": 1790313397,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:10:39.193000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:10:39.193000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        }
+      },
+      "recorded_at": 1790315050,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:42:06.808000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:10:39.193000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        }
+      },
+      "recorded_at": 1790315051,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:42:06.808000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:42:06.808000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        }
+      },
+      "recorded_at": 1790315546,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:42:06.808000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:42:06.808000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        },
+        "HG-0008-S3": {
+          "captured_at": "1790315544",
+          "command": "spec-run --id HG-0008 --check HG-0008-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log": "23b62b9605a7c0f86187cb2253d1cd06690212e30e8570a715834c97fe9f2510",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790315562,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:42:06.808000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "112baa3252d28fedd0202235eb1c203d922fd5cece69cb4cdf0339adb0d4dba8"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:42:06.808000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        },
+        "HG-0008-S3": {
+          "captured_at": "2026-09-25T05:52:24Z",
+          "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log": "23b62b9605a7c0f86187cb2253d1cd06690212e30e8570a715834c97fe9f2510",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+          },
+          "method": "native_report",
+          "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790315716,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:42:06.808000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "6a54d3b1d1007cb81d4196daaa19e684c6ab970259b6746754844a0e2faeb0ac"
+        },
+        "HG-0008-S3": {
+          "captured_at": "2026-09-25T05:52:24Z",
+          "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log": "23b62b9605a7c0f86187cb2253d1cd06690212e30e8570a715834c97fe9f2510",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+          },
+          "method": "native_report",
+          "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790315717,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "f054157e4d070cbd547cc14465b8981964d58029797562d2626472352f6ca548"
+        },
+        "HG-0008-S3": {
+          "captured_at": "2026-09-25T05:52:24Z",
+          "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log": "23b62b9605a7c0f86187cb2253d1cd06690212e30e8570a715834c97fe9f2510",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+          },
+          "method": "native_report",
+          "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790315728,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "f054157e4d070cbd547cc14465b8981964d58029797562d2626472352f6ca548"
+        },
+        "HG-0008-S3": {
+          "captured_at": "1790315727",
+          "command": "spec-run --id HG-0008 --check HG-0008-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315727749287600.log": "827157461ce463b9d2bb645218a13239e6aa819035b1d3372e8d66b28fdf8bcf",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315727749287600.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790315784,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "f054157e4d070cbd547cc14465b8981964d58029797562d2626472352f6ca548"
+        },
+        "HG-0008-S3": {
+          "captured_at": "2026-09-25T05:55:27Z",
+          "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315727749287600.log": "827157461ce463b9d2bb645218a13239e6aa819035b1d3372e8d66b28fdf8bcf",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+          },
+          "method": "native_report",
+          "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315727749287600.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790315959,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "f054157e4d070cbd547cc14465b8981964d58029797562d2626472352f6ca548"
+        },
+        "HG-0008-S3": {
+          "captured_at": "1790315958",
+          "command": "spec-run --id HG-0008 --check HG-0008-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790315965,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "f054157e4d070cbd547cc14465b8981964d58029797562d2626472352f6ca548"
+        },
+        "HG-0008-S3": {
+          "captured_at": "2026-09-25T05:59:18Z",
+          "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+          },
+          "method": "native_report",
+          "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790316011,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:59:32.609000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:54:45.547000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "f054157e4d070cbd547cc14465b8981964d58029797562d2626472352f6ca548"
+        },
+        "HG-0008-S3": {
+          "captured_at": "2026-09-25T05:59:18Z",
+          "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+          },
+          "method": "native_report",
+          "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790316012,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:59:32.609000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:59:32.609000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "f054157e4d070cbd547cc14465b8981964d58029797562d2626472352f6ca548"
+        },
+        "HG-0008-S3": {
+          "captured_at": "2026-09-25T05:59:18Z",
+          "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+          },
+          "method": "native_report",
+          "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790321909,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0008-S1": {
+          "captured_at": "2026-09-25T05:59:32.609000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S1",
+          "scenario_sha256": "792dad0c451ed1b12dd61518af88a355bba7c26561385939ab2de46ed7b9fd7f"
+        },
+        "HG-0008-S2": {
+          "captured_at": "2026-09-25T05:59:32.609000Z",
+          "command": "cargo nextest run --locked --profile highgrade",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+          "scenario": "HG-0008-S2",
+          "scenario_sha256": "f054157e4d070cbd547cc14465b8981964d58029797562d2626472352f6ca548"
+        },
+        "HG-0008-S3": {
+          "captured_at": "2026-09-25T05:59:18+00:00",
+          "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+            "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+          },
+          "method": "native_report",
+          "observation": "Реальный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor прошёл; дополнительные исходники включены в отпечаток для текущей редакции. Следующий spec-run потребует повторить это дополнение.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log",
+          "scenario": "HG-0008-S3",
+          "scenario_sha256": "33ba2699c12c06cfede548a80495f367bc42953cff1488be36a4f69f4709da15"
+        }
+      },
+      "recorded_at": 1790322039,
+      "review": {
+        "change_sha256": "3cb73bb131c78d2e79ffdd11ee08faf96e00805caa80acd52db506307378ed18",
+        "conclusion": "GO after scenario-ID mismatch regression: 2/2 focused tests pass; evidence hashes and contract reviewed",
+        "reviewer": "independent reviewer",
+        "verdict": "go"
+      }
+    }
+  ],
+  "review": {
+    "change_sha256": "ec9c62592bda43c61b8c9a56771750de3b078e534bf6e3f3b551df1f2598ce19",
+    "conclusion": "Независимое ревью подтвердило точные Cargo-логи и добавленные отпечатки исходников для текущей редакции; следующий spec-run потребует повторного дополнения входов.",
+    "reviewer": "local_spec_review",
+    "verdict": "go"
+  },
+  "runs": [
+    {
+      "check": "HG-0008-C1",
+      "check_sha256": "395265b96f86b4dcea4500615626aad2e20f309eefff0dff4d200b1cc06da59a",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "trace_contracts",
+        "reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log": "23b62b9605a7c0f86187cb2253d1cd06690212e30e8570a715834c97fe9f2510",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log",
+      "started_at": 1790315544
+    },
+    {
+      "check": "HG-0008-C1",
+      "check_sha256": "395265b96f86b4dcea4500615626aad2e20f309eefff0dff4d200b1cc06da59a",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "trace_contracts",
+        "reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/HG-0008-C1-1790315727749287600.log": "827157461ce463b9d2bb645218a13239e6aa819035b1d3372e8d66b28fdf8bcf",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315727749287600.log",
+      "started_at": 1790315727
+    },
+    {
+      "check": "HG-0008-C1",
+      "check_sha256": "395265b96f86b4dcea4500615626aad2e20f309eefff0dff4d200b1cc06da59a",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "trace_contracts",
+        "reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log",
+      "started_at": 1790315958
+    }
+  ]
+}

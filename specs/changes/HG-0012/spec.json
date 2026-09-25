@@ -1,0 +1,197 @@
+{
+  "abandoned_reason": null,
+  "archived": true,
+  "baseline": {},
+  "checks": [
+    {
+      "action": "Создать изменения, одновременно повторить создание от одного снимка и вызвать сбой записи",
+      "file": "tests/spec_contracts.rs",
+      "id": "HG-0012-C1",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "tests/spec_contracts.rs"
+      ],
+      "observation": "Успешные создания имеют разные последовательные ID; конфликт/сбой сохраняет целый store и счётчик; отменённый номер не используется вновь",
+      "preparation": "Временная фикстура теста tests/spec_contracts.rs::automatic_numbers_survive_abandon_failure_and_competing_cli_writers создана с исходными данными указанного случая",
+      "runner": "rust-contracts",
+      "scenario_ids": [
+        "HG-0012-S1"
+      ],
+      "selector": "automatic_numbers_survive_abandon_failure_and_competing_cli_writers"
+    },
+    {
+      "action": "Прочитать, попытаться записать без миграции, затем выполнить миграцию и повтор/конфликт",
+      "file": "tests/spec_contracts.rs",
+      "id": "HG-0012-C2",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "tests/spec_contracts.rs"
+      ],
+      "observation": "Чтение не меняет байты; запись требует миграции; резервная копия точна; повтор безопасен; старые данные и валидность ревью сохранены",
+      "preparation": "Временная фикстура теста tests/spec_contracts.rs::v1_migration_preserves_exact_backup_ids_evidence_and_review_digest создана с исходными данными указанного случая",
+      "runner": "rust-contracts",
+      "scenario_ids": [
+        "HG-0012-S2"
+      ],
+      "selector": "v1_migration_preserves_exact_backup_ids_evidence_and_review_digest"
+    },
+    {
+      "action": "Записать решение, попробовать неполные/устаревшие/поддельные входы и затем изменить контракт или проверенный код",
+      "file": "tests/spec_contracts.rs",
+      "id": "HG-0012-C3",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "tests/spec_contracts.rs"
+      ],
+      "observation": "Полная запись сохраняется, неверные не меняют store; история остаётся, новая версия не наследует принятие",
+      "preparation": "Временная фикстура теста tests/spec_contracts.rs::human_history_is_atomic_protected_and_bound_to_spec_and_implementation создана с исходными данными указанного случая",
+      "runner": "rust-contracts",
+      "scenario_ids": [
+        "HG-0012-S3"
+      ],
+      "selector": "human_history_is_atomic_protected_and_bound_to_spec_and_implementation"
+    },
+    {
+      "action": "Запросить список до и после изменений и удаления отчёта",
+      "file": "tests/spec_contracts.rs",
+      "id": "HG-0012-C4",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "tests/spec_contracts.rs"
+      ],
+      "observation": "ID/title и счётчики верны; failed/skipped/unknown/stale/no_go не дают ready; отсутствие решения pending; включение не означает принятие",
+      "preparation": "Временная фикстура теста tests/spec_contracts.rs::json_progress_rejects_missing_skipped_unknown_and_negative_review создана с исходными данными указанного случая",
+      "runner": "rust-contracts",
+      "scenario_ids": [
+        "HG-0012-S4"
+      ],
+      "selector": "json_progress_rejects_missing_skipped_unknown_and_negative_review"
+    },
+    {
+      "action": "Принять две, вернуть одну, изменить и проверить последнюю, записать новое решение",
+      "file": "tests/spec_contracts.rs",
+      "id": "HG-0012-C5",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "tests/spec_contracts.rs"
+      ],
+      "observation": "История и JSON-сводка показывают точные решения по версиям; неверный элемент пакета не записывает остальные; процедуры сохраняют отдельные полномочия",
+      "preparation": "Временная фикстура теста tests/spec_contracts.rs::isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work создана с исходными данными указанного случая",
+      "runner": "rust-contracts",
+      "scenario_ids": [
+        "HG-0012-S5"
+      ],
+      "selector": "isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work"
+    }
+  ],
+  "created_at": 1790312527,
+  "depends_on": [],
+  "goal": "Действующие требования области «Нумерация, прогресс и решение человека» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+  "id": "HG-0012",
+  "imports": {},
+  "operations": [
+    {
+      "action": "add",
+      "requirement": {
+        "id": "HG-0012-R1",
+        "scenarios": [
+          {
+            "given": "Временная фикстура теста tests/spec_contracts.rs::automatic_numbers_survive_abandon_failure_and_competing_cli_writers создана с исходными данными указанного случая",
+            "id": "HG-0012-S1",
+            "then": "Успешные создания имеют разные последовательные ID; конфликт/сбой сохраняет целый store и счётчик; отменённый номер не используется вновь",
+            "verification": "Запустить cargo test --locked --test spec_contracts automatic_numbers_survive_abandon_failure_and_competing_cli_writers -- --exact; проверить фактические утверждения о результате и границах сценария",
+            "when": "Создать изменения, одновременно повторить создание от одного снимка и вызвать сбой записи"
+          }
+        ],
+        "statement": "CLI атомарно назначает следующий HG-номер, created_at и шаблон; title редактируется независимо. Старые ID сохраняются, использованные не переиспользуются.",
+        "title": "Номер и заголовок"
+      }
+    },
+    {
+      "action": "add",
+      "requirement": {
+        "id": "HG-0012-R2",
+        "scenarios": [
+          {
+            "given": "Временная фикстура теста tests/spec_contracts.rs::v1_migration_preserves_exact_backup_ids_evidence_and_review_digest создана с исходными данными указанного случая",
+            "id": "HG-0012-S2",
+            "then": "Чтение не меняет байты; запись требует миграции; резервная копия точна; повтор безопасен; старые данные и валидность ревью сохранены",
+            "verification": "Запустить cargo test --locked --test spec_contracts v1_migration_preserves_exact_backup_ids_evidence_and_review_digest -- --exact; проверить фактические утверждения о результате и границах сценария",
+            "when": "Прочитать, попытаться записать без миграции, затем выполнить миграцию и повтор/конфликт"
+          }
+        ],
+        "statement": "Версия 1 читается без записи; явная атомарная миграция сохраняет точную исходную копию, ID, доказательства и историю; неизвестное не выдумывается.",
+        "title": "Совместимость"
+      }
+    },
+    {
+      "action": "add",
+      "requirement": {
+        "id": "HG-0012-R3",
+        "scenarios": [
+          {
+            "given": "Временная фикстура теста tests/spec_contracts.rs::human_history_is_atomic_protected_and_bound_to_spec_and_implementation создана с исходными данными указанного случая",
+            "id": "HG-0012-S3",
+            "then": "Полная запись сохраняется, неверные не меняют store; история остаётся, новая версия не наследует принятие",
+            "verification": "Запустить cargo test --locked --test spec_contracts human_history_is_atomic_protected_and_bound_to_spec_and_implementation -- --exact; проверить фактические утверждения о результате и границах сценария",
+            "when": "Записать решение, попробовать неполные/устаревшие/поддельные входы и затем изменить контракт или проверенный код"
+          }
+        ],
+        "statement": "Приёмка записывается только после явного решения человека с автором, временем инструмента, редакцией спецификации и реализации. История неизменяема через spec-save; доработка требует комментария.",
+        "title": "Человеческое решение"
+      }
+    },
+    {
+      "action": "add",
+      "requirement": {
+        "id": "HG-0012-R4",
+        "scenarios": [
+          {
+            "given": "Временная фикстура теста tests/spec_contracts.rs::json_progress_rejects_missing_skipped_unknown_and_negative_review создана с исходными данными указанного случая",
+            "id": "HG-0012-S4",
+            "then": "ID/title и счётчики верны; failed/skipped/unknown/stale/no_go не дают ready; отсутствие решения pending; включение не означает принятие",
+            "verification": "Запустить cargo test --locked --test spec_contracts json_progress_rejects_missing_skipped_unknown_and_negative_review -- --exact; проверить фактические утверждения о результате и границах сценария",
+            "when": "Запросить список до и после изменений и удаления отчёта"
+          }
+        ],
+        "statement": "spec-list вычисляет готовность из задач, сценариев, доказательств и ревью; человеческая приёмка и техническая готовность различаются. Сводка JSON содержит количества без процентов.",
+        "title": "Прогресс JSON"
+      }
+    },
+    {
+      "action": "add",
+      "requirement": {
+        "id": "HG-0012-R5",
+        "scenarios": [
+          {
+            "given": "Временная фикстура теста tests/spec_contracts.rs::isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work создана с исходными данными указанного случая",
+            "id": "HG-0012-S5",
+            "then": "История и JSON-сводка показывают точные решения по версиям; неверный элемент пакета не записывает остальные; процедуры сохраняют отдельные полномочия",
+            "verification": "Запустить cargo test --locked --test spec_contracts isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work -- --exact; проверить фактические утверждения о результате и границах сценария",
+            "when": "Принять две, вернуть одну, изменить и проверить последнюю, записать новое решение"
+          }
+        ],
+        "statement": "Явно выбранный пакет решений привязан к каждой версии и записывается целиком либо отклоняется. Work передаёт человеку ID/title, проверенную версию, краткие действия/ожидания и ограничения; не принимает за него.",
+        "title": "Пакетная проверка и передача"
+      }
+    }
+  ],
+  "questions": [],
+  "rationale": "Актуализация действующего контракта по аудиту завершённых правил; отсутствие проверки не считается успехом",
+  "related_to": [],
+  "scope": "Действующее поведение области «Нумерация, прогресс и решение человека»; старые источники и решения остаются только в архиве",
+  "tags": [],
+  "tasks": [
+    {
+      "description": "Сверить актуальность правил и качество имеющихся проверок, сохранить соответствие в архиве",
+      "done": true,
+      "id": "HG-0012-T1"
+    }
+  ],
+  "title": "Нумерация, прогресс и решение человека"
+}

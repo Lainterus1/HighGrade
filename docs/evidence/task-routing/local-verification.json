@@ -1,0 +1,29 @@
+{
+  "kind": "local CLI exercise; not agent pilot",
+  "status": "passed",
+  "bug_initial_test": "failed as expected",
+  "bug_fixed_test": "passed",
+  "spec_check": "passed",
+  "contract_hashes_before": {
+    "specs\\changes\\HG-0001\\spec.json": "2d946e61a4d40adeab74e6ffab4b359ed9a997ebc77c8d3276b9ed0171989a0f",
+    "specs\\requirements\\HG-NAME-R1.json": "88e8e2310a6335a7e49c7d50aac2c7a6770da24286fe29ccd025a25ec9d76e7e"
+  },
+  "contract_hashes_after": {
+    "specs\\changes\\HG-0001\\spec.json": "2d946e61a4d40adeab74e6ffab4b359ed9a997ebc77c8d3276b9ed0171989a0f",
+    "specs\\requirements\\HG-NAME-R1.json": "88e8e2310a6335a7e49c7d50aac2c7a6770da24286fe29ccd025a25ec9d76e7e"
+  },
+  "new_changes": 0,
+  "commands": [
+    "spec-read",
+    "spec-evidence",
+    "spec-review",
+    "spec-check"
+  ],
+  "not_executed": [
+    "spec-save on integrated change",
+    "repeat spec-integrate",
+    "agent route-selection pilot"
+  ],
+  "human_drift_coverage": "Existing Rust test human_history_is_atomic_protected_and_bound_to_spec_and_implementation passed in rust-tests.log",
+  "user_decision": "Только локальные проверки, без агентного пилота"
+}

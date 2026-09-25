@@ -261,20 +261,11 @@ pub fn inspect(root: &Path, registry: Option<&str>, scope: Option<&str>) -> Resu
     let reg = if let Some(reg) = registry {
         reg.to_owned()
     } else {
-        let candidates = [
-            ".highgrade/project/documents.json",
-            ".mycodex/project/documents.json",
-        ];
-        let mut found = vec![];
-        for candidate in candidates {
-            if paths::safe(&root, candidate)?.exists() {
-                found.push(candidate);
-            }
+        let candidate = ".highgrade/project/documents.json";
+        if !paths::safe(&root, candidate)?.exists() {
+            return Err("RegistryMissing: создайте .highgrade/project/documents.json или задайте --registry REL".into());
         }
-        if found.len() != 1 {
-            return Err("RegistryMissingOrAmbiguous: задайте --registry REL".into());
-        }
-        found[0].to_owned()
+        candidate.to_owned()
     };
     let config = read_json(&paths::safe(&root, &reg)?)?;
     if config.get("schema_version").is_some_and(|v| v != 1) {
@@ -396,7 +387,6 @@ pub fn inspect(root: &Path, registry: Option<&str>, scope: Option<&str>) -> Resu
         if ![
             ".git",
             ".highgrade",
-            ".mycodex",
             ".agents",
             "target",
             "node_modules",

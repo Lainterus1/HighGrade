@@ -1,6 +1,6 @@
 # Проверка структурированных спецификаций
 
-Дата: 2026-09-24. Область: кандидат Поставки v0-2-12 / CLI 0.2.12. Основная установка остаётся v0-2-11; commit/push/активация не выполнялись. Контракт: [structured-specifications](../../openspec/specs/structured-specifications/spec.md).
+Дата: 2026-09-24. Область: кандидат Поставки v0-2-12 / CLI 0.2.12. Основная установка остаётся v0-2-11; commit/push/активация не выполнялись. Контракт: [structured-specifications](../archive/legacy-openspec/specs/structured-specifications/spec.md).
 
 ## Доказательства критериев
 

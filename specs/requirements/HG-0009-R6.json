@@ -1,0 +1,21 @@
+{
+  "id": "HG-0009-R6",
+  "title": "Контроль подключённого проекта",
+  "statement": "Обычный `inspect --root <проект>` SHALL проверять соответствие пяти обязательных ролей их каноническим путям, наличие проектной инструкции и реестра, обязательные внутренние связи, а также сохранять действующие проверки зарегистрированных документов, ссылок и бюджетов. Начиная с новой поставки, несоответствие SHALL сообщаться всем подключённым проектам при проверке; CLI SHALL не переносить и не создавать файлы автоматически.",
+  "scenarios": [
+    {
+      "id": "HG-0009-S15",
+      "given": "Временная фикстура теста tests/bootstrap_contracts.rs::missing_link_is_distinct_from_missing_file_and_registry_path_mismatch создана с исходными данными указанного случая",
+      "when": "реестр назначает `current-architecture` файлу вне `docs/ARCHITECTURE.md`",
+      "then": "`inspect` сообщает о нарушении канонического пути, даже если файл существует и бюджет соблюдён",
+      "verification": "Запустить cargo test --locked --test bootstrap_contracts missing_link_is_distinct_from_missing_file_and_registry_path_mismatch -- --exact; проверить фактические утверждения о результате и границах сценария"
+    },
+    {
+      "id": "HG-0009-S16",
+      "given": "Временная фикстура теста tests/bootstrap_contracts.rs::canonical_project_has_separate_path_and_link_evidence создана с исходными данными указанного случая",
+      "when": "все обязательные файлы, роли и связи на канонических путях согласованы, а остальные проверки `inspect` проходят",
+      "then": "структура не даёт замечаний и результат сохраняет ограничение «структурная проверка, не смысловой аудит»",
+      "verification": "Запустить cargo test --locked --test bootstrap_contracts canonical_project_has_separate_path_and_link_evidence -- --exact; проверить фактические утверждения о результате и границах сценария"
+    }
+  ]
+}

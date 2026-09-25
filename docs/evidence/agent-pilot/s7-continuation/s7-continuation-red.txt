@@ -1,0 +1,18 @@
+test_empty (test_counter.CounterTests.test_empty) ... ok
+test_two (test_counter.CounterTests.test_two) ... ok
+test_unique_order_ids (test_counter.CounterTests.test_unique_order_ids)
+HG-0001-S1: повторный ID обозначает тот же заказ. ... FAIL
+
+======================================================================
+FAIL: test_unique_order_ids (test_counter.CounterTests.test_unique_order_ids)
+HG-0001-S1: повторный ID обозначает тот же заказ.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\my_projects\MyCodex\target\agent-pilot\s7\test_counter.py", line 15, in test_unique_order_ids
+    self.assertEqual(count_orders(["a", "b", "a", "a"]), 2)
+AssertionError: 4 != 2
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+FAILED (failures=1)

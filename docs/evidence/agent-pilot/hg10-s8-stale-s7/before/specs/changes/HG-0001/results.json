@@ -1,0 +1,55 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0001-S1": {
+      "captured_at": "2026-09-25T08:31:48Z",
+      "command": "python -B -m unittest -v",
+      "files": {
+        "counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+        "evidence/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+        "test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615"
+      },
+      "method": "native_report",
+      "observation": "Выполнены 3 теста: пустой список дает 0, разные ID дают 2, повторные ID дают 2 и 1; тест test_unique_order_ids помечен HG-0001-S1. До исправления этот тест падал: 4 вместо 2.",
+      "outcome": "passed",
+      "report": "evidence/s7-continuation-unittest-verbose.txt",
+      "scenario": "HG-0001-S1",
+      "scenario_sha256": "a9fd1e408f2fe69edf4b352c6f6984ffda3da3ac2b72faba5a72efc64cfcda82"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790325189,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0001-S1": {
+          "captured_at": "2026-09-25T08:31:48Z",
+          "command": "python -B -m unittest -v",
+          "files": {
+            "counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+            "evidence/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+            "test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615"
+          },
+          "method": "native_report",
+          "observation": "Выполнены 3 теста: пустой список дает 0, разные ID дают 2, повторные ID дают 2 и 1; тест test_unique_order_ids помечен HG-0001-S1. До исправления этот тест падал: 4 вместо 2.",
+          "outcome": "passed",
+          "report": "evidence/s7-continuation-unittest-verbose.txt",
+          "scenario": "HG-0001-S1",
+          "scenario_sha256": "a9fd1e408f2fe69edf4b352c6f6984ffda3da3ac2b72faba5a72efc64cfcda82"
+        }
+      },
+      "recorded_at": 1790325879,
+      "review": null
+    }
+  ],
+  "review": {
+    "change_sha256": "45fb163973f1001e7201335c40bb55cf187fe5228e5d33d1285c76caa43aedd9",
+    "conclusion": "Переданный координатором независимый REVIEW_GO: реализация и тест HG-0001-S1 подтверждены; красный тест дал 4 вместо 2, зелёный запуск прошёл 3/3; входные и итоговые SHA проверены. Портативность без исходников этим ревью не подтверждена.",
+    "reviewer": "local_spec_review",
+    "verdict": "go"
+  },
+  "runs": []
+}

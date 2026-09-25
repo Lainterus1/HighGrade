@@ -1,0 +1,947 @@
+{
+  "created_at": "2026-09-25",
+  "scope": "project-local OpenSpec migration; legacy compatibility in delivery remains",
+  "source_files": [
+    {
+      "old": "openspec/changes/archive/.gitkeep",
+      "archive": "docs/archive/legacy-openspec/changes/archive/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-approve-push-workflow/.openspec.yaml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-approve-push-workflow/.openspec.yaml",
+      "sha256": "d04b6ad7c1b1e5eb9e8ec8cfdae94bc49d29216b59b73cea7a3cc1de9d508463"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-approve-push-workflow/design.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-approve-push-workflow/design.md",
+      "sha256": "3c0bc5ec3a2784b222110a233020909bb1354c26334ddee9c2126dbfd2e6cb5f"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-approve-push-workflow/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-approve-push-workflow/proposal.md",
+      "sha256": "6a2c3e74ae9d3da63703d43c1cc6d64984a23f5711dea5feec17cd7fc77d46a0"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-approve-push-workflow/specs/release-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-approve-push-workflow/specs/release-workflow/spec.md",
+      "sha256": "e3723cffdc52170f002ad52029f6461e0a9a954150bacab4460987f2b2a77ac3"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-approve-push-workflow/specs/task-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-approve-push-workflow/specs/task-workflow/spec.md",
+      "sha256": "648a421b77aa42bb3a0be7cdedf8d462b894e8df8c2fa274df5ccf0299610484"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-approve-push-workflow/specs/tool-readiness/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-approve-push-workflow/specs/tool-readiness/spec.md",
+      "sha256": "ec247d134475ed161cb31d9bddbc55a5a31beeb6fea7a192fd4dc3caeaf39985"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-approve-push-workflow/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-approve-push-workflow/tasks.md",
+      "sha256": "848fd19fdfd75edd243abd247733c966df8297bde9d4ddb864ee0f8e053b0d2a"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-bootstrap-document-structure/.openspec.yaml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-bootstrap-document-structure/.openspec.yaml",
+      "sha256": "c1918c72ff1c6d10179f56e5077886c53d81d5e8d45caad716cf2f4edcd2cb36"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-bootstrap-document-structure/design.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-bootstrap-document-structure/design.md",
+      "sha256": "27ef9b4cd9257d8891e5267d7d5d944db14994f43965638cd087986bb7e7fb1d"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-bootstrap-document-structure/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-bootstrap-document-structure/proposal.md",
+      "sha256": "d1f7566cbab8c0c3dd3cb0a00f91b855d256eeed67537d4d589b63593c126851"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-bootstrap-document-structure/specs/project-bootstrap/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-bootstrap-document-structure/specs/project-bootstrap/spec.md",
+      "sha256": "c9fe24373794bd222916415974b872bc8b1d5339ffd37bd3d9b25f2b506252e6"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-bootstrap-document-structure/specs/repository-map/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-bootstrap-document-structure/specs/repository-map/spec.md",
+      "sha256": "363f93a41d427b4a9ad5d63d257ffc520ce6f592a6a2c75adbeaf521947daebf"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-bootstrap-document-structure/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-bootstrap-document-structure/tasks.md",
+      "sha256": "48f89560733312aecb50c284f42a96a82e8d1d5fb59b3b60650482623975d8de"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-accepted-work/.openspec.yaml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-accepted-work/.openspec.yaml",
+      "sha256": "d04b6ad7c1b1e5eb9e8ec8cfdae94bc49d29216b59b73cea7a3cc1de9d508463"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-accepted-work/design.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-accepted-work/design.md",
+      "sha256": "cc0678c097e47fe1e037bc8682b4e455451dd40ca0bdc6633f595d938bc41bad"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-accepted-work/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-accepted-work/proposal.md",
+      "sha256": "b24487752fcae02434a90e202a4dfefefcb8b580462c00f208f00cf31b4a1aba"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-accepted-work/specs/release-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-accepted-work/specs/release-workflow/spec.md",
+      "sha256": "76dcd64575d8d279a4b687d69d0b892aa14577f7f594c951822b2f70c0dd61dd"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-accepted-work/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-accepted-work/tasks.md",
+      "sha256": "b34244023d615dc4b11ed57515f569e2dbf8893a9a69d4cf8650365b21f33443"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-publication-consent/.openspec.yaml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-publication-consent/.openspec.yaml",
+      "sha256": "d04b6ad7c1b1e5eb9e8ec8cfdae94bc49d29216b59b73cea7a3cc1de9d508463"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-publication-consent/design.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-publication-consent/design.md",
+      "sha256": "08272da9385ebd747bca8407bf2a2655fc0da0cb3e073495ce6d66d5b1620bb9"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-publication-consent/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-publication-consent/proposal.md",
+      "sha256": "7828bab335a5075453e0945bbeeeffdfaef2e1f68fa95ef14695f5b10b03e894"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-publication-consent/specs/release-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-publication-consent/specs/release-workflow/spec.md",
+      "sha256": "997d1e6f4b6bd4da610750612fe318b8558d0764be3f3744350e82986bd1c62d"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-deploy-publication-consent/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-deploy-publication-consent/tasks.md",
+      "sha256": "5dc9d727e4eb82ce6546b21f03058d7ef4e7f8f40ee4ce4ede79016418b34d7d"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/.openspec.yaml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/.openspec.yaml",
+      "sha256": "d04b6ad7c1b1e5eb9e8ec8cfdae94bc49d29216b59b73cea7a3cc1de9d508463"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/design.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/design.md",
+      "sha256": "73d46d51a7ec04dca55661960a99c7406729fd9c087d1275b8448b06330ab9ce"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/proposal.md",
+      "sha256": "6a76e868f7e760d1c7b702da2699add62562781614b8a27ec5927c17a7a6e887"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/specs/project-bootstrap/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/specs/project-bootstrap/spec.md",
+      "sha256": "1649529428d0776d1bfbe3bf03749dda21bfa4ca8659c7b2c4a78e695c11de05"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-improve-bootstrap-init-handoff/tasks.md",
+      "sha256": "e45c5eb296200b2ebb0749e18a9ff420c8107654d611754ac49b1d4c6be14178"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map/.openspec.yaml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map/.openspec.yaml",
+      "sha256": "d04b6ad7c1b1e5eb9e8ec8cfdae94bc49d29216b59b73cea7a3cc1de9d508463"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map/design.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map/design.md",
+      "sha256": "1f86d3b0d8f9b9bed19e40010b691b20be522e6eb62c07a307b844bc904c1221"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map/proposal.md",
+      "sha256": "bb502aaca5c991840b0eb2e6a08556424f91def6419b0db4e39dbfe89c41834b"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map/README.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map/README.md",
+      "sha256": "7e535806a0ac63273079eece94ec274591d68abf5b89a26d699ef974f1160435"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map/specs/repository-map/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map/specs/repository-map/spec.md",
+      "sha256": "a3721555aa0df552fdc36590398e5d4ca9e5f78fb468e04699d36840e97ece31"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map/tasks.md",
+      "sha256": "94f6ba811fd27673d0c4fd4954f3baa6d2c1ac497496b5fc61d423aaf338511a"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map-project-context/.openspec.yaml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map-project-context/.openspec.yaml",
+      "sha256": "d04b6ad7c1b1e5eb9e8ec8cfdae94bc49d29216b59b73cea7a3cc1de9d508463"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map-project-context/design.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map-project-context/design.md",
+      "sha256": "0058798da190f1b5d69dbfac96063c13631cb719eda4c98d8a08856d7e84a94d"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map-project-context/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map-project-context/proposal.md",
+      "sha256": "f422d939caf7052a3b49f80235b6f9f8f50e3ed4a134c60e6b2f8bbfe17a98db"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map-project-context/README.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map-project-context/README.md",
+      "sha256": "02b7e58799266b1b7fdc0f1553405fcfc5224c43483a0e37afd40eba9da3bf91"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map-project-context/specs/repository-map/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map-project-context/specs/repository-map/spec.md",
+      "sha256": "9bade7ae2d6a98e584327cd79c9ce64a46567ec9ffb4ed91aabd52269d000c73"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-repository-map-project-context/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-repository-map-project-context/tasks.md",
+      "sha256": "6c8e597addd883d755d414bf954d43ff9f5b4ee5ae9df0f2b6e7147a133d8331"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-self-host-highgrade/.openspec.yaml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-self-host-highgrade/.openspec.yaml",
+      "sha256": "d04b6ad7c1b1e5eb9e8ec8cfdae94bc49d29216b59b73cea7a3cc1de9d508463"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-self-host-highgrade/design.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-self-host-highgrade/design.md",
+      "sha256": "c01eda72aab9741c6f39ccb0c6b90b9b9288dd149e0ee5c0640a1701f856e2af"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-self-host-highgrade/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-self-host-highgrade/proposal.md",
+      "sha256": "93ac73118d6860e0ec4b45e3d1a0b8d09185a3d0b1a1910315f79fc9cd79a765"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-self-host-highgrade/README.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-self-host-highgrade/README.md",
+      "sha256": "64292528f7f6f1ecc9db734f5a7a50757cd8d5241768b3f6973289aabe394734"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-self-host-highgrade/specs/self-hosted-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-self-host-highgrade/specs/self-hosted-workflow/spec.md",
+      "sha256": "e5e328198bee300935c2c503a664b3db16f1a2c8bb1fda85583bc84c9a689c3b"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-23-self-host-highgrade/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-23-self-host-highgrade/tasks.md",
+      "sha256": "811f46d87a589c7b37d33c548fc87ebfc6b237f18ecdc5c0ae16579498da4fcb"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-adopt-executable-scenarios/.openspec.yaml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/.openspec.yaml",
+      "sha256": "e002504731ceb6e8fcf026b601ec3f0568d075aa00e43292bbd0642986212f03"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-adopt-executable-scenarios/design.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/design.md",
+      "sha256": "2734d0ca6b45fc9004b1e97729933c190db04a407aedfda8f3c70ad5df09d484"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-adopt-executable-scenarios/evidence/junit.xml",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/evidence/junit.xml",
+      "sha256": "a240f447023a3a161bb7abf91a9b63443333c07e72294a86258d99cf8bc27ebd"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-adopt-executable-scenarios/evidence/list.json",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/evidence/list.json",
+      "sha256": "cc9cd150d280c44f546de9f052d0e0a053978ffaa502c8ab6f8794c8ef707ce3"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-adopt-executable-scenarios/evidence/run.json",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/evidence/run.json",
+      "sha256": "263e955baa3718801995cd8ea8444c96197a4b90c3f4b7d226aaaae18da57cf1"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-adopt-executable-scenarios/evidence/trace.json",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/evidence/trace.json",
+      "sha256": "6f5d39d31ab60647ab3cfbf54313fd8ecee7a52432417c201739bb0253edc5a7"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-adopt-executable-scenarios/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/proposal.md",
+      "sha256": "2b6c9d54644eab911bbc956a14ed0bbb3a8668a8385201c48539f5c15e1f31a0"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-adopt-executable-scenarios/specs/self-hosted-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/specs/self-hosted-workflow/spec.md",
+      "sha256": "7707fbcb1697a17c7ffb7a351eca596234f250da2a90577ec745c6ce74f65861"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-adopt-executable-scenarios/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-adopt-executable-scenarios/tasks.md",
+      "sha256": "66a61552dd0851ab462fdcf0f69c7648c53346602ff62b6c418464f8e50b6a6c"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-behavioral-delivery-workflow/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-behavioral-delivery-workflow/proposal.md",
+      "sha256": "4a3b25fbd4f9e96ab6ccf1ecb086b6e9910cae03c0ac15b215056f214ecb5116"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-behavioral-delivery-workflow/specs/portable-delivery/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-behavioral-delivery-workflow/specs/portable-delivery/spec.md",
+      "sha256": "c026fb42a70522d631f5c0d8fbcde0f54ef42af31a1f86074e239aa73ffe1b48"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-behavioral-delivery-workflow/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-behavioral-delivery-workflow/tasks.md",
+      "sha256": "c2870478071dbb282af9cae1909fe87b5f72f31c41f210008d0f2dd65fe9c85a"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-clarify-update-safety/evidence.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-clarify-update-safety/evidence.md",
+      "sha256": "33f930fe0a7a57be71f6c3fd84d80ccd89ce64bdefec87cc48a2cf6cd12e7e2f"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-clarify-update-safety/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-clarify-update-safety/proposal.md",
+      "sha256": "a09d798e84d965474ff6ba42ccf919cd938a3e19fd08837f94bd91d53c483a26"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-clarify-update-safety/specs/portable-delivery/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-clarify-update-safety/specs/portable-delivery/spec.md",
+      "sha256": "44bf1a3dd630b4d3a1cc9a7cdbe9db3c889f5b31a195ba8a21d8d74a71ddf5ef"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-clarify-update-safety/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-clarify-update-safety/tasks.md",
+      "sha256": "84445527e31b2564c9fdfdb5f040f4312a9e0de89a7cd9c45fa594f86015bc0c"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-delivery-project-compatibility/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-delivery-project-compatibility/proposal.md",
+      "sha256": "33b0bfac8180f3dd52b538fe9ad29389be08650306dc54ebe161527c59e8d683"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-delivery-project-compatibility/specs/portable-delivery/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-delivery-project-compatibility/specs/portable-delivery/spec.md",
+      "sha256": "9cec859ece2f60f18e2671846e594195066bd437e922d94b9bd7171cb3315f0b"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-delivery-project-compatibility/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-delivery-project-compatibility/tasks.md",
+      "sha256": "5d03c4742dccefc4db83e854deab3f88b6f21603577bd1a9f78b82ea7f6a149a"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-self-contained-delivery/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-self-contained-delivery/proposal.md",
+      "sha256": "2e0fb09abe83b635804c63b13fcf8684c4532aa998978cc934da22cfc189555a"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-self-contained-delivery/specs/portable-delivery/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-self-contained-delivery/specs/portable-delivery/spec.md",
+      "sha256": "478da8eb0d7d248f2494cc44b4ca69904dd247337b7db40b8ad270f1173fb586"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-self-contained-delivery/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-self-contained-delivery/tasks.md",
+      "sha256": "cdaa590112e18c4d3b490c8a967a4f180fd69cb17db0435b718a5e612c0e7a97"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/proposal.md",
+      "sha256": "2a0229984f6edaa6f64505964bbe932191f548ec7ab15e4ea76c507a04fa476c"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/specs/project-bootstrap/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/specs/project-bootstrap/spec.md",
+      "sha256": "f1731cbbbeacba78273a39dde5255305a15acfd9dfe899043de07e997695f7ef"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/specs/release-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/specs/release-workflow/spec.md",
+      "sha256": "41b0a1c4e50e016d77ae60f618a96f3ee3986d2a452e9d0e1d3dfee37a151a01"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/specs/task-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/specs/task-workflow/spec.md",
+      "sha256": "070582a84f72a165c525492f99f7d5e39f306a37d6194129e13d355a9973e800"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-simplify-highgrade-workflow/tasks.md",
+      "sha256": "fab6505416eded11451af05c99ca577509e99a48c76c52e1fe424e73cc9fbe15"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-structured-specifications/proposal.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-structured-specifications/proposal.md",
+      "sha256": "d1ea60e93dc1f7ab49bd4a8ef4b5b08777781009489a72e68ad1c34b47d6824d"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-structured-specifications/specs/structured-specifications/spec.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-structured-specifications/specs/structured-specifications/spec.md",
+      "sha256": "3427c830de7c26b6cda0f558fb432ee6edb717103cfe7d0742f87d7cfaac6864"
+    },
+    {
+      "old": "openspec/changes/archive/2026-09-24-structured-specifications/tasks.md",
+      "archive": "docs/archive/legacy-openspec/changes/archive/2026-09-24-structured-specifications/tasks.md",
+      "sha256": "2d73597c0b829d97b6a722e8159cac75ca039e5a9cff399335ccf3a87e559f5b"
+    },
+    {
+      "old": "openspec/config.yaml",
+      "archive": "docs/archive/legacy-openspec/config.yaml",
+      "sha256": "41b1fbf2ac92062718b9f417aeae8b5e3ba70b73ca7c83a121b0e06c135b667b"
+    },
+    {
+      "old": "openspec/specs/.gitkeep",
+      "archive": "docs/archive/legacy-openspec/specs/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "old": "openspec/specs/portable-delivery/spec.md",
+      "archive": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "sha256": "8b27a757f713ff66839bfea84de57bbfcea7e1e3dad998bc2430c220edb95309"
+    },
+    {
+      "old": "openspec/specs/project-bootstrap/spec.md",
+      "archive": "docs/archive/legacy-openspec/specs/project-bootstrap/spec.md",
+      "sha256": "0ea3aa89a23d44d6b01b7bb7e8677ca21e28c3501094c1084922f23881ecf022"
+    },
+    {
+      "old": "openspec/specs/release-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/specs/release-workflow/spec.md",
+      "sha256": "5a6cf0f225fd4a601586f78e7404748f61dda941579402de0d011cb546dd9ef3"
+    },
+    {
+      "old": "openspec/specs/self-hosted-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/specs/self-hosted-workflow/spec.md",
+      "sha256": "43d3e1708cb6e1d28cf129b77209242089cecb0457e94140a1a1a49d279fe375"
+    },
+    {
+      "old": "openspec/specs/structured-specifications/spec.md",
+      "archive": "docs/archive/legacy-openspec/specs/structured-specifications/spec.md",
+      "sha256": "ad9b621473f5d31732d38fa80bd3e65f77ebbb0b13518b663a7537e4244e72c2"
+    },
+    {
+      "old": "openspec/specs/task-workflow/spec.md",
+      "archive": "docs/archive/legacy-openspec/specs/task-workflow/spec.md",
+      "sha256": "7fcafb041c7f9c8354e3eace04b02ca861d89fc1ed95824ce96896727a39cf98"
+    },
+    {
+      "old": "openspec/specs/tool-readiness/spec.md",
+      "archive": "docs/archive/legacy-openspec/specs/tool-readiness/spec.md",
+      "sha256": "3a20acef2a295aac0e0b7a292b8d3c6715da471054959da8bc8c4399c40b4fca"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "HG-PD-R01",
+      "title": "Самостоятельный установленный контекст",
+      "scenario_ids": [
+        "HG-PD-S01"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/portable-delivery/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PD-R01"
+    },
+    {
+      "id": "HG-PD-R02",
+      "title": "Результат адаптации",
+      "scenario_ids": [
+        "HG-PD-S02",
+        "HG-PD-S03",
+        "HG-PD-S05"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/portable-delivery/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PD-R02"
+    },
+    {
+      "id": "HG-PD-R03",
+      "title": "Проектная активация",
+      "scenario_ids": [
+        "HG-PD-S04"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/portable-delivery/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PD-R03"
+    },
+    {
+      "id": "HG-PD-R04",
+      "title": "Содержательные поведенческие сценарии",
+      "scenario_ids": [
+        "HG-PD-S06"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/portable-delivery/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PD-R04"
+    },
+    {
+      "id": "HG-PD-R05",
+      "title": "Наблюдаемое доказательство вне trace",
+      "scenario_ids": [
+        "HG-PD-S07",
+        "HG-PD-S08"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/portable-delivery/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PD-R05"
+    },
+    {
+      "id": "HG-PD-R06",
+      "title": "Переходы и продолжение",
+      "scenario_ids": [
+        "HG-PD-S09"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/portable-delivery/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PD-R06"
+    },
+    {
+      "id": "HG-PD-R07",
+      "title": "Граница машинной совместимости",
+      "scenario_ids": [
+        "HG-PD-S10",
+        "HG-PD-S11"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/portable-delivery/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PD-R07"
+    },
+    {
+      "id": "HG-PD-R08",
+      "title": "Проверка при входе и сохранность обновления",
+      "scenario_ids": [
+        "HG-PD-S12",
+        "HG-PD-S13"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/portable-delivery/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PD-R08"
+    },
+    {
+      "id": "HG-PD-R09",
+      "title": "Воспроизводимый и диагностируемый Update",
+      "scenario_ids": [
+        "HG-PD-S14",
+        "HG-PD-S15",
+        "HG-PD-S16"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/portable-delivery/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/portable-delivery/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PD-R09"
+    },
+    {
+      "id": "HG-PB-R01",
+      "title": "Канонические пути основных источников",
+      "scenario_ids": [
+        "HG-PB-S01",
+        "HG-PB-S02",
+        "HG-PB-S03"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/project-bootstrap/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/project-bootstrap/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PB-R01"
+    },
+    {
+      "id": "HG-PB-R02",
+      "title": "Предварительная проверка без реестра",
+      "scenario_ids": [
+        "HG-PB-S04",
+        "HG-PB-S05",
+        "HG-PB-S06"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/project-bootstrap/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/project-bootstrap/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PB-R02"
+    },
+    {
+      "id": "HG-PB-R03",
+      "title": "Проверяемая навигация",
+      "scenario_ids": [
+        "HG-PB-S07",
+        "HG-PB-S08"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/project-bootstrap/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/project-bootstrap/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PB-R03"
+    },
+    {
+      "id": "HG-PB-R04",
+      "title": "Безопасный и ограниченный обход",
+      "scenario_ids": [
+        "HG-PB-S09",
+        "HG-PB-S10",
+        "HG-PB-S11"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/project-bootstrap/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/project-bootstrap/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PB-R04"
+    },
+    {
+      "id": "HG-PB-R05",
+      "title": "Действия агента при инициализации",
+      "scenario_ids": [
+        "HG-PB-S12",
+        "HG-PB-S13",
+        "HG-PB-S20"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/project-bootstrap/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/project-bootstrap/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PB-R05"
+    },
+    {
+      "id": "HG-PB-R06",
+      "title": "Контроль подключённого проекта",
+      "scenario_ids": [
+        "HG-PB-S14",
+        "HG-PB-S15"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/project-bootstrap/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/project-bootstrap/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PB-R06"
+    },
+    {
+      "id": "HG-PB-R07",
+      "title": "Передача предварительных находок в план адаптации",
+      "scenario_ids": [
+        "HG-PB-S16",
+        "HG-PB-S17"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/project-bootstrap/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/project-bootstrap/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PB-R07"
+    },
+    {
+      "id": "HG-PB-R08",
+      "title": "Поиск кандидатов только при структурной необходимости",
+      "scenario_ids": [
+        "HG-PB-S18",
+        "HG-PB-S19"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/project-bootstrap/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/project-bootstrap/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-PB-R08"
+    },
+    {
+      "id": "HG-RW-R01",
+      "title": "Локальное принятие задачи",
+      "scenario_ids": [
+        "HG-RW-S01",
+        "HG-RW-S02"
+      ],
+      "disposition": "adapt",
+      "reason": "Заменить завершение OpenSpec текущим нативным результатом задачи",
+      "old_source": "openspec/specs/release-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/release-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-RW-R01"
+    },
+    {
+      "id": "HG-RW-R02",
+      "title": "Отбор состава при локальном принятии",
+      "scenario_ids": [
+        "HG-RW-S10",
+        "HG-RW-S03"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/release-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/release-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-RW-R02"
+    },
+    {
+      "id": "HG-RW-R03",
+      "title": "Публикация проверенного диапазона",
+      "scenario_ids": [
+        "HG-RW-S11",
+        "HG-RW-S04",
+        "HG-RW-S05",
+        "HG-RW-S06"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/release-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/release-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-RW-R03"
+    },
+    {
+      "id": "HG-RW-R04",
+      "title": "Миграция маршрутов approve и push",
+      "scenario_ids": [
+        "HG-RW-S07",
+        "HG-RW-S12",
+        "HG-RW-S08"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/release-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/release-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-RW-R04"
+    },
+    {
+      "id": "HG-RW-R05",
+      "title": "Раздельная запись состояний выпуска",
+      "scenario_ids": [
+        "HG-RW-S13",
+        "HG-RW-S09"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/release-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/release-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-RW-R05"
+    },
+    {
+      "id": "HG-SH-R01",
+      "title": "Однозначный вход в общий маршрут",
+      "scenario_ids": [
+        "HG-SH-S01",
+        "HG-SH-S02"
+      ],
+      "disposition": "adapt",
+      "reason": "Заменить OpenSpec-изменение нативным маршрутом задачи и спеки",
+      "old_source": "openspec/specs/self-hosted-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/self-hosted-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-SH-R01"
+    },
+    {
+      "id": "HG-SH-R02",
+      "title": "Воспроизводимый проектный OpenSpec",
+      "scenario_ids": [
+        "HG-SH-S03",
+        "HG-SH-S04"
+      ],
+      "disposition": "retire",
+      "reason": "Настройка OpenSpec в Проекте заменена нативным каталогом",
+      "old_source": "openspec/specs/self-hosted-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/self-hosted-workflow/spec.md",
+      "status": "classified"
+    },
+    {
+      "id": "HG-SH-R03",
+      "title": "Актуальный источник задач и контекста",
+      "scenario_ids": [
+        "HG-SH-S05",
+        "HG-SH-S06"
+      ],
+      "disposition": "adapt",
+      "reason": "Передать владение нативному изменению и документам Проекта",
+      "old_source": "openspec/specs/self-hosted-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/self-hosted-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-SH-R03"
+    },
+    {
+      "id": "HG-EXE-R01",
+      "title": "Проверяемый маршрут сценария",
+      "scenario_ids": [
+        "HG-EXE-S01",
+        "HG-EXE-S02",
+        "HG-EXE-S03"
+      ],
+      "disposition": "adapt",
+      "reason": "Использовать нативный каталог без дублирования HG-0004-R1/R2",
+      "old_source": "openspec/specs/self-hosted-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/self-hosted-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-EXE-R01"
+    },
+    {
+      "id": "HG-EXE-R02",
+      "title": "Перевод существующих требований",
+      "scenario_ids": [
+        "HG-EXE-S04",
+        "HG-EXE-S05"
+      ],
+      "disposition": "retire",
+      "reason": "Разовая миграция ID завершена и остаётся историей",
+      "old_source": "openspec/specs/self-hosted-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/self-hosted-workflow/spec.md",
+      "status": "classified"
+    },
+    {
+      "id": "HG-EXE-R03",
+      "title": "Проверки в обычной работе и масштабирование",
+      "scenario_ids": [
+        "HG-EXE-S06",
+        "HG-EXE-S07"
+      ],
+      "disposition": "adapt",
+      "reason": "Заменить проверки OpenSpec структурной и сценарной проверкой нативного каталога",
+      "old_source": "openspec/specs/self-hosted-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/self-hosted-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-EXE-R03"
+    },
+    {
+      "id": "HG-SS-R01",
+      "title": "Формат и черновик",
+      "scenario_ids": [
+        "HG-SS-S01"
+      ],
+      "disposition": "import",
+      "reason": "Отдельные гарантии исходного контракта не полностью покрыты действующими нативными требованиями; сохранить ID и смысл",
+      "old_source": "openspec/specs/structured-specifications/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/structured-specifications/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-SS-R01"
+    },
+    {
+      "id": "HG-SS-R02",
+      "title": "Сохранность и конфликты",
+      "scenario_ids": [
+        "HG-SS-S02",
+        "HG-SS-S03"
+      ],
+      "disposition": "import",
+      "reason": "Отдельные гарантии исходного контракта не полностью покрыты действующими нативными требованиями; сохранить ID и смысл",
+      "old_source": "openspec/specs/structured-specifications/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/structured-specifications/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-SS-R02"
+    },
+    {
+      "id": "HG-SS-R03",
+      "title": "Доказательства и дрейф",
+      "scenario_ids": [
+        "HG-SS-S04"
+      ],
+      "disposition": "import",
+      "reason": "Отдельные гарантии исходного контракта не полностью покрыты действующими нативными требованиями; сохранить ID и смысл",
+      "old_source": "openspec/specs/structured-specifications/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/structured-specifications/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-SS-R03"
+    },
+    {
+      "id": "HG-SS-R04",
+      "title": "Полный самостоятельный маршрут",
+      "scenario_ids": [
+        "HG-SS-S05"
+      ],
+      "disposition": "import",
+      "reason": "Отдельные гарантии исходного контракта не полностью покрыты действующими нативными требованиями; сохранить ID и смысл",
+      "old_source": "openspec/specs/structured-specifications/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/structured-specifications/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-SS-R04"
+    },
+    {
+      "id": "HG-SS-R05",
+      "title": "Переход без дублирования истины",
+      "scenario_ids": [
+        "HG-SS-S06"
+      ],
+      "disposition": "import",
+      "reason": "Отдельные гарантии исходного контракта не полностью покрыты действующими нативными требованиями; сохранить ID и смысл",
+      "old_source": "openspec/specs/structured-specifications/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/structured-specifications/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-SS-R05"
+    },
+    {
+      "id": "HG-TW-R01",
+      "title": "Вопросы только при нерешённом выборе",
+      "scenario_ids": [
+        "HG-TW-S01",
+        "HG-TW-S02",
+        "HG-TW-S03"
+      ],
+      "disposition": "import",
+      "reason": "Действующий контракт Поставки; перенести с сохранением ID",
+      "old_source": "openspec/specs/task-workflow/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/task-workflow/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-TW-R01"
+    },
+    {
+      "id": "HG-TR-R01",
+      "title": "Честная диагностика доступности инструментов",
+      "scenario_ids": [
+        "HG-TR-S01",
+        "HG-TR-S03"
+      ],
+      "disposition": "adapt",
+      "reason": "Сохранить необязательную диагностику инструмента; убрать обязательную для Проекта версию OpenSpec",
+      "old_source": "openspec/specs/tool-readiness/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/tool-readiness/spec.md",
+      "status": "native_transferred_behavior_unverified",
+      "native_change": "HG-IMP-TR-R01"
+    },
+    {
+      "id": "HG-TR-R02",
+      "title": "Проверка исходной поставки на отправке",
+      "scenario_ids": [
+        "HG-TR-S02"
+      ],
+      "disposition": "retire",
+      "reason": "Проектное правило CI и качества перенесено в docs/workflow/QUALITY.md",
+      "old_source": "openspec/specs/tool-readiness/spec.md",
+      "archive_source": "docs/archive/legacy-openspec/specs/tool-readiness/spec.md",
+      "status": "classified"
+    }
+  ],
+  "native_cleanup": [
+    "HG-0005-R1",
+    "HG-0005-R2",
+    "HG-0005-R3"
+  ],
+  "note": "86 исходных файлов архивированы побайтно. 33 действующих контракта перенесены в нативный каталог через spec-transfer после независимого ревью (27 прямых, 6 адаптаций); 3 исключены как завершённые или проектные переходные правила. 3 технических требования HG-0005 выведены интегрированным HG-0007. Перенос не подтверждает исполнение сценариев и не означает человеческую приёмку; эти проверки остаются открытыми."
+}

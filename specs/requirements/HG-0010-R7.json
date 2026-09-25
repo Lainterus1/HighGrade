@@ -1,0 +1,21 @@
+{
+  "id": "HG-0010-R7",
+  "title": "Граница машинной совместимости",
+  "statement": "Doctor SHALL обозначать, что accepted schema 1 подтверждает только поддерживаемый заголовок инструкции; смысловая совместимость SHALL оставаться непроверенной. Неизвестная или отсутствующая схема существующего файла SHALL давать отказ и указание на clear, не переписывая файл.",
+  "scenarios": [
+    {
+      "id": "HG-0010-S10",
+      "given": "Временная фикстура теста tests/global_contracts.rs::supported_adapter_does_not_claim_semantic_readiness создана с исходными данными указанного случая",
+      "when": "инструкция имеет поддерживаемый заголовок и незаполненные местные решения",
+      "then": "диагностика указывает schema-only и semantic not-assessed, не утверждая готовность проекта",
+      "verification": "Запустить cargo test --locked --test global_contracts supported_adapter_does_not_claim_semantic_readiness -- --exact; проверить фактические утверждения о результате и границах сценария"
+    },
+    {
+      "id": "HG-0010-S11",
+      "given": "Временная фикстура теста tests/global_contracts.rs::unsupported_project_adapter_is_a_failure создана с исходными данными указанного случая",
+      "when": "инструкция имеет неизвестную схему",
+      "then": "doctor сообщает ProjectInstructionSchemaUnsupported, а её байты остаются неизменными",
+      "verification": "Запустить cargo test --locked --test global_contracts unsupported_project_adapter_is_a_failure -- --exact; проверить фактические утверждения о результате и границах сценария"
+    }
+  ]
+}

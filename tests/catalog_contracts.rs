@@ -46,6 +46,7 @@ fn put(root: &Path, rel: &str, v: &Value) {
     fs::write(root.join(rel), serde_json::to_vec_pretty(v).unwrap()).unwrap();
 }
 
+// highgrade: HG-0002-S1
 #[test]
 fn project_catalog_survives_service_removal_and_preserves_siblings() {
     let root = root();
@@ -66,6 +67,19 @@ fn project_catalog_survives_service_removal_and_preserves_siblings() {
             .modified()
             .unwrap(),
         modified
+    );
+    let sibling_path = root.join("specs/changes/HG-0002/spec.json");
+    let sibling = fs::read(&sibling_path).unwrap();
+    let sibling_modified = fs::metadata(&sibling_path).unwrap().modified().unwrap();
+    edit(&root, "HG-0001", "goal", json!("Изменённая цель")).unwrap();
+    assert_eq!(fs::read(&sibling_path).unwrap(), sibling);
+    assert_eq!(
+        fs::metadata(&sibling_path).unwrap().modified().unwrap(),
+        sibling_modified
+    );
+    assert_eq!(
+        json(&root, "specs/changes/HG-0001/spec.json")["goal"],
+        "Изменённая цель"
     );
     assert!(!root.join("specs/changes/HG-0001/results.json").exists());
     assert!(!root.join(specs::STORE).exists());
@@ -93,6 +107,7 @@ fn foreign_directory_and_unknown_fields_are_not_adopted() {
     assert!(!root.join("specs/catalog.json").exists());
     fs::remove_dir_all(root).unwrap();
 }
+// highgrade: HG-0002-S2
 #[test]
 fn explicit_migration_preserves_all_data_and_detects_legacy_writer() {
     let root = root();
@@ -124,6 +139,7 @@ fn explicit_migration_preserves_all_data_and_detects_legacy_writer() {
     );
     fs::remove_dir_all(root).unwrap();
 }
+// highgrade: HG-0002-S2
 #[test]
 fn interrupted_transaction_refuses_reads_and_recovers_only_observed_targets() {
     let root = root();
@@ -161,6 +177,7 @@ fn interrupted_transaction_refuses_reads_and_recovers_only_observed_targets() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0002-S2
 #[test]
 fn malformed_recovery_never_unblocks_catalog() {
     let root = root();
@@ -179,6 +196,7 @@ fn malformed_recovery_never_unblocks_catalog() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0002-S1
 #[test]
 fn foreign_structured_files_are_not_deleted() {
     let root = root();
@@ -200,6 +218,7 @@ fn foreign_structured_files_are_not_deleted() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0002-S2
 #[test]
 fn recovery_reconstructs_partial_staging_and_missing_first_document() {
     let root = root();
@@ -268,6 +287,7 @@ fn review(root: &Path) {
     )
     .unwrap();
 }
+// highgrade: HG-0002-S3
 #[test]
 fn integrated_recheck_retains_history_and_invalidates_old_acceptance() {
     let root = root();
@@ -355,6 +375,7 @@ fn integrated_recheck_retains_history_and_invalidates_old_acceptance() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0002-S2
 #[test]
 fn two_catalog_writers_cannot_allocate_the_same_number() {
     let root = root();
@@ -384,6 +405,7 @@ fn two_catalog_writers_cannot_allocate_the_same_number() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0002-S1
 #[test]
 fn selected_directory_is_project_owned_and_self_contained() {
     let root = root();
@@ -416,6 +438,7 @@ fn selected_directory_is_project_owned_and_self_contained() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0002-S2
 #[test]
 fn recovery_cannot_delete_a_required_specification() {
     let root = root();
@@ -465,6 +488,7 @@ fn tag(root: &Path, id: &str) {
     )
     .unwrap();
 }
+// highgrade: HG-0003-S1
 #[test]
 fn explicit_links_reject_missing_cycles_and_do_not_inherit_content() {
     let root = root();
@@ -526,6 +550,7 @@ fn explicit_links_reject_missing_cycles_and_do_not_inherit_content() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0003-S2, HG-0003-S3
 #[test]
 fn tags_merge_atomically_and_filters_keep_dependencies_discoverable() {
     let root = root();
@@ -585,6 +610,13 @@ fn tags_merge_atomically_and_filters_keep_dependencies_discoverable() {
     .unwrap();
     assert_eq!(list.measurements[0]["selection"]["selected"], 2);
     assert_eq!(list.measurements[0]["selection"]["total"], 3);
+    let ids = list.measurements[0]["changes"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|row| row["id"].as_str().unwrap())
+        .collect::<Vec<_>>();
+    assert_eq!(ids, ["HG-0001", "HG-0002"]);
     assert_eq!(
         list.measurements[0]["changes"][0]["links"]["depends_on"][0]["id"],
         "HG-0003"
@@ -594,6 +626,18 @@ fn tags_merge_atomically_and_filters_keep_dependencies_discoverable() {
             .get("operations")
             .is_none()
     );
+    let before_invalid_filter = sha(&root);
+    assert!(
+        call(&root, "spec-list", &[("--tag", "unknown")])
+            .unwrap_err()
+            .contains("UnknownTag")
+    );
+    assert!(
+        call(&root, "spec-list", &[("--human", "unknown")])
+            .unwrap_err()
+            .contains("InvalidFilter: --human")
+    );
+    assert_eq!(sha(&root), before_invalid_filter);
     fs::remove_dir_all(root).unwrap();
 }
 
@@ -638,6 +682,7 @@ sys.exit(0 if result.wasSuccessful() else 1)
     .unwrap();
     edit(root,"HG-0001","checks",json!([{"id":"sum","scenario_ids":["HG-0001-S1"],"runner":"unit","file":"test_math.py","selector":"Cases::test_sum","preparation":"Создать 2 и 3","action":"Сложить","observation":"Результат 5","inputs":["test_math.py","runner.py","mode.txt"]}])).unwrap();
 }
+// highgrade: HG-0004-S2
 #[test]
 fn explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift() {
     let root = root();
@@ -690,6 +735,7 @@ fn explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0004-S1
 #[test]
 fn multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit() {
     let root = root();
@@ -748,6 +794,7 @@ fn multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0004-S2
 #[test]
 fn batch_failure_keeps_prior_results_and_each_scenario_owns_its_report() {
     let root = root();
@@ -814,6 +861,7 @@ fn batch_failure_keeps_prior_results_and_each_scenario_owns_its_report() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0004-S1, HG-0004-S2
 #[test]
 fn cargo_runner_requires_a_real_exact_test() {
     let root = root();

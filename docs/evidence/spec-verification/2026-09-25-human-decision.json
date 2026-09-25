@@ -1,0 +1,150 @@
+{
+  "schema": "highgrade-owner-decision-v1",
+  "date_utc": "2026-09-25T10:46:20.973655+00:00",
+  "decided_by": "владелец проекта (сообщение в текущей задаче Codex)",
+  "decision": "Принять все 15 действующих спецификаций и прекратить дальнейшие агентные пилоты; продолжить выпуск",
+  "scope": "все 15 записей текущего spec-list",
+  "source_head_before_release": "2d7ddd1c8207a97a3a567011f009ff33182e15ba",
+  "limitations": [
+    "CLI spec-decide требует spec-check: passed; HG-0010 и HG-0011 технически in_progress и не могут получить машинный accepted без ложных доказательств.",
+    "Решение автора не преобразует отсутствующие проверки в passed."
+  ],
+  "outstanding": {
+    "HG-0010": [
+      "HG-0010-S2",
+      "итоговое независимое ревью"
+    ],
+    "HG-0011": [
+      "HG-0011-S2",
+      "HG-0011-S5",
+      "HG-0011-S6",
+      "HG-0011-S7",
+      "HG-0011-S8",
+      "HG-0011-S11",
+      "HG-0011-S12",
+      "итоговое независимое ревью"
+    ]
+  },
+  "specifications": [
+    {
+      "id": "HG-0002",
+      "title": "Проектный каталог спецификаций и миграция",
+      "change_sha256": "784eabb6bb03e071de40e955eb53c25270d5d94717074cf181764767cc8f183c",
+      "inputs_sha256": "0284ff6577c2ce2716632818dd2ee172bfedf84aa6b98057b57fc40bf972c288",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "stale"
+    },
+    {
+      "id": "HG-0003",
+      "title": "Связи, теги и выборочный контекст",
+      "change_sha256": "b6aa9442dd162f60b1a624a98e299792b414191cb84fed4fcbe606c423d6a9ac",
+      "inputs_sha256": "6bb6353d609929ab460caaab9d9197dbaa542fdc8e1702427e1b2bff6e0014d0",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "stale"
+    },
+    {
+      "id": "HG-0004",
+      "title": "Привязки проверок и самостоятельный workflow",
+      "change_sha256": "d880436b58500d3c09ef8a1fc6840785d5dca4be808c99ec291a519582b520de",
+      "inputs_sha256": "18db5478d1a8ac0b7bb32f51e257b6c1a199fa0eede9fa73063e1b32990e6093",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "stale"
+    },
+    {
+      "id": "HG-0006",
+      "title": "Выбор достаточного маршрута работы и исправление по существующему контракту",
+      "change_sha256": "3b2d4aa306a76b437ccaf9195bcc6d6b16b13642acc7110333ad458b1570cd9e",
+      "inputs_sha256": "a4a12e49809de469e708a8a4e97a0d69cfae0625c4b5bcb6ced4eb68b21be316",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0008",
+      "title": "Перенос проверенного контракта без ложного PASS",
+      "change_sha256": "ec9c62592bda43c61b8c9a56771750de3b078e534bf6e3f3b551df1f2598ce19",
+      "inputs_sha256": "6ea64690e761e0ee11a84bfed440f040a99be04f189355f9e8e91c8fa892b2c3",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0009",
+      "title": "Адаптация и структура проекта",
+      "change_sha256": "4c4a54782c2eb86bfd4666c376fb904f5309b17a48c4b3635acd57c5010603dc",
+      "inputs_sha256": "2f01b87beaf4bae7c859b77f7d1e0869afec4a2ab28bace6120f4de59284074a",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0010",
+      "title": "Самостоятельная Поставка и адаптация",
+      "change_sha256": "c2b43ffcd7bca84d7dba1db31ecee2592bca5854e2d9e6089ec48127d1051f47",
+      "inputs_sha256": "94d392eac15dc3a3cc367c45abce53ee4eb602b54df815179ece1cb4028793bd",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0011",
+      "title": "Принятие, публикация и обновление",
+      "change_sha256": "fd58fbcdb292ab8dfc913e2b2cb9e188f0745f5e8e08152e5b6d24eb735e7749",
+      "inputs_sha256": "f7b404816984a449df2c88f7a36ca73576b13f58e1f148e6ca52049c807c8295",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0012",
+      "title": "Нумерация, прогресс и решение человека",
+      "change_sha256": "e7b56c24d3092c65a7f552106829321f7225845dbc45265405992ebd5e37f345",
+      "inputs_sha256": "987a9e123c10e623725741e0c484504ceb8987d67f40d9a1aa8eeb85416b932d",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0013",
+      "title": "Структурированные спецификации",
+      "change_sha256": "964b635ef9f306940dae87feb9beb700be44d300999867777acae03570cd3340",
+      "inputs_sha256": "54a3fdf39ef18dcd9bff653e8a41d7c9bf17dc3df4d24a192f3fa4975ab7bb8c",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0014",
+      "title": "Маршрут работы Проекта",
+      "change_sha256": "36b86a01ad24c6c8562850df04bbd920103a3f87da266efe316b56aa953a84af",
+      "inputs_sha256": "ecbb7d63976be83166e6f617e54665cd5acc8f2209ae120838fa6bbad61f8cbb",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0015",
+      "title": "Диагностика доступности инструментов",
+      "change_sha256": "1f2854be36c1fe823e6047e8681f5d37a52d162008a70778101fb9ce71b463fa",
+      "inputs_sha256": "61d55a008bb3398b666c3b42d1282f8f047d6c29f1159cb418e037eb616ef44d",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0016",
+      "title": "Вопросы при проработке задачи",
+      "change_sha256": "dbac2bff94223ef427f55644f3392036028d72f0c1e473f15cb14f76638e990e",
+      "inputs_sha256": "2c0162b553ae3bf71475e62b1a707b95bf5203cf53145c80a1cf4e422cc4fb8f",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0017",
+      "title": "Проверяемый маршрут сценария",
+      "change_sha256": "9ba8c9706eae8b54b9022ebb026c9a507ff7a667f2a77297f1322cc914cf89e1",
+      "inputs_sha256": "8770077f5180b6a51a3c1af84e1e869aac03aee9c7d5b23631692f5caf039ac1",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    },
+    {
+      "id": "HG-0018",
+      "title": "Имя High Grade и независимое ревью субагентом",
+      "change_sha256": "232de5bc5e91edcc16002c43a65bd246152d4f76da79a484c2b8324099cc7105",
+      "inputs_sha256": "4172ad69fb0a61fecc6e97605ede295999f35f63d8b38c974ccca6b69f599a45",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending"
+    }
+  ]
+}

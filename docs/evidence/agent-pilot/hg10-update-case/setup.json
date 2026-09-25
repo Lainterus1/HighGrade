@@ -1,0 +1,33 @@
+{
+  "captured_at": "2026-09-25T09:46:16.353071+00:00",
+  "authorization": "Только в двух изолированных профилях target/update-pilot: проверить highgrade-update v0-2-13 -> v0-2-14 из точного Git SHA 2bf93b6, preview/apply с одним отпечатком и status; затем GlobalSameRelease без записи при равном составе. В отдельном profile-fail воспроизвести ошибку на повреждённой копии пакета, проверить прежний status сохранённой CLI и остановить зависимые изменения при unknown. Не трогать реальный профиль/проекты, не публиковать, не использовать сеть.",
+  "git_commits": {
+    "old": "a4de578",
+    "new": "2bf93b6"
+  },
+  "git_archive_manifest_verified": true,
+  "versions": {
+    "old": "0.2.13",
+    "new": "0.2.14"
+  },
+  "profiles_before": {
+    "good": "v0-2-13",
+    "fail": "v0-2-13"
+  },
+  "paths": {
+    "good_profile": "D:\\my_projects\\MyCodex\\target\\update-pilot\\profile",
+    "fail_profile": "D:\\my_projects\\MyCodex\\target\\update-pilot\\profile-fail",
+    "old_kit": "D:\\my_projects\\MyCodex\\target\\update-pilot\\source-v0-2-13\\kit",
+    "candidate_kit": "D:\\my_projects\\MyCodex\\target\\update-pilot\\source-v0-2-14\\kit",
+    "bad_candidate_kit": "D:\\my_projects\\MyCodex\\target\\update-pilot\\bad-kit-v0-2-14",
+    "old_cli": "D:\\my_projects\\MyCodex\\target\\update-pilot\\highgrade-v0-2-13.exe",
+    "candidate_cli": "D:\\my_projects\\MyCodex\\target\\update-pilot\\highgrade-v0-2-14-exact.exe"
+  },
+  "sha256": {
+    "old_manifest": "26e83174e4f79694a08c8f9a06c545aa7479ec4b86b9b59f503eb8383340b5d6",
+    "candidate_manifest": "8ae8fce4a825724697bfd6240fd1e4826f58f529a305bf05e78400f2ba344288",
+    "old_cli": "e62eadc95495925675353bae6a1eea409786efd7bcf0e8821153502fc82650d2",
+    "candidate_cli": "0353eef50be25d04246a7f40060b84d26288d918ef27c38d21f13ec6e12209bd",
+    "bad_rules": "5514b2664995b1668323265c9fccbfdef025416aef52d07799366a5fd417dc0e"
+  }
+}

@@ -1,0 +1,1798 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0013-S1": {
+      "captured_at": "2026-09-25T05:56:11Z",
+      "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "method": "native_report",
+      "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+      "scenario": "HG-0013-S1",
+      "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+    },
+    "HG-0013-S2": {
+      "captured_at": "2026-09-25T05:56:12Z",
+      "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "method": "native_report",
+      "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+      "scenario": "HG-0013-S2",
+      "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+    },
+    "HG-0013-S3": {
+      "captured_at": "2026-09-25T05:56:14Z",
+      "command": "cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "method": "native_report",
+      "observation": "Точный тест integration_rejects_stale_base_and_requires_removal_reason выполнен; ожидаемый исход: включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+      "scenario": "HG-0013-S3",
+      "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+    },
+    "HG-0013-S4": {
+      "captured_at": "2026-09-25T05:56:16Z",
+      "command": "cargo test --locked --test spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations -- --exact",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log": "dbd2d1259b77338ae4e29a8bbf1da738585d7223cccfca999e86c58533d9e2ff",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "method": "native_report",
+      "observation": "Точный тест evidence_and_review_go_stale_without_losing_unaffected_observations выполнен; ожидаемый исход: завершение блокируется, а незатронутое доказательство сохраняет актуальность",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log",
+      "scenario": "HG-0013-S4",
+      "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+    },
+    "HG-0013-S5": {
+      "captured_at": "2026-09-25T08:57:43.401546+00:00",
+      "command": "isolated installed High Grade v0.2.14 agent continuation in synthetic s7; independent tool-request audit",
+      "files": {
+        "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json": "f0ffcb976750134d6805b0698a1a0818b59678b6174c8d84674aa3dd89445e15",
+        "docs/evidence/agent-pilot/s7-continuation/doctor.json": "a32be104fd80b6fa53ea91313c8b65533bef31a2ed0f6607864768c09b70d407",
+        "docs/evidence/agent-pilot/s7-continuation/independent-tool-audit.md": "f30d7c878ba81f087882a281170042cf2d988a5583842d4b7cd9d5b6d9b4c4cb",
+        "docs/evidence/agent-pilot/s7-continuation/profile-status.json": "de6ab489618ab9a1cadeb15fa4349cf231dac666d99200dab65e8e5a3e4089ad",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/counter.py": "d677347b7f9c268bc6ed1213e35926a83cac443fc4a630be7800060c5064c25d",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/manifest.json": "22e4035499cd21bbc72b4a78a576146dc0a99ec37c06070584893dbc35768f94",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/specs/changes/HG-0001/spec.json": "b91dfbf35b121b079e4559bf568a5cb7fe62ec404b67b9215600962ea1d932b2",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/test_counter.py": "e0bcad85abbbae52393d46ed7000ee2ae55a09cdcabda4153711a39ce57b5e25",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-final.diff": "3c79fe906c2e2cdf075488a643105a7df434295fb1644b5773373b678b26ee6b",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-red.txt": "c66f5d7842679c762456a2fa41eb029a7d19218bcbb5b29857ba38128d11a96b",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-result.md": "82386d85c3cfc31944df6684f7252280677fb9ff8126bfbf336d0bb06b6ac3e1",
+        "docs/evidence/agent-pilot/s7-continuation/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-command-log.md": "7bc29add26aed4b1ef192f71ad0f5708e9c67830b4c1b874b9d9d9d35e124683",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-list.json": "a250c5cda4ee2c6e6b1622098cf5fdd392644081a4a173137a72214e15397795",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-manifest.json": "2e2abf341f0c83d80b3051d5598147e75d8d349d02aba8466567cf75b4e81648",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-read.json": "e12495c20e221201e5e0a50caf1e2afbe880713152831c0b69b1fe10e97a29cd",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-requirement.json": "8898f0528d57d802256d7b1f48c08db5ed8006c8e038eb7a3374847adedab2b3",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-result.md": "f0a7e00558f9648683c9cd0fa52f75190b646559eb2b02b0920dab67d875837c",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-check.json": "f4903dbc51f9b59ec0673ae6b852f3870296c2e453989f884d8c138f892b1346",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-integrate.json": "035f70ae4b73f388d35dcab166f6d83e91cdfc0eeef7d007194a46f963681d95",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-review.json": "56254c2ca8d4f587cf94726e2342e6e9c370dba56dbe39adcab697f50cfea23e",
+        "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-save.json": "df54e17fc9e603068d86305c32ad6e5167daac670a8d7577373301443c534858",
+        "docs/evidence/agent-pilot/s7-continuation/tool-calls.json": "586b73cc34f777343440d3b7b8f85a936307c27dc02f34721ec3314e59e80d90"
+      },
+      "method": "manual",
+      "observation": "Отдельный агент получил сохранённое незавершённое HG-0001, выполнил красный и зелёный тест (3/3), после независимого GO закрыл T3, получил spec-check passed и интегрировал требование через установленную Поставку. Аудит 38 запросов инструментам не нашёл обращения к исходникам High Grade или внешнему инструменту спек; человеческая приёмка не записана. Граница аудита описана в отчёте.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/s7-continuation/independent-tool-audit.md",
+      "scenario": "HG-0013-S5",
+      "scenario_sha256": "9abdc791bc1a48859d5d6bddd1179038dcbce277fb62d7085b6c2af9ae1d243c"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790313519,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "1790313519",
+          "command": "spec-run --id HG-0013 --check HG-0013-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        }
+      },
+      "recorded_at": 1790313520,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "1790313519",
+          "command": "spec-run --id HG-0013 --check HG-0013-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "1790313520",
+          "command": "spec-run --id HG-0013 --check HG-0013-C2",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        }
+      },
+      "recorded_at": 1790313521,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "1790313519",
+          "command": "spec-run --id HG-0013 --check HG-0013-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "1790313520",
+          "command": "spec-run --id HG-0013 --check HG-0013-C2",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "1790313521",
+          "command": "spec-run --id HG-0013 --check HG-0013-C3",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log": "ee0de82c73101d44df372cfc120b7172fd69e635d143e57ef0d4080049b35d9f",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        }
+      },
+      "recorded_at": 1790313523,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "1790313519",
+          "command": "spec-run --id HG-0013 --check HG-0013-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "1790313520",
+          "command": "spec-run --id HG-0013 --check HG-0013-C2",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "1790313521",
+          "command": "spec-run --id HG-0013 --check HG-0013-C3",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log": "ee0de82c73101d44df372cfc120b7172fd69e635d143e57ef0d4080049b35d9f",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "1790313522",
+          "command": "spec-run --id HG-0013 --check HG-0013-C4",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log": "0d84e91db014a7fd7e91755dcbe88c44b1cab0d2b3cc8c442f3a3553dcb99645",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790313677,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:18:39Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "1790313520",
+          "command": "spec-run --id HG-0013 --check HG-0013-C2",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "1790313521",
+          "command": "spec-run --id HG-0013 --check HG-0013-C3",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log": "ee0de82c73101d44df372cfc120b7172fd69e635d143e57ef0d4080049b35d9f",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "1790313522",
+          "command": "spec-run --id HG-0013 --check HG-0013-C4",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log": "0d84e91db014a7fd7e91755dcbe88c44b1cab0d2b3cc8c442f3a3553dcb99645",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790313678,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:18:39Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "2026-09-25T05:18:40Z",
+          "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "1790313521",
+          "command": "spec-run --id HG-0013 --check HG-0013-C3",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log": "ee0de82c73101d44df372cfc120b7172fd69e635d143e57ef0d4080049b35d9f",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "1790313522",
+          "command": "spec-run --id HG-0013 --check HG-0013-C4",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log": "0d84e91db014a7fd7e91755dcbe88c44b1cab0d2b3cc8c442f3a3553dcb99645",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790313679,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:18:39Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "2026-09-25T05:18:40Z",
+          "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "2026-09-25T05:18:41Z",
+          "command": "cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log": "ee0de82c73101d44df372cfc120b7172fd69e635d143e57ef0d4080049b35d9f",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест integration_rejects_stale_base_and_requires_removal_reason выполнен; ожидаемый исход: включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "1790313522",
+          "command": "spec-run --id HG-0013 --check HG-0013-C4",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log": "0d84e91db014a7fd7e91755dcbe88c44b1cab0d2b3cc8c442f3a3553dcb99645",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790313680,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:18:39Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "2026-09-25T05:18:40Z",
+          "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "2026-09-25T05:18:41Z",
+          "command": "cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log": "ee0de82c73101d44df372cfc120b7172fd69e635d143e57ef0d4080049b35d9f",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест integration_rejects_stale_base_and_requires_removal_reason выполнен; ожидаемый исход: включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "2026-09-25T05:18:42Z",
+          "command": "cargo test --locked --test spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log": "0d84e91db014a7fd7e91755dcbe88c44b1cab0d2b3cc8c442f3a3553dcb99645",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест evidence_and_review_go_stale_without_losing_unaffected_observations выполнен; ожидаемый исход: завершение блокируется, а незатронутое доказательство сохраняет актуальность",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790315771,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "1790315771",
+          "command": "spec-run --id HG-0013 --check HG-0013-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "2026-09-25T05:18:40Z",
+          "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "2026-09-25T05:18:41Z",
+          "command": "cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log": "ee0de82c73101d44df372cfc120b7172fd69e635d143e57ef0d4080049b35d9f",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест integration_rejects_stale_base_and_requires_removal_reason выполнен; ожидаемый исход: включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "2026-09-25T05:18:42Z",
+          "command": "cargo test --locked --test spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log": "0d84e91db014a7fd7e91755dcbe88c44b1cab0d2b3cc8c442f3a3553dcb99645",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест evidence_and_review_go_stale_without_losing_unaffected_observations выполнен; ожидаемый исход: завершение блокируется, а незатронутое доказательство сохраняет актуальность",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790315772,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "1790315771",
+          "command": "spec-run --id HG-0013 --check HG-0013-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "1790315772",
+          "command": "spec-run --id HG-0013 --check HG-0013-C2",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "2026-09-25T05:18:41Z",
+          "command": "cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log": "ee0de82c73101d44df372cfc120b7172fd69e635d143e57ef0d4080049b35d9f",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест integration_rejects_stale_base_and_requires_removal_reason выполнен; ожидаемый исход: включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "2026-09-25T05:18:42Z",
+          "command": "cargo test --locked --test spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log": "0d84e91db014a7fd7e91755dcbe88c44b1cab0d2b3cc8c442f3a3553dcb99645",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест evidence_and_review_go_stale_without_losing_unaffected_observations выполнен; ожидаемый исход: завершение блокируется, а незатронутое доказательство сохраняет актуальность",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790315774,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "1790315771",
+          "command": "spec-run --id HG-0013 --check HG-0013-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "1790315772",
+          "command": "spec-run --id HG-0013 --check HG-0013-C2",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "1790315774",
+          "command": "spec-run --id HG-0013 --check HG-0013-C3",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "2026-09-25T05:18:42Z",
+          "command": "cargo test --locked --test spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log": "0d84e91db014a7fd7e91755dcbe88c44b1cab0d2b3cc8c442f3a3553dcb99645",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+          },
+          "method": "native_report",
+          "observation": "Точный тест evidence_and_review_go_stale_without_losing_unaffected_observations выполнен; ожидаемый исход: завершение блокируется, а незатронутое доказательство сохраняет актуальность",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790315776,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "1790315771",
+          "command": "spec-run --id HG-0013 --check HG-0013-C1",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "1790315772",
+          "command": "spec-run --id HG-0013 --check HG-0013-C2",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "1790315774",
+          "command": "spec-run --id HG-0013 --check HG-0013-C3",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "1790315776",
+          "command": "spec-run --id HG-0013 --check HG-0013-C4",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log": "dbd2d1259b77338ae4e29a8bbf1da738585d7223cccfca999e86c58533d9e2ff",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790315801,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:56:11Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "1790315772",
+          "command": "spec-run --id HG-0013 --check HG-0013-C2",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "1790315774",
+          "command": "spec-run --id HG-0013 --check HG-0013-C3",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "1790315776",
+          "command": "spec-run --id HG-0013 --check HG-0013-C4",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log": "dbd2d1259b77338ae4e29a8bbf1da738585d7223cccfca999e86c58533d9e2ff",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790315803,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:56:11Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "2026-09-25T05:56:12Z",
+          "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "1790315774",
+          "command": "spec-run --id HG-0013 --check HG-0013-C3",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "1790315776",
+          "command": "spec-run --id HG-0013 --check HG-0013-C4",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log": "dbd2d1259b77338ae4e29a8bbf1da738585d7223cccfca999e86c58533d9e2ff",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790315804,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:56:11Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "2026-09-25T05:56:12Z",
+          "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "2026-09-25T05:56:14Z",
+          "command": "cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест integration_rejects_stale_base_and_requires_removal_reason выполнен; ожидаемый исход: включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "1790315776",
+          "command": "spec-run --id HG-0013 --check HG-0013-C4",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log": "dbd2d1259b77338ae4e29a8bbf1da738585d7223cccfca999e86c58533d9e2ff",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790315805,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:56:11Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "2026-09-25T05:56:12Z",
+          "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "2026-09-25T05:56:14Z",
+          "command": "cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест integration_rejects_stale_base_and_requires_removal_reason выполнен; ожидаемый исход: включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "2026-09-25T05:56:16Z",
+          "command": "cargo test --locked --test spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log": "dbd2d1259b77338ae4e29a8bbf1da738585d7223cccfca999e86c58533d9e2ff",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест evidence_and_review_go_stale_without_losing_unaffected_observations выполнен; ожидаемый исход: завершение блокируется, а незатронутое доказательство сохраняет актуальность",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        }
+      },
+      "recorded_at": 1790326663,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:56:11Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "2026-09-25T05:56:12Z",
+          "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "2026-09-25T05:56:14Z",
+          "command": "cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест integration_rejects_stale_base_and_requires_removal_reason выполнен; ожидаемый исход: включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "2026-09-25T05:56:16Z",
+          "command": "cargo test --locked --test spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log": "dbd2d1259b77338ae4e29a8bbf1da738585d7223cccfca999e86c58533d9e2ff",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест evidence_and_review_go_stale_without_losing_unaffected_observations выполнен; ожидаемый исход: завершение блокируется, а незатронутое доказательство сохраняет актуальность",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        },
+        "HG-0013-S5": {
+          "captured_at": "2026-09-25T08:57:43.401546+00:00",
+          "command": "isolated installed High Grade v0.2.14 agent continuation in synthetic s7; independent tool-request audit",
+          "files": {
+            "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json": "f0ffcb976750134d6805b0698a1a0818b59678b6174c8d84674aa3dd89445e15",
+            "docs/evidence/agent-pilot/s7-continuation/doctor.json": "a32be104fd80b6fa53ea91313c8b65533bef31a2ed0f6607864768c09b70d407",
+            "docs/evidence/agent-pilot/s7-continuation/independent-tool-audit.md": "f30d7c878ba81f087882a281170042cf2d988a5583842d4b7cd9d5b6d9b4c4cb",
+            "docs/evidence/agent-pilot/s7-continuation/profile-status.json": "de6ab489618ab9a1cadeb15fa4349cf231dac666d99200dab65e8e5a3e4089ad",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/counter.py": "d677347b7f9c268bc6ed1213e35926a83cac443fc4a630be7800060c5064c25d",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/manifest.json": "22e4035499cd21bbc72b4a78a576146dc0a99ec37c06070584893dbc35768f94",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/specs/changes/HG-0001/spec.json": "b91dfbf35b121b079e4559bf568a5cb7fe62ec404b67b9215600962ea1d932b2",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/test_counter.py": "e0bcad85abbbae52393d46ed7000ee2ae55a09cdcabda4153711a39ce57b5e25",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-final.diff": "3c79fe906c2e2cdf075488a643105a7df434295fb1644b5773373b678b26ee6b",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-red.txt": "c66f5d7842679c762456a2fa41eb029a7d19218bcbb5b29857ba38128d11a96b",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-result.md": "82386d85c3cfc31944df6684f7252280677fb9ff8126bfbf336d0bb06b6ac3e1",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-command-log.md": "7bc29add26aed4b1ef192f71ad0f5708e9c67830b4c1b874b9d9d9d35e124683",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-list.json": "a250c5cda4ee2c6e6b1622098cf5fdd392644081a4a173137a72214e15397795",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-manifest.json": "2e2abf341f0c83d80b3051d5598147e75d8d349d02aba8466567cf75b4e81648",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-read.json": "e12495c20e221201e5e0a50caf1e2afbe880713152831c0b69b1fe10e97a29cd",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-requirement.json": "8898f0528d57d802256d7b1f48c08db5ed8006c8e038eb7a3374847adedab2b3",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-result.md": "f0a7e00558f9648683c9cd0fa52f75190b646559eb2b02b0920dab67d875837c",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-check.json": "f4903dbc51f9b59ec0673ae6b852f3870296c2e453989f884d8c138f892b1346",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-integrate.json": "035f70ae4b73f388d35dcab166f6d83e91cdfc0eeef7d007194a46f963681d95",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-review.json": "56254c2ca8d4f587cf94726e2342e6e9c370dba56dbe39adcab697f50cfea23e",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-save.json": "df54e17fc9e603068d86305c32ad6e5167daac670a8d7577373301443c534858",
+            "docs/evidence/agent-pilot/s7-continuation/tool-calls.json": "586b73cc34f777343440d3b7b8f85a936307c27dc02f34721ec3314e59e80d90"
+          },
+          "method": "manual",
+          "observation": "Отдельный агент получил сохранённое незавершённое HG-0001, выполнил красный и зелёный тест (3/3), после независимого GO закрыл T3, получил spec-check passed и интегрировал требование через установленную Поставку. Аудит 38 запросов инструментам не нашёл обращения к исходникам High Grade или внешнему инструменту спек; человеческая приёмка не записана. Граница аудита описана в отчёте.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/s7-continuation/independent-tool-audit.md",
+          "scenario": "HG-0013-S5",
+          "scenario_sha256": "9abdc791bc1a48859d5d6bddd1179038dcbce277fb62d7085b6c2af9ae1d243c"
+        }
+      },
+      "recorded_at": 1790326783,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0013-S1": {
+          "captured_at": "2026-09-25T05:56:11Z",
+          "command": "cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест drafts_are_readable_but_unknown_versions_and_fields_never_write выполнен; ожидаемый исход: заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+          "scenario": "HG-0013-S1",
+          "scenario_sha256": "bfee6c284ae2755e13a5071aee1a9d038c7a4ab3d8010d9256541708473ba0f5"
+        },
+        "HG-0013-S2": {
+          "captured_at": "2026-09-25T05:56:12Z",
+          "command": "cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест competing_processes_and_failed_replace_preserve_whole_store выполнен; ожидаемый исход: не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+          "scenario": "HG-0013-S2",
+          "scenario_sha256": "1d24ad99e130b097d86189b7c05971edc1c2534fe8b283252bb4fd9f9751c568"
+        },
+        "HG-0013-S3": {
+          "captured_at": "2026-09-25T05:56:14Z",
+          "command": "cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест integration_rejects_stale_base_and_requires_removal_reason выполнен; ожидаемый исход: включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+          "scenario": "HG-0013-S3",
+          "scenario_sha256": "f6691fd51d21d899eaa99d0d1ec35e3711a5dbc091c86eae772c7a36ddf47efc"
+        },
+        "HG-0013-S4": {
+          "captured_at": "2026-09-25T05:56:16Z",
+          "command": "cargo test --locked --test spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations -- --exact",
+          "files": {
+            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+            "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log": "dbd2d1259b77338ae4e29a8bbf1da738585d7223cccfca999e86c58533d9e2ff",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+            "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+          },
+          "method": "native_report",
+          "observation": "Точный тест evidence_and_review_go_stale_without_losing_unaffected_observations выполнен; ожидаемый исход: завершение блокируется, а незатронутое доказательство сохраняет актуальность",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log",
+          "scenario": "HG-0013-S4",
+          "scenario_sha256": "a236e62c6cb942d88591129505a8dbc445a7fcae2047de8fa716a59faeb34ef9"
+        },
+        "HG-0013-S5": {
+          "captured_at": "2026-09-25T08:57:43.401546+00:00",
+          "command": "isolated installed High Grade v0.2.14 agent continuation in synthetic s7; independent tool-request audit",
+          "files": {
+            "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json": "f0ffcb976750134d6805b0698a1a0818b59678b6174c8d84674aa3dd89445e15",
+            "docs/evidence/agent-pilot/s7-continuation/doctor.json": "a32be104fd80b6fa53ea91313c8b65533bef31a2ed0f6607864768c09b70d407",
+            "docs/evidence/agent-pilot/s7-continuation/independent-tool-audit.md": "f30d7c878ba81f087882a281170042cf2d988a5583842d4b7cd9d5b6d9b4c4cb",
+            "docs/evidence/agent-pilot/s7-continuation/profile-status.json": "de6ab489618ab9a1cadeb15fa4349cf231dac666d99200dab65e8e5a3e4089ad",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/counter.py": "d677347b7f9c268bc6ed1213e35926a83cac443fc4a630be7800060c5064c25d",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/manifest.json": "22e4035499cd21bbc72b4a78a576146dc0a99ec37c06070584893dbc35768f94",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/specs/changes/HG-0001/spec.json": "b91dfbf35b121b079e4559bf568a5cb7fe62ec404b67b9215600962ea1d932b2",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-before/test_counter.py": "e0bcad85abbbae52393d46ed7000ee2ae55a09cdcabda4153711a39ce57b5e25",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-final.diff": "3c79fe906c2e2cdf075488a643105a7df434295fb1644b5773373b678b26ee6b",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-red.txt": "c66f5d7842679c762456a2fa41eb029a7d19218bcbb5b29857ba38128d11a96b",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-result.md": "82386d85c3cfc31944df6684f7252280677fb9ff8126bfbf336d0bb06b6ac3e1",
+            "docs/evidence/agent-pilot/s7-continuation/s7-continuation-unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-command-log.md": "7bc29add26aed4b1ef192f71ad0f5708e9c67830b4c1b874b9d9d9d35e124683",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-list.json": "a250c5cda4ee2c6e6b1622098cf5fdd392644081a4a173137a72214e15397795",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-manifest.json": "2e2abf341f0c83d80b3051d5598147e75d8d349d02aba8466567cf75b4e81648",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-read.json": "e12495c20e221201e5e0a50caf1e2afbe880713152831c0b69b1fe10e97a29cd",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-final-requirement.json": "8898f0528d57d802256d7b1f48c08db5ed8006c8e038eb7a3374847adedab2b3",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-result.md": "f0a7e00558f9648683c9cd0fa52f75190b646559eb2b02b0920dab67d875837c",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-check.json": "f4903dbc51f9b59ec0673ae6b852f3870296c2e453989f884d8c138f892b1346",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-integrate.json": "035f70ae4b73f388d35dcab166f6d83e91cdfc0eeef7d007194a46f963681d95",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-review.json": "56254c2ca8d4f587cf94726e2342e6e9c370dba56dbe39adcab697f50cfea23e",
+            "docs/evidence/agent-pilot/s7-continuation/s7-integration-spec-save.json": "df54e17fc9e603068d86305c32ad6e5167daac670a8d7577373301443c534858",
+            "docs/evidence/agent-pilot/s7-continuation/tool-calls.json": "586b73cc34f777343440d3b7b8f85a936307c27dc02f34721ec3314e59e80d90"
+          },
+          "method": "manual",
+          "observation": "Отдельный агент получил сохранённое незавершённое HG-0001, выполнил красный и зелёный тест (3/3), после независимого GO закрыл T3, получил spec-check passed и интегрировал требование через установленную Поставку. Аудит 38 запросов инструментам не нашёл обращения к исходникам High Grade или внешнему инструменту спек; человеческая приёмка не записана. Граница аудита описана в отчёте.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/s7-continuation/independent-tool-audit.md",
+          "scenario": "HG-0013-S5",
+          "scenario_sha256": "9abdc791bc1a48859d5d6bddd1179038dcbce277fb62d7085b6c2af9ae1d243c"
+        }
+      },
+      "recorded_at": 1790326796,
+      "review": {
+        "change_sha256": "964b635ef9f306940dae87feb9beb700be44d300999867777acae03570cd3340",
+        "conclusion": "Пять сценариев имеют актуальные доказательства; S1-S4 подтверждены содержательными тестами, S5 синтетической агентной пробой и аудитом вызовов. Предел аудита указан в отчёте.",
+        "reviewer": "local_spec_review",
+        "verdict": "go"
+      }
+    }
+  ],
+  "review": {
+    "change_sha256": "964b635ef9f306940dae87feb9beb700be44d300999867777acae03570cd3340",
+    "conclusion": "Пять сценариев имеют актуальные доказательства; S1-S4 подтверждены содержательными тестами, S5 синтетической агентной пробой и аудитом вызовов. Предел аудита указан в отчёте.",
+    "reviewer": "local_spec_review",
+    "verdict": "go"
+  },
+  "runs": [
+    {
+      "check": "HG-0013-C1",
+      "check_sha256": "15e3151ab985c707625c2924b0917e14c2aaebbd5887a0638a0cb96563d67d2e",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "spec_contracts",
+        "drafts_are_readable_but_unknown_versions_and_fields_never_write",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790313519238843800.log",
+      "started_at": 1790313519
+    },
+    {
+      "check": "HG-0013-C2",
+      "check_sha256": "0bad918407e0505f67badb5748c9cf1378b78782c9371e26c8e36c745912eefe",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "spec_contracts",
+        "competing_processes_and_failed_replace_preserve_whole_store",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790313520272060100.log",
+      "started_at": 1790313520
+    },
+    {
+      "check": "HG-0013-C3",
+      "check_sha256": "5ac5cc529ca577ce5f91b2562516d9245ec7f0ef409057fceb3873da8739fe86",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "spec_contracts",
+        "integration_rejects_stale_base_and_requires_removal_reason",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log": "ee0de82c73101d44df372cfc120b7172fd69e635d143e57ef0d4080049b35d9f",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790313521311871800.log",
+      "started_at": 1790313521
+    },
+    {
+      "check": "HG-0013-C4",
+      "check_sha256": "24d4e66dfdf514a293e28fb9222d1744968e74f43a3320773594de3961ae3c15",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "spec_contracts",
+        "evidence_and_review_go_stale_without_losing_unaffected_observations",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log": "0d84e91db014a7fd7e91755dcbe88c44b1cab0d2b3cc8c442f3a3553dcb99645",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790313522888799000.log",
+      "started_at": 1790313522
+    },
+    {
+      "check": "HG-0013-C1",
+      "check_sha256": "15e3151ab985c707625c2924b0917e14c2aaebbd5887a0638a0cb96563d67d2e",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "spec_contracts",
+        "drafts_are_readable_but_unknown_versions_and_fields_never_write",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log": "25e935e4f5002e5b572c2ed67c854310596ccdfc6a9df3046f9d478d3ef1e63a",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C1-1790315771282921200.log",
+      "started_at": 1790315771
+    },
+    {
+      "check": "HG-0013-C2",
+      "check_sha256": "0bad918407e0505f67badb5748c9cf1378b78782c9371e26c8e36c745912eefe",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "spec_contracts",
+        "competing_processes_and_failed_replace_preserve_whole_store",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log": "e4dc0c3f0b439f93b808e1ac069a083f89a6380322e20f2424093441341d970c",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C2-1790315772761356800.log",
+      "started_at": 1790315772
+    },
+    {
+      "check": "HG-0013-C3",
+      "check_sha256": "5ac5cc529ca577ce5f91b2562516d9245ec7f0ef409057fceb3873da8739fe86",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "spec_contracts",
+        "integration_rejects_stale_base_and_requires_removal_reason",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log": "c7031d7a92bc58e4c671404a44eb24ce9b25c1a54bad0568d72007621e8cc2c2",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C3-1790315774261008500.log",
+      "started_at": 1790315774
+    },
+    {
+      "check": "HG-0013-C4",
+      "check_sha256": "24d4e66dfdf514a293e28fb9222d1744968e74f43a3320773594de3961ae3c15",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "spec_contracts",
+        "evidence_and_review_go_stale_without_losing_unaffected_observations",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log": "dbd2d1259b77338ae4e29a8bbf1da738585d7223cccfca999e86c58533d9e2ff",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "inputs_after": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0013/evidence/HG-0013-C4-1790315776257935200.log",
+      "started_at": 1790315776
+    }
+  ]
+}

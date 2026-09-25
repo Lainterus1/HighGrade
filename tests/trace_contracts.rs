@@ -1,6 +1,7 @@
 use highgrade::{hash, trace::trace};
 use serde_json::{Value, json};
 use std::{
+    collections::BTreeMap,
     fs,
     path::{Path, PathBuf},
     sync::atomic::{AtomicU64, Ordering},
@@ -28,6 +29,151 @@ fn spec() -> &'static [u8] {
 }
 fn rust_list(root: &Path) -> Value {
     json!({"rust-suites":{"math":{"kind":"test","cwd":root.to_string_lossy(),"binary-name":"math","testcases":{"adds":{"filter-match":{"status":"matches"},"ignored":false}}}}})
+}
+
+fn spec_call(
+    root: &Path,
+    operation: &str,
+    args: &[(&str, &str)],
+) -> highgrade::Result<highgrade::Report> {
+    highgrade::specs::command(
+        root,
+        operation,
+        &args
+            .iter()
+            .map(|(key, value)| (key.to_string(), value.to_string()))
+            .collect::<BTreeMap<_, _>>(),
+    )
+}
+
+// highgrade: HG-0008-S3
+#[test]
+fn reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor() {
+    use highgrade::specs::{Requirement, STORE, Scenario, Store};
+    let root = root();
+    let legacy_path = "openspec/specs/math/spec.md";
+    let legacy = [spec(), b"\n### Requirement: [HG-OTHER-REQ] Unrelated rule\nThe other rule remains.\n\n#### Scenario: [HG-OTHER-001] Other case\n- WHEN the other feature runs\n- THEN its result remains available\n"].concat();
+    let source = "tests/math.rs";
+    let list = "evidence/list.json";
+    let report = "evidence/junit.xml";
+    put(
+        &root,
+        source,
+        b"// highgrade: HG-MATH-001\n#[test]\nfn adds() { assert_eq!(1+1,2); }\n",
+    );
+    save(&root, list, &rust_list(&root));
+    put(&root, report, br#"<testsuites><testsuite name="math"><testcase classname="math" name="adds"/></testsuite></testsuites>"#);
+    let mut run = base(&root, "rust-nextest", source, report, Some(list));
+    put(&root, legacy_path, &legacy);
+    run["source_hashes"][legacy_path] = json!(hash(&legacy));
+    save(
+        &root,
+        STORE,
+        &serde_json::to_value(Store::default()).unwrap(),
+    );
+    let selected = Requirement {
+        id: "HG-MATH-REQ".into(),
+        title: "Add".into(),
+        statement: "Return sum".into(),
+        scenarios: vec![Scenario {
+            id: "HG-MATH-001".into(),
+            given: "1,1".into(),
+            when: "Add".into(),
+            then: "2".into(),
+            verification: "math::adds".into(),
+        }],
+    };
+    save(
+        &root,
+        "selected.json",
+        &serde_json::to_value(selected).unwrap(),
+    );
+    let expected = highgrade::specs::load(&root).unwrap().1;
+    spec_call(
+        &root,
+        "spec-import",
+        &[
+            ("--id", "HG-IMPORT"),
+            ("--expected", &expected),
+            ("--input", "selected.json"),
+            ("--source", legacy_path),
+        ],
+    )
+    .unwrap();
+    let mut change =
+        serde_json::to_value(&highgrade::specs::load(&root).unwrap().0.changes["HG-IMPORT"])
+            .unwrap();
+    change["tasks"][0]["description"] = json!("Compare selected requirement and source");
+    change["tasks"][0]["done"] = json!(true);
+    save(&root, "edit.json", &change);
+    let expected = highgrade::specs::load(&root).unwrap().1;
+    spec_call(
+        &root,
+        "spec-save",
+        &[
+            ("--id", "HG-IMPORT"),
+            ("--expected", &expected),
+            ("--input", "edit.json"),
+        ],
+    )
+    .unwrap();
+    let expected = highgrade::specs::load(&root).unwrap().1;
+    spec_call(
+        &root,
+        "spec-review",
+        &[
+            ("--id", "HG-IMPORT"),
+            ("--expected", &expected),
+            ("--reviewer", "reviewer"),
+            ("--verdict", "go"),
+            ("--conclusion", "Equivalent selected contract"),
+        ],
+    )
+    .unwrap();
+    let expected = highgrade::specs::load(&root).unwrap().1;
+    spec_call(
+        &root,
+        "spec-transfer",
+        &[("--id", "HG-IMPORT"), ("--expected", &expected)],
+    )
+    .unwrap();
+    assert_eq!(fs::read(root.join(legacy_path)).unwrap(), legacy);
+    let store = highgrade::specs::load(&root).unwrap().0;
+    assert!(store.requirements.contains_key("HG-MATH-REQ"));
+    assert!(store.origins.contains_key("HG-MATH-REQ"));
+    run["spec_files"].as_array_mut().unwrap().push(json!(STORE));
+    run["source_hashes"][STORE] = json!(highgrade::specs::trace_hash(&root).unwrap());
+    save(&root, "run.json", &run);
+    let traced = trace(&root, "run.json").unwrap();
+    let rows: Vec<_> = traced
+        .measurements
+        .iter()
+        .filter_map(|row| row["scenario_id"].as_str())
+        .collect();
+    assert_eq!(
+        rows.iter().filter(|id| **id == "HG-MATH-001").count(),
+        1,
+        "{traced:?}"
+    );
+    assert_eq!(
+        rows.iter().filter(|id| **id == "HG-OTHER-001").count(),
+        1,
+        "{traced:?}"
+    );
+    assert!(
+        traced
+            .measurements
+            .iter()
+            .any(|row| row["scenario_id"] == "HG-MATH-001" && row["status"] == "passed"),
+        "{traced:?}"
+    );
+    assert!(
+        !traced
+            .findings
+            .iter()
+            .any(|row| row["code"] == "DuplicateScenarioId" || row["status"] == "failed"),
+        "{traced:?}"
+    );
 }
 
 #[test]

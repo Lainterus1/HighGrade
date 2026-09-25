@@ -146,7 +146,7 @@ fn complete(root: &Path, id: &str) {
     review(root, id);
 }
 
-// highgrade: HG-SS-S01
+// highgrade: HG-0013-S1
 #[test]
 fn drafts_are_readable_but_unknown_versions_and_fields_never_write() {
     let root = root();
@@ -185,7 +185,7 @@ fn drafts_are_readable_but_unknown_versions_and_fields_never_write() {
     );
 }
 
-// highgrade: HG-SS-S02
+// highgrade: HG-0013-S2
 #[test]
 fn competing_processes_and_failed_replace_preserve_whole_store() {
     let root = root();
@@ -246,7 +246,7 @@ fn competing_processes_and_failed_replace_preserve_whole_store() {
     assert_eq!(before, fs::read(root.join(specs::STORE)).unwrap());
 }
 
-// highgrade: HG-SS-S03
+// highgrade: HG-0013-S3
 #[test]
 fn integration_rejects_stale_base_and_requires_removal_reason() {
     let root = root();
@@ -313,7 +313,7 @@ fn integration_rejects_stale_base_and_requires_removal_reason() {
     assert!(store.retired_ids.contains("HG-A-S1"));
 }
 
-// highgrade: HG-SS-S04
+// highgrade: HG-0013-S4
 #[test]
 fn evidence_and_review_go_stale_without_losing_unaffected_observations() {
     let root = root();
@@ -340,7 +340,6 @@ fn evidence_and_review_go_stale_without_losing_unaffected_observations() {
     assert_eq!(check(&root, "HG-A").status, "failed");
 }
 
-// highgrade: HG-SS-S06
 #[test]
 fn selected_import_retains_source_and_leaves_other_legacy_requirements() {
     let root = root();
@@ -391,6 +390,233 @@ fn selected_import_retains_source_and_leaves_other_legacy_requirements() {
             .iter()
             .any(|f| f["code"] == "ImportScenarioMismatch")
     );
+}
+
+#[test]
+fn reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs() {
+    let root = root();
+    let legacy = "### Requirement: [HG-OLD-R1] Old\nAn existing rule\n#### Scenario: [HG-OLD-S1] One\n- WHEN used\n- THEN observed\n";
+    fs::write(root.join("legacy.md"), legacy).unwrap();
+    write(
+        &root,
+        "requirement.json",
+        &json!({"id":"HG-OLD-R1","title":"Old","statement":"An existing rule","scenarios":[{"id":"HG-OLD-S1","given":"Existing state","when":"used","then":"observed","verification":"Historical scenario; behavior not rerun"}]}),
+    );
+    call(
+        &root,
+        "spec-import",
+        &[
+            ("--expected", &sha(&root)),
+            ("--input", "requirement.json"),
+            ("--source", "legacy.md"),
+            ("--id", "HG-IMPORT"),
+        ],
+    )
+    .unwrap();
+    let before = fs::read(root.join(specs::STORE)).unwrap();
+    let transfer = |root: &Path| {
+        call(
+            root,
+            "spec-transfer",
+            &[("--id", "HG-IMPORT"), ("--expected", &sha(root))],
+        )
+        .unwrap()
+    };
+    assert!(
+        call(
+            &root,
+            "spec-integrate",
+            &[("--id", "HG-IMPORT"), ("--expected", &sha(&root))]
+        )
+        .unwrap()
+        .findings
+        .iter()
+        .any(|f| f["code"] == "EvidenceMissingOrStale")
+    );
+    assert!(
+        transfer(&root)
+            .findings
+            .iter()
+            .any(|f| f["code"] == "TransferTasksIncomplete")
+    );
+    assert_eq!(fs::read(root.join(specs::STORE)).unwrap(), before);
+    let mut draft = change(&root, "HG-IMPORT");
+    draft["tasks"][0]["description"] = json!("Compare contract and origin");
+    draft["tasks"][0]["done"] = json!(true);
+    save(&root, "HG-IMPORT", &draft);
+    assert!(
+        transfer(&root)
+            .findings
+            .iter()
+            .any(|f| f["code"] == "TransferReviewMissingOrStale")
+    );
+    call(
+        &root,
+        "spec-review",
+        &[
+            ("--id", "HG-IMPORT"),
+            ("--expected", &sha(&root)),
+            ("--reviewer", "independent reviewer"),
+            ("--verdict", "go"),
+            (
+                "--conclusion",
+                "Exact contract and source checked; behavior not rerun",
+            ),
+        ],
+    )
+    .unwrap();
+    fs::write(root.join("legacy.md"), "changed source").unwrap();
+    assert!(
+        transfer(&root)
+            .findings
+            .iter()
+            .any(|f| f["code"] == "ImportSourceDrift")
+    );
+    fs::write(root.join("legacy.md"), legacy).unwrap();
+    let mut stale = change(&root, "HG-IMPORT");
+    stale["tasks"][0]["description"] = json!("Compare contract, origin and IDs");
+    save(&root, "HG-IMPORT", &stale);
+    assert!(
+        transfer(&root)
+            .findings
+            .iter()
+            .any(|f| f["code"] == "TransferReviewMissingOrStale")
+    );
+    let mut mixed = change(&root, "HG-IMPORT");
+    mixed["operations"].as_array_mut().unwrap().push(json!({
+        "action":"remove", "id":"HG-UNRELATED-R1", "reason":"negative test"
+    }));
+    save(&root, "HG-IMPORT", &mixed);
+    assert!(
+        transfer(&root)
+            .findings
+            .iter()
+            .any(|f| f["code"] == "TransferRequiresImports")
+    );
+    mixed["operations"].as_array_mut().unwrap().pop();
+    mixed["operations"][0]["requirement"]["scenarios"][0]["id"] = json!("HG-NEW-S1");
+    save(&root, "HG-IMPORT", &mixed);
+    assert!(
+        transfer(&root)
+            .findings
+            .iter()
+            .any(|f| f["code"] == "ImportScenarioMismatch")
+    );
+    mixed["operations"][0]["requirement"]["scenarios"][0]["id"] = json!("HG-OLD-S1");
+    save(&root, "HG-IMPORT", &mixed);
+    call(
+        &root,
+        "spec-review",
+        &[
+            ("--id", "HG-IMPORT"),
+            ("--expected", &sha(&root)),
+            ("--reviewer", "independent reviewer"),
+            ("--verdict", "go"),
+            (
+                "--conclusion",
+                "Exact contract and source checked; behavior not rerun",
+            ),
+        ],
+    )
+    .unwrap();
+    let transferred = transfer(&root);
+    assert_eq!(transferred.status, "warning");
+    assert!(
+        transferred
+            .findings
+            .iter()
+            .any(|f| f["code"] == "BehaviorUnconfirmed")
+    );
+    let store = specs::load(&root).unwrap().0;
+    assert!(store.requirements.contains_key("HG-OLD-R1"));
+    assert_eq!(
+        store.origins["HG-OLD-R1"].sha256,
+        highgrade::hash(legacy.as_bytes())
+    );
+    assert!(store.changes["HG-IMPORT"].archived);
+    assert_eq!(fs::read_to_string(root.join("legacy.md")).unwrap(), legacy);
+    assert!(
+        check(&root, "HG-IMPORT")
+            .findings
+            .iter()
+            .any(|f| f["code"] == "EvidenceMissingOrStale")
+    );
+    let listed = call(&root, "spec-list", &[]).unwrap();
+    let row = listed.measurements[0]["changes"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|row| row["id"] == "HG-IMPORT")
+        .unwrap();
+    assert_eq!(row["technical"], "in_progress");
+    assert_eq!(row["human"], "pending");
+}
+
+#[test]
+fn reviewed_import_transfer_works_with_directory_catalog() {
+    let root = root();
+    call(
+        &root,
+        "spec-migrate",
+        &[("--to", "directory"), ("--expected", &sha(&root))],
+    )
+    .unwrap();
+    fs::write(
+        root.join("legacy.md"),
+        "### Requirement: [HG-OLD-R1] Old\nAn existing rule\n#### Scenario: [HG-OLD-S1] One\n- WHEN used\n- THEN observed\n",
+    )
+    .unwrap();
+    write(
+        &root,
+        "requirement.json",
+        &json!({"id":"HG-OLD-R1","title":"Old","statement":"An existing rule","scenarios":[{"id":"HG-OLD-S1","given":"Existing state","when":"used","then":"observed","verification":"Historical scenario; behavior not rerun"}]}),
+    );
+    call(
+        &root,
+        "spec-import",
+        &[
+            ("--expected", &sha(&root)),
+            ("--input", "requirement.json"),
+            ("--source", "legacy.md"),
+            ("--id", "HG-IMPORT"),
+        ],
+    )
+    .unwrap();
+    let mut draft = change(&root, "HG-IMPORT");
+    draft["tasks"][0]["description"] = json!("Compare contract and origin");
+    draft["tasks"][0]["done"] = json!(true);
+    save(&root, "HG-IMPORT", &draft);
+    review(&root, "HG-IMPORT");
+    let result = call(
+        &root,
+        "spec-transfer",
+        &[("--id", "HG-IMPORT"), ("--expected", &sha(&root))],
+    )
+    .unwrap();
+    assert_eq!(result.status, "warning");
+    assert!(root.join("specs/requirements/HG-OLD-R1.json").is_file());
+    assert!(root.join("specs/changes/HG-IMPORT/spec.json").is_file());
+    assert!(
+        specs::load(&root)
+            .unwrap()
+            .0
+            .origins
+            .contains_key("HG-OLD-R1")
+    );
+    assert_eq!(check(&root, "HG-IMPORT").status, "failed");
+    let requirement_path = root.join("specs/requirements/HG-OLD-R1.json");
+    let mut current: Value = serde_json::from_slice(&fs::read(&requirement_path).unwrap()).unwrap();
+    current["statement"] = json!("A later corrected rule");
+    let current_bytes = serde_json::to_vec_pretty(&current).unwrap();
+    fs::write(&requirement_path, &current_bytes).unwrap();
+    let repeated = call(
+        &root,
+        "spec-transfer",
+        &[("--id", "HG-IMPORT"), ("--expected", &sha(&root))],
+    )
+    .unwrap_err();
+    assert!(repeated.contains("ArchivedChange"), "{repeated}");
+    assert_eq!(fs::read(&requirement_path).unwrap(), current_bytes);
 }
 
 #[test]
@@ -569,6 +795,7 @@ fn listing(root: &Path) -> Value {
     call(root, "spec-list", &[]).unwrap().measurements[0].clone()
 }
 
+// highgrade: HG-0012-S1
 #[test]
 fn automatic_numbers_survive_abandon_failure_and_competing_cli_writers() {
     let root = root();
@@ -650,6 +877,7 @@ fn automatic_numbers_survive_abandon_failure_and_competing_cli_writers() {
     );
 }
 
+// highgrade: HG-0012-S3
 #[test]
 fn human_history_is_atomic_protected_and_bound_to_spec_and_implementation() {
     let root = root();
@@ -727,6 +955,7 @@ fn human_history_is_atomic_protected_and_bound_to_spec_and_implementation() {
     );
 }
 
+// highgrade: HG-0012-S4
 #[test]
 fn json_progress_rejects_missing_skipped_unknown_and_negative_review() {
     let root = root();
@@ -776,6 +1005,7 @@ fn json_progress_rejects_missing_skipped_unknown_and_negative_review() {
     assert_eq!(l["summary"]["total"], 2);
 }
 
+// highgrade: HG-0012-S5
 #[test]
 fn isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work() {
     let root = root();
@@ -850,6 +1080,7 @@ fn isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work() {
     );
 }
 
+// highgrade: HG-0012-S2
 #[test]
 fn v1_migration_preserves_exact_backup_ids_evidence_and_review_digest() {
     let root = root();

@@ -1,0 +1,274 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0018-S1": {
+      "captured_at": "2026-09-25T06:37:52.720072Z",
+      "command": "independent subagent review highgrade_task_review",
+      "files": {
+        ".github/workflows/verify.yml": "221eddb07b010bd98ae2d60461655751a2eae2a0d1f25e453d4c53c681f33f83",
+        ".highgrade/project/INSTRUCTIONS.md": "eebe7304d29c7d37ec6774ea5c099bcb71944d3f957c37e5379acaefc0196b8c",
+        "AGENTS.md": "14e0b4ec7c86efe3284ace2085f974595a0964c1228f609375d2c8a23170b734",
+        "README.md": "9790ed13b0ec719f1e4f745071dc0a640f1640002aaf79e96e3ef461cef7c01a",
+        "docs/workflow/QUALITY.md": "9dc738594d2c16afb37b09722bb3518378995961ab42bb3a36d1446610491d2e",
+        "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+        "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+        "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b",
+        "scripts/source-scenarios.mjs": "d198759d9a2cae39094084571f9b90f99453864515aa7d26629faf7ff96011e7",
+        "specs/changes/HG-0018/evidence/manual-review.md": "0d73ae89523a191ad98005bc5a0bbbe3da59d6e9a0d8c1b11a9628cfe651f9bc",
+        "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+        "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+      },
+      "method": "manual",
+      "observation": "REVIEW_GO после повторной проверки CI, действующих требований и фикстуры .mycodex; существенных замечаний нет",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0018/evidence/manual-review.md",
+      "scenario": "HG-0018-S1",
+      "scenario_sha256": "18344379ad86f32e48658d249ebefdec42f4cee5302c8c1d79269ddd6487fab0"
+    },
+    "HG-0018-S3": {
+      "captured_at": "1790318108",
+      "command": "spec-run --id HG-0018 --check HG-0018-C3",
+      "files": {
+        "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+        "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+      },
+      "method": "native_report",
+      "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
+      "scenario": "HG-0018-S3",
+      "scenario_sha256": "875e05ea93d283305701f0b035ccf0c681e10f48230ae7a09eccedee2589bce1"
+    },
+    "HG-0018-S4": {
+      "captured_at": "1790318108",
+      "command": "spec-run --id HG-0018 --check HG-0018-C3",
+      "files": {
+        "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+        "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+      },
+      "method": "native_report",
+      "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
+      "scenario": "HG-0018-S4",
+      "scenario_sha256": "3d3d7e301f45fcb7e89f0fd9298e36d5a3ff8db9914b9fb9846e541bdecdb8d4"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790317744,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0018-S3": {
+          "captured_at": "1790317744",
+          "command": "spec-run --id HG-0018 --check HG-0018-C3",
+          "files": {
+            "specs/changes/HG-0018/evidence/HG-0018-C3-1790317744595451100.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+            "tests/contracts.rs": "f43878e2381bfba60a7b4b766efe292aac1687f7a077e9f21c200986234f8379"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790317744595451100.log",
+          "scenario": "HG-0018-S3",
+          "scenario_sha256": "875e05ea93d283305701f0b035ccf0c681e10f48230ae7a09eccedee2589bce1"
+        },
+        "HG-0018-S4": {
+          "captured_at": "1790317744",
+          "command": "spec-run --id HG-0018 --check HG-0018-C3",
+          "files": {
+            "specs/changes/HG-0018/evidence/HG-0018-C3-1790317744595451100.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+            "tests/contracts.rs": "f43878e2381bfba60a7b4b766efe292aac1687f7a077e9f21c200986234f8379"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790317744595451100.log",
+          "scenario": "HG-0018-S4",
+          "scenario_sha256": "3d3d7e301f45fcb7e89f0fd9298e36d5a3ff8db9914b9fb9846e541bdecdb8d4"
+        }
+      },
+      "recorded_at": 1790318109,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0018-S3": {
+          "captured_at": "1790318108",
+          "command": "spec-run --id HG-0018 --check HG-0018-C3",
+          "files": {
+            "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+            "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
+          "scenario": "HG-0018-S3",
+          "scenario_sha256": "875e05ea93d283305701f0b035ccf0c681e10f48230ae7a09eccedee2589bce1"
+        },
+        "HG-0018-S4": {
+          "captured_at": "1790318108",
+          "command": "spec-run --id HG-0018 --check HG-0018-C3",
+          "files": {
+            "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+            "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
+          "scenario": "HG-0018-S4",
+          "scenario_sha256": "3d3d7e301f45fcb7e89f0fd9298e36d5a3ff8db9914b9fb9846e541bdecdb8d4"
+        }
+      },
+      "recorded_at": 1790318273,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0018-S1": {
+          "captured_at": "2026-09-25T06:37:52.720072Z",
+          "command": "independent subagent review highgrade_task_review",
+          "files": {
+            ".github/workflows/verify.yml": "221eddb07b010bd98ae2d60461655751a2eae2a0d1f25e453d4c53c681f33f83",
+            ".highgrade/project/INSTRUCTIONS.md": "eebe7304d29c7d37ec6774ea5c099bcb71944d3f957c37e5379acaefc0196b8c",
+            "AGENTS.md": "14e0b4ec7c86efe3284ace2085f974595a0964c1228f609375d2c8a23170b734",
+            "README.md": "9790ed13b0ec719f1e4f745071dc0a640f1640002aaf79e96e3ef461cef7c01a",
+            "docs/workflow/QUALITY.md": "9dc738594d2c16afb37b09722bb3518378995961ab42bb3a36d1446610491d2e",
+            "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b",
+            "scripts/source-scenarios.mjs": "d198759d9a2cae39094084571f9b90f99453864515aa7d26629faf7ff96011e7",
+            "specs/changes/HG-0018/evidence/manual-review.md": "0d73ae89523a191ad98005bc5a0bbbe3da59d6e9a0d8c1b11a9628cfe651f9bc",
+            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+            "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+          },
+          "method": "manual",
+          "observation": "REVIEW_GO после повторной проверки CI, действующих требований и фикстуры .mycodex; существенных замечаний нет",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0018/evidence/manual-review.md",
+          "scenario": "HG-0018-S1",
+          "scenario_sha256": "18344379ad86f32e48658d249ebefdec42f4cee5302c8c1d79269ddd6487fab0"
+        },
+        "HG-0018-S3": {
+          "captured_at": "1790318108",
+          "command": "spec-run --id HG-0018 --check HG-0018-C3",
+          "files": {
+            "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+            "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
+          "scenario": "HG-0018-S3",
+          "scenario_sha256": "875e05ea93d283305701f0b035ccf0c681e10f48230ae7a09eccedee2589bce1"
+        },
+        "HG-0018-S4": {
+          "captured_at": "1790318108",
+          "command": "spec-run --id HG-0018 --check HG-0018-C3",
+          "files": {
+            "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+            "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
+          "scenario": "HG-0018-S4",
+          "scenario_sha256": "3d3d7e301f45fcb7e89f0fd9298e36d5a3ff8db9914b9fb9846e541bdecdb8d4"
+        }
+      },
+      "recorded_at": 1790318280,
+      "review": null
+    }
+  ],
+  "review": {
+    "change_sha256": "232de5bc5e91edcc16002c43a65bd246152d4f76da79a484c2b8324099cc7105",
+    "conclusion": "REVIEW_GO после исправления CI-валидации JSON и фикстуры .mycodex; подробности в evidence/manual-review.md",
+    "reviewer": "highgrade_task_review",
+    "verdict": "go"
+  },
+  "runs": [
+    {
+      "check": "HG-0018-C3",
+      "check_sha256": "df6416e96b0d2e7b27f7e7d6030ce3fffd1cef75447eb83cff53715cb56c0a27",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "contracts",
+        "default_inspect_uses_only_highgrade_registry",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "specs/changes/HG-0018/evidence/HG-0018-C3-1790317744595451100.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+        "tests/contracts.rs": "f43878e2381bfba60a7b4b766efe292aac1687f7a077e9f21c200986234f8379"
+      },
+      "inputs_after": {
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+        "tests/contracts.rs": "f43878e2381bfba60a7b4b766efe292aac1687f7a077e9f21c200986234f8379"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790317744595451100.log",
+      "started_at": 1790317744
+    },
+    {
+      "check": "HG-0018-C3",
+      "check_sha256": "df6416e96b0d2e7b27f7e7d6030ce3fffd1cef75447eb83cff53715cb56c0a27",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "contracts",
+        "default_inspect_uses_only_highgrade_registry",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "files": {
+        "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+        "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+      },
+      "inputs_after": {
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+        "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
+      "started_at": 1790318108
+    }
+  ]
+}

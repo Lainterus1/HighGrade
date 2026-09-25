@@ -1,0 +1,176 @@
+{
+  "operation": "inspect",
+  "status": "unknown",
+  "findings": [
+    {
+      "code": "BudgetNotAgreed",
+      "location": "README.md",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "AGENTS.md",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "docs/ARCHITECTURE.md",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "docs/ENGINEERING.md",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "docs/DEVELOPMENT.md",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    },
+    {
+      "code": "AreaUnclassified",
+      "location": "evidence",
+      "message": "Область не назначена источнику документации.",
+      "status": "unknown"
+    },
+    {
+      "code": "AreaUnclassified",
+      "location": "legacy",
+      "message": "Область не назначена источнику документации.",
+      "status": "unknown"
+    },
+    {
+      "code": "AreaUnclassified",
+      "location": "specs",
+      "message": "Область не назначена источнику документации.",
+      "status": "unknown"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "context-route",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    }
+  ],
+  "measurements": [
+    {
+      "bytes": 651,
+      "lines": 7,
+      "path": "README.md",
+      "role": "purpose-navigation",
+      "sha256": "12ddce8c679a980380b333bab0b918f3553ce2666c96d558abe2f6a2c3e98a0b",
+      "token_estimate": 100,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 334,
+      "lines": 5,
+      "path": "AGENTS.md",
+      "role": "agent-rules",
+      "sha256": "039c5dec33702701644c3e3b7dbaa6377b2134331276b1b2023a80279f1102e9",
+      "token_estimate": 52,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 1244,
+      "lines": 7,
+      "path": "docs/ARCHITECTURE.md",
+      "role": "current-architecture",
+      "sha256": "038bda3c82c20ffc7f93b3a4b1fd15503119b539feb9a81d83cfbbd11354e500",
+      "token_estimate": 184,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 1207,
+      "lines": 7,
+      "path": "docs/ENGINEERING.md",
+      "role": "engineering-rules",
+      "sha256": "a35b0babdfbd9bdd02a60a3d1ceaee841d0e2b114b8c2e2ed8af7d247814fac1",
+      "token_estimate": 182,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 595,
+      "lines": 9,
+      "path": "docs/DEVELOPMENT.md",
+      "role": "commands-procedures",
+      "sha256": "286177023df483a9ceaea669c6b83f3819717bb228657372d51133e8c3b4ce3b",
+      "token_estimate": 93,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3325,
+      "lines": 22,
+      "path": ".highgrade/project/INSTRUCTIONS.md",
+      "role": "project-adaptation",
+      "sha256": "0c787c5bb2970cbd3ce1e3ff519e52b7abd4d8a045d11930b1f13ec9b80022e5",
+      "token_estimate": 501,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 734,
+      "lines": 3,
+      "path": "ledger/part-b.txt",
+      "role": "source-history",
+      "sha256": "38a1996161b2606a523739c9e0da60f1002315ab61e4adc45db6022529247dd0",
+      "token_estimate": 107,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "required_links": [
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "AGENTS.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/ARCHITECTURE.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/ENGINEERING.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/DEVELOPMENT.md"
+        },
+        {
+          "from": "AGENTS.md",
+          "status": "present",
+          "to": ".highgrade/project/INSTRUCTIONS.md"
+        },
+        {
+          "from": ".highgrade/project/INSTRUCTIONS.md",
+          "status": "present",
+          "to": ".highgrade/project/documents.json"
+        }
+      ]
+    },
+    {
+      "registry": ".highgrade/project/documents.json",
+      "route": [
+        "README.md",
+        "AGENTS.md",
+        "docs/ARCHITECTURE.md",
+        "docs/ENGINEERING.md",
+        "docs/DEVELOPMENT.md",
+        ".highgrade/project/INSTRUCTIONS.md"
+      ],
+      "route_bytes": 7356,
+      "scope": "all-registered"
+    }
+  ],
+  "limitations": [
+    "Структурная проверка, не смысловой аудит. Сеть не использована. История бюджета проверяется внутри записи; изменение согласованной базы требует отдельного сравнения/решения автора.",
+    "Якоря: стандартные Markdown-заголовки, Unicode lowercase; HTML/custom anchors и отдельные диалекты могут требовать ручной проверки. --scope использует явную карту, не граф зависимостей кода."
+  ]
+}

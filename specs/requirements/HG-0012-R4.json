@@ -1,0 +1,14 @@
+{
+  "id": "HG-0012-R4",
+  "title": "Прогресс JSON",
+  "statement": "spec-list вычисляет готовность из задач, сценариев, доказательств и ревью; человеческая приёмка и техническая готовность различаются. Сводка JSON содержит количества без процентов.",
+  "scenarios": [
+    {
+      "id": "HG-0012-S4",
+      "given": "Временная фикстура теста tests/spec_contracts.rs::json_progress_rejects_missing_skipped_unknown_and_negative_review создана с исходными данными указанного случая",
+      "when": "Запросить список до и после изменений и удаления отчёта",
+      "then": "ID/title и счётчики верны; failed/skipped/unknown/stale/no_go не дают ready; отсутствие решения pending; включение не означает принятие",
+      "verification": "Запустить cargo test --locked --test spec_contracts json_progress_rejects_missing_skipped_unknown_and_negative_review -- --exact; проверить фактические утверждения о результате и границах сценария"
+    }
+  ]
+}

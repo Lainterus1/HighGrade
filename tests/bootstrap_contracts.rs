@@ -98,7 +98,7 @@ fn finding(report: &highgrade::Report, code: &str) -> bool {
     report.findings.iter().any(|row| row["code"] == code)
 }
 
-// highgrade: HG-PB-S04, HG-PB-S06, HG-PB-S19
+// highgrade: HG-0009-S4
 #[test]
 fn bootstrap_reports_all_slots_before_registry_exists() {
     let fixture = Fixture::new();
@@ -115,7 +115,7 @@ fn bootstrap_reports_all_slots_before_registry_exists() {
     assert!(!finding(&report, "RegistryMissingOrAmbiguous"));
 }
 
-// highgrade: HG-PB-S15, HG-PB-S18
+// highgrade: HG-0009-S16, HG-0009-S19
 #[test]
 fn canonical_project_has_separate_path_and_link_evidence() {
     let fixture = Fixture::new();
@@ -129,17 +129,25 @@ fn canonical_project_has_separate_path_and_link_evidence() {
         "present"
     );
     assert_eq!(
-        link_status(&report, "README.md", "docs/ARCHITECTURE.md"),
-        "present"
+        report.measurements[0]["required_links"]
+            .as_array()
+            .unwrap()
+            .len(),
+        6
     );
-    assert_eq!(
-        link_status(
-            &report,
+    for (from, to) in [
+        ("README.md", "AGENTS.md"),
+        ("README.md", "docs/ARCHITECTURE.md"),
+        ("README.md", "docs/ENGINEERING.md"),
+        ("README.md", "docs/DEVELOPMENT.md"),
+        ("AGENTS.md", ".highgrade/project/INSTRUCTIONS.md"),
+        (
             ".highgrade/project/INSTRUCTIONS.md",
-            ".highgrade/project/documents.json"
+            ".highgrade/project/documents.json",
         ),
-        "present"
-    );
+    ] {
+        assert_eq!(link_status(&report, from, to), "present", "{from} -> {to}");
+    }
     let connected = highgrade::inspect::inspect(fixture.root(), None, None).unwrap();
     assert_eq!(connected.status, "passed");
     assert!(connected.findings.is_empty());
@@ -165,7 +173,7 @@ fn complete_project_still_checks_exclusion_input_without_walking_tree() {
     assert!(finding(&report, "BootstrapExclusionRegistryInvalid"));
 }
 
-// highgrade: HG-PB-S07
+// highgrade: HG-0009-S7
 #[test]
 fn complete_project_still_reports_missing_navigation_without_candidate_walk() {
     let fixture = Fixture::new();
@@ -219,7 +227,7 @@ fn bundled_templates_match_the_canonical_bootstrap_contract() {
     assert!(!finding(&connected, "RequiredLinkMissingOrInvalid"));
 }
 
-// highgrade: HG-PB-S05, HG-PB-S11
+// highgrade: HG-0009-S5, HG-0009-S11
 #[test]
 fn alternative_name_is_candidate_but_never_accepted_as_role() {
     let fixture = Fixture::new();
@@ -255,7 +263,7 @@ fn alternative_name_is_candidate_but_never_accepted_as_role() {
     );
 }
 
-// highgrade: HG-PB-S08
+// highgrade: HG-0009-S8
 #[test]
 fn migrated_architecture_with_old_readme_link_is_reported() {
     let fixture = Fixture::new();
@@ -275,7 +283,7 @@ fn migrated_architecture_with_old_readme_link_is_reported() {
     assert_eq!(report.status, "failed");
 }
 
-// highgrade: HG-PB-S07, HG-PB-S14
+// highgrade: HG-0009-S15
 #[test]
 fn missing_link_is_distinct_from_missing_file_and_registry_path_mismatch() {
     let fixture = Fixture::new();
@@ -294,14 +302,18 @@ fn missing_link_is_distinct_from_missing_file_and_registry_path_mismatch() {
     assert!(finding(&connected, "RequiredLinkMissingOrInvalid"));
 }
 
-// highgrade: HG-PB-S10
+// highgrade: HG-0009-S10
 #[test]
 fn exclusions_are_safe_and_bad_registry_does_not_hide_candidates() {
     let fixture = Fixture::new();
     fixture.write(".highgrade/project/inventory-exclusions.json", r#"{"schema_version":1,"entries":[{"path":"artifacts","reason":"PRIVATE_REASON_SENTINEL"}]}"#);
     fixture.write("artifacts/ARCHITECTURE.md", "# Generated\n");
-    fixture.write("docs/ARCHITECTURE.md", "# Actual\n");
     let report = bootstrap(fixture.root()).unwrap();
+    assert_eq!(row(&report, "docs/ARCHITECTURE.md")["path_state"], "absent");
+    assert_eq!(
+        row(&report, "docs/ARCHITECTURE.md")["candidate_status"],
+        "not_found_in_scan"
+    );
     assert!(
         report.measurements[0]["exclusions"]
             .as_array()
@@ -327,7 +339,16 @@ fn exclusions_are_safe_and_bad_registry_does_not_hide_candidates() {
             .iter()
             .all(|e| e["path"] != "artifacts")
     );
-    assert!(row(&bad, "docs/ARCHITECTURE.md")["path_state"] == "present");
+    let architecture = row(&bad, "docs/ARCHITECTURE.md");
+    assert_eq!(architecture["path_state"], "absent");
+    assert_eq!(architecture["candidate_status"], "candidate_found");
+    assert!(
+        architecture["candidates"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|candidate| candidate["path"] == "artifacts/ARCHITECTURE.md")
+    );
 }
 
 #[test]
@@ -393,7 +414,7 @@ fn bootstrap_skips_generated_skill_outputs() {
     );
 }
 
-// highgrade: HG-PB-S19
+// highgrade: HG-0009-S20
 #[test]
 fn bootstrap_reports_multiple_unvisited_locations_with_a_count() {
     let fixture = Fixture::new();

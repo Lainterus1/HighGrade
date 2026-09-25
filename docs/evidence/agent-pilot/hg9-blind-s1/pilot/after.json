@@ -1,0 +1,60 @@
+{
+  "captured_at": "2026-09-25T09:57:39.6185200Z",
+  "synthetic_root": "D:\\my_projects\\MyCodex\\target\\agent-pilot\\s1",
+  "installed_release": "v0-2-14",
+  "architecture_before": {
+    "path_state": "absent",
+    "candidate_status": "not_found_in_scan"
+  },
+  "architecture_after": {
+    "path_state": "present",
+    "candidate_status": "not_needed"
+  },
+  "discovered_source": "vault/record-17.txt",
+  "source_sha256": "44b30e89481e53d9e859b7934327d208fb9a69fc3113e7d9b1d64fc483d27f08",
+  "source_preserved": true,
+  "before_readme_sha256": "91927dddf71bc051abb799a5b8080f64d01369a0b92430e6df3876d8be09a9ce",
+  "after_sha256": {
+    "AGENTS.md": "961f3852733129d86304bc2d74c31942f39820cb0aadf165c0821ef0d5d15769",
+    "README.md": "2993db213edb9c0fbdfa7643092f5779c295eb1388c18df9e2fece0c8fd1e29b",
+    "docs/guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+    "docs/ARCHITECTURE.md": "695674489f1d5fa517cc4208ff3beb34b72b2d49f8b29a33ef34ba8baf5e46ef",
+    "vault/record-17.txt": "44b30e89481e53d9e859b7934327d208fb9a69fc3113e7d9b1d64fc483d27f08",
+    "widget.py": "bbe31c1f9a336c2bf0c53da98f2e8858e5ac8996bb7dfb95299c76af5a90c9b3",
+    "test_widget.py": "652ffa39af674be0f2e4b0f24786e51d29ae425c798e39f4e3e8071a383fc1b3"
+  },
+  "unittest": {
+    "command": "python -B -m unittest discover",
+    "exit_code": 0,
+    "raw": "evidence/hg9-blind/unittest.txt",
+    "sha256": "1a52ff93b2b7c8bc576900f70c9062f5baedb573cf55507ec33070c999cd9b12"
+  },
+  "bootstrap_before": {
+    "exit_code": 1,
+    "raw": "evidence/hg9-blind/bootstrap.json"
+  },
+  "bootstrap_after": {
+    "exit_code": 1,
+    "raw": "evidence/hg9-blind/bootstrap-after.json",
+    "status": "failed",
+    "remaining_findings": [
+      "CanonicalPathMissing:docs/ENGINEERING.md",
+      "CanonicalPathMissing:docs/DEVELOPMENT.md",
+      "CanonicalPathMissing:.highgrade/project/INSTRUCTIONS.md",
+      "CanonicalPathMissing:.highgrade/project/documents.json",
+      "RequiredLinkMissingOrInvalid:README.md",
+      "RequiredLinkMissingOrInvalid:README.md",
+      "RequiredLinkMissingOrInvalid:README.md",
+      "RequiredLinkMissingOrInvalid:AGENTS.md"
+    ]
+  },
+  "links": {
+    "raw": "evidence/hg9-blind/links.txt",
+    "all_resolved": true
+  },
+  "limitations": [
+    "Остальные канонические документы, проектная инструкция и реестр остаются отсутствующими.",
+    "Bootstrap проверяет структуру, а не смысл переноса.",
+    "Осмотрены относящиеся к задаче локальные источники s1; внешний переданный before/manifest не читался."
+  ]
+}

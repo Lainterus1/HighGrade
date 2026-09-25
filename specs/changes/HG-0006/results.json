@@ -1,0 +1,1877 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0006-S1": {
+      "captured_at": "2026-09-25T08:05:02.698691+00:00",
+      "command": "local agent pilot on synthetic projects; independent review",
+      "files": {
+        "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+        "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+        "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+        "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+        "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+        "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+        "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+        "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+      },
+      "method": "manual",
+      "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+      "scenario": "HG-0006-S1",
+      "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+    },
+    "HG-0006-S2": {
+      "captured_at": "2026-09-25T08:05:03.966310+00:00",
+      "command": "local agent pilot on synthetic projects; independent review",
+      "files": {
+        "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+        "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+        "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+        "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+        "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+        "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+        "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+        "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+      },
+      "method": "manual",
+      "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+      "scenario": "HG-0006-S2",
+      "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+    },
+    "HG-0006-S3": {
+      "captured_at": "2026-09-25T08:05:05.237387+00:00",
+      "command": "local agent pilot on synthetic projects; independent review",
+      "files": {
+        "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+        "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+        "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+        "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+        "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+        "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+        "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+        "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+        "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+        "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+        "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+        "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+      },
+      "method": "manual",
+      "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+      "scenario": "HG-0006-S3",
+      "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+    },
+    "HG-0006-S4": {
+      "captured_at": "2026-09-25T08:05:06.504548+00:00",
+      "command": "local agent pilot on synthetic projects; independent review",
+      "files": {
+        "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+        "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+        "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+        "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+        "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+        "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+        "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+        "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+        "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+        "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+        "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+        "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+      },
+      "method": "manual",
+      "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+      "scenario": "HG-0006-S4",
+      "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+    },
+    "HG-0006-S5": {
+      "captured_at": "2026-09-25T08:05:07.782951+00:00",
+      "command": "local agent pilot on synthetic projects; independent review",
+      "files": {
+        "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+        "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+        "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+        "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+        "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+        "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+        "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+        "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+      },
+      "method": "manual",
+      "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+      "scenario": "HG-0006-S5",
+      "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+    },
+    "HG-0006-S6": {
+      "captured_at": "2026-09-25T08:05:09.069690+00:00",
+      "command": "local agent pilot on synthetic projects; independent review",
+      "files": {
+        "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+        "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+        "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+        "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+        "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+        "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+        "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+      },
+      "method": "manual",
+      "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+      "scenario": "HG-0006-S6",
+      "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+    },
+    "HG-0006-S7": {
+      "captured_at": "2026-09-25T08:05:10.358978+00:00",
+      "command": "local agent pilot on synthetic projects; independent review",
+      "files": {
+        "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+        "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+        "docs/evidence/agent-pilot/s7-approve-agent-response.md": "02c2b299cf58455eba57c5bbce187d3925e8c95eb6190ff3ef0f746944737e81",
+        "docs/evidence/agent-pilot/s7-approve-show.txt": "a8daca74efc481e98dc6acfa261072fbe28194fd2f6adb86a8f176e6b66b3994",
+        "docs/evidence/agent-pilot/s7-approve-status.txt": "2a42bfd1eca8ec64e8728dbc8c1c234df9a2d73a4d34653c211fb1039dda28fd",
+        "docs/evidence/agent-pilot/s7-approve-tests.txt": "c23efd1549f725d8a3563ec55d5bd7570fba43ce2efe1eb4a0f2d45fb3fa72e2",
+        "kit/procedures/approve.md": "38f8be534bee510f83242d62960cb1c3d276be883841621f343247ce08d44661",
+        "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+        "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+        "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+      },
+      "method": "manual",
+      "observation": "Техническая задача без spec ID принята точным локальным коммитом; scratch остался вне коммита, публикации и активации нет в проверенной области.",
+      "outcome": "passed",
+      "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+      "scenario": "HG-0006-S7",
+      "scenario_sha256": "5092fbd59ed85b1be4537a6d6e9f14af774cb21276ba2c838c8eedb95774c59c"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790323064,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T07:57:44.082959+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        }
+      },
+      "recorded_at": 1790323065,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T07:57:44.082959+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T07:57:45.268704+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        }
+      },
+      "recorded_at": 1790323066,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T07:57:44.082959+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T07:57:45.268704+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T07:57:46.474971+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        }
+      },
+      "recorded_at": 1790323068,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T07:57:44.082959+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T07:57:45.268704+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T07:57:46.474971+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T07:57:47.660563+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        }
+      },
+      "recorded_at": 1790323069,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T07:57:44.082959+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T07:57:45.268704+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T07:57:46.474971+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T07:57:47.660563+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T07:57:48.933023+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        }
+      },
+      "recorded_at": 1790323070,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T07:57:44.082959+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T07:57:45.268704+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T07:57:46.474971+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T07:57:47.660563+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T07:57:48.933023+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        },
+        "HG-0006-S6": {
+          "captured_at": "2026-09-25T07:57:50.153966+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+            "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S6",
+          "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+        }
+      },
+      "recorded_at": 1790323071,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T07:57:44.082959+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T07:57:45.268704+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T07:57:46.474971+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T07:57:47.660563+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T07:57:48.933023+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        },
+        "HG-0006-S6": {
+          "captured_at": "2026-09-25T07:57:50.153966+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+            "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S6",
+          "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+        },
+        "HG-0006-S7": {
+          "captured_at": "2026-09-25T07:57:51.414783+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s7-approve-show.txt": "a8daca74efc481e98dc6acfa261072fbe28194fd2f6adb86a8f176e6b66b3994",
+            "docs/evidence/agent-pilot/s7-approve-status.txt": "2a42bfd1eca8ec64e8728dbc8c1c234df9a2d73a4d34653c211fb1039dda28fd",
+            "kit/procedures/approve.md": "38f8be534bee510f83242d62960cb1c3d276be883841621f343247ce08d44661",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Техническая задача без spec ID принята точным локальным коммитом; scratch остался вне коммита, публикации и активации нет в проверенной области.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S7",
+          "scenario_sha256": "5092fbd59ed85b1be4537a6d6e9f14af774cb21276ba2c838c8eedb95774c59c"
+        }
+      },
+      "recorded_at": 1790323503,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T08:05:02.698691+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T07:57:45.268704+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T07:57:46.474971+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T07:57:47.660563+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T07:57:48.933023+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        },
+        "HG-0006-S6": {
+          "captured_at": "2026-09-25T07:57:50.153966+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+            "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S6",
+          "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+        },
+        "HG-0006-S7": {
+          "captured_at": "2026-09-25T07:57:51.414783+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s7-approve-show.txt": "a8daca74efc481e98dc6acfa261072fbe28194fd2f6adb86a8f176e6b66b3994",
+            "docs/evidence/agent-pilot/s7-approve-status.txt": "2a42bfd1eca8ec64e8728dbc8c1c234df9a2d73a4d34653c211fb1039dda28fd",
+            "kit/procedures/approve.md": "38f8be534bee510f83242d62960cb1c3d276be883841621f343247ce08d44661",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Техническая задача без spec ID принята точным локальным коммитом; scratch остался вне коммита, публикации и активации нет в проверенной области.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S7",
+          "scenario_sha256": "5092fbd59ed85b1be4537a6d6e9f14af774cb21276ba2c838c8eedb95774c59c"
+        }
+      },
+      "recorded_at": 1790323504,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T08:05:02.698691+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T08:05:03.966310+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T07:57:46.474971+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T07:57:47.660563+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T07:57:48.933023+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        },
+        "HG-0006-S6": {
+          "captured_at": "2026-09-25T07:57:50.153966+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+            "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S6",
+          "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+        },
+        "HG-0006-S7": {
+          "captured_at": "2026-09-25T07:57:51.414783+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s7-approve-show.txt": "a8daca74efc481e98dc6acfa261072fbe28194fd2f6adb86a8f176e6b66b3994",
+            "docs/evidence/agent-pilot/s7-approve-status.txt": "2a42bfd1eca8ec64e8728dbc8c1c234df9a2d73a4d34653c211fb1039dda28fd",
+            "kit/procedures/approve.md": "38f8be534bee510f83242d62960cb1c3d276be883841621f343247ce08d44661",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Техническая задача без spec ID принята точным локальным коммитом; scratch остался вне коммита, публикации и активации нет в проверенной области.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S7",
+          "scenario_sha256": "5092fbd59ed85b1be4537a6d6e9f14af774cb21276ba2c838c8eedb95774c59c"
+        }
+      },
+      "recorded_at": 1790323505,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T08:05:02.698691+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T08:05:03.966310+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T08:05:05.237387+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T07:57:47.660563+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T07:57:48.933023+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        },
+        "HG-0006-S6": {
+          "captured_at": "2026-09-25T07:57:50.153966+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+            "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S6",
+          "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+        },
+        "HG-0006-S7": {
+          "captured_at": "2026-09-25T07:57:51.414783+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s7-approve-show.txt": "a8daca74efc481e98dc6acfa261072fbe28194fd2f6adb86a8f176e6b66b3994",
+            "docs/evidence/agent-pilot/s7-approve-status.txt": "2a42bfd1eca8ec64e8728dbc8c1c234df9a2d73a4d34653c211fb1039dda28fd",
+            "kit/procedures/approve.md": "38f8be534bee510f83242d62960cb1c3d276be883841621f343247ce08d44661",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Техническая задача без spec ID принята точным локальным коммитом; scratch остался вне коммита, публикации и активации нет в проверенной области.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S7",
+          "scenario_sha256": "5092fbd59ed85b1be4537a6d6e9f14af774cb21276ba2c838c8eedb95774c59c"
+        }
+      },
+      "recorded_at": 1790323506,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T08:05:02.698691+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T08:05:03.966310+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T08:05:05.237387+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T08:05:06.504548+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T07:57:48.933023+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        },
+        "HG-0006-S6": {
+          "captured_at": "2026-09-25T07:57:50.153966+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+            "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S6",
+          "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+        },
+        "HG-0006-S7": {
+          "captured_at": "2026-09-25T07:57:51.414783+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s7-approve-show.txt": "a8daca74efc481e98dc6acfa261072fbe28194fd2f6adb86a8f176e6b66b3994",
+            "docs/evidence/agent-pilot/s7-approve-status.txt": "2a42bfd1eca8ec64e8728dbc8c1c234df9a2d73a4d34653c211fb1039dda28fd",
+            "kit/procedures/approve.md": "38f8be534bee510f83242d62960cb1c3d276be883841621f343247ce08d44661",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Техническая задача без spec ID принята точным локальным коммитом; scratch остался вне коммита, публикации и активации нет в проверенной области.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S7",
+          "scenario_sha256": "5092fbd59ed85b1be4537a6d6e9f14af774cb21276ba2c838c8eedb95774c59c"
+        }
+      },
+      "recorded_at": 1790323508,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T08:05:02.698691+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T08:05:03.966310+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T08:05:05.237387+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T08:05:06.504548+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T08:05:07.782951+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        },
+        "HG-0006-S6": {
+          "captured_at": "2026-09-25T07:57:50.153966+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+            "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S6",
+          "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+        },
+        "HG-0006-S7": {
+          "captured_at": "2026-09-25T07:57:51.414783+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s7-approve-show.txt": "a8daca74efc481e98dc6acfa261072fbe28194fd2f6adb86a8f176e6b66b3994",
+            "docs/evidence/agent-pilot/s7-approve-status.txt": "2a42bfd1eca8ec64e8728dbc8c1c234df9a2d73a4d34653c211fb1039dda28fd",
+            "kit/procedures/approve.md": "38f8be534bee510f83242d62960cb1c3d276be883841621f343247ce08d44661",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Техническая задача без spec ID принята точным локальным коммитом; scratch остался вне коммита, публикации и активации нет в проверенной области.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S7",
+          "scenario_sha256": "5092fbd59ed85b1be4537a6d6e9f14af774cb21276ba2c838c8eedb95774c59c"
+        }
+      },
+      "recorded_at": 1790323509,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T08:05:02.698691+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T08:05:03.966310+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T08:05:05.237387+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T08:05:06.504548+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T08:05:07.782951+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        },
+        "HG-0006-S6": {
+          "captured_at": "2026-09-25T08:05:09.069690+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+            "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S6",
+          "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+        },
+        "HG-0006-S7": {
+          "captured_at": "2026-09-25T07:57:51.414783+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s7-approve-show.txt": "a8daca74efc481e98dc6acfa261072fbe28194fd2f6adb86a8f176e6b66b3994",
+            "docs/evidence/agent-pilot/s7-approve-status.txt": "2a42bfd1eca8ec64e8728dbc8c1c234df9a2d73a4d34653c211fb1039dda28fd",
+            "kit/procedures/approve.md": "38f8be534bee510f83242d62960cb1c3d276be883841621f343247ce08d44661",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Техническая задача без spec ID принята точным локальным коммитом; scratch остался вне коммита, публикации и активации нет в проверенной области.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S7",
+          "scenario_sha256": "5092fbd59ed85b1be4537a6d6e9f14af774cb21276ba2c838c8eedb95774c59c"
+        }
+      },
+      "recorded_at": 1790323510,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0006-S1": {
+          "captured_at": "2026-09-25T08:05:02.698691+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s1-guide.md": "e29ec2c4f76be42bec394c5188e784bcd420e6d457368307cd6c9ee7e3ad3f62",
+            "docs/evidence/agent-pilot/s1-initial-readme.md": "672df49428f5423795f451e4943c9a33ebaa8a0f7aba5ddf2deeb01cc870fb67",
+            "docs/evidence/agent-pilot/s1-readme.md": "65772979635d01c6816ee16f4676bf3bebaed253a9e02a45293c31d8f15fb7ae",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент выбрал прямой work без новой спеки, исправил ссылку и проверил существование цели.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S1",
+          "scenario_sha256": "fa72414b5c4126e3782ac5d191dc78b7c6bc50ffd671e789dce850ca8e006bed"
+        },
+        "HG-0006-S2": {
+          "captured_at": "2026-09-25T08:05:03.966310+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s2-final.json": "1b5eabf20d10020fef57d9cdc57815ceb44bfe011ebf95ea9b49bbdc7e07feef",
+            "docs/evidence/agent-pilot/s2-plan.md": "4b6a163e4dc3779437020b8c01e400f99f1010e278a740e2df933cbd0bba2edf",
+            "docs/evidence/agent-pilot/s2-test-results.txt": "e9f1ee0dc91088b6f110cef597019327d69ca70103dbeaca049d95dfd8d00bc6",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент провёл зависимый рефакторинг через один технический план, сохранил внешний JSON и результаты; 7 тестов и независимое GO.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S2",
+          "scenario_sha256": "c7ce1cd4744ac09e090eee42983b30a59d99a49df8835d4cbc90112286392f3b"
+        },
+        "HG-0006-S3": {
+          "captured_at": "2026-09-25T08:05:05.237387+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s3-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Новый change создан до правки кода, затем три сценария и 3 теста прошли; промежуточное время spec-save известно из самоотчёта.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S3",
+          "scenario_sha256": "99f0db2946f478e8e12a0c525509a06f1156c340d684c64356e6c8a203229af8"
+        },
+        "HG-0006-S4": {
+          "captured_at": "2026-09-25T08:05:06.504548+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+            "docs/evidence/agent-pilot/s4-test-codec.py.txt": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5",
+            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Регрессия старого контракта воспроизведена, исправлена и проверена 3 тестами; spec/requirement SHA неизменны, human stale.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S4",
+          "scenario_sha256": "c16d4126cdc45d83bfd5aee6eae7988317770431708b56bbac7696e7892e2acb"
+        },
+        "HG-0006-S5": {
+          "captured_at": "2026-09-25T08:05:07.782951+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s5-agent-response.md": "c9573cb475dc20fd591bdf9d224226dd1cbb4067a0f1a6cec15578333934daf1",
+            "docs/evidence/agent-pilot/s5-readme.md": "918c5b0b74f360e332e2a9b642d6b05b3767634dab8ff61fe25af8b425366f17",
+            "docs/evidence/agent-pilot/s5-total.py.txt": "29df3ec927053805d3faadcfdcf98fc8e527375a6b6950a92b9bbe797a3defe5",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Агент не выдумал правило округления, оставил код без изменений и задал существенный вопрос с вариантами.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S5",
+          "scenario_sha256": "93daf19bde08e4ae854dcf16357b3f6e78d8a1984f9b06ec7b3c931a951340a6"
+        },
+        "HG-0006-S6": {
+          "captured_at": "2026-09-25T08:05:09.069690+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s6-store.py.txt": "db8138129281e5e02929ff01ecaa1e9d8f7cf1ec4d082827da09322ffe17115f",
+            "docs/evidence/agent-pilot/s6-test-store.py.txt": "294d82ff9af63773a97a6239368c834ce9249a91643bf1c0035a8a8140bfc200",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "По прежнему правилу сохранности агент исправил запись, воспроизвёл сбои, получил 3/3 теста и независимое GO без новой спеки.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S6",
+          "scenario_sha256": "e6e32e750daa082f45a622e2424c714ca81ff20c49680e6dbe58f00ecc6fbef7"
+        },
+        "HG-0006-S7": {
+          "captured_at": "2026-09-25T08:05:10.358978+00:00",
+          "command": "local agent pilot on synthetic projects; independent review",
+          "files": {
+            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+            "docs/evidence/agent-pilot/s7-approve-agent-response.md": "02c2b299cf58455eba57c5bbce187d3925e8c95eb6190ff3ef0f746944737e81",
+            "docs/evidence/agent-pilot/s7-approve-show.txt": "a8daca74efc481e98dc6acfa261072fbe28194fd2f6adb86a8f176e6b66b3994",
+            "docs/evidence/agent-pilot/s7-approve-status.txt": "2a42bfd1eca8ec64e8728dbc8c1c234df9a2d73a4d34653c211fb1039dda28fd",
+            "docs/evidence/agent-pilot/s7-approve-tests.txt": "c23efd1549f725d8a3563ec55d5bd7570fba43ce2efe1eb4a0f2d45fb3fa72e2",
+            "kit/procedures/approve.md": "38f8be534bee510f83242d62960cb1c3d276be883841621f343247ce08d44661",
+            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+          },
+          "method": "manual",
+          "observation": "Техническая задача без spec ID принята точным локальным коммитом; scratch остался вне коммита, публикации и активации нет в проверенной области.",
+          "outcome": "passed",
+          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+          "scenario": "HG-0006-S7",
+          "scenario_sha256": "5092fbd59ed85b1be4537a6d6e9f14af774cb21276ba2c838c8eedb95774c59c"
+        }
+      },
+      "recorded_at": 1790323582,
+      "review": null
+    }
+  ],
+  "review": {
+    "change_sha256": "3b2d4aa306a76b437ccaf9195bcc6d6b16b13642acc7110333ad458b1570cd9e",
+    "conclusion": "Независимое ревью: сценарии S1–S7 подтверждены синтетическим агентным пилотом и точными локальными артефактами; один проход на случай, без заявления о пользовательской приёмке и публикации.",
+    "reviewer": "local_spec_review",
+    "verdict": "go"
+  },
+  "runs": []
+}

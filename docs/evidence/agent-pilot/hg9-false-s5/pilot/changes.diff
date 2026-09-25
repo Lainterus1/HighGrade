@@ -1,0 +1,117 @@
+--- before/.highgrade/project/documents.json
++++ after/.highgrade/project/documents.json
+@@ -0,0 +1,15 @@
++{
++  "schema_version": 1,
++  "documents": [
++    {"id": "readme", "path": "README.md", "role": "purpose-navigation", "loading": "entry", "scope": [], "budget": null},
++    {"id": "agents", "path": "AGENTS.md", "role": "agent-rules", "loading": "entry", "scope": [], "budget": null},
++    {"id": "architecture", "path": "docs/ARCHITECTURE.md", "role": "current-architecture", "loading": "task", "scope": ["total.py", "orders.json", "ledger/part-b.txt"], "budget": null},
++    {"id": "engineering", "path": "docs/ENGINEERING.md", "role": "engineering-rules", "loading": "task", "scope": ["total.py", "test_total.py", "orders.json"], "budget": null},
++    {"id": "development", "path": "docs/DEVELOPMENT.md", "role": "commands-procedures", "loading": "task", "scope": ["test_total.py"], "budget": null}
++  ],
++  "additional_sources": [
++    {"path": ".highgrade/project/INSTRUCTIONS.md", "role": "project-adaptation", "active": true, "loading": "entry", "scope": [".highgrade/project/documents.json"]},
++    {"path": "ledger/part-b.txt", "role": "source-history", "active": true, "loading": "history", "scope": []}
++  ],
++  "route_budget": null
++}
+--- before/.highgrade/project/INSTRUCTIONS.md
++++ after/.highgrade/project/INSTRUCTIONS.md
+@@ -0,0 +1,22 @@
++---
++highgrade_project_schema: 1
++highgrade_spec_format: native-v1
++---
++
++# Проектная инструкция High Grade
++
++## Назначение и источники
++
++Язык авторских документов и отчётов — русский по [правилам проекта](../../AGENTS.md). Назначение, действующий текст о будущей выгрузке и открытые решения — в [README](../../README.md). Устройство программы — в [ARCHITECTURE](../../docs/ARCHITECTURE.md), инженерные границы — в [ENGINEERING](../../docs/ENGINEERING.md), штатная команда — в [DEVELOPMENT](../../docs/DEVELOPMENT.md). [Исходное описание](../../ledger/part-b.txt) сохранено как источник переноса; `legacy/architecture.md` относится к плану офиса и не является источником архитектуры программы.
++
++`total.py` выполняет локальное вычисление; `orders.json` — синтетическая фикстура. Проверено чтением исходников и теста. Сеть, база данных и служба в обследованной области не обнаружены; область вне этого синтетического проекта не обследовалась.
++
++## Маршрут и проверки
++
++Новые изменения требований веди через нативный каталог High Grade `specs/`. Прежний каталог спецификаций в обследованных файлах не найден, перенос не требуется. Техническое исправление по неизменному контракту выполняй через work. Штатная проверка из корня: `python -B -m unittest discover -v`; раннер `spec-run` не настроен. Наличие теста не означает согласования новых правил округления или выгрузки.
++
++## Открытые решения и полномочия
++
++Правило округления после скидки, разделитель будущего CSV и часовой пояс времени создания не определены. Не заполняй их по текущему примеру или строке фикстуры. Числовые бюджеты документов и маршрута также не согласованы; `null` в [реестре](documents.json) означает открытое решение.
++
++Эта проба разрешает локальную адаптацию только синтетического проекта. Коммит, публикация, глобальное переключение и эксплуатационная активация не разрешены. Установленного приложения или службы в обследованной области нет; местная активация не назначена. Техническое подключение не является пользовательской приёмкой.
+--- before/AGENTS.md
++++ after/AGENTS.md
+@@ -1,3 +1,5 @@
+ # Правила проекта
+ 
+ Пользуйся процедурами High Grade. Язык проекта — русский. Не публикуй проект.
++
++Местные источники и открытые решения указаны в [проектной инструкции](.highgrade/project/INSTRUCTIONS.md).
+--- before/docs/ARCHITECTURE.md
++++ after/docs/ARCHITECTURE.md
+@@ -0,0 +1,7 @@
++# Устройство подсчёта суммы
++
++`total.py` содержит функцию `total(prices, discount)`. Она суммирует входные цены и умножает сумму на `(1 - discount)`. Код не задаёт отдельного правила округления результата; это открытое решение, а не подразумеваемая гарантия текущей реализации.
++
++`orders.json` — локальная синтетическая фикстура заказа с идентификатором, суммой и строкой времени создания. Текущая функция не читает эту фикстуру. В обследованном проекте вычисление локальное: программа не обращается к сети или базе данных.
++
++Действующее исходное [описание устройства](../ledger/part-b.txt) сохранено. Проверка функции описана в [документе разработки](DEVELOPMENT.md); открытые решения отмечены в [инженерных правилах](ENGINEERING.md).
+--- before/docs/DEVELOPMENT.md
++++ after/docs/DEVELOPMENT.md
+@@ -0,0 +1,9 @@
++# Локальная проверка
++
++Проект использует Python и стандартный `unittest`. Из корня проекта выполни:
++
++```powershell
++python -B -m unittest discover -v
++```
++
++Текущий `test_total.py` проверяет один пример функции `total`. Он не устанавливает правило округления, разделитель будущего CSV или часовой пояс. Сетевой сервис и база данных для этой локальной проверки не требуются.
+--- before/docs/ENGINEERING.md
++++ after/docs/ENGINEERING.md
+@@ -0,0 +1,7 @@
++# Инженерные правила и открытые решения
++
++Текущая функция вычисляет `sum(prices) * (1 - discount)`; единственный существующий тест проверяет пример `total([10.0, 5.0], 0.2) == 12.0`. Это проверка текущего поведения, а не согласованное правило округления. Способ округления после скидки **не установлен**; не добавляй его без отдельного решения.
++
++Для будущей выгрузки заказов [README](../README.md) требует время создания. Разделитель CSV и часовой пояс **не установлены**. `orders.json` содержит локальную строку `created_at`, но она не определяет часовой пояс или формат будущей выгрузки.
++
++Изменения этих правил требуют согласованного требования и сценариев; штатная команда проверки приведена в [DEVELOPMENT](DEVELOPMENT.md).
+--- before/README.md
++++ after/README.md
+@@ -3,3 +3,5 @@
+ `total.py` суммирует позиции заказа. Правило округления при скидке пока не установлено.
+ 
+ Будущая выгрузка заказов должна содержать время создания. Формат разделителя CSV и часовой пояс времени пока не установлены.
++
++Документы проекта: [правила агента](AGENTS.md), [устройство](docs/ARCHITECTURE.md), [инженерные правила](docs/ENGINEERING.md), [команды проверки](docs/DEVELOPMENT.md).
+--- before/specs/catalog.json
++++ after/specs/catalog.json
+@@ -0,0 +1,7 @@
++{
++  "schema_version": 3,
++  "next_number": 1,
++  "retired_ids": [],
++  "origins": {},
++  "legacy_sha256": null
++}--- before/specs/README.md
++++ after/specs/README.md
+@@ -0,0 +1,7 @@
++# Спецификации проекта
++
++Данные принадлежат проекту и сохраняются при удалении High Grade.
++`catalog.json` — версия и счётчик; `requirements/` — действующие требования;
++`changes/<ID>/spec.json` — изменение, `results.json` — проверки и решения.
++Записывайте через инструмент с проверкой ожидаемого хеша. При наличии
++`transaction.json` чтение заблокировано до явного `spec-recover`.
+--- before/specs/runners.json
++++ after/specs/runners.json
+@@ -0,0 +1 @@
++{}--- before/specs/tags.json
++++ after/specs/tags.json
+@@ -0,0 +1 @@
++{}

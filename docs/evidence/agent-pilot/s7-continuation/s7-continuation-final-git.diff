@@ -1,0 +1,68 @@
+diff --git a/README.md b/README.md
+index 7f88b28..5e81ea0 100644
+--- a/README.md
++++ b/README.md
+@@ -1,6 +1,6 @@
+ # Счётчик заказов
+ 
+-Учебный проект считает заказы: `count_orders` получает список заказов и возвращает их количество. Пустой список даёт `0`. Серверного развёртывания у примера нет.
++Учебный проект считает уникальные заказы: `count_orders` получает список строковых ID и возвращает число различных ID. Повтор одного ID учитывается один раз, пустой список даёт `0`. Серверного развёртывания у примера нет.
+ 
+ Документы проекта: [правила агента](AGENTS.md), [устройство](docs/ARCHITECTURE.md), [инженерные соглашения](docs/ENGINEERING.md), [подготовка и проверки](docs/DEVELOPMENT.md). [Обзор](docs/overview.md) указывает на разделённые документы. Отдельная [инструкция по передаче](docs/deployment-guide.md) сохранена.
+ 
+diff --git a/counter.py b/counter.py
+index c986f9e..9f0f6fb 100644
+--- a/counter.py
++++ b/counter.py
+@@ -1,2 +1,2 @@
+ def count_orders(orders: list[str]) -> int:
+-    return len(orders)
++    return len(set(orders))
+diff --git a/docs/ARCHITECTURE.md b/docs/ARCHITECTURE.md
+index 2c0daec..7e9b836 100644
+--- a/docs/ARCHITECTURE.md
++++ b/docs/ARCHITECTURE.md
+@@ -1,5 +1,5 @@
+ # Действующее устройство
+ 
+-`counter.py` содержит функцию `count_orders`. Она получает список заказов и возвращает длину списка. Пустой список даёт `0`. Слой хранения в этой учебной системе отсутствует.
++`counter.py` содержит функцию `count_orders`. Она получает список строковых ID заказов и возвращает число различных ID. Повторы учитываются один раз, пустой список даёт `0`. Слой хранения в этой учебной системе отсутствует.
+ 
+ Инвариант неотрицательного результата закреплён в [правилах проекта](../AGENTS.md) и применяется при изменениях по [инженерным соглашениям](ENGINEERING.md). Тесты находятся в `test_counter.py`; команда запуска приведена в [документе разработки](DEVELOPMENT.md). Каталог изменений требований — `../specs/`.
+diff --git a/docs/DEVELOPMENT.md b/docs/DEVELOPMENT.md
+index 45c7b86..0bc5046 100644
+--- a/docs/DEVELOPMENT.md
++++ b/docs/DEVELOPMENT.md
+@@ -8,6 +8,6 @@
+ python -m unittest discover
+ ```
+ 
+-Ожидаемый результат для текущего `test_counter.py` — два успешных теста: пустой список возвращает `0`, список из двух заказов возвращает `2`. Изменения поведения проверяются в этом файле; инвариант результата приведён в [инженерных соглашениях](ENGINEERING.md). Независимая [инструкция по передаче](deployment-guide.md) описывает передачу исходных файлов другому разработчику.
++Ожидаемый результат для текущего `test_counter.py` — три успешных теста: пустой список возвращает `0`, два разных ID дают `2`, а повторный ID не увеличивает счёт. Изменения поведения проверяются в этом файле; инвариант результата приведён в [инженерных соглашениях](ENGINEERING.md). Независимая [инструкция по передаче](deployment-guide.md) описывает передачу исходных файлов другому разработчику.
+ 
+ Каталог спецификаций High Grade — `../specs/`. При работе с требованиями используй `spec-list --root <абсолютный путь к проекту>` и выборочный `spec-read`. Штатный тест запускается напрямую приведённой командой; раннер High Grade для него не настроен.
+diff --git a/specs/catalog.json b/specs/catalog.json
+index 4d8dd87..b46e76d 100644
+--- a/specs/catalog.json
++++ b/specs/catalog.json
+@@ -1,6 +1,6 @@
+ {
+   "schema_version": 3,
+-  "next_number": 1,
++  "next_number": 2,
+   "retired_ids": [],
+   "origins": {},
+   "legacy_sha256": null
+diff --git a/test_counter.py b/test_counter.py
+index cec390d..6088992 100644
+--- a/test_counter.py
++++ b/test_counter.py
+@@ -9,3 +9,8 @@ class CounterTests(unittest.TestCase):
+ 
+     def test_two(self):
+         self.assertEqual(count_orders(["a", "b"]), 2)
++
++    def test_unique_order_ids(self):
++        """HG-0001-S1: повторный ID обозначает тот же заказ."""
++        self.assertEqual(count_orders(["a", "b", "a", "a"]), 2)
++        self.assertEqual(count_orders(["a", "a"]), 1)

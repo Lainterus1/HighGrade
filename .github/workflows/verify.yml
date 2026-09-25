@@ -2,7 +2,12 @@ name: Verify source
 
 on:
   push:
+    branches: [main]
   pull_request:
+
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -17,12 +22,23 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target/debug
+            target/release
+          key: ${{ runner.os }}-rust-v1-${{ hashFiles('Cargo.lock', 'Cargo.toml') }}
       - name: Check release build lifecycle
         run: python -m unittest discover -s scripts/tests -v
       - name: Check format
         run: cargo fmt --all -- --check
       - name: Install native Rust test reporter
-        run: cargo install cargo-nextest --version 0.9.146 --locked
+        uses: taiki-e/install-action@v2
+        with:
+          tool: nextest@0.9.146
+          fallback: none
       - name: Test and verify kit hashes
         run: |
           New-Item -ItemType Directory -Force target/nextest/highgrade | Out-Null
@@ -30,8 +46,18 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           cargo nextest run --locked --profile highgrade
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Validate active specifications
+        run: |
+          $catalog = target/debug/highgrade.exe spec-list --root "$PWD" | ConvertFrom-Json
+          if ($LASTEXITCODE -ne 0 -or $catalog.status -ne 'passed') { throw 'spec-list failed' }
+          foreach ($change in ($catalog.measurements[0].changes | Where-Object { $_.technical -ne 'abandoned' })) {
+            $validation = target/debug/highgrade.exe spec-validate --root "$PWD" --id $change.id | ConvertFrom-Json
+            if ($LASTEXITCODE -ne 0 -or $validation.status -ne 'passed') { throw "spec-validate failed: $($change.id)" }
+          }
       - name: Verify executable scenario links
         run: |
+          node scripts/source-scenarios.mjs check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           node scripts/source-scenarios.mjs prepare
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           target/debug/highgrade.exe trace --root "$PWD" --record target/nextest/highgrade/run.json | Set-Content -Encoding utf8 target/nextest/highgrade/trace.json
@@ -49,12 +75,3 @@ jobs:
           $report = target/debug/highgrade.exe inspect --root "$PWD" | ConvertFrom-Json
           if ($LASTEXITCODE -notin @(0, 2)) { exit $LASTEXITCODE }
           if ($report.findings | Where-Object { $_.status -in @('failed', 'unknown') }) { throw 'inspect found failed or unknown project context' }
-      - name: Validate OpenSpec
-        env:
-          OPENSPEC_TELEMETRY: '0'
-        run: |
-          npm.cmd install -g @fission-ai/openspec@1.13.1
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          openspec.cmd validate --all --strict --no-interactive
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          Get-ChildItem openspec/changes -Directory | Where-Object Name -ne 'archive' | ForEach-Object { openspec.cmd validate $_.Name --strict --no-interactive; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }

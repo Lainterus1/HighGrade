@@ -1,0 +1,39 @@
+--- before/test_store.py
++++ after/test_store.py
+@@ -25,6 +25,19 @@
+             self.assertEqual(path.read_bytes(), original)
+             self.assertEqual(list(Path(directory).iterdir()), [path])
+ 
++    def test_invalid_data_preserves_existing_file(self):
++        """HG-0010-S6: невалидные данные не меняют прежние байты."""
++        with tempfile.TemporaryDirectory() as directory:
++            path = Path(directory) / "settings.json"
++            original = b' \t{ "theme": "light" }\r\n'
++            path.write_bytes(original)
++
++            with self.assertRaises(TypeError):
++                save(path, {"theme": object()})
++
++            self.assertEqual(path.read_bytes(), original)
++            self.assertEqual(list(Path(directory).iterdir()), [path])
++
+     def test_replace_failure_preserves_existing_file(self):
+         with tempfile.TemporaryDirectory() as directory:
+             path = Path(directory) / "settings.json"
+--- before/docs/ENGINEERING.md
++++ after/docs/ENGINEERING.md
+@@ -1,5 +1,5 @@
+ # Инженерные соглашения
+ 
+-При изменении сохранения настроек соблюдай [действующее правило сохранности](../README.md): ошибка записи или замены не меняет байты прежнего `settings.json`. `test_store.py` проверяет ошибку после записи во временный файл, ошибку `os.replace` и удаление временного файла в обоих случаях.
++При изменении сохранения настроек соблюдай [действующее правило сохранности](../README.md): ошибка сохранения не меняет байты прежнего `settings.json`. `test_store.py` проверяет невалидный ввод, ошибку после записи во временный файл, ошибку `os.replace` и удаление временного файла при ошибках записи и замены.
+ 
+ Штатный тест запускается по [инструкции разработки](DEVELOPMENT.md). Другие правила формата, эксплуатации и совместимости для этого синтетического проекта не установлены; не выводи их из текущей реализации.
+--- before/docs/DEVELOPMENT.md
++++ after/docs/DEVELOPMENT.md
+@@ -6,4 +6,4 @@
+ python -B -m unittest -v
+ ```
+ 
+-`test_store.py` содержит три теста: успешная запись JSON, сохранение прежних байтов при ошибке записи и при ошибке замены. Эти тесты проверяют локальное поведение `store.py`; они не подтверждают работу внешнего сервиса или восстановление после сбоя питания. Действующее правило и устройство приведены в [README](../README.md) и [архитектуре](ARCHITECTURE.md).
++`test_store.py` содержит четыре теста: успешная запись JSON, отказ для невалидного ввода с сохранением прежних байтов, сохранение прежних байтов при ошибке записи и при ошибке замены. Эти тесты проверяют локальное поведение `store.py`; они не подтверждают работу внешнего сервиса или восстановление после сбоя питания. Действующее правило и устройство приведены в [README](../README.md) и [архитектуре](ARCHITECTURE.md).

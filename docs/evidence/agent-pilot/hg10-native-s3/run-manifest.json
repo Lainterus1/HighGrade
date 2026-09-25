@@ -1,0 +1,79 @@
+{
+  "captured_at": "2026-09-25T09:16:01.303969+00:00",
+  "synthetic_root": "D:\\my_projects\\MyCodex\\target\\agent-pilot\\s3",
+  "python_executable": "D:\\Progs\\Python3.12\\python.exe",
+  "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "inputs_sha256": {
+    "AGENTS.md": "93ff52d1395a3cd37f4e699d4eea8d0636a3bc8817b6a80b060b8d9b2cf82b31",
+    "README.md": "12aa2116b4e6818f946c755583ac92c0b4c98e772752674c92429e665b91d410",
+    "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+    "test_codec.py": "d26382cd92fc47791333f06dfe5a67311c8b4f99638c4698783bbdde38ba0d18",
+    "specs/changes/HG-0001/spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+    "specs/changes/HG-0001/results.json": "4599bd1fdef2f11e6ec75aca18280b46b3546deb576c194179bd7a7e2315fe52"
+  },
+  "final_sha256": {
+    "AGENTS.md": "93ff52d1395a3cd37f4e699d4eea8d0636a3bc8817b6a80b060b8d9b2cf82b31",
+    "README.md": "12aa2116b4e6818f946c755583ac92c0b4c98e772752674c92429e665b91d410",
+    "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+    "test_codec.py": "d26382cd92fc47791333f06dfe5a67311c8b4f99638c4698783bbdde38ba0d18",
+    "specs/changes/HG-0001/spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+    "specs/changes/HG-0001/results.json": "4599bd1fdef2f11e6ec75aca18280b46b3546deb576c194179bd7a7e2315fe52"
+  },
+  "final_diff_empty": true,
+  "HG-0010-S7": {
+    "native_unittest": {
+      "command": [
+        "D:\\Progs\\Python3.12\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_codec"
+      ],
+      "cwd": "D:\\my_projects\\MyCodex\\target\\agent-pilot\\s3",
+      "exit_code": 0,
+      "report": "evidence/hg10-native/s7-native-unittest.txt",
+      "report_sha256": "43bc4b3d0932cea256b731c4aa0feb04be5ee4905ab3ff6f49181fca6d6a5032",
+      "test_codec_sha256": "d26382cd92fc47791333f06dfe5a67311c8b4f99638c4698783bbdde38ba0d18",
+      "codec_sha256": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+      "finished_at": "2026-09-25T09:16:01.214948+00:00"
+    },
+    "linked_scenarios": [
+      "HG-0001-S1",
+      "HG-0001-S2",
+      "HG-0001-S3"
+    ],
+    "observation": "All three named tests executed and passed in the raw native report.",
+    "trace_status": "unknown",
+    "trace_limit": "Native unittest output is not a supported trace run-record; trace was not run and no trace PASS is claimed."
+  },
+  "HG-0010-S8": {
+    "native_unittest": {
+      "command": [
+        "D:\\Progs\\Python3.12\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_codec"
+      ],
+      "cwd": "D:\\my_projects\\MyCodex\\target\\agent-pilot\\s3",
+      "exit_code": 0,
+      "report": "evidence/hg10-native/s8-skipped-unittest.txt",
+      "report_sha256": "e2c570f487c567dce8b1a1cc262c09655d36a18ae930c8f3ecdf63cebc668b96",
+      "test_codec_sha256": "dd3dfce9c1bbfaec58e6de71e404176dbd0fe117eb97b55311a9de3ac8c3d711",
+      "codec_sha256": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+      "finished_at": "2026-09-25T09:16:01.300046+00:00"
+    },
+    "skipped_scenario": "HG-0001-S1",
+    "scenario_status": "unknown",
+    "reason": "test_v2 was skipped; suite exit code 0 does not verify HG-0001-S1.",
+    "temporary_test_sha256": "dd3dfce9c1bbfaec58e6de71e404176dbd0fe117eb97b55311a9de3ac8c3d711",
+    "restored_test_sha256": "d26382cd92fc47791333f06dfe5a67311c8b4f99638c4698783bbdde38ba0d18"
+  },
+  "files": {
+    "journal": "evidence/hg10-native/actions.jsonl",
+    "temporary_diff": "evidence/hg10-native/temporary-test.diff",
+    "final_diff": "evidence/hg10-native/final-vs-before.diff"
+  }
+}

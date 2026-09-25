@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "documents": [
+    {"id":"readme","path":"README.md","role":"purpose-navigation","loading":"entry","scope":[],"budget":null},
+    {"id":"agents","path":"AGENTS.md","role":"agent-rules","loading":"entry","scope":[],"budget":null},
+    {"id":"architecture","path":"docs/ARCHITECTURE.md","role":"current-architecture","loading":"task","scope":["discount.py","quote.py","receipt.py","order_model.py","order_loader.py","order_report.py","orders.json"],"budget":null},
+    {"id":"engineering","path":"docs/ENGINEERING.md","role":"engineering-rules","loading":"task","scope":["test_totals.py","test_order_report.py"],"budget":null},
+    {"id":"development","path":"docs/DEVELOPMENT.md","role":"commands-procedures","loading":"task","scope":["test-results.txt"],"budget":null}
+  ],
+  "additional_sources": [
+    {"path":".highgrade/project/INSTRUCTIONS.md","role":"project-adaptation","active":true,"loading":"entry","scope":[".highgrade/project/documents.json"]},
+    {"path":"docs/test-strategy.md","role":"test-selection","active":true,"loading":"task","scope":[]},
+    {"path":"docs/project-guide.md","role":"legacy-navigation","active":true,"loading":"history","scope":[]},
+    {"path":"PLAN.md","role":"completed-technical-plan","active":true,"loading":"history","scope":[]},
+    {"path":"specs/README.md","role":"specification-store","active":true,"loading":"task","scope":["specs"]},
+    {"path":"evidence/hg9-a/agent-audit-plan.md","role":"pilot-evidence","active":true,"loading":"history","scope":["evidence"]}
+  ],
+  "route_budget": null
+}

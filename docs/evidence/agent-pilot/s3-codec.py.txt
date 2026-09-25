@@ -1,0 +1,5 @@
+def parse_version(message: str) -> str:
+    version, _, payload = message.partition(":")
+    if version not in {"v1", "v2"} or not payload:
+        raise ValueError("unsupported message")
+    return payload

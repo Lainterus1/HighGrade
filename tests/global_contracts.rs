@@ -71,7 +71,7 @@ fn candidate() -> PathBuf {
     copy_tree(&source(), &dst);
     let manifest_path = dst.join("manifest.json");
     let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
-    manifest["release"] = json!("v0-2-15");
+    manifest["release"] = json!("v0-2-16");
     let rules = dst.join("rules.md");
     write(&rules, b"# New shared rules\n");
     manifest["files"]["rules.md"] = json!(hash(&fs::read(&rules).unwrap()));
@@ -81,7 +81,7 @@ fn candidate() -> PathBuf {
     );
     dst
 }
-// highgrade: HG-PD-S01
+// highgrade: HG-0010-S1
 #[test]
 fn installed_runtime_references_survive_removal_of_source_copy() {
     let copied = temp();
@@ -133,7 +133,7 @@ fn installed_runtime_references_survive_removal_of_source_copy() {
     assert_eq!(global::status(&profile).unwrap().status, "passed");
 }
 
-// highgrade: HG-PD-S05
+// highgrade: HG-0010-S4
 #[test]
 fn shipped_registry_example_is_accepted_without_inventing_budgets() {
     let profile = temp();
@@ -241,9 +241,9 @@ fn global_install_does_not_touch_project_and_checks_adapter() {
     );
 }
 
-// highgrade: HG-TR-S01
+// highgrade: HG-0015-S1
 #[test]
-fn doctor_keeps_unavailable_openspec_version_unknown() {
+fn doctor_reports_unavailable_tool_without_claiming_version() {
     let project = temp();
     let output = Command::new(env!("CARGO_BIN_EXE_highgrade"))
         .args(["doctor", "--root", project.to_str().unwrap()])
@@ -252,21 +252,22 @@ fn doctor_keeps_unavailable_openspec_version_unknown() {
         .unwrap();
     assert_eq!(output.status.code(), Some(2));
     let report: Value = serde_json::from_slice(&output.stdout).unwrap();
-    let openspec = report["measurements"]
+    let tool = report["measurements"]
         .as_array()
         .unwrap()
         .iter()
-        .find(|entry| entry["tool"] == "openspec")
+        .find(|entry| entry["tool"] == "cargo")
         .unwrap();
-    assert_eq!(openspec["found_in_path"], false);
-    assert_eq!(openspec["executed"], false);
-    assert_eq!(openspec["version"], Value::Null);
+    assert_eq!(tool["found_in_path"], false);
+    assert_eq!(tool["executed"], false);
+    assert_eq!(tool["version"], Value::Null);
     assert!(report["findings"].as_array().unwrap().iter().any(|entry| {
         entry["code"] == "DependencyMissing"
-            && entry["location"] == "openspec"
+            && entry["location"] == "cargo"
             && entry["status"] == "unknown"
     }));
 }
+// highgrade: HG-0011-S9
 #[test]
 fn global_update_preview_switch_and_cleanup_keep_unrelated_files() {
     let profile = temp();
@@ -277,7 +278,7 @@ fn global_update_preview_switch_and_cleanup_keep_unrelated_files() {
     assert_eq!(preview.status, "unknown");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-14"
+        "v0-2-15"
     );
     let preview_hash = preview.measurements[0]["candidate_sha256"]
         .as_str()
@@ -322,17 +323,17 @@ fn global_update_preview_switch_and_cleanup_keep_unrelated_files() {
     assert_eq!(applied.status, "passed");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-15"
+        "v0-2-16"
     );
-    assert!(!profile.join(".highgrade/global/releases/v0-2-14").exists());
+    assert!(!profile.join(".highgrade/global/releases/v0-2-15").exists());
     assert_eq!(fs::read(profile.join("personal.txt")).unwrap(), b"keep");
 }
-// highgrade: HG-RW-S12
+// highgrade: HG-0011-S10
 #[test]
 fn update_preserves_foreign_file_in_old_release() {
     let profile = temp();
     global::install(&profile, &source(), &exe()).unwrap();
-    let foreign = profile.join(".highgrade/global/releases/v0-2-14/personal.txt");
+    let foreign = profile.join(".highgrade/global/releases/v0-2-15/personal.txt");
     write(&foreign, b"keep");
     let next = candidate();
     let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
@@ -349,18 +350,18 @@ fn update_preserves_foreign_file_in_old_release() {
             .any(|finding| finding["code"] == "OldReleaseCleanupPending")
     );
     assert_eq!(fs::read(&foreign).unwrap(), b"keep");
-    let old_release = profile.join(".highgrade/global/releases/v0-2-14");
+    let old_release = profile.join(".highgrade/global/releases/v0-2-15");
     assert!(old_release.join("journal.json").exists());
     assert!(!old_release.join("rules.md").exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-15"
+        "v0-2-16"
     );
     fs::remove_file(&foreign).unwrap();
     let following = candidate();
     let manifest_path = following.join("manifest.json");
     let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
-    manifest["release"] = json!("v0-2-16");
+    manifest["release"] = json!("v0-2-17");
     write(
         &manifest_path,
         &serde_json::to_vec_pretty(&manifest).unwrap(),
@@ -452,12 +453,11 @@ fn legacy_deploy_migrates_to_approve_push_and_cleans_old_release() {
     assert!(!legacy.exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-14"
+        "v0-2-15"
     );
     assert!(!profile.join(".highgrade/global/releases/v0-2-5").exists());
     assert_ne!(fs::read(&approve).unwrap(), original);
 }
-// highgrade: HG-RW-S07
 #[test]
 fn v026_deploy_migrates_to_two_routes_and_removes_old_release() {
     let profile = deploy_profile();
@@ -481,7 +481,7 @@ fn v026_deploy_migrates_to_two_routes_and_removes_old_release() {
     assert!(!old.exists());
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-14"
+        "v0-2-15"
     );
     assert!(!profile.join(".highgrade/global/releases/v0-2-6").exists());
 }
@@ -521,7 +521,7 @@ fn locked_v026_router_is_inactive_after_switch() {
             .is_file()
     );
     let status = global::status(&profile).unwrap();
-    assert_eq!(status.measurements[0]["release"], "v0-2-14");
+    assert_eq!(status.measurements[0]["release"], "v0-2-15");
     assert!(
         status
             .findings
@@ -720,7 +720,7 @@ fn six_skill_release_preserves_owned_crlf_routers() {
     assert_eq!(fs::read(&init).unwrap(), old_bytes);
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-14"
+        "v0-2-15"
     );
     assert!(!profile.join(".highgrade/global/releases/v0-2-1").exists());
 }
@@ -754,7 +754,7 @@ fn six_skill_release_updates_to_approve_push_and_cleans_old_release() {
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-14"
+        "v0-2-15"
     );
     assert!(approve.is_file());
     assert!(push.is_file());
@@ -763,7 +763,7 @@ fn six_skill_release_updates_to_approve_push_and_cleans_old_release() {
 #[test]
 fn failed_stage_does_not_leave_new_routers() {
     let profile = six_skill_profile();
-    let blocked = profile.join(".highgrade/global/releases/v0-2-14/rules.md");
+    let blocked = profile.join(".highgrade/global/releases/v0-2-15/rules.md");
     write(&blocked, b"foreign content");
     let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
@@ -804,13 +804,13 @@ fn failed_stage_does_not_leave_new_routers() {
     .unwrap();
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-14"
+        "v0-2-15"
     );
 }
 #[test]
 fn failed_stage_preserves_foreign_candidate_journal() {
     let profile = six_skill_profile();
-    let foreign = profile.join(".highgrade/global/releases/v0-2-14/journal.json");
+    let foreign = profile.join(".highgrade/global/releases/v0-2-15/journal.json");
     write(&foreign, b"foreign journal");
     let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
@@ -899,7 +899,7 @@ fn global_install_rejects_hash_and_foreign_router_without_activation() {
     );
     assert!(!profile.join(".highgrade/global/active.json").exists());
 }
-// highgrade: HG-PD-S10
+// highgrade: HG-0010-S10
 #[test]
 fn supported_adapter_does_not_claim_semantic_readiness() {
     let project = temp();
@@ -918,7 +918,7 @@ fn supported_adapter_does_not_claim_semantic_readiness() {
     assert_eq!(instruction["schema_version"], 1);
 }
 
-// highgrade: HG-PD-S12
+// highgrade: HG-0010-S12
 #[test]
 fn global_update_preserves_project_adaptation_in_profile() {
     let profile = temp();
@@ -939,12 +939,12 @@ fn global_update_preserves_project_adaptation_in_profile() {
     assert_eq!(updated.status, "passed");
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
-        "v0-2-15"
+        "v0-2-16"
     );
     assert_eq!(fs::read(adapter).unwrap(), bytes);
 }
 
-// highgrade: HG-PD-S11
+// highgrade: HG-0010-S11
 #[test]
 fn unsupported_project_adapter_is_a_failure() {
     let project = temp();

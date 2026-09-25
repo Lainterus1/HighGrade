@@ -1,0 +1,406 @@
+{
+  "acceptance": [
+    {
+      "change_sha256": "f4a4a9d24196a067c129ab944de454191150da5f1372377eb8c8aa39a544aa53",
+      "comment": "Synthetic fixture acceptance before regression",
+      "decided_at": 1790321317,
+      "decided_by": "synthetic-owner",
+      "decision": "accepted",
+      "inputs_sha256": "3efac8083b3b5d7dddfd1999fe62bcf8423e120a8c82b76ef6c8fffabb347fbb",
+      "verified_revision": "synthetic-build-a6a49bba8ac352a5"
+    }
+  ],
+  "evidence": {
+    "HG-0001-S1": {
+      "captured_at": "2026-09-25T07:31:08.2206070Z",
+      "command": "python -B -m unittest -v test_codec",
+      "files": {
+        "codec.py": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+        "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+        "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+      },
+      "method": "native_report",
+      "observation": "test_v2 выполнен: v2:текст возвращает текст; общий прогон завершился OK, 3 теста.",
+      "outcome": "passed",
+      "report": "evidence/test-run.txt",
+      "scenario": "HG-0001-S1",
+      "scenario_sha256": "9617e9b14c6983ff22c607aad87112135e1813e843e56f95443b8050153a5da9"
+    },
+    "HG-0001-S2": {
+      "captured_at": "2026-09-25T07:31:08.2206070Z",
+      "command": "python -B -m unittest -v test_codec",
+      "files": {
+        "codec.py": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+        "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+        "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+      },
+      "method": "native_report",
+      "observation": "test_v1 выполнен: v1:hello возвращает hello; общий прогон завершился OK, 3 теста.",
+      "outcome": "passed",
+      "report": "evidence/test-run.txt",
+      "scenario": "HG-0001-S2",
+      "scenario_sha256": "e058343dbbc6697f0f8d139475cc4c880fed1806e7f17552c7aaf88cfa011a6f"
+    },
+    "HG-0001-S3": {
+      "captured_at": "2026-09-25T07:31:08.2206070Z",
+      "command": "python -B -m unittest -v test_codec",
+      "files": {
+        "codec.py": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+        "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+        "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+      },
+      "method": "native_report",
+      "observation": "test_unknown выполнен: v3:hello вызывает ValueError; общий прогон завершился OK, 3 теста.",
+      "outcome": "passed",
+      "report": "evidence/test-run.txt",
+      "scenario": "HG-0001-S3",
+      "scenario_sha256": "a51eeafa90d4ac653e84450ea6a10bf7d3a78551ce8950b1a539d6a47b217fba"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790320820,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0001-S1": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v2 выполнен: v2:текст возвращает текст; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S1",
+          "scenario_sha256": "9617e9b14c6983ff22c607aad87112135e1813e843e56f95443b8050153a5da9"
+        }
+      },
+      "recorded_at": 1790320820,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0001-S1": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v2 выполнен: v2:текст возвращает текст; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S1",
+          "scenario_sha256": "9617e9b14c6983ff22c607aad87112135e1813e843e56f95443b8050153a5da9"
+        },
+        "HG-0001-S2": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v1 выполнен: v1:hello возвращает hello; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S2",
+          "scenario_sha256": "e058343dbbc6697f0f8d139475cc4c880fed1806e7f17552c7aaf88cfa011a6f"
+        }
+      },
+      "recorded_at": 1790320820,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0001-S1": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v2 выполнен: v2:текст возвращает текст; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S1",
+          "scenario_sha256": "9617e9b14c6983ff22c607aad87112135e1813e843e56f95443b8050153a5da9"
+        },
+        "HG-0001-S2": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v1 выполнен: v1:hello возвращает hello; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S2",
+          "scenario_sha256": "e058343dbbc6697f0f8d139475cc4c880fed1806e7f17552c7aaf88cfa011a6f"
+        },
+        "HG-0001-S3": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_unknown выполнен: v3:hello вызывает ValueError; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S3",
+          "scenario_sha256": "a51eeafa90d4ac653e84450ea6a10bf7d3a78551ce8950b1a539d6a47b217fba"
+        }
+      },
+      "recorded_at": 1790320981,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0001-S1": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v2 выполнен: v2:текст возвращает текст; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S1",
+          "scenario_sha256": "9617e9b14c6983ff22c607aad87112135e1813e843e56f95443b8050153a5da9"
+        },
+        "HG-0001-S2": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v1 выполнен: v1:hello возвращает hello; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S2",
+          "scenario_sha256": "e058343dbbc6697f0f8d139475cc4c880fed1806e7f17552c7aaf88cfa011a6f"
+        },
+        "HG-0001-S3": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_unknown выполнен: v3:hello вызывает ValueError; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S3",
+          "scenario_sha256": "a51eeafa90d4ac653e84450ea6a10bf7d3a78551ce8950b1a539d6a47b217fba"
+        }
+      },
+      "recorded_at": 1790321510,
+      "review": {
+        "change_sha256": "f4a4a9d24196a067c129ab944de454191150da5f1372377eb8c8aa39a544aa53",
+        "conclusion": "REVIEW_GO: код, три сценария и исходный отчёт проверены; python -B -m unittest -v test_codec: 3 теста, OK. Каталог исключён из Git; границы сверены с переданным исходным снимком, без Git diff/SHA.",
+        "reviewer": "независимый субагент review_s3",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0001-S1": {
+          "captured_at": "2026-09-25T07:31:08.2206070Z",
+          "command": "python -B -m unittest -v test_codec",
+          "files": {
+            "codec.py": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v2 выполнен: v2:текст возвращает текст; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S1",
+          "scenario_sha256": "9617e9b14c6983ff22c607aad87112135e1813e843e56f95443b8050153a5da9"
+        },
+        "HG-0001-S2": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v1 выполнен: v1:hello возвращает hello; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S2",
+          "scenario_sha256": "e058343dbbc6697f0f8d139475cc4c880fed1806e7f17552c7aaf88cfa011a6f"
+        },
+        "HG-0001-S3": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_unknown выполнен: v3:hello вызывает ValueError; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S3",
+          "scenario_sha256": "a51eeafa90d4ac653e84450ea6a10bf7d3a78551ce8950b1a539d6a47b217fba"
+        }
+      },
+      "recorded_at": 1790321525,
+      "review": {
+        "change_sha256": "f4a4a9d24196a067c129ab944de454191150da5f1372377eb8c8aa39a544aa53",
+        "conclusion": "REVIEW_GO: код, три сценария и исходный отчёт проверены; python -B -m unittest -v test_codec: 3 теста, OK. Каталог исключён из Git; границы сверены с переданным исходным снимком, без Git diff/SHA.",
+        "reviewer": "независимый субагент review_s3",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0001-S1": {
+          "captured_at": "2026-09-25T07:31:08.2206070Z",
+          "command": "python -B -m unittest -v test_codec",
+          "files": {
+            "codec.py": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v2 выполнен: v2:текст возвращает текст; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S1",
+          "scenario_sha256": "9617e9b14c6983ff22c607aad87112135e1813e843e56f95443b8050153a5da9"
+        },
+        "HG-0001-S2": {
+          "captured_at": "2026-09-25T07:31:08.2206070Z",
+          "command": "python -B -m unittest -v test_codec",
+          "files": {
+            "codec.py": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v1 выполнен: v1:hello возвращает hello; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S2",
+          "scenario_sha256": "e058343dbbc6697f0f8d139475cc4c880fed1806e7f17552c7aaf88cfa011a6f"
+        },
+        "HG-0001-S3": {
+          "captured_at": "2026-09-25T07:19:54.0181157Z",
+          "command": "python -m unittest -v test_codec",
+          "files": {
+            "codec.py": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_unknown выполнен: v3:hello вызывает ValueError; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S3",
+          "scenario_sha256": "a51eeafa90d4ac653e84450ea6a10bf7d3a78551ce8950b1a539d6a47b217fba"
+        }
+      },
+      "recorded_at": 1790321525,
+      "review": {
+        "change_sha256": "f4a4a9d24196a067c129ab944de454191150da5f1372377eb8c8aa39a544aa53",
+        "conclusion": "REVIEW_GO: код, три сценария и исходный отчёт проверены; python -B -m unittest -v test_codec: 3 теста, OK. Каталог исключён из Git; границы сверены с переданным исходным снимком, без Git diff/SHA.",
+        "reviewer": "независимый субагент review_s3",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0001-S1": {
+          "captured_at": "2026-09-25T07:31:08.2206070Z",
+          "command": "python -B -m unittest -v test_codec",
+          "files": {
+            "codec.py": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v2 выполнен: v2:текст возвращает текст; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S1",
+          "scenario_sha256": "9617e9b14c6983ff22c607aad87112135e1813e843e56f95443b8050153a5da9"
+        },
+        "HG-0001-S2": {
+          "captured_at": "2026-09-25T07:31:08.2206070Z",
+          "command": "python -B -m unittest -v test_codec",
+          "files": {
+            "codec.py": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_v1 выполнен: v1:hello возвращает hello; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S2",
+          "scenario_sha256": "e058343dbbc6697f0f8d139475cc4c880fed1806e7f17552c7aaf88cfa011a6f"
+        },
+        "HG-0001-S3": {
+          "captured_at": "2026-09-25T07:31:08.2206070Z",
+          "command": "python -B -m unittest -v test_codec",
+          "files": {
+            "codec.py": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+            "evidence/test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+            "test_codec.py": "e10dbeee3d7241faa384953c6c93de395eeaa7f3cd3eae4b49b422f2f22b31a5"
+          },
+          "method": "native_report",
+          "observation": "test_unknown выполнен: v3:hello вызывает ValueError; общий прогон завершился OK, 3 теста.",
+          "outcome": "passed",
+          "report": "evidence/test-run.txt",
+          "scenario": "HG-0001-S3",
+          "scenario_sha256": "a51eeafa90d4ac653e84450ea6a10bf7d3a78551ce8950b1a539d6a47b217fba"
+        }
+      },
+      "recorded_at": 1790321743,
+      "review": {
+        "change_sha256": "f4a4a9d24196a067c129ab944de454191150da5f1372377eb8c8aa39a544aa53",
+        "conclusion": "REVIEW_GO: код, три сценария и исходный отчёт проверены; python -B -m unittest -v test_codec: 3 теста, OK. Каталог исключён из Git; границы сверены с переданным исходным снимком, без Git diff/SHA.",
+        "reviewer": "независимый субагент review_s3",
+        "verdict": "go"
+      }
+    }
+  ],
+  "review": {
+    "change_sha256": "bcac1794f617ffe3bbe289ad22323b1e6326b9031046ed6dedab4c854dd9c7da",
+    "conclusion": "REVIEW_GO: исправление допускает непустые v1 и v2, отклоняет v3; 3 теста OK, пустые v1:/v2: дополнительно проверены; SHA кода, теста и отчёта совпадают с evidence S1-S3. Каталог target исключён из Git, поэтому проверка посторонних изменений ограничена файлами s4.",
+    "reviewer": "независимый субагент review_s4",
+    "verdict": "go"
+  },
+  "runs": []
+}

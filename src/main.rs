@@ -11,7 +11,7 @@ fn run() -> Result<Report> {
         }
         let mut r = Report::new("help");
         r.measurements.push(json!({
-            "project_commands":"doctor inspect inventory trace spec-list spec-new spec-read spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run",
+            "project_commands":"doctor inspect inventory trace spec-list spec-new spec-read spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run",
             "installation_commands":"global-install global-update global-status legacy-install legacy-update",
             "project_root":"--root PATH",
             "spec_start":"spec-list --root PATH; spec-new --root PATH --title TITLE --expected HASH",
@@ -83,7 +83,7 @@ fn run() -> Result<Report> {
         "spec-tag-remove" => vec!["--root", "--expected", "--id"],
         "spec-tag-merge" => vec!["--root", "--expected", "--from", "--into"],
         "spec-new" => vec!["--root", "--id", "--title", "--expected"],
-        "spec-integrate" => vec!["--root", "--id", "--expected"],
+        "spec-integrate" | "spec-transfer" => vec!["--root", "--id", "--expected"],
         "spec-migrate" => vec!["--root", "--expected", "--to"],
         "spec-init" => vec!["--root", "--directory"],
         "spec-recover" => vec!["--root", "--expected"],

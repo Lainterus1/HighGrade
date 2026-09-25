@@ -1,0 +1,50 @@
+[
+  {
+    "name": "old-version",
+    "exe": "D:\\my_projects\\MyCodex\\target\\update-pilot\\highgrade-v0-2-13.exe",
+    "arguments": [
+      "version"
+    ],
+    "started_at_utc": "2026-09-25T09:48:57.3767563Z",
+    "ended_at_utc": "2026-09-25T09:48:57.4132246Z",
+    "exit_code": 1,
+    "report": "case/agent-old-version.json"
+  },
+  {
+    "name": "candidate-version",
+    "exe": "D:\\my_projects\\MyCodex\\target\\update-pilot\\highgrade-v0-2-14-exact.exe",
+    "arguments": [
+      "version"
+    ],
+    "started_at_utc": "2026-09-25T09:48:57.4139883Z",
+    "ended_at_utc": "2026-09-25T09:48:57.4275752Z",
+    "exit_code": 1,
+    "report": "case/agent-candidate-version.json"
+  },
+  {
+    "name": "good-baseline-status",
+    "exe": "D:\\my_projects\\MyCodex\\target\\update-pilot\\highgrade-v0-2-13.exe",
+    "arguments": [
+      "global-status",
+      "--profile",
+      "D:\\my_projects\\MyCodex\\target\\update-pilot\\profile"
+    ],
+    "started_at_utc": "2026-09-25T09:48:57.4277329Z",
+    "ended_at_utc": "2026-09-25T09:48:57.4458773Z",
+    "exit_code": 0,
+    "report": "case/agent-good-baseline-status.json"
+  },
+  {
+    "name": "fail-baseline-status",
+    "exe": "D:\\my_projects\\MyCodex\\target\\update-pilot\\highgrade-v0-2-13.exe",
+    "arguments": [
+      "global-status",
+      "--profile",
+      "D:\\my_projects\\MyCodex\\target\\update-pilot\\profile-fail"
+    ],
+    "started_at_utc": "2026-09-25T09:48:57.4460452Z",
+    "ended_at_utc": "2026-09-25T09:48:57.4668671Z",
+    "exit_code": 0,
+    "report": "case/agent-fail-baseline-status.json"
+  }
+]

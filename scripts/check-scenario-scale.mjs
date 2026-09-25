@@ -36,9 +36,11 @@ try {
     const extra = [];
     for (let index = 1; index <= count; index++) {
       const id = String(index).padStart(3, '0');
-      const file = `openspec/specs/feature-${id}/spec.md`;
+      const file = `specs/requirements/HG-SCALE-R${id}.json`;
       const filler = 'A'.repeat(500);
-      write(root, file, `### Requirement: [HG-SCALE-R${id}] Isolated requirement ${id}\n\n${filler}\n\n#### Scenario: [HG-SCALE-S${id}] Isolated scenario ${id}\n\n**Проверка:** \`ручная\`\n\n- **WHEN** feature ${id} is inspected\n- **THEN** its route is selected alone\n`);
+      write(root, file, `${JSON.stringify({ id: `HG-SCALE-R${id}`, title: `Feature ${id}`, statement: filler,
+        scenarios: [{ id: `HG-SCALE-S${id}`, given: 'Fixture', when: `feature ${id} is inspected`,
+          then: 'its route is selected alone', verification: 'manual fixture observation' }] })}\n`);
       extra.push({ path: file, role: `feature-${id}`, active: true, loading: 'task', scope: [`features/${id}`] });
     }
     const documents = core.map(([file, role], index) => ({
@@ -47,6 +49,7 @@ try {
     write(root, '.highgrade/project/documents.json', `${JSON.stringify({
       schema_version: 1, documents, additional_sources: extra, route_budget: budget(96000),
     })}\n`);
+    write(root, 'specs/catalog.json', `${JSON.stringify({ schema_version: 3, next_number: 1, retired_ids: [], origins: {} })}\n`);
     const check = command(process.execPath, [checker, 'check', root]);
     if (check.status !== 0) fail(`source check ${count}: ${check.stderr}`);
     const checkResult = JSON.parse(check.stdout);
@@ -62,22 +65,31 @@ try {
     const selectedRoute = route(selectedReport);
     const fullRoute = route(fullReport);
     if (!selectedRoute || !fullRoute) fail(`missing route ${count}`);
-    if (selectedRoute.route.filter((item) => item.startsWith('openspec/specs/')).length !== 1) fail(`scope over-selected ${count}`);
-    if (fullRoute.route.filter((item) => item.startsWith('openspec/specs/')).length !== count) fail(`full route omitted specs ${count}`);
+    if (selectedRoute.route.filter((item) => item.startsWith('specs/requirements/')).length !== 1) fail(`scope over-selected ${count}`);
+    if (fullRoute.route.filter((item) => item.startsWith('specs/requirements/')).length !== count) fail(`full route omitted specs ${count}`);
     if (selectedRoute.route_bytes >= 96000) fail(`selected route exceeded ceiling ${count}`);
     if (count === 200 && !fullReport.findings.some((item) => item.code === 'BudgetExceeded' && item.location === 'context-route')) fail('200-spec full route did not warn');
-    const unsupported = 'openspec/specs/feature-003/spec.md';
-    const original = readFileSync(path.join(root, unsupported), 'utf8');
-    write(root, unsupported, original.replace('`ручная`', '`rust-nextest`'));
-    const unlinkedCheck = command(process.execPath, [checker, 'check', root]);
-    if (unlinkedCheck.status === 0 || !unlinkedCheck.stderr.includes('automated scenario has no test marker')) fail(`unlinked automatic scenario not rejected ${count}`);
-    write(root, unsupported, original);
-    const duplicate = 'openspec/specs/feature-002/spec.md';
+    write(root, 'tests/empty.rs', '// highgrade: HG-SCALE-S003\n#[test]\nfn apparent_test() {}\n');
+    const orphanCheck = command(process.execPath, [checker, 'check', root]);
+    if (orphanCheck.status === 0 || !orphanCheck.stderr.includes('test marker has no configured automatic check')) fail(`orphan marker not rejected ${count}`);
+    write(root, 'specs/changes/HG-SCALE-CHECK/spec.json', JSON.stringify({ archived: true, operations: [], checks: [{ runner: 'rust-contracts', scenario_ids: ['HG-SCALE-S003'], file: 'tests/empty.rs', selector: 'different_test' }] }));
+    const wrongSelector = command(process.execPath, [checker, 'check', root]);
+    if (wrongSelector.status === 0 || !wrongSelector.stderr.includes('test marker does not match its configured file and selector')) fail(`wrong selector not rejected ${count}`);
+    write(root, 'specs/changes/HG-SCALE-CHECK/spec.json', JSON.stringify({ archived: true, operations: [], checks: [{ runner: 'rust-contracts', scenario_ids: ['HG-SCALE-S003'], file: 'tests/empty.rs', selector: 'apparent_test' }] }));
+    write(root, 'tests/empty.rs', '// highgrade: HG-SCALE-S003\n#[test]\nfn apparent_test() {}\n// highgrade: HG-SCALE-S003\n#[test]\nfn unrelated_test() {}\n');
+    const extraMarker = command(process.execPath, [checker, 'check', root]);
+    if (extraMarker.status === 0 || !extraMarker.stderr.includes('test marker does not match its configured file and selector')) fail(`extra wrong marker not rejected ${count}`);
+    write(root, 'tests/empty.rs', '#[test]\nfn apparent_test() {}\n');
+    const missingMarker = command(process.execPath, [checker, 'check', root]);
+    if (missingMarker.status === 0 || !missingMarker.stderr.includes('configured automatic check has no test marker')) fail(`missing marker not rejected ${count}`);
+    rmSync(path.join(root, 'specs/changes/HG-SCALE-CHECK/spec.json'));
+    write(root, 'tests/empty.rs', '');
+    const duplicate = 'specs/requirements/HG-SCALE-R002.json';
     const source = readFileSync(path.join(root, duplicate), 'utf8');
     write(root, duplicate, source.replace('HG-SCALE-S002', 'HG-SCALE-S001'));
     const duplicateCheck = command(process.execPath, [checker, 'check', root]);
     if (duplicateCheck.status === 0 || !duplicateCheck.stderr.includes('duplicate ID')) fail(`duplicate ID not rejected ${count}`);
-    results.push({ specs: count, selected_bytes: selectedRoute.route_bytes, full_bytes: fullRoute.route_bytes, duplicate_rejected: true, unlinked_automatic_rejected: true });
+    results.push({ specs: count, selected_bytes: selectedRoute.route_bytes, full_bytes: fullRoute.route_bytes, duplicate_rejected: true, orphan_marker_rejected: true, wrong_selector_rejected: true, extra_marker_rejected: true, missing_marker_rejected: true });
   }
   console.log(JSON.stringify({ status: 'passed', results }, null, 2));
 } catch (cause) {

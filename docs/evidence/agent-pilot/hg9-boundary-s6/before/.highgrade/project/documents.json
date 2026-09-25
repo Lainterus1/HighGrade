@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "documents": [
+    {"id":"readme","path":"README.md","role":"purpose-navigation","loading":"entry","scope":[],"budget":null},
+    {"id":"agents","path":"AGENTS.md","role":"agent-rules","loading":"entry","scope":[],"budget":null},
+    {"id":"architecture","path":"docs/ARCHITECTURE.md","role":"current-architecture","loading":"task","scope":["store.py","notes/mechanism.txt"],"budget":null},
+    {"id":"engineering","path":"docs/ENGINEERING.md","role":"engineering-rules","loading":"task","scope":["store.py","test_store.py"],"budget":null},
+    {"id":"development","path":"docs/DEVELOPMENT.md","role":"commands-procedures","loading":"task","scope":["test_store.py"],"budget":null}
+  ],
+  "additional_sources": [
+    {"path":".highgrade/project/INSTRUCTIONS.md","role":"project-adaptation","active":true,"loading":"entry","scope":[".highgrade/project/documents.json"]},
+    {"path":"notes/mechanism.txt","role":"architecture-source","active":true,"loading":"history","scope":[]},
+    {"path":"specs/README.md","role":"specification-store","active":true,"loading":"task","scope":["specs"]},
+    {"path":"evidence/hg9-b0/agent-audit-plan.md","role":"pilot-evidence","active":true,"loading":"history","scope":["evidence"]}
+  ],
+  "route_budget": null
+}
