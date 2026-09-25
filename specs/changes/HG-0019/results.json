@@ -2,13 +2,13 @@
   "acceptance": [],
   "evidence": {
     "HG-0019-S1": {
-      "captured_at": "2026-09-25T12:34:40.1616212Z",
+      "captured_at": "2026-09-25T13:06:38.0155908Z",
       "command": "python -m unittest discover -s scripts/tests -v",
       "files": {
-        "docs/BUILD.md": "d8550dce0cbdfb261b322aab8e669be4d7d823b53561b1d3020d98deb4ddf2b4",
+        "docs/BUILD.md": "2033e89b80cbd179e5ba6cbef4011310b4fc683dcc540404066f177c8fa6870f",
         "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
         "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
-        "specs/changes/HG-0019/evidence/python-unittest.txt": "361ac01af1e6de0f8e9d61a1c136efdfbcc8bb4332f59e870a94555955b3c433"
+        "specs/changes/HG-0019/evidence/python-unittest.txt": "00e8d617acf9d8d3a45cc395cd215eb0a84da5cce959aa82e0165c25a4a4853b"
       },
       "method": "native_report",
       "observation": "12/12 Python тестов прошли; test_exact_revision_repeat_and_failed_build_preserve_candidate построил бинарник из зафиксированного Git SHA при грязном дереве, проверил каталог build-cache, пустой work и сохранность кандидата после неудачной сборки.",
@@ -18,13 +18,13 @@
       "scenario_sha256": "b08cb0bfc0672daa8009811fe2fdb254450db388f5c52e67ff3490cc0902ae64"
     },
     "HG-0019-S2": {
-      "captured_at": "2026-09-25T12:34:40.1616212Z",
+      "captured_at": "2026-09-25T13:06:38.0155908Z",
       "command": "python -m unittest discover -s scripts/tests -v",
       "files": {
-        "docs/BUILD.md": "d8550dce0cbdfb261b322aab8e669be4d7d823b53561b1d3020d98deb4ddf2b4",
+        "docs/BUILD.md": "2033e89b80cbd179e5ba6cbef4011310b4fc683dcc540404066f177c8fa6870f",
         "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
         "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
-        "specs/changes/HG-0019/evidence/python-unittest.txt": "361ac01af1e6de0f8e9d61a1c136efdfbcc8bb4332f59e870a94555955b3c433"
+        "specs/changes/HG-0019/evidence/python-unittest.txt": "00e8d617acf9d8d3a45cc395cd215eb0a84da5cce959aa82e0165c25a4a4853b"
       },
       "method": "native_report",
       "observation": "12/12 Python тестов прошли; test_preview_is_read_only_and_apply_preserves_candidate_and_unknown и test_cache_cleanup_requires_explicit_selection проверили просмотр, явно выбранную очистку и сохранность чужого файла внутри tmp и неизвестного файла в корне.",
@@ -34,13 +34,13 @@
       "scenario_sha256": "410534d93918501395011a6a2644b4247569e0f4b28f5d5636376aebd9924e4e"
     },
     "HG-0019-S3": {
-      "captured_at": "2026-09-25T12:34:40.1616212Z",
+      "captured_at": "2026-09-25T13:06:38.0155908Z",
       "command": "python -m unittest discover -s scripts/tests -v",
       "files": {
-        "docs/BUILD.md": "d8550dce0cbdfb261b322aab8e669be4d7d823b53561b1d3020d98deb4ddf2b4",
+        "docs/BUILD.md": "2033e89b80cbd179e5ba6cbef4011310b4fc683dcc540404066f177c8fa6870f",
         "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
         "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
-        "specs/changes/HG-0019/evidence/python-unittest.txt": "361ac01af1e6de0f8e9d61a1c136efdfbcc8bb4332f59e870a94555955b3c433"
+        "specs/changes/HG-0019/evidence/python-unittest.txt": "00e8d617acf9d8d3a45cc395cd215eb0a84da5cce959aa82e0165c25a4a4853b"
       },
       "method": "native_report",
       "observation": "12/12 Python тестов прошли; test_active_build_and_recovery_state_refuse_without_changes, test_link_outside_root_refuses_and_preserves_sentinel и test_scratch_path_escape_is_refused проверили отказ до удаления и сохранность внешнего sentinel и кандидата.",
@@ -567,11 +567,247 @@
         "reviewer": "target_layout_review",
         "verdict": "go"
       }
+    },
+    {
+      "evidence": {
+        "HG-0019-S1": {
+          "captured_at": "2026-09-25T12:34:40.1616212Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "d8550dce0cbdfb261b322aab8e669be4d7d823b53561b1d3020d98deb4ddf2b4",
+            "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
+            "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "361ac01af1e6de0f8e9d61a1c136efdfbcc8bb4332f59e870a94555955b3c433"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_exact_revision_repeat_and_failed_build_preserve_candidate построил бинарник из зафиксированного Git SHA при грязном дереве, проверил каталог build-cache, пустой work и сохранность кандидата после неудачной сборки.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S1",
+          "scenario_sha256": "b08cb0bfc0672daa8009811fe2fdb254450db388f5c52e67ff3490cc0902ae64"
+        },
+        "HG-0019-S2": {
+          "captured_at": "2026-09-25T12:34:40.1616212Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "d8550dce0cbdfb261b322aab8e669be4d7d823b53561b1d3020d98deb4ddf2b4",
+            "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
+            "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "361ac01af1e6de0f8e9d61a1c136efdfbcc8bb4332f59e870a94555955b3c433"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_preview_is_read_only_and_apply_preserves_candidate_and_unknown и test_cache_cleanup_requires_explicit_selection проверили просмотр, явно выбранную очистку и сохранность чужого файла внутри tmp и неизвестного файла в корне.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S2",
+          "scenario_sha256": "410534d93918501395011a6a2644b4247569e0f4b28f5d5636376aebd9924e4e"
+        },
+        "HG-0019-S3": {
+          "captured_at": "2026-09-25T12:34:40.1616212Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "d8550dce0cbdfb261b322aab8e669be4d7d823b53561b1d3020d98deb4ddf2b4",
+            "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
+            "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "361ac01af1e6de0f8e9d61a1c136efdfbcc8bb4332f59e870a94555955b3c433"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_active_build_and_recovery_state_refuse_without_changes, test_link_outside_root_refuses_and_preserves_sentinel и test_scratch_path_escape_is_refused проверили отказ до удаления и сохранность внешнего sentinel и кандидата.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S3",
+          "scenario_sha256": "882f4e2bd6628c9df58bc742cf2590bf330b6dbae9bd266e0965dc0479e68b1b"
+        }
+      },
+      "recorded_at": 1790341598,
+      "review": {
+        "change_sha256": "1066b488af16eadf263f3d492a82287c5f930006cdbf62949f8aa76521a4de5a",
+        "conclusion": "REVIEW_GO для финальной редакции A1-A4: сохранность неизвестного файла в tmp и запрет traversal подтверждены 12/12 тестами; LF-отчёт и S1-S3 имеют актуальные хеши, staged diff --check проходит. T5 проверяется после коммита.",
+        "reviewer": "target_layout_review",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0019-S1": {
+          "captured_at": "2026-09-25T13:06:38.0155908Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "2033e89b80cbd179e5ba6cbef4011310b4fc683dcc540404066f177c8fa6870f",
+            "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
+            "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "00e8d617acf9d8d3a45cc395cd215eb0a84da5cce959aa82e0165c25a4a4853b"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_exact_revision_repeat_and_failed_build_preserve_candidate построил бинарник из зафиксированного Git SHA при грязном дереве, проверил каталог build-cache, пустой work и сохранность кандидата после неудачной сборки.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S1",
+          "scenario_sha256": "b08cb0bfc0672daa8009811fe2fdb254450db388f5c52e67ff3490cc0902ae64"
+        },
+        "HG-0019-S2": {
+          "captured_at": "2026-09-25T12:34:40.1616212Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "d8550dce0cbdfb261b322aab8e669be4d7d823b53561b1d3020d98deb4ddf2b4",
+            "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
+            "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "361ac01af1e6de0f8e9d61a1c136efdfbcc8bb4332f59e870a94555955b3c433"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_preview_is_read_only_and_apply_preserves_candidate_and_unknown и test_cache_cleanup_requires_explicit_selection проверили просмотр, явно выбранную очистку и сохранность чужого файла внутри tmp и неизвестного файла в корне.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S2",
+          "scenario_sha256": "410534d93918501395011a6a2644b4247569e0f4b28f5d5636376aebd9924e4e"
+        },
+        "HG-0019-S3": {
+          "captured_at": "2026-09-25T12:34:40.1616212Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "d8550dce0cbdfb261b322aab8e669be4d7d823b53561b1d3020d98deb4ddf2b4",
+            "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
+            "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "361ac01af1e6de0f8e9d61a1c136efdfbcc8bb4332f59e870a94555955b3c433"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_active_build_and_recovery_state_refuse_without_changes, test_link_outside_root_refuses_and_preserves_sentinel и test_scratch_path_escape_is_refused проверили отказ до удаления и сохранность внешнего sentinel и кандидата.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S3",
+          "scenario_sha256": "882f4e2bd6628c9df58bc742cf2590bf330b6dbae9bd266e0965dc0479e68b1b"
+        }
+      },
+      "recorded_at": 1790341598,
+      "review": {
+        "change_sha256": "1066b488af16eadf263f3d492a82287c5f930006cdbf62949f8aa76521a4de5a",
+        "conclusion": "REVIEW_GO для финальной редакции A1-A4: сохранность неизвестного файла в tmp и запрет traversal подтверждены 12/12 тестами; LF-отчёт и S1-S3 имеют актуальные хеши, staged diff --check проходит. T5 проверяется после коммита.",
+        "reviewer": "target_layout_review",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0019-S1": {
+          "captured_at": "2026-09-25T13:06:38.0155908Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "2033e89b80cbd179e5ba6cbef4011310b4fc683dcc540404066f177c8fa6870f",
+            "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
+            "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "00e8d617acf9d8d3a45cc395cd215eb0a84da5cce959aa82e0165c25a4a4853b"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_exact_revision_repeat_and_failed_build_preserve_candidate построил бинарник из зафиксированного Git SHA при грязном дереве, проверил каталог build-cache, пустой work и сохранность кандидата после неудачной сборки.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S1",
+          "scenario_sha256": "b08cb0bfc0672daa8009811fe2fdb254450db388f5c52e67ff3490cc0902ae64"
+        },
+        "HG-0019-S2": {
+          "captured_at": "2026-09-25T13:06:38.0155908Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "2033e89b80cbd179e5ba6cbef4011310b4fc683dcc540404066f177c8fa6870f",
+            "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
+            "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "00e8d617acf9d8d3a45cc395cd215eb0a84da5cce959aa82e0165c25a4a4853b"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_preview_is_read_only_and_apply_preserves_candidate_and_unknown и test_cache_cleanup_requires_explicit_selection проверили просмотр, явно выбранную очистку и сохранность чужого файла внутри tmp и неизвестного файла в корне.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S2",
+          "scenario_sha256": "410534d93918501395011a6a2644b4247569e0f4b28f5d5636376aebd9924e4e"
+        },
+        "HG-0019-S3": {
+          "captured_at": "2026-09-25T12:34:40.1616212Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "d8550dce0cbdfb261b322aab8e669be4d7d823b53561b1d3020d98deb4ddf2b4",
+            "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
+            "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "361ac01af1e6de0f8e9d61a1c136efdfbcc8bb4332f59e870a94555955b3c433"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_active_build_and_recovery_state_refuse_without_changes, test_link_outside_root_refuses_and_preserves_sentinel и test_scratch_path_escape_is_refused проверили отказ до удаления и сохранность внешнего sentinel и кандидата.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S3",
+          "scenario_sha256": "882f4e2bd6628c9df58bc742cf2590bf330b6dbae9bd266e0965dc0479e68b1b"
+        }
+      },
+      "recorded_at": 1790341599,
+      "review": {
+        "change_sha256": "1066b488af16eadf263f3d492a82287c5f930006cdbf62949f8aa76521a4de5a",
+        "conclusion": "REVIEW_GO для финальной редакции A1-A4: сохранность неизвестного файла в tmp и запрет traversal подтверждены 12/12 тестами; LF-отчёт и S1-S3 имеют актуальные хеши, staged diff --check проходит. T5 проверяется после коммита.",
+        "reviewer": "target_layout_review",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0019-S1": {
+          "captured_at": "2026-09-25T13:06:38.0155908Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "2033e89b80cbd179e5ba6cbef4011310b4fc683dcc540404066f177c8fa6870f",
+            "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
+            "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "00e8d617acf9d8d3a45cc395cd215eb0a84da5cce959aa82e0165c25a4a4853b"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_exact_revision_repeat_and_failed_build_preserve_candidate построил бинарник из зафиксированного Git SHA при грязном дереве, проверил каталог build-cache, пустой work и сохранность кандидата после неудачной сборки.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S1",
+          "scenario_sha256": "b08cb0bfc0672daa8009811fe2fdb254450db388f5c52e67ff3490cc0902ae64"
+        },
+        "HG-0019-S2": {
+          "captured_at": "2026-09-25T13:06:38.0155908Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "2033e89b80cbd179e5ba6cbef4011310b4fc683dcc540404066f177c8fa6870f",
+            "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
+            "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "00e8d617acf9d8d3a45cc395cd215eb0a84da5cce959aa82e0165c25a4a4853b"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_preview_is_read_only_and_apply_preserves_candidate_and_unknown и test_cache_cleanup_requires_explicit_selection проверили просмотр, явно выбранную очистку и сохранность чужого файла внутри tmp и неизвестного файла в корне.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S2",
+          "scenario_sha256": "410534d93918501395011a6a2644b4247569e0f4b28f5d5636376aebd9924e4e"
+        },
+        "HG-0019-S3": {
+          "captured_at": "2026-09-25T13:06:38.0155908Z",
+          "command": "python -m unittest discover -s scripts/tests -v",
+          "files": {
+            "docs/BUILD.md": "2033e89b80cbd179e5ba6cbef4011310b4fc683dcc540404066f177c8fa6870f",
+            "scripts/target-maintenance.py": "715d856cf55275ec4fe7bd3a2cf776c0fbc9b9a1acd7d241f44a4639e581839e",
+            "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
+            "specs/changes/HG-0019/evidence/python-unittest.txt": "00e8d617acf9d8d3a45cc395cd215eb0a84da5cce959aa82e0165c25a4a4853b"
+          },
+          "method": "native_report",
+          "observation": "12/12 Python тестов прошли; test_active_build_and_recovery_state_refuse_without_changes, test_link_outside_root_refuses_and_preserves_sentinel и test_scratch_path_escape_is_refused проверили отказ до удаления и сохранность внешнего sentinel и кандидата.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+          "scenario": "HG-0019-S3",
+          "scenario_sha256": "882f4e2bd6628c9df58bc742cf2590bf330b6dbae9bd266e0965dc0479e68b1b"
+        }
+      },
+      "recorded_at": 1790341679,
+      "review": {
+        "change_sha256": "1066b488af16eadf263f3d492a82287c5f930006cdbf62949f8aa76521a4de5a",
+        "conclusion": "REVIEW_GO для финальной редакции A1-A4: сохранность неизвестного файла в tmp и запрет traversal подтверждены 12/12 тестами; LF-отчёт и S1-S3 имеют актуальные хеши, staged diff --check проходит. T5 проверяется после коммита.",
+        "reviewer": "target_layout_review",
+        "verdict": "go"
+      }
     }
   ],
   "review": {
-    "change_sha256": "1066b488af16eadf263f3d492a82287c5f930006cdbf62949f8aa76521a4de5a",
-    "conclusion": "REVIEW_GO для финальной редакции A1-A4: сохранность неизвестного файла в tmp и запрет traversal подтверждены 12/12 тестами; LF-отчёт и S1-S3 имеют актуальные хеши, staged diff --check проходит. T5 проверяется после коммита.",
+    "change_sha256": "3d2a24952b109762921502676ca114b10b0c09bd05772801c7632b2c8663f435",
+    "conclusion": "REVIEW_GO после актуализации docs/BUILD.md: Python unittest 12/12 повторён, LF-отчёт и все четыре заявленных входа для каждого S1-S3 совпадают с текущими SHA256. Смысл защитных сценариев и сохранность неизвестных файлов подтверждены прежним кодовым ревью; новых замечаний нет.",
     "reviewer": "target_layout_review",
     "verdict": "go"
   },
