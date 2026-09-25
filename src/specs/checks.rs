@@ -116,21 +116,41 @@ fn revision(s: &Store, b: &Check) -> String {
     digest(&(b, b.runner.as_ref().and_then(|r| s.runners.get(r))))
 }
 pub fn fresh(root: &Path, s: &Store, c: &Change, b: &Check) -> bool {
+    stale_reason(root, s, c, b).is_none()
+}
+pub fn stale_reason(root: &Path, s: &Store, c: &Change, b: &Check) -> Option<Value> {
     if b.runner.is_none() {
-        return true;
-    } // manual observation uses spec-evidence
-    c.runs
-        .iter()
-        .rev()
-        .find(|r| r.check == b.id)
-        .is_some_and(|r| {
-            r.outcome == Outcome::Passed
-                && r.check_sha256 == revision(s, b)
-                && !r.files.is_empty()
-                && r.files
-                    .iter()
-                    .all(|(p, h)| fingerprint(root, p).is_ok_and(|now| now == *h))
-        })
+        return None; // manual observation uses spec-evidence
+    }
+    let Some(run) = c.runs.iter().rev().find(|r| r.check == b.id) else {
+        return Some(json!({"kind":"check","id":b.id,"reason":"missing_run","next":"rerun_check"}));
+    };
+    if run.check_sha256 != revision(s, b) {
+        return Some(
+            json!({"kind":"check","id":b.id,"reason":"check_changed","next":"rerun_check"}),
+        );
+    }
+    if run.outcome != Outcome::Passed {
+        return Some(
+            json!({"kind":"check","id":b.id,"reason":"outcome_not_passed","next":"rerun_check"}),
+        );
+    }
+    if run.files.is_empty() {
+        return Some(
+            json!({"kind":"check","id":b.id,"reason":"inputs_missing","next":"rerun_check"}),
+        );
+    }
+    for (path, expected) in &run.files {
+        let reason = match fingerprint(root, path) {
+            Ok(actual) if actual == *expected => continue,
+            Ok(_) => "input_changed",
+            Err(_) => "input_unavailable",
+        };
+        return Some(
+            json!({"kind":"check","id":b.id,"reason":reason,"path":path,"next":"rerun_check"}),
+        );
+    }
+    None
 }
 fn parse(format: &str, text: &str, selector: &str) -> Outcome {
     if format == "cargo-test" {

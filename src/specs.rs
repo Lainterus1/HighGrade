@@ -582,6 +582,10 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 let c = store.changes.get(key).ok_or("ChangeMissing: /changes/id")?;
                 if op == "spec-check" || op == "spec-validate" {
                     readiness(&root, &store, c, &mut report, op == "spec-check");
+                    if op == "spec-check" && options.get("--brief").is_some_and(|v| v == "true") {
+                        let summary = brief(&root, &store, c, &report);
+                        report.measurements.push(summary);
+                    }
                 }
                 if op == "spec-diff" {
                     report.measurements.push(json!({"operations":c.operations,"current":c.operations.iter().map(|d| (d.id(), store.requirements.get(d.id()))).collect::<BTreeMap<_,_>>()}));
@@ -766,9 +770,11 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         .push(json!({"store_sha256":current_sha,"schema_version":store.schema_version}));
     if let Some(key) = change_id {
         if let Some(c) = store.changes.get(key) {
-            report
-                .measurements
-                .push(json!({"change":c,"links":relations::metadata(&store,c),"change_sha256":revision(c),"inputs_sha256":progress::inputs_hash(&root,c).ok()}));
+            if !(op == "spec-check" && options.get("--brief").is_some_and(|v| v == "true")) {
+                report
+                    .measurements
+                    .push(json!({"change":c,"links":relations::metadata(&store,c),"change_sha256":revision(c),"inputs_sha256":progress::inputs_hash(&root,c).ok()}));
+            }
         }
     }
     Ok(report)
@@ -907,6 +913,90 @@ fn readiness(root: &Path, store: &Store, c: &Change, report: &mut Report, comple
     {
         missing("/review", "ReviewMissingOrStale");
     }
+}
+fn evidence_reason(
+    root: &Path,
+    r: &Requirement,
+    sc: &Scenario,
+    e: Option<&Evidence>,
+) -> Option<Value> {
+    let Some(e) = e else {
+        return Some(
+            json!({"kind":"evidence","id":sc.id,"reason":"missing_evidence","next":"record_evidence"}),
+        );
+    };
+    if e.outcome != Outcome::Passed {
+        return Some(
+            json!({"kind":"evidence","id":sc.id,"reason":"outcome_not_passed","next":"repeat_scenario"}),
+        );
+    }
+    if e.scenario_sha256 != scenario_revision(r, sc) {
+        return Some(
+            json!({"kind":"evidence","id":sc.id,"reason":"scenario_changed","next":"repeat_scenario"}),
+        );
+    }
+    if e.files.is_empty() {
+        return Some(
+            json!({"kind":"evidence","id":sc.id,"reason":"inputs_missing","next":"record_evidence"}),
+        );
+    }
+    for (path, expected) in &e.files {
+        let reason = match fingerprint(root, path) {
+            Ok(actual) if actual == *expected => continue,
+            Ok(_) => "input_changed",
+            Err(_) => "input_unavailable",
+        };
+        return Some(
+            json!({"kind":"evidence","id":sc.id,"reason":reason,"path":path,"next":"repeat_scenario"}),
+        );
+    }
+    None
+}
+fn brief(root: &Path, store: &Store, c: &Change, report: &Report) -> Value {
+    let mut blockers = Vec::new();
+    for binding in &c.checks {
+        if let Some(issue) = checks::stale_reason(root, store, c, binding) {
+            blockers.push(issue);
+        }
+    }
+    for requirement in c.operations.iter().filter_map(Delta::requirement) {
+        for scenario in &requirement.scenarios {
+            if let Some(issue) =
+                evidence_reason(root, requirement, scenario, c.evidence.get(&scenario.id))
+            {
+                blockers.push(issue);
+            }
+        }
+    }
+    let current_revision = revision(c);
+    let review = match c.review.as_ref() {
+        None => "missing",
+        Some(r) if r.verdict != Verdict::Go => "no_go",
+        Some(r) if r.change_sha256 != current_revision => "stale",
+        Some(_) => "go",
+    };
+    if review != "go" {
+        blockers.push(json!({"kind":"review","reason":review,"next":if review == "no_go" { "resolve_review" } else { "repeat_review" }}));
+    }
+    let technical_ready = report.exit_code() == 0;
+    let human = progress::human_state(root, c, technical_ready);
+    let verified_revision = if human == "accepted" {
+        c.acceptance.last().map(|d| d.verified_revision.as_str())
+    } else {
+        None
+    };
+    json!({
+        "brief": {
+            "id": c.id,
+            "technical": if technical_ready { "ready" } else { "in_progress" },
+            "human": human,
+            "change_sha256": current_revision,
+            "inputs_sha256": progress::inputs_hash(root, c).ok(),
+            "review": review,
+            "verified_revision": verified_revision,
+            "blockers": blockers,
+        }
+    })
 }
 fn fingerprint(root: &Path, rel: &str) -> Result<String> {
     Ok(hash(&paths::read_limited(

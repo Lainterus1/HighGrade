@@ -182,6 +182,20 @@ fn ready(root: &Path, s: &Store, c: &Change) -> bool {
     readiness(root, s, c, &mut report, true);
     report.exit_code() == 0
 }
+pub(super) fn human_state(root: &Path, c: &Change, technical_ready: bool) -> &'static str {
+    match c.acceptance.last() {
+        None => "pending",
+        Some(d)
+            if d.change_sha256 != revision(c)
+                || !inputs_hash(root, c).is_ok_and(|h| h == d.inputs_sha256) =>
+        {
+            "stale"
+        }
+        Some(d) if d.decision == HumanVerdict::NeedsChanges => "needs_changes",
+        Some(_) if technical_ready => "accepted",
+        Some(_) => "stale",
+    }
+}
 pub(super) fn decide(root: &Path, s: &mut Store, input: &Path) -> Result<()> {
     let v: DecisionInput = decode(&paths::read_limited(input, LIMIT)?, "/decisions")?;
     if v.decisions.is_empty() {
@@ -250,18 +264,7 @@ pub(super) fn list(root: &Path, s: &Store) -> Value {
         } else {
             "in_progress"
         };
-        let human = match c.acceptance.last() {
-            None => "pending",
-            Some(d)
-                if d.change_sha256 != revision(c)
-                    || !inputs_hash(root, c).is_ok_and(|h| h == d.inputs_sha256) =>
-            {
-                "stale"
-            }
-            Some(d) if d.decision == HumanVerdict::NeedsChanges => "needs_changes",
-            Some(_) if technical == "ready" => "accepted",
-            Some(_) => "stale",
-        };
+        let human = human_state(root, c, technical == "ready");
         *counts.get_mut(technical).unwrap() += 1;
         *counts.get_mut(human).unwrap() += 1;
         changes.push(json!({"id":c.id,"title":c.title,"goal":c.goal,"created_at":c.created_at,"archived":c.archived,"technical":technical,"human":human,"change_sha256":revision(c)}));

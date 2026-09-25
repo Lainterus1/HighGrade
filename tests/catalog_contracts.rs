@@ -794,6 +794,170 @@ fn multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit() {
     fs::remove_dir_all(root).unwrap();
 }
 
+fn brief_fixture(root: &Path, two_scenarios: bool) {
+    create(root);
+    let mut c = serde_json::to_value(&specs::load(root).unwrap().0.changes["HG-0001"]).unwrap();
+    c["goal"] = json!("Проверить точную актуальность");
+    c["rationale"] = json!("Повторять только затронутое");
+    c["scope"] = json!("Два входа");
+    c["tasks"][0]["description"] = json!("Проверить сценарии");
+    c["tasks"][0]["done"] = json!(true);
+    let r = &mut c["operations"][0]["requirement"];
+    r["title"] = json!("Актуальность");
+    r["statement"] = json!("Сохранять действительные наблюдения");
+    for field in ["given", "when", "then", "verification"] {
+        r["scenarios"][0][field] = json!("Вход A даёт результат A");
+    }
+    if two_scenarios {
+        r["scenarios"].as_array_mut().unwrap().push(json!({
+            "id":"HG-0001-S2","given":"Вход B","when":"Проверка B",
+            "then":"Результат B","verification":"Наблюдать B"
+        }));
+    }
+    save_change(root, &c);
+    fs::write(root.join("logic-a.txt"), "A").unwrap();
+    fs::write(root.join("logic-b.txt"), "B").unwrap();
+    fs::write(root.join("report.txt"), "A and B passed").unwrap();
+    for (scenario, input) in [("HG-0001-S1", "logic-a.txt"), ("HG-0001-S2", "logic-b.txt")]
+        .into_iter()
+        .take(if two_scenarios { 2 } else { 1 })
+    {
+        put(
+            root,
+            "observation.json",
+            &json!({
+                "command":"fixture check","captured_at":"2026-09-26T00:00:00Z",
+                "method":"native_report","scenario":scenario,"outcome":"passed",
+                "observation":"Observed expected result","inputs":[input],"report":"report.txt"
+            }),
+        );
+        call(
+            root,
+            "spec-evidence",
+            &[
+                ("--id", "HG-0001"),
+                ("--expected", &sha(root)),
+                ("--input", "observation.json"),
+            ],
+        )
+        .unwrap();
+    }
+    review(root);
+}
+fn brief(root: &Path) -> highgrade::Report {
+    call(
+        root,
+        "spec-check",
+        &[("--id", "HG-0001"), ("--brief", "true")],
+    )
+    .unwrap()
+}
+fn brief_data(report: &highgrade::Report) -> &Value {
+    report
+        .measurements
+        .iter()
+        .find_map(|v| v.get("brief"))
+        .unwrap()
+}
+
+// highgrade: HG-0022-S1, HG-0022-S2
+#[test]
+fn spec_check_brief_reports_affected_inputs() {
+    let root = root();
+    brief_fixture(&root, true);
+    assert_eq!(brief(&root).status, "passed");
+    let before = fs::read(root.join("specs/changes/HG-0001/results.json")).unwrap();
+    fs::write(root.join("logic-a.txt"), "changed").unwrap();
+    let report = brief(&root);
+    assert_eq!(report.status, "failed");
+    let blockers = brief_data(&report)["blockers"].as_array().unwrap();
+    assert!(blockers.iter().any(|b| b["kind"] == "evidence"
+        && b["id"] == "HG-0001-S1"
+        && b["reason"] == "input_changed"
+        && b["path"] == "logic-a.txt"));
+    assert!(!blockers.iter().any(|b| b["id"] == "HG-0001-S2"));
+    assert_eq!(
+        fs::read(root.join("specs/changes/HG-0001/results.json")).unwrap(),
+        before
+    );
+    fs::write(root.join("logic-a.txt"), "A").unwrap();
+    fs::write(root.join("status.txt"), "v1").unwrap();
+    fs::write(root.join("status.txt"), "v2").unwrap();
+    assert_eq!(brief(&root).status, "passed");
+    fs::remove_dir_all(root).unwrap();
+}
+
+// highgrade: HG-0022-S3
+#[test]
+fn spec_check_brief_reports_stale_run() {
+    let root = root();
+    runner_fixture(&root);
+    let run = call(
+        &root,
+        "spec-run",
+        &[
+            ("--id", "HG-0001"),
+            ("--check", "sum"),
+            ("--expected", &sha(&root)),
+        ],
+    )
+    .unwrap();
+    assert_eq!(run.status, "passed");
+    fs::write(root.join("test_math.py"), "changed after run").unwrap();
+    let report = brief(&root);
+    let blockers = brief_data(&report)["blockers"].as_array().unwrap();
+    assert!(blockers.iter().any(|b| b["kind"] == "check"
+        && b["id"] == "sum"
+        && b["reason"] == "input_changed"
+        && b["path"] == "test_math.py"));
+    fs::remove_dir_all(root).unwrap();
+}
+
+// highgrade: HG-0022-S4
+#[test]
+fn spec_check_brief_returns_stable_handoff() {
+    let root = root();
+    brief_fixture(&root, false);
+    let read = call(&root, "spec-read", &[("--id", "HG-0001")]).unwrap();
+    let exact = read
+        .measurements
+        .iter()
+        .find(|v| v.get("change_sha256").is_some())
+        .unwrap();
+    put(
+        &root,
+        "decision.json",
+        &json!({"decisions":[{
+            "id":"HG-0001","decision":"accepted","decided_by":"simulated user",
+            "change_sha256":exact["change_sha256"],"inputs_sha256":exact["inputs_sha256"],
+            "verified_revision":"fixture-sha","comment":""
+        }]}),
+    );
+    call(
+        &root,
+        "spec-decide",
+        &[("--expected", &sha(&root)), ("--input", "decision.json")],
+    )
+    .unwrap();
+    let before = fs::read(root.join("specs/changes/HG-0001/results.json")).unwrap();
+    let first = brief(&root);
+    let second = brief(&root);
+    assert_eq!(first.status, "passed");
+    assert_eq!(brief_data(&first), brief_data(&second));
+    assert_eq!(brief_data(&first)["technical"], "ready");
+    assert_eq!(brief_data(&first)["human"], "accepted");
+    assert_eq!(brief_data(&first)["review"], "go");
+    assert_eq!(brief_data(&first)["verified_revision"], "fixture-sha");
+    assert_eq!(brief_data(&first)["change_sha256"], exact["change_sha256"]);
+    assert_eq!(brief_data(&first)["inputs_sha256"], exact["inputs_sha256"]);
+    assert!(first.measurements.iter().all(|v| v.get("change").is_none()));
+    assert_eq!(
+        fs::read(root.join("specs/changes/HG-0001/results.json")).unwrap(),
+        before
+    );
+    fs::remove_dir_all(root).unwrap();
+}
+
 // highgrade: HG-0004-S2
 #[test]
 fn batch_failure_keeps_prior_results_and_each_scenario_owns_its_report() {

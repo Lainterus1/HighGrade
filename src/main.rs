@@ -89,7 +89,8 @@ fn run() -> Result<Report> {
         "spec-recover" => vec!["--root", "--expected"],
         "spec-decide" => vec!["--root", "--expected", "--input"],
         "spec-read" => vec!["--root", "--id", "--requirement"],
-        "spec-diff" | "spec-check" | "spec-validate" => vec!["--root", "--id"],
+        "spec-diff" | "spec-validate" => vec!["--root", "--id"],
+        "spec-check" => vec!["--root", "--id", "--brief"],
         "spec-save" | "spec-evidence" => vec!["--root", "--id", "--expected", "--input"],
         "spec-review" => vec![
             "--root",
@@ -113,6 +114,11 @@ fn run() -> Result<Report> {
     if let Some(value) = options.get("--apply") {
         if value != "true" {
             return Err("Usage: --apply принимает только true".into());
+        }
+    }
+    if let Some(value) = options.get("--brief") {
+        if value != "true" {
+            return Err("Usage: --brief принимает только true".into());
         }
     }
     if options.contains_key("--bootstrap")

@@ -14,6 +14,8 @@ $hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.e
 & $hgExe spec-schema --root "$PWD"
 ```
 
+Для короткой сверки перед переходом между этапами: `& $hgExe spec-check --root "$PWD" --id HG-CHANGE --brief true`. Вывод содержит точные хеши, статусы и причины повторной проверки без полного журнала; `spec-read` оставь для редактирования change или разбора конкретного пробела.
+
 Каталог v3 ведёт CLI активной Поставки; версию проверяет `global-status`. В пустом проекте `spec-list` возвращает `store_sha256=absent`. Маршрут: `spec-new` с хешем → `spec-read` → правка change → `spec-save` с хешем снимка. Каталог напрямую не редактируй; параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
 
 Далее: `spec-validate` → работа и тесты → `spec-evidence` → независимое ревью и `spec-review` → `spec-check` → `spec-integrate`. Решение человека пишет `spec-decide`; оно и право на commit/push не следуют из проверки. Старый store мигрирует через `spec-migrate --to directory` с backup. Фокусные тесты: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
