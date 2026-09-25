@@ -89,14 +89,16 @@ def build(root, revision):
     root = Path(root).absolute()
     target = safe_path(root, root / 'target')
     target.mkdir(exist_ok=True)
-    work = safe_path(root, target / 'work')
-    reports = safe_path(root, target / 'reports')
+    project = safe_path(root, target / 'highgrade')
+    project.mkdir(exist_ok=True)
+    work = safe_path(root, project / 'work')
+    reports = safe_path(root, project / 'reports')
     work.mkdir(exist_ok=True)
     reports.mkdir(exist_ok=True)
-    candidate = target / 'release-candidate'
-    previous = target / 'release-candidate.previous'
+    candidate = project / 'candidate'
+    previous = project / 'candidate.previous'
     # Shared across candidate builds, separate from ordinary developer builds.
-    cache = target / 'release-build'
+    cache = project / 'build-cache'
     lock = safe_path(root, work / 'release-build.lock')
     # One build/replace at a time. Never clear a stale lock automatically.
     with lock.open('x'):
@@ -104,7 +106,7 @@ def build(root, revision):
     try:
         check_tree(root, target)
         if previous.exists():
-            raise ValueError('Recovery candidate exists: target/release-candidate.previous; preserved')
+            raise ValueError('Recovery candidate exists: target/highgrade/candidate.previous; preserved')
         verify_candidate(root, candidate)
         log_path = safe_path(root, reports / 'release-build.log')
         with log_path.open('w', encoding='utf-8') as log:
@@ -185,8 +187,8 @@ def main():
     try:
         record = build(root, args.revision)
     except (OSError, ValueError, subprocess.SubprocessError) as error:
-        parser.exit(1, f'Build failed: {error}\nSee target/reports/release-build.log when created.\n')
-    print(json.dumps({'source_sha': record['source_sha'], 'candidate': 'target/release-candidate'}))
+        parser.exit(1, f'Build failed: {error}\nSee target/highgrade/reports/release-build.log when created.\n')
+    print(json.dumps({'source_sha': record['source_sha'], 'candidate': 'target/highgrade/candidate'}))
 
 
 if __name__ == '__main__':

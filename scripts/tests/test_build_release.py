@@ -35,7 +35,7 @@ class ReleaseBuildTests(unittest.TestCase):
         return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
 
     def assert_no_temporary_sources(self):
-        self.assertEqual(list((self.root / 'target/work').iterdir()), [])
+        self.assertEqual(list((self.root / 'target/highgrade/work').iterdir()), [])
 
     def test_exact_revision_repeat_and_failed_build_preserve_candidate(self):
         (self.root / 'src/main.rs').write_text('invalid dirty source')
@@ -45,8 +45,8 @@ class ReleaseBuildTests(unittest.TestCase):
         self.assertEqual(first['files'].keys(), second['files'].keys())
         self.assertEqual(first['files']['kit/version.txt'], second['files']['kit/version.txt'])
         self.assertEqual(first['source_sha'], self.sha)
-        self.assertEqual(first['cargo_target_dir'], str(self.root / 'target/release-build'))
-        candidate = self.root / 'target/release-candidate'
+        self.assertEqual(first['cargo_target_dir'], str(self.root / 'target/highgrade/build-cache'))
+        candidate = self.root / 'target/highgrade/candidate'
         self.assertEqual((candidate / 'kit/version.txt').read_text(), 'committed kit')
         executable = candidate / ('highgrade.exe' if os.name == 'nt' else 'highgrade')
         self.assertEqual(self.run_command(str(executable)).strip(), 'committed')
@@ -57,12 +57,12 @@ class ReleaseBuildTests(unittest.TestCase):
         with self.assertRaises(subprocess.CalledProcessError):
             module.build(self.root, 'HEAD')
         self.assertEqual(module.files(candidate), before)
-        self.assertIn('FAILED:', (self.root / 'target/reports/release-build.log').read_text())
+        self.assertIn('FAILED:', (self.root / 'target/highgrade/reports/release-build.log').read_text())
         self.assert_no_temporary_sources()
 
     def test_foreign_candidate_data_is_preserved(self):
         module.build(self.root, self.sha)
-        candidate = self.root / 'target/release-candidate'
+        candidate = self.root / 'target/highgrade/candidate'
         foreign = candidate / 'notes.txt'
         foreign.write_text('keep me')
         with self.assertRaises(ValueError):
@@ -78,25 +78,26 @@ class ReleaseBuildTests(unittest.TestCase):
     def test_linked_target_is_refused(self):
         self.check_linked_path('target')
 
-    def test_nested_release_junction_is_refused_before_cargo_writes(self):
-        (self.root / 'target').mkdir()
-        self.check_linked_path('target/release')
+    def test_nested_cache_junction_is_refused_before_cargo_writes(self):
+        (self.root / 'target/highgrade').mkdir(parents=True)
+        self.check_linked_path('target/highgrade/build-cache')
 
     def test_double_rename_failure_keeps_recovery_candidate(self):
         module.build(self.root, self.sha)
-        candidate = self.root / 'target/release-candidate'
+        candidate = self.root / 'target/highgrade/candidate'
         before = module.files(candidate)
         rename = Path.rename
 
         def fail_replacement(path, destination):
-            if path.name in ('candidate', 'release-candidate.previous'):
+            if ((path.name == 'candidate' and path.parent != self.root / 'target/highgrade')
+                    or path.name == 'candidate.previous'):
                 raise OSError('injected rename failure')
             return rename(path, destination)
 
         with patch.object(Path, 'rename', fail_replacement):
             with self.assertRaises(OSError):
                 module.build(self.root, self.sha)
-        recovery = self.root / 'target/release-candidate.previous'
+        recovery = self.root / 'target/highgrade/candidate.previous'
         self.assertEqual(module.files(recovery), before)
         with self.assertRaises(ValueError):
             module.build(self.root, self.sha)
@@ -118,7 +119,7 @@ class ReleaseBuildTests(unittest.TestCase):
         (self.root / 'src/main.rs').write_text('fn main() { println!("different developer build"); }')
         with patch.object(subprocess, 'run', run_with_competing_build):
             module.build(self.root, self.sha)
-        executable = self.root / 'target/release-candidate' / ('highgrade.exe' if os.name == 'nt' else 'highgrade')
+        executable = self.root / 'target/highgrade/candidate' / ('highgrade.exe' if os.name == 'nt' else 'highgrade')
         self.assertEqual(self.run_command(str(executable)).strip(), 'committed')
 
     def test_target_override_uses_artifact_from_current_build(self):
@@ -131,7 +132,7 @@ class ReleaseBuildTests(unittest.TestCase):
                     if line.startswith('host: '))
         with patch.dict(os.environ, {'CARGO_BUILD_TARGET': host}):
             record = module.build(self.root, second_sha)
-        executable = self.root / 'target/release-candidate' / ('highgrade.exe' if os.name == 'nt' else 'highgrade')
+        executable = self.root / 'target/highgrade/candidate' / ('highgrade.exe' if os.name == 'nt' else 'highgrade')
         self.assertEqual(record['source_sha'], second_sha)
         self.assertEqual(self.run_command(str(executable)).strip(), 'new commit')
         self.assert_no_temporary_sources()
