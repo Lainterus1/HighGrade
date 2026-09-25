@@ -87,8 +87,10 @@ class TargetMaintenanceTests(unittest.TestCase):
 
         with patch.object(module, 'active_builds', return_value=[]), patch.object(module.subprocess, 'run', side_effect=clean):
             module.maintain(self.root, apply=True, caches=('release', 'debug'), scratch=('run-1',))
-        self.assertEqual(calls, [(['cargo', 'clean', '--target-dir', str(self.root / 'target'), '--release'], self.root),
-                                 (['cargo', 'clean', '--target-dir', str(self.root / 'target'), '--profile', 'test'], self.root)])
+        resolved_root = self.root.resolve(strict=True)
+        target_dir = str(resolved_root / 'target')
+        self.assertEqual(calls, [(['cargo', 'clean', '--target-dir', target_dir, '--release'], resolved_root),
+                                 (['cargo', 'clean', '--target-dir', target_dir, '--profile', 'test'], resolved_root)])
         self.assertEqual((self.project / 'candidate/highgrade.exe').read_bytes(), b'candidate')
 
     def test_scratch_path_escape_is_refused(self):
