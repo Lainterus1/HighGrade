@@ -8,6 +8,9 @@ const mode = process.argv[2];
 const abs = (file) => path.join(root, file);
 const read = (file) => JSON.parse(readFileSync(abs(file), 'utf8'));
 const sha = (file) => createHash('sha256').update(readFileSync(abs(file))).digest('hex');
+const digest = (value) => createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex');
+const canonical = (value) => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
+  ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonical(value[key])])) : value;
 const fail = (message) => { throw new Error(message); };
 const validId = (id) => typeof id === 'string' && id.length >= 6 && id.length <= 80 && /^[A-Z]{2,32}(?:-[A-Z0-9]+)+$/.test(id);
 const requiredText = (value, location) => { if (typeof value !== 'string' || !value.trim()) fail(`${location}: empty required text`); };
@@ -47,11 +50,15 @@ function sources() {
   if (Object.keys(catalog.origins ?? {}).length) fail('active catalog still depends on historical origins');
   const bound = new Map();
   const manual = new Set();
+  const checks = [];
   for (const file of files('specs/changes').filter((item) => item.endsWith('/spec.json'))) {
     const change = read(file);
-    for (const check of change.checks ?? []) for (const id of check.scenario_ids) {
-      if (check.runner) bound.set(id, [...(bound.get(id) ?? []), check]);
-      else manual.add(id);
+    for (const check of change.checks ?? []) {
+      checks.push(check);
+      for (const id of check.scenario_ids) {
+        if (check.runner) bound.set(id, [...(bound.get(id) ?? []), check]);
+        else manual.add(id);
+      }
     }
   }
   const testSources = files('tests').filter((item) => /^tests\/[^/]+\.rs$/.test(item)).sort();
@@ -78,7 +85,9 @@ function sources() {
   }
   const noDeclaredCheck = [...scenarios.keys()].filter((id) => !bound.has(id) && !manual.has(id)).sort();
   const manualOnly = [...manual].filter((id) => !bound.has(id)).sort();
-  return { requirements, scenarios, automatic: [...marked].sort(), manual: manualOnly, noDeclaredCheck, testSources };
+  const scenarioSha256 = digest({ requirements: [...requirements].sort(([a], [b]) => a.localeCompare(b)),
+    checks: checks.sort((a, b) => a.id.localeCompare(b.id)), automatic: [...marked].sort(), manual: manualOnly, noDeclaredCheck });
+  return { requirements, scenarios, automatic: [...marked].sort(), manual: manualOnly, noDeclaredCheck, testSources, scenarioSha256 };
 }
 
 function nativeHash() {
@@ -114,14 +123,32 @@ function prepare(source) {
     inventory, ...files('src').filter((item) => item.endsWith('.rs')),
     ...files('tests/fixtures/native-v1'), 'Cargo.toml', 'Cargo.lock', '.config/nextest.toml', '.gitattributes'];
   const reportTime = statSync(abs(report)).mtimeMs;
-  for (const file of pinned.filter((item) => item !== inventory)) if (statSync(abs(file)).mtimeMs > reportTime) fail(`${file}: source changed after the native test report; rerun nextest`);
+  const isSpec = (file) => file === 'specs/catalog.json' || file.startsWith('specs/requirements/') || file.startsWith('specs/changes/');
+  for (const file of pinned.filter((item) => !isSpec(item) && item !== inventory)) {
+    if (statSync(abs(file)).mtimeMs > reportTime) fail(`${file}: source changed after the native test report; rerun nextest`);
+  }
   if (statSync(abs(inventory)).mtimeMs > reportTime) fail('nextest inventory is newer than the test report; rerun nextest');
+  const changedSpec = pinned.some((file) => isSpec(file) && statSync(abs(file)).mtimeMs > reportTime);
+  if (changedSpec) {
+    if (!existsSync(abs(record))) fail('specification changed after the native test report; rerun nextest');
+    const previous = read(record);
+    const nonSpec = pinned.filter((file) => !isSpec(file)).sort();
+    const previousNonSpec = Object.keys(previous.source_hashes ?? {}).filter((file) => !isSpec(file)).sort();
+    if (previous.capture_root !== root || previous.exit_code !== 0 || previous.tool !== 'rust-nextest' ||
+        previous.report !== report || previous.inventory !== inventory ||
+        JSON.stringify(previousNonSpec) !== JSON.stringify(nonSpec) ||
+        previous.report_sha256 !== sha(report) || previous.scenario_sha256 !== source.scenarioSha256 ||
+        pinned.some((file) => !isSpec(file) && previous.source_hashes?.[file] !== sha(file))) {
+      fail('specification or test inputs changed after the native test report; rerun nextest');
+    }
+  }
   const sourceHashes = Object.fromEntries(pinned.map((file) => [file, file === 'specs/catalog.json' ? nativeHash() : sha(file)]));
   writeFileSync(abs(record), `${JSON.stringify({ schema_version: 1, tool: 'rust-nextest', command: 'cargo nextest run --locked --profile highgrade',
     scope: 'active native High Grade specifications and Rust integration tests', captured_at: new Date().toISOString(), capture_root: root,
     exit_code: 0, report, report_sha256: sha(report), spec_files: ['specs/catalog.json'], test_sources: source.testSources,
-    source_hashes: sourceHashes, inventory }, null, 2)}\n`);
-  return { record, pinned_files: pinned.length, native_tests_passed: totals.tests };
+    source_hashes: sourceHashes, inventory, scenario_sha256: source.scenarioSha256 }, null, 2)}\n`);
+  return { record, pinned_files: pinned.length, native_tests_passed: totals.tests,
+    native_report_reused: changedSpec, native_report_reason: changedSpec ? 'equivalent_specification' : 'fresh_report' };
 }
 
 function verify(source) {

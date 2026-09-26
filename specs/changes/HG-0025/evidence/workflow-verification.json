@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-26T06:53:00.465009+00:00",
+  "native": {
+    "command": "cargo-nextest nextest run --locked --profile highgrade --status-level fail",
+    "junit_sha256": "1c856e34c45ba467512fdfccd278b13820f9a0c82ce105cf3be0a088892ee44c",
+    "tests": 124,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "scenario_sha256": "ccbf324436cfc91d0f7354ae847717d48ea40181e1026d3b0d61cd69296f60cf",
+    "automatic_passed": 48,
+    "scenarios_total": 120
+  },
+  "reuse_guard": {
+    "command": "node scripts/check-scenario-reuse.mjs",
+    "equivalent_specification": "reused",
+    "changed_scenario": "rejected_rerun_required",
+    "changed_rust_mtime": "rejected_rerun_required",
+    "changed_rust_restored_mtime": "rejected_by_sha_rerun_required"
+  },
+  "release_route": {
+    "active_release_before_change": "v0-2-20",
+    "previous_activated_commit": "906ca4c815e8423ed5d1017b334e4c9fb9b02e2c",
+    "current_task_candidate_built": false,
+    "current_task_activation_performed": false,
+    "rule": "one build-release.py <SHA> candidate, preview, same-fingerprint apply, global-status"
+  },
+  "chain_decisions": [
+    {
+      "stage": "intermediate",
+      "next_requires_active_cli": false,
+      "decision": "commit without release ID or activation"
+    },
+    {
+      "stage": "intermediate",
+      "next_requires_active_cli": true,
+      "decision": "activate this stage from its SHA"
+    },
+    {
+      "stage": "last ready",
+      "activation_assigned": true,
+      "decision": "bump release ID before commit, then activate exact SHA; push separate"
+    }
+  ],
+  "limitations": [
+    "Decision table verifies the configured project rule, not future agent adherence.",
+    "The current task changes project scripts and documentation, so it does not build or activate a new release."
+  ],
+  "post_integration": {
+    "recorded_at": "2026-09-26T06:57:24.224549+00:00",
+    "command": "node scripts/source-scenarios.mjs prepare; highgrade trace; node scripts/source-scenarios.mjs verify",
+    "native_report_reused": true,
+    "native_report_reason": "equivalent_specification",
+    "junit_sha256": "1c856e34c45ba467512fdfccd278b13820f9a0c82ce105cf3be0a088892ee44c",
+    "pinned_files": 122,
+    "automatic_passed": 48,
+    "scenarios_total": 120,
+    "verify_status": "passed"
+  }
+}

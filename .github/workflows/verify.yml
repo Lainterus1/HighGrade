@@ -66,6 +66,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Check selective context with 100 and 200 specs
         run: node scripts/check-scenario-scale.mjs
+      - name: Check scenario report reuse guard
+        run: node scripts/check-scenario-reuse.mjs
       - name: Build release
         run: cargo build --release --locked
       - name: Check repository structure
