@@ -12,6 +12,54 @@ use std::{
 };
 use support::TestDir;
 
+// highgrade: HG-0035-S1, HG-0035-S2
+#[test]
+fn cli_command_help_is_available_without_a_project() {
+    let output = std::process::Command::new(env!("CARGO_BIN_EXE_highgrade"))
+        .arg("--help")
+        .output()
+        .unwrap();
+    let help: Value = serde_json::from_slice(&output.stdout).unwrap();
+    let m = &help["measurements"][0];
+    for group in [
+        "project_commands",
+        "installation_commands",
+        "compatibility_commands",
+    ] {
+        for command in m[group].as_str().unwrap().split_whitespace() {
+            let result = std::process::Command::new(env!("CARGO_BIN_EXE_highgrade"))
+                .args([command, "--help"])
+                .output()
+                .unwrap();
+            assert!(
+                result.status.success(),
+                "{command}: {}",
+                String::from_utf8_lossy(&result.stdout)
+            );
+            let result: Value = serde_json::from_slice(&result.stdout).unwrap();
+            assert!(result["measurements"][0]["options"].is_array());
+            assert!(
+                result["measurements"][0]["example"]
+                    .as_str()
+                    .unwrap()
+                    .contains(command)
+            );
+        }
+    }
+    let output = std::process::Command::new(env!("CARGO_BIN_EXE_highgrade"))
+        .args(["spec-read", "--wrong", "x"])
+        .output()
+        .unwrap();
+    let error: Value = serde_json::from_slice(&output.stdout).unwrap();
+    assert!(!output.status.success());
+    assert!(
+        error["measurements"][0]["next"]
+            .as_str()
+            .unwrap()
+            .contains("--help")
+    );
+}
+
 #[test]
 fn task_checkboxes_and_inline_code_are_not_references() {
     let root = dir();

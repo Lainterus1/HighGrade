@@ -16,6 +16,68 @@ mod storage;
 pub use storage::{CATALOG, catalog_path};
 
 pub const STORE: &str = ".highgrade/specs/store.json";
+pub fn diagnose(
+    root: &Path,
+    action: &str,
+    id: Option<&str>,
+    check: Option<&str>,
+) -> Result<Report> {
+    let root = paths::root(root)?;
+    let mut report = Report::new("doctor");
+    match action {
+        "spec-read" => {
+            let (_, sha) = load(&root)?;
+            report
+                .measurements
+                .push(json!({"action":action,"store_sha256":sha,"executed":false}));
+        }
+        "spec-run" => {
+            let (store, _) = load(&root)?;
+            let id = id.ok_or("Usage: doctor --action spec-run requires --id")?;
+            let c = store.changes.get(id).ok_or("ChangeMissing")?;
+            let selected = check.unwrap_or("all");
+            let snapshot = checks::capture_inputs(&root, &store, id, selected)?;
+            report
+                .measurements
+                .push(json!({"action":action,"snapshot":snapshot,"executed":false}));
+            for b in c
+                .checks
+                .iter()
+                .filter(|b| selected == "all" || b.id == selected)
+            {
+                let r = &store.runners[b.runner.as_ref().unwrap()];
+                let found = if r.program.contains('/') {
+                    paths::safe(&root, &r.program)?.is_file()
+                } else {
+                    std::env::var_os("PATH")
+                        .into_iter()
+                        .flat_map(|p| std::env::split_paths(&p).collect::<Vec<_>>())
+                        .filter(|p| p.is_absolute())
+                        .any(|p| {
+                            p.join(&r.program).is_file()
+                                || (cfg!(windows) && p.join(format!("{}.exe", r.program)).is_file())
+                        })
+                };
+                report.measurements.push(
+                    json!({"check":b.id,"program":r.program,"available":found,"executed":false}),
+                );
+                if !found {
+                    report.finding(
+                        "failed",
+                        "RunnerUnavailable",
+                        &b.id,
+                        &format!("Install or configure runner executable {}", r.program),
+                    );
+                }
+            }
+        }
+        _ => return Err("Usage: doctor --action spec-read|spec-run".into()),
+    }
+    Ok(report)
+}
+pub fn input_schemas() -> Value {
+    json!({"change":schemars::schema_for!(Change),"evidence_input":schemars::schema_for!(EvidenceInput),"evidence_batch":schemars::schema_for!(Vec<BatchEvidence>),"report_import":schemars::schema_for!(checks::ImportReport),"decision_input":schemars::schema_for!(progress::DecisionInput),"runner":schemars::schema_for!(checks::Runner)})
+}
 const LIMIT: u64 = 8 * 1024 * 1024;
 
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, PartialEq)]
@@ -397,7 +459,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             serde_json::to_value(schemars::schema_for!(Store)).map_err(|e| e.to_string())?;
         schema["properties"]["schema_version"]["const"] = json!(2);
         report.measurements.push(
-            json!({"directory_format":storage::schema(),"store":schema,"change":schemars::schema_for!(Change),"evidence_input":schemars::schema_for!(EvidenceInput),"decision_input":schemars::schema_for!(progress::DecisionInput)}),
+            json!({"directory_format":storage::schema(),"store":schema,"change":schemars::schema_for!(Change),"evidence_input":schemars::schema_for!(EvidenceInput),"decision_input":schemars::schema_for!(progress::DecisionInput),"inputs":input_schemas()}),
         );
         return Ok(report);
     }
@@ -429,6 +491,8 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             | "spec-save"
             | "spec-edit"
             | "spec-evidence"
+            | "spec-evidence-batch"
+            | "spec-run-import"
             | "spec-review"
             | "spec-integrate"
             | "spec-transfer"
@@ -461,7 +525,14 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             "absent".into(),
         )
     };
-    if mutation && get("--expected")? != sha {
+    if mutation && options.contains_key("--expected-local") {
+        if op != "spec-edit" || options.contains_key("--expected") {
+            return Err("Usage: spec-edit accepts either --expected or --expected-local".into());
+        }
+        if get("--expected-local")? != local_revision(&store, get("--id")?)? {
+            return Err("LocalConflict: reread selected change and dependencies".into());
+        }
+    } else if mutation && get("--expected")? != sha {
         return Err(format!("StoreConflict: /; current_sha256={sha}"));
     }
     if mutation && store.schema_version == 1 && op != "spec-migrate" {
@@ -509,6 +580,15 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         "spec-stats" => report
             .measurements
             .push(checks::statistics(&root, &store, get("--id")?)?),
+        "spec-run-inputs" => report.measurements.push(
+            json!({"snapshot":checks::capture_inputs(&root,&store,get("--id")?,get("--check")?)?}),
+        ),
+        "spec-run-import" => checks::import_report(
+            &root,
+            &mut store,
+            &paths::safe(&root, get("--input")?)?,
+            &mut report,
+        )?,
         "spec-runner-set" => {
             let runner = decode(
                 &paths::read_limited(&paths::safe(&root, get("--input")?)?, LIMIT)?,
@@ -673,6 +753,37 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             result_mut(&mut store, get("--id")?)?,
             &paths::safe(&root, get("--input")?)?,
         )?,
+        "spec-evidence-batch" => {
+            let entries: Vec<BatchEvidence> = decode(
+                &paths::read_limited(&paths::safe(&root, get("--input")?)?, LIMIT)?,
+                "/batch",
+            )?;
+            if entries.is_empty() {
+                return Err("EmptyEvidenceBatch".into());
+            }
+            let mut changed = BTreeSet::new();
+            let mut seen = BTreeSet::new();
+            for entry in entries {
+                if !seen.insert((entry.id.clone(), entry.evidence.scenario.clone())) {
+                    return Err("DuplicateBatchScenario".into());
+                }
+                let original = store.changes.get(&entry.id).ok_or("ChangeMissing")?;
+                if original.abandoned_reason.is_some() {
+                    return Err("AbandonedChange".into());
+                }
+                let mut candidate = original.clone();
+                apply_evidence(&root, &mut candidate, entry.evidence)?;
+                if candidate.evidence != original.evidence {
+                    if changed.insert(entry.id.clone()) {
+                        result_mut(&mut store, &entry.id)?;
+                    }
+                    store.changes.get_mut(&entry.id).unwrap().evidence = candidate.evidence;
+                }
+            }
+            report
+                .measurements
+                .push(json!({"updated":changed,"atomic":true}));
+        }
         "spec-review" => {
             let c = result_mut(&mut store, get("--id")?)?;
             let reviewer = get("--reviewer")?;
@@ -811,14 +922,21 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             get("--input")?,
             get("--source")?,
         )?,
-        "spec-migrate" => match options.get("--to").map(String::as_str) {
-            Some("directory") => storage::migrate(&root, &mut store, &sha)?,
-            None if store.schema_version != 3 => {
-                progress::migrate(&root, &mut store, &sha, &mut report)?
+        "spec-migrate" => {
+            match options.get("--to").map(String::as_str) {
+                Some("compact") => {
+                    storage::compact(&root, &store)?;
+                    report.measurements.push(json!({"store_sha256":load_unlocked(&root)?.1,"directory_schema_version":4}));
+                    return Ok(report);
+                }
+                Some("directory") => storage::migrate(&root, &mut store, &sha)?,
+                None if store.schema_version != 3 => {
+                    progress::migrate(&root, &mut store, &sha, &mut report)?
+                }
+                None => {}
+                _ => return Err("Usage: --to directory|compact".into()),
             }
-            None => {}
-            _ => return Err("Usage: --to directory".into()),
-        },
+        }
         "spec-decide" => {
             progress::decide(&root, &mut store, &paths::safe(&root, get("--input")?)?)?
         }
@@ -840,6 +958,11 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         .push(json!({"store_sha256":current_sha,"schema_version":store.schema_version}));
     if let Some(key) = change_id {
         if let Some(c) = store.changes.get(key) {
+            if op == "spec-read" {
+                report
+                    .measurements
+                    .push(json!({"local_sha256":local_revision(&store,key)?}));
+            }
             if matches!(op, "spec-edit" | "spec-integrate")
                 && options.get("--brief").is_some_and(|v| v == "true")
             {
@@ -865,7 +988,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 report
                     .measurements
                     .push(json!({"view":view,"value":selected}));
-            } else if op != "spec-stats"
+            } else if !matches!(op, "spec-stats" | "spec-list" | "spec-run-inputs")
                 && !(op == "spec-check" && options.get("--brief").is_some_and(|v| v == "true"))
             {
                 report
@@ -876,6 +999,32 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
     }
     Ok(report)
 }
+fn local_revision(s: &Store, id: &str) -> Result<String> {
+    s.changes.get(id).ok_or("ChangeMissing")?;
+    let mut pending = vec![id.to_string()];
+    let mut scope = BTreeMap::new();
+    while let Some(id) = pending.pop() {
+        if scope.contains_key(&id) {
+            continue;
+        }
+        let change = s.changes.get(&id).ok_or("DependencyMissing")?;
+        pending.extend(change.depends_on.iter().map(|l| l.id.clone()));
+        scope.insert(id, change);
+    }
+    let requirements: BTreeMap<_, _> = scope
+        .values()
+        .flat_map(|c| c.operations.iter())
+        .map(|d| (d.id(), s.requirements.get(d.id())))
+        .collect();
+    let runners: BTreeMap<_, _> = scope
+        .values()
+        .flat_map(|c| c.checks.iter())
+        .filter_map(|b| b.runner.as_ref())
+        .map(|id| (id, s.runners.get(id)))
+        .collect();
+    Ok(digest(&(scope, requirements, runners, &s.retired_ids)))
+}
+
 const EDITABLE: &[&str] = &[
     "title",
     "goal",
@@ -1127,8 +1276,17 @@ struct EvidenceInput {
     inputs: Vec<String>,
     report: String,
 }
+#[derive(Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+struct BatchEvidence {
+    id: String,
+    evidence: EvidenceInput,
+}
 fn record_evidence(root: &Path, c: &mut Change, input: &Path) -> Result<()> {
     let v: EvidenceInput = decode(&paths::read_limited(input, LIMIT)?, "/evidence")?;
+    apply_evidence(root, c, v)
+}
+fn apply_evidence(root: &Path, c: &mut Change, v: EvidenceInput) -> Result<()> {
     let r = c
         .operations
         .iter()

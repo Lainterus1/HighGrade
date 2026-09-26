@@ -1,0 +1,1291 @@
+{
+  "operation": "trace",
+  "status": "passed",
+  "findings": [],
+  "measurements": [
+    {
+      "scenario_id": "HG-0002-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::foreign_structured_files_are_not_deleted",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::project_catalog_survives_service_removal_and_preserves_siblings",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::selected_directory_is_project_owned_and_self_contained",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0002-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::explicit_migration_preserves_all_data_and_detects_legacy_writer",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::interrupted_transaction_refuses_reads_and_recovers_only_observed_targets",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::malformed_recovery_never_unblocks_catalog",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::recovery_cannot_delete_a_required_specification",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::recovery_reconstructs_partial_staging_and_missing_first_document",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::two_catalog_writers_cannot_allocate_the_same_number",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0002-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::integrated_recheck_retains_history_and_invalidates_old_acceptance",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0003-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::explicit_links_reject_missing_cycles_and_do_not_inherit_content",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0003-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::tags_merge_atomically_and_filters_keep_dependencies_discoverable",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0003-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::tags_merge_atomically_and_filters_keep_dependencies_discoverable",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0004-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::cargo_runner_requires_a_real_exact_test",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0004-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::batch_failure_keeps_prior_results_and_each_scenario_owns_its_report",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::cargo_runner_requires_a_real_exact_test",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0004-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0006-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0006-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0006-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0006-S4",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0006-S5",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0006-S6",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0006-S7",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0008-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0008-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0008-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::trace_contracts::reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S10",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::exclusions_are_safe_and_bad_registry_does_not_hide_candidates",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S11",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::alternative_name_is_candidate_but_never_accepted_as_role",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S12",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0009-S13",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0009-S14",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0009-S15",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::missing_link_is_distinct_from_missing_file_and_registry_path_mismatch",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S16",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::canonical_project_has_separate_path_and_link_evidence",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S19",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::canonical_project_has_separate_path_and_link_evidence",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S20",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::bootstrap_reports_multiple_unvisited_locations_with_a_count",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S4",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::bootstrap_reports_all_slots_before_registry_exists",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S5",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::alternative_name_is_candidate_but_never_accepted_as_role",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S6",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0009-S7",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::complete_project_still_reports_missing_navigation_without_candidate_walk",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S8",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::migrated_architecture_with_old_readme_link_is_reported",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0009-S9",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::installed_runtime_references_survive_removal_of_source_copy",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0010-S10",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::supported_adapter_does_not_claim_semantic_readiness",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0010-S11",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::unsupported_project_adapter_is_a_failure",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0010-S12",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::global_update_preserves_project_adaptation_in_profile",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0010-S13",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S14",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S15",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S16",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S4",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::shipped_registry_example_is_accepted_without_inventing_budgets",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0010-S5",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S6",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S7",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S8",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0010-S9",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S10",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::update_preserves_foreign_file_in_old_release",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0011-S11",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S12",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S4",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S5",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S6",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S7",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S8",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0011-S9",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::global_update_preview_switch_and_cleanup_keep_unrelated_files",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0012-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::automatic_numbers_survive_abandon_failure_and_competing_cli_writers",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0012-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::v1_migration_preserves_exact_backup_ids_evidence_and_review_digest",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0012-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::human_history_is_atomic_protected_and_bound_to_spec_and_implementation",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0012-S4",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::json_progress_rejects_missing_skipped_unknown_and_negative_review",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0012-S5",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0013-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::drafts_are_readable_but_unknown_versions_and_fields_never_write",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0013-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::competing_processes_and_failed_replace_preserve_whole_store",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0013-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::integration_rejects_stale_base_and_requires_removal_reason",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0013-S4",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::evidence_and_review_go_stale_without_losing_unaffected_observations",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0013-S5",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0014-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0014-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0015-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::doctor_reports_unavailable_tool_without_claiming_version",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0016-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0016-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0016-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0017-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0017-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0017-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0018-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0018-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::contracts::default_inspect_uses_only_highgrade_registry",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0018-S4",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::contracts::default_inspect_uses_only_highgrade_registry",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0019-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0019-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0019-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0020-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0020-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0020-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0020-S4",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0020-S5",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0020-S6",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0020-S7",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0020-S8",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0020-S9",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::planner_router_is_portable",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0021-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0021-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0021-S4",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0022-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::spec_check_brief_reports_affected_inputs",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0022-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::spec_check_brief_reports_affected_inputs",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0022-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::spec_check_brief_reports_stale_run",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0022-S4",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::spec_check_brief_returns_stable_handoff",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0023-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::run_statistics_track_attempts_without_execution",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0023-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::run_statistics_track_attempts_without_execution",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0023-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0024-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::trace_contracts::automatic_trace_keeps_scope_and_outcomes_distinct",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0024-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::trace_contracts::automatic_trace_keeps_scope_and_outcomes_distinct",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0024-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::trace_contracts::automatic_trace_keeps_scope_and_outcomes_distinct",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0024-S4",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0025-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0025-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0025-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0026-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0026-S2",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0026-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0026-S4",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0027-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::update_replaces_owned_skill_and_preserves_user_edit",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0027-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::failed_candidate_stage_restores_changed_skill",
+          "passed"
+        ],
+        [
+          "highgrade::global_contracts::interrupted_skill_update_recovers_without_overwriting_user_edit",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0027-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::planner_router_is_portable",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0028-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::connected_project_uses_registered_existing_path",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0028-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::combined_roles_are_counted_once_and_invalid_assignments_fail",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0028-S3",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0029-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::equivalent_native_runs_keep_material_revision_and_append_history",
+          "passed"
+        ],
+        [
+          "highgrade::spec_contracts::equivalent_evidence_refresh_preserves_decision_but_changed_observation_does_not",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0029-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::spec_contracts::equivalent_evidence_refresh_preserves_decision_but_changed_observation_does_not",
+          "passed"
+        ],
+        [
+          "highgrade::spec_contracts::report_that_is_also_an_input_never_hides_changed_implementation",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0030-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::compact_views_and_atomic_edit_protect_results_and_cas",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0030-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::shared_inputs_track_content_and_membership",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0031-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0032-S1",
+      "source": "specs/catalog.json",
+      "status": "outside_automatic_trace",
+      "tests": []
+    },
+    {
+      "scenario_id": "HG-0033-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::compact_catalog_accepts_empty_changes_and_new_changes",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::compact_history_preserves_observations_and_rejects_corruption",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0033-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::compact_catalog_accepts_empty_changes_and_new_changes",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::compact_history_preserves_observations_and_rejects_corruption",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::compact_transaction_limit_and_recovery_preserve_catalog",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0034-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::native_report_import_reuses_suite_and_rejects_stale_or_missing_results",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0034-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::native_report_import_reuses_suite_and_rejects_stale_or_missing_results",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0034-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::evidence_batch_is_atomic_and_exact_repeat_is_noop",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0035-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::contracts::cli_command_help_is_available_without_a_project",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0035-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::contracts::cli_command_help_is_available_without_a_project",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0036-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::global_contracts::global_update_preview_switch_and_cleanup_keep_unrelated_files",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0036-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::bootstrap_contracts::bootstrap_distinguishes_adaptation_from_technical_failure",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0036-S3",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::action_diagnostics_check_runner_without_execution",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0037-S1",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::selected_list_and_local_edit_preserve_independent_work",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "scenario_id": "HG-0037-S2",
+      "source": "specs/catalog.json",
+      "status": "passed",
+      "tests": [
+        [
+          "highgrade::catalog_contracts::local_edit_rejects_dependency_runner_drift",
+          "passed"
+        ],
+        [
+          "highgrade::catalog_contracts::selected_list_and_local_edit_preserve_independent_work",
+          "passed"
+        ]
+      ]
+    },
+    {
+      "automatic_passed": 69,
+      "automatic_scenarios": 69,
+      "linked_test_cases": 69,
+      "outside_automatic_trace": 72,
+      "scenarios_total": 141,
+      "test_cases_executed": 144,
+      "test_cases_missing": 0,
+      "test_cases_reported": 144,
+      "test_cases_skipped": 0,
+      "test_cases_unknown": 0,
+      "unlinked_test_cases": 75
+    },
+    {
+      "captured_at": "2026-09-26T10:04:25.573Z",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "report": "target/nextest/highgrade/junit.xml",
+      "report_sha256": "d580db5ad7194336124c0e4c021026d074408cf8efcdf9f344681587ae974ab9",
+      "scope": "active native High Grade specifications and Rust integration tests",
+      "tool": "rust-nextest"
+    }
+  ],
+  "limitations": [
+    "Сопоставление структурное; качество теста и полноту выбора существенных зависимостей проверяет агент. CLI не запускает тесты и не создаёт доказательства.",
+    "Сценарии вне автоматической трассировки требуют отдельного доказательства; их ручной или внешний результат здесь не определяется."
+  ]
+}

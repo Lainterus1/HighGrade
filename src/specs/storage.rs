@@ -220,7 +220,7 @@ pub fn load(root: &Path) -> Result<(Store, String)> {
 }
 fn decode_snapshot(root: &Path, files: &BTreeMap<String, Vec<u8>>) -> Result<(Store, String)> {
     let h: Header = decode(files.get(CATALOG).ok_or("CatalogMissing")?, CATALOG)?;
-    if h.schema_version != 3 {
+    if !matches!(h.schema_version, 3 | 4) {
         return Err("UnsupportedVersion: catalog".into());
     }
     if let Some(legacy) = bytes(root, STORE)? {
@@ -260,6 +260,10 @@ fn decode_snapshot(root: &Path, files: &BTreeMap<String, Vec<u8>>) -> Result<(St
                 json!({"evidence":{},"review":null,"acceptance":[],"history":[],"runs":[]})
             };
             let obj = results.as_object_mut().ok_or("InvalidResults")?;
+            if h.schema_version == 4 && files.contains_key(&result_path) {
+                let history = obj.get_mut("history").ok_or("MissingResultsField")?;
+                *history = expand_history(history)?;
+            }
             if obj.keys().any(|k| !RESULTS.contains(&k.as_str())) {
                 return Err("UnknownResultsField".into());
             }
@@ -354,6 +358,17 @@ pub fn recover(root: &Path, expected: &str) -> Result<()> {
     Ok(())
 }
 pub fn write(root: &Path, s: &Store) -> Result<()> {
+    write_format(root, s, None)
+}
+
+pub fn compact(root: &Path, s: &Store) -> Result<()> {
+    if !exists(root)? {
+        return Err("MigrationRequired: use --to directory first".into());
+    }
+    write_format(root, s, Some(4))
+}
+
+fn write_format(root: &Path, s: &Store, format: Option<u32>) -> Result<()> {
     if bytes(root, JOURNAL)?.is_some() {
         return Err("CatalogRecoveryRequired".into());
     }
@@ -374,8 +389,13 @@ pub fn write(root: &Path, s: &Store) -> Result<()> {
     } else {
         bytes(root, STORE)?.map(|b| hash(&b))
     };
+    let current_format = old
+        .get(CATALOG)
+        .map(|b| decode::<Header>(b, CATALOG))
+        .transpose()?
+        .map_or(3, |h| h.schema_version);
     let h = Header {
-        schema_version: 3,
+        schema_version: format.unwrap_or(current_format),
         next_number: s.next_number,
         retired_ids: s.retired_ids.clone(),
         origins: s.origins.clone(),
@@ -413,6 +433,9 @@ pub fn write(root: &Path, s: &Store) -> Result<()> {
                     .remove(*f)
                     .unwrap_or_else(|| json!([])),
             );
+        }
+        if h.schema_version == 4 {
+            results.insert("history".into(), compact_history(&results["history"])?);
         }
         new.insert(
             format!("specs/changes/{}/spec.json", c.id),
@@ -484,6 +507,76 @@ pub fn migrate(root: &Path, s: &mut Store, sha: &str) -> Result<()> {
     Ok(())
 }
 
+#[derive(Serialize, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+struct CompactHistory {
+    objects: BTreeMap<String, Value>,
+    entries: Vec<HistoryEntry>,
+}
+#[derive(Serialize, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+struct HistoryEntry {
+    recorded_at: u64,
+    evidence: BTreeMap<String, String>,
+    review: String,
+}
+fn compact_history(value: &Value) -> Result<Value> {
+    let snapshots: Vec<ResultSnapshot> =
+        serde_json::from_value(value.clone()).map_err(|e| e.to_string())?;
+    let mut result = CompactHistory {
+        objects: BTreeMap::new(),
+        entries: Vec::new(),
+    };
+    for snapshot in snapshots {
+        let mut intern = |v: Value| {
+            let key = digest(&v);
+            result.objects.entry(key.clone()).or_insert(v);
+            key
+        };
+        let evidence = snapshot
+            .evidence
+            .into_iter()
+            .map(|(id, e)| (id, intern(json!(e))))
+            .collect();
+        let review = intern(json!(snapshot.review));
+        result.entries.push(HistoryEntry {
+            recorded_at: snapshot.recorded_at,
+            evidence,
+            review,
+        });
+    }
+    Ok(json!(result))
+}
+fn expand_history(value: &Value) -> Result<Value> {
+    let compact: CompactHistory =
+        serde_json::from_value(value.clone()).map_err(|e| e.to_string())?;
+    for (key, v) in &compact.objects {
+        if digest(v) != *key {
+            return Err("HistoryObjectHashMismatch".into());
+        }
+    }
+    let mut history = Vec::new();
+    for entry in compact.entries {
+        let mut evidence = serde_json::Map::new();
+        for (id, key) in entry.evidence {
+            evidence.insert(
+                id,
+                compact
+                    .objects
+                    .get(&key)
+                    .ok_or("HistoryObjectMissing")?
+                    .clone(),
+            );
+        }
+        let review = compact
+            .objects
+            .get(&entry.review)
+            .ok_or("HistoryObjectMissing")?;
+        history.push(json!({"recorded_at":entry.recorded_at,"evidence":evidence,"review":review}));
+    }
+    Ok(json!(history))
+}
+
 pub fn schema() -> Value {
     let mut spec = serde_json::to_value(schemars::schema_for!(Change)).unwrap();
     let mut results =
@@ -498,5 +591,5 @@ pub fn schema() -> Value {
         .as_array_mut()
         .unwrap()
         .retain(|v| !RESULTS.contains(&v.as_str().unwrap()));
-    json!({"catalog":schemars::schema_for!(Header),"spec":spec,"results":results,"tags":schemars::schema_for!(BTreeMap<String,relations::Tag>),"runners":schemars::schema_for!(BTreeMap<String,checks::Runner>)})
+    json!({"catalog":schemars::schema_for!(Header),"spec":spec,"results":results,"compact_history":schemars::schema_for!(CompactHistory),"versions":[3,4],"tags":schemars::schema_for!(BTreeMap<String,relations::Tag>),"runners":schemars::schema_for!(BTreeMap<String,checks::Runner>)})
 }

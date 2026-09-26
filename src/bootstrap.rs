@@ -648,5 +648,21 @@ pub fn bootstrap(root: &Path) -> Result<Report> {
         scan.candidate_scan_performed = true;
         scan.walk(&root, "", 0);
     }
-    Ok(scan.finish())
+    let mut report = scan.finish();
+    let adaptation = report.findings.iter().any(|f| {
+        matches!(
+            f["code"].as_str(),
+            Some("CanonicalPathMissing" | "RequiredLinkMissingOrInvalid")
+        )
+    });
+    let technical_failure = report.findings.iter().any(|f| {
+        f["status"] == "failed"
+            && !matches!(
+                f["code"].as_str(),
+                Some("CanonicalPathMissing" | "RequiredLinkMissingOrInvalid")
+            )
+    });
+    let unknown = report.findings.iter().any(|f| f["status"] == "unknown");
+    report.measurements.push(json!({"validation":if technical_failure {"failed"} else if unknown {"unknown"} else {"passed"},"adaptation":if adaptation {"required"} else {"not_required"},"applied":false,"compatibility_status":report.status}));
+    Ok(report)
 }

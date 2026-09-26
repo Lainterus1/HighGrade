@@ -195,1005 +195,448 @@
       "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
     }
   },
-  "history": [
-    {
-      "evidence": {},
-      "recorded_at": 1790313506,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S9": {
-          "captured_at": "1790313501",
-          "command": "spec-run --id HG-0011 --check HG-0011-C9",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log": "d6a04a9565cc76b943f7fa21b830ced75c8efaf9ecbf396d42f42975b5354562",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790313506,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790313513,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S10": {
-          "captured_at": "1790313506",
-          "command": "spec-run --id HG-0011 --check HG-0011-C10",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log": "d15714a649076a9aeef483df07feb1f1d43df8f92e0ac43f7bb30e2991fdde31",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      {
+        "evidence": {
+          "HG-0011-S9": "93f4231207860c1e0e9302bcbd0b05091837ce0f9cc056f7bbd4beeaf0d1287c"
         },
-        "HG-0011-S9": {
-          "captured_at": "1790313501",
-          "command": "spec-run --id HG-0011 --check HG-0011-C9",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log": "d6a04a9565cc76b943f7fa21b830ced75c8efaf9ecbf396d42f42975b5354562",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790313513,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790313669,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S10": {
-          "captured_at": "1790313506",
-          "command": "spec-run --id HG-0011 --check HG-0011-C10",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log": "d15714a649076a9aeef483df07feb1f1d43df8f92e0ac43f7bb30e2991fdde31",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      {
+        "evidence": {
+          "HG-0011-S10": "52f90b22d06a36c3c4d14cda8404fb263708c74d4be7bacb78b87d25274b85a2",
+          "HG-0011-S9": "93f4231207860c1e0e9302bcbd0b05091837ce0f9cc056f7bbd4beeaf0d1287c"
         },
-        "HG-0011-S9": {
-          "captured_at": "2026-09-25T05:18:21Z",
-          "command": "cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log": "d6a04a9565cc76b943f7fa21b830ced75c8efaf9ecbf396d42f42975b5354562",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест global_update_preview_switch_and_cleanup_keep_unrelated_files выполнен; ожидаемый исход: новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790313669,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790313670,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S10": {
-          "captured_at": "2026-09-25T05:18:26Z",
-          "command": "cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log": "d15714a649076a9aeef483df07feb1f1d43df8f92e0ac43f7bb30e2991fdde31",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест update_preserves_foreign_file_in_old_release выполнен; ожидаемый исход: CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      {
+        "evidence": {
+          "HG-0011-S10": "52f90b22d06a36c3c4d14cda8404fb263708c74d4be7bacb78b87d25274b85a2",
+          "HG-0011-S9": "deeae238e737dca922d574b3b515084b4177dbea35b381dbca4b680a3dcf5c4a"
         },
-        "HG-0011-S9": {
-          "captured_at": "2026-09-25T05:18:21Z",
-          "command": "cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log": "d6a04a9565cc76b943f7fa21b830ced75c8efaf9ecbf396d42f42975b5354562",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест global_update_preview_switch_and_cleanup_keep_unrelated_files выполнен; ожидаемый исход: новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790313670,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790315750,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S10": {
-          "captured_at": "2026-09-25T05:18:26Z",
-          "command": "cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log": "d15714a649076a9aeef483df07feb1f1d43df8f92e0ac43f7bb30e2991fdde31",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест update_preserves_foreign_file_in_old_release выполнен; ожидаемый исход: CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      {
+        "evidence": {
+          "HG-0011-S10": "eb171e0e82eb1d55a9a0ebf667d847ac5ad1a988bddf0cc58505ef947bf8a064",
+          "HG-0011-S9": "deeae238e737dca922d574b3b515084b4177dbea35b381dbca4b680a3dcf5c4a"
         },
-        "HG-0011-S9": {
-          "captured_at": "1790315744",
-          "command": "spec-run --id HG-0011 --check HG-0011-C9",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log": "81860137e28d24ef64722fffab8ef0285fd44f0a69b68ba30983b04233c35bb3",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790315750,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790315760,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S10": {
-          "captured_at": "1790315752",
-          "command": "spec-run --id HG-0011 --check HG-0011-C10",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log": "eb1935b16b801c418b109b1080535a554cafdfb08d7219ea348407fabb9ad7de",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      {
+        "evidence": {
+          "HG-0011-S10": "eb171e0e82eb1d55a9a0ebf667d847ac5ad1a988bddf0cc58505ef947bf8a064",
+          "HG-0011-S9": "40de27937cb1a5f378d58462db9a582094755c755b3d7f5901c2782c1a2f4bdd"
         },
-        "HG-0011-S9": {
-          "captured_at": "1790315744",
-          "command": "spec-run --id HG-0011 --check HG-0011-C9",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log": "81860137e28d24ef64722fffab8ef0285fd44f0a69b68ba30983b04233c35bb3",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790315760,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790315792,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S10": {
-          "captured_at": "1790315752",
-          "command": "spec-run --id HG-0011 --check HG-0011-C10",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log": "eb1935b16b801c418b109b1080535a554cafdfb08d7219ea348407fabb9ad7de",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      {
+        "evidence": {
+          "HG-0011-S10": "3acd179182ede311d75e1a25881178ef43ff494392c044eb6b24c72faa9b351a",
+          "HG-0011-S9": "40de27937cb1a5f378d58462db9a582094755c755b3d7f5901c2782c1a2f4bdd"
         },
-        "HG-0011-S9": {
-          "captured_at": "2026-09-25T05:55:44Z",
-          "command": "cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log": "81860137e28d24ef64722fffab8ef0285fd44f0a69b68ba30983b04233c35bb3",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест global_update_preview_switch_and_cleanup_keep_unrelated_files выполнен; ожидаемый исход: новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790315792,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790315793,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S10": {
-          "captured_at": "2026-09-25T05:55:52Z",
-          "command": "cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log": "eb1935b16b801c418b109b1080535a554cafdfb08d7219ea348407fabb9ad7de",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест update_preserves_foreign_file_in_old_release выполнен; ожидаемый исход: CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      {
+        "evidence": {
+          "HG-0011-S10": "3acd179182ede311d75e1a25881178ef43ff494392c044eb6b24c72faa9b351a",
+          "HG-0011-S9": "d48b09efcea5dd9147c0a18a0ebab5e32bcdfa4c999fd5b98a0cabce52e72728"
         },
-        "HG-0011-S9": {
-          "captured_at": "2026-09-25T05:55:44Z",
-          "command": "cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log": "81860137e28d24ef64722fffab8ef0285fd44f0a69b68ba30983b04233c35bb3",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест global_update_preview_switch_and_cleanup_keep_unrelated_files выполнен; ожидаемый исход: новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790315793,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790328771,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S1": {
-          "captured_at": "2026-09-25T09:32:50.706946+00:00",
-          "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
-          "files": {
-            "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
-          },
-          "method": "manual",
-          "observation": "Агент прошёл установленный highgrade-approve, создал один обычный локальный коммит ac230cc3 только docs/overview.md и назвал SHA. Проектная инструкция говорит, что местная активация неприменима; её не выдумывали и не запускали.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
-          "scenario": "HG-0011-S1",
-          "scenario_sha256": "6f095a3e530f39993b9b7b9abac0e5d0f365d542e2003d08cf5107c5790b2ffe"
+      {
+        "evidence": {
+          "HG-0011-S10": "294db780f6c92ff3cde207686e83af2276032396b197e8157eaffccf237a7411",
+          "HG-0011-S9": "d48b09efcea5dd9147c0a18a0ebab5e32bcdfa4c999fd5b98a0cabce52e72728"
         },
-        "HG-0011-S10": {
-          "captured_at": "2026-09-25T05:55:52Z",
-          "command": "cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log": "eb1935b16b801c418b109b1080535a554cafdfb08d7219ea348407fabb9ad7de",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест update_preserves_foreign_file_in_old_release выполнен; ожидаемый исход: CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
-        },
-        "HG-0011-S9": {
-          "captured_at": "2026-09-25T05:55:44Z",
-          "command": "cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log": "81860137e28d24ef64722fffab8ef0285fd44f0a69b68ba30983b04233c35bb3",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест global_update_preview_switch_and_cleanup_keep_unrelated_files выполнен; ожидаемый исход: новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790328771,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790328772,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S1": {
-          "captured_at": "2026-09-25T09:32:50.706946+00:00",
-          "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
-          "files": {
-            "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
-          },
-          "method": "manual",
-          "observation": "Агент прошёл установленный highgrade-approve, создал один обычный локальный коммит ac230cc3 только docs/overview.md и назвал SHA. Проектная инструкция говорит, что местная активация неприменима; её не выдумывали и не запускали.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
-          "scenario": "HG-0011-S1",
-          "scenario_sha256": "6f095a3e530f39993b9b7b9abac0e5d0f365d542e2003d08cf5107c5790b2ffe"
+      {
+        "evidence": {
+          "HG-0011-S1": "3905f3b8253bb69f08258705ee02178ff9d8705ccdad819697000255d09a5e52",
+          "HG-0011-S10": "294db780f6c92ff3cde207686e83af2276032396b197e8157eaffccf237a7411",
+          "HG-0011-S9": "d48b09efcea5dd9147c0a18a0ebab5e32bcdfa4c999fd5b98a0cabce52e72728"
         },
-        "HG-0011-S10": {
-          "captured_at": "2026-09-25T05:55:52Z",
-          "command": "cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log": "eb1935b16b801c418b109b1080535a554cafdfb08d7219ea348407fabb9ad7de",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест update_preserves_foreign_file_in_old_release выполнен; ожидаемый исход: CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
-        },
-        "HG-0011-S3": {
-          "captured_at": "2026-09-25T09:32:52.164734+00:00",
-          "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
-          "files": {
-            "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
-          },
-          "method": "manual",
-          "observation": "После work сохранены успешные 3/3 теста, SHA принятого файла и зависимостей. При approve сверены неизменность снимка и точный staged diff; полный набор тестов без причины не повторялся.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
-          "scenario": "HG-0011-S3",
-          "scenario_sha256": "fc10a1f50a200bfe933185423f56664aa72b599abe0618a27cc31612e35a64ff"
-        },
-        "HG-0011-S9": {
-          "captured_at": "2026-09-25T05:55:44Z",
-          "command": "cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log": "81860137e28d24ef64722fffab8ef0285fd44f0a69b68ba30983b04233c35bb3",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест global_update_preview_switch_and_cleanup_keep_unrelated_files выполнен; ожидаемый исход: новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790328772,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790328774,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S1": {
-          "captured_at": "2026-09-25T09:32:50.706946+00:00",
-          "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
-          "files": {
-            "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
-          },
-          "method": "manual",
-          "observation": "Агент прошёл установленный highgrade-approve, создал один обычный локальный коммит ac230cc3 только docs/overview.md и назвал SHA. Проектная инструкция говорит, что местная активация неприменима; её не выдумывали и не запускали.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
-          "scenario": "HG-0011-S1",
-          "scenario_sha256": "6f095a3e530f39993b9b7b9abac0e5d0f365d542e2003d08cf5107c5790b2ffe"
+      {
+        "evidence": {
+          "HG-0011-S1": "3905f3b8253bb69f08258705ee02178ff9d8705ccdad819697000255d09a5e52",
+          "HG-0011-S10": "294db780f6c92ff3cde207686e83af2276032396b197e8157eaffccf237a7411",
+          "HG-0011-S3": "e3f8a513a255be090ac83af8b57d8db649a5e61ef1e5bff576383c809d2a491b",
+          "HG-0011-S9": "d48b09efcea5dd9147c0a18a0ebab5e32bcdfa4c999fd5b98a0cabce52e72728"
         },
-        "HG-0011-S10": {
-          "captured_at": "2026-09-25T05:55:52Z",
-          "command": "cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log": "eb1935b16b801c418b109b1080535a554cafdfb08d7219ea348407fabb9ad7de",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест update_preserves_foreign_file_in_old_release выполнен; ожидаемый исход: CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
-        },
-        "HG-0011-S3": {
-          "captured_at": "2026-09-25T09:32:52.164734+00:00",
-          "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
-          "files": {
-            "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
-          },
-          "method": "manual",
-          "observation": "После work сохранены успешные 3/3 теста, SHA принятого файла и зависимостей. При approve сверены неизменность снимка и точный staged diff; полный набор тестов без причины не повторялся.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
-          "scenario": "HG-0011-S3",
-          "scenario_sha256": "fc10a1f50a200bfe933185423f56664aa72b599abe0618a27cc31612e35a64ff"
-        },
-        "HG-0011-S4": {
-          "captured_at": "2026-09-25T09:32:53.601777+00:00",
-          "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
-          "files": {
-            "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
-          },
-          "method": "manual",
-          "observation": "До approve существовали посторонние dirty/untracked пути. В индекс и коммит попал только docs/overview.md; после коммита остальные статусы сохранены, индекс пуст.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
-          "scenario": "HG-0011-S4",
-          "scenario_sha256": "3ee5233ea4ba9e53d76cd6db7250cbc93a7788815a56fc48edce3f80b1827691"
-        },
-        "HG-0011-S9": {
-          "captured_at": "2026-09-25T05:55:44Z",
-          "command": "cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log": "81860137e28d24ef64722fffab8ef0285fd44f0a69b68ba30983b04233c35bb3",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест global_update_preview_switch_and_cleanup_keep_unrelated_files выполнен; ожидаемый исход: новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790328774,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790331632,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0011-S1": {
-          "captured_at": "2026-09-25T09:32:50.706946+00:00",
-          "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
-          "files": {
-            "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
-          },
-          "method": "manual",
-          "observation": "Агент прошёл установленный highgrade-approve, создал один обычный локальный коммит ac230cc3 только docs/overview.md и назвал SHA. Проектная инструкция говорит, что местная активация неприменима; её не выдумывали и не запускали.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
-          "scenario": "HG-0011-S1",
-          "scenario_sha256": "6f095a3e530f39993b9b7b9abac0e5d0f365d542e2003d08cf5107c5790b2ffe"
+      {
+        "evidence": {
+          "HG-0011-S1": "3905f3b8253bb69f08258705ee02178ff9d8705ccdad819697000255d09a5e52",
+          "HG-0011-S10": "294db780f6c92ff3cde207686e83af2276032396b197e8157eaffccf237a7411",
+          "HG-0011-S3": "e3f8a513a255be090ac83af8b57d8db649a5e61ef1e5bff576383c809d2a491b",
+          "HG-0011-S4": "8768d16d65f5689e9ca9771fd0b228742db39782e482d8de5bf900759007aaf7",
+          "HG-0011-S9": "d48b09efcea5dd9147c0a18a0ebab5e32bcdfa4c999fd5b98a0cabce52e72728"
         },
-        "HG-0011-S10": {
-          "captured_at": "2026-09-25T05:55:52Z",
-          "command": "cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
-            "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log": "eb1935b16b801c418b109b1080535a554cafdfb08d7219ea348407fabb9ad7de",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Точный тест update_preserves_foreign_file_in_old_release выполнен; ожидаемый исход: CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log",
-          "scenario": "HG-0011-S10",
-          "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
-        },
-        "HG-0011-S3": {
-          "captured_at": "2026-09-25T09:32:52.164734+00:00",
-          "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
-          "files": {
-            "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
-          },
-          "method": "manual",
-          "observation": "После work сохранены успешные 3/3 теста, SHA принятого файла и зависимостей. При approve сверены неизменность снимка и точный staged diff; полный набор тестов без причины не повторялся.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
-          "scenario": "HG-0011-S3",
-          "scenario_sha256": "fc10a1f50a200bfe933185423f56664aa72b599abe0618a27cc31612e35a64ff"
-        },
-        "HG-0011-S4": {
-          "captured_at": "2026-09-25T09:32:53.601777+00:00",
-          "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
-          "files": {
-            "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
-          },
-          "method": "manual",
-          "observation": "До approve существовали посторонние dirty/untracked пути. В индекс и коммит попал только docs/overview.md; после коммита остальные статусы сохранены, индекс пуст.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
-          "scenario": "HG-0011-S4",
-          "scenario_sha256": "3ee5233ea4ba9e53d76cd6db7250cbc93a7788815a56fc48edce3f80b1827691"
-        },
-        "HG-0011-S9": {
-          "captured_at": "1790331625",
-          "command": "spec-run --id HG-0011 --check HG-0011-C9",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0011/evidence/HG-0011-C9-1790331625862074800.log": "48dffabf45b01618b178705020ed4748b135f08c1005bfa7b0e92359bdc72760",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790331625862074800.log",
-          "scenario": "HG-0011-S9",
-          "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
-        }
+        "recorded_at": 1790331632,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790331645,
-      "review": null
+      {
+        "evidence": {
+          "HG-0011-S1": "3905f3b8253bb69f08258705ee02178ff9d8705ccdad819697000255d09a5e52",
+          "HG-0011-S10": "294db780f6c92ff3cde207686e83af2276032396b197e8157eaffccf237a7411",
+          "HG-0011-S3": "e3f8a513a255be090ac83af8b57d8db649a5e61ef1e5bff576383c809d2a491b",
+          "HG-0011-S4": "8768d16d65f5689e9ca9771fd0b228742db39782e482d8de5bf900759007aaf7",
+          "HG-0011-S9": "2988036d3e4bebc30abca7740e0fa4ac8cd1afc11b0561ddaada19265f7d0a06"
+        },
+        "recorded_at": 1790331645,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    ],
+    "objects": {
+      "294db780f6c92ff3cde207686e83af2276032396b197e8157eaffccf237a7411": {
+        "captured_at": "2026-09-25T05:55:52Z",
+        "command": "cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
+          "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log": "eb1935b16b801c418b109b1080535a554cafdfb08d7219ea348407fabb9ad7de",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+        },
+        "method": "native_report",
+        "observation": "Точный тест update_preserves_foreign_file_in_old_release выполнен; ожидаемый исход: CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log",
+        "scenario": "HG-0011-S10",
+        "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      },
+      "2988036d3e4bebc30abca7740e0fa4ac8cd1afc11b0561ddaada19265f7d0a06": {
+        "captured_at": "1790331625",
+        "command": "spec-run --id HG-0011 --check HG-0011-C9",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0011/evidence/HG-0011-C9-1790331625862074800.log": "48dffabf45b01618b178705020ed4748b135f08c1005bfa7b0e92359bdc72760",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790331625862074800.log",
+        "scenario": "HG-0011-S9",
+        "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
+      },
+      "3905f3b8253bb69f08258705ee02178ff9d8705ccdad819697000255d09a5e52": {
+        "captured_at": "2026-09-25T09:32:50.706946+00:00",
+        "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
+        "files": {
+          "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
+        },
+        "method": "manual",
+        "observation": "Агент прошёл установленный highgrade-approve, создал один обычный локальный коммит ac230cc3 только docs/overview.md и назвал SHA. Проектная инструкция говорит, что местная активация неприменима; её не выдумывали и не запускали.",
+        "outcome": "passed",
+        "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
+        "scenario": "HG-0011-S1",
+        "scenario_sha256": "6f095a3e530f39993b9b7b9abac0e5d0f365d542e2003d08cf5107c5790b2ffe"
+      },
+      "3acd179182ede311d75e1a25881178ef43ff494392c044eb6b24c72faa9b351a": {
+        "captured_at": "1790315752",
+        "command": "spec-run --id HG-0011 --check HG-0011-C10",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log": "eb1935b16b801c418b109b1080535a554cafdfb08d7219ea348407fabb9ad7de",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790315752319632000.log",
+        "scenario": "HG-0011-S10",
+        "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      },
+      "40de27937cb1a5f378d58462db9a582094755c755b3d7f5901c2782c1a2f4bdd": {
+        "captured_at": "1790315744",
+        "command": "spec-run --id HG-0011 --check HG-0011-C9",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log": "81860137e28d24ef64722fffab8ef0285fd44f0a69b68ba30983b04233c35bb3",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log",
+        "scenario": "HG-0011-S9",
+        "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
+      },
+      "52f90b22d06a36c3c4d14cda8404fb263708c74d4be7bacb78b87d25274b85a2": {
+        "captured_at": "1790313506",
+        "command": "spec-run --id HG-0011 --check HG-0011-C10",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log": "d15714a649076a9aeef483df07feb1f1d43df8f92e0ac43f7bb30e2991fdde31",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log",
+        "scenario": "HG-0011-S10",
+        "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      },
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "8768d16d65f5689e9ca9771fd0b228742db39782e482d8de5bf900759007aaf7": {
+        "captured_at": "2026-09-25T09:32:53.601777+00:00",
+        "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
+        "files": {
+          "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
+        },
+        "method": "manual",
+        "observation": "До approve существовали посторонние dirty/untracked пути. В индекс и коммит попал только docs/overview.md; после коммита остальные статусы сохранены, индекс пуст.",
+        "outcome": "passed",
+        "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
+        "scenario": "HG-0011-S4",
+        "scenario_sha256": "3ee5233ea4ba9e53d76cd6db7250cbc93a7788815a56fc48edce3f80b1827691"
+      },
+      "93f4231207860c1e0e9302bcbd0b05091837ce0f9cc056f7bbd4beeaf0d1287c": {
+        "captured_at": "1790313501",
+        "command": "spec-run --id HG-0011 --check HG-0011-C9",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log": "d6a04a9565cc76b943f7fa21b830ced75c8efaf9ecbf396d42f42975b5354562",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log",
+        "scenario": "HG-0011-S9",
+        "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
+      },
+      "d48b09efcea5dd9147c0a18a0ebab5e32bcdfa4c999fd5b98a0cabce52e72728": {
+        "captured_at": "2026-09-25T05:55:44Z",
+        "command": "cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "kit/manifest.json": "9a1e5ab6f25fb7ab0166421ec1303bc174a9fbbaa633daca29820f542d691696",
+          "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log": "81860137e28d24ef64722fffab8ef0285fd44f0a69b68ba30983b04233c35bb3",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+        },
+        "method": "native_report",
+        "observation": "Точный тест global_update_preview_switch_and_cleanup_keep_unrelated_files выполнен; ожидаемый исход: новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790315744138498300.log",
+        "scenario": "HG-0011-S9",
+        "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
+      },
+      "deeae238e737dca922d574b3b515084b4177dbea35b381dbca4b680a3dcf5c4a": {
+        "captured_at": "2026-09-25T05:18:21Z",
+        "command": "cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log": "d6a04a9565cc76b943f7fa21b830ced75c8efaf9ecbf396d42f42975b5354562",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+        },
+        "method": "native_report",
+        "observation": "Точный тест global_update_preview_switch_and_cleanup_keep_unrelated_files выполнен; ожидаемый исход: новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0011/evidence/HG-0011-C9-1790313501182210800.log",
+        "scenario": "HG-0011-S9",
+        "scenario_sha256": "26e6308077076f01e2930fef1edc489d34e2aff0dcdc7415f3009b6059ec2f2c"
+      },
+      "e3f8a513a255be090ac83af8b57d8db649a5e61ef1e5bff576383c809d2a491b": {
+        "captured_at": "2026-09-25T09:32:52.164734+00:00",
+        "command": "synthetic s7 installed highgrade-work and highgrade-approve v0-2-14; scoped local commit",
+        "files": {
+          "docs/evidence/agent-pilot/hg11-approve2-s7/REPORT.md": "2a524f2f8903a69d26dc900b7143a6c47d056a1e629ec1f88423b946721ec1c8",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/after-head.txt": "ef7f7d3e2006d929dca829e719c7183d906b9e22c9ab9476744b8c0080c22473",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json": "95b749418ad371b6bb417c92e83b0cff330d14ca82611bb0a332f262ade83ab1",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/after-status.txt": "dc1afebd5058dff134f0fb476ff099ae5da379649d9ffaa368a43fbb41ab1f2f",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/approve-precommit.json": "7a7c97e189bc5c3ed52d719d25a1ddc79a6f7059e85e8c5fef358e284940510d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before-head.txt": "366ec6f199a12280aa6a8ca7ce1c11949c7c5437937b80c43d1d5e2c542d30e2",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before-status.txt": "b1f0cf37f31cb9a60cd16d054a26063ec2639a67852df462a66b12488f5c9459",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/.highgrade/project/INSTRUCTIONS.md": "ba449ad5ffab4c7c60f2d0b4fb03abec4948a9b0297b1c362370ead2a57430a0",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/AGENTS.md": "0541aae633b6897d470f7135277eaab2a6ad3b5c5ae77fe9ece6df69bc4ca3a0",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/README.md": "006faa443a7f96629fd9ced3b170e8f2ac47b7ea4764931b5c7904b33ba565ed",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/counter.py": "e5c5552f882bee9c85f79ca444260f94d514cf54b034a72463ec22c3d918c4ac",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/docs/overview.md": "7c2e3ed7e32dba02025a664c78c71004a947d89fd795f6206b9228b0c64892ad",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/before/test_counter.py": "0d57577fc8ffb490a46fffca29e20690e072d2d40e20bb0589062a4715be3615",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit-output.txt": "b70f9bb75c525436c8ac7f575cabece264cf0a82a88302eff4a27d19c8ab8701",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit-show.txt": "dc1899c53a60fbcbd7107d061fed633241267812922764ce90af038256f35a11",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/commit.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/doctor.json": "267792e8d4c4836f3df72c0060ed46349ab8ec7c8221b1254644908517492dcc",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/global-status.json": "f6a1c87e526ca32c246c813c15839ad9a92e0fe67ea53e7f11b515cb885cdf34",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md": "3a781721af90465da5fd4987026b60302bb9591216702dba14d442ccde6e4c91",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/link-check-final.txt": "99e3efffbef2384e3a5b3e7e56f6fa9154d7e760b99db1736ffa5c4c3c123526",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/link-check.txt": "8d96ff7337c79f1f31aa86f0b19f2b1f9f2d6b55918862e5a68380d7aad9f985",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/precommit-status.txt": "503a9815b957b270915012597fe93c5fb77428574066980c36c2fe74c226ba02",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/scope-extension.json": "29b150b87e10388a893e300f49ff464c475f5b68abdadce60db9e5379c473c6e",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/setup.json": "1197abc9ce8e6ca554ed458977e6221d5c0394866596bb0116e5345647caf9f5",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/staged-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/staged-paths.txt": "1c912621d25f35756be7a7c4b1daaa9eafc0cd5432a7bc0ede40c237fa85de88",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/staged.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/tool-calls.json": "646043fafca57079d3674fc76d54c0087d6926a3d6c989858101b0fbfca67909",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/unittest-verbose.txt": "f117d681b13e52df998e542ca7bd8e52b7ac0c0afbe87588c5255086899bf3af",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/unittest.txt": "8ee4669655aaed29bbc70e28a8ef25f73d1ebe2b002448e637699b5a2cbcaa41",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-diff.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-final-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-final.diff": "943b0b223cedc29fbef0efe78b3d2fc9820ea9dc841c7115147cc08a40eab57d",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-head.txt": "e99abe6458f7005432c53fd33dfe54e6a803feb086ff9215aa3a8c86f7166445",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-snapshot.json": "35901a8b47f5da768ed292405b4d5c9ad2793a96c999c19b4d89279fc276fab3",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-staged-before.patch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "docs/evidence/agent-pilot/hg11-approve2-s7/work-status.txt": "59da44fc82cfb76a317ff2d017daa630912a3981eaef5b518314365803e3bfaf"
+        },
+        "method": "manual",
+        "observation": "После work сохранены успешные 3/3 теста, SHA принятого файла и зависимостей. При approve сверены неизменность снимка и точный staged diff; полный набор тестов без причины не повторялся.",
+        "outcome": "passed",
+        "report": "docs/evidence/agent-pilot/hg11-approve2-s7/independent-review.md",
+        "scenario": "HG-0011-S3",
+        "scenario_sha256": "fc10a1f50a200bfe933185423f56664aa72b599abe0618a27cc31612e35a64ff"
+      },
+      "eb171e0e82eb1d55a9a0ebf667d847ac5ad1a988bddf0cc58505ef947bf8a064": {
+        "captured_at": "2026-09-25T05:18:26Z",
+        "command": "cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log": "d15714a649076a9aeef483df07feb1f1d43df8f92e0ac43f7bb30e2991fdde31",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "tests/global_contracts.rs": "4ef717627985a5dbee4257f3bc7d7510b1004d99be06becd3b9872b51d855b96"
+        },
+        "method": "native_report",
+        "observation": "Точный тест update_preserves_foreign_file_in_old_release выполнен; ожидаемый исход: CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0011/evidence/HG-0011-C10-1790313506969781100.log",
+        "scenario": "HG-0011-S10",
+        "scenario_sha256": "6a116e278eeeb1e5bed3e9c5442b30979efbcb44fe5a7e3802c8e59dc3200835"
+      }
     }
-  ],
+  },
   "review": null,
   "runs": [
     {

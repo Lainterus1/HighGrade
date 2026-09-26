@@ -9,6 +9,22 @@ use std::{
 
 static NEXT: AtomicU64 = AtomicU64::new(0);
 
+// highgrade: HG-0036-S2
+#[test]
+fn bootstrap_distinguishes_adaptation_from_technical_failure() {
+    let fixture = Fixture::new();
+    fixture.write("guide.md", "# Alternative project documentation\n");
+    let report = bootstrap(fixture.root()).unwrap();
+    let state = report
+        .measurements
+        .iter()
+        .find(|m| m.get("adaptation").is_some())
+        .unwrap();
+    assert_eq!(state["adaptation"], "required");
+    assert_eq!(state["validation"], "passed");
+    assert_eq!(state["applied"], false);
+}
+
 struct Fixture(PathBuf);
 impl Fixture {
     fn new() -> Self {

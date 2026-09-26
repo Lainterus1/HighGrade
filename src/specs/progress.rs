@@ -305,9 +305,9 @@ pub(super) fn decide(root: &Path, s: &mut Store, input: &Path) -> Result<()> {
     }
     Ok(())
 }
-pub(super) fn list(root: &Path, s: &Store) -> Value {
+pub(super) fn list(root: &Path, s: &Store, selected: &[&Change]) -> Value {
     let mut counts = BTreeMap::from([
-        ("total", s.changes.len()),
+        ("total", selected.len()),
         ("ready", 0),
         ("in_progress", 0),
         ("abandoned", 0),
@@ -317,7 +317,7 @@ pub(super) fn list(root: &Path, s: &Store) -> Value {
         ("stale", 0),
     ]);
     let mut changes = Vec::new();
-    for c in s.changes.values() {
+    for c in selected {
         let technical = if c.abandoned_reason.is_some() {
             "abandoned"
         } else if ready(root, s, c) {

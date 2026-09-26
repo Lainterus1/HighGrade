@@ -463,7 +463,7 @@ fn doctor_reports_unavailable_tool_without_claiming_version() {
             && entry["status"] == "unknown"
     }));
 }
-// highgrade: HG-0011-S9
+// highgrade: HG-0011-S9, HG-0036-S1
 #[test]
 fn global_update_preview_switch_and_cleanup_keep_unrelated_files() {
     let profile = temp();
@@ -472,6 +472,14 @@ fn global_update_preview_switch_and_cleanup_keep_unrelated_files() {
     let next = candidate();
     let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
     assert_eq!(preview.status, "unknown");
+    assert!(
+        preview
+            .measurements
+            .iter()
+            .any(|m| m["validation"] == "passed"
+                && m["decision"] == "required"
+                && m["applied"] == false)
+    );
     assert_eq!(
         global::status(&profile).unwrap().measurements[0]["release"],
         current_release()

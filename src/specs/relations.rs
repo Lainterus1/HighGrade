@@ -162,7 +162,19 @@ pub fn list(root: &Path, s: &Store, o: &BTreeMap<String, String>) -> Result<Valu
             return Err(format!("InvalidFilter: {flag}"));
         }
     }
-    let mut v = progress::list(root, s);
+    if o.get("--id").is_some_and(|id| !s.changes.contains_key(id)) {
+        return Err("ChangeMissing".into());
+    }
+    let selected: Vec<_> = s
+        .changes
+        .values()
+        .filter(|c| {
+            o.get("--id").is_none_or(|id| *id == c.id)
+                && o.get("--tag").is_none_or(|tag| c.tags.contains(tag))
+        })
+        .collect();
+    let mut v = progress::list(root, s, &selected);
+    v["summary_scope"] = json!("id/tag selection before technical/human filters");
     let changes = v["changes"].as_array_mut().unwrap();
     changes.retain(|row| {
         let c = &s.changes[row["id"].as_str().unwrap()];

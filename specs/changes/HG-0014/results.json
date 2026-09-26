@@ -51,204 +51,145 @@
       "scenario_sha256": "87e0da765be8b28ad362e00c79eaea0df637b8961e82cb02550d49bfb552fa3f"
     }
   },
-  "history": [
-    {
-      "evidence": {},
-      "recorded_at": 1790323129,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0014-S1": {
-          "captured_at": "2026-09-25T07:58:48.627368+00:00",
-          "command": "local agent pilot on synthetic projects; independent review",
-          "files": {
-            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
-            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
-            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
-            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
-            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
-            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
-            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
-            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
-            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
-            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
-            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
-          },
-          "method": "manual",
-          "observation": "Новый контракт v2 агент оформил нативным change до правки кода; затем тесты и независимое ревью прошли.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
-          "scenario": "HG-0014-S1",
-          "scenario_sha256": "c7585de3c2644b0a67133c9fc31e86bc4cc5b94885a05c744a9b8a1cf824dcb6"
-        }
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790323129,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790323130,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0014-S1": {
-          "captured_at": "2026-09-25T07:58:48.627368+00:00",
-          "command": "local agent pilot on synthetic projects; independent review",
-          "files": {
-            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
-            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
-            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
-            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
-            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
-            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
-            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
-            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
-            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
-            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
-            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
-          },
-          "method": "manual",
-          "observation": "Новый контракт v2 агент оформил нативным change до правки кода; затем тесты и независимое ревью прошли.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
-          "scenario": "HG-0014-S1",
-          "scenario_sha256": "c7585de3c2644b0a67133c9fc31e86bc4cc5b94885a05c744a9b8a1cf824dcb6"
+      {
+        "evidence": {
+          "HG-0014-S1": "2abab118f4d3b55ae3e87773c2e87bb826d103e1d148199bf6ce1ca35eaba858"
         },
-        "HG-0014-S2": {
-          "captured_at": "2026-09-25T07:58:49.833092+00:00",
-          "command": "local agent pilot on synthetic projects; independent review",
-          "files": {
-            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
-            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
-            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
-            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
-            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
-            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
-            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
-            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
-            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
-            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
-            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
-            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
-          },
-          "method": "manual",
-          "observation": "Исправление по прежнему контракту прошло прямым work без фиктивной новой спеки; старые spec/requirement неизменны, human stale.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
-          "scenario": "HG-0014-S2",
-          "scenario_sha256": "87e0da765be8b28ad362e00c79eaea0df637b8961e82cb02550d49bfb552fa3f"
-        }
+        "recorded_at": 1790323130,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790323764,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0014-S1": {
-          "captured_at": "2026-09-25T08:09:23.764244+00:00",
-          "command": "local agent pilot on synthetic projects; independent review",
-          "files": {
-            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
-            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
-            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
-            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
-            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
-            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
-            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
-            "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
-            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
-            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
-            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
-            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
-          },
-          "method": "manual",
-          "observation": "Новый контракт v2 агент оформил нативным change до правки кода; затем тесты и независимое ревью прошли.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
-          "scenario": "HG-0014-S1",
-          "scenario_sha256": "c7585de3c2644b0a67133c9fc31e86bc4cc5b94885a05c744a9b8a1cf824dcb6"
+      {
+        "evidence": {
+          "HG-0014-S1": "2abab118f4d3b55ae3e87773c2e87bb826d103e1d148199bf6ce1ca35eaba858",
+          "HG-0014-S2": "fdf460ac9fcb1cb8cb307e731181e109ca48955d28d4dd6123a1f81e07e0a826"
         },
-        "HG-0014-S2": {
-          "captured_at": "2026-09-25T07:58:49.833092+00:00",
-          "command": "local agent pilot on synthetic projects; independent review",
-          "files": {
-            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
-            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
-            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
-            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
-            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
-            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
-            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
-            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
-            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
-            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
-            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
-            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
-          },
-          "method": "manual",
-          "observation": "Исправление по прежнему контракту прошло прямым work без фиктивной новой спеки; старые spec/requirement неизменны, human stale.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
-          "scenario": "HG-0014-S2",
-          "scenario_sha256": "87e0da765be8b28ad362e00c79eaea0df637b8961e82cb02550d49bfb552fa3f"
-        }
+        "recorded_at": 1790323764,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790323765,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0014-S1": {
-          "captured_at": "2026-09-25T08:09:23.764244+00:00",
-          "command": "local agent pilot on synthetic projects; independent review",
-          "files": {
-            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
-            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
-            "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
-            "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
-            "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
-            "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
-            "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
-            "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
-            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
-            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
-            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
-            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
-          },
-          "method": "manual",
-          "observation": "Новый контракт v2 агент оформил нативным change до правки кода; затем тесты и независимое ревью прошли.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
-          "scenario": "HG-0014-S1",
-          "scenario_sha256": "c7585de3c2644b0a67133c9fc31e86bc4cc5b94885a05c744a9b8a1cf824dcb6"
+      {
+        "evidence": {
+          "HG-0014-S1": "d76184572f99cc36e014a27b332c2b454e2d2234ef6d03df545f1076f2401ee7",
+          "HG-0014-S2": "fdf460ac9fcb1cb8cb307e731181e109ca48955d28d4dd6123a1f81e07e0a826"
         },
-        "HG-0014-S2": {
-          "captured_at": "2026-09-25T08:09:25.027317+00:00",
-          "command": "local agent pilot on synthetic projects; independent review",
-          "files": {
-            "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
-            "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
-            "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
-            "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
-            "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
-            "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
-            "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
-            "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
-            "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
-            "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
-            "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
-            "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
-            "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
-          },
-          "method": "manual",
-          "observation": "Исправление по прежнему контракту прошло прямым work без фиктивной новой спеки; старые spec/requirement неизменны, human stale.",
-          "outcome": "passed",
-          "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
-          "scenario": "HG-0014-S2",
-          "scenario_sha256": "87e0da765be8b28ad362e00c79eaea0df637b8961e82cb02550d49bfb552fa3f"
-        }
+        "recorded_at": 1790323765,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790323884,
-      "review": null
+      {
+        "evidence": {
+          "HG-0014-S1": "d76184572f99cc36e014a27b332c2b454e2d2234ef6d03df545f1076f2401ee7",
+          "HG-0014-S2": "88ee3cb50c6cc1a6fd747b9bca3a18033d62f5e9c551b1de23c16de96fa459fc"
+        },
+        "recorded_at": 1790323884,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    ],
+    "objects": {
+      "2abab118f4d3b55ae3e87773c2e87bb826d103e1d148199bf6ce1ca35eaba858": {
+        "captured_at": "2026-09-25T07:58:48.627368+00:00",
+        "command": "local agent pilot on synthetic projects; independent review",
+        "files": {
+          "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+          "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+          "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+          "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+          "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+          "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+          "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+          "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+          "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+          "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+          "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+        },
+        "method": "manual",
+        "observation": "Новый контракт v2 агент оформил нативным change до правки кода; затем тесты и независимое ревью прошли.",
+        "outcome": "passed",
+        "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+        "scenario": "HG-0014-S1",
+        "scenario_sha256": "c7585de3c2644b0a67133c9fc31e86bc4cc5b94885a05c744a9b8a1cf824dcb6"
+      },
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "88ee3cb50c6cc1a6fd747b9bca3a18033d62f5e9c551b1de23c16de96fa459fc": {
+        "captured_at": "2026-09-25T08:09:25.027317+00:00",
+        "command": "local agent pilot on synthetic projects; independent review",
+        "files": {
+          "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+          "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+          "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+          "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+          "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+          "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+          "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+          "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+          "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+          "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+          "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+          "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+          "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+        },
+        "method": "manual",
+        "observation": "Исправление по прежнему контракту прошло прямым work без фиктивной новой спеки; старые spec/requirement неизменны, human stale.",
+        "outcome": "passed",
+        "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+        "scenario": "HG-0014-S2",
+        "scenario_sha256": "87e0da765be8b28ad362e00c79eaea0df637b8961e82cb02550d49bfb552fa3f"
+      },
+      "d76184572f99cc36e014a27b332c2b454e2d2234ef6d03df545f1076f2401ee7": {
+        "captured_at": "2026-09-25T08:09:23.764244+00:00",
+        "command": "local agent pilot on synthetic projects; independent review",
+        "files": {
+          "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "835aa9a1e2c5051671641f9643f9853a19e00a066ddeebe63938dbb8c3b27a99",
+          "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+          "docs/evidence/agent-pilot/s3-agent-response.md": "c09252bfb4d2c9df18ee11e4996bbd08f397b2fe8d2d91cd7d0aa47d45294c5b",
+          "docs/evidence/agent-pilot/s3-codec.py.txt": "9ead37982975bab43b04a3c2a9e6bd60875a82995065ffc552c7e7a8aebfe8e2",
+          "docs/evidence/agent-pilot/s3-results.json": "996496b9f89ad3f1b6ea0a43f0378164f8a5d8753b1096795a6219f7a5b57e02",
+          "docs/evidence/agent-pilot/s3-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+          "docs/evidence/agent-pilot/s3-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+          "kit/manifest.json": "340bf34e38b446e151215e80e5796af56b14e961e8227decbb3f9430192a763a",
+          "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+          "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+          "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+          "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+        },
+        "method": "manual",
+        "observation": "Новый контракт v2 агент оформил нативным change до правки кода; затем тесты и независимое ревью прошли.",
+        "outcome": "passed",
+        "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+        "scenario": "HG-0014-S1",
+        "scenario_sha256": "c7585de3c2644b0a67133c9fc31e86bc4cc5b94885a05c744a9b8a1cf824dcb6"
+      },
+      "fdf460ac9fcb1cb8cb307e731181e109ca48955d28d4dd6123a1f81e07e0a826": {
+        "captured_at": "2026-09-25T07:58:49.833092+00:00",
+        "command": "local agent pilot on synthetic projects; independent review",
+        "files": {
+          "docs/evidence/agent-pilot/2026-09-25-route-cases.md": "5a15d74bcc2d3e59581b8f5c5227ea5f9b183fdf11ce4d63da176763a1b101a9",
+          "docs/evidence/agent-pilot/independent-reviews.md": "62c7f6e904be75e7d9c886c348e420c45af56ba3793fde25093931706392c9af",
+          "docs/evidence/agent-pilot/s4-codec.py.txt": "1c6fc4323672723f6ffce41971a52e056d202d7dff6ef40fde69956e45dbcc15",
+          "docs/evidence/agent-pilot/s4-failing-test.txt": "b77a1bac2b028648f82ceb6ee5c33cc309dd1e7cf8c1dd670a14f3e36f4729f4",
+          "docs/evidence/agent-pilot/s4-regressed-codec.py.txt": "70865c80c7e0ceac426f809f9c0eea911a73528ebbdc5959f66463afa2a3a4c2",
+          "docs/evidence/agent-pilot/s4-results.json": "652d1c21f1860877798ace25929c919980ec3338f0d6105e8a29ac2601889cac",
+          "docs/evidence/agent-pilot/s4-spec.json": "90f899b8c0ac5b4cbe035b9659e0e2ebfb433b8522dc59932ee2919c66ae4f5d",
+          "docs/evidence/agent-pilot/s4-test-run.txt": "c4d1758a6627af34059d251f75ec7557b73ac4e798de82a5d54bebade37759ef",
+          "kit/procedures/spec.md": "3b8ccd8c220315f121309f732b333a64c71651561e49d919cd0e2a15c17fe19f",
+          "kit/procedures/task.md": "a952a04825d65cd5eec14dacbf0289b19ff6a725280452127a4713be55d86126",
+          "kit/procedures/work.md": "72792b32ce7cb230f50fd4971d1c6425f8c6f833b575b1bd31852960c96c2ece",
+          "kit/rules.md": "b6bcc3e0d192b0cce7d1434a46d66e6ccfddbb35c5dc1a63f08977045741f82b"
+        },
+        "method": "manual",
+        "observation": "Исправление по прежнему контракту прошло прямым work без фиктивной новой спеки; старые spec/requirement неизменны, human stale.",
+        "outcome": "passed",
+        "report": "docs/evidence/agent-pilot/2026-09-25-route-cases.md",
+        "scenario": "HG-0014-S2",
+        "scenario_sha256": "87e0da765be8b28ad362e00c79eaea0df637b8961e82cb02550d49bfb552fa3f"
+      }
     }
-  ],
+  },
   "review": {
     "change_sha256": "36b86a01ad24c6c8562850df04bbd920103a3f87da266efe316b56aa953a84af",
     "conclusion": "Независимое ревью: s3 подтверждает создание нативной спеки до реализации, s4 — исправление прежнего контракта без новой спеки. Входные хеши совпадают; область вывода ограничена двумя синтетическими случаями и версией исходного kit v0-2-14.",

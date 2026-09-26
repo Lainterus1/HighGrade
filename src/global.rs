@@ -862,6 +862,7 @@ pub fn update(
         json!({"from":old,"candidate":c.release,"manifest_sha256":c.manifest_hash,"candidate_sha256":c.candidate_sha256,"apply":apply}),
     );
     if !apply {
+        r.measurements.push(json!({"validation":"passed","decision":"required","applied":false,"next":"review candidate, then apply its candidate_sha256"}));
         r.finding(
             "unknown",
             "SemanticReviewRequired",

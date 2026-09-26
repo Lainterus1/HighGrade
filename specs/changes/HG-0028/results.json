@@ -137,1054 +137,360 @@
       "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
     }
   },
-  "history": [
-    {
-      "evidence": {},
-      "recorded_at": 1790411031,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:23:51.227571+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
-        }
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790411031,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790411032,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:23:51.227571+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
+      {
+        "evidence": {
+          "HG-0028-S1": "721ecf0a776b1a603eb50aad451dc13412fc0d897b2185acebde314467a12ee7"
         },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:23:52.047095+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        }
+        "recorded_at": 1790411032,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790411033,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:23:51.227571+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
+      {
+        "evidence": {
+          "HG-0028-S1": "721ecf0a776b1a603eb50aad451dc13412fc0d897b2185acebde314467a12ee7",
+          "HG-0028-S2": "58e1d91687216a535fcb35a0db8e9ef1359fad9abb79de89c575e2cacc742327"
         },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:23:52.047095+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        },
-        "HG-0028-S3": {
-          "captured_at": "2026-09-26T08:23:52.884074+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/policy-review.md": "6a7585e6623709088160ed443bb8fa59f784fa46f6c91c260255b461b19de4c0",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "manual",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/policy-review.md",
-          "scenario": "HG-0028-S3",
-          "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
-        }
+        "recorded_at": 1790411033,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790411033,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0009-S15": {
-          "captured_at": "2026-09-26T08:23:53.697784+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S15",
-          "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
+      {
+        "evidence": {
+          "HG-0028-S1": "721ecf0a776b1a603eb50aad451dc13412fc0d897b2185acebde314467a12ee7",
+          "HG-0028-S2": "58e1d91687216a535fcb35a0db8e9ef1359fad9abb79de89c575e2cacc742327",
+          "HG-0028-S3": "66c373da292f7a12721dfbd37615dc374f5d38de7c03b1db2deab6b8ccecc242"
         },
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:23:51.227571+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
-        },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:23:52.047095+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        },
-        "HG-0028-S3": {
-          "captured_at": "2026-09-26T08:23:52.884074+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/policy-review.md": "6a7585e6623709088160ed443bb8fa59f784fa46f6c91c260255b461b19de4c0",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "manual",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/policy-review.md",
-          "scenario": "HG-0028-S3",
-          "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
-        }
+        "recorded_at": 1790411033,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790411034,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0009-S15": {
-          "captured_at": "2026-09-26T08:23:53.697784+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S15",
-          "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
+      {
+        "evidence": {
+          "HG-0009-S15": "2ea6434c4b34d84a25cc9adef9053b2484beb2500c3e17f9f6ee3fc281559948",
+          "HG-0028-S1": "721ecf0a776b1a603eb50aad451dc13412fc0d897b2185acebde314467a12ee7",
+          "HG-0028-S2": "58e1d91687216a535fcb35a0db8e9ef1359fad9abb79de89c575e2cacc742327",
+          "HG-0028-S3": "66c373da292f7a12721dfbd37615dc374f5d38de7c03b1db2deab6b8ccecc242"
         },
-        "HG-0009-S16": {
-          "captured_at": "2026-09-26T08:23:54.526569+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S16",
-          "scenario_sha256": "1a19081fb3266ac3928c4a02d4d7304749458618945a999fd757cd4bba0f265f"
-        },
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:23:51.227571+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
-        },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:23:52.047095+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        },
-        "HG-0028-S3": {
-          "captured_at": "2026-09-26T08:23:52.884074+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/policy-review.md": "6a7585e6623709088160ed443bb8fa59f784fa46f6c91c260255b461b19de4c0",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "manual",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/policy-review.md",
-          "scenario": "HG-0028-S3",
-          "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
-        }
+        "recorded_at": 1790411034,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790411131,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0009-S15": {
-          "captured_at": "2026-09-26T08:23:53.697784+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S15",
-          "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
+      {
+        "evidence": {
+          "HG-0009-S15": "2ea6434c4b34d84a25cc9adef9053b2484beb2500c3e17f9f6ee3fc281559948",
+          "HG-0009-S16": "c7d410300c85c037510e86a19d6685f78749cf1d1b7bb231d65c9265e625a6df",
+          "HG-0028-S1": "721ecf0a776b1a603eb50aad451dc13412fc0d897b2185acebde314467a12ee7",
+          "HG-0028-S2": "58e1d91687216a535fcb35a0db8e9ef1359fad9abb79de89c575e2cacc742327",
+          "HG-0028-S3": "66c373da292f7a12721dfbd37615dc374f5d38de7c03b1db2deab6b8ccecc242"
         },
-        "HG-0009-S16": {
-          "captured_at": "2026-09-26T08:23:54.526569+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S16",
-          "scenario_sha256": "1a19081fb3266ac3928c4a02d4d7304749458618945a999fd757cd4bba0f265f"
-        },
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:23:51.227571+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
-        },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:23:52.047095+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        },
-        "HG-0028-S3": {
-          "captured_at": "2026-09-26T08:23:52.884074+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/policy-review.md": "6a7585e6623709088160ed443bb8fa59f784fa46f6c91c260255b461b19de4c0",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "manual",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/policy-review.md",
-          "scenario": "HG-0028-S3",
-          "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
-        }
+        "recorded_at": 1790411131,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790412579,
-      "review": {
-        "change_sha256": "ce95a25fc84028802f4f6f47510fb4db8d04bdb07b72f7622e617699a3609161",
-        "conclusion": "REVIEW_GO_WITH_CONDITIONS: дефектов нет, bootstrap 17/17 и генерация подтверждены. Полный Nextest/trace текущей цепочки обязателен до локального approve. Агентный пилот не заявлен.",
-        "reviewer": "/root/refactor_review",
-        "verdict": "go"
+      {
+        "evidence": {
+          "HG-0009-S15": "2ea6434c4b34d84a25cc9adef9053b2484beb2500c3e17f9f6ee3fc281559948",
+          "HG-0009-S16": "c7d410300c85c037510e86a19d6685f78749cf1d1b7bb231d65c9265e625a6df",
+          "HG-0028-S1": "721ecf0a776b1a603eb50aad451dc13412fc0d897b2185acebde314467a12ee7",
+          "HG-0028-S2": "58e1d91687216a535fcb35a0db8e9ef1359fad9abb79de89c575e2cacc742327",
+          "HG-0028-S3": "66c373da292f7a12721dfbd37615dc374f5d38de7c03b1db2deab6b8ccecc242"
+        },
+        "recorded_at": 1790412579,
+        "review": "ee272d2653657396482667d0b4801a719b054301220a268e42083ea1261c2e3d"
+      },
+      {
+        "evidence": {
+          "HG-0009-S15": "2ea6434c4b34d84a25cc9adef9053b2484beb2500c3e17f9f6ee3fc281559948",
+          "HG-0009-S16": "c7d410300c85c037510e86a19d6685f78749cf1d1b7bb231d65c9265e625a6df",
+          "HG-0028-S1": "fb2e730b6c8224d77a0187c540d943cf3d3f79ab00bfaceea4924260b2f54191",
+          "HG-0028-S2": "58e1d91687216a535fcb35a0db8e9ef1359fad9abb79de89c575e2cacc742327",
+          "HG-0028-S3": "66c373da292f7a12721dfbd37615dc374f5d38de7c03b1db2deab6b8ccecc242"
+        },
+        "recorded_at": 1790412584,
+        "review": "ee272d2653657396482667d0b4801a719b054301220a268e42083ea1261c2e3d"
+      },
+      {
+        "evidence": {
+          "HG-0009-S15": "2ea6434c4b34d84a25cc9adef9053b2484beb2500c3e17f9f6ee3fc281559948",
+          "HG-0009-S16": "c7d410300c85c037510e86a19d6685f78749cf1d1b7bb231d65c9265e625a6df",
+          "HG-0028-S1": "fb2e730b6c8224d77a0187c540d943cf3d3f79ab00bfaceea4924260b2f54191",
+          "HG-0028-S2": "f9d9c43089c12da135e6959e53b5cc4b4d587e61355389b6d1a65a0ea6df71f2",
+          "HG-0028-S3": "66c373da292f7a12721dfbd37615dc374f5d38de7c03b1db2deab6b8ccecc242"
+        },
+        "recorded_at": 1790412588,
+        "review": "ee272d2653657396482667d0b4801a719b054301220a268e42083ea1261c2e3d"
+      },
+      {
+        "evidence": {
+          "HG-0009-S15": "2ea6434c4b34d84a25cc9adef9053b2484beb2500c3e17f9f6ee3fc281559948",
+          "HG-0009-S16": "c7d410300c85c037510e86a19d6685f78749cf1d1b7bb231d65c9265e625a6df",
+          "HG-0028-S1": "fb2e730b6c8224d77a0187c540d943cf3d3f79ab00bfaceea4924260b2f54191",
+          "HG-0028-S2": "f9d9c43089c12da135e6959e53b5cc4b4d587e61355389b6d1a65a0ea6df71f2",
+          "HG-0028-S3": "a0d3fa840f13964029abc9749b6dcb61eff8af8a0197b52a1c31c6f83930c293"
+        },
+        "recorded_at": 1790412593,
+        "review": "ee272d2653657396482667d0b4801a719b054301220a268e42083ea1261c2e3d"
+      },
+      {
+        "evidence": {
+          "HG-0009-S15": "334b63d526e254c48af139d12325d036ffc2cc2e139fca5c10f33d2cdc5e4edd",
+          "HG-0009-S16": "c7d410300c85c037510e86a19d6685f78749cf1d1b7bb231d65c9265e625a6df",
+          "HG-0028-S1": "fb2e730b6c8224d77a0187c540d943cf3d3f79ab00bfaceea4924260b2f54191",
+          "HG-0028-S2": "f9d9c43089c12da135e6959e53b5cc4b4d587e61355389b6d1a65a0ea6df71f2",
+          "HG-0028-S3": "a0d3fa840f13964029abc9749b6dcb61eff8af8a0197b52a1c31c6f83930c293"
+        },
+        "recorded_at": 1790412598,
+        "review": "ee272d2653657396482667d0b4801a719b054301220a268e42083ea1261c2e3d"
+      },
+      {
+        "evidence": {
+          "HG-0009-S15": "334b63d526e254c48af139d12325d036ffc2cc2e139fca5c10f33d2cdc5e4edd",
+          "HG-0009-S16": "53ba93ae40ec0e92bfc17b8493affb7a38dbe90816b605b95429188184fb3f2c",
+          "HG-0028-S1": "fb2e730b6c8224d77a0187c540d943cf3d3f79ab00bfaceea4924260b2f54191",
+          "HG-0028-S2": "f9d9c43089c12da135e6959e53b5cc4b4d587e61355389b6d1a65a0ea6df71f2",
+          "HG-0028-S3": "a0d3fa840f13964029abc9749b6dcb61eff8af8a0197b52a1c31c6f83930c293"
+        },
+        "recorded_at": 1790412818,
+        "review": "ee272d2653657396482667d0b4801a719b054301220a268e42083ea1261c2e3d"
       }
-    },
-    {
-      "evidence": {
-        "HG-0009-S15": {
-          "captured_at": "2026-09-26T08:23:53.697784+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S15",
-          "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
+    ],
+    "objects": {
+      "2ea6434c4b34d84a25cc9adef9053b2484beb2500c3e17f9f6ee3fc281559948": {
+        "captured_at": "2026-09-26T08:23:53.697784+00:00",
+        "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
+        "files": {
+          "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
+          "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
+          "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
+          "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
+          "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
+          "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
         },
-        "HG-0009-S16": {
-          "captured_at": "2026-09-26T08:23:54.526569+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S16",
-          "scenario_sha256": "1a19081fb3266ac3928c4a02d4d7304749458618945a999fd757cd4bba0f265f"
-        },
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:49:38.290931+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
-        },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:23:52.047095+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        },
-        "HG-0028-S3": {
-          "captured_at": "2026-09-26T08:23:52.884074+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/policy-review.md": "6a7585e6623709088160ed443bb8fa59f784fa46f6c91c260255b461b19de4c0",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "manual",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/policy-review.md",
-          "scenario": "HG-0028-S3",
-          "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
-        }
+        "method": "native_report",
+        "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
+        "scenario": "HG-0009-S15",
+        "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
       },
-      "recorded_at": 1790412584,
-      "review": {
+      "334b63d526e254c48af139d12325d036ffc2cc2e139fca5c10f33d2cdc5e4edd": {
+        "captured_at": "2026-09-26T08:49:52.285878+00:00",
+        "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
+        "files": {
+          ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+          "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
+          "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
+          "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
+          "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
+          "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
+          "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
+          "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+        },
+        "input_paths": [
+          ".config/nextest.toml",
+          "Cargo.lock",
+          "Cargo.toml",
+          "src/bootstrap.rs",
+          "src/inspect.rs",
+          "tests/bootstrap_contracts.rs",
+          "tests/support/mod.rs"
+        ],
+        "method": "native_report",
+        "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0032/evidence/junit.xml",
+        "scenario": "HG-0009-S15",
+        "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
+      },
+      "53ba93ae40ec0e92bfc17b8493affb7a38dbe90816b605b95429188184fb3f2c": {
+        "captured_at": "2026-09-26T08:49:56.953645+00:00",
+        "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
+        "files": {
+          ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+          "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
+          "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
+          "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
+          "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
+          "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
+          "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
+          "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+        },
+        "input_paths": [
+          ".config/nextest.toml",
+          "Cargo.lock",
+          "Cargo.toml",
+          "src/bootstrap.rs",
+          "src/inspect.rs",
+          "tests/bootstrap_contracts.rs",
+          "tests/support/mod.rs"
+        ],
+        "method": "native_report",
+        "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0032/evidence/junit.xml",
+        "scenario": "HG-0009-S16",
+        "scenario_sha256": "1a19081fb3266ac3928c4a02d4d7304749458618945a999fd757cd4bba0f265f"
+      },
+      "58e1d91687216a535fcb35a0db8e9ef1359fad9abb79de89c575e2cacc742327": {
+        "captured_at": "2026-09-26T08:23:52.047095+00:00",
+        "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
+        "files": {
+          "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
+          "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
+          "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
+          "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
+          "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
+          "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
+        },
+        "method": "native_report",
+        "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
+        "scenario": "HG-0028-S2",
+        "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
+      },
+      "66c373da292f7a12721dfbd37615dc374f5d38de7c03b1db2deab6b8ccecc242": {
+        "captured_at": "2026-09-26T08:23:52.884074+00:00",
+        "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
+        "files": {
+          "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
+          "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
+          "specs/changes/HG-0028/evidence/policy-review.md": "6a7585e6623709088160ed443bb8fa59f784fa46f6c91c260255b461b19de4c0",
+          "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
+          "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
+          "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
+        },
+        "method": "manual",
+        "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0028/evidence/policy-review.md",
+        "scenario": "HG-0028-S3",
+        "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
+      },
+      "721ecf0a776b1a603eb50aad451dc13412fc0d897b2185acebde314467a12ee7": {
+        "captured_at": "2026-09-26T08:23:51.227571+00:00",
+        "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
+        "files": {
+          "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
+          "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
+          "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
+          "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
+          "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
+          "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
+        },
+        "method": "native_report",
+        "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
+        "scenario": "HG-0028-S1",
+        "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
+      },
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "a0d3fa840f13964029abc9749b6dcb61eff8af8a0197b52a1c31c6f83930c293": {
+        "captured_at": "2026-09-26T08:49:47.484958+00:00",
+        "command": "Смысловая сверка итоговой инструкции",
+        "files": {
+          "kit/procedures/init.md": "4339befe4db902f3aecbf02147d60d60746f2d099ba4fb18cf70c3196ce40011",
+          "kit/references/cli.md": "2cf25182056292260f04120bc31444a6e5771faf443880b4885d774cb159ee96",
+          "specs/changes/HG-0032/evidence/policy-review.md": "492cd9226f037799bb6227019dc3429435a2cfde3d94aeaa584c0b6cff8ede5d"
+        },
+        "input_paths": [
+          "kit/procedures/init.md",
+          "kit/references/cli.md"
+        ],
+        "method": "manual",
+        "observation": "Нормативная согласованность непосредственно сверена; поведение будущего агента не наблюдалось.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0032/evidence/policy-review.md",
+        "scenario": "HG-0028-S3",
+        "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
+      },
+      "c7d410300c85c037510e86a19d6685f78749cf1d1b7bb231d65c9265e625a6df": {
+        "captured_at": "2026-09-26T08:23:54.526569+00:00",
+        "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
+        "files": {
+          "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
+          "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
+          "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
+          "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
+          "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
+          "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
+        },
+        "method": "native_report",
+        "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
+        "scenario": "HG-0009-S16",
+        "scenario_sha256": "1a19081fb3266ac3928c4a02d4d7304749458618945a999fd757cd4bba0f265f"
+      },
+      "ee272d2653657396482667d0b4801a719b054301220a268e42083ea1261c2e3d": {
         "change_sha256": "ce95a25fc84028802f4f6f47510fb4db8d04bdb07b72f7622e617699a3609161",
         "conclusion": "REVIEW_GO_WITH_CONDITIONS: дефектов нет, bootstrap 17/17 и генерация подтверждены. Полный Nextest/trace текущей цепочки обязателен до локального approve. Агентный пилот не заявлен.",
         "reviewer": "/root/refactor_review",
         "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0009-S15": {
-          "captured_at": "2026-09-26T08:23:53.697784+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S15",
-          "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
-        },
-        "HG-0009-S16": {
-          "captured_at": "2026-09-26T08:23:54.526569+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S16",
-          "scenario_sha256": "1a19081fb3266ac3928c4a02d4d7304749458618945a999fd757cd4bba0f265f"
-        },
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:49:38.290931+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
-        },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:49:43.102077+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        },
-        "HG-0028-S3": {
-          "captured_at": "2026-09-26T08:23:52.884074+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/policy-review.md": "6a7585e6623709088160ed443bb8fa59f784fa46f6c91c260255b461b19de4c0",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "manual",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/policy-review.md",
-          "scenario": "HG-0028-S3",
-          "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
-        }
       },
-      "recorded_at": 1790412588,
-      "review": {
-        "change_sha256": "ce95a25fc84028802f4f6f47510fb4db8d04bdb07b72f7622e617699a3609161",
-        "conclusion": "REVIEW_GO_WITH_CONDITIONS: дефектов нет, bootstrap 17/17 и генерация подтверждены. Полный Nextest/trace текущей цепочки обязателен до локального approve. Агентный пилот не заявлен.",
-        "reviewer": "/root/refactor_review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0009-S15": {
-          "captured_at": "2026-09-26T08:23:53.697784+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S15",
-          "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
+      "f9d9c43089c12da135e6959e53b5cc4b4d587e61355389b6d1a65a0ea6df71f2": {
+        "captured_at": "2026-09-26T08:49:43.102077+00:00",
+        "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
+        "files": {
+          ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+          "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
+          "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
+          "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
+          "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
+          "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
+          "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
+          "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
         },
-        "HG-0009-S16": {
-          "captured_at": "2026-09-26T08:23:54.526569+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S16",
-          "scenario_sha256": "1a19081fb3266ac3928c4a02d4d7304749458618945a999fd757cd4bba0f265f"
-        },
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:49:38.290931+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
-        },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:49:43.102077+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        },
-        "HG-0028-S3": {
-          "captured_at": "2026-09-26T08:49:47.484958+00:00",
-          "command": "Смысловая сверка итоговой инструкции",
-          "files": {
-            "kit/procedures/init.md": "4339befe4db902f3aecbf02147d60d60746f2d099ba4fb18cf70c3196ce40011",
-            "kit/references/cli.md": "2cf25182056292260f04120bc31444a6e5771faf443880b4885d774cb159ee96",
-            "specs/changes/HG-0032/evidence/policy-review.md": "492cd9226f037799bb6227019dc3429435a2cfde3d94aeaa584c0b6cff8ede5d"
-          },
-          "input_paths": [
-            "kit/procedures/init.md",
-            "kit/references/cli.md"
-          ],
-          "method": "manual",
-          "observation": "Нормативная согласованность непосредственно сверена; поведение будущего агента не наблюдалось.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/policy-review.md",
-          "scenario": "HG-0028-S3",
-          "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
-        }
+        "input_paths": [
+          ".config/nextest.toml",
+          "Cargo.lock",
+          "Cargo.toml",
+          "src/bootstrap.rs",
+          "src/inspect.rs",
+          "tests/bootstrap_contracts.rs",
+          "tests/support/mod.rs"
+        ],
+        "method": "native_report",
+        "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0032/evidence/junit.xml",
+        "scenario": "HG-0028-S2",
+        "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
       },
-      "recorded_at": 1790412593,
-      "review": {
-        "change_sha256": "ce95a25fc84028802f4f6f47510fb4db8d04bdb07b72f7622e617699a3609161",
-        "conclusion": "REVIEW_GO_WITH_CONDITIONS: дефектов нет, bootstrap 17/17 и генерация подтверждены. Полный Nextest/trace текущей цепочки обязателен до локального approve. Агентный пилот не заявлен.",
-        "reviewer": "/root/refactor_review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0009-S15": {
-          "captured_at": "2026-09-26T08:49:52.285878+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0009-S15",
-          "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
+      "fb2e730b6c8224d77a0187c540d943cf3d3f79ab00bfaceea4924260b2f54191": {
+        "captured_at": "2026-09-26T08:49:38.290931+00:00",
+        "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
+        "files": {
+          ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+          "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
+          "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
+          "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
+          "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
+          "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
+          "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
+          "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
         },
-        "HG-0009-S16": {
-          "captured_at": "2026-09-26T08:23:54.526569+00:00",
-          "command": "cargo test --locked --test bootstrap_contracts; смысловая сверка init",
-          "files": {
-            "kit/procedures/init.md": "71cdcb11d9a62f4d23a00a5cb5228939ae0c4ae060379a3f19b731c25c105450",
-            "kit/references/cli.md": "a7e54ec756e3b7272c8c05f46a90bd38c4f156c9010aeae51d73a8dd7dc9b71e",
-            "specs/changes/HG-0028/evidence/bootstrap-tests.txt": "6c192faa5e7c93f7a50987ddbad4ea4c6ea42c2e3e87cee927defa342d1e1ce1",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9"
-          },
-          "method": "native_report",
-          "observation": "17/17 контрактных тестов; нормативная сверка описана в policy-review.md, агентный пилот не заявляется.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0028/evidence/bootstrap-tests.txt",
-          "scenario": "HG-0009-S16",
-          "scenario_sha256": "1a19081fb3266ac3928c4a02d4d7304749458618945a999fd757cd4bba0f265f"
-        },
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:49:38.290931+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
-        },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:49:43.102077+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        },
-        "HG-0028-S3": {
-          "captured_at": "2026-09-26T08:49:47.484958+00:00",
-          "command": "Смысловая сверка итоговой инструкции",
-          "files": {
-            "kit/procedures/init.md": "4339befe4db902f3aecbf02147d60d60746f2d099ba4fb18cf70c3196ce40011",
-            "kit/references/cli.md": "2cf25182056292260f04120bc31444a6e5771faf443880b4885d774cb159ee96",
-            "specs/changes/HG-0032/evidence/policy-review.md": "492cd9226f037799bb6227019dc3429435a2cfde3d94aeaa584c0b6cff8ede5d"
-          },
-          "input_paths": [
-            "kit/procedures/init.md",
-            "kit/references/cli.md"
-          ],
-          "method": "manual",
-          "observation": "Нормативная согласованность непосредственно сверена; поведение будущего агента не наблюдалось.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/policy-review.md",
-          "scenario": "HG-0028-S3",
-          "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
-        }
-      },
-      "recorded_at": 1790412598,
-      "review": {
-        "change_sha256": "ce95a25fc84028802f4f6f47510fb4db8d04bdb07b72f7622e617699a3609161",
-        "conclusion": "REVIEW_GO_WITH_CONDITIONS: дефектов нет, bootstrap 17/17 и генерация подтверждены. Полный Nextest/trace текущей цепочки обязателен до локального approve. Агентный пилот не заявлен.",
-        "reviewer": "/root/refactor_review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0009-S15": {
-          "captured_at": "2026-09-26T08:49:52.285878+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0009-S15",
-          "scenario_sha256": "42fefb5b8bb0d176bfba2dcb25437fdb7436c30b95812a45d7dd37c015765f19"
-        },
-        "HG-0009-S16": {
-          "captured_at": "2026-09-26T08:49:56.953645+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0009-S16",
-          "scenario_sha256": "1a19081fb3266ac3928c4a02d4d7304749458618945a999fd757cd4bba0f265f"
-        },
-        "HG-0028-S1": {
-          "captured_at": "2026-09-26T08:49:38.290931+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0028-S1",
-          "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
-        },
-        "HG-0028-S2": {
-          "captured_at": "2026-09-26T08:49:43.102077+00:00",
-          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
-          "files": {
-            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
-            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
-            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
-            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
-            "src/bootstrap.rs": "1193fe9f89e8f598a3091fccd7de9e9b0b8ac551d8b1c4995756053123dbf377",
-            "src/inspect.rs": "2a2775a7652ca4154cbc000897c7dceb49ab69664e36901a6ed03c584f46f72b",
-            "tests/bootstrap_contracts.rs": "a72edf5afd927d97861b36bf1c37e3260ae2d8d902ffe8592a1fdc6aa6fe4cd9",
-            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
-          },
-          "input_paths": [
-            ".config/nextest.toml",
-            "Cargo.lock",
-            "Cargo.toml",
-            "src/bootstrap.rs",
-            "src/inspect.rs",
-            "tests/bootstrap_contracts.rs",
-            "tests/support/mod.rs"
-          ],
-          "method": "native_report",
-          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/junit.xml",
-          "scenario": "HG-0028-S2",
-          "scenario_sha256": "5756cf9f891dbe54704b9363f96631f9d57c95eeea84adbf8360f528b31121c4"
-        },
-        "HG-0028-S3": {
-          "captured_at": "2026-09-26T08:49:47.484958+00:00",
-          "command": "Смысловая сверка итоговой инструкции",
-          "files": {
-            "kit/procedures/init.md": "4339befe4db902f3aecbf02147d60d60746f2d099ba4fb18cf70c3196ce40011",
-            "kit/references/cli.md": "2cf25182056292260f04120bc31444a6e5771faf443880b4885d774cb159ee96",
-            "specs/changes/HG-0032/evidence/policy-review.md": "492cd9226f037799bb6227019dc3429435a2cfde3d94aeaa584c0b6cff8ede5d"
-          },
-          "input_paths": [
-            "kit/procedures/init.md",
-            "kit/references/cli.md"
-          ],
-          "method": "manual",
-          "observation": "Нормативная согласованность непосредственно сверена; поведение будущего агента не наблюдалось.",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0032/evidence/policy-review.md",
-          "scenario": "HG-0028-S3",
-          "scenario_sha256": "ee8a872f35f0078e8e5d528f1d2db148c70b0ba9009bcf5f672b1270bff4aa2a"
-        }
-      },
-      "recorded_at": 1790412818,
-      "review": {
-        "change_sha256": "ce95a25fc84028802f4f6f47510fb4db8d04bdb07b72f7622e617699a3609161",
-        "conclusion": "REVIEW_GO_WITH_CONDITIONS: дефектов нет, bootstrap 17/17 и генерация подтверждены. Полный Nextest/trace текущей цепочки обязателен до локального approve. Агентный пилот не заявлен.",
-        "reviewer": "/root/refactor_review",
-        "verdict": "go"
+        "input_paths": [
+          ".config/nextest.toml",
+          "Cargo.lock",
+          "Cargo.toml",
+          "src/bootstrap.rs",
+          "src/inspect.rs",
+          "tests/bootstrap_contracts.rs",
+          "tests/support/mod.rs"
+        ],
+        "method": "native_report",
+        "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0032/evidence/junit.xml",
+        "scenario": "HG-0028-S1",
+        "scenario_sha256": "29eaa11c7ee8ac5ef632f446d281960b443ee193a57a469b02a17bed190b6b9a"
       }
     }
-  ],
+  },
   "review": {
     "change_sha256": "bba52a8cb72b5958d4dc4f0b0a86e33e0c2d323ed5c4ce8492ee357cf2de5689",
     "conclusion": "Итоговый REVIEW_GO цепочки HG26–32: staged 91 файл сверен по blob IDs; входы evidence актуальны; Nextest 134/134, trace 57/57, doctor passed, inspect только внешние ссылки. Пилот агента и активация не заявляются; известный остаток вне автоматической трассировки сохранён.",

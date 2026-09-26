@@ -276,6 +276,103 @@ fn review(root: &Path) {
     )
     .unwrap();
 }
+// highgrade: HG-0033-S1, HG-0033-S2
+#[test]
+fn compact_history_preserves_observations_and_rejects_corruption() {
+    let root = root();
+    create(&root);
+    fs::write(root.join("logic.txt"), "logic").unwrap();
+    fs::write(root.join("report.txt"), "report").unwrap();
+    for _ in 0..20 {
+        observe(&root);
+    }
+    let before = specs::load(&root).unwrap().0;
+    let path = "specs/changes/HG-0001/results.json";
+    let old_size = fs::metadata(root.join(path)).unwrap().len();
+    call(
+        &root,
+        "spec-migrate",
+        &[("--to", "compact"), ("--expected", &sha(&root))],
+    )
+    .unwrap();
+    assert_eq!(json(&root, "specs/catalog.json")["schema_version"], 4);
+    assert_eq!(before.changes, specs::load(&root).unwrap().0.changes);
+    assert!(fs::metadata(root.join(path)).unwrap().len() < old_size);
+    observe(&root);
+    let after = specs::load(&root).unwrap().0;
+    assert_eq!(after.changes["HG-0001"].history.len(), 21);
+    let mut data = json(&root, path);
+    let objects = data["history"]["objects"].as_object_mut().unwrap();
+    let key = objects.keys().next().unwrap().clone();
+    objects.insert(key, json!("corrupt"));
+    put(&root, path, &data);
+    assert!(
+        specs::load(&root)
+            .unwrap_err()
+            .contains("HistoryObjectHashMismatch")
+    );
+}
+// highgrade: HG-0033-S1, HG-0033-S2
+#[test]
+fn compact_catalog_accepts_empty_changes_and_new_changes() {
+    let root = root();
+    create(&root);
+    call(
+        &root,
+        "spec-migrate",
+        &[("--to", "compact"), ("--expected", &sha(&root))],
+    )
+    .unwrap();
+    create(&root);
+    assert_eq!(specs::load(&root).unwrap().0.changes.len(), 2);
+    assert!(!root.join("specs/changes/HG-0002/results.json").exists());
+}
+
+// highgrade: HG-0033-S2
+#[test]
+fn compact_transaction_limit_and_recovery_preserve_catalog() {
+    let root = root();
+    create(&root);
+    call(
+        &root,
+        "spec-migrate",
+        &[("--to", "compact"), ("--expected", &sha(&root))],
+    )
+    .unwrap();
+    let before = sha(&root);
+    let oversized = "\\".repeat(3 * 1024 * 1024);
+    let err = call(
+        &root,
+        "spec-review",
+        &[
+            ("--id", "HG-0001"),
+            ("--expected", &before),
+            ("--reviewer", "reviewer"),
+            ("--verdict", "go"),
+            ("--conclusion", &oversized),
+        ],
+    )
+    .unwrap_err();
+    assert!(err.contains("TransactionTooLarge"), "{err}");
+    assert_eq!(before, sha(&root));
+    assert!(!root.join("specs/transaction.json").exists());
+    let path = "specs/changes/HG-0001/spec.json";
+    let original = fs::read(root.join(path)).unwrap();
+    let mut desired: Value = serde_json::from_slice(&original).unwrap();
+    desired["title"] = json!("Recovered");
+    put(
+        &root,
+        "specs/transaction.json",
+        &json!({path:{"before":highgrade::hash(&original),"after":serde_json::to_string_pretty(&desired).unwrap()}}),
+    );
+    assert!(specs::load(&root).is_err());
+    let expected = highgrade::hash(&fs::read(root.join("specs/transaction.json")).unwrap());
+    call(&root, "spec-recover", &[("--expected", &expected)]).unwrap();
+    assert_eq!(
+        specs::load(&root).unwrap().0.changes["HG-0001"].title,
+        "Recovered"
+    );
+}
 // highgrade: HG-0002-S3
 #[test]
 fn integrated_recheck_retains_history_and_invalidates_old_acceptance() {
@@ -670,6 +767,244 @@ sys.exit(0 if result.wasSuccessful() else 1)
     )
     .unwrap();
     edit(root,"HG-0001","checks",json!([{"id":"sum","scenario_ids":["HG-0001-S1"],"runner":"unit","file":"test_math.py","selector":"Cases::test_sum","preparation":"Создать 2 и 3","action":"Сложить","observation":"Результат 5","inputs":["test_math.py","runner.py","mode.txt"]}])).unwrap();
+}
+
+// highgrade: HG-0034-S1, HG-0034-S2
+#[test]
+fn native_report_import_reuses_suite_and_rejects_stale_or_missing_results() {
+    let root = root();
+    runner_fixture(&root);
+    let store = specs::load(&root).unwrap().0;
+    let mut checks = serde_json::to_value(&store.changes["HG-0001"].checks).unwrap();
+    let mut second = checks[0].clone();
+    second["id"] = json!("other");
+    second["selector"] = json!("Cases::test_other");
+    checks.as_array_mut().unwrap().push(second);
+    edit(&root, "HG-0001", "checks", checks).unwrap();
+    let captured = call(
+        &root,
+        "spec-run-inputs",
+        &[("--id", "HG-0001"), ("--check", "all")],
+    )
+    .unwrap();
+    let snapshot = captured
+        .measurements
+        .iter()
+        .find_map(|m| m.get("snapshot"))
+        .unwrap();
+    fs::write(root.join("suite.xml"),"<testsuite><testcase classname='Cases' name='test_sum'/><testcase classname='Cases' name='test_other'/></testsuite>").unwrap();
+    put(
+        &root,
+        "import.json",
+        &json!({"snapshot":snapshot,"report":"suite.xml","command":["native-test"]}),
+    );
+    let import = || {
+        call(
+            &root,
+            "spec-run-import",
+            &[("--expected", &sha(&root)), ("--input", "import.json")],
+        )
+    };
+    import().unwrap();
+    let first = sha(&root);
+    import().unwrap();
+    assert_eq!(first, sha(&root));
+    assert_eq!(
+        specs::load(&root).unwrap().0.changes["HG-0001"].runs.len(),
+        2
+    );
+    for body in ["<skipped/>", "<failure/>", "<error/>"] {
+        fs::write(root.join("suite.xml"),format!("<testsuite><testcase classname='Cases' name='test_sum'>{body}</testcase></testsuite>")).unwrap();
+        assert!(import().unwrap_err().contains("ImportedCheckNotPassed"));
+        assert_eq!(first, sha(&root));
+    }
+    fs::write(root.join("suite.xml"), "<testsuite/>").unwrap();
+    assert!(import().unwrap_err().contains("ImportedCheckNotPassed"));
+    fs::write(root.join("mode.txt"), "changed").unwrap();
+    assert!(import().unwrap_err().contains("ImportedInputsStale"));
+    assert_eq!(first, sha(&root));
+}
+
+// highgrade: HG-0034-S3
+#[test]
+fn evidence_batch_is_atomic_and_exact_repeat_is_noop() {
+    let root = root();
+    create(&root);
+    fs::write(root.join("logic.txt"), "logic").unwrap();
+    fs::write(root.join("report.txt"), "report").unwrap();
+    let evidence = json!({"command":"observe","captured_at":"2026-09-26","method":"manual","scenario":"HG-0001-S1","outcome":"passed","observation":"observed","inputs":["logic.txt"],"report":"report.txt"});
+    put(
+        &root,
+        "batch.json",
+        &json!([{"id":"HG-0001","evidence":evidence}]),
+    );
+    let batch = || {
+        call(
+            &root,
+            "spec-evidence-batch",
+            &[("--expected", &sha(&root)), ("--input", "batch.json")],
+        )
+    };
+    batch().unwrap();
+    let first = sha(&root);
+    batch().unwrap();
+    assert_eq!(first, sha(&root));
+    let mut changed = evidence.clone();
+    changed["observation"] = json!("changed");
+    put(
+        &root,
+        "batch.json",
+        &json!([{"id":"HG-0001","evidence":changed},{"id":"missing","evidence":evidence}]),
+    );
+    assert!(batch().is_err());
+    assert_eq!(first, sha(&root));
+}
+
+// highgrade: HG-0037-S1, HG-0037-S2
+#[test]
+fn selected_list_and_local_edit_preserve_independent_work() {
+    let root = root();
+    create(&root);
+    create(&root);
+    let token = |id: &str| {
+        call(&root, "spec-read", &[("--id", id), ("--view", "summary")])
+            .unwrap()
+            .measurements
+            .into_iter()
+            .find_map(|m| {
+                m.get("local_sha256")
+                    .and_then(Value::as_str)
+                    .map(str::to_owned)
+            })
+            .unwrap()
+    };
+    let first = token("HG-0001");
+    edit(&root, "HG-0002", "title", json!("Independent")).unwrap();
+    put(&root, "patch.json", &json!({"title":"Selected"}));
+    call(
+        &root,
+        "spec-edit",
+        &[
+            ("--id", "HG-0001"),
+            ("--expected-local", &first),
+            ("--input", "patch.json"),
+        ],
+    )
+    .unwrap();
+    assert!(
+        call(
+            &root,
+            "spec-edit",
+            &[
+                ("--id", "HG-0001"),
+                ("--expected-local", &first),
+                ("--input", "patch.json")
+            ]
+        )
+        .unwrap_err()
+        .contains("LocalConflict")
+    );
+    let report = call(&root, "spec-list", &[("--id", "HG-0001")]).unwrap();
+    let selected = report
+        .measurements
+        .iter()
+        .find(|m| m.get("selection").is_some())
+        .unwrap();
+    assert_eq!(selected["changes"].as_array().unwrap().len(), 1);
+    assert_eq!(selected["summary"]["total"], 1);
+    assert_eq!(selected["selection"]["total"], 2);
+    assert!(
+        !report
+            .measurements
+            .iter()
+            .any(|m| m.get("change").is_some())
+    );
+}
+
+// highgrade: HG-0037-S2
+#[test]
+fn local_edit_rejects_dependency_runner_drift() {
+    let root = root();
+    runner_fixture(&root);
+    create(&root);
+    edit(
+        &root,
+        "HG-0002",
+        "depends_on",
+        json!([{"id":"HG-0001","reason":"Uses checked contract"}]),
+    )
+    .unwrap();
+    let r = call(
+        &root,
+        "spec-read",
+        &[("--id", "HG-0002"), ("--view", "summary")],
+    )
+    .unwrap();
+    let token = r
+        .measurements
+        .iter()
+        .find_map(|m| m.get("local_sha256").and_then(Value::as_str))
+        .unwrap();
+    let mut runner = json(&root, "runner.json");
+    runner["timeout_seconds"] = json!(31);
+    put(&root, "runner.json", &runner);
+    call(
+        &root,
+        "spec-runner-set",
+        &[
+            ("--id", "unit"),
+            ("--expected", &sha(&root)),
+            ("--input", "runner.json"),
+        ],
+    )
+    .unwrap();
+    put(&root, "patch.json", &json!({"title":"stale"}));
+    assert!(
+        call(
+            &root,
+            "spec-edit",
+            &[
+                ("--id", "HG-0002"),
+                ("--expected-local", token),
+                ("--input", "patch.json")
+            ]
+        )
+        .unwrap_err()
+        .contains("LocalConflict")
+    );
+}
+
+// highgrade: HG-0036-S3
+#[test]
+fn action_diagnostics_check_runner_without_execution() {
+    let root = root();
+    runner_fixture(&root);
+    let before = sha(&root);
+    assert_eq!(
+        specs::diagnose(&root, "spec-read", None, None)
+            .unwrap()
+            .status,
+        "passed"
+    );
+    let r = specs::diagnose(&root, "spec-run", Some("HG-0001"), Some("all")).unwrap();
+    assert_eq!(r.status, "passed");
+    assert_eq!(before, sha(&root));
+    let mut runner = json(&root, "runner.json");
+    runner["program"] = json!("missing-highgrade-test-tool");
+    put(&root, "runner.json", &runner);
+    call(
+        &root,
+        "spec-runner-set",
+        &[
+            ("--id", "unit"),
+            ("--expected", &sha(&root)),
+            ("--input", "runner.json"),
+        ],
+    )
+    .unwrap();
+    let r = specs::diagnose(&root, "spec-run", Some("HG-0001"), Some("all")).unwrap();
+    assert_eq!(r.status, "failed");
+    assert!(r.findings.iter().any(|f| f["code"] == "RunnerUnavailable"));
 }
 
 // highgrade: HG-0029-S1

@@ -64,7 +64,9 @@ if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
 
 ## Rust CLI и глобальная поставка
 
-Для текстовых правок Cargo не нужен. Активация: одна release-сборка build-release.py из SHA по [BUILD](BUILD.md).
+Для JUnit доступен spec-run-inputs до запуска и spec-run-import после; формат — в справочнике CLI. Снимок задним числом не подтверждает актуальность.
+
+Активация: build-release.py из SHA по [BUILD](BUILD.md).
 
 Диагностика: `target/debug/highgrade.exe doctor --root "$PWD"` и `inspect --root "$PWD"`. Установку/обновление проверяют global_contracts; дополнительные профили нужны только для непокрытого риска. Код unknown не является PASS.
 

@@ -117,1579 +117,897 @@
       "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
     }
   },
-  "history": [
-    {
-      "evidence": {},
-      "recorded_at": 1790271129,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "1790271127",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-1-1790271127821195600.log": "de782ad7a4e8f637f274dc1a4a9cdb5877607ea20b5994433ad4f8782e865124",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-1-1790271127821195600.log",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
-        },
-        "HG-0003-S2": {
-          "captured_at": "1790271128",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log": "f89a3ea94effb0e257d351194bbabf1c366e17eda627a1ddd013a42d8276e50c",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "1790271128",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log": "f89a3ea94effb0e257d351194bbabf1c366e17eda627a1ddd013a42d8276e50c",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790271129,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790271129,
-      "review": null
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "1790271127",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-1-1790271127821195600.log": "de782ad7a4e8f637f274dc1a4a9cdb5877607ea20b5994433ad4f8782e865124",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-1-1790271127821195600.log",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      {
+        "evidence": {
+          "HG-0003-S1": "614273bd4a2ff5967058a16e0418e96eb5a7631be6d3c2c6a284b37152318f64",
+          "HG-0003-S2": "5dde3d088e76e1420a8170affb1937013ac664bfad10f94deee665cbfbb8d57e",
+          "HG-0003-S3": "9cafce3e79fc0509e32a2c71c9872051e03b966e8471b60a4594b028c8600b74"
         },
-        "HG-0003-S2": {
-          "captured_at": "1790271128",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log": "f89a3ea94effb0e257d351194bbabf1c366e17eda627a1ddd013a42d8276e50c",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "1790271128",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log": "f89a3ea94effb0e257d351194bbabf1c366e17eda627a1ddd013a42d8276e50c",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "recorded_at": 1790271129,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
       },
-      "recorded_at": 1790278544,
-      "review": {
+      {
+        "evidence": {
+          "HG-0003-S1": "614273bd4a2ff5967058a16e0418e96eb5a7631be6d3c2c6a284b37152318f64",
+          "HG-0003-S2": "5dde3d088e76e1420a8170affb1937013ac664bfad10f94deee665cbfbb8d57e",
+          "HG-0003-S3": "9cafce3e79fc0509e32a2c71c9872051e03b966e8471b60a4594b028c8600b74"
+        },
+        "recorded_at": 1790278544,
+        "review": "82a9d54ab3e2b9a84e90c08ec389716c394a580b3ba9bef943856d7ffc709745"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "be08150ce1b1f682ca57336ffbfe349e0e899f7fb84abf7ba3e20dbaff57ec46",
+          "HG-0003-S2": "f6e98f029aad88144c8510acffab87ea13ec6032a32d928c52cbf1d5708f0720",
+          "HG-0003-S3": "8e6dd8ea061bb5fc22c799cc705f02d7ae94aeabaf86e87dfc1c02c157de0e9a"
+        },
+        "recorded_at": 1790279567,
+        "review": "82a9d54ab3e2b9a84e90c08ec389716c394a580b3ba9bef943856d7ffc709745"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "be08150ce1b1f682ca57336ffbfe349e0e899f7fb84abf7ba3e20dbaff57ec46",
+          "HG-0003-S2": "f6e98f029aad88144c8510acffab87ea13ec6032a32d928c52cbf1d5708f0720",
+          "HG-0003-S3": "8e6dd8ea061bb5fc22c799cc705f02d7ae94aeabaf86e87dfc1c02c157de0e9a"
+        },
+        "recorded_at": 1790313274,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "58e850eb7dd4241711cb4da1308e9af85749d83be15e301d195f7a0b05f06339",
+          "HG-0003-S2": "96bb95aa5ec8b69dbf71169fcaf02a6723246d457f2ff7c3270f863cdca136d6",
+          "HG-0003-S3": "0bff9db6f466be243bec1eccf332109bc78d25c2dbe7010ee0ccdcc78617d3b2"
+        },
+        "recorded_at": 1790313392,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "58aaad4bb90d9e3b29ad62f82c81336cc695f6f7563d2760a45b8f42b3f3698d",
+          "HG-0003-S2": "96bb95aa5ec8b69dbf71169fcaf02a6723246d457f2ff7c3270f863cdca136d6",
+          "HG-0003-S3": "0bff9db6f466be243bec1eccf332109bc78d25c2dbe7010ee0ccdcc78617d3b2"
+        },
+        "recorded_at": 1790313393,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "58aaad4bb90d9e3b29ad62f82c81336cc695f6f7563d2760a45b8f42b3f3698d",
+          "HG-0003-S2": "c6be990ee5e796f293561203aa6b86fc7c71d15bf11608a4e16a09fea7d1b6ce",
+          "HG-0003-S3": "0bff9db6f466be243bec1eccf332109bc78d25c2dbe7010ee0ccdcc78617d3b2"
+        },
+        "recorded_at": 1790313394,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "58aaad4bb90d9e3b29ad62f82c81336cc695f6f7563d2760a45b8f42b3f3698d",
+          "HG-0003-S2": "c6be990ee5e796f293561203aa6b86fc7c71d15bf11608a4e16a09fea7d1b6ce",
+          "HG-0003-S3": "81c49c25dbdde5a43b8df8abf8f557e28d92c5960e86fe003058664d93a00c69"
+        },
+        "recorded_at": 1790315043,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "6999fefa7caae6c292791bda2ee5145e5cce3b482884727d02ee22530701c1ac",
+          "HG-0003-S2": "c6be990ee5e796f293561203aa6b86fc7c71d15bf11608a4e16a09fea7d1b6ce",
+          "HG-0003-S3": "81c49c25dbdde5a43b8df8abf8f557e28d92c5960e86fe003058664d93a00c69"
+        },
+        "recorded_at": 1790315045,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "6999fefa7caae6c292791bda2ee5145e5cce3b482884727d02ee22530701c1ac",
+          "HG-0003-S2": "cc0838d4b341b6ba8d4ec8386d7fcc5ddb5a7c52b4bf9c24acfd6bb96b676a1e",
+          "HG-0003-S3": "81c49c25dbdde5a43b8df8abf8f557e28d92c5960e86fe003058664d93a00c69"
+        },
+        "recorded_at": 1790315046,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "6999fefa7caae6c292791bda2ee5145e5cce3b482884727d02ee22530701c1ac",
+          "HG-0003-S2": "cc0838d4b341b6ba8d4ec8386d7fcc5ddb5a7c52b4bf9c24acfd6bb96b676a1e",
+          "HG-0003-S3": "f606c2cd8cada005f0b4ff42a8b8d4d30e0c6341304a49db9e9e10c527eaa531"
+        },
+        "recorded_at": 1790315710,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "b5553b0d0aa865a45626633ccc2831c4d197f3e6504c44461dcb4abf10e96442",
+          "HG-0003-S2": "cc0838d4b341b6ba8d4ec8386d7fcc5ddb5a7c52b4bf9c24acfd6bb96b676a1e",
+          "HG-0003-S3": "f606c2cd8cada005f0b4ff42a8b8d4d30e0c6341304a49db9e9e10c527eaa531"
+        },
+        "recorded_at": 1790315711,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "b5553b0d0aa865a45626633ccc2831c4d197f3e6504c44461dcb4abf10e96442",
+          "HG-0003-S2": "90057a1191f8eb7d78e3a8f6bdc12f377de0e0107eb9614de1b5ed8038d7104a",
+          "HG-0003-S3": "f606c2cd8cada005f0b4ff42a8b8d4d30e0c6341304a49db9e9e10c527eaa531"
+        },
+        "recorded_at": 1790315712,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "b5553b0d0aa865a45626633ccc2831c4d197f3e6504c44461dcb4abf10e96442",
+          "HG-0003-S2": "90057a1191f8eb7d78e3a8f6bdc12f377de0e0107eb9614de1b5ed8038d7104a",
+          "HG-0003-S3": "dee672613a522ab12731db2a1640e3cb16a67481b0ebc541979b290ae88d7fec"
+        },
+        "recorded_at": 1790316004,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "2c4d2d0540721500573fdaeabf65430cc159c3d2fbea58aebb20f5eca86d12db",
+          "HG-0003-S2": "90057a1191f8eb7d78e3a8f6bdc12f377de0e0107eb9614de1b5ed8038d7104a",
+          "HG-0003-S3": "dee672613a522ab12731db2a1640e3cb16a67481b0ebc541979b290ae88d7fec"
+        },
+        "recorded_at": 1790316005,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "2c4d2d0540721500573fdaeabf65430cc159c3d2fbea58aebb20f5eca86d12db",
+          "HG-0003-S2": "c82157a836e55068d5afdc66653be55bcd0ed574b57ae83caefdf0d3a3632b03",
+          "HG-0003-S3": "dee672613a522ab12731db2a1640e3cb16a67481b0ebc541979b290ae88d7fec"
+        },
+        "recorded_at": 1790316007,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "2c4d2d0540721500573fdaeabf65430cc159c3d2fbea58aebb20f5eca86d12db",
+          "HG-0003-S2": "c82157a836e55068d5afdc66653be55bcd0ed574b57ae83caefdf0d3a3632b03",
+          "HG-0003-S3": "3c8fd1d85121528d9c0962bb4ed91e05278546e35e31c21e35c3681511b61d79"
+        },
+        "recorded_at": 1790319818,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "78737dbd47ef43075f3c7f3c2ae0d3133bd4914b16fb122f5a5aa12c6da50913",
+          "HG-0003-S2": "b30e88225cf7f0f5feb1ec54f5d29510186183dc853c974912bd99a36057d726",
+          "HG-0003-S3": "92ad2895cbe2a0e5393c089692b6675d3594562f5d7bb93203bce017c024a51f"
+        },
+        "recorded_at": 1790320423,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      },
+      {
+        "evidence": {
+          "HG-0003-S1": "d68ce1bb1c499156409e8edf6ac9740b4ea14de2d7f70724b0d21f73d602eace",
+          "HG-0003-S2": "7731410077a138463280dfca0b0af67eff8c1a5de0d2f76803c428f709242375",
+          "HG-0003-S3": "9c1cb99253b3d8b2f0e0225f4a0a7fca2b67c9e55019aadf0ed840f33482bec6"
+        },
+        "recorded_at": 1790320571,
+        "review": "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d"
+      }
+    ],
+    "objects": {
+      "0bff9db6f466be243bec1eccf332109bc78d25c2dbe7010ee0ccdcc78617d3b2": {
+        "captured_at": "1790313274",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log": "b544082cd41be4667d198bd8ba618109227bd11dfbe2188e7bf5467c08260bff",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log",
+        "scenario": "HG-0003-S3",
+        "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
+      },
+      "2c4d2d0540721500573fdaeabf65430cc159c3d2fbea58aebb20f5eca86d12db": {
+        "captured_at": "2026-09-25T05:59:32.609000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
+        },
+        "method": "native_report",
+        "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S1",
+        "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      },
+      "3c8fd1d85121528d9c0962bb4ed91e05278546e35e31c21e35c3681511b61d79": {
+        "captured_at": "2026-09-25T05:59:32.609000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
+        },
+        "method": "native_report",
+        "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S3",
+        "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
+      },
+      "45c9561fef7d7130b6888f0d28127662d5ad0ce1bbb51b394b36965d83c9d52d": {
+        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
+        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
+        "reviewer": "Codex API independent evidence review",
+        "verdict": "go"
+      },
+      "58aaad4bb90d9e3b29ad62f82c81336cc695f6f7563d2760a45b8f42b3f3698d": {
+        "captured_at": "2026-09-25T05:10:39.193000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+        },
+        "method": "native_report",
+        "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S1",
+        "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      },
+      "58e850eb7dd4241711cb4da1308e9af85749d83be15e301d195f7a0b05f06339": {
+        "captured_at": "1790313273",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-1-1790313273920538800.log": "a1e5352c706cc2c214b43a1e811ac829b8313fbdca3f9dfa7e8a312b78d500bd",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-1-1790313273920538800.log",
+        "scenario": "HG-0003-S1",
+        "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      },
+      "5dde3d088e76e1420a8170affb1937013ac664bfad10f94deee665cbfbb8d57e": {
+        "captured_at": "1790271128",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log": "f89a3ea94effb0e257d351194bbabf1c366e17eda627a1ddd013a42d8276e50c",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log",
+        "scenario": "HG-0003-S2",
+        "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
+      },
+      "614273bd4a2ff5967058a16e0418e96eb5a7631be6d3c2c6a284b37152318f64": {
+        "captured_at": "1790271127",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-1-1790271127821195600.log": "de782ad7a4e8f637f274dc1a4a9cdb5877607ea20b5994433ad4f8782e865124",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-1-1790271127821195600.log",
+        "scenario": "HG-0003-S1",
+        "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      },
+      "6999fefa7caae6c292791bda2ee5145e5cce3b482884727d02ee22530701c1ac": {
+        "captured_at": "2026-09-25T05:42:06.808000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+        },
+        "method": "native_report",
+        "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S1",
+        "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      },
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "7731410077a138463280dfca0b0af67eff8c1a5de0d2f76803c428f709242375": {
+        "captured_at": "1790320423",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790320423019193300.log": "7281564183c8744e5c37afea341c35debb9dc111ef544da8c014c297d025a6b1",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "00442768f04c2881354c0edcdc7c93cdf1d5ec7b04a9bf8874f26425aae526dc",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790320423019193300.log",
+        "scenario": "HG-0003-S2",
+        "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
+      },
+      "78737dbd47ef43075f3c7f3c2ae0d3133bd4914b16fb122f5a5aa12c6da50913": {
+        "captured_at": "1790319817",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-1-1790319817437011200.log": "648e429cd0e76cd2001e34d9c609c70193b4d550545004595d2533d047ceea41",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
+        },
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-1-1790319817437011200.log",
+        "scenario": "HG-0003-S1",
+        "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      },
+      "81c49c25dbdde5a43b8df8abf8f557e28d92c5960e86fe003058664d93a00c69": {
+        "captured_at": "2026-09-25T05:10:39.193000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
+        },
+        "method": "native_report",
+        "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S3",
+        "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
+      },
+      "82a9d54ab3e2b9a84e90c08ec389716c394a580b3ba9bef943856d7ffc709745": {
         "change_sha256": "71f4cb9705550af876981453aae1e9f88b89e3b62c80e35821debb4a8875608b",
         "conclusion": "REVIEW_GO: независимое ревью хранения, связей, запусков и самодостаточности Поставки; существенных замечаний нет. Регрессии и исходные результаты проверены основным агентом; пользовательская приёмка отдельно.",
         "reviewer": "/root/delivery_review",
         "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "1790278543",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-1-1790278543631842200.log": "a272db293fef65457102767a0c856cdb356b16040de965946c8b5d4622c49c8e",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-1-1790278543631842200.log",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
-        },
-        "HG-0003-S2": {
-          "captured_at": "1790278543",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log": "e78d0bd52d4dab81490b2171b3ef95adc3a13a74080711e5518a1de314af73e4",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "1790278543",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log": "e78d0bd52d4dab81490b2171b3ef95adc3a13a74080711e5518a1de314af73e4",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
       },
-      "recorded_at": 1790279567,
-      "review": {
-        "change_sha256": "71f4cb9705550af876981453aae1e9f88b89e3b62c80e35821debb4a8875608b",
-        "conclusion": "REVIEW_GO: независимое ревью хранения, связей, запусков и самодостаточности Поставки; существенных замечаний нет. Регрессии и исходные результаты проверены основным агентом; пользовательская приёмка отдельно.",
-        "reviewer": "/root/delivery_review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "1790278543",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-1-1790278543631842200.log": "a272db293fef65457102767a0c856cdb356b16040de965946c8b5d4622c49c8e",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-1-1790278543631842200.log",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "8e6dd8ea061bb5fc22c799cc705f02d7ae94aeabaf86e87dfc1c02c157de0e9a": {
+        "captured_at": "1790278543",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log": "e78d0bd52d4dab81490b2171b3ef95adc3a13a74080711e5518a1de314af73e4",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
         },
-        "HG-0003-S2": {
-          "captured_at": "1790278543",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log": "e78d0bd52d4dab81490b2171b3ef95adc3a13a74080711e5518a1de314af73e4",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "1790278543",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log": "e78d0bd52d4dab81490b2171b3ef95adc3a13a74080711e5518a1de314af73e4",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log",
+        "scenario": "HG-0003-S3",
+        "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
       },
-      "recorded_at": 1790313274,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "1790313273",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-1-1790313273920538800.log": "a1e5352c706cc2c214b43a1e811ac829b8313fbdca3f9dfa7e8a312b78d500bd",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-1-1790313273920538800.log",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "90057a1191f8eb7d78e3a8f6bdc12f377de0e0107eb9614de1b5ed8038d7104a": {
+        "captured_at": "2026-09-25T05:54:45.547000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
         },
-        "HG-0003-S2": {
-          "captured_at": "1790313274",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log": "b544082cd41be4667d198bd8ba618109227bd11dfbe2188e7bf5467c08260bff",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "1790313274",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log": "b544082cd41be4667d198bd8ba618109227bd11dfbe2188e7bf5467c08260bff",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S2",
+        "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
       },
-      "recorded_at": 1790313392,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:10:39.193000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "92ad2895cbe2a0e5393c089692b6675d3594562f5d7bb93203bce017c024a51f": {
+        "captured_at": "1790319817",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790319817849516000.log": "7281564183c8744e5c37afea341c35debb9dc111ef544da8c014c297d025a6b1",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
         },
-        "HG-0003-S2": {
-          "captured_at": "1790313274",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log": "b544082cd41be4667d198bd8ba618109227bd11dfbe2188e7bf5467c08260bff",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "1790313274",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log": "b544082cd41be4667d198bd8ba618109227bd11dfbe2188e7bf5467c08260bff",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790319817849516000.log",
+        "scenario": "HG-0003-S3",
+        "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
       },
-      "recorded_at": 1790313393,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:10:39.193000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "96bb95aa5ec8b69dbf71169fcaf02a6723246d457f2ff7c3270f863cdca136d6": {
+        "captured_at": "1790313274",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log": "b544082cd41be4667d198bd8ba618109227bd11dfbe2188e7bf5467c08260bff",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:10:39.193000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "1790313274",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log": "b544082cd41be4667d198bd8ba618109227bd11dfbe2188e7bf5467c08260bff",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790313274312605500.log",
+        "scenario": "HG-0003-S2",
+        "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
       },
-      "recorded_at": 1790313394,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:10:39.193000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "9c1cb99253b3d8b2f0e0225f4a0a7fca2b67c9e55019aadf0ed840f33482bec6": {
+        "captured_at": "1790320423",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790320423019193300.log": "7281564183c8744e5c37afea341c35debb9dc111ef544da8c014c297d025a6b1",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "00442768f04c2881354c0edcdc7c93cdf1d5ec7b04a9bf8874f26425aae526dc",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:10:39.193000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:10:39.193000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790320423019193300.log",
+        "scenario": "HG-0003-S3",
+        "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
       },
-      "recorded_at": 1790315043,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:42:06.808000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "9cafce3e79fc0509e32a2c71c9872051e03b966e8471b60a4594b028c8600b74": {
+        "captured_at": "1790271128",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log": "f89a3ea94effb0e257d351194bbabf1c366e17eda627a1ddd013a42d8276e50c",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "c9e3e24ca56e39b17043f1664b8339141d9b56383016edfd35d49f6a23466a1b",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:10:39.193000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:10:39.193000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790271128235464600.log",
+        "scenario": "HG-0003-S3",
+        "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
       },
-      "recorded_at": 1790315045,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:42:06.808000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "b30e88225cf7f0f5feb1ec54f5d29510186183dc853c974912bd99a36057d726": {
+        "captured_at": "1790319817",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790319817849516000.log": "7281564183c8744e5c37afea341c35debb9dc111ef544da8c014c297d025a6b1",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:42:06.808000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:10:39.193000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790319817849516000.log",
+        "scenario": "HG-0003-S2",
+        "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
       },
-      "recorded_at": 1790315046,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:42:06.808000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "b5553b0d0aa865a45626633ccc2831c4d197f3e6504c44461dcb4abf10e96442": {
+        "captured_at": "2026-09-25T05:54:45.547000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:42:06.808000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:42:06.808000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S1",
+        "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
       },
-      "recorded_at": 1790315710,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:54:45.547000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "be08150ce1b1f682ca57336ffbfe349e0e899f7fb84abf7ba3e20dbaff57ec46": {
+        "captured_at": "1790278543",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-1-1790278543631842200.log": "a272db293fef65457102767a0c856cdb356b16040de965946c8b5d4622c49c8e",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:42:06.808000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:42:06.808000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-1-1790278543631842200.log",
+        "scenario": "HG-0003-S1",
+        "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
       },
-      "recorded_at": 1790315711,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:54:45.547000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "c6be990ee5e796f293561203aa6b86fc7c71d15bf11608a4e16a09fea7d1b6ce": {
+        "captured_at": "2026-09-25T05:10:39.193000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:54:45.547000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:42:06.808000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S2",
+        "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
       },
-      "recorded_at": 1790315712,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:54:45.547000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "c82157a836e55068d5afdc66653be55bcd0ed574b57ae83caefdf0d3a3632b03": {
+        "captured_at": "2026-09-25T05:59:32.609000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:54:45.547000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:54:45.547000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S2",
+        "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
       },
-      "recorded_at": 1790316004,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:59:32.609000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "cc0838d4b341b6ba8d4ec8386d7fcc5ddb5a7c52b4bf9c24acfd6bb96b676a1e": {
+        "captured_at": "2026-09-25T05:42:06.808000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:54:45.547000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:54:45.547000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S2",
+        "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
       },
-      "recorded_at": 1790316005,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:59:32.609000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "d68ce1bb1c499156409e8edf6ac9740b4ea14de2d7f70724b0d21f73d602eace": {
+        "captured_at": "1790320422",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-1-1790320422586708500.log": "3323dcc5a55999904b184faa21c231fb3448887f3a233cd54bb5fc22d5062f08",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "00442768f04c2881354c0edcdc7c93cdf1d5ec7b04a9bf8874f26425aae526dc",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:59:32.609000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:54:45.547000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-1-1790320422586708500.log",
+        "scenario": "HG-0003-S1",
+        "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
       },
-      "recorded_at": 1790316007,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "2026-09-25T05:59:32.609000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены explicit_links_reject_missing_cycles_and_do_not_inherit_content; ожидаемый исход: Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "dee672613a522ab12731db2a1640e3cb16a67481b0ebc541979b290ae88d7fec": {
+        "captured_at": "2026-09-25T05:54:45.547000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
         },
-        "HG-0003-S2": {
-          "captured_at": "2026-09-25T05:59:32.609000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Ссылки согласованы, теги не дублируют статусы и не требуют иерархии",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "2026-09-25T05:59:32.609000Z",
-          "command": "cargo nextest run --locked --profile highgrade",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273"
-          },
-          "method": "native_report",
-          "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
-          "outcome": "passed",
-          "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S3",
+        "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
       },
-      "recorded_at": 1790319818,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "1790319817",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-1-1790319817437011200.log": "648e429cd0e76cd2001e34d9c609c70193b4d550545004595d2533d047ceea41",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-1-1790319817437011200.log",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "f606c2cd8cada005f0b4ff42a8b8d4d30e0c6341304a49db9e9e10c527eaa531": {
+        "captured_at": "2026-09-25T05:42:06.808000Z",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4"
         },
-        "HG-0003-S2": {
-          "captured_at": "1790319817",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790319817849516000.log": "7281564183c8744e5c37afea341c35debb9dc111ef544da8c014c297d025a6b1",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790319817849516000.log",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "1790319817",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790319817849516000.log": "7281564183c8744e5c37afea341c35debb9dc111ef544da8c014c297d025a6b1",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "e0540ae8305b6a1bef9ce9020632acad1257f45cd93e30e91f8687408f2ad273",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790319817849516000.log",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
+        "method": "native_report",
+        "observation": "Исполнены tags_merge_atomically_and_filters_keep_dependencies_discoverable; ожидаемый исход: Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех",
+        "outcome": "passed",
+        "report": "docs/evidence/spec-verification/2026-09-25-nextest.xml",
+        "scenario": "HG-0003-S3",
+        "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
       },
-      "recorded_at": 1790320423,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
-      }
-    },
-    {
-      "evidence": {
-        "HG-0003-S1": {
-          "captured_at": "1790320422",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-1-1790320422586708500.log": "3323dcc5a55999904b184faa21c231fb3448887f3a233cd54bb5fc22d5062f08",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "00442768f04c2881354c0edcdc7c93cdf1d5ec7b04a9bf8874f26425aae526dc",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-1-1790320422586708500.log",
-          "scenario": "HG-0003-S1",
-          "scenario_sha256": "fcbe7e493b7d853041911be08d0f6181ff6869b0dc8186f854b4cceb8c1559bb"
+      "f6e98f029aad88144c8510acffab87ea13ec6032a32d928c52cbf1d5708f0720": {
+        "captured_at": "1790278543",
+        "command": "spec-run --id HG-0003 --check all",
+        "files": {
+          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+          "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log": "e78d0bd52d4dab81490b2171b3ef95adc3a13a74080711e5518a1de314af73e4",
+          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+          "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
+          "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
+          "src/inspect.rs": "3082f6e01468a4183db00b0203fc3cbf8f9a4c0ac7cc62489b1f71fafe2ea80e",
+          "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+          "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
+          "src/main.rs": "5f0716943d348e30c302dcc68584dbf602a7597a223bca148cb7ec1edc48deae",
+          "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+          "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
+          "src/specs.rs": "946bb49dc60739154322690454d7bc24b9ad40f7126c05171ba7feff72953758",
+          "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
+          "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
+          "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
+          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+          "tests/catalog_contracts.rs": "ea6553a714fdbcd72feb9aa299f03ca05fb2ee68707f38b6a6a4e6085e2da3d4",
+          "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
         },
-        "HG-0003-S2": {
-          "captured_at": "1790320423",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790320423019193300.log": "7281564183c8744e5c37afea341c35debb9dc111ef544da8c014c297d025a6b1",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "00442768f04c2881354c0edcdc7c93cdf1d5ec7b04a9bf8874f26425aae526dc",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790320423019193300.log",
-          "scenario": "HG-0003-S2",
-          "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
-        },
-        "HG-0003-S3": {
-          "captured_at": "1790320423",
-          "command": "spec-run --id HG-0003 --check all",
-          "files": {
-            "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-            "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-            "specs/changes/HG-0003/evidence/check-2-1790320423019193300.log": "7281564183c8744e5c37afea341c35debb9dc111ef544da8c014c297d025a6b1",
-            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-            "src/bootstrap.rs": "e483f8bce6545459960054d9b2e801fa428fe9b0285c6b9e6e219df6759d864b",
-            "src/global.rs": "28238cbba8bbf6a333aad1a7464d1074a66a778e400870577656923f5669fb5d",
-            "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
-            "src/install.rs": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
-            "src/lib.rs": "eca6c3cfe0dfb876fcbec71b73040fea78080f151bb3466af3aca13c6583745d",
-            "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-            "src/package.rs": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
-            "src/paths.rs": "2a57f0af27281eb8919150f8abe10836ea8d029131759d28f0cada5cc069b769",
-            "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-            "src/specs/checks.rs": "5b39590214b67ed1942c854d13afb309c916a528081b6e2b9deac297fa6f0aaf",
-            "src/specs/progress.rs": "46fd20e4067175b26f227963d0452a7a33b6125b2f20d99bd40984b738bd2671",
-            "src/specs/relations.rs": "c8c3b4a6af738576ad730e57673f1e5cd03b83e732bde5eae3c4b269e10864a3",
-            "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-            "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-            "tests/catalog_contracts.rs": "00442768f04c2881354c0edcdc7c93cdf1d5ec7b04a9bf8874f26425aae526dc",
-            "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b"
-          },
-          "method": "native_report",
-          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
-          "outcome": "passed",
-          "report": "specs/changes/HG-0003/evidence/check-2-1790320423019193300.log",
-          "scenario": "HG-0003-S3",
-          "scenario_sha256": "a5a6d68b32ccae1876882b98344388b08cf402a3f7a4cd73eae0834b14ab556b"
-        }
-      },
-      "recorded_at": 1790320571,
-      "review": {
-        "change_sha256": "f4d763494c877b5f9e9c1987c2704b840c3e63d4abb3df121aeeb6e374786c0e",
-        "conclusion": "REVIEW_GO: fresh dossier confirmed 16 exact Cargo checks each executing one passing test, and shared HG-SP scenarios linked to current nextest JUnit 113/113 with zero skipped. Prior independent GO covers unchanged requirements and implementation. HG-0006 excluded.",
-        "reviewer": "Codex API independent evidence review",
-        "verdict": "go"
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0003/evidence/check-2-1790278543992568800.log",
+        "scenario": "HG-0003-S2",
+        "scenario_sha256": "05654eb62647aae4ce47d941b48a68af763ab9595297a124fe04bf844a7c35c0"
       }
     }
-  ],
+  },
   "review": {
     "change_sha256": "b6aa9442dd162f60b1a624a98e299792b414191cb84fed4fcbe606c423d6a9ac",
     "conclusion": "Независимое повторное ревью: сценарные пробелы устранены; точные проверки прошли, входы и отчеты сверены.",

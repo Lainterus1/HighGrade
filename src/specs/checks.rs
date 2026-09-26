@@ -453,6 +453,17 @@ pub fn execute(
         let run=result.unwrap_or_else(|e| Run {check:b.id.clone(),started_at:progress::now().unwrap_or(0),duration_ms:None,check_sha256:revision(s,&b),command:std::iter::once(r.program.clone()).chain(r.args.clone()).collect(),cwd:r.cwd.clone(),inputs_after:None,outcome:Outcome::Unknown,observation:format!("CheckNotCompleted: {e}; command contains configured placeholders if execution did not start"),files:BTreeMap::new(),report:String::new()});
         observed.push((b.clone(), run));
     }
+    record_runs(root, s, id, selected, observed, report)
+}
+
+fn record_runs(
+    root: &Path,
+    s: &mut Store,
+    id: &str,
+    selected: &str,
+    observed: Vec<(Check, Run)>,
+    report: &mut Report,
+) -> Result<()> {
     // Retain every result, including failures. All bindings for a scenario must
     // be fresh and passing; a later successful sibling cannot hide a failure.
     let c = result_mut(s, id)?;
@@ -509,4 +520,112 @@ pub fn execute(
         report.measurements.push(json!({"check":b.id,"run":run}));
     }
     Ok(())
+}
+
+#[derive(Serialize, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct RunInputs {
+    id: String,
+    captured_at: u64,
+    checks: BTreeMap<String, CheckInputs>,
+}
+#[derive(Serialize, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+struct CheckInputs {
+    revision: String,
+    inputs: BTreeMap<String, String>,
+}
+#[derive(Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct ImportReport {
+    snapshot: RunInputs,
+    report: String,
+    command: Vec<String>,
+}
+pub fn capture_inputs(root: &Path, s: &Store, id: &str, selected: &str) -> Result<RunInputs> {
+    validate(s)?;
+    let c = s.changes.get(id).ok_or("ChangeMissing")?;
+    let mut checks = BTreeMap::new();
+    for b in c
+        .checks
+        .iter()
+        .filter(|b| selected == "all" || selected == b.id)
+    {
+        let runner = b
+            .runner
+            .as_ref()
+            .and_then(|r| s.runners.get(r))
+            .ok_or("ManualCheckRequired")?;
+        checks.insert(
+            b.id.clone(),
+            CheckInputs {
+                revision: revision(s, b),
+                inputs: inputs(root, b, runner, &c.shared_inputs)?,
+            },
+        );
+    }
+    if checks.is_empty() {
+        return Err("EmptyCheckSelection".into());
+    }
+    Ok(RunInputs {
+        id: id.into(),
+        captured_at: progress::now()?,
+        checks,
+    })
+}
+pub fn import_report(root: &Path, s: &mut Store, input: &Path, report: &mut Report) -> Result<()> {
+    let v: ImportReport = decode(&paths::read_limited(input, LIMIT)?, "report import")?;
+    validate(s)?;
+    if v.command.is_empty()
+        || v.command.iter().any(|x| x.trim().is_empty())
+        || v.snapshot.checks.is_empty()
+        || v.snapshot.captured_at > progress::now()?
+    {
+        return Err("InvalidReportImport".into());
+    }
+    let id = &v.snapshot.id;
+    let c = s.changes.get(id).ok_or("ChangeMissing")?;
+    if c.abandoned_reason.is_some() {
+        return Err("AbandonedChange".into());
+    }
+    let bytes = paths::read_limited(&paths::safe(root, &v.report)?, LIMIT)?;
+    let text = std::str::from_utf8(&bytes).map_err(|e| e.to_string())?;
+    let mut observed = Vec::new();
+    for (check, snapshot) in v.snapshot.checks {
+        let b = c
+            .checks
+            .iter()
+            .find(|b| b.id == check)
+            .ok_or("CheckMissing")?;
+        let runner = b
+            .runner
+            .as_ref()
+            .and_then(|r| s.runners.get(r))
+            .ok_or("ManualCheckRequired")?;
+        let current = inputs(root, b, runner, &c.shared_inputs)?;
+        if snapshot.revision != revision(s, b) || snapshot.inputs != current {
+            return Err("ImportedInputsStale".into());
+        }
+        // JUnit supports a native suite report with exact, unique selectors.
+        if runner.format != "junit" {
+            return Err("ReportImportRequiresJUnit".into());
+        }
+        let outcome = parse(&runner.format, text, &b.selector);
+        if outcome != Outcome::Passed {
+            return Err(format!("ImportedCheckNotPassed: {check}"));
+        }
+        let mut files = current.clone();
+        files.insert(v.report.clone(), hash(&bytes));
+        let run = Run {check:check.clone(), started_at:v.snapshot.captured_at, duration_ms:None, command:v.command.clone(), cwd:runner.cwd.clone(), inputs_after:Some(current),check_sha256:snapshot.revision,outcome,observation:"Imported native JUnit result; input provenance is declared, authenticity requires review".into(),files,report:v.report.clone()};
+        if c.runs.iter().rev().find(|r| r.check == check) != Some(&run) {
+            observed.push((b.clone(), run));
+        }
+    }
+    if observed.is_empty() {
+        report
+            .measurements
+            .push(json!({"updated":[],"reused":true}));
+        return Ok(());
+    }
+    record_runs(root, s, id, "import", observed, report)
 }
