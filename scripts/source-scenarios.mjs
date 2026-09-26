@@ -46,13 +46,15 @@ function sources() {
   const catalog = read('specs/catalog.json');
   if (Object.keys(catalog.origins ?? {}).length) fail('active catalog still depends on historical origins');
   const bound = new Map();
+  const manual = new Set();
   for (const file of files('specs/changes').filter((item) => item.endsWith('/spec.json'))) {
     const change = read(file);
-    for (const check of change.checks ?? []) if (check.runner) {
-      for (const id of check.scenario_ids) bound.set(id, [...(bound.get(id) ?? []), check]);
+    for (const check of change.checks ?? []) for (const id of check.scenario_ids) {
+      if (check.runner) bound.set(id, [...(bound.get(id) ?? []), check]);
+      else manual.add(id);
     }
   }
-  const testSources = files('tests').filter((item) => item.endsWith('.rs')).sort();
+  const testSources = files('tests').filter((item) => /^tests\/[^/]+\.rs$/.test(item)).sort();
   const marked = new Set();
   for (const file of testSources) {
     const lines = readFileSync(abs(file), 'utf8').split(/\r?\n/);
@@ -74,7 +76,9 @@ function sources() {
   for (const id of bound.keys()) {
     if (scenarios.has(id) && !marked.has(id)) fail(`${id}: configured automatic check has no test marker`);
   }
-  return { requirements, scenarios, automatic: [...marked].sort(), testSources };
+  const noDeclaredCheck = [...scenarios.keys()].filter((id) => !bound.has(id) && !manual.has(id)).sort();
+  const manualOnly = [...manual].filter((id) => !bound.has(id)).sort();
+  return { requirements, scenarios, automatic: [...marked].sort(), manual: manualOnly, noDeclaredCheck, testSources };
 }
 
 function nativeHash() {
@@ -106,7 +110,8 @@ function prepare(source) {
   if (listedTests !== totals.tests) fail(`nextest JUnit has ${totals.tests}/${listedTests} listed tests`);
   const pinned = ['specs/catalog.json', ...files('specs/requirements').filter((item) => item.endsWith('.json')),
     ...files('specs/changes').filter((item) => item.endsWith('/spec.json')),
-    ...source.testSources, inventory, ...files('src').filter((item) => item.endsWith('.rs')),
+    ...source.testSources, ...files('tests/support').filter((item) => item.endsWith('.rs')),
+    inventory, ...files('src').filter((item) => item.endsWith('.rs')),
     ...files('tests/fixtures/native-v1'), 'Cargo.toml', 'Cargo.lock', '.config/nextest.toml', '.gitattributes'];
   const reportTime = statSync(abs(report)).mtimeMs;
   for (const file of pinned.filter((item) => item !== inventory)) if (statSync(abs(file)).mtimeMs > reportTime) fail(`${file}: source changed after the native test report; rerun nextest`);
@@ -126,14 +131,24 @@ function verify(source) {
   if (rows.length !== source.scenarios.size) fail(`trace covered ${rows.length}/${source.scenarios.size} scenarios`);
   const byId = new Map(rows.map((item) => [item.scenario_id, item]));
   for (const id of source.automatic) if (byId.get(id)?.status !== 'passed') fail(`${id}: actual test status is ${byId.get(id)?.status ?? 'absent'}`);
-  for (const finding of trace.findings) if (finding.code !== 'ScenarioUnconfirmed') fail(`${finding.code}: ${finding.message}`);
-  return { automatic_passed: source.automatic.length, scenarios_unconfirmed: rows.filter((item) => item.status === 'unlinked').length };
+  for (const finding of trace.findings) fail(`${finding.code}: ${finding.message}`);
+  const counts = trace.measurements.find((item) => typeof item.test_cases_reported === 'number');
+  if (!counts || counts.scenarios_total !== source.scenarios.size || counts.automatic_passed !== source.automatic.length ||
+      counts.outside_automatic_trace !== rows.filter((item) => item.status === 'outside_automatic_trace').length ||
+      counts.test_cases_reported < counts.linked_test_cases ||
+      counts.test_cases_reported !== counts.test_cases_executed + counts.test_cases_skipped + counts.test_cases_unknown ||
+      counts.test_cases_missing !== 0 ||
+      counts.unlinked_test_cases !== counts.test_cases_reported - counts.linked_test_cases ||
+      counts.outside_automatic_trace !== source.manual.length + source.noDeclaredCheck.length) fail('trace scope counters disagree with source and outcomes');
+  return { ...counts };
 }
 
 try {
   if (!['check', 'prepare', 'verify'].includes(mode)) fail('usage: node scripts/source-scenarios.mjs check|prepare|verify [root]');
   const source = sources();
-  const summary = { requirements: source.requirements.size, scenarios: source.scenarios.size, automatic: source.automatic.length };
+  const summary = { requirements: source.requirements.size, scenarios: source.scenarios.size,
+    automatic: source.automatic.length, manual_check_scenarios: source.manual.length,
+    no_declared_check_scenarios: source.noDeclaredCheck.length, no_declared_check_ids: source.noDeclaredCheck };
   if (mode === 'prepare') Object.assign(summary, prepare(source));
   if (mode === 'verify') Object.assign(summary, verify(source));
   console.log(JSON.stringify({ status: 'passed', ...summary }, null, 2));

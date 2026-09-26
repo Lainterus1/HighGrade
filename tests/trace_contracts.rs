@@ -1,20 +1,10 @@
+mod support;
 use highgrade::{hash, trace::trace};
 use serde_json::{Value, json};
-use std::{
-    collections::BTreeMap,
-    fs,
-    path::{Path, PathBuf},
-    sync::atomic::{AtomicU64, Ordering},
-};
-static NEXT: AtomicU64 = AtomicU64::new(0);
-fn root() -> PathBuf {
-    let p = std::env::temp_dir().join(format!(
-        "hg-trace-{}-{}",
-        std::process::id(),
-        NEXT.fetch_add(1, Ordering::Relaxed)
-    ));
-    fs::create_dir_all(&p).unwrap();
-    p
+use std::{collections::BTreeMap, fs, path::Path};
+use support::TestDir;
+fn root() -> TestDir {
+    TestDir::new("hg-trace-")
 }
 fn put(root: &Path, rel: &str, data: &[u8]) {
     let p = root.join(rel);
@@ -293,6 +283,136 @@ fn rust_requires_real_listed_passing_result() {
     assert!(result.findings.iter().any(|f| f["code"] == "SourceChanged"));
     assert_ne!(result.status, "passed");
 }
+// highgrade: HG-0024-S1, HG-0024-S2, HG-0024-S3
+#[test]
+fn automatic_trace_keeps_scope_and_outcomes_distinct() {
+    let root = root();
+    let src = "tests/math.rs";
+    let list = "evidence/list.json";
+    let report = "evidence/junit.xml";
+    put(
+        &root,
+        src,
+        b"// highgrade: HG-MATH-001\n#[test]\nfn adds() {}\n#[test]\nfn helper() {}\n",
+    );
+    let mut inventory = rust_list(&root);
+    inventory["rust-suites"]["math"]["testcases"]["helper"] =
+        json!({"filter-match":{"status":"matches"},"ignored":false});
+    save(&root, list, &inventory);
+    let xml = |outcome: &str| {
+        format!(
+            "<testsuites><testsuite name=\"math\"><testcase classname=\"math\" name=\"adds\">{outcome}</testcase><testcase classname=\"math\" name=\"helper\"/></testsuite></testsuites>"
+        )
+    };
+    put(&root, report, xml("").as_bytes());
+    let manual = b"## Purpose\nAddition.\n### Requirement: [HG-MATH-REQ] Add\n#### Scenario: [HG-MATH-001] Automatic\n- WHEN called\n- THEN result\n#### Scenario: [HG-MATH-002] Manual\n- WHEN observed\n- THEN reviewed\n";
+    let mut run = base(&root, "rust-nextest", src, report, Some(list));
+    put(&root, "openspec/specs/math/spec.md", manual);
+    run["source_hashes"]["openspec/specs/math/spec.md"] = json!(hash(manual));
+    save(&root, "run.json", &run);
+    let traced = trace(&root, "run.json").unwrap();
+    assert_eq!(traced.status, "passed", "{traced:?}");
+    let counts = traced
+        .measurements
+        .iter()
+        .find(|m| m.get("test_cases_reported").is_some())
+        .unwrap();
+    assert_eq!(counts["test_cases_reported"], 2);
+    assert_eq!(counts["test_cases_executed"], 2);
+    assert_eq!(counts["linked_test_cases"], 1);
+    assert_eq!(counts["automatic_passed"], 1);
+    assert_eq!(counts["outside_automatic_trace"], 1);
+    assert!(
+        traced
+            .measurements
+            .iter()
+            .any(|m| m["scenario_id"] == "HG-MATH-002" && m["status"] == "outside_automatic_trace")
+    );
+    assert!(
+        !traced
+            .findings
+            .iter()
+            .any(|f| f["code"] == "ScenarioUnconfirmed")
+    );
+    for (outcome, expected) in [("<failure/>", "failed"), ("<skipped/>", "skipped")] {
+        put(&root, report, xml(outcome).as_bytes());
+        run["report_sha256"] = json!(hash(&fs::read(root.join(report)).unwrap()));
+        save(&root, "run.json", &run);
+        let traced = trace(&root, "run.json").unwrap();
+        let counts = traced
+            .measurements
+            .iter()
+            .find(|m| m.get("test_cases_reported").is_some())
+            .unwrap();
+        assert_eq!(
+            counts["test_cases_executed"],
+            if expected == "skipped" { 1 } else { 2 }
+        );
+        assert_eq!(
+            counts["test_cases_skipped"],
+            if expected == "skipped" { 1 } else { 0 }
+        );
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|m| m["scenario_id"] == "HG-MATH-001" && m["status"] == expected)
+        );
+        assert!(
+            traced
+                .findings
+                .iter()
+                .any(|f| f["code"] == "ScenarioUnconfirmed")
+        );
+    }
+    put(&root, report, b"<testsuites><testsuite name=\"math\"><testcase classname=\"math\" name=\"helper\"/></testsuite></testsuites>");
+    run["report_sha256"] = json!(hash(&fs::read(root.join(report)).unwrap()));
+    save(&root, "run.json", &run);
+    let traced = trace(&root, "run.json").unwrap();
+    assert!(
+        traced
+            .measurements
+            .iter()
+            .any(|m| m["scenario_id"] == "HG-MATH-001" && m["status"] == "unknown")
+    );
+    let counts = traced
+        .measurements
+        .iter()
+        .find(|m| m.get("test_cases_reported").is_some())
+        .unwrap();
+    assert_eq!(counts["linked_test_cases"], 0);
+    assert_eq!(counts["test_cases_missing"], 1);
+    assert_eq!(counts["test_cases_unknown"], 0);
+    assert_eq!(counts["automatic_scenarios"], 1);
+    assert_eq!(counts["outside_automatic_trace"], 1);
+    put(&root, report, xml("").as_bytes());
+    run["report_sha256"] = json!(hash(&fs::read(root.join(report)).unwrap()));
+    let mut bad_inventory = inventory.clone();
+    bad_inventory["rust-suites"]["math"]["binary-name"] = json!("other");
+    save(&root, list, &bad_inventory);
+    run["source_hashes"][list] = json!(hash(&fs::read(root.join(list)).unwrap()));
+    save(&root, "run.json", &run);
+    let traced = trace(&root, "run.json").unwrap();
+    assert!(
+        traced
+            .measurements
+            .iter()
+            .any(|m| m["scenario_id"] == "HG-MATH-001" && m["status"] == "unknown")
+    );
+    save(&root, list, &inventory);
+    run["source_hashes"][list] = json!(hash(&fs::read(root.join(list)).unwrap()));
+    put(&root, report, xml("").as_bytes());
+    run["report_sha256"] = json!(hash(&fs::read(root.join(report)).unwrap()));
+    run["source_hashes"][src] = json!("stale");
+    save(&root, "run.json", &run);
+    let traced = trace(&root, "run.json").unwrap();
+    assert!(
+        traced
+            .measurements
+            .iter()
+            .any(|m| m["scenario_id"] == "HG-MATH-001" && m["status"] == "stale")
+    );
+}
 #[test]
 fn active_modified_requirement_replaces_base_for_trace() {
     let root = root();
@@ -383,7 +503,15 @@ fn playwright_uses_annotation_and_result_not_just_link() {
     );
     let mut run = base(&root, "playwright", src, report, None);
     save(&root, "run.json", &run);
-    assert_eq!(trace(&root, "run.json").unwrap().status, "passed");
+    let traced = trace(&root, "run.json").unwrap();
+    assert_eq!(traced.status, "passed");
+    let counts = traced
+        .measurements
+        .iter()
+        .find(|m| m.get("test_cases_reported").is_some())
+        .unwrap();
+    assert_eq!(counts["test_cases_reported"], 1);
+    assert!(counts["test_cases_missing"].is_null());
     save(
         &root,
         report,

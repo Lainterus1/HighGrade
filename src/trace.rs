@@ -195,7 +195,7 @@ fn rust_results(
     run: &Value,
     sources: &[String],
     r: &mut Report,
-) -> Result<(BTreeMap<String, String>, BTreeMap<String, String>)> {
+) -> Result<(BTreeMap<String, String>, BTreeMap<String, String>, usize)> {
     let inventory = run["inventory"].as_str().ok_or("RunInvalid: inventory")?;
     let list = read_json(&paths::safe(root, inventory)?)?;
     let suites = list["rust-suites"].as_object().ok_or("RustListInvalid")?;
@@ -274,12 +274,14 @@ fn rust_results(
             r.finding("failed", "TestNotInInventory", path, &key);
         }
     }
+    let mut missing = 0;
     for key in known {
         if !actual.contains_key(&key) {
+            missing += 1;
             r.finding("unknown", "TestNotExecuted", path, &key);
         }
     }
-    Ok((actual, source_bins))
+    Ok((actual, source_bins, missing))
 }
 fn pw_walk(
     node: &Value,
@@ -555,14 +557,35 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
         );
     }
     let mut links: BTreeMap<String, Vec<(String, String)>> = BTreeMap::new();
+    let test_cases_reported;
+    let test_cases_executed;
+    let test_cases_skipped;
+    let test_cases_unknown;
+    let test_cases_missing;
+    let test_names: BTreeSet<String>;
     if tool == "rust-nextest" {
-        let (actual, source_bins) = rust_results(&root, capture, &run, &sources, &mut r)?;
+        let (actual, source_bins, missing) = rust_results(&root, capture, &run, &sources, &mut r)?;
+        test_cases_reported = actual.len();
+        test_cases_missing = Some(missing);
+        test_cases_executed = actual
+            .values()
+            .filter(|status| *status == "passed" || *status == "failed")
+            .count();
+        test_cases_skipped = actual
+            .values()
+            .filter(|status| *status == "skipped")
+            .count();
+        test_cases_unknown = actual
+            .values()
+            .filter(|status| *status == "unknown")
+            .count();
+        test_names = actual.keys().cloned().collect();
         let mut named = BTreeMap::new();
         for rel in &sources {
-            let Some(binary) = source_bins.get(rel) else {
+            let binary = source_bins.get(rel);
+            if binary.is_none() {
                 r.finding("unknown", "RustSourceUnverified", rel, "Поддерживаются обычные integration tests tests/<binary-name>.rs из nextest list.");
-                continue;
-            };
+            }
             let data = load(&root, rel, 8 * 1024 * 1024)?;
             let mut local = BTreeMap::new();
             rust_links(
@@ -572,22 +595,31 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
                 &mut local,
             );
             for (name, ids) in local {
-                named
-                    .entry(format!("{binary}::{name}"))
-                    .or_insert_with(BTreeSet::new)
-                    .extend(ids);
+                if let Some(binary) = binary {
+                    named
+                        .entry(format!("{binary}::{name}"))
+                        .or_insert_with(BTreeSet::new)
+                        .extend(ids);
+                } else {
+                    for id in ids {
+                        links
+                            .entry(id)
+                            .or_default()
+                            .push((format!("{rel}::{name}"), "unknown".into()));
+                    }
+                }
             }
         }
         for (name, ids) in named {
-            let Some(status) = actual.get(&name) else {
+            let status = actual.get(&name).cloned().unwrap_or_else(|| {
                 r.finding(
                     "unknown",
                     "RustTestMissing",
                     &name,
                     "Нет результата для теста из указанного binary.",
                 );
-                continue;
-            };
+                "unknown".into()
+            });
             for id in ids {
                 links
                     .entry(id)
@@ -627,6 +659,21 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
         if actual.is_empty() {
             r.finding("failed", "EmptySuite", report_path, "Нет тестов.");
         }
+        test_cases_reported = actual.len();
+        test_cases_missing = None::<usize>;
+        test_cases_executed = actual
+            .values()
+            .filter(|(status, _)| status == "passed" || status == "failed")
+            .count();
+        test_cases_skipped = actual
+            .values()
+            .filter(|(status, _)| status == "skipped")
+            .count();
+        test_cases_unknown = actual
+            .values()
+            .filter(|(status, _)| status == "unknown")
+            .count();
+        test_names = actual.keys().cloned().collect();
         for (test, (status, ids)) in actual {
             for id in ids {
                 links
@@ -641,10 +688,22 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
             r.finding("failed", "UnknownScenarioId", record_rel, id);
         }
     }
+    let linked_test_cases: BTreeSet<_> = links
+        .iter()
+        .filter(|(id, _)| scenarios.contains_key(*id))
+        .flat_map(|(_, tests)| {
+            tests
+                .iter()
+                .filter(|(name, _)| test_names.contains(name))
+                .map(|(name, _)| name.clone())
+        })
+        .collect();
+    let mut automatic_passed = 0;
+    let mut outside_automatic_trace = 0;
     for (id, path) in &scenarios {
         let linked = links.get(id).cloned().unwrap_or_default();
         let status = if linked.is_empty() {
-            "unlinked"
+            "outside_automatic_trace"
         } else if linked.iter().any(|(_, s)| s == "failed") {
             "failed"
         } else if linked.iter().any(|(_, s)| s == "unknown") {
@@ -656,7 +715,11 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
         } else {
             "passed"
         };
-        if status != "passed" {
+        if status == "passed" {
+            automatic_passed += 1;
+        } else if status == "outside_automatic_trace" {
+            outside_automatic_trace += 1;
+        } else {
             r.finding(
                 if status == "failed" {
                     "failed"
@@ -671,6 +734,19 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
         r.measurements
             .push(json!({"scenario_id":id,"source":path,"status":status,"tests":linked}));
     }
+    r.measurements.push(json!({
+        "test_cases_reported": test_cases_reported,
+        "test_cases_executed": test_cases_executed,
+        "test_cases_skipped": test_cases_skipped,
+        "test_cases_unknown": test_cases_unknown,
+        "test_cases_missing": test_cases_missing,
+        "linked_test_cases": linked_test_cases.len(),
+        "unlinked_test_cases": test_cases_reported.saturating_sub(linked_test_cases.len()),
+        "scenarios_total": scenarios.len(),
+        "automatic_scenarios": scenarios.len() - outside_automatic_trace,
+        "automatic_passed": automatic_passed,
+        "outside_automatic_trace": outside_automatic_trace
+    }));
     if run["exit_code"].as_i64() != Some(0) {
         r.finding(
             "failed",
@@ -681,5 +757,6 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
     }
     r.measurements.push(json!({"tool":tool,"report":report_path,"report_sha256":hash(&report_bytes),"command":run["command"],"captured_at":run["captured_at"],"scope":run["scope"]}));
     r.limitations.push("Сопоставление структурное; качество теста и полноту выбора существенных зависимостей проверяет агент. CLI не запускает тесты и не создаёт доказательства.".into());
+    r.limitations.push("Сценарии вне автоматической трассировки требуют отдельного доказательства; их ручной или внешний результат здесь не определяется.".into());
     Ok(r)
 }

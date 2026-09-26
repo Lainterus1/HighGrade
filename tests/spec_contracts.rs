@@ -1,40 +1,18 @@
+mod support;
 use highgrade::specs::{self, Store};
 use serde_json::{Value, json};
-use std::{
-    collections::BTreeMap,
-    fs,
-    path::{Path, PathBuf},
-    process::Command,
-    sync::atomic::{AtomicU64, Ordering},
-};
-static NEXT: AtomicU64 = AtomicU64::new(0);
-fn root() -> PathBuf {
-    loop {
-        let nanos = std::time::SystemTime::now()
-            .duration_since(std::time::UNIX_EPOCH)
-            .unwrap()
-            .as_nanos();
-        let p = std::env::temp_dir().join(format!(
-            "hg-spec-{}-{nanos}-{}",
-            std::process::id(),
-            NEXT.fetch_add(1, Ordering::Relaxed)
-        ));
-        match fs::create_dir(&p) {
-            Ok(()) => {
-                fs::create_dir_all(p.join(".highgrade/specs")).unwrap();
-                fs::write(
-                    p.join(specs::STORE),
-                    serde_json::to_vec_pretty(&Store::default()).unwrap(),
-                )
-                .unwrap();
-                return p;
-            }
-            Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => continue,
-            Err(e) => panic!("isolated test directory: {e}"),
-        }
-    }
+use std::{collections::BTreeMap, fs, path::Path, process::Command};
+use support::TestDir;
+fn root() -> TestDir {
+    let p = TestDir::new("hg-spec-");
+    fs::create_dir_all(p.join(".highgrade/specs")).unwrap();
+    fs::write(
+        p.join(specs::STORE),
+        serde_json::to_vec_pretty(&Store::default()).unwrap(),
+    )
+    .unwrap();
+    p
 }
-
 fn call(root: &Path, op: &str, args: &[(&str, &str)]) -> highgrade::Result<highgrade::Report> {
     specs::command(
         root,

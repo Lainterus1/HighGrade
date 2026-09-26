@@ -1,3 +1,4 @@
+mod support;
 use highgrade::{
     hash,
     inspect::inspect,
@@ -8,10 +9,8 @@ use serde_json::{Value, json};
 use std::{
     fs,
     path::{Path, PathBuf},
-    sync::atomic::{AtomicU64, Ordering},
 };
-
-static NEXT: AtomicU64 = AtomicU64::new(0);
+use support::TestDir;
 
 #[test]
 fn task_checkboxes_and_inline_code_are_not_references() {
@@ -100,18 +99,8 @@ fn complete_temp_can_resume_publication() {
     install(&root, &source, "audit.json", None).unwrap();
     verify(&paths::root(&root).unwrap()).unwrap();
 }
-fn dir() -> PathBuf {
-    let p = std::env::temp_dir().join(format!(
-        "highgrade-test-{}-{}-{}",
-        std::process::id(),
-        std::time::SystemTime::now()
-            .duration_since(std::time::UNIX_EPOCH)
-            .unwrap()
-            .as_nanos(),
-        NEXT.fetch_add(1, Ordering::Relaxed)
-    ));
-    fs::create_dir(&p).unwrap();
-    p
+fn dir() -> TestDir {
+    TestDir::new("highgrade-test-")
 }
 fn write(root: &Path, path: &str, data: &[u8]) {
     let p = root.join(path);
@@ -166,7 +155,7 @@ fn registry(root: &Path) -> Value {
 fn has(r: &highgrade::Report, code: &str) -> bool {
     r.findings.iter().any(|f| f["code"] == code)
 }
-fn fixture() -> (PathBuf, PathBuf) {
+fn fixture() -> (TestDir, PathBuf) {
     let root = dir();
     registry(&root);
     let source = PathBuf::from(env!("CARGO_MANIFEST_DIR"))

@@ -1,53 +1,28 @@
+mod support;
 use highgrade::{hash, install::inventory, package, paths};
 use serde_json::{Value, json};
 use std::{
     fs,
     path::{Path, PathBuf},
-    sync::{
-        OnceLock,
-        atomic::{AtomicU64, Ordering},
-    },
 };
-static NEXT: AtomicU64 = AtomicU64::new(0);
-fn temp() -> PathBuf {
-    loop {
-        let nanos = std::time::SystemTime::now()
-            .duration_since(std::time::UNIX_EPOCH)
-            .unwrap()
-            .as_nanos();
-        let p = std::env::temp_dir().join(format!(
-            "hg-package-{}-{nanos}-{}",
-            std::process::id(),
-            NEXT.fetch_add(1, Ordering::Relaxed)
-        ));
-        match fs::create_dir(&p) {
-            Ok(()) => return p,
-            Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => continue,
-            Err(e) => panic!("isolated test directory: {e}"),
-        }
-    }
+use support::TestDir;
+fn temp() -> TestDir {
+    TestDir::new("hg-package-")
 }
-
-fn source() -> PathBuf {
-    static SOURCE: OnceLock<PathBuf> = OnceLock::new();
-    SOURCE
-        .get_or_init(|| {
-            let dst = temp();
-            copy_tree(
-                &PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("bundle"),
-                &dst,
-            );
-            let manifest_path = dst.join("manifest.json");
-            let mut manifest: Value =
-                serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
-            manifest["cli_version"] = json!(env!("CARGO_PKG_VERSION"));
-            write(
-                &manifest_path,
-                &serde_json::to_vec_pretty(&manifest).unwrap(),
-            );
-            dst
-        })
-        .clone()
+fn source() -> TestDir {
+    let dst = temp();
+    copy_tree(
+        &PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("bundle"),
+        &dst,
+    );
+    let manifest_path = dst.join("manifest.json");
+    let mut manifest: Value = serde_json::from_slice(&fs::read(&manifest_path).unwrap()).unwrap();
+    manifest["cli_version"] = json!(env!("CARGO_PKG_VERSION"));
+    write(
+        &manifest_path,
+        &serde_json::to_vec_pretty(&manifest).unwrap(),
+    );
+    dst
 }
 #[test]
 fn bundled_skill_frontmatter_uses_safe_scalars() {
@@ -57,7 +32,8 @@ fn bundled_skill_frontmatter_uses_safe_scalars() {
         "highgrade-refresh",
         "highgrade-update",
     ] {
-        let bytes = fs::read(source().join(format!("skills/{name}/SKILL.md"))).unwrap();
+        let source = source();
+        let bytes = fs::read(source.join(format!("skills/{name}/SKILL.md"))).unwrap();
         let text = std::str::from_utf8(&bytes).unwrap();
         let lines: Vec<_> = text.lines().collect();
         assert!(
@@ -76,8 +52,9 @@ fn bundled_skill_frontmatter_uses_safe_scalars() {
     }
 }
 fn source_release() -> String {
+    let source = source();
     let manifest: Value =
-        serde_json::from_slice(&fs::read(source().join("manifest.json")).unwrap()).unwrap();
+        serde_json::from_slice(&fs::read(source.join("manifest.json")).unwrap()).unwrap();
     manifest["release"].as_str().unwrap().to_owned()
 }
 fn next_release() -> String {
@@ -89,7 +66,7 @@ fn write(p: &Path, data: &[u8]) {
     fs::create_dir_all(p.parent().unwrap()).unwrap();
     fs::write(p, data).unwrap();
 }
-fn fixture() -> PathBuf {
+fn fixture() -> TestDir {
     let root = temp();
     write(&root.join("AGENTS.md"), b"foreign project rules");
     write(&root.join("README.md"), b"project");
@@ -153,7 +130,7 @@ fn copy_tree(from: &Path, to: &Path) {
         }
     }
 }
-fn next_source() -> PathBuf {
+fn next_source() -> TestDir {
     let dst = temp();
     copy_tree(&source(), &dst);
     let manifest_path = dst.join("manifest.json");

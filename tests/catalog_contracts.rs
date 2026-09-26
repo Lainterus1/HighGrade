@@ -1,22 +1,11 @@
+mod support;
 use highgrade::specs;
 use serde_json::{Value, json};
-use std::{
-    collections::BTreeMap,
-    fs,
-    path::{Path, PathBuf},
-};
+use std::{collections::BTreeMap, fs, path::Path};
+use support::TestDir;
 
-fn root() -> PathBuf {
-    let p = std::env::temp_dir().join(format!(
-        "hg-catalog-{}-{}",
-        std::process::id(),
-        std::time::SystemTime::now()
-            .duration_since(std::time::UNIX_EPOCH)
-            .unwrap()
-            .as_nanos()
-    ));
-    fs::create_dir(&p).unwrap();
-    p
+fn root() -> TestDir {
+    TestDir::new("hg-catalog-")
 }
 fn call(root: &Path, op: &str, args: &[(&str, &str)]) -> highgrade::Result<highgrade::Report> {
     specs::command(
