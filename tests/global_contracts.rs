@@ -748,13 +748,25 @@ fn prior_skill_profile() -> TestDir {
     profile_without_tools(false)
 }
 fn profile_without_tools(planner: bool) -> TestDir {
+    profile_before_fixer(planner, false)
+}
+fn profile_before_fixer(planner: bool, tools: bool) -> TestDir {
     let profile = temp();
-    let release = if planner { "v0-2-23" } else { "v0-2-16" };
+    let release = if tools {
+        "v0-2-24"
+    } else if planner {
+        "v0-2-23"
+    } else {
+        "v0-2-16"
+    };
     let manifest: Value =
         serde_json::from_slice(&fs::read(source().join("manifest.json")).unwrap()).unwrap();
     let mut checksums = BTreeMap::new();
     for (rel, _) in manifest["files"].as_object().unwrap() {
-        if rel.starts_with("references/tools/") {
+        if (!tools && rel.starts_with("references/tools/"))
+            || rel == "procedures/fix.md"
+            || rel == "references/tools/issues.md"
+        {
             continue;
         }
         if !planner
@@ -825,7 +837,7 @@ fn six_skill_profile() -> TestDir {
             .as_object()
             .unwrap()
     {
-        if rel.starts_with("references/tools/") {
+        if rel.starts_with("references/tools/") || rel == "procedures/fix.md" {
             continue;
         }
         if [
@@ -894,7 +906,7 @@ fn old_deploy_profile(release: &str, skill_name: &str) -> TestDir {
     let manifest_bytes = fs::read(source().join("manifest.json")).unwrap();
     let manifest: Value = serde_json::from_slice(&manifest_bytes).unwrap();
     for (rel, _) in manifest["files"].as_object().unwrap() {
-        if rel.starts_with("references/tools/") {
+        if rel.starts_with("references/tools/") || rel == "procedures/fix.md" {
             continue;
         }
         if [
@@ -1282,7 +1294,7 @@ fn unsupported_project_adapter_is_a_failure() {
     }
 }
 
-// highgrade: HG-0040-S2
+// highgrade: HG-0040-S2, HG-0042-S2
 #[test]
 fn shipped_tool_references_resolve_without_repository_files() {
     use pulldown_cmark::{Event, Parser, Tag};
@@ -1383,6 +1395,34 @@ fn nine_skill_release_upgrades_to_thematic_tool_references() {
                 ".highgrade/global/releases/{}/{}",
                 current_release(),
                 rel
+            )))
+            .unwrap(),
+            fs::read(source().join(rel)).unwrap()
+        );
+    }
+}
+
+// highgrade: HG-0042-S2
+#[test]
+fn thematic_tools_release_upgrades_to_fixer_materials() {
+    let profile = profile_before_fixer(true, true);
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
+    let applied = global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        preview.measurements[0]["candidate_sha256"].as_str(),
+    )
+    .unwrap();
+    assert_eq!(applied.status, "passed");
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    for rel in ["procedures/fix.md", "references/tools/issues.md"] {
+        assert_eq!(
+            fs::read(profile.join(format!(
+                ".highgrade/global/releases/{}/{rel}",
+                current_release()
             )))
             .unwrap(),
             fs::read(source().join(rel)).unwrap()

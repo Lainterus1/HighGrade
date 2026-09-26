@@ -2,6 +2,7 @@ pub mod bootstrap;
 pub mod global;
 pub mod inspect;
 pub mod install;
+pub mod issues;
 pub mod package;
 pub mod paths;
 pub mod specs;

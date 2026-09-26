@@ -95,3 +95,31 @@ pub fn read_limited(path: &Path, max: u64) -> Result<Vec<u8>> {
     }
     Ok(data)
 }
+
+#[cfg(not(windows))]
+pub(crate) fn rename_atomic(from: &Path, to: &Path) -> Result<()> {
+    fs::rename(from, to).map_err(|e| e.to_string())
+}
+#[cfg(windows)]
+pub(crate) fn rename_atomic(from: &Path, to: &Path) -> Result<()> {
+    use std::os::windows::ffi::OsStrExt;
+    #[link(name = "kernel32")]
+    unsafe extern "system" {
+        fn MoveFileExW(from: *const u16, to: *const u16, flags: u32) -> i32;
+    }
+    let wide = |p: &Path| {
+        p.as_os_str()
+            .encode_wide()
+            .chain(Some(0))
+            .collect::<Vec<_>>()
+    };
+    let (a, b) = (wide(from), wide(to));
+    // MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH; same project volume.
+    if unsafe { MoveFileExW(a.as_ptr(), b.as_ptr(), 1 | 8) } == 0 {
+        return Err(format!(
+            "CatalogReplaceFailed: {}",
+            std::io::Error::last_os_error()
+        ));
+    }
+    Ok(())
+}
