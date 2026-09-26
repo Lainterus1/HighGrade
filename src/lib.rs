@@ -26,13 +26,45 @@ pub fn read_json(path: &Path) -> Result<Value> {
     serde_json::from_slice(&data).map_err(|e| format!("ConfigInvalid: {}: {e}", path.display()))
 }
 
-#[derive(Serialize, Default, Debug)]
+#[derive(Default, Debug)]
 pub struct Report {
     pub operation: String,
     pub status: String,
     pub findings: Vec<Value>,
     pub measurements: Vec<Value>,
     pub limitations: Vec<String>,
+}
+impl Serialize for Report {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        use serde::ser::SerializeStruct;
+        let mut result = serde_json::Map::new();
+        let mut ambiguous = std::collections::BTreeSet::new();
+        for measurement in &self.measurements {
+            if let Some(object) = measurement.as_object() {
+                for (key, value) in object {
+                    if result.contains_key(key) {
+                        ambiguous.insert(key.clone());
+                    }
+                    result.insert(key.clone(), value.clone());
+                }
+            }
+        }
+        for key in &ambiguous {
+            result.remove(key);
+        }
+        let mut s = serializer.serialize_struct("Report", 7)?;
+        s.serialize_field("operation", &self.operation)?;
+        s.serialize_field("status", &self.status)?;
+        s.serialize_field("findings", &self.findings)?;
+        s.serialize_field("measurements", &self.measurements)?;
+        s.serialize_field("limitations", &self.limitations)?;
+        s.serialize_field("result", &result)?;
+        s.serialize_field("ambiguous_result_keys", &ambiguous)?;
+        s.end()
+    }
 }
 impl Report {
     pub fn new(operation: &str) -> Self {

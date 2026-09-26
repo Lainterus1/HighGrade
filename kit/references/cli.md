@@ -41,3 +41,21 @@
 
 ## Совместимость проекта
 [Границы диагностики](tools/diagnostics.md#совместимость-проекта).
+
+## Именованные результаты и последовательная запись
+
+Report сохраняет `measurements`, status и коды завершения. `result` содержит ключи, встречающиеся ровно в одном объекте measurements: `result.store_sha256`, `result.survey_sha256`, `result.value`, `result.change`, `result.catalog_path`. Повторяющиеся ключи перечислены в `ambiguous_result_keys` и отсутствуют в result; их строки выбирают из measurements по предметному ID. Не использовать номер строки как контракт. Store/local/survey SHA относятся к разным объектам; подмена одного другим не допускается. Spec-init также возвращает directory и pointer_path относительно root.
+
+Пример PowerShell для уже подготовленного patch.json:
+
+```powershell
+$hgRead = & $hgExe survey-read --root "$PWD" --view editable
+if ($LASTEXITCODE -ne 0) { throw 'survey-read failed' }
+$hgState = $hgRead | ConvertFrom-Json
+if ($hgState.status -ne 'passed' -or !$hgState.result.survey_sha256) { throw 'Missing survey state' }
+$hgWrite = & $hgExe survey-edit --root "$PWD" --expected $hgState.result.survey_sha256 --input patch.json
+if ($LASTEXITCODE -ne 0) { throw 'survey-edit failed; reread before retry' }
+$hgNext = $hgWrite | ConvertFrom-Json
+```
+
+Для Markdown: проверив успешный survey-read --view markdown тем же способом, выведите `$hgState.result.value`. JSON — источник, сохранение производного файла необязательно; перенаправление в файл требует выбранного пути и обычных правил сохранности.

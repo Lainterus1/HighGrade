@@ -1,0 +1,57 @@
+{
+  "base_git_sha": "0330ca2ddcfa771bc22a4c9b91ac3608e34e0802",
+  "build": "candidate from working tree; not activated",
+  "candidate_sha256": "5f7b5ccbcb4bcd845a08be6ae05706432583f992a7bc65174f1f34f8b5a28188",
+  "verified_inputs": "docs/evidence/pilot-followup/run-inputs.json",
+  "specs": [
+    {
+      "id": "HG-0048",
+      "title": "Переносимость доказательств и адаптация среды",
+      "change_sha256": "da8b863afb0fc7161c188e9ad7c7303ec57a8a881eb0cee7d929d48a3e4fa38c",
+      "inputs_sha256": "2d38e11176e572230713e7f27bd8ebc5d4e5a0a85f57a4709f53703548d3b6b2",
+      "technical": "ready",
+      "human": "pending"
+    },
+    {
+      "id": "HG-0049",
+      "title": "Готовность действий обследования и ясная диагностика",
+      "change_sha256": "01da7bf869b8b1d790ded5a1fa20df0fc12d99a611a0dcc838b275f77c1eaa74",
+      "inputs_sha256": "071dd36961fb88de6607affa6025c723e76f953a91d24783b706a3981b43a3a9",
+      "technical": "ready",
+      "human": "pending"
+    },
+    {
+      "id": "HG-0050",
+      "title": "Устойчивые результаты CLI и разделение селекторов",
+      "change_sha256": "b35e45fbe09653189479af86917427181f5b0d88fe5795c8b127d6e509757d17",
+      "inputs_sha256": "40c9220014afd2410a79325d5199ffc0b45662fc4781145f95f8207a393be616",
+      "technical": "ready",
+      "human": "pending"
+    }
+  ],
+  "review": "docs/reviews/pilot-followup.md",
+  "checks": {
+    "rust_passed": 177,
+    "skipped": 0,
+    "automatic_scenarios_passed": 96,
+    "inspect": "warning: 9 ExternalLinkUnchecked"
+  },
+  "review_actions": [
+    {
+      "action": "Сверить init и work для локальной работы без передачи и для Git/bundle",
+      "expected": "Новый барьер только для выбранной передачи; storage owner и среда определяются до адаптации."
+    },
+    {
+      "action": "Сверить survey plan/adapting с нерешённым блокером и новой находкой",
+      "expected": "Блокер сохраняется; план и полномочия независимы; находка сохраняет фактический этап и инвалидирует ревью."
+    },
+    {
+      "action": "Сверить именованный Report и конфигурацию launch_selector/selector",
+      "expected": "CAS читается по области; запуск и отчёт сопоставляются независимо, пропуск или дубль не дают passed."
+    }
+  ],
+  "limitations": [
+    "No external project pilot or external link verification",
+    "No commit, activation, publication, or human acceptance performed"
+  ]
+}

@@ -1,0 +1,308 @@
+{
+  "status": "passed",
+  "scope": "selected Git index; all current HG-0048–0050 evidence files",
+  "limitations": "doctor spec-delivery remains unknown for byte-normalized text inputs; this explicit audit establishes exact LF-to-CRLF reconstruction, not an override of its status. Mandatory reports are byte-identical. No missing/ignored files.",
+  "files": [
+    {
+      "path": ".config/nextest.toml",
+      "recorded_sha256": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+      "index_sha256": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": ".highgrade/project/INSTRUCTIONS.md",
+      "recorded_sha256": "87ae28f3f3b4d2bfdab82ee18ca5c9ff2db96f4c38d32b08d76d3de1284e0637",
+      "index_sha256": "2d2396e2c969363ce15352be3c52f0b35f70642bcc0ef0b9ebf75c2ca00eee75",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "AGENTS.md",
+      "recorded_sha256": "275a1e0e7a8f459580528b162e963249767de0e5507051b124c350a261cbcabe",
+      "index_sha256": "275a1e0e7a8f459580528b162e963249767de0e5507051b124c350a261cbcabe",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "Cargo.lock",
+      "recorded_sha256": "772335f91ad1f911707f4bd6da3a9486b9777bdfc7b0e5ebda90c2ba8c8813e8",
+      "index_sha256": "fd4f8259c6e2797bcaabdb7719214d69b3ec6900482b84b5dd818a15c9374444",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "Cargo.toml",
+      "recorded_sha256": "31558ae9475b158b41522651168a3ee6b2ef9bb158c6f70f0453b60420c55ed1",
+      "index_sha256": "20a0f624094f1e8bb5669c29bd76a5218be707926d8204dc8b6d88156165c779",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "README.md",
+      "recorded_sha256": "6b37c70693a848e53980a70500c0d1cea58f6bd8c46279b4e191c65f625ad987",
+      "index_sha256": "6b37c70693a848e53980a70500c0d1cea58f6bd8c46279b4e191c65f625ad987",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "recorded_sha256": "456e93b5b4c7dffdf5d49782983abc3fa03507372f87f41e08bc9b5195794473",
+      "index_sha256": "cff0a47aa54651aa8371519f24d92cbafc786689641d3224d83878f010036f27",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "recorded_sha256": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
+      "index_sha256": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "docs/evidence/pilot-followup/normative.md",
+      "recorded_sha256": "9d3322296dbec14fc8e54616c9eb93aa27ec040ae76a2ee4774627e37788d862",
+      "index_sha256": "9d3322296dbec14fc8e54616c9eb93aa27ec040ae76a2ee4774627e37788d862",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": true
+    },
+    {
+      "path": "docs/evidence/pilot-release-v032/junit.xml",
+      "recorded_sha256": "ff0bcafb54b0cb8c38e49f34dbeff9eca0158eebbe7820c6275c4dd00d80014f",
+      "index_sha256": "ff0bcafb54b0cb8c38e49f34dbeff9eca0158eebbe7820c6275c4dd00d80014f",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": true
+    },
+    {
+      "path": "kit/procedures/approve.md",
+      "recorded_sha256": "5805f55d2f905dc604197bee50c76abbfc83878d016a9cd1d0395e87be949bfb",
+      "index_sha256": "5805f55d2f905dc604197bee50c76abbfc83878d016a9cd1d0395e87be949bfb",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "kit/procedures/init.md",
+      "recorded_sha256": "d1fb64360813df0354f7cb4d4d2f85ba9f289fbe94168aa33493dea34919cec0",
+      "index_sha256": "d1fb64360813df0354f7cb4d4d2f85ba9f289fbe94168aa33493dea34919cec0",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "kit/procedures/push.md",
+      "recorded_sha256": "bcc873f19edd08641a654e7bf962e6d49cae2a79b8446d2cf80bc848ee668dfe",
+      "index_sha256": "bcc873f19edd08641a654e7bf962e6d49cae2a79b8446d2cf80bc848ee668dfe",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "kit/procedures/work.md",
+      "recorded_sha256": "9b58aa0b7d53f5032772d013cbd9a6dc39633cfe82b8925f76620a6595f1e67c",
+      "index_sha256": "9b58aa0b7d53f5032772d013cbd9a6dc39633cfe82b8925f76620a6595f1e67c",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "kit/references/audit.md",
+      "recorded_sha256": "ddb7909d4b2fe5458df25d20f5083315fe96754c5aadfa82fd2a3e8b880a17e9",
+      "index_sha256": "ddb7909d4b2fe5458df25d20f5083315fe96754c5aadfa82fd2a3e8b880a17e9",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "kit/references/cli.md",
+      "recorded_sha256": "0a4a93d76bd47279b93e5480a34ac9e1fcba7fa6cf4fd51585792c1d6c438041",
+      "index_sha256": "0a4a93d76bd47279b93e5480a34ac9e1fcba7fa6cf4fd51585792c1d6c438041",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "kit/references/tools/diagnostics.md",
+      "recorded_sha256": "dc70c772fa3ce8e7a4f2b3d53eb33a5950e7b913a67145f3b4f9273d100b2a5e",
+      "index_sha256": "dc70c772fa3ce8e7a4f2b3d53eb33a5950e7b913a67145f3b4f9273d100b2a5e",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "kit/references/tools/survey.md",
+      "recorded_sha256": "fec8d793d55dcd2eed9f8070cedaeb8791a824066a8a321998e056c0e19e94c8",
+      "index_sha256": "fec8d793d55dcd2eed9f8070cedaeb8791a824066a8a321998e056c0e19e94c8",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "kit/references/tools/verification.md",
+      "recorded_sha256": "6a13ac23a299ca20cd8c9659fb1f76819c40fac85a639288dbbc307658e0fce0",
+      "index_sha256": "6a13ac23a299ca20cd8c9659fb1f76819c40fac85a639288dbbc307658e0fce0",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "kit/templates/INSTRUCTIONS.md",
+      "recorded_sha256": "22fd364cb32b5a3652ad5f8fa3a449fbba990d5083ee279f20bb90a823b78c4d",
+      "index_sha256": "22fd364cb32b5a3652ad5f8fa3a449fbba990d5083ee279f20bb90a823b78c4d",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/bootstrap.rs",
+      "recorded_sha256": "4f8bcc7361edae1785c64fe47477ef7206a07f47aab7be9df570f407c0b0751f",
+      "index_sha256": "4f8bcc7361edae1785c64fe47477ef7206a07f47aab7be9df570f407c0b0751f",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/discovery.rs",
+      "recorded_sha256": "58b0b53971a3e7612f6e762784c6eaf1dff7d9a4c35a3d75043f384f20141350",
+      "index_sha256": "58b0b53971a3e7612f6e762784c6eaf1dff7d9a4c35a3d75043f384f20141350",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/global.rs",
+      "recorded_sha256": "47f53528e1fd2231bfbacec62f392401c36e7b2fcd99356105c5ad694ce710eb",
+      "index_sha256": "47f53528e1fd2231bfbacec62f392401c36e7b2fcd99356105c5ad694ce710eb",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/inspect.rs",
+      "recorded_sha256": "23f999e5c3058480263b9bfc6701c7be041e4978af0ae560e4d37151518491a1",
+      "index_sha256": "78f3d435c2a34ee57fe61a78fa0eb2fc0225f8cbade53c6d11f93011aefb07bd",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/install.rs",
+      "recorded_sha256": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+      "index_sha256": "11c1817aaf5d058d69e830af6e6fe124f09aa620e08e0e0fed82d40d35a5953f",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/issues.rs",
+      "recorded_sha256": "77baaf9dbf1299d100882fc8e3dfe7cf0d8c45303f9177cd709ea62ddc24f347",
+      "index_sha256": "77baaf9dbf1299d100882fc8e3dfe7cf0d8c45303f9177cd709ea62ddc24f347",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/lib.rs",
+      "recorded_sha256": "653b8549a97a888056cd0d78ebcec3e8a675bdbc818b10a53d3e78fbf389f95f",
+      "index_sha256": "653b8549a97a888056cd0d78ebcec3e8a675bdbc818b10a53d3e78fbf389f95f",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/main.rs",
+      "recorded_sha256": "9a3cfb8fbd40a720ce6b003f4e39973f023baa0f42f321334c266ce31786a1f7",
+      "index_sha256": "9a3cfb8fbd40a720ce6b003f4e39973f023baa0f42f321334c266ce31786a1f7",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/package.rs",
+      "recorded_sha256": "0244c0d0cee241c5077651414c0208a4457c933bf22d2d7ff473cbbffac6a2d0",
+      "index_sha256": "006f5c01c801215666cf6aa2652ea0619339c5443974e7fa1d18ab7675836e08",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/paths.rs",
+      "recorded_sha256": "641bbb92c9ed9f7012a949f16036324d6972173aafffca2f3f941619a98a3c71",
+      "index_sha256": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/specs.rs",
+      "recorded_sha256": "89fc310c494edd69a9af5b38812fa0c6cbdb2c9a7f1c237c7012b8bc883ddd49",
+      "index_sha256": "a83b23a8d7be884b00c0834f16263fd17446cd9351167dfe9062dd71abf4f93c",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/specs/checks.rs",
+      "recorded_sha256": "6894a93a1bf76687de7dbf16f8c05ce6f05467d7d397fa396daadc85021f2240",
+      "index_sha256": "6894a93a1bf76687de7dbf16f8c05ce6f05467d7d397fa396daadc85021f2240",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/specs/delivery.rs",
+      "recorded_sha256": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+      "index_sha256": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/specs/presentation.rs",
+      "recorded_sha256": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+      "index_sha256": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/specs/progress.rs",
+      "recorded_sha256": "de7ba7b31b5628ef6acb7946d722eb2cf53bf35c789b2a7b33975626ea0eebf9",
+      "index_sha256": "de7ba7b31b5628ef6acb7946d722eb2cf53bf35c789b2a7b33975626ea0eebf9",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/specs/relations.rs",
+      "recorded_sha256": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+      "index_sha256": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/specs/storage.rs",
+      "recorded_sha256": "c0660453850cc44a01e43ff9e8612a60016792711e4e49505bd8e5603ebc7455",
+      "index_sha256": "ba0af3976764314e739297babb0c3c37c7caa6c97a983fd441bca1a9c70d1509",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/survey.rs",
+      "recorded_sha256": "69885886b614c5ba204093d1f4b83a8f5fc20fdd9869466acf536c29a7a4918d",
+      "index_sha256": "81708002551dd5627c9729cdd2223a7bbabe3c7358ffbcc0630c0ff6148d41ad",
+      "comparison": "reconstructible_LF_to_CRLF",
+      "mandatory_report": false
+    },
+    {
+      "path": "src/trace.rs",
+      "recorded_sha256": "1c32e0ea96c6f5ff1f1aa31545d7badd2e6a8a77da63fadbfbca267f7e998597",
+      "index_sha256": "1c32e0ea96c6f5ff1f1aa31545d7badd2e6a8a77da63fadbfbca267f7e998597",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "tests/catalog_contracts.rs",
+      "recorded_sha256": "e22931e0c7068a6ed4064a9d9c322a7bd83c30e17c8c88e8e8e58f1c3a84ed95",
+      "index_sha256": "e22931e0c7068a6ed4064a9d9c322a7bd83c30e17c8c88e8e8e58f1c3a84ed95",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "tests/contracts.rs",
+      "recorded_sha256": "117b8e45a90ade4bf00484273d919472737e08d20dc164c493f143cf77ccb924",
+      "index_sha256": "117b8e45a90ade4bf00484273d919472737e08d20dc164c493f143cf77ccb924",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "tests/support/mod.rs",
+      "recorded_sha256": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+      "index_sha256": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    },
+    {
+      "path": "tests/survey_contracts.rs",
+      "recorded_sha256": "f7aa88b5b8ff28da216a09da2892cd5e19a9402310544d4f541be01db6387deb",
+      "index_sha256": "f7aa88b5b8ff28da216a09da2892cd5e19a9402310544d4f541be01db6387deb",
+      "comparison": "exact_index_bytes",
+      "mandatory_report": false
+    }
+  ]
+}

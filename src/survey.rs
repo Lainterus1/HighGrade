@@ -223,8 +223,9 @@ fn assess(root: &Path, r: &Revision) -> Result<Value> {
     let mut blockers: Vec<Value> = vec![];
     for d in &c.decisions {
         if !matches!(d.state, State::Confirmed | State::NotApplicable) {
-            blockers
-                .push(json!({"id":d.id,"reason":"decision_unresolved","actions":["adaptation"]}));
+            let mut actions = d.blocks.clone();
+            actions.insert("adaptation".into());
+            blockers.push(json!({"id":d.id,"reason":"decision_unresolved","actions":actions}));
         }
     }
     for (section, items) in &c.sections {
@@ -273,11 +274,15 @@ fn assess(root: &Path, r: &Revision) -> Result<Value> {
             .as_array()
             .unwrap()
             .iter()
-            .any(|a| a == "adaptation")
+            .any(|a| a == "adaptation" || a == "execute-adaptation")
     });
     Ok(
         json!({"structure":"valid","snapshot_current":snapshot_current,"changed_sources":changed,"unknown_sources":unknown,
         "blockers":blockers,"review_record_current":review_current,"review_go":review_go,"semantic_correctness":"not_certified",
+        "plan_ready":snapshot_current && review_go && c.sections.values().all(|v| !v.is_empty()) && !blockers.iter().any(|b| b["actions"].as_array().unwrap().iter().any(|a| a == "plan")),
+        "permission":"not_assessed",
+        "system_actions":["plan","adaptation","completion"],
+        "other_dependencies":blockers.iter().flat_map(|b| b["actions"].as_array().unwrap()).filter(|a| !matches!(a.as_str(),Some("plan"|"adaptation"|"execute-adaptation"|"completion"))).collect::<Vec<_>>(),
         "adaptation_ready":snapshot_current && review_go && !adaptation_blocked,
         "completion_ready":snapshot_current && review_go && blockers.is_empty(),"historically_completed":c.stage==Stage::Completed,
         "user_acceptance":"not_recorded_by_this_tool"}),
@@ -395,18 +400,36 @@ pub fn command(root: &Path, op: &str, opts: &BTreeMap<String, String>) -> Result
                 }
                 "markdown" => {
                     let c = &d.current.content;
-                    let mut text = format!(
-                        "# {}\n\nЭтап: {:?}\n\nСледующее действие: {}\n",
-                        c.goal,
-                        serde_json::to_value(&c.stage).unwrap(),
-                        c.next
-                    );
+                    let stage = serde_json::to_value(&c.stage).unwrap();
+                    let mut text = format!("# {}\n\nЭтап: {}\n", c.goal, stage.as_str().unwrap());
+                    if !c.next.is_empty() {
+                        text.push_str(&format!("\nСледующее действие: {}\n", c.next));
+                    }
+                    text.push_str(&format!("\nОбласть: {}\n", c.scope.join(", ")));
                     for (name, items) in std::iter::once(("decisions", &c.decisions))
                         .chain(c.sections.iter().map(|(k, v)| (k.as_str(), v)))
                     {
                         text.push_str(&format!("\n## {name}\n"));
+                        if items.is_empty() {
+                            text.push_str("\nНе обследовано.\n");
+                        }
                         for i in items {
-                            text.push_str(&format!("\n- {} [{}]: {}\n  Основание: {}\n  Источники: {}\n  Блокирует: {}\n",i.id,serde_json::to_value(&i.state).unwrap(),i.description,i.basis.join("; "),i.sources.iter().cloned().collect::<Vec<_>>().join(", "),i.blocks.iter().cloned().collect::<Vec<_>>().join(", ")));
+                            let state = serde_json::to_value(&i.state).unwrap();
+                            text.push_str(&format!(
+                                "\n- {} [{}]: {}\n",
+                                i.id,
+                                state.as_str().unwrap(),
+                                i.description
+                            ));
+                            for (label, values) in [
+                                ("Основание", i.basis.clone()),
+                                ("Источники", i.sources.iter().cloned().collect()),
+                                ("Блокирует", i.blocks.iter().cloned().collect()),
+                            ] {
+                                if !values.is_empty() {
+                                    text.push_str(&format!("  {label}: {}\n", values.join("; ")));
+                                }
+                            }
                         }
                     }
                     json!(text)
@@ -458,6 +481,7 @@ pub fn command(root: &Path, op: &str, opts: &BTreeMap<String, String>) -> Result
                     let bytes = paths::read_limited(&paths::safe(&root, get("--input")?)?, LIMIT)?;
                     let patch: Value = serde_json::from_slice(&bytes).map_err(|e| e.to_string())?;
                     let patch = patch.as_object().ok_or("SurveyPatchInvalid")?;
+                    let previous_stage = d.current.content.stage.clone();
                     let mut content = serde_json::to_value(&d.current.content).unwrap();
                     for (k, v) in patch {
                         if !content.as_object().unwrap().contains_key(k) {
@@ -468,10 +492,14 @@ pub fn command(root: &Path, op: &str, opts: &BTreeMap<String, String>) -> Result
                     d.current.content = serde_json::from_value(content)
                         .map_err(|e| format!("SurveyFormatInvalid: {e}"))?;
                     validate(&d.current.content)?;
-                    if d.current.content.stage != Stage::Survey {
+                    if d.current.content.stage != previous_stage
+                        && d.current.content.stage != Stage::Survey
+                    {
                         let a = assess(&root, &d.current)?;
                         let key = if d.current.content.stage == Stage::Completed {
                             "completion_ready"
+                        } else if d.current.content.stage == Stage::Planned {
+                            "plan_ready"
                         } else {
                             "adaptation_ready"
                         };

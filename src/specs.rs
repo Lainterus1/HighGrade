@@ -10,6 +10,8 @@ use std::{
     path::{Path, PathBuf},
 };
 mod checks;
+mod delivery;
+pub use delivery::diagnose as diagnose_delivery;
 mod presentation;
 mod progress;
 mod relations;
@@ -494,7 +496,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 .unwrap_or("specs"),
         )?;
         report.measurements.push(
-            json!({"catalog_path":catalog_path(&root)?,"store_sha256":load_unlocked(&root)?.1}),
+            json!({"catalog_path":catalog_path(&root)?,"directory":storage::directory(&root)?,"pointer_path":"specs-location.json","store_sha256":load_unlocked(&root)?.1}),
         );
         return Ok(report);
     }

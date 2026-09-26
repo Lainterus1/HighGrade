@@ -1,0 +1,376 @@
+{
+  "acceptance": [
+    {
+      "change_sha256": "da8b863afb0fc7161c188e9ad7c7303ec57a8a881eb0cee7d929d48a3e4fa38c",
+      "comment": "2026-09-26: «Активируй поставку и отправляй в git , спеки принимаю». Приёмка показанной редакции HG-0048–0050 из handoff.json; поручение выпуска и публикации отдельное.",
+      "decided_at": 1790440030,
+      "decided_by": "user",
+      "decision": "accepted",
+      "inputs_sha256": "2d38e11176e572230713e7f27bd8ebc5d4e5a0a85f57a4709f53703548d3b6b2",
+      "verified_revision": "5f7b5ccbcb4bcd845a08be6ae05706432583f992a7bc65174f1f34f8b5a28188"
+    }
+  ],
+  "evidence": {
+    "HG-0048-S1": {
+      "captured_at": "2026-09-26T16:28:27.611074+00:00",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "files": {
+        ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+        "Cargo.lock": "772335f91ad1f911707f4bd6da3a9486b9777bdfc7b0e5ebda90c2ba8c8813e8",
+        "Cargo.toml": "31558ae9475b158b41522651168a3ee6b2ef9bb158c6f70f0453b60420c55ed1",
+        "docs/evidence/pilot-release-v032/junit.xml": "ff0bcafb54b0cb8c38e49f34dbeff9eca0158eebbe7820c6275c4dd00d80014f",
+        "src/lib.rs": "653b8549a97a888056cd0d78ebcec3e8a675bdbc818b10a53d3e78fbf389f95f",
+        "src/paths.rs": "641bbb92c9ed9f7012a949f16036324d6972173aafffca2f3f941619a98a3c71",
+        "src/specs.rs": "89fc310c494edd69a9af5b38812fa0c6cbdb2c9a7f1c237c7012b8bc883ddd49",
+        "src/specs/checks.rs": "6894a93a1bf76687de7dbf16f8c05ce6f05467d7d397fa396daadc85021f2240",
+        "src/specs/delivery.rs": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+        "src/specs/presentation.rs": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+        "src/specs/progress.rs": "de7ba7b31b5628ef6acb7946d722eb2cf53bf35c789b2a7b33975626ea0eebf9",
+        "src/specs/relations.rs": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+        "src/specs/storage.rs": "c0660453850cc44a01e43ff9e8612a60016792711e4e49505bd8e5603ebc7455",
+        "tests/catalog_contracts.rs": "e22931e0c7068a6ed4064a9d9c322a7bd83c30e17c8c88e8e8e58f1c3a84ed95",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/checks.rs",
+        "src/specs/delivery.rs",
+        "src/specs/presentation.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "tests/catalog_contracts.rs",
+        "tests/support/mod.rs"
+      ],
+      "method": "native_report",
+      "observation": "Фактически выполнены и прошли: delivery_audits_bundle_and_git_index_without_changing_readiness, delivery_reads_index_bytes_without_filters_or_index_flag_shortcuts.",
+      "outcome": "passed",
+      "report": "docs/evidence/pilot-release-v032/junit.xml",
+      "scenario": "HG-0048-S1",
+      "scenario_sha256": "1594cd6282f0434c573d3c40ffa4930e864a2612acd4699e4bad82be850050b1"
+    },
+    "HG-0048-S2": {
+      "captured_at": "2026-09-26T16:18:36.089858+00:00",
+      "command": "Смысловая сверка нормативных владельцев",
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "87ae28f3f3b4d2bfdab82ee18ca5c9ff2db96f4c38d32b08d76d3de1284e0637",
+        "AGENTS.md": "275a1e0e7a8f459580528b162e963249767de0e5507051b124c350a261cbcabe",
+        "README.md": "6b37c70693a848e53980a70500c0d1cea58f6bd8c46279b4e191c65f625ad987",
+        "docs/ARCHITECTURE.md": "456e93b5b4c7dffdf5d49782983abc3fa03507372f87f41e08bc9b5195794473",
+        "docs/DEVELOPMENT.md": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
+        "docs/evidence/pilot-followup/normative.md": "9d3322296dbec14fc8e54616c9eb93aa27ec040ae76a2ee4774627e37788d862",
+        "kit/procedures/approve.md": "5805f55d2f905dc604197bee50c76abbfc83878d016a9cd1d0395e87be949bfb",
+        "kit/procedures/init.md": "d1fb64360813df0354f7cb4d4d2f85ba9f289fbe94168aa33493dea34919cec0",
+        "kit/procedures/push.md": "bcc873f19edd08641a654e7bf962e6d49cae2a79b8446d2cf80bc848ee668dfe",
+        "kit/procedures/work.md": "9b58aa0b7d53f5032772d013cbd9a6dc39633cfe82b8925f76620a6595f1e67c",
+        "kit/references/audit.md": "ddb7909d4b2fe5458df25d20f5083315fe96754c5aadfa82fd2a3e8b880a17e9",
+        "kit/references/cli.md": "0a4a93d76bd47279b93e5480a34ac9e1fcba7fa6cf4fd51585792c1d6c438041",
+        "kit/references/tools/diagnostics.md": "dc70c772fa3ce8e7a4f2b3d53eb33a5950e7b913a67145f3b4f9273d100b2a5e",
+        "kit/references/tools/survey.md": "fec8d793d55dcd2eed9f8070cedaeb8791a824066a8a321998e056c0e19e94c8",
+        "kit/references/tools/verification.md": "6a13ac23a299ca20cd8c9659fb1f76819c40fac85a639288dbbc307658e0fce0",
+        "kit/templates/INSTRUCTIONS.md": "22fd364cb32b5a3652ad5f8fa3a449fbba990d5083ee279f20bb90a823b78c4d"
+      },
+      "input_paths": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "AGENTS.md",
+        "README.md",
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md",
+        "kit/procedures/approve.md",
+        "kit/procedures/init.md",
+        "kit/procedures/push.md",
+        "kit/procedures/work.md",
+        "kit/references/audit.md",
+        "kit/references/cli.md",
+        "kit/references/tools/diagnostics.md",
+        "kit/references/tools/survey.md",
+        "kit/references/tools/verification.md",
+        "kit/templates/INSTRUCTIONS.md"
+      ],
+      "method": "manual",
+      "observation": "Нормативная таблица решений сверена чтением; исполнения будущим агентом не заявляется.",
+      "outcome": "passed",
+      "report": "docs/evidence/pilot-followup/normative.md",
+      "scenario": "HG-0048-S2",
+      "scenario_sha256": "1402e98656e42aaa25280eb3b3a3d1073cdc08c4317c34d02bcdc32143597129"
+    },
+    "HG-0048-S3": {
+      "captured_at": "2026-09-26T16:18:36.089858+00:00",
+      "command": "Смысловая сверка нормативных владельцев",
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "87ae28f3f3b4d2bfdab82ee18ca5c9ff2db96f4c38d32b08d76d3de1284e0637",
+        "AGENTS.md": "275a1e0e7a8f459580528b162e963249767de0e5507051b124c350a261cbcabe",
+        "README.md": "6b37c70693a848e53980a70500c0d1cea58f6bd8c46279b4e191c65f625ad987",
+        "docs/ARCHITECTURE.md": "456e93b5b4c7dffdf5d49782983abc3fa03507372f87f41e08bc9b5195794473",
+        "docs/DEVELOPMENT.md": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
+        "docs/evidence/pilot-followup/normative.md": "9d3322296dbec14fc8e54616c9eb93aa27ec040ae76a2ee4774627e37788d862",
+        "kit/procedures/approve.md": "5805f55d2f905dc604197bee50c76abbfc83878d016a9cd1d0395e87be949bfb",
+        "kit/procedures/init.md": "d1fb64360813df0354f7cb4d4d2f85ba9f289fbe94168aa33493dea34919cec0",
+        "kit/procedures/push.md": "bcc873f19edd08641a654e7bf962e6d49cae2a79b8446d2cf80bc848ee668dfe",
+        "kit/procedures/work.md": "9b58aa0b7d53f5032772d013cbd9a6dc39633cfe82b8925f76620a6595f1e67c",
+        "kit/references/audit.md": "ddb7909d4b2fe5458df25d20f5083315fe96754c5aadfa82fd2a3e8b880a17e9",
+        "kit/references/cli.md": "0a4a93d76bd47279b93e5480a34ac9e1fcba7fa6cf4fd51585792c1d6c438041",
+        "kit/references/tools/diagnostics.md": "dc70c772fa3ce8e7a4f2b3d53eb33a5950e7b913a67145f3b4f9273d100b2a5e",
+        "kit/references/tools/survey.md": "fec8d793d55dcd2eed9f8070cedaeb8791a824066a8a321998e056c0e19e94c8",
+        "kit/references/tools/verification.md": "6a13ac23a299ca20cd8c9659fb1f76819c40fac85a639288dbbc307658e0fce0",
+        "kit/templates/INSTRUCTIONS.md": "22fd364cb32b5a3652ad5f8fa3a449fbba990d5083ee279f20bb90a823b78c4d"
+      },
+      "input_paths": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "AGENTS.md",
+        "README.md",
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md",
+        "kit/procedures/approve.md",
+        "kit/procedures/init.md",
+        "kit/procedures/push.md",
+        "kit/procedures/work.md",
+        "kit/references/audit.md",
+        "kit/references/cli.md",
+        "kit/references/tools/diagnostics.md",
+        "kit/references/tools/survey.md",
+        "kit/references/tools/verification.md",
+        "kit/templates/INSTRUCTIONS.md"
+      ],
+      "method": "manual",
+      "observation": "Нормативная таблица решений сверена чтением; исполнения будущим агентом не заявляется.",
+      "outcome": "passed",
+      "report": "docs/evidence/pilot-followup/normative.md",
+      "scenario": "HG-0048-S3",
+      "scenario_sha256": "dc4fd020b3dd018ad04de3bce596ce4fbb62780e367df5e31e6e0422050989da"
+    }
+  },
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790439518,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0048-S1": "0cada0607ba42131a6c4da4825521f8a112b53e7a136de06e3681a967488ebc8",
+          "HG-0048-S2": "2c31308fec684cf4904d7cef693fb7c6fed694225a4ec16a759fbdb430a5e003",
+          "HG-0048-S3": "8bc9d235df934a5dd91afd7b41600645c7265dbb2fb799e5daa38ffd45719c1d"
+        },
+        "recorded_at": 1790439641,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0048-S1": "0cada0607ba42131a6c4da4825521f8a112b53e7a136de06e3681a967488ebc8",
+          "HG-0048-S2": "2c31308fec684cf4904d7cef693fb7c6fed694225a4ec16a759fbdb430a5e003",
+          "HG-0048-S3": "8bc9d235df934a5dd91afd7b41600645c7265dbb2fb799e5daa38ffd45719c1d"
+        },
+        "recorded_at": 1790440111,
+        "review": "5d2cea678e9929038c88ddba38f97ae504a6043a57c01389544df7d5cc07f79b"
+      },
+      {
+        "evidence": {
+          "HG-0048-S1": "01dc204fcf4bfa587cd7fca23d183c5d165fd34da96a21f331d21e6e97681581",
+          "HG-0048-S2": "2c31308fec684cf4904d7cef693fb7c6fed694225a4ec16a759fbdb430a5e003",
+          "HG-0048-S3": "8bc9d235df934a5dd91afd7b41600645c7265dbb2fb799e5daa38ffd45719c1d"
+        },
+        "recorded_at": 1790440194,
+        "review": "5d2cea678e9929038c88ddba38f97ae504a6043a57c01389544df7d5cc07f79b"
+      }
+    ],
+    "objects": {
+      "01dc204fcf4bfa587cd7fca23d183c5d165fd34da96a21f331d21e6e97681581": {
+        "captured_at": "2026-09-26T16:28:27.611074+00:00",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+          "Cargo.lock": "772335f91ad1f911707f4bd6da3a9486b9777bdfc7b0e5ebda90c2ba8c8813e8",
+          "Cargo.toml": "31558ae9475b158b41522651168a3ee6b2ef9bb158c6f70f0453b60420c55ed1",
+          "docs/evidence/pilot-release-v032/junit.xml": "ff0bcafb54b0cb8c38e49f34dbeff9eca0158eebbe7820c6275c4dd00d80014f",
+          "src/lib.rs": "653b8549a97a888056cd0d78ebcec3e8a675bdbc818b10a53d3e78fbf389f95f",
+          "src/paths.rs": "641bbb92c9ed9f7012a949f16036324d6972173aafffca2f3f941619a98a3c71",
+          "src/specs.rs": "89fc310c494edd69a9af5b38812fa0c6cbdb2c9a7f1c237c7012b8bc883ddd49",
+          "src/specs/checks.rs": "6894a93a1bf76687de7dbf16f8c05ce6f05467d7d397fa396daadc85021f2240",
+          "src/specs/delivery.rs": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+          "src/specs/presentation.rs": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+          "src/specs/progress.rs": "de7ba7b31b5628ef6acb7946d722eb2cf53bf35c789b2a7b33975626ea0eebf9",
+          "src/specs/relations.rs": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+          "src/specs/storage.rs": "c0660453850cc44a01e43ff9e8612a60016792711e4e49505bd8e5603ebc7455",
+          "tests/catalog_contracts.rs": "e22931e0c7068a6ed4064a9d9c322a7bd83c30e17c8c88e8e8e58f1c3a84ed95",
+          "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+        },
+        "input_paths": [
+          ".config/nextest.toml",
+          "Cargo.lock",
+          "Cargo.toml",
+          "src/lib.rs",
+          "src/paths.rs",
+          "src/specs.rs",
+          "src/specs/checks.rs",
+          "src/specs/delivery.rs",
+          "src/specs/presentation.rs",
+          "src/specs/progress.rs",
+          "src/specs/relations.rs",
+          "src/specs/storage.rs",
+          "tests/catalog_contracts.rs",
+          "tests/support/mod.rs"
+        ],
+        "method": "native_report",
+        "observation": "Фактически выполнены и прошли: delivery_audits_bundle_and_git_index_without_changing_readiness, delivery_reads_index_bytes_without_filters_or_index_flag_shortcuts.",
+        "outcome": "passed",
+        "report": "docs/evidence/pilot-release-v032/junit.xml",
+        "scenario": "HG-0048-S1",
+        "scenario_sha256": "1594cd6282f0434c573d3c40ffa4930e864a2612acd4699e4bad82be850050b1"
+      },
+      "0cada0607ba42131a6c4da4825521f8a112b53e7a136de06e3681a967488ebc8": {
+        "captured_at": "2026-09-26T16:18:36.089858+00:00",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+          "Cargo.lock": "68663635a7eb73baf2dfd6dd08cc54942e4ccf218afe5763782c7fe1e39b3701",
+          "Cargo.toml": "a09e044674a1869458d7eaa1b31aa9e8d4ac529e9d1bcf31ee654e232f56f53f",
+          "docs/evidence/pilot-followup/junit.xml": "8a8fdbd55216656efe755c778aefc882fa5752b4a57f892d3e09fe4c42fdfd58",
+          "src/lib.rs": "653b8549a97a888056cd0d78ebcec3e8a675bdbc818b10a53d3e78fbf389f95f",
+          "src/paths.rs": "641bbb92c9ed9f7012a949f16036324d6972173aafffca2f3f941619a98a3c71",
+          "src/specs.rs": "89fc310c494edd69a9af5b38812fa0c6cbdb2c9a7f1c237c7012b8bc883ddd49",
+          "src/specs/checks.rs": "6894a93a1bf76687de7dbf16f8c05ce6f05467d7d397fa396daadc85021f2240",
+          "src/specs/delivery.rs": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+          "src/specs/presentation.rs": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+          "src/specs/progress.rs": "de7ba7b31b5628ef6acb7946d722eb2cf53bf35c789b2a7b33975626ea0eebf9",
+          "src/specs/relations.rs": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+          "src/specs/storage.rs": "c0660453850cc44a01e43ff9e8612a60016792711e4e49505bd8e5603ebc7455",
+          "tests/catalog_contracts.rs": "e22931e0c7068a6ed4064a9d9c322a7bd83c30e17c8c88e8e8e58f1c3a84ed95",
+          "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+        },
+        "input_paths": [
+          ".config/nextest.toml",
+          "Cargo.lock",
+          "Cargo.toml",
+          "src/lib.rs",
+          "src/paths.rs",
+          "src/specs.rs",
+          "src/specs/checks.rs",
+          "src/specs/delivery.rs",
+          "src/specs/presentation.rs",
+          "src/specs/progress.rs",
+          "src/specs/relations.rs",
+          "src/specs/storage.rs",
+          "tests/catalog_contracts.rs",
+          "tests/support/mod.rs"
+        ],
+        "method": "native_report",
+        "observation": "Фактически выполнены и прошли: delivery_audits_bundle_and_git_index_without_changing_readiness, delivery_reads_index_bytes_without_filters_or_index_flag_shortcuts.",
+        "outcome": "passed",
+        "report": "docs/evidence/pilot-followup/junit.xml",
+        "scenario": "HG-0048-S1",
+        "scenario_sha256": "1594cd6282f0434c573d3c40ffa4930e864a2612acd4699e4bad82be850050b1"
+      },
+      "2c31308fec684cf4904d7cef693fb7c6fed694225a4ec16a759fbdb430a5e003": {
+        "captured_at": "2026-09-26T16:18:36.089858+00:00",
+        "command": "Смысловая сверка нормативных владельцев",
+        "files": {
+          ".highgrade/project/INSTRUCTIONS.md": "87ae28f3f3b4d2bfdab82ee18ca5c9ff2db96f4c38d32b08d76d3de1284e0637",
+          "AGENTS.md": "275a1e0e7a8f459580528b162e963249767de0e5507051b124c350a261cbcabe",
+          "README.md": "6b37c70693a848e53980a70500c0d1cea58f6bd8c46279b4e191c65f625ad987",
+          "docs/ARCHITECTURE.md": "456e93b5b4c7dffdf5d49782983abc3fa03507372f87f41e08bc9b5195794473",
+          "docs/DEVELOPMENT.md": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
+          "docs/evidence/pilot-followup/normative.md": "9d3322296dbec14fc8e54616c9eb93aa27ec040ae76a2ee4774627e37788d862",
+          "kit/procedures/approve.md": "5805f55d2f905dc604197bee50c76abbfc83878d016a9cd1d0395e87be949bfb",
+          "kit/procedures/init.md": "d1fb64360813df0354f7cb4d4d2f85ba9f289fbe94168aa33493dea34919cec0",
+          "kit/procedures/push.md": "bcc873f19edd08641a654e7bf962e6d49cae2a79b8446d2cf80bc848ee668dfe",
+          "kit/procedures/work.md": "9b58aa0b7d53f5032772d013cbd9a6dc39633cfe82b8925f76620a6595f1e67c",
+          "kit/references/audit.md": "ddb7909d4b2fe5458df25d20f5083315fe96754c5aadfa82fd2a3e8b880a17e9",
+          "kit/references/cli.md": "0a4a93d76bd47279b93e5480a34ac9e1fcba7fa6cf4fd51585792c1d6c438041",
+          "kit/references/tools/diagnostics.md": "dc70c772fa3ce8e7a4f2b3d53eb33a5950e7b913a67145f3b4f9273d100b2a5e",
+          "kit/references/tools/survey.md": "fec8d793d55dcd2eed9f8070cedaeb8791a824066a8a321998e056c0e19e94c8",
+          "kit/references/tools/verification.md": "6a13ac23a299ca20cd8c9659fb1f76819c40fac85a639288dbbc307658e0fce0",
+          "kit/templates/INSTRUCTIONS.md": "22fd364cb32b5a3652ad5f8fa3a449fbba990d5083ee279f20bb90a823b78c4d"
+        },
+        "input_paths": [
+          ".highgrade/project/INSTRUCTIONS.md",
+          "AGENTS.md",
+          "README.md",
+          "docs/ARCHITECTURE.md",
+          "docs/DEVELOPMENT.md",
+          "kit/procedures/approve.md",
+          "kit/procedures/init.md",
+          "kit/procedures/push.md",
+          "kit/procedures/work.md",
+          "kit/references/audit.md",
+          "kit/references/cli.md",
+          "kit/references/tools/diagnostics.md",
+          "kit/references/tools/survey.md",
+          "kit/references/tools/verification.md",
+          "kit/templates/INSTRUCTIONS.md"
+        ],
+        "method": "manual",
+        "observation": "Нормативная таблица решений сверена чтением; исполнения будущим агентом не заявляется.",
+        "outcome": "passed",
+        "report": "docs/evidence/pilot-followup/normative.md",
+        "scenario": "HG-0048-S2",
+        "scenario_sha256": "1402e98656e42aaa25280eb3b3a3d1073cdc08c4317c34d02bcdc32143597129"
+      },
+      "5d2cea678e9929038c88ddba38f97ae504a6043a57c01389544df7d5cc07f79b": {
+        "change_sha256": "da8b863afb0fc7161c188e9ad7c7303ec57a8a881eb0cee7d929d48a3e4fa38c",
+        "conclusion": "REVIEW_GO: 177/177 Rust tests, 96/96 automatic scenarios, normative decision table, 97 unchanged barrier inputs and all 10 evidence hashes verified. See docs/reviews/pilot-followup.md. Inspect has 9 ExternalLinkUnchecked warnings; no model pilot, publication or human acceptance claimed.",
+        "reviewer": "independent subagent /root/docs_specs_review",
+        "verdict": "go"
+      },
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "8bc9d235df934a5dd91afd7b41600645c7265dbb2fb799e5daa38ffd45719c1d": {
+        "captured_at": "2026-09-26T16:18:36.089858+00:00",
+        "command": "Смысловая сверка нормативных владельцев",
+        "files": {
+          ".highgrade/project/INSTRUCTIONS.md": "87ae28f3f3b4d2bfdab82ee18ca5c9ff2db96f4c38d32b08d76d3de1284e0637",
+          "AGENTS.md": "275a1e0e7a8f459580528b162e963249767de0e5507051b124c350a261cbcabe",
+          "README.md": "6b37c70693a848e53980a70500c0d1cea58f6bd8c46279b4e191c65f625ad987",
+          "docs/ARCHITECTURE.md": "456e93b5b4c7dffdf5d49782983abc3fa03507372f87f41e08bc9b5195794473",
+          "docs/DEVELOPMENT.md": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
+          "docs/evidence/pilot-followup/normative.md": "9d3322296dbec14fc8e54616c9eb93aa27ec040ae76a2ee4774627e37788d862",
+          "kit/procedures/approve.md": "5805f55d2f905dc604197bee50c76abbfc83878d016a9cd1d0395e87be949bfb",
+          "kit/procedures/init.md": "d1fb64360813df0354f7cb4d4d2f85ba9f289fbe94168aa33493dea34919cec0",
+          "kit/procedures/push.md": "bcc873f19edd08641a654e7bf962e6d49cae2a79b8446d2cf80bc848ee668dfe",
+          "kit/procedures/work.md": "9b58aa0b7d53f5032772d013cbd9a6dc39633cfe82b8925f76620a6595f1e67c",
+          "kit/references/audit.md": "ddb7909d4b2fe5458df25d20f5083315fe96754c5aadfa82fd2a3e8b880a17e9",
+          "kit/references/cli.md": "0a4a93d76bd47279b93e5480a34ac9e1fcba7fa6cf4fd51585792c1d6c438041",
+          "kit/references/tools/diagnostics.md": "dc70c772fa3ce8e7a4f2b3d53eb33a5950e7b913a67145f3b4f9273d100b2a5e",
+          "kit/references/tools/survey.md": "fec8d793d55dcd2eed9f8070cedaeb8791a824066a8a321998e056c0e19e94c8",
+          "kit/references/tools/verification.md": "6a13ac23a299ca20cd8c9659fb1f76819c40fac85a639288dbbc307658e0fce0",
+          "kit/templates/INSTRUCTIONS.md": "22fd364cb32b5a3652ad5f8fa3a449fbba990d5083ee279f20bb90a823b78c4d"
+        },
+        "input_paths": [
+          ".highgrade/project/INSTRUCTIONS.md",
+          "AGENTS.md",
+          "README.md",
+          "docs/ARCHITECTURE.md",
+          "docs/DEVELOPMENT.md",
+          "kit/procedures/approve.md",
+          "kit/procedures/init.md",
+          "kit/procedures/push.md",
+          "kit/procedures/work.md",
+          "kit/references/audit.md",
+          "kit/references/cli.md",
+          "kit/references/tools/diagnostics.md",
+          "kit/references/tools/survey.md",
+          "kit/references/tools/verification.md",
+          "kit/templates/INSTRUCTIONS.md"
+        ],
+        "method": "manual",
+        "observation": "Нормативная таблица решений сверена чтением; исполнения будущим агентом не заявляется.",
+        "outcome": "passed",
+        "report": "docs/evidence/pilot-followup/normative.md",
+        "scenario": "HG-0048-S3",
+        "scenario_sha256": "dc4fd020b3dd018ad04de3bce596ce4fbb62780e367df5e31e6e0422050989da"
+      }
+    }
+  },
+  "review": {
+    "change_sha256": "1235988dd1ca84d66ca042111038f631044da04f61fd779d53d2dc85bdf4289d",
+    "conclusion": "REVIEW_GO release 0.3.2:177/177 Rust,96/96 automatic,97 frozen inputs and current evidence verified; see docs/reviews/pilot-followup.md. Historical human decision is preserved, not transferred.",
+    "reviewer": "independent subagent /root/docs_specs_review",
+    "verdict": "go"
+  },
+  "runs": []
+}

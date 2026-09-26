@@ -429,6 +429,12 @@ pub fn inspect(root: &Path, registry: Option<&str>, scope: Option<&str>) -> Resu
         "context-route",
         &mut r,
     );
+    r.measurements.push(json!({"diagnostic_summary":{
+        "errors":r.findings.iter().filter(|f| f["status"] == "failed").collect::<Vec<_>>(),
+        "unknown":r.findings.iter().filter(|f| f["status"] == "unknown").collect::<Vec<_>>(),
+        "warnings":r.findings.iter().filter(|f| f["status"] == "warning").collect::<Vec<_>>(),
+        "accepted_limitations":"consult_survey_basis_and_project_instructions; not_certified_by_inspect"
+    }}));
     r.measurements.push(json!({"route":route_ids,"route_bytes":route_bytes,"scope":scope.unwrap_or("all-registered"),"registry":reg}));
     r.limitations.push("Структурная проверка, не смысловой аудит. Сеть не использована. История бюджета проверяется внутри записи; изменение согласованной базы требует отдельного сравнения/решения автора.".into());
     r.limitations.push("Якоря: стандартные Markdown-заголовки, Unicode lowercase; HTML/custom anchors и отдельные диалекты могут требовать ручной проверки. --scope использует явную карту, не граф зависимостей кода.".into());

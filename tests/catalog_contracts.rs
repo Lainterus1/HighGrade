@@ -491,16 +491,23 @@ fn two_catalog_writers_cannot_allocate_the_same_number() {
     fs::remove_dir_all(root).unwrap();
 }
 
-// highgrade: HG-0002-S1
+// highgrade: HG-0002-S1, HG-0050-S1
 #[test]
 fn selected_directory_is_project_owned_and_self_contained() {
     let root = root();
-    call(
+    let created = call(
         &root,
         "spec-init",
         &[("--directory", "docs/specifications")],
     )
     .unwrap();
+    let v = serde_json::to_value(created).unwrap();
+    assert_eq!(v["result"]["directory"], "docs/specifications");
+    assert_eq!(v["result"]["pointer_path"], "specs-location.json");
+    assert_eq!(
+        v["result"]["catalog_path"],
+        "docs/specifications/catalog.json"
+    );
     create(&root);
     assert_eq!(
         specs::catalog_path(&root).unwrap(),
@@ -769,7 +776,7 @@ sys.exit(0 if result.wasSuccessful() else 1)
     edit(root,"HG-0001","checks",json!([{"id":"sum","scenario_ids":["HG-0001-S1"],"runner":"unit","file":"test_math.py","selector":"Cases::test_sum","preparation":"Создать 2 и 3","action":"Сложить","observation":"Результат 5","inputs":["test_math.py","runner.py","mode.txt"]}])).unwrap();
 }
 
-// highgrade: HG-0034-S1, HG-0034-S2
+// highgrade: HG-0034-S1, HG-0034-S2, HG-0050-S3
 #[test]
 fn native_report_import_reuses_suite_and_rejects_stale_or_missing_results() {
     let root = root();
@@ -1906,4 +1913,234 @@ fn first_baseline_capture_rejects_local_cas_after_target_changed() {
             .baseline
             .is_empty()
     );
+}
+
+// highgrade: HG-0048-S1
+#[test]
+fn delivery_audits_bundle_and_git_index_without_changing_readiness() {
+    let root = root();
+    runner_fixture(&root);
+    call(
+        &root,
+        "spec-run",
+        &[
+            ("--id", "HG-0001"),
+            ("--check", "all"),
+            ("--expected", &sha(&root)),
+        ],
+    )
+    .unwrap();
+    let before = sha(&root);
+    let audit = specs::diagnose_delivery(&root, "HG-0001", None).unwrap();
+    assert_ne!(audit.status, "passed");
+    let files: Vec<_> = audit.measurements[0]["files"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|f| f["path"].clone())
+        .collect();
+    put(&root, "bundle.json", &json!(files));
+    assert_eq!(
+        specs::diagnose_delivery(&root, "HG-0001", Some("bundle.json"))
+            .unwrap()
+            .status,
+        "passed"
+    );
+    assert_eq!(before, sha(&root));
+    let git = |args: &[&str]| {
+        let o = std::process::Command::new("git")
+            .args(args)
+            .current_dir(&root)
+            .output()
+            .unwrap();
+        assert!(o.status.success(), "{}", String::from_utf8_lossy(&o.stderr));
+    };
+    git(&["init", "-q"]);
+    fs::write(root.join(".gitignore"), "*.xml\n").unwrap();
+    let audit = specs::diagnose_delivery(&root, "HG-0001", None).unwrap();
+    assert!(
+        audit.measurements[0]["files"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|f| f["composition"] == "ignored"),
+        "{audit:?}"
+    );
+    git(&["-c", "core.autocrlf=false", "add", "-f", "."]);
+    assert_eq!(
+        specs::diagnose_delivery(&root, "HG-0001", None)
+            .unwrap()
+            .status,
+        "passed"
+    );
+    fs::write(root.join("test_math.py"), "changed").unwrap();
+    assert_eq!(
+        specs::diagnose_delivery(&root, "HG-0001", None)
+            .unwrap()
+            .status,
+        "failed"
+    );
+    fs::remove_file(root.join(files[0].as_str().unwrap())).unwrap();
+    assert_eq!(
+        specs::diagnose_delivery(&root, "HG-0001", Some("bundle.json"))
+            .unwrap()
+            .status,
+        "failed"
+    );
+    assert_eq!(before, sha(&root));
+}
+// highgrade: HG-0050-S2, HG-0050-S3
+#[test]
+fn launch_selector_is_literal_and_distinct_from_strict_report_identity() {
+    let root = root();
+    runner_fixture(&root);
+    let mut checks =
+        serde_json::to_value(&specs::load(&root).unwrap().0.changes["HG-0001"].checks).unwrap();
+    assert!(checks[0].get("launch_selector").is_none());
+    checks[0]["launch_selector"] = json!("Cases::test_sum {report} $(x);.*");
+    edit(&root, "HG-0001", "checks", checks.clone()).unwrap();
+    let p = root.join("runner.py");
+    let s = fs::read_to_string(&p).unwrap();
+    fs::write(p,s.replace("mode = pathlib", "assert selector == 'Cases::test_sum {report} $(x);.*'\nselector='Cases::test_sum'\nmode = pathlib")).unwrap();
+    let snapshot = call(
+        &root,
+        "spec-run-inputs",
+        &[("--id", "HG-0001"), ("--check", "all")],
+    )
+    .unwrap();
+    call(
+        &root,
+        "spec-run",
+        &[
+            ("--id", "HG-0001"),
+            ("--check", "all"),
+            ("--expected", &sha(&root)),
+        ],
+    )
+    .unwrap();
+    let c = &specs::load(&root).unwrap().0.changes["HG-0001"];
+    assert_eq!(
+        serde_json::to_value(&c.runs.last().unwrap().outcome).unwrap(),
+        "passed"
+    );
+    let snap = snapshot
+        .measurements
+        .iter()
+        .find_map(|m| m.get("snapshot"))
+        .unwrap();
+    for cases in [
+        "",
+        "<testcase classname='Cases' name='test_sum'><skipped/></testcase>",
+        "<testcase classname='Cases' name='test_sum'><failure/></testcase>",
+        "<testcase classname='Cases' name='test_sum'/><testcase classname='Cases' name='test_sum'/>",
+    ] {
+        fs::write(
+            root.join("suite.xml"),
+            format!("<testsuite>{cases}</testsuite>"),
+        )
+        .unwrap();
+        put(
+            &root,
+            "import.json",
+            &json!({"snapshot":snap,"report":"suite.xml","command":["native-test"]}),
+        );
+        assert!(
+            call(
+                &root,
+                "spec-run-import",
+                &[("--expected", &sha(&root)), ("--input", "import.json")]
+            )
+            .is_err()
+        );
+    }
+    checks[0]["launch_selector"] = json!("other");
+    edit(&root, "HG-0001", "checks", checks).unwrap();
+    fs::write(
+        root.join("suite.xml"),
+        "<testsuite><testcase classname='Cases' name='test_sum'/></testsuite>",
+    )
+    .unwrap();
+    let snap = snapshot
+        .measurements
+        .iter()
+        .find_map(|m| m.get("snapshot"))
+        .unwrap();
+    put(
+        &root,
+        "import.json",
+        &json!({"snapshot":snap,"report":"suite.xml","command":["native-test"]}),
+    );
+    assert!(
+        call(
+            &root,
+            "spec-run-import",
+            &[("--expected", &sha(&root)), ("--input", "import.json")]
+        )
+        .is_err()
+    );
+}
+
+// highgrade: HG-0048-S1
+#[test]
+fn delivery_reads_index_bytes_without_filters_or_index_flag_shortcuts() {
+    let root = root();
+    runner_fixture(&root);
+    let run = || {
+        call(
+            &root,
+            "spec-run",
+            &[
+                ("--id", "HG-0001"),
+                ("--check", "all"),
+                ("--expected", &sha(&root)),
+            ],
+        )
+        .unwrap()
+    };
+    run();
+    let git = |args: &[&str]| {
+        let o = std::process::Command::new("git")
+            .args(args)
+            .current_dir(&root)
+            .output()
+            .unwrap();
+        assert!(o.status.success(), "{}", String::from_utf8_lossy(&o.stderr));
+    };
+    git(&["init", "-q"]);
+    git(&["-c", "core.autocrlf=false", "add", "-f", "."]);
+    fs::write(root.join(".gitattributes"), "mode.txt filter=tripwire\n").unwrap();
+    git(&[
+        "config",
+        "filter.tripwire.clean",
+        "echo invoked > FILTER_RAN",
+    ]);
+    assert_eq!(
+        specs::diagnose_delivery(&root, "HG-0001", None)
+            .unwrap()
+            .status,
+        "passed"
+    );
+    assert!(!root.join("FILTER_RAN").exists());
+    fs::write(root.join("mode.txt"), "new ordinary mode").unwrap();
+    run();
+    for flag in ["--assume-unchanged", "--skip-worktree"] {
+        git(&["update-index", flag, "mode.txt"]);
+        let audit = specs::diagnose_delivery(&root, "HG-0001", None).unwrap();
+        let mode = audit.measurements[0]["files"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|f| f["path"] == "mode.txt")
+            .unwrap();
+        assert_eq!(mode["current"], true);
+        assert_eq!(mode["composition"], "index_differs");
+        assert_ne!(audit.status, "passed");
+        assert!(!root.join("FILTER_RAN").exists());
+        git(&[
+            "update-index",
+            "--no-assume-unchanged",
+            "--no-skip-worktree",
+            "mode.txt",
+        ]);
+    }
 }

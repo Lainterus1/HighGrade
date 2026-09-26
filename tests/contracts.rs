@@ -583,3 +583,60 @@ fn junction_is_not_followed() {
     assert!(paths::safe(&paths::root(&root).unwrap(), "linked/file").is_err());
     assert!(paths::root(&link).is_err());
 }
+
+// highgrade: HG-0050-S1
+#[test]
+fn named_results_preserve_legacy_and_do_not_pick_ambiguous_values() {
+    let mut r = highgrade::Report::new("fixture");
+    r.measurements = vec![
+        json!({"store_sha256":"store","value":1}),
+        json!({"survey_sha256":"survey","value":2}),
+    ];
+    let v = serde_json::to_value(&r).unwrap();
+    assert_eq!(v["measurements"], json!(r.measurements));
+    assert_eq!(v["result"]["store_sha256"], "store");
+    assert_eq!(v["result"]["survey_sha256"], "survey");
+    assert!(v["result"].get("value").is_none());
+    assert_eq!(v["ambiguous_result_keys"], json!(["value"]));
+    let output = std::process::Command::new(env!("CARGO_BIN_EXE_highgrade"))
+        .args(["spec-read", "--id"])
+        .output()
+        .unwrap();
+    assert!(!output.status.success());
+    assert!(String::from_utf8_lossy(&output.stdout).contains("--id"));
+}
+
+// highgrade: HG-0049-S3
+#[test]
+fn diagnostic_summary_keeps_unknown_and_errors_separate() {
+    let root = dir();
+    let mut reg = registry(&root);
+    reg["documents"][0]["budget"] = Value::Null;
+    save(&root, "registry.json", &reg);
+    write(&root, "README.md", b"[broken](missing.md)\n");
+    let r = inspect(&root, Some("registry.json"), None).unwrap();
+    let v = serde_json::to_value(&r).unwrap();
+    let summary = &v["result"]["diagnostic_summary"];
+    assert!(
+        summary["errors"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|f| f["code"] == "LinkInvalid")
+    );
+    assert!(
+        summary["unknown"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|f| f["code"] == "BudgetNotAgreed")
+    );
+    assert!(
+        summary["accepted_limitations"]
+            .as_str()
+            .unwrap()
+            .contains("not_certified")
+    );
+    assert_eq!(r.exit_code(), 1);
+    assert!(reg["documents"][0]["budget"].is_null());
+}

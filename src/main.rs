@@ -22,7 +22,7 @@ fn allowed_options(op: &str) -> Result<Vec<&'static str>> {
         "issue-new" => vec!["--root", "--expected", "--input"],
         "issue-edit" | "issue-record" => vec!["--root", "--id", "--expected", "--input"],
         "issue-recover" => vec!["--root", "--expected"],
-        "doctor" => vec!["--root", "--action", "--id", "--check"],
+        "doctor" => vec!["--root", "--action", "--id", "--check", "--bundle"],
         "inspect" => vec!["--root", "--registry", "--scope", "--bootstrap"],
         "global-install" => vec!["--profile", "--source", "--candidate-exe"],
         "global-update" => vec![
@@ -176,7 +176,7 @@ fn command_help(op: &str) -> Result<Report> {
         "spec-runner-set" => "runner",
         _ => "",
     };
-    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"spec-read"=>"--id or --requirement; --view requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read; first modify/remove baseline capture requires --expected","doctor"=>"Optional --action spec-read|spec-run; spec-run requires --id, optional --check (default all)","spec-metadata"=>"Preview by default; --apply true commits the entire validated batch with --expected CAS", "global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":if op.starts_with("survey-") {"highgrade survey-schema --root PATH"} else if op.starts_with("issue-") {"highgrade issue-schema --root PATH"} else {"highgrade spec-schema --root PATH"}}));
+    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"spec-read"=>"--id or --requirement; --view requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read; first modify/remove baseline capture requires --expected","doctor"=>"Optional --action spec-read|spec-run|spec-delivery; spec-run and spec-delivery require --id; delivery uses Git index or --bundle JSON path list","spec-metadata"=>"Preview by default; --apply true commits the entire validated batch with --expected CAS", "global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":if op.starts_with("survey-") {"highgrade survey-schema --root PATH"} else if op.starts_with("issue-") {"highgrade issue-schema --root PATH"} else {"highgrade spec-schema --root PATH"}}));
     Ok(r)
 }
 
@@ -227,9 +227,12 @@ fn run() -> Result<Report> {
             index += 1;
         } else {
             let Some(value) = input.get(index + 1) else {
-                return Err("Usage: отсутствует значение параметра".into());
+                return Err(format!("Usage: отсутствует значение параметра {key}"));
             };
-            if value.starts_with("--") || options.insert(key.clone(), value.clone()).is_some() {
+            if value.starts_with("--") {
+                return Err(format!("Usage: отсутствует значение параметра {key}"));
+            }
+            if options.insert(key.clone(), value.clone()).is_some() {
                 return Err("Usage: неверная пара или повторный параметр".into());
             }
             index += 2;
@@ -253,6 +256,11 @@ fn run() -> Result<Report> {
         && (options.contains_key("--registry") || options.contains_key("--scope"))
     {
         return Err("Usage: --bootstrap нельзя сочетать с --registry или --scope".into());
+    }
+    if options.contains_key("--bundle")
+        && options.get("--action").is_none_or(|a| a != "spec-delivery")
+    {
+        return Err("Usage: --bundle requires doctor --action spec-delivery".into());
     }
     let get = |key: &str| {
         options
@@ -283,6 +291,17 @@ fn run() -> Result<Report> {
             options.get("--apply").is_some_and(|v| v == "true"),
             options.get("--candidate-sha256").map(String::as_str),
         ),
+        "doctor"
+            if options
+                .get("--action")
+                .is_some_and(|a| a == "spec-delivery") =>
+        {
+            highgrade::specs::diagnose_delivery(
+                root,
+                get("--id")?,
+                options.get("--bundle").map(String::as_str),
+            )
+        }
         "doctor" if options.contains_key("--action") => highgrade::specs::diagnose(
             root,
             get("--action")?,

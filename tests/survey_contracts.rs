@@ -380,3 +380,92 @@ fn survey_assets_and_schema_work_from_installed_release() {
     assert!(release.join("references/tools/survey.md").exists());
     assert!(release.join("procedures/init.md").exists());
 }
+
+fn review_again(root: &Path) {
+    call(root, "survey-snapshot", &[("--expected", &sha(root))]).unwrap();
+    call(
+        root,
+        "survey-review",
+        &[
+            ("--expected", &sha(root)),
+            ("--verdict", "go"),
+            ("--reviewer", "fixture"),
+            ("--conclusion", "Rechecked current material"),
+        ],
+    )
+    .unwrap();
+}
+// highgrade: HG-0049-S1, HG-0045-S2
+#[test]
+fn plan_preserves_action_blockers_without_granting_permission() {
+    let root = TestDir::new("hg-survey-");
+    ready(&root);
+    for action in ["adaptation", "execute-adaptation"] {
+        let mut c = read(&root, "editable")["value"].clone();
+        c["sections"]["findings"][0]["state"] = json!("unknown");
+        c["sections"]["findings"][0]["blocks"] = json!([action]);
+        edit(&root, c).unwrap();
+        review_again(&root);
+        assert_eq!(status(&root)["plan_ready"], true);
+        edit(&root, json!({"stage":"planned"})).unwrap();
+        let before = sha(&root);
+        assert!(edit(&root, json!({"stage":"adapting"})).is_err());
+        assert_eq!(before, sha(&root));
+        assert_eq!(status(&root)["permission"], "not_assessed");
+        assert_eq!(
+            read(&root, "editable")["value"]["sections"]["findings"][0]["blocks"],
+            json!([action])
+        );
+    }
+}
+// highgrade: HG-0049-S2
+#[test]
+fn adapting_edits_keep_stage_and_invalidate_review_without_rewind() {
+    let root = TestDir::new("hg-survey-");
+    ready(&root);
+    edit(&root, json!({"stage":"adapting"})).unwrap();
+    edit(&root, json!({"goal":"Clarified scope within same mandate"})).unwrap();
+    assert_eq!(read(&root, "summary")["value"]["stage"], "adapting");
+    assert_eq!(status(&root)["review_record_current"], false);
+    assert!(edit(&root, json!({"stage":"completed","next":""})).is_err());
+    review_again(&root);
+    fs::write(root.join("src/main.txt"), "new source").unwrap();
+    assert!(edit(&root, json!({"stage":"completed","next":""})).is_err());
+    review_again(&root);
+    edit(&root, json!({"stage":"completed","next":""})).unwrap();
+    assert!(edit(&root, json!({"goal":"cannot edit history"})).is_err());
+}
+// highgrade: HG-0049-S3
+#[test]
+fn survey_markdown_preserves_meaning_without_debug_or_empty_labels() {
+    let root = TestDir::new("hg-survey-");
+    ready(&root);
+    edit(&root, json!({"stage":"completed","next":""})).unwrap();
+    let v = read(&root, "markdown");
+    let text = v["value"].as_str().unwrap();
+    assert!(text.contains("Этап: completed"));
+    assert!(text.contains("Основание: Fixture setup"));
+    for bad in [
+        "String(",
+        "[\"confirmed\"]",
+        "Источники:",
+        "Блокирует:",
+        "Следующее действие:",
+    ] {
+        assert!(!text.contains(bad), "{bad}");
+    }
+}
+
+// highgrade: HG-0049-S1
+#[test]
+fn explicit_decision_plan_block_is_not_lost() {
+    let root = TestDir::new("hg-survey-");
+    ready(&root);
+    let mut c = read(&root, "editable")["value"].clone();
+    c["decisions"][0]["state"] = json!("unknown");
+    c["decisions"][0]["blocks"] = json!(["plan"]);
+    edit(&root, c).unwrap();
+    review_again(&root);
+    assert_eq!(status(&root)["plan_ready"], false);
+    assert!(edit(&root, json!({"stage":"planned"})).is_err());
+}

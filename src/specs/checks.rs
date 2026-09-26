@@ -14,6 +14,8 @@ pub struct Check {
     pub runner: Option<String>,
     pub file: String,
     pub selector: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub launch_selector: Option<String>,
     pub preparation: String,
     pub action: String,
     pub observation: String,
@@ -146,6 +148,12 @@ pub fn validate(s: &Store) -> Result<()> {
         let mut seen = BTreeSet::new();
         for b in &c.checks {
             check_id(&b.id, "check")?;
+            if b.launch_selector
+                .as_ref()
+                .is_some_and(|v| v.trim().is_empty() || v.contains('\0'))
+            {
+                return Err("InvalidLaunchSelector".into());
+            }
             if !seen.insert(&b.id)
                 || b.scenario_ids.is_empty()
                 || b.scenario_ids
@@ -226,6 +234,24 @@ pub fn stale_reason(root: &Path, s: &Store, c: &Change, b: &Check) -> Option<Val
     }
     None
 }
+
+// Substitute only tokens in the configured template, never tokens inside values.
+fn expand_argument(template: &str, values: &[(&str, &str)]) -> String {
+    let mut output = String::new();
+    let mut rest = template;
+    while !rest.is_empty() {
+        if let Some((token, value)) = values.iter().find(|(token, _)| rest.starts_with(token)) {
+            output.push_str(value);
+            rest = &rest[token.len()..];
+        } else {
+            let c = rest.chars().next().unwrap();
+            output.push(c);
+            rest = &rest[c.len_utf8()..];
+        }
+    }
+    output
+}
+
 fn parse(format: &str, text: &str, selector: &str) -> Outcome {
     if format == "cargo-test" {
         let selected = text
@@ -354,10 +380,18 @@ pub fn execute(
                 .args
                 .iter()
                 .map(|a| {
-                    a.replace("{file}", &file.to_string_lossy())
-                        .replace("{target}", target)
-                        .replace("{selector}", &b.selector)
-                        .replace("{report}", &xml_path.to_string_lossy())
+                    expand_argument(
+                        a,
+                        &[
+                            ("{file}", &file.to_string_lossy()),
+                            ("{target}", target),
+                            (
+                                "{selector}",
+                                b.launch_selector.as_deref().unwrap_or(&b.selector),
+                            ),
+                            ("{report}", &xml_path.to_string_lossy()),
+                        ],
+                    )
                 })
                 .collect();
             let program = if r.program.contains('/') {
