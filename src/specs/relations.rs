@@ -120,6 +120,9 @@ pub fn mutation(s: &mut Store, op: &str, o: &BTreeMap<String, String>) -> Result
                 return Err("InvalidTagMerge".into());
             }
             for c in s.changes.values_mut() {
+                if c.tags.contains(from) && c.revision_tags.is_none() {
+                    c.revision_tags = Some(c.tags.clone());
+                }
                 if c.tags.remove(from) {
                     c.tags.insert(into.into());
                 }

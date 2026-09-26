@@ -1,6 +1,131 @@
 {
-  "abandoned_reason": null,
-  "archived": true,
+  "id": "HG-0019",
+  "title": "Жизненный цикл каталога target Проекта",
+  "tags": [
+    "installation"
+  ],
+  "goal": "Каталог сборок и временных файлов Проекта остаётся понятным, воспроизводимым и безопасным для обслуживания.",
+  "rationale": "В корне target накопились кэши Cargo, выпускные файлы и 139 разрозненных временных файлов. Неявное владение путями мешает отличить воспроизводимый мусор от кандидата выпуска и доказательств.",
+  "scope": "Только исходный Проект High Grade: локальные сборочные пути, временные результаты, разовая очистка и инструкции. Общая Поставка и подключаемые проекты не меняются.",
+  "questions": [],
+  "depends_on": [],
+  "related_to": [],
+  "operations": [
+    {
+      "action": "add",
+      "requirement": {
+        "id": "HG-0019-R1",
+        "title": "Разделение результатов сборки и временной работы",
+        "statement": "Проект SHALL оставлять в корне target только штатные каталоги и файлы Cargo/nextest и каталог highgrade. Проектные кандидат выпуска, кэш его сборки, журналы, инструменты, рабочие файлы и временные пробы SHALL иметь документированные отдельные пути внутри target/highgrade. Долговременные доказательства SHALL храниться вне target. Временная проба SHALL удаляться после завершения её задачи.",
+        "scenarios": [
+          {
+            "id": "HG-0019-S1",
+            "given": "Чистый исходный проект и разрешённая локальная проверка, которая создаёт кандидата выпуска и временную пробу",
+            "when": "Выполнить сборку кандидата и завершить проверку",
+            "then": "Кандидат, кэш и журналы находятся в назначенных подкаталогах target/highgrade; временная проба убрана; в корне target нет проектных файлов; сохранённые доказательства доступны вне target",
+            "verification": "В изолированной копии выполнить scripts/build-release.py для точного SHA, проверить созданные пути и отсутствие оставшихся проб после завершения; сверить долговременные доказательства и корень target"
+          }
+        ]
+      }
+    },
+    {
+      "action": "add",
+      "requirement": {
+        "id": "HG-0019-R2",
+        "title": "Безопасное обслуживание каталога сборок",
+        "statement": "Проект SHALL предоставлять просмотр размера и кандидатов на очистку без изменения файлов. Применение SHALL удалять только подтверждённые временные результаты и выбранные воспроизводимые Cargo-кэши внутри target при отсутствии активной сборки; неизвестные файлы, reparse points, кандидат выпуска и аварийная копия SHALL сохраняться и сообщаться отдельно. Мягкий бюджет после обслуживания SHALL составлять 600 МиБ; превышение SHALL сообщаться без опасной принудительной очистки.",
+        "scenarios": [
+          {
+            "id": "HG-0019-S2",
+            "given": "В изолированной фикстуре есть известная временная проба, воспроизводимый Cargo-кэш, кандидат выпуска и неизвестный файл",
+            "when": "Запустить просмотр, затем явно применить разрешённую очистку",
+            "then": "Просмотр ничего не меняет; применение убирает только выбранную пробу и кэш, сохраняет кандидата и неизвестный файл и сообщает остаток и размер",
+            "verification": "Запустить scripts/tests/test_target_maintenance.py на фикстуре с хешами всех файлов до и после просмотра и применения; проверить точный список удалённых и сохранённых путей"
+          },
+          {
+            "id": "HG-0019-S3",
+            "given": "В изолированной фикстуре есть ссылка/junction за пределы проекта либо признак активной сборки, а рядом лежит действующий кандидат",
+            "when": "Запросить применение обслуживания",
+            "then": "Путь за пределы корня и кандидат не изменены; при активной сборке удаление не начинается; причина отказа видна в отчёте",
+            "verification": "Запустить scripts/tests/test_target_maintenance.py с внешним sentinel-файлом, reparse point и признаком активной сборки; сверить байты кандидата и sentinel после отказа"
+          }
+        ]
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "HG-0019-T1",
+      "description": "Закрепить допустимую структуру target и перенести проектные выходы скриптов в target/highgrade",
+      "done": true
+    },
+    {
+      "id": "HG-0019-T2",
+      "description": "Добавить безопасный просмотр и обслуживание target с явным списком удаления",
+      "done": true
+    },
+    {
+      "id": "HG-0019-T3",
+      "description": "Проверить ссылки на результаты, очистить прежние временные файлы и устаревшие Cargo-кэши",
+      "done": true
+    },
+    {
+      "id": "HG-0019-T4",
+      "description": "Проверить защитные сценарии, сборку кандидата, согласованность документов и итоговый размер",
+      "done": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "HG-0019-C1",
+      "action": "python -m unittest discover -s scripts/tests -v",
+      "file": "scripts/tests/test_build_release.py",
+      "inputs": [
+        "scripts/build-release.py",
+        "scripts/tests/test_build_release.py"
+      ],
+      "observation": "Кандидат построен из зафиксированного SHA в target/highgrade; временные исходники удалены; сбой следующей сборки сохраняет кандидата",
+      "preparation": "Временный Git/Cargo-проект с зафиксированным SHA, грязным рабочим деревом и рабочим кандидатом",
+      "runner": null,
+      "scenario_ids": [
+        "HG-0019-S1"
+      ],
+      "selector": "test_exact_revision_repeat_and_failed_build_preserve_candidate"
+    },
+    {
+      "id": "HG-0019-C2",
+      "action": "python -m unittest discover -s scripts/tests -v",
+      "file": "scripts/tests/test_target_maintenance.py",
+      "inputs": [
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ],
+      "observation": "Просмотр ничего не меняет; применение удаляет выбранное и сохраняет кандидата и неизвестное",
+      "preparation": "Временный target с пробой, кандидатом и неизвестным файлом",
+      "runner": null,
+      "scenario_ids": [
+        "HG-0019-S2"
+      ],
+      "selector": "test_preview_is_read_only_and_apply_preserves_candidate_and_unknown,test_cache_cleanup_requires_explicit_selection"
+    },
+    {
+      "id": "HG-0019-C3",
+      "action": "python -m unittest discover -s scripts/tests -v",
+      "file": "scripts/tests/test_target_maintenance.py",
+      "inputs": [
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ],
+      "observation": "Отказ до удаления; внешние данные, кандидат и проба сохраняются",
+      "preparation": "Временный target с внешним sentinel, junction, кандидатом и признаком работающего Cargo",
+      "runner": null,
+      "scenario_ids": [
+        "HG-0019-S3"
+      ],
+      "selector": "test_active_build_and_recovery_state_refuse_without_changes,test_link_outside_root_refuses_and_preserves_sentinel"
+    }
+  ],
+  "imports": {},
   "baseline": {
     "HG-0002-R1": "dc22b00bf97392f220b242f7d3932361e9cdc63da955ac4ea64c4cfec91b7d87",
     "HG-0002-R2": "e663fd3fd1f74dabfb58e12191419dc948fbe7a269edc60cc028fcd22846dedd",
@@ -53,130 +178,8 @@
     "HG-0018-R1": "4b18854c572510579bf0a4bcb526b232b12433a88067da3aa27ed3f87de2ed8e",
     "HG-0018-R2": "b612f5ec539e4a9227bbccc706dc63f6a22a85383d5063850dd94e70eea8b490"
   },
-  "checks": [
-    {
-      "action": "python -m unittest discover -s scripts/tests -v",
-      "file": "scripts/tests/test_build_release.py",
-      "id": "HG-0019-C1",
-      "inputs": [
-        "scripts/build-release.py",
-        "scripts/tests/test_build_release.py"
-      ],
-      "observation": "Кандидат построен из зафиксированного SHA в target/highgrade; временные исходники удалены; сбой следующей сборки сохраняет кандидата",
-      "preparation": "Временный Git/Cargo-проект с зафиксированным SHA, грязным рабочим деревом и рабочим кандидатом",
-      "runner": null,
-      "scenario_ids": [
-        "HG-0019-S1"
-      ],
-      "selector": "test_exact_revision_repeat_and_failed_build_preserve_candidate"
-    },
-    {
-      "action": "python -m unittest discover -s scripts/tests -v",
-      "file": "scripts/tests/test_target_maintenance.py",
-      "id": "HG-0019-C2",
-      "inputs": [
-        "scripts/target-maintenance.py",
-        "scripts/tests/test_target_maintenance.py"
-      ],
-      "observation": "Просмотр ничего не меняет; применение удаляет выбранное и сохраняет кандидата и неизвестное",
-      "preparation": "Временный target с пробой, кандидатом и неизвестным файлом",
-      "runner": null,
-      "scenario_ids": [
-        "HG-0019-S2"
-      ],
-      "selector": "test_preview_is_read_only_and_apply_preserves_candidate_and_unknown,test_cache_cleanup_requires_explicit_selection"
-    },
-    {
-      "action": "python -m unittest discover -s scripts/tests -v",
-      "file": "scripts/tests/test_target_maintenance.py",
-      "id": "HG-0019-C3",
-      "inputs": [
-        "scripts/target-maintenance.py",
-        "scripts/tests/test_target_maintenance.py"
-      ],
-      "observation": "Отказ до удаления; внешние данные, кандидат и проба сохраняются",
-      "preparation": "Временный target с внешним sentinel, junction, кандидатом и признаком работающего Cargo",
-      "runner": null,
-      "scenario_ids": [
-        "HG-0019-S3"
-      ],
-      "selector": "test_active_build_and_recovery_state_refuse_without_changes,test_link_outside_root_refuses_and_preserves_sentinel"
-    }
-  ],
+  "revision_tags": [],
   "created_at": 1790337620,
-  "depends_on": [],
-  "goal": "Каталог сборок и временных файлов Проекта остаётся понятным, воспроизводимым и безопасным для обслуживания.",
-  "id": "HG-0019",
-  "imports": {},
-  "operations": [
-    {
-      "action": "add",
-      "requirement": {
-        "id": "HG-0019-R1",
-        "scenarios": [
-          {
-            "given": "Чистый исходный проект и разрешённая локальная проверка, которая создаёт кандидата выпуска и временную пробу",
-            "id": "HG-0019-S1",
-            "then": "Кандидат, кэш и журналы находятся в назначенных подкаталогах target/highgrade; временная проба убрана; в корне target нет проектных файлов; сохранённые доказательства доступны вне target",
-            "verification": "В изолированной копии выполнить scripts/build-release.py для точного SHA, проверить созданные пути и отсутствие оставшихся проб после завершения; сверить долговременные доказательства и корень target",
-            "when": "Выполнить сборку кандидата и завершить проверку"
-          }
-        ],
-        "statement": "Проект SHALL оставлять в корне target только штатные каталоги и файлы Cargo/nextest и каталог highgrade. Проектные кандидат выпуска, кэш его сборки, журналы, инструменты, рабочие файлы и временные пробы SHALL иметь документированные отдельные пути внутри target/highgrade. Долговременные доказательства SHALL храниться вне target. Временная проба SHALL удаляться после завершения её задачи.",
-        "title": "Разделение результатов сборки и временной работы"
-      }
-    },
-    {
-      "action": "add",
-      "requirement": {
-        "id": "HG-0019-R2",
-        "scenarios": [
-          {
-            "given": "В изолированной фикстуре есть известная временная проба, воспроизводимый Cargo-кэш, кандидат выпуска и неизвестный файл",
-            "id": "HG-0019-S2",
-            "then": "Просмотр ничего не меняет; применение убирает только выбранную пробу и кэш, сохраняет кандидата и неизвестный файл и сообщает остаток и размер",
-            "verification": "Запустить scripts/tests/test_target_maintenance.py на фикстуре с хешами всех файлов до и после просмотра и применения; проверить точный список удалённых и сохранённых путей",
-            "when": "Запустить просмотр, затем явно применить разрешённую очистку"
-          },
-          {
-            "given": "В изолированной фикстуре есть ссылка/junction за пределы проекта либо признак активной сборки, а рядом лежит действующий кандидат",
-            "id": "HG-0019-S3",
-            "then": "Путь за пределы корня и кандидат не изменены; при активной сборке удаление не начинается; причина отказа видна в отчёте",
-            "verification": "Запустить scripts/tests/test_target_maintenance.py с внешним sentinel-файлом, reparse point и признаком активной сборки; сверить байты кандидата и sentinel после отказа",
-            "when": "Запросить применение обслуживания"
-          }
-        ],
-        "statement": "Проект SHALL предоставлять просмотр размера и кандидатов на очистку без изменения файлов. Применение SHALL удалять только подтверждённые временные результаты и выбранные воспроизводимые Cargo-кэши внутри target при отсутствии активной сборки; неизвестные файлы, reparse points, кандидат выпуска и аварийная копия SHALL сохраняться и сообщаться отдельно. Мягкий бюджет после обслуживания SHALL составлять 600 МиБ; превышение SHALL сообщаться без опасной принудительной очистки.",
-        "title": "Безопасное обслуживание каталога сборок"
-      }
-    }
-  ],
-  "questions": [],
-  "rationale": "В корне target накопились кэши Cargo, выпускные файлы и 139 разрозненных временных файлов. Неявное владение путями мешает отличить воспроизводимый мусор от кандидата выпуска и доказательств.",
-  "related_to": [],
-  "scope": "Только исходный Проект High Grade: локальные сборочные пути, временные результаты, разовая очистка и инструкции. Общая Поставка и подключаемые проекты не меняются.",
-  "tags": [],
-  "tasks": [
-    {
-      "description": "Закрепить допустимую структуру target и перенести проектные выходы скриптов в target/highgrade",
-      "done": true,
-      "id": "HG-0019-T1"
-    },
-    {
-      "description": "Добавить безопасный просмотр и обслуживание target с явным списком удаления",
-      "done": true,
-      "id": "HG-0019-T2"
-    },
-    {
-      "description": "Проверить ссылки на результаты, очистить прежние временные файлы и устаревшие Cargo-кэши",
-      "done": true,
-      "id": "HG-0019-T3"
-    },
-    {
-      "description": "Проверить защитные сценарии, сборку кандидата, согласованность документов и итоговый размер",
-      "done": true,
-      "id": "HG-0019-T4"
-    }
-  ],
-  "title": "Жизненный цикл каталога target Проекта"
+  "archived": true,
+  "abandoned_reason": null
 }

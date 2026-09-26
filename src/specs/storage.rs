@@ -439,7 +439,7 @@ fn write_format(root: &Path, s: &Store, format: Option<u32>) -> Result<()> {
         }
         new.insert(
             format!("specs/changes/{}/spec.json", c.id),
-            serde_json::to_vec_pretty(&v).unwrap(),
+            pretty_value(&v).unwrap().into_bytes(),
         );
         if !c.evidence.is_empty()
             || c.review.is_some()

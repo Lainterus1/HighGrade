@@ -57,6 +57,7 @@ fn allowed_options(op: &str) -> Result<Vec<&'static str>> {
         "spec-check" => vec!["--root", "--id", "--brief"],
         "spec-save" | "spec-evidence" => vec!["--root", "--id", "--expected", "--input"],
         "spec-evidence-batch" => vec!["--root", "--expected", "--input"],
+        "spec-metadata" => vec!["--root", "--expected", "--input", "--apply"],
         "spec-review" => vec![
             "--root",
             "--id",
@@ -137,6 +138,7 @@ fn command_help(op: &str) -> Result<Report> {
     let schemas = highgrade::specs::input_schemas();
     let key = match op {
         "spec-save" => "change",
+        "spec-metadata" => "metadata_batch",
         "spec-evidence" => "evidence_input",
         "spec-evidence-batch" => "evidence_batch",
         "spec-run-import" => "report_import",
@@ -144,7 +146,7 @@ fn command_help(op: &str) -> Result<Report> {
         "spec-runner-set" => "runner",
         _ => "",
     };
-    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"spec-read"=>"--id or --requirement; --view requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read","doctor"=>"Optional --action spec-read|spec-run; spec-run requires --id, optional --check (default all)","global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":"highgrade spec-schema --root PATH"}));
+    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"spec-read"=>"--id or --requirement; --view requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read; first modify/remove baseline capture requires --expected","doctor"=>"Optional --action spec-read|spec-run; spec-run requires --id, optional --check (default all)","spec-metadata"=>"Preview by default; --apply true commits the entire validated batch with --expected CAS", "global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":"highgrade spec-schema --root PATH"}));
     Ok(r)
 }
 
@@ -157,7 +159,7 @@ fn run() -> Result<Report> {
         }
         let mut r = Report::new("help");
         r.measurements.push(json!({
-            "project_commands":"doctor inspect inventory trace spec-list spec-new spec-read spec-edit spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-run-inputs spec-run-import spec-evidence-batch spec-stats",
+            "project_commands":"doctor inspect inventory trace spec-list spec-new spec-read spec-edit spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-run-inputs spec-run-import spec-evidence-batch spec-stats spec-metadata",
             "installation_commands":"global-install global-update global-status global-recover",
             "compatibility_commands":"legacy-install legacy-update",
             "project_root":"--root PATH",
@@ -285,7 +287,7 @@ fn run() -> Result<Report> {
             let mut r = Report::new("inventory");
             r.measurements
                 .push(json!({"files":files,"count":files.len(),"exclusions":exclusions,"exclusions_sha256":exclusions_sha256}));
-            r.limitations.push("Список файлов и хешей не заменяет смысловой аудит; receipt создаётся после завершённого аудита и решения автора.".into());
+            r.limitations.push("Список файлов и хешей не заменяет смысловой аудит; audit receipt относится только к прежнему legacy-install.".into());
             Ok(r)
         }
         "trace" => highgrade::trace::trace(root, get("--record")?),
@@ -295,14 +297,20 @@ fn run() -> Result<Report> {
 fn main() {
     match run() {
         Ok(report) => {
-            println!("{}", serde_json::to_string_pretty(&report).unwrap());
+            println!(
+                "{}",
+                highgrade::specs::pretty_value(&serde_json::to_value(&report).unwrap()).unwrap()
+            );
             std::process::exit(report.exit_code());
         }
         Err(error) => {
             let mut report = Report::new("error");
             report.finding("failed", "OperationFailed", "arguments-or-input", &error);
             report.measurements.push(json!({"next":"highgrade <command> --help", "input_schema":"highgrade spec-schema --root PATH"}));
-            println!("{}", serde_json::to_string_pretty(&report).unwrap());
+            println!(
+                "{}",
+                highgrade::specs::pretty_value(&serde_json::to_value(&report).unwrap()).unwrap()
+            );
             std::process::exit(report.exit_code());
         }
     }

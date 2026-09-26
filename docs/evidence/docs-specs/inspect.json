@@ -1,0 +1,462 @@
+{
+  "findings": [
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "README.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "README.md",
+      "message": "https://openai.com/codex/",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "README.md",
+      "message": "https://rustup.rs/",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-10.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-11.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-12.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-13.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/runs/36025300799",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-13.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-14.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/runs/36038750322",
+      "status": "warning"
+    }
+  ],
+  "limitations": [
+    "Структурная проверка, не смысловой аудит. Сеть не использована. История бюджета проверяется внутри записи; изменение согласованной базы требует отдельного сравнения/решения автора.",
+    "Якоря: стандартные Markdown-заголовки, Unicode lowercase; HTML/custom anchors и отдельные диалекты могут требовать ручной проверки. --scope использует явную карту, не граф зависимостей кода."
+  ],
+  "measurements": [
+    {
+      "bytes": 6422,
+      "lines": 76,
+      "path": "README.md",
+      "role": "purpose-navigation",
+      "sha256": "6b37c70693a848e53980a70500c0d1cea58f6bd8c46279b4e191c65f625ad987",
+      "token_estimate": 1020,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3497,
+      "lines": 24,
+      "path": "AGENTS.md",
+      "role": "agent-rules",
+      "sha256": "275a1e0e7a8f459580528b162e963249767de0e5507051b124c350a261cbcabe",
+      "token_estimate": 535,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 6934,
+      "lines": 41,
+      "path": "docs/ARCHITECTURE.md",
+      "role": "current-architecture",
+      "sha256": "198ace7a45367ffc6ae75b7de217abafa9ce94667b32132a7bc445c8315e06a2",
+      "token_estimate": 1116,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 4521,
+      "lines": 21,
+      "path": "docs/ENGINEERING.md",
+      "role": "engineering-rules",
+      "sha256": "e4ae77acaab68c812e90222e5a4bfc6bff4f2afcef9c3ffd4a97c47164a2bc47",
+      "token_estimate": 663,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 8978,
+      "lines": 90,
+      "path": "docs/DEVELOPMENT.md",
+      "role": "commands-procedures",
+      "sha256": "780619a2c741df78357c72212a9158b9c8d23ed7cde56a0e298408d2a2bf4e0c",
+      "token_estimate": 1574,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2427,
+      "lines": 14,
+      "path": "plugins/README.md",
+      "role": "component-navigation",
+      "sha256": "73b41d27ae57c9ea8f342fe7a2e26191633220352f2525320ccd38a95e065965",
+      "token_estimate": 382,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 6598,
+      "lines": 27,
+      "path": "docs/workflow/QUALITY.md",
+      "role": "current-quality-and-evidence-rules",
+      "sha256": "64371a248f99ddeef0f6cd552866cdf33f600e6ba69147b158f787b9802bc143",
+      "token_estimate": 983,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 68,
+      "lines": 3,
+      "path": ".config/nextest.toml",
+      "role": "native-rust-scenario-report-configuration",
+      "sha256": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+      "token_estimate": 17,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 4904,
+      "lines": 39,
+      "path": "docs/workflow/CONTEXT.md",
+      "role": "accepted-context-policy",
+      "sha256": "63306d7b7b63ce79bb6a13e8e5d16805858b097c58e1cab3b67ab817a1a86c80",
+      "token_estimate": 730,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 4333,
+      "lines": 25,
+      "path": "docs/research/bdd-workflow.md",
+      "role": "research-evidence",
+      "sha256": "d2d11e90cf69798346ccb6857816e459d95af894a11738bb16e21dc5cda45956",
+      "token_estimate": 632,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 17035,
+      "lines": 82,
+      "path": "docs/archive/README.md",
+      "role": "archive-navigation",
+      "sha256": "95bf74da035216b15fbdabdf8ce2044db58bba3a51b9f1f53e8e00aa79b2d162",
+      "token_estimate": 2859,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 5755,
+      "lines": 37,
+      "path": "docs/reviews/project-organization-review.md",
+      "role": "organization-evidence",
+      "sha256": "bdddf576571123663177dd5542b005a47d2b1962d39e19a32243b8b9f8f53d00",
+      "token_estimate": 875,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 19300,
+      "lines": 82,
+      "path": "docs/reviews/first-release-review.md",
+      "role": "first-release-document-review",
+      "sha256": "a4ceeeb61b2d6ab8c58474d7e466992133504add7fdd80d1c58ff4cd91591724",
+      "token_estimate": 2779,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 8165,
+      "lines": 38,
+      "path": "docs/reviews/p0-p2-review.md",
+      "role": "p0-p2-evidence",
+      "sha256": "bae87529f272f3279a5a86dd930079e0727681504f798d194c1a43c01a783da7",
+      "token_estimate": 1226,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 4403,
+      "lines": 27,
+      "path": "docs/workflow/GLOBAL.md",
+      "role": "current-global-workflow-contract",
+      "sha256": "f422dc6f0a40065e2253c6ae7849b064a619b5ac5d481fc2707d5503bd883a89",
+      "token_estimate": 690,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 12796,
+      "lines": 46,
+      "path": "docs/reviews/executable-scenarios-review.md",
+      "role": "executable-scenarios-final-review",
+      "sha256": "427c4bd6c90c5feb9ec801576241c10724540672310a1edb4bb04e68f125815f",
+      "token_estimate": 1972,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3377,
+      "lines": 52,
+      "path": "docs/evidence/executable-scenarios/run.json",
+      "role": "executable-scenarios-native-run-record",
+      "sha256": "91e8e804e6c8364c51418b232e5aa75d1b3dd9f284ded6b58c9745bb50eda7ff",
+      "token_estimate": 845,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2730,
+      "lines": 33,
+      "path": "docs/archive/plans/2026-09-24/2026-09-24-portable-delivery.md",
+      "role": "portable-delivery-execution-plan",
+      "sha256": "c810e5e93c6634eaab20722e73d7e7cfc08f997759a61e621274bd1af888c94b",
+      "token_estimate": 682,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 1739,
+      "lines": 19,
+      "path": "docs/archive/plans/2026-09-24/2026-09-24-portable-delivery.state.md",
+      "role": "portable-delivery-session-state",
+      "sha256": "8edd064e9d62185dd2b32bc0651936ff87a23b621c5f7fd33fa9f7234075c979",
+      "token_estimate": 435,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 14578,
+      "lines": 57,
+      "path": "docs/reviews/portable-delivery.md",
+      "role": "portable-delivery-evidence",
+      "sha256": "89a1b22292d44d3e3ab47f87e15954c597d68d9cef98b55ddb49225c663e883d",
+      "token_estimate": 2260,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3121,
+      "lines": 11,
+      "path": "docs/releases/v0-2-10.md",
+      "role": "release-evidence",
+      "sha256": "54d11614136af7048bf5fbfba5317f126eb001ba4413c90fb3f358adad4a2837",
+      "token_estimate": 511,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2288,
+      "lines": 11,
+      "path": "docs/releases/v0-2-11.md",
+      "role": "release-evidence",
+      "sha256": "fa2350b0f0c775db97ab83ca03bc04be2d1017d3ce9db14b04e1952875b65c76",
+      "token_estimate": 387,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2273,
+      "lines": 27,
+      "path": "docs/archive/plans/2026-09-24/2026-09-24-structured-specifications.md",
+      "role": "structured-specifications-execution",
+      "sha256": "d20d64b2f65e6af64bc464279297cdd10eb4cfe32a64045031b96d547b4fe116",
+      "token_estimate": 569,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 1838,
+      "lines": 20,
+      "path": "docs/archive/plans/2026-09-24/2026-09-24-structured-specifications.state.md",
+      "role": "structured-specifications-execution",
+      "sha256": "1fd63b8cabd6368d493e9d9814b9f9c165968dd437716ee7f0b0d90641de6bd3",
+      "token_estimate": 460,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 8386,
+      "lines": 46,
+      "path": "docs/reviews/structured-specifications.md",
+      "role": "structured-specifications-evidence",
+      "sha256": "907639833f4e6a7cf5fac2842be341a3745a315545675ed294794e64221d276f",
+      "token_estimate": 1308,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2291,
+      "lines": 13,
+      "path": "docs/releases/v0-2-12.md",
+      "role": "release-evidence",
+      "sha256": "ee390cdb223a55ce3af0663d70f42ee25f11fffcfe8b307de949113a368d222e",
+      "token_estimate": 376,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 6228,
+      "lines": 65,
+      "path": "docs/archive/examples/native-specification/README.md",
+      "role": "native-specification-example",
+      "sha256": "075beb1f6403d71170ce3466b45051c339c593c8b9ebac052ffdb5585c115b69",
+      "token_estimate": 985,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 5765,
+      "lines": 36,
+      "path": "docs/archive/plans/2026-09-24/2026-09-24-spec-progress.state.md",
+      "role": "spec-progress-session",
+      "sha256": "1c580eb84ea0bc472d7817a57b46f11481d61ed2d6bd584a52c4b4a478761304",
+      "token_estimate": 872,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 8139,
+      "lines": 47,
+      "path": "docs/reviews/spec-progress.md",
+      "role": "spec-progress-evidence-and-handoff",
+      "sha256": "a8a56f8dc17500945e6969b512d5d1a1c9484d0ed686a5ba1ace017189900100",
+      "token_estimate": 1282,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 5041,
+      "lines": 30,
+      "path": "docs/releases/v0-2-13.md",
+      "role": "release-evidence",
+      "sha256": "8c72250cf0820966b5205176bd81df465f499ba77eb07545e67e8d9b1a5447a1",
+      "token_estimate": 806,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 1957,
+      "lines": 21,
+      "path": "specs/README.md",
+      "role": "native-spec-catalog-navigation",
+      "sha256": "66a84a7abe612e72377aa1e36fa4d259972c0e2e303b510494ef4c65c4e0b43a",
+      "token_estimate": 313,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 7247,
+      "lines": 44,
+      "path": "docs/archive/plans/2026-09-24/2026-09-24-spec-catalog.state.md",
+      "role": "current-execution-state",
+      "sha256": "d8d45cf117b95e11c48cfb0635bf1d13d59bd71781d4d2b2f532ee1263a674a9",
+      "token_estimate": 1159,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 806,
+      "lines": 5,
+      "path": "docs/examples/spec-catalog/README.md",
+      "role": "current-catalog-example",
+      "sha256": "32c0b6cfea5fe87ea1184f004655aa17b19aef515118b9b49ef9a850d436ec14",
+      "token_estimate": 121,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 6644,
+      "lines": 29,
+      "path": "docs/reviews/spec-catalog.md",
+      "role": "catalog-verification-history",
+      "sha256": "350fd67f7b4834ed422fb2e3d89af4193c5584fd465cf4f00f0a50c1f0bc5575",
+      "token_estimate": 995,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3048,
+      "lines": 21,
+      "path": "docs/releases/v0-2-14.md",
+      "role": "release-record",
+      "sha256": "d39f583194721b60093be8822469cd69a815414d73206d09a99c58fc9377ff28",
+      "token_estimate": 517,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 8234,
+      "lines": 40,
+      "path": "docs/BUILD.md",
+      "role": "project-build-lifecycle",
+      "sha256": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
+      "token_estimate": 1318,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2310,
+      "lines": 133,
+      "path": "specs/catalog.json",
+      "role": "native-requirement-catalog",
+      "sha256": "abb8368a42ebdcad7c55ca18cec1c0cb64635bd983e707aeca94f3a28ccf3329",
+      "token_estimate": 578,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2444,
+      "lines": 16,
+      "path": "docs/README.md",
+      "role": "project-document-navigation",
+      "sha256": "7d09de60ecbd88d09716eb41a7f98f3651d26b823fc34ce12c37b3ebcbe45bd0",
+      "token_estimate": 400,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "required_links": [
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "AGENTS.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/ARCHITECTURE.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/ENGINEERING.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/DEVELOPMENT.md"
+        },
+        {
+          "from": "AGENTS.md",
+          "status": "present",
+          "to": ".highgrade/project/INSTRUCTIONS.md"
+        },
+        {
+          "from": ".highgrade/project/INSTRUCTIONS.md",
+          "status": "present",
+          "to": ".highgrade/project/documents.json"
+        }
+      ]
+    },
+    {
+      "scope": "all-registered",
+      "registry": ".highgrade/project/documents.json",
+      "route": [
+        "README.md",
+        "AGENTS.md",
+        "docs/ARCHITECTURE.md",
+        "docs/ENGINEERING.md",
+        "docs/DEVELOPMENT.md",
+        "plugins/README.md",
+        "docs/workflow/QUALITY.md",
+        ".config/nextest.toml",
+        "docs/workflow/CONTEXT.md",
+        "docs/workflow/GLOBAL.md",
+        "specs/README.md",
+        "docs/examples/spec-catalog/README.md",
+        "docs/BUILD.md"
+      ],
+      "route_bytes": 59749
+    }
+  ],
+  "operation": "inspect",
+  "status": "warning"
+}

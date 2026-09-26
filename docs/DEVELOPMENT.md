@@ -16,9 +16,9 @@ $hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.e
 
 Краткий статус: `spec-check --id HG-CHANGE --brief true`. Рабочий контекст: `spec-read --view summary|editable`; full — для истории.
 
-Каталог ведёт совместимая CLI; global-status определяет установленную, target/debug — кандидат разработки. Маршрут: `spec-new` с хешем → `spec-read --view editable` → `spec-edit --input patch.json --expected HASH --validate true`. Полный spec-save остаётся совместимым. Каталог напрямую не редактируй; параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
+Каталог ведёт совместимая CLI; global-status определяет установленную, target/debug — кандидат разработки. Маршрут: `spec-new` с хешем → `spec-read --view editable` → `spec-edit --input patch.json --expected HASH --validate true`. Полный spec-save остаётся совместимым. Каталог напрямую не редактируй; параметры — в [справочнике](../kit/references/tools/specifications.md#структурированные-спецификации).
 
-Далее: `spec-validate` → работа и тесты → `spec-evidence` → независимое ревью и `spec-review` → `spec-integrate --brief true` (включает проверку готовности). Отдельный spec-check нужен для просмотра причин. Решение человека пишет spec-decide. Фокус CLI: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
+Далее: `spec-validate` → работа и тесты → `spec-evidence` → независимое ревью и `spec-review` → `spec-integrate --brief true` (включает проверку готовности). spec-check показывает причины. Решение человека пишет spec-decide. Фокус CLI: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
 
 ## Сценарии и исходные результаты
 

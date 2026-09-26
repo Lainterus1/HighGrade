@@ -135,6 +135,9 @@ pub(super) fn legacy_revision(c: &Change) -> String {
 }
 
 pub(super) fn contract_revision(c: &Change) -> String {
+    contract_revision_mode(c, false)
+}
+fn contract_revision_mode(c: &Change, old: bool) -> String {
     let mut value = serde_json::to_value(c).expect("serializable change");
     let object = value.as_object_mut().unwrap();
     for field in [
@@ -148,8 +151,21 @@ pub(super) fn contract_revision(c: &Change) -> String {
         "title",
         "rationale",
         "related_to",
+        "scoped_baseline",
+        "revision_tags",
     ] {
         object.remove(field);
+    }
+    if old {
+        if let Some(tags) = &c.revision_tags {
+            if tags.is_empty() {
+                object.remove("tags");
+            } else {
+                object.insert("tags".into(), json!(tags));
+            }
+        }
+    } else {
+        object.remove("tags");
     }
     for task in object.get_mut("tasks").unwrap().as_array_mut().unwrap() {
         task.as_object_mut().unwrap().remove("done");
@@ -158,6 +174,9 @@ pub(super) fn contract_revision(c: &Change) -> String {
 }
 
 pub(super) fn revision(c: &Change) -> String {
+    revision_mode(c, false)
+}
+fn revision_mode(c: &Change, old: bool) -> String {
     let evidence: BTreeMap<_, _> = c.evidence.iter().map(|(id, e)| {
         let files: BTreeMap<_, _> = e.files.iter().filter(|(p, _)| e.input_paths.as_ref().is_none_or(|inputs| inputs.contains(*p))).collect();
         (id, json!({"scenario":e.scenario_sha256,"method":e.method,"outcome":e.outcome,"observation":e.observation,"command":e.command,"files":files}))
@@ -176,12 +195,12 @@ pub(super) fn revision(c: &Change) -> String {
         latest.insert(&run.check, json!({"definition":run.check_sha256,"outcome":run.outcome,"files":files,"inputs_after":run.inputs_after}));
     }
     digest(
-        &json!({"revision_schema":2,"contract":contract_revision(c),"evidence":evidence,"latest_checks":latest}),
+        &json!({"revision_schema":if old {2} else {3},"contract":contract_revision_mode(c,old),"evidence":evidence,"latest_checks":latest}),
     )
 }
 
 pub(super) fn matches_revision(c: &Change, expected: &str) -> bool {
-    expected == revision(c) || expected == legacy_revision(c)
+    expected == revision(c) || expected == revision_mode(c, true) || expected == legacy_revision(c)
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, PartialEq)]
@@ -331,4 +350,28 @@ pub(super) fn list(root: &Path, s: &Store, selected: &[&Change]) -> Value {
         changes.push(json!({"id":c.id,"title":c.title,"goal":c.goal,"created_at":c.created_at,"archived":c.archived,"technical":technical,"human":human,"change_sha256":revision(c)}));
     }
     json!({"requirements":s.requirements.keys().collect::<Vec<_>>(),"changes":changes,"summary":counts,"origins":s.origins.iter().map(|(id,o)|(id,&o.path)).collect::<BTreeMap<_,_>>()})
+}
+
+#[cfg(test)]
+mod metadata_compatibility {
+    use super::*;
+    // highgrade: HG-0038-S1
+    #[test]
+    fn old_tagged_revision_survives_metadata_but_not_material_drift() {
+        let store =
+            decode_store(include_bytes!("../../tests/fixtures/native-v1/store.json")).unwrap();
+        let mut c = store.changes.values().next().unwrap().clone();
+        c.tags.insert("old".into());
+        let old = revision_mode(&c, true);
+        let before = revision(&c);
+        c.revision_tags = Some(c.tags.clone());
+        c.tags = BTreeSet::from(["new".into()]);
+        assert!(matches_revision(&c, &old));
+        assert_eq!(revision(&c), before);
+        c.tags.clear();
+        assert!(matches_revision(&c, &old));
+        c.goal.push_str(" changed contract");
+        assert!(!matches_revision(&c, &old));
+        assert!(!matches_revision(&c, &before));
+    }
 }

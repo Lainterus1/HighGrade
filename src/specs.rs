@@ -10,9 +10,11 @@ use std::{
     path::{Path, PathBuf},
 };
 mod checks;
+mod presentation;
 mod progress;
 mod relations;
 mod storage;
+pub use presentation::pretty_value;
 pub use storage::{CATALOG, catalog_path};
 
 pub const STORE: &str = ".highgrade/specs/store.json";
@@ -76,7 +78,7 @@ pub fn diagnose(
     Ok(report)
 }
 pub fn input_schemas() -> Value {
-    json!({"change":schemars::schema_for!(Change),"evidence_input":schemars::schema_for!(EvidenceInput),"evidence_batch":schemars::schema_for!(Vec<BatchEvidence>),"report_import":schemars::schema_for!(checks::ImportReport),"decision_input":schemars::schema_for!(progress::DecisionInput),"runner":schemars::schema_for!(checks::Runner)})
+    json!({"change":schemars::schema_for!(Change),"metadata_batch":schemars::schema_for!(Vec<MetadataInput>),"evidence_input":schemars::schema_for!(EvidenceInput),"evidence_batch":schemars::schema_for!(Vec<BatchEvidence>),"report_import":schemars::schema_for!(checks::ImportReport),"decision_input":schemars::schema_for!(progress::DecisionInput),"runner":schemars::schema_for!(checks::Runner)})
 }
 const LIMIT: u64 = 8 * 1024 * 1024;
 
@@ -173,6 +175,10 @@ pub struct Change {
     pub tasks: Vec<Task>,
     pub operations: Vec<Delta>,
     pub baseline: BTreeMap<String, String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub scoped_baseline: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub revision_tags: Option<BTreeSet<String>>,
     pub imports: BTreeMap<String, Origin>,
     pub evidence: BTreeMap<String, Evidence>,
     pub review: Option<Review>,
@@ -423,11 +429,26 @@ fn write(root: &Path, s: &Store) -> Result<()> {
         fs::rename(temp, p).map_err(|e| e.to_string())
     }
 }
-fn baseline(s: &Store) -> BTreeMap<String, String> {
-    s.requirements
-        .iter()
-        .map(|(id, r)| (id.clone(), digest(r)))
-        .collect()
+fn extend_baseline(c: &mut Change, requirements: &BTreeMap<String, Requirement>) -> Result<()> {
+    if c.scoped_baseline != Some(true) {
+        return Ok(());
+    }
+    for d in &c.operations {
+        if matches!(d, Delta::Modify { .. } | Delta::Remove { .. })
+            && !c.baseline.contains_key(d.id())
+        {
+            let r = requirements
+                .get(d.id())
+                .ok_or("RequirementMissing: baseline")?;
+            c.baseline.insert(d.id().into(), digest(r));
+        }
+    }
+    Ok(())
+}
+fn preserve_tag_revision(old: &Change, new: &mut Change) {
+    if old.tags != new.tags && new.revision_tags.is_none() {
+        new.revision_tags = Some(old.tags.clone());
+    }
 }
 fn revision(c: &Change) -> String {
     progress::revision(c)
@@ -485,27 +506,28 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             .push(json!({"store_sha256":load_unlocked(&root)?.1}));
         return Ok(report);
     }
-    let mutation = matches!(
-        op,
-        "spec-new"
-            | "spec-save"
-            | "spec-edit"
-            | "spec-evidence"
-            | "spec-evidence-batch"
-            | "spec-run-import"
-            | "spec-review"
-            | "spec-integrate"
-            | "spec-transfer"
-            | "spec-import"
-            | "spec-abandon"
-            | "spec-migrate"
-            | "spec-decide"
-            | "spec-tag-set"
-            | "spec-tag-remove"
-            | "spec-tag-merge"
-            | "spec-runner-set"
-            | "spec-run"
-    );
+    let mutation = (op == "spec-metadata" && options.get("--apply").is_some_and(|v| v == "true"))
+        || matches!(
+            op,
+            "spec-new"
+                | "spec-save"
+                | "spec-edit"
+                | "spec-evidence"
+                | "spec-evidence-batch"
+                | "spec-run-import"
+                | "spec-review"
+                | "spec-integrate"
+                | "spec-transfer"
+                | "spec-import"
+                | "spec-abandon"
+                | "spec-migrate"
+                | "spec-decide"
+                | "spec-tag-set"
+                | "spec-tag-remove"
+                | "spec-tag-merge"
+                | "spec-runner-set"
+                | "spec-run"
+        );
     let _guard = if mutation
         || paths::safe(&root, ".highgrade/specs")?.exists()
         || storage::exists(&root)?
@@ -647,7 +669,9 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                     done: false,
                 }],
                 operations: vec![Delta::Add { requirement: req }],
-                baseline: baseline(&store),
+                baseline: BTreeMap::new(),
+                scoped_baseline: Some(true),
+                revision_tags: None,
                 imports: BTreeMap::new(),
                 evidence: BTreeMap::new(),
                 review: None,
@@ -663,7 +687,9 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 "/edit",
             )?;
             let fields = patch.as_object().ok_or("InvalidEdit: expected object")?;
+            let requirements = store.requirements.clone();
             let c = change_mut(&mut store, get("--id")?)?;
+            let previous = c.clone();
             let mut value = serde_json::to_value(&*c).unwrap();
             for (key, field) in fields {
                 if !EDITABLE.contains(&key.as_str()) {
@@ -672,6 +698,20 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 value[key] = field.clone();
             }
             *c = decode(&serde_json::to_vec(&value).unwrap(), "/change")?;
+            preserve_tag_revision(&previous, c);
+            if options.contains_key("--expected-local")
+                && c.scoped_baseline == Some(true)
+                && c.operations.iter().any(|d| {
+                    matches!(d, Delta::Modify { .. } | Delta::Remove { .. })
+                        && !c.baseline.contains_key(d.id())
+                })
+            {
+                return Err(
+                    "BaselineCaptureRequiresStoreCAS: reread requirements and use --expected"
+                        .into(),
+                );
+            }
+            extend_baseline(c, &requirements)?;
             if options.get("--validate").is_some_and(|v| v == "true") {
                 readiness(
                     &root,
@@ -687,10 +727,13 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         }
         "spec-save" => {
             let input = paths::safe(&root, get("--input")?)?;
-            let incoming: Change = decode(&paths::read_limited(&input, LIMIT)?, "/change")?;
+            let mut incoming: Change = decode(&paths::read_limited(&input, LIMIT)?, "/change")?;
+            let requirements = store.requirements.clone();
             let c = change_mut(&mut store, get("--id")?)?;
             if incoming.id != c.id
                 || incoming.baseline != c.baseline
+                || incoming.scoped_baseline != c.scoped_baseline
+                || incoming.revision_tags != c.revision_tags
                 || incoming.imports != c.imports
                 || incoming.evidence != c.evidence
                 || incoming.review != c.review
@@ -706,6 +749,8 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                         .into(),
                 );
             }
+            preserve_tag_revision(c, &mut incoming);
+            extend_baseline(&mut incoming, &requirements)?;
             *c = incoming;
         }
         "spec-read" | "spec-diff" | "spec-check" | "spec-validate" => {
@@ -747,6 +792,39 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             } else {
                 return Err("Usage: --id or --requirement required".into());
             }
+        }
+        "spec-metadata" => {
+            if get("--expected")? != sha {
+                return Err("StoreConflict: metadata preview/apply".into());
+            }
+            let entries: Vec<MetadataInput> = decode(
+                &paths::read_limited(&paths::safe(&root, get("--input")?)?, LIMIT)?,
+                "metadata",
+            )?;
+            if entries.is_empty() {
+                return Err("EmptyMetadataBatch".into());
+            }
+            let mut seen = BTreeSet::new();
+            let mut changes = Vec::new();
+            for item in entries {
+                if !seen.insert(item.id.clone()) {
+                    return Err("DuplicateMetadataId".into());
+                }
+                if item.tags.iter().any(|t| !store.tags.contains_key(t)) {
+                    return Err("UnknownTag".into());
+                }
+                let c = store.changes.get_mut(&item.id).ok_or("ChangeMissing")?;
+                if c.tags != item.tags {
+                    changes.push(json!({"id":item.id,"before":c.tags,"after":item.tags}));
+                    if c.revision_tags.is_none() {
+                        c.revision_tags = Some(c.tags.clone());
+                    }
+                    c.tags = item.tags;
+                }
+            }
+            report
+                .measurements
+                .push(json!({"changes":changes,"applied":mutation,"atomic":true}));
         }
         "spec-evidence" => record_evidence(
             &root,
@@ -980,7 +1058,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                             .collect(),
                     ),
                     "summary" => {
-                        json!({"id":c.id,"title":c.title,"goal":c.goal,"scope":c.scope,"tasks":c.tasks,"questions":c.questions,"links":relations::metadata(&store,c),"contract_sha256":progress::contract_revision(c)})
+                        json!({"id":c.id,"title":c.title,"tags":c.tags,"goal":c.goal,"rationale":c.rationale,"scope":c.scope,"tasks":c.tasks,"questions":c.questions,"links":relations::metadata(&store,c),"contract_sha256":progress::contract_revision(c)})
                     }
                     "requirements" => json!({"id":c.id,"operations":c.operations}),
                     _ => return Err("Usage: --view full|summary|editable|requirements".into()),
@@ -1278,6 +1356,12 @@ struct EvidenceInput {
 }
 #[derive(Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
+struct MetadataInput {
+    id: String,
+    tags: BTreeSet<String>,
+}
+#[derive(Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
 struct BatchEvidence {
     id: String,
     evidence: EvidenceInput,
@@ -1429,7 +1513,9 @@ fn import(root: &Path, store: &mut Store, key: &str, input: &str, source: &str) 
             done: false,
         }],
         operations: vec![Delta::Add { requirement: r }],
-        baseline: baseline(store),
+        baseline: BTreeMap::new(),
+        scoped_baseline: Some(true),
+        revision_tags: None,
         imports,
         evidence: BTreeMap::new(),
         review: None,

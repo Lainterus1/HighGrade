@@ -1666,3 +1666,244 @@ fn cargo_runner_requires_a_real_exact_test() {
     assert_eq!(r.status, "failed");
     fs::remove_dir_all(root).unwrap();
 }
+
+// highgrade: HG-0038-S1, HG-0038-S2
+#[test]
+fn metadata_batch_preserves_integrated_history_and_rejects_invalid_batches() {
+    let root = root();
+    brief_fixture(&root, false);
+    let read = call(&root, "spec-read", &[("--id", "HG-0001")]).unwrap();
+    let hashes = read
+        .measurements
+        .iter()
+        .find(|v| v.get("change_sha256").is_some())
+        .unwrap();
+    put(
+        &root,
+        "decision.json",
+        &json!({"decisions":[{"id":"HG-0001","decision":"accepted","decided_by":"test fixture","change_sha256":hashes["change_sha256"],"inputs_sha256":hashes["inputs_sha256"],"verified_revision":"fixture","comment":"test only"}]}),
+    );
+    call(
+        &root,
+        "spec-decide",
+        &[("--expected", &sha(&root)), ("--input", "decision.json")],
+    )
+    .unwrap();
+    assert_eq!(
+        call(
+            &root,
+            "spec-integrate",
+            &[("--id", "HG-0001"), ("--expected", &sha(&root))]
+        )
+        .unwrap()
+        .status,
+        "passed"
+    );
+    call(
+        &root,
+        "spec-tag-set",
+        &[
+            ("--id", "specifications"),
+            ("--title", "Specs"),
+            ("--description", "Contract tools"),
+            ("--expected", &sha(&root)),
+        ],
+    )
+    .unwrap();
+    let results = fs::read(root.join("specs/changes/HG-0001/results.json")).unwrap();
+    let requirement = fs::read(root.join("specs/requirements/HG-0001-R1.json")).unwrap();
+    let original = sha(&root);
+    let valid = json!([{"id":"HG-0001","tags":["specifications"]}]);
+    put(&root, "metadata.json", &valid);
+    let run = |expected: &str, apply: &str| {
+        call(
+            &root,
+            "spec-metadata",
+            &[
+                ("--expected", expected),
+                ("--input", "metadata.json"),
+                ("--apply", apply),
+            ],
+        )
+    };
+    run(&original, "false").unwrap();
+    assert_eq!(sha(&root), original);
+    for invalid in [
+        json!([{"id":"HG-0001","tags":["specifications"]},{"id":"missing","tags":[]}]),
+        json!([{"id":"HG-0001","tags":["unknown"]}]),
+        json!([{"id":"HG-0001","tags":[]},{"id":"HG-0001","tags":[]}]),
+    ] {
+        put(&root, "metadata.json", &invalid);
+        assert!(run(&original, "true").is_err());
+        assert_eq!(sha(&root), original);
+    }
+    put(&root, "metadata.json", &valid);
+    assert!(run("stale", "true").is_err());
+    run(&original, "true").unwrap();
+    assert_eq!(
+        call(&root, "spec-list", &[]).unwrap().measurements[0]["changes"][0]["human"],
+        "accepted"
+    );
+    let after = sha(&root);
+    run(&after, "true").unwrap();
+    assert_eq!(sha(&root), after);
+    assert_eq!(
+        fs::read(root.join("specs/changes/HG-0001/results.json")).unwrap(),
+        results
+    );
+    assert_eq!(
+        fs::read(root.join("specs/requirements/HG-0001-R1.json")).unwrap(),
+        requirement
+    );
+    fs::write(root.join("logic-a.txt"), "material drift").unwrap();
+    put(&root, "metadata.json", &json!([{"id":"HG-0001","tags":[]}]));
+    run(&after, "true").unwrap();
+    assert_eq!(
+        call(&root, "spec-list", &[]).unwrap().measurements[0]["changes"][0]["human"],
+        "stale"
+    );
+    assert_eq!(
+        fs::read(root.join("specs/changes/HG-0001/results.json")).unwrap(),
+        results
+    );
+}
+
+// highgrade: HG-0039-S1, HG-0039-S2
+#[test]
+fn scoped_baseline_captures_only_selected_requirements_and_never_refreshes() {
+    let root = root();
+    brief_fixture(&root, false);
+    call(
+        &root,
+        "spec-integrate",
+        &[("--id", "HG-0001"), ("--expected", &sha(&root))],
+    )
+    .unwrap();
+    let original = json(&root, "specs/requirements/HG-0001-R1.json");
+    create(&root);
+    let c = &specs::load(&root).unwrap().0.changes["HG-0002"];
+    assert!(c.baseline.is_empty());
+    let operations = json!([{"action":"modify","requirement":original}]);
+    edit(&root, "HG-0002", "operations", operations.clone()).unwrap();
+    let captured = specs::load(&root).unwrap().0.changes["HG-0002"]
+        .baseline
+        .clone();
+    assert_eq!(captured.len(), 1);
+    let mut sibling = original.clone();
+    sibling["id"] = json!("HG-OTHER-R1");
+    sibling["scenarios"][0]["id"] = json!("HG-OTHER-S1");
+    put(&root, "specs/requirements/HG-OTHER-R1.json", &sibling);
+    assert!(
+        !call(&root, "spec-validate", &[("--id", "HG-0002")])
+            .unwrap()
+            .findings
+            .iter()
+            .any(|f| f["code"] == "BaseDrift")
+    );
+    let mut drift = original.clone();
+    drift["statement"] = json!("Changed by another accepted change");
+    put(&root, "specs/requirements/HG-0001-R1.json", &drift);
+    edit(&root, "HG-0002", "operations", json!([])).unwrap();
+    edit(&root, "HG-0002", "operations", operations).unwrap();
+    assert_eq!(
+        specs::load(&root).unwrap().0.changes["HG-0002"].baseline,
+        captured
+    );
+    assert!(
+        call(&root, "spec-validate", &[("--id", "HG-0002")])
+            .unwrap()
+            .findings
+            .iter()
+            .any(|f| f["code"] == "BaseDrift")
+    );
+    create(&root);
+    edit(
+        &root,
+        "HG-0003",
+        "operations",
+        json!([{"action":"remove","id":"HG-0001-R1","reason":"Retired"}]),
+    )
+    .unwrap();
+    assert_ne!(
+        specs::load(&root).unwrap().0.changes["HG-0003"].baseline,
+        captured
+    );
+    // An existing broad baseline remains broad and is not silently modernized.
+    let path = "specs/changes/HG-0003/spec.json";
+    let mut old = json(&root, path);
+    old.as_object_mut().unwrap().remove("scoped_baseline");
+    old["baseline"]["HG-OTHER-R1"] = json!("historic-hash");
+    put(&root, path, &old);
+    edit(&root, "HG-0003", "rationale", json!("Editorial change")).unwrap();
+    assert_eq!(json(&root, path)["baseline"], old["baseline"]);
+}
+
+// highgrade: HG-0040-S1
+#[test]
+fn readable_presentation_preserves_values_and_puts_service_fields_last() {
+    let root = root();
+    create(&root);
+    let c = &specs::load(&root).unwrap().0.changes["HG-0001"];
+    let value = serde_json::to_value(c).unwrap();
+    let readable = specs::pretty_value(&value).unwrap();
+    assert_eq!(serde_json::from_str::<Value>(&readable).unwrap(), value);
+    let text = fs::read_to_string(root.join("specs/changes/HG-0001/spec.json")).unwrap();
+    assert!(text.find("\"title\"").unwrap() < text.find("\"baseline\"").unwrap());
+    assert!(text.find("\"given\"").unwrap() < text.find("\"when\"").unwrap());
+    assert!(text.find("\"when\"").unwrap() < text.find("\"then\"").unwrap());
+    assert!(text.find("\"then\"").unwrap() < text.find("\"verification\"").unwrap());
+}
+
+// highgrade: HG-0039-S2
+#[test]
+fn first_baseline_capture_rejects_local_cas_after_target_changed() {
+    let root = root();
+    brief_fixture(&root, false);
+    call(
+        &root,
+        "spec-integrate",
+        &[("--id", "HG-0001"), ("--expected", &sha(&root))],
+    )
+    .unwrap();
+    create(&root);
+    let read = call(&root, "spec-read", &[("--id", "HG-0002")]).unwrap();
+    let local = read
+        .measurements
+        .iter()
+        .find_map(|v| v["local_sha256"].as_str())
+        .unwrap();
+    let whole = sha(&root);
+    let old = json(&root, "specs/requirements/HG-0001-R1.json");
+    let mut current = old.clone();
+    current["statement"] = json!("Concurrent update");
+    put(&root, "specs/requirements/HG-0001-R1.json", &current);
+    put(
+        &root,
+        "patch.json",
+        &json!({"operations":[{"action":"modify","requirement":old}]}),
+    );
+    let unchanged = sha(&root);
+    let run = |key: &str, hash: &str| {
+        call(
+            &root,
+            "spec-edit",
+            &[("--id", "HG-0002"), (key, hash), ("--input", "patch.json")],
+        )
+    };
+    assert!(
+        run("--expected-local", local)
+            .unwrap_err()
+            .contains("BaselineCaptureRequiresStoreCAS")
+    );
+    assert!(
+        run("--expected", &whole)
+            .unwrap_err()
+            .contains("StoreConflict")
+    );
+    assert_eq!(sha(&root), unchanged);
+    assert!(
+        specs::load(&root).unwrap().0.changes["HG-0002"]
+            .baseline
+            .is_empty()
+    );
+}

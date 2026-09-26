@@ -12,3 +12,10 @@
 определяют текущее поведение. Статус `in_progress`
 означает, что проверка поведения ещё не подтверждена; решение человека
 фиксируется отдельно и не выводится из наличия требования.
+
+Предметные теги задаются в `tags.json`: specifications, verification, installation,
+workflow, documentation, diagnostics. Выбирайте по содержанию, а не по наличию
+тестов или документов в задаче. Рабочий маршрут: `spec-read --view editable` →
+`spec-edit` с CAS; служебная база фиксируется CLI. Разметка интегрированных
+изменений — `spec-metadata` preview/apply. Форматы и совместимость — в
+[справочнике](../kit/references/tools/specifications.md).

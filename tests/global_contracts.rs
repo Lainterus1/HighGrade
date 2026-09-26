@@ -343,7 +343,7 @@ fn shipped_registry_example_is_accepted_without_inventing_budgets() {
         profile
             .join(".highgrade/global/releases")
             .join(manifest["release"].as_str().unwrap())
-            .join("references/cli.md"),
+            .join("references/tools/diagnostics.md"),
     )
     .unwrap();
     let registry = guide
@@ -745,13 +745,22 @@ fn locked_v026_router_is_inactive_after_switch() {
     drop(handle);
 }
 fn prior_skill_profile() -> TestDir {
+    profile_without_tools(false)
+}
+fn profile_without_tools(planner: bool) -> TestDir {
     let profile = temp();
-    let release = "v0-2-16";
+    let release = if planner { "v0-2-23" } else { "v0-2-16" };
     let manifest: Value =
         serde_json::from_slice(&fs::read(source().join("manifest.json")).unwrap()).unwrap();
     let mut checksums = BTreeMap::new();
     for (rel, _) in manifest["files"].as_object().unwrap() {
-        if ["procedures/planner.md", "skills/highgrade-planner/SKILL.md"].contains(&rel.as_str()) {
+        if rel.starts_with("references/tools/") {
+            continue;
+        }
+        if !planner
+            && ["procedures/planner.md", "skills/highgrade-planner/SKILL.md"]
+                .contains(&rel.as_str())
+        {
             continue;
         }
         let data = fs::read(source().join(rel)).unwrap();
@@ -816,6 +825,9 @@ fn six_skill_profile() -> TestDir {
             .as_object()
             .unwrap()
     {
+        if rel.starts_with("references/tools/") {
+            continue;
+        }
         if [
             "procedures/approve.md",
             "procedures/push.md",
@@ -882,6 +894,9 @@ fn old_deploy_profile(release: &str, skill_name: &str) -> TestDir {
     let manifest_bytes = fs::read(source().join("manifest.json")).unwrap();
     let manifest: Value = serde_json::from_slice(&manifest_bytes).unwrap();
     for (rel, _) in manifest["files"].as_object().unwrap() {
+        if rel.starts_with("references/tools/") {
+            continue;
+        }
         if [
             "procedures/approve.md",
             "procedures/push.md",
@@ -1264,5 +1279,113 @@ fn unsupported_project_adapter_is_a_failure() {
                 .any(|m| m["project_instruction"] == "compatible")
         );
         assert_eq!(fs::read(&adapter).unwrap(), bytes);
+    }
+}
+
+// highgrade: HG-0040-S2
+#[test]
+fn shipped_tool_references_resolve_without_repository_files() {
+    use pulldown_cmark::{Event, Parser, Tag};
+    let manifest: Value =
+        serde_json::from_slice(&fs::read(source().join("manifest.json")).unwrap()).unwrap();
+    let files = manifest["files"].as_object().unwrap();
+    let package = temp();
+    // Recreate just the shipped files, with no development checkout available.
+    for rel in files.keys() {
+        let dest = package.join(rel);
+        fs::create_dir_all(dest.parent().unwrap()).unwrap();
+        fs::copy(source().join(rel), dest).unwrap();
+    }
+    for name in [
+        "specifications",
+        "verification",
+        "installation",
+        "diagnostics",
+    ] {
+        assert!(
+            package
+                .join(format!("references/tools/{name}.md"))
+                .is_file()
+        );
+    }
+    let package_root = fs::canonicalize(&package).unwrap();
+    for rel in files.keys().filter(|p| {
+        p.starts_with("procedures/") || p.starts_with("references/") || *p == "rules.md"
+    }) {
+        let doc = fs::read_to_string(package.join(rel)).unwrap();
+        for event in Parser::new(&doc) {
+            if let Event::Start(Tag::Link { dest_url, .. }) = event {
+                if dest_url.contains("://") {
+                    continue;
+                }
+                let (file, anchor) = dest_url.split_once('#').unwrap_or((&dest_url, ""));
+                let target = if file.is_empty() {
+                    package.join(rel)
+                } else {
+                    package.join(rel).parent().unwrap().join(file)
+                };
+                let resolved = fs::canonicalize(&target)
+                    .unwrap_or_else(|e| panic!("{rel} -> {dest_url}: {e}"));
+                assert!(
+                    resolved.starts_with(&package_root),
+                    "{rel} -> {dest_url} leaves release"
+                );
+                if !anchor.is_empty() {
+                    let target_text = fs::read_to_string(&target).unwrap();
+                    let headings: Vec<_> = target_text
+                        .lines()
+                        .filter(|l| l.starts_with('#'))
+                        .map(|l| {
+                            l.trim_start_matches('#')
+                                .trim()
+                                .to_lowercase()
+                                .chars()
+                                .filter(|c| c.is_alphanumeric() || c.is_whitespace() || *c == '-')
+                                .map(|c| if c.is_whitespace() { '-' } else { c })
+                                .collect::<String>()
+                        })
+                        .collect();
+                    assert!(
+                        headings.iter().any(|h| h == anchor),
+                        "{rel} -> {dest_url}: missing heading"
+                    );
+                }
+            }
+        }
+    }
+}
+
+// highgrade: HG-0040-S2
+#[test]
+fn nine_skill_release_upgrades_to_thematic_tool_references() {
+    let profile = profile_without_tools(true);
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
+    let report = global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        preview.measurements[0]["candidate_sha256"].as_str(),
+    )
+    .unwrap();
+    assert_eq!(report.status, "passed");
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    for name in [
+        "specifications",
+        "verification",
+        "installation",
+        "diagnostics",
+    ] {
+        let rel = format!("references/tools/{name}.md");
+        assert_eq!(
+            fs::read(profile.join(format!(
+                ".highgrade/global/releases/{}/{}",
+                current_release(),
+                rel
+            )))
+            .unwrap(),
+            fs::read(source().join(rel)).unwrap()
+        );
     }
 }

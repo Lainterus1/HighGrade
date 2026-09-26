@@ -1,0 +1,219 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+────────────
+ Nextest run ID dbf7583c-d5f7-41ad-96a6-c5d32751cc91 with nextest profile: highgrade
+    Starting 150 tests across 10 binaries
+        PASS [   0.018s] (  1/150) highgrade::bootstrap_contracts alternative_name_is_candidate_but_never_accepted_as_role
+        PASS [   0.048s] (  2/150) highgrade::bootstrap_contracts complete_project_still_reports_missing_navigation_without_candidate_walk
+        PASS [   0.048s] (  3/150) highgrade trace::id_tests::accepts_project_ids_and_rejects_malformed_ids
+        PASS [   0.053s] (  4/150) highgrade::bootstrap_contracts bootstrap_does_not_read_excluded_sources_or_offer_excluded_link_targets
+        PASS [   0.075s] (  5/150) highgrade::bootstrap_contracts bundled_templates_match_the_canonical_bootstrap_contract
+        PASS [   0.080s] (  6/150) highgrade::bootstrap_contracts bootstrap_distinguishes_adaptation_from_technical_failure
+        PASS [   0.086s] (  7/150) highgrade::bootstrap_contracts cli_accepts_bootstrap_without_registry_and_rejects_map_and_conflicts
+        PASS [   0.093s] (  8/150) highgrade::bootstrap_contracts bootstrap_reports_all_slots_before_registry_exists
+        PASS [   0.103s] (  9/150) highgrade specs::progress::metadata_compatibility::old_tagged_revision_survives_metadata_but_not_material_drift
+        PASS [   0.116s] ( 10/150) highgrade::bootstrap_contracts candidate_and_input_limits_keep_partial_evidence
+        PASS [   0.122s] ( 11/150) highgrade::bootstrap_contracts bootstrap_skips_generated_skill_outputs
+        PASS [   0.139s] ( 12/150) highgrade::bootstrap_contracts complete_project_still_checks_exclusion_input_without_walking_tree
+        PASS [   0.158s] ( 13/150) highgrade::bootstrap_contracts canonical_project_has_separate_path_and_link_evidence
+        PASS [   0.159s] ( 14/150) highgrade::bootstrap_contracts connected_project_uses_registered_existing_path
+        PASS [   0.129s] ( 15/150) highgrade::bootstrap_contracts migrated_architecture_with_old_readme_link_is_reported
+        PASS [   0.140s] ( 16/150) highgrade::bootstrap_contracts exclusions_are_safe_and_bad_registry_does_not_hide_candidates
+        PASS [   0.169s] ( 17/150) highgrade::bootstrap_contracts missing_link_is_distinct_from_missing_file_and_registry_path_mismatch
+        PASS [   0.280s] ( 18/150) highgrade::bootstrap_contracts combined_roles_are_counted_once_and_invalid_assignments_fail
+        PASS [   0.071s] ( 19/150) highgrade::catalog_contracts foreign_directory_and_unknown_fields_are_not_adopted
+        PASS [   0.190s] ( 20/150) highgrade::catalog_contracts explicit_migration_preserves_all_data_and_detects_legacy_writer
+        PASS [   0.290s] ( 21/150) highgrade::catalog_contracts compact_catalog_accepts_empty_changes_and_new_changes
+        PASS [   0.085s] ( 22/150) highgrade::catalog_contracts foreign_structured_files_are_not_deleted
+        PASS [   0.336s] ( 23/150) highgrade::catalog_contracts compact_views_and_atomic_edit_protect_results_and_cas
+        PASS [   0.305s] ( 24/150) highgrade::catalog_contracts evidence_batch_is_atomic_and_exact_repeat_is_noop
+        PASS [   0.393s] ( 25/150) highgrade::catalog_contracts action_diagnostics_check_runner_without_execution
+        PASS [   0.113s] ( 26/150) highgrade::catalog_contracts malformed_recovery_never_unblocks_catalog
+        PASS [   0.199s] ( 27/150) highgrade::catalog_contracts interrupted_transaction_refuses_reads_and_recovers_only_observed_targets
+        PASS [   0.608s] ( 28/150) highgrade::bootstrap_contracts bootstrap_reports_multiple_unvisited_locations_with_a_count
+        PASS [   0.576s] ( 29/150) highgrade::catalog_contracts explicit_links_reject_missing_cycles_and_do_not_inherit_content
+        PASS [   0.155s] ( 30/150) highgrade::catalog_contracts readable_presentation_preserves_values_and_puts_service_fields_last
+        PASS [   0.575s] ( 31/150) highgrade::catalog_contracts first_baseline_capture_rejects_local_cas_after_target_changed
+        PASS [   0.864s] ( 32/150) highgrade::bootstrap_contracts bootstrap_skips_junction_and_matches_exclusion_case
+        PASS [   0.439s] ( 33/150) highgrade::catalog_contracts local_edit_rejects_dependency_runner_drift
+        PASS [   0.148s] ( 34/150) highgrade::catalog_contracts recovery_cannot_delete_a_required_specification
+        PASS [   0.194s] ( 35/150) highgrade::catalog_contracts recovery_reconstructs_partial_staging_and_missing_first_document
+        PASS [   0.396s] ( 36/150) highgrade::catalog_contracts project_catalog_survives_service_removal_and_preserves_siblings
+        PASS [   0.219s] ( 37/150) highgrade::catalog_contracts selected_directory_is_project_owned_and_self_contained
+        PASS [   0.805s] ( 38/150) highgrade::catalog_contracts integrated_recheck_retains_history_and_invalidates_old_acceptance
+        PASS [   1.092s] ( 39/150) highgrade::catalog_contracts equivalent_native_runs_keep_material_revision_and_append_history
+        PASS [   0.730s] ( 40/150) highgrade::catalog_contracts native_report_import_reuses_suite_and_rejects_stale_or_missing_results
+        PASS [   0.415s] ( 41/150) highgrade::catalog_contracts selected_list_and_local_edit_preserve_independent_work
+        PASS [   0.910s] ( 42/150) highgrade::catalog_contracts metadata_batch_preserves_integrated_history_and_rejects_invalid_batches
+        PASS [   1.335s] ( 43/150) highgrade::catalog_contracts batch_failure_keeps_prior_results_and_each_scenario_owns_its_report
+        PASS [   0.476s] ( 44/150) highgrade::catalog_contracts spec_check_brief_reports_affected_inputs
+        PASS [   0.138s] ( 45/150) highgrade::contracts broken_links_and_anchors_are_failures
+        PASS [   0.080s] ( 46/150) highgrade::contracts cli_errors_keep_the_report_contract
+        PASS [   0.242s] ( 47/150) highgrade::contracts budget_history_cannot_skip_or_exceed_ceiling
+        PASS [   0.186s] ( 48/150) highgrade::contracts colocated_document_does_not_cover_its_parent
+        PASS [   0.380s] ( 49/150) highgrade::catalog_contracts two_catalog_writers_cannot_allocate_the_same_number
+        PASS [   1.570s] ( 50/150) highgrade::catalog_contracts compact_transaction_limit_and_recovery_preserve_catalog
+        PASS [   0.668s] ( 51/150) highgrade::catalog_contracts spec_check_brief_reports_stale_run
+        PASS [   0.098s] ( 52/150) highgrade::contracts entry_does_not_hide_unmapped_sibling
+        PASS [   0.148s] ( 53/150) highgrade::contracts default_inspect_uses_only_highgrade_registry
+        PASS [   0.122s] ( 54/150) highgrade::contracts exceeding_agreed_budget_warns_without_raising_it
+        PASS [   0.891s] ( 55/150) highgrade::catalog_contracts shared_inputs_track_content_and_membership
+        PASS [   0.680s] ( 56/150) highgrade::catalog_contracts spec_check_brief_returns_stable_handoff
+        PASS [   0.272s] ( 57/150) highgrade::contracts conflicting_skill_is_not_adopted_even_if_equal
+        PASS [   0.091s] ( 58/150) highgrade::contracts install_requires_audit_before_writes
+        PASS [   0.134s] ( 59/150) highgrade::contracts install_rejects_stale_audit
+        PASS [   1.462s] ( 60/150) highgrade::catalog_contracts multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit
+        PASS [   0.096s] ( 61/150) highgrade::contracts junction_is_not_followed
+        PASS [   0.088s] ( 62/150) highgrade::contracts links_support_reference_unicode_parent_and_code_exclusion
+        PASS [   0.079s] ( 63/150) highgrade::contracts measures_utf8_crlf_and_does_not_modify_inputs
+        PASS [   0.130s] ( 64/150) highgrade::contracts missing_budget_is_unknown_not_success
+        PASS [   0.139s] ( 65/150) highgrade::contracts missing_roles_duplicates_and_files_are_reported
+        PASS [   0.315s] ( 66/150) highgrade::contracts incomplete_temp_is_preserved_and_not_activated
+        PASS [   0.122s] ( 67/150) highgrade::contracts new_area_is_unknown
+        PASS [   0.154s] ( 68/150) highgrade::contracts package_hash_failure_writes_nothing
+        PASS [   0.081s] ( 69/150) highgrade::contracts parent_scope_reads_child_documents
+        PASS [   0.088s] ( 70/150) highgrade::contracts scenario_ids_in_headings_are_not_broken_markdown_links
+        PASS [   0.071s] ( 71/150) highgrade::contracts scoped_inspection_selects_sources_and_reports_unmapped_scope
+        PASS [   2.076s] ( 72/150) highgrade::catalog_contracts compact_history_preserves_observations_and_rejects_corruption
+        PASS [   0.046s] ( 73/150) highgrade::contracts source_inventory_is_case_sensitive_and_stable
+        PASS [   0.087s] ( 74/150) highgrade::contracts task_checkboxes_and_inline_code_are_not_references
+        PASS [   0.066s] ( 75/150) highgrade::contracts traversal_and_ads_are_rejected
+        PASS [   0.090s] ( 76/150) highgrade::contracts unresolved_reference_is_not_silent
+        PASS [   0.725s] ( 77/150) highgrade::contracts complete_temp_can_resume_publication
+        PASS [   0.088s] ( 78/150) highgrade::contracts valid_budget_history_passes
+        PASS [   0.096s] ( 79/150) highgrade::global_contracts doctor_reports_unavailable_tool_without_claiming_version
+        FAIL [   0.086s] ( 80/150) highgrade::global_contracts failed_candidate_stage_restores_changed_skill
+  stdout ───
+
+    running 1 test
+    test failed_candidate_stage_restores_changed_skill ... FAILED
+
+    failures:
+
+    failures:
+        failed_candidate_stage_restores_changed_skill
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.05s
+
+  stderr ───
+
+    thread 'failed_candidate_stage_restores_changed_skill' (32812) panicked at tests\global_contracts.rs:143:50:
+    called `Result::unwrap()` on an `Err` value: "GlobalManifestFilesInvalid"
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+  Cancelling due to test failure: 15 tests still running
+        FAIL [   0.117s] ( 81/150) highgrade::global_contracts global_install_rejects_hash_and_foreign_router_without_activation
+  stdout ───
+
+    running 1 test
+    test global_install_rejects_hash_and_foreign_router_without_activation ... FAILED
+
+    failures:
+
+    failures:
+        global_install_rejects_hash_and_foreign_router_without_activation
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.05s
+
+  stderr ───
+
+    thread 'global_install_rejects_hash_and_foreign_router_without_activation' (880) panicked at tests\global_contracts.rs:1178:5:
+    assertion failed: global::install(&profile, &source(),
+                &exe()).unwrap_err().contains("GlobalSkillConflict")
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+        PASS [   1.544s] ( 82/150) highgrade::catalog_contracts scoped_baseline_captures_only_selected_requirements_and_never_refreshes
+        PASS [   0.346s] ( 83/150) highgrade::contracts recovery_does_not_overwrite_foreign_edit
+        FAIL [   0.175s] ( 84/150) highgrade::global_contracts global_install_does_not_touch_project_and_checks_adapter
+  stdout ───
+
+    running 1 test
+    test global_install_does_not_touch_project_and_checks_adapter ... FAILED
+
+    failures:
+
+    failures:
+        global_install_does_not_touch_project_and_checks_adapter
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.14s
+
+  stderr ───
+
+    thread 'global_install_does_not_touch_project_and_checks_adapter' (7868) panicked at tests\global_contracts.rs:396:63:
+    called `Result::unwrap()` on an `Err` value: "GlobalManifestFilesInvalid"
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+        PASS [   2.423s] ( 85/150) highgrade::catalog_contracts cargo_runner_requires_a_real_exact_test
+        PASS [   1.121s] ( 86/150) highgrade::contracts cli_command_help_is_available_without_a_project
+        PASS [   0.618s] ( 87/150) highgrade::contracts modified_installed_file_is_detected
+        PASS [   1.375s] ( 88/150) highgrade::catalog_contracts tags_merge_atomically_and_filters_keep_dependencies_discoverable
+        FAIL [   0.376s] ( 89/150) highgrade::global_contracts failed_forward_pointer_change_allows_a_different_candidate
+  stdout ───
+
+    running 1 test
+    test failed_forward_pointer_change_allows_a_different_candidate ... FAILED
+
+    failures:
+
+    failures:
+        failed_forward_pointer_change_allows_a_different_candidate
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.35s
+
+  stderr ───
+
+    thread 'failed_forward_pointer_change_allows_a_different_candidate' (24208) panicked at tests\global_contracts.rs:1129:88:
+    called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+        PASS [   0.832s] ( 90/150) highgrade::contracts install_preserves_agents_and_repeats_without_duplicates
+        FAIL [   0.377s] ( 91/150) highgrade::global_contracts failed_stage_preserves_foreign_candidate_journal
+  stdout ───
+
+    running 1 test
+    test failed_stage_preserves_foreign_candidate_journal ... FAILED
+
+    failures:
+
+    failures:
+        failed_stage_preserves_foreign_candidate_journal
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.35s
+
+  stderr ───
+
+    thread 'failed_stage_preserves_foreign_candidate_journal' (34188) panicked at tests\global_contracts.rs:1106:88:
+    called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+        FAIL [   0.383s] ( 92/150) highgrade::global_contracts failed_stage_does_not_leave_new_routers
+  stdout ───
+
+    running 1 test
+    test failed_stage_does_not_leave_new_routers ... FAILED
+
+    failures:
+
+    failures:
+        failed_stage_does_not_leave_new_routers
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.37s
+
+  stderr ───
+
+    thread 'failed_stage_does_not_leave_new_routers' (25048) panicked at tests\global_contracts.rs:1051:88:
+    called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+        PASS [   2.190s] ( 93/150) highgrade::catalog_contracts run_statistics_track_attempts_without_execution
+        PASS [   2.004s] ( 94/150) highgrade::contracts interruption_at_each_publication_boundary_resumes
+        PASS [   4.960s] ( 95/150) highgrade::catalog_contracts explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift
+────────────
+     Summary [   5.150s] 95/150 tests run: 89 passed, 6 failed, 0 skipped
+        FAIL [   0.086s] ( 80/150) highgrade::global_contracts failed_candidate_stage_restores_changed_skill
+        FAIL [   0.117s] ( 81/150) highgrade::global_contracts global_install_rejects_hash_and_foreign_router_without_activation
+        FAIL [   0.175s] ( 84/150) highgrade::global_contracts global_install_does_not_touch_project_and_checks_adapter
+        FAIL [   0.376s] ( 89/150) highgrade::global_contracts failed_forward_pointer_change_allows_a_different_candidate
+        FAIL [   0.377s] ( 91/150) highgrade::global_contracts failed_stage_preserves_foreign_candidate_journal
+        FAIL [   0.383s] ( 92/150) highgrade::global_contracts failed_stage_does_not_leave_new_routers
+warning: 55/150 tests were not run due to test failure (run with --no-fail-fast to run all tests, or run with --max-fail)
+error: test run failed

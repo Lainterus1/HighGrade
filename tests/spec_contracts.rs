@@ -462,7 +462,7 @@ fn reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs
     );
     let mut mixed = change(&root, "HG-IMPORT");
     mixed["operations"].as_array_mut().unwrap().push(json!({
-        "action":"remove", "id":"HG-UNRELATED-R1", "reason":"negative test"
+        "action":"add", "requirement":{"id":"HG-UNRELATED-R1","title":"Unrelated","statement":"Not an import","scenarios":[]}
     }));
     save(&root, "HG-IMPORT", &mixed);
     assert!(

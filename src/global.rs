@@ -89,6 +89,12 @@ const MATERIALS: [&str; 19] = [
     "templates/INSTRUCTIONS.md",
     "procedures/planner.md",
 ];
+const TOOL_REFERENCES: [&str; 4] = [
+    "references/tools/specifications.md",
+    "references/tools/verification.md",
+    "references/tools/installation.md",
+    "references/tools/diagnostics.md",
+];
 const PRIOR_MATERIALS: [&str; 18] = [
     "rules.md",
     "procedures/init.md",
@@ -237,12 +243,13 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
     let hashes = manifest["files"]
         .as_object()
         .ok_or("GlobalManifestInvalid: files")?;
-    if hashes.len() != SKILLS.len() + MATERIALS.len() {
+    if hashes.len() != SKILLS.len() + MATERIALS.len() + TOOL_REFERENCES.len() {
         return Err("GlobalManifestFilesInvalid".into());
     }
     let mut files = BTreeMap::new();
     for rel in MATERIALS
         .iter()
+        .chain(TOOL_REFERENCES.iter())
         .map(|s| s.to_string())
         .chain(SKILLS.iter().map(|s| format!("skills/{s}/SKILL.md")))
     {
@@ -315,6 +322,8 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     for rel in [APPROVE_SKILL, PUSH_SKILL] {
         current.insert(release_file(release, rel));
     }
+    let mut with_tools = current.clone();
+    with_tools.extend(TOOL_REFERENCES.iter().map(|rel| release_file(release, rel)));
     let mut prior = expected(&PRIOR_SKILLS, &PRIOR_MATERIALS);
     for rel in [APPROVE_SKILL, PUSH_SKILL] {
         prior.insert(release_file(release, rel));
@@ -325,6 +334,7 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     legacy.insert(release_file(release, LEGACY_DEPLOY_SKILL));
     let previous = expected(&PREVIOUS_SKILLS, &PREVIOUS_MATERIALS);
     if actual != current.iter().map(String::as_str).collect()
+        && actual != with_tools.iter().map(String::as_str).collect()
         && actual != prior.iter().map(String::as_str).collect()
         && actual != deploy.iter().map(String::as_str).collect()
         && actual != legacy.iter().map(String::as_str).collect()
@@ -522,6 +532,7 @@ fn retire_release(profile: &Path, release: &str) -> Result<()> {
         .ok_or("GlobalRetireJournalInvalid: files")?;
     let allowed: BTreeSet<String> = MATERIALS
         .iter()
+        .chain(TOOL_REFERENCES.iter())
         .chain(PRIOR_MATERIALS.iter())
         .chain(DEPLOY_MATERIALS.iter())
         .chain(PREVIOUS_MATERIALS.iter())
