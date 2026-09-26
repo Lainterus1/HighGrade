@@ -1,4 +1,5 @@
 pub mod bootstrap;
+pub mod discovery;
 pub mod global;
 pub mod inspect;
 pub mod install;
@@ -6,6 +7,7 @@ pub mod issues;
 pub mod package;
 pub mod paths;
 pub mod specs;
+pub mod survey;
 pub mod trace;
 
 use serde::Serialize;

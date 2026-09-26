@@ -4,6 +4,17 @@ use std::{collections::BTreeMap, path::Path};
 
 fn allowed_options(op: &str) -> Result<Vec<&'static str>> {
     Ok(match op {
+        "survey-new" | "survey-schema" | "survey-check" => vec!["--root"],
+        "survey-read" => vec!["--root", "--view"],
+        "survey-edit" => vec!["--root", "--expected", "--input"],
+        "survey-snapshot" | "survey-reopen" => vec!["--root", "--expected"],
+        "survey-review" => vec![
+            "--root",
+            "--expected",
+            "--reviewer",
+            "--conclusion",
+            "--verdict",
+        ],
         "issue-list" => vec!["--root", "--query", "--tag", "--status"],
         "issue-read" => vec!["--root", "--id", "--view"],
         "issue-validate" => vec!["--root", "--id"],
@@ -31,7 +42,7 @@ fn allowed_options(op: &str) -> Result<Vec<&'static str>> {
             "--apply",
             "--rollback",
         ],
-        "inventory" => vec!["--root"],
+        "inventory" => vec!["--root", "--mode", "--scope"],
         "trace" => vec!["--root", "--record"],
         "spec-schema" | "spec-tags" => vec!["--root"],
         "spec-list" => vec!["--root", "--id", "--tag", "--technical", "--human"],
@@ -106,6 +117,7 @@ fn command_help(op: &str) -> Result<Report> {
     match op {
         "global-install" | "global-update" => required.extend(["--source", "--candidate-exe"]),
         "spec-review" => required.extend(["--reviewer", "--conclusion", "--verdict"]),
+        "survey-review" => required.extend(["--reviewer", "--conclusion", "--verdict"]),
         "spec-abandon" => required.push("--reason"),
         "spec-tag-set" => required.extend(["--title", "--description"]),
         "spec-tag-merge" => required.extend(["--from", "--into"]),
@@ -143,12 +155,15 @@ fn command_help(op: &str) -> Result<Report> {
             .join(" ")
     );
     let mut r = Report::new("help");
-    let schemas = if op.starts_with("issue-") {
+    let schemas = if op.starts_with("survey-") {
+        highgrade::survey::schemas()
+    } else if op.starts_with("issue-") {
         highgrade::issues::schemas()
     } else {
         highgrade::specs::input_schemas()
     };
     let key = match op {
+        "survey-edit" => "patch",
         "spec-save" => "change",
         "issue-new" => "content",
         "issue-edit" => "patch",
@@ -161,7 +176,7 @@ fn command_help(op: &str) -> Result<Report> {
         "spec-runner-set" => "runner",
         _ => "",
     };
-    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"spec-read"=>"--id or --requirement; --view requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read; first modify/remove baseline capture requires --expected","doctor"=>"Optional --action spec-read|spec-run; spec-run requires --id, optional --check (default all)","spec-metadata"=>"Preview by default; --apply true commits the entire validated batch with --expected CAS", "global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":if op.starts_with("issue-") {"highgrade issue-schema --root PATH"} else {"highgrade spec-schema --root PATH"}}));
+    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"spec-read"=>"--id or --requirement; --view requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read; first modify/remove baseline capture requires --expected","doctor"=>"Optional --action spec-read|spec-run; spec-run requires --id, optional --check (default all)","spec-metadata"=>"Preview by default; --apply true commits the entire validated batch with --expected CAS", "global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":if op.starts_with("survey-") {"highgrade survey-schema --root PATH"} else if op.starts_with("issue-") {"highgrade issue-schema --root PATH"} else {"highgrade spec-schema --root PATH"}}));
     Ok(r)
 }
 
@@ -174,7 +189,7 @@ fn run() -> Result<Report> {
         }
         let mut r = Report::new("help");
         r.measurements.push(json!({
-            "project_commands":"doctor inspect inventory trace spec-list spec-new spec-read spec-edit spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-run-inputs spec-run-import spec-evidence-batch spec-stats spec-metadata",
+            "project_commands":"survey-new survey-read survey-edit survey-snapshot survey-review survey-check survey-reopen survey-schema doctor inspect inventory trace spec-list spec-new spec-read spec-edit spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-run-inputs spec-run-import spec-evidence-batch spec-stats spec-metadata",
             "issue_commands":"issue-list issue-read issue-new issue-edit issue-record issue-validate issue-schema issue-recover",
             "installation_commands":"global-install global-update global-status global-recover",
             "compatibility_commands":"legacy-install legacy-update",
@@ -251,6 +266,7 @@ fn run() -> Result<Report> {
         Path::new(get("--root")?)
     };
     match op.as_str() {
+        _ if op.starts_with("survey-") => highgrade::survey::command(root, &op, &options),
         _ if op.starts_with("issue-") => highgrade::issues::command(root, &op, &options),
         _ if op.starts_with("spec-") => highgrade::specs::command(root, &op, &options),
         "global-status" => highgrade::global::status(Path::new(get("--profile")?)),
@@ -298,6 +314,31 @@ fn run() -> Result<Report> {
             options.get("--rollback").map(String::as_str),
         ),
         "inventory" => {
+            if let Some(mode) = options.get("--mode") {
+                if mode != "structure" {
+                    return Err("InventoryModeInvalid".into());
+                }
+                let structure = highgrade::discovery::structure(
+                    root,
+                    options.get("--scope").map(String::as_str).unwrap_or("."),
+                )?;
+                let mut r = Report::new("inventory");
+                if !structure.complete {
+                    r.finding(
+                        "unknown",
+                        "InventoryPartial",
+                        "scope",
+                        "Some entries could not be examined",
+                    );
+                }
+                r.measurements.push(json!({"structure":structure}));
+                r.limitations
+                    .push("Names and types only; no semantic audit or source content read.".into());
+                return Ok(r);
+            }
+            if options.contains_key("--scope") {
+                return Err("InventoryScopeRequiresStructureMode".into());
+            }
             let root = highgrade::paths::root(root)?;
             let files = highgrade::install::inventory(&root, ".highgrade/audit-receipt.json")?;
             let (exclusions, exclusions_sha256) = highgrade::install::exclusions(&root)?;

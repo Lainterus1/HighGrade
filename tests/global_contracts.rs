@@ -766,6 +766,7 @@ fn profile_before_fixer(planner: bool, tools: bool) -> TestDir {
         if (!tools && rel.starts_with("references/tools/"))
             || rel == "procedures/fix.md"
             || rel == "references/tools/issues.md"
+            || is_survey_material(rel)
         {
             continue;
         }
@@ -837,7 +838,10 @@ fn six_skill_profile() -> TestDir {
             .as_object()
             .unwrap()
     {
-        if rel.starts_with("references/tools/") || rel == "procedures/fix.md" {
+        if rel.starts_with("references/tools/")
+            || rel == "procedures/fix.md"
+            || is_survey_material(rel)
+        {
             continue;
         }
         if [
@@ -906,7 +910,10 @@ fn old_deploy_profile(release: &str, skill_name: &str) -> TestDir {
     let manifest_bytes = fs::read(source().join("manifest.json")).unwrap();
     let manifest: Value = serde_json::from_slice(&manifest_bytes).unwrap();
     for (rel, _) in manifest["files"].as_object().unwrap() {
-        if rel.starts_with("references/tools/") || rel == "procedures/fix.md" {
+        if rel.starts_with("references/tools/")
+            || rel == "procedures/fix.md"
+            || is_survey_material(rel)
+        {
             continue;
         }
         if [
@@ -1428,4 +1435,13 @@ fn thematic_tools_release_upgrades_to_fixer_materials() {
             fs::read(source().join(rel)).unwrap()
         );
     }
+}
+
+fn is_survey_material(rel: &str) -> bool {
+    [
+        "references/tools/survey.md",
+        "references/survey-schema.json",
+        "templates/survey.json",
+    ]
+    .contains(&rel)
 }

@@ -90,6 +90,11 @@ const MATERIALS: [&str; 19] = [
     "procedures/planner.md",
 ];
 const FIXER_MATERIALS: [&str; 2] = ["procedures/fix.md", "references/tools/issues.md"];
+const SURVEY_MATERIALS: [&str; 3] = [
+    "references/tools/survey.md",
+    "references/survey-schema.json",
+    "templates/survey.json",
+];
 const TOOL_REFERENCES: [&str; 4] = [
     "references/tools/specifications.md",
     "references/tools/verification.md",
@@ -245,7 +250,11 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
         .as_object()
         .ok_or("GlobalManifestInvalid: files")?;
     if hashes.len()
-        != SKILLS.len() + MATERIALS.len() + TOOL_REFERENCES.len() + FIXER_MATERIALS.len()
+        != SKILLS.len()
+            + MATERIALS.len()
+            + TOOL_REFERENCES.len()
+            + FIXER_MATERIALS.len()
+            + SURVEY_MATERIALS.len()
     {
         return Err("GlobalManifestFilesInvalid".into());
     }
@@ -254,6 +263,7 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
         .iter()
         .chain(TOOL_REFERENCES.iter())
         .chain(FIXER_MATERIALS.iter())
+        .chain(SURVEY_MATERIALS.iter())
         .map(|s| s.to_string())
         .chain(SKILLS.iter().map(|s| format!("skills/{s}/SKILL.md")))
     {
@@ -330,6 +340,12 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     with_tools.extend(TOOL_REFERENCES.iter().map(|rel| release_file(release, rel)));
     let mut with_fixer = with_tools.clone();
     with_fixer.extend(FIXER_MATERIALS.iter().map(|rel| release_file(release, rel)));
+    let mut with_survey = with_fixer.clone();
+    with_survey.extend(
+        SURVEY_MATERIALS
+            .iter()
+            .map(|rel| release_file(release, rel)),
+    );
     let mut prior = expected(&PRIOR_SKILLS, &PRIOR_MATERIALS);
     for rel in [APPROVE_SKILL, PUSH_SKILL] {
         prior.insert(release_file(release, rel));
@@ -342,6 +358,7 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     if actual != current.iter().map(String::as_str).collect()
         && actual != with_tools.iter().map(String::as_str).collect()
         && actual != with_fixer.iter().map(String::as_str).collect()
+        && actual != with_survey.iter().map(String::as_str).collect()
         && actual != prior.iter().map(String::as_str).collect()
         && actual != deploy.iter().map(String::as_str).collect()
         && actual != legacy.iter().map(String::as_str).collect()
@@ -542,6 +559,7 @@ fn retire_release(profile: &Path, release: &str) -> Result<()> {
         .chain(TOOL_REFERENCES.iter())
         .chain(FIXER_MATERIALS.iter())
         .chain(PRIOR_MATERIALS.iter())
+        .chain(SURVEY_MATERIALS.iter())
         .chain(DEPLOY_MATERIALS.iter())
         .chain(PREVIOUS_MATERIALS.iter())
         .map(|s| (*s).to_owned())

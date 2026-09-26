@@ -1,0 +1,528 @@
+{
+  "content": {
+    "title": "Content",
+    "$defs": {
+      "Item": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "basis": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "blocks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "state": {
+            "$ref": "#/$defs/State"
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "description",
+          "basis",
+          "sources",
+          "blocks"
+        ],
+        "type": "object"
+      },
+      "Stage": {
+        "enum": [
+          "survey",
+          "planned",
+          "adapting",
+          "completed"
+        ],
+        "type": "string"
+      },
+      "State": {
+        "enum": [
+          "confirmed",
+          "proposed",
+          "unknown",
+          "not_applicable"
+        ],
+        "type": "string"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "goal": {
+        "type": "string"
+      },
+      "scope": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "areas": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "decisions": {
+        "items": {
+          "$ref": "#/$defs/Item"
+        },
+        "type": "array"
+      },
+      "next": {
+        "type": "string"
+      },
+      "sections": {
+        "additionalProperties": {
+          "items": {
+            "$ref": "#/$defs/Item"
+          },
+          "type": "array"
+        },
+        "type": "object"
+      },
+      "source_paths": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "stage": {
+        "$ref": "#/$defs/Stage"
+      }
+    },
+    "required": [
+      "goal",
+      "scope",
+      "stage",
+      "next",
+      "decisions",
+      "sections",
+      "source_paths",
+      "areas"
+    ],
+    "type": "object"
+  },
+  "document": {
+    "title": "Document",
+    "$defs": {
+      "Content": {
+        "additionalProperties": false,
+        "properties": {
+          "goal": {
+            "type": "string"
+          },
+          "scope": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "areas": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "decisions": {
+            "items": {
+              "$ref": "#/$defs/Item"
+            },
+            "type": "array"
+          },
+          "next": {
+            "type": "string"
+          },
+          "sections": {
+            "additionalProperties": {
+              "items": {
+                "$ref": "#/$defs/Item"
+              },
+              "type": "array"
+            },
+            "type": "object"
+          },
+          "source_paths": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "stage": {
+            "$ref": "#/$defs/Stage"
+          }
+        },
+        "required": [
+          "goal",
+          "scope",
+          "stage",
+          "next",
+          "decisions",
+          "sections",
+          "source_paths",
+          "areas"
+        ],
+        "type": "object"
+      },
+      "Item": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "basis": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "blocks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "state": {
+            "$ref": "#/$defs/State"
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "description",
+          "basis",
+          "sources",
+          "blocks"
+        ],
+        "type": "object"
+      },
+      "Review": {
+        "additionalProperties": false,
+        "properties": {
+          "conclusion": {
+            "type": "string"
+          },
+          "content_sha256": {
+            "type": "string"
+          },
+          "reviewer": {
+            "type": "string"
+          },
+          "snapshot_sha256": {
+            "type": "string"
+          },
+          "verdict": {
+            "$ref": "#/$defs/Verdict"
+          }
+        },
+        "required": [
+          "reviewer",
+          "verdict",
+          "conclusion",
+          "content_sha256",
+          "snapshot_sha256"
+        ],
+        "type": "object"
+      },
+      "Revision": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "$ref": "#/$defs/Content"
+          },
+          "number": {
+            "format": "uint64",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "snapshot": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Snapshot"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "review": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Review"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "number",
+          "content"
+        ],
+        "type": "object"
+      },
+      "Snapshot": {
+        "additionalProperties": false,
+        "properties": {
+          "areas": {
+            "additionalProperties": {
+              "$ref": "#/$defs/Structure"
+            },
+            "type": "object"
+          },
+          "exclusions_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "files": {
+            "additionalProperties": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "files",
+          "areas"
+        ],
+        "type": "object"
+      },
+      "Stage": {
+        "enum": [
+          "survey",
+          "planned",
+          "adapting",
+          "completed"
+        ],
+        "type": "string"
+      },
+      "State": {
+        "enum": [
+          "confirmed",
+          "proposed",
+          "unknown",
+          "not_applicable"
+        ],
+        "type": "string"
+      },
+      "Structure": {
+        "additionalProperties": false,
+        "properties": {
+          "complete": {
+            "type": "boolean"
+          },
+          "entries": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "exclusions_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "omitted": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "entries",
+          "omitted",
+          "complete"
+        ],
+        "type": "object"
+      },
+      "Verdict": {
+        "enum": [
+          "go",
+          "no_go"
+        ],
+        "type": "string"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "current": {
+        "$ref": "#/$defs/Revision"
+      },
+      "schema_version": {
+        "format": "uint32",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "history": {
+        "items": {
+          "$ref": "#/$defs/Revision"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "schema_version",
+      "current",
+      "history"
+    ],
+    "type": "object"
+  },
+  "patch": {
+    "title": "Content",
+    "$defs": {
+      "Item": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "basis": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "blocks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "state": {
+            "$ref": "#/$defs/State"
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "description",
+          "basis",
+          "sources",
+          "blocks"
+        ],
+        "type": "object"
+      },
+      "Stage": {
+        "enum": [
+          "survey",
+          "planned",
+          "adapting",
+          "completed"
+        ],
+        "type": "string"
+      },
+      "State": {
+        "enum": [
+          "confirmed",
+          "proposed",
+          "unknown",
+          "not_applicable"
+        ],
+        "type": "string"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "goal": {
+        "type": "string"
+      },
+      "scope": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "areas": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "decisions": {
+        "items": {
+          "$ref": "#/$defs/Item"
+        },
+        "type": "array"
+      },
+      "next": {
+        "type": "string"
+      },
+      "sections": {
+        "additionalProperties": {
+          "items": {
+            "$ref": "#/$defs/Item"
+          },
+          "type": "array"
+        },
+        "type": "object"
+      },
+      "source_paths": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "uniqueItems": true
+      },
+      "stage": {
+        "$ref": "#/$defs/Stage"
+      }
+    },
+    "type": "object"
+  }
+}

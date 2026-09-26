@@ -39,7 +39,7 @@ fn is_reparse(meta: &fs::Metadata) -> bool {
     meta.file_type().is_symlink() || reparse
 }
 
-fn is_secret(name: &str) -> bool {
+pub(crate) fn is_secret(name: &str) -> bool {
     let name = name.to_ascii_lowercase();
     name == ".env"
         || name.starts_with(".env.")
@@ -54,7 +54,7 @@ fn is_secret(name: &str) -> bool {
             .any(|suffix| name.ends_with(suffix))
 }
 
-fn generated(_parent: &str, name: &str) -> bool {
+pub(crate) fn generated(_parent: &str, name: &str) -> bool {
     matches!(
         name.to_ascii_lowercase().as_str(),
         "node_modules"
