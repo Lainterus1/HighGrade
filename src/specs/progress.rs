@@ -90,7 +90,7 @@ pub(super) fn migrate(root: &Path, s: &mut Store, sha: &str, report: &mut Report
 
 // Keep the exact v1 serialization order for old reviews. Bookkeeping and human
 // decisions never alter the technical revision; a title edit does.
-pub(super) fn revision(c: &Change) -> String {
+pub(super) fn legacy_revision(c: &Change) -> String {
     struct Revision<'a>(&'a Change);
     impl Serialize for Revision<'_> {
         fn serialize<S: serde::Serializer>(
@@ -134,6 +134,56 @@ pub(super) fn revision(c: &Change) -> String {
     digest(&Revision(c))
 }
 
+pub(super) fn contract_revision(c: &Change) -> String {
+    let mut value = serde_json::to_value(c).expect("serializable change");
+    let object = value.as_object_mut().unwrap();
+    for field in [
+        "evidence",
+        "runs",
+        "review",
+        "acceptance",
+        "history",
+        "archived",
+        "created_at",
+        "title",
+        "rationale",
+        "related_to",
+    ] {
+        object.remove(field);
+    }
+    for task in object.get_mut("tasks").unwrap().as_array_mut().unwrap() {
+        task.as_object_mut().unwrap().remove("done");
+    }
+    digest(&value)
+}
+
+pub(super) fn revision(c: &Change) -> String {
+    let evidence: BTreeMap<_, _> = c.evidence.iter().map(|(id, e)| {
+        let files: BTreeMap<_, _> = e.files.iter().filter(|(p, _)| e.input_paths.as_ref().is_none_or(|inputs| inputs.contains(*p))).collect();
+        (id, json!({"scenario":e.scenario_sha256,"method":e.method,"outcome":e.outcome,"observation":e.observation,"command":e.command,"files":files}))
+    }).collect();
+    let mut latest = BTreeMap::new();
+    for run in &c.runs {
+        let files: BTreeMap<_, _> = run
+            .files
+            .iter()
+            .filter(|(p, _)| {
+                run.inputs_after
+                    .as_ref()
+                    .is_none_or(|inputs| inputs.contains_key(*p))
+            })
+            .collect();
+        latest.insert(&run.check, json!({"definition":run.check_sha256,"outcome":run.outcome,"files":files,"inputs_after":run.inputs_after}));
+    }
+    digest(
+        &json!({"revision_schema":2,"contract":contract_revision(c),"evidence":evidence,"latest_checks":latest}),
+    )
+}
+
+pub(super) fn matches_revision(c: &Change, expected: &str) -> bool {
+    expected == revision(c) || expected == legacy_revision(c)
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, PartialEq)]
 #[serde(rename_all = "snake_case")]
 pub enum HumanVerdict {
@@ -169,9 +219,19 @@ struct DecisionItem {
     comment: String,
 }
 pub(super) fn inputs_hash(root: &Path, c: &Change) -> Result<String> {
+    inputs_hash_with_reports(root, c, false)
+}
+fn inputs_hash_with_reports(root: &Path, c: &Change, include_reports: bool) -> Result<String> {
     let mut files = BTreeMap::new();
     for e in c.evidence.values() {
         for rel in e.files.keys() {
+            if !include_reports
+                && e.input_paths
+                    .as_ref()
+                    .is_some_and(|inputs| !inputs.contains(rel))
+            {
+                continue;
+            }
             files.insert(rel, fingerprint(root, rel)?);
         }
     }
@@ -186,8 +246,9 @@ pub(super) fn human_state(root: &Path, c: &Change, technical_ready: bool) -> &'s
     match c.acceptance.last() {
         None => "pending",
         Some(d)
-            if d.change_sha256 != revision(c)
-                || !inputs_hash(root, c).is_ok_and(|h| h == d.inputs_sha256) =>
+            if !matches_revision(c, &d.change_sha256)
+                || !inputs_hash_with_reports(root, c, d.change_sha256 == legacy_revision(c))
+                    .is_ok_and(|h| h == d.inputs_sha256) =>
         {
             "stale"
         }

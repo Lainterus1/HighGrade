@@ -671,6 +671,145 @@ sys.exit(0 if result.wasSuccessful() else 1)
     .unwrap();
     edit(root,"HG-0001","checks",json!([{"id":"sum","scenario_ids":["HG-0001-S1"],"runner":"unit","file":"test_math.py","selector":"Cases::test_sum","preparation":"Создать 2 и 3","action":"Сложить","observation":"Результат 5","inputs":["test_math.py","runner.py","mode.txt"]}])).unwrap();
 }
+
+// highgrade: HG-0029-S1
+#[test]
+fn equivalent_native_runs_keep_material_revision_and_append_history() {
+    let root = root();
+    runner_fixture(&root);
+    let run = || {
+        call(
+            &root,
+            "spec-run",
+            &[
+                ("--id", "HG-0001"),
+                ("--check", "all"),
+                ("--expected", &sha(&root)),
+            ],
+        )
+        .unwrap()
+    };
+    let revision = || {
+        let read = call(&root, "spec-read", &[("--id", "HG-0001")]).unwrap();
+        read.measurements
+            .iter()
+            .find_map(|m| m.get("change_sha256").cloned())
+            .unwrap()
+    };
+    assert_eq!(run().status, "passed");
+    let first = revision();
+    assert_eq!(run().status, "passed");
+    assert_eq!(revision(), first);
+    let results = json(&root, "specs/changes/HG-0001/results.json");
+    let runs = results["runs"].as_array().unwrap();
+    assert_eq!(runs.len(), 2);
+    assert_ne!(runs[0]["report"], runs[1]["report"]);
+    assert!(!results["history"].as_array().unwrap().is_empty());
+    fs::remove_dir_all(root).unwrap();
+}
+
+// highgrade: HG-0030-S1
+#[test]
+fn compact_views_and_atomic_edit_protect_results_and_cas() {
+    let root = root();
+    create(&root);
+    let initial = sha(&root);
+    for view in ["summary", "editable", "requirements"] {
+        let result = call(&root, "spec-read", &[("--id", "HG-0001"), ("--view", view)]).unwrap();
+        let text = serde_json::to_string(&result).unwrap();
+        assert!(!text.contains("\"history\""));
+        assert!(!text.contains("\"baseline\""));
+    }
+    assert_eq!(sha(&root), initial);
+    put(&root, "patch.json", &json!({"title":"Updated"}));
+    call(
+        &root,
+        "spec-edit",
+        &[
+            ("--id", "HG-0001"),
+            ("--input", "patch.json"),
+            ("--expected", &initial),
+        ],
+    )
+    .unwrap();
+    assert!(
+        call(
+            &root,
+            "spec-edit",
+            &[
+                ("--id", "HG-0001"),
+                ("--input", "patch.json"),
+                ("--expected", &initial)
+            ]
+        )
+        .unwrap_err()
+        .contains("StoreConflict")
+    );
+    let current = sha(&root);
+    let invalid = call(
+        &root,
+        "spec-edit",
+        &[
+            ("--id", "HG-0001"),
+            ("--input", "patch.json"),
+            ("--expected", &current),
+            ("--validate", "true"),
+        ],
+    )
+    .unwrap();
+    assert_eq!(invalid.status, "failed");
+    assert_eq!(sha(&root), current);
+    put(&root, "patch.json", &json!({"acceptance":[]}));
+    assert!(
+        call(
+            &root,
+            "spec-edit",
+            &[
+                ("--id", "HG-0001"),
+                ("--input", "patch.json"),
+                ("--expected", &current)
+            ]
+        )
+        .unwrap_err()
+        .contains("ProtectedField")
+    );
+    assert_eq!(sha(&root), current);
+    fs::remove_dir_all(root).unwrap();
+}
+
+// highgrade: HG-0030-S2
+#[test]
+fn shared_inputs_track_content_and_membership() {
+    let root = root();
+    runner_fixture(&root);
+    fs::write(root.join("shared.txt"), "configuration").unwrap();
+    edit(&root, "HG-0001", "shared_inputs", json!(["shared.txt"])).unwrap();
+    call(
+        &root,
+        "spec-run",
+        &[
+            ("--id", "HG-0001"),
+            ("--check", "all"),
+            ("--expected", &sha(&root)),
+        ],
+    )
+    .unwrap();
+    let issues = |root: &Path| {
+        brief_data(&brief(root))["blockers"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|b| b["kind"] == "check")
+    };
+    assert!(!issues(&root));
+    fs::write(root.join("shared.txt"), "changed").unwrap();
+    assert!(issues(&root));
+    fs::write(root.join("shared.txt"), "configuration").unwrap();
+    assert!(!issues(&root));
+    edit(&root, "HG-0001", "shared_inputs", json!([])).unwrap();
+    assert!(issues(&root));
+    fs::remove_dir_all(root).unwrap();
+}
 // highgrade: HG-0004-S2
 #[test]
 fn explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift() {

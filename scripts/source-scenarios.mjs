@@ -72,8 +72,7 @@ function sources() {
       if (!selector) fail(`${file}: marker without following test function`);
       for (const id of marker[1].split(',').map((item) => item.trim())) {
         if (!validId(id) || !scenarios.has(id)) fail(`${file}: unknown marker ${id}`);
-        if (!bound.has(id)) fail(`${id}: test marker has no configured automatic check`);
-        if (!bound.get(id).some((check) => check.file === file && check.selector === selector)) {
+        if (bound.has(id) && !bound.get(id).some((check) => check.file === file && check.selector === selector)) {
           fail(`${id}: test marker does not match its configured file and selector`);
         }
         marked.add(id);
@@ -83,8 +82,8 @@ function sources() {
   for (const id of bound.keys()) {
     if (scenarios.has(id) && !marked.has(id)) fail(`${id}: configured automatic check has no test marker`);
   }
-  const noDeclaredCheck = [...scenarios.keys()].filter((id) => !bound.has(id) && !manual.has(id)).sort();
-  const manualOnly = [...manual].filter((id) => !bound.has(id)).sort();
+  const noDeclaredCheck = [...scenarios.keys()].filter((id) => !bound.has(id) && !manual.has(id) && !marked.has(id)).sort();
+  const manualOnly = [...manual].filter((id) => scenarios.has(id) && !bound.has(id) && !marked.has(id)).sort();
   const scenarioSha256 = digest({ requirements: [...requirements].sort(([a], [b]) => a.localeCompare(b)),
     checks: checks.sort((a, b) => a.id.localeCompare(b.id)), automatic: [...marked].sort(), manual: manualOnly, noDeclaredCheck });
   return { requirements, scenarios, automatic: [...marked].sort(), manual: manualOnly, noDeclaredCheck, testSources, scenarioSha256 };

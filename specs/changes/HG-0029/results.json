@@ -1,0 +1,337 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0029-S1": {
+      "captured_at": "2026-09-26T08:50:02.262807+00:00",
+      "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
+      "files": {
+        ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+        "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
+        "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
+        "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
+        "src/specs.rs": "f3ec73f936e975b6062997fca5f0e16877c69acb9ea3670cfa7ae6f3e2454fb8",
+        "src/specs/checks.rs": "2d51ae3010448b2efbd0790289bccaa2a087d0d5c76c8220cd8b6fbcd2e2f6b7",
+        "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+        "tests/catalog_contracts.rs": "ab46b3d6651fb863b93c0518a04cc8623ac02918960d8542f2f52030925e14ed",
+        "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "src/specs.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "tests/catalog_contracts.rs",
+        "tests/spec_contracts.rs",
+        "tests/support/mod.rs"
+      ],
+      "method": "native_report",
+      "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0032/evidence/junit.xml",
+      "scenario": "HG-0029-S1",
+      "scenario_sha256": "333f1cb0df48727362a562d44859b111c5d34188e050b43a47899b3dbd77bd0a"
+    },
+    "HG-0029-S2": {
+      "captured_at": "2026-09-26T08:50:06.726195+00:00",
+      "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
+      "files": {
+        ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+        "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
+        "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
+        "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
+        "src/specs.rs": "f3ec73f936e975b6062997fca5f0e16877c69acb9ea3670cfa7ae6f3e2454fb8",
+        "src/specs/checks.rs": "2d51ae3010448b2efbd0790289bccaa2a087d0d5c76c8220cd8b6fbcd2e2f6b7",
+        "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+        "tests/catalog_contracts.rs": "ab46b3d6651fb863b93c0518a04cc8623ac02918960d8542f2f52030925e14ed",
+        "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "src/specs.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "tests/catalog_contracts.rs",
+        "tests/spec_contracts.rs",
+        "tests/support/mod.rs"
+      ],
+      "method": "native_report",
+      "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0032/evidence/junit.xml",
+      "scenario": "HG-0029-S2",
+      "scenario_sha256": "ed00055004093c841669a4cfbbeca2292f05f0bca0887bbb5eedb706c6d23fec"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790411586,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0029-S1": {
+          "captured_at": "2026-09-26T08:33:06.141278+00:00",
+          "command": "cargo test --locked --test spec_contracts --test catalog_contracts",
+          "files": {
+            "specs/changes/HG-0029/evidence/spec-tests.txt": "ae366c05025ff933b0685c832b31bfbe849436c36b4fc7f85d31fa77218a04bc",
+            "src/specs.rs": "c57fd65b3f79a99229521b10c4d3a52d2f1727460bb684278f8a26d36f70c854",
+            "src/specs/checks.rs": "7409610b46f8334042ad35d5dd56ebe53e1372cc17e1c2306bf1f3cf8bab2340",
+            "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+            "tests/catalog_contracts.rs": "c8a601425665adebbf23f42f1e185dc9e9db935055c9a81c87c32bfd7c2466d6",
+            "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051"
+          },
+          "method": "native_report",
+          "observation": "18 spec + 22 catalog tests passed; эквивалентный повтор сохраняет решение, изменённые входы и наблюдение делают его stale, legacy читается без перезаписи.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0029/evidence/spec-tests.txt",
+          "scenario": "HG-0029-S1",
+          "scenario_sha256": "333f1cb0df48727362a562d44859b111c5d34188e050b43a47899b3dbd77bd0a"
+        }
+      },
+      "recorded_at": 1790411586,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0029-S1": {
+          "captured_at": "2026-09-26T08:33:06.141278+00:00",
+          "command": "cargo test --locked --test spec_contracts --test catalog_contracts",
+          "files": {
+            "specs/changes/HG-0029/evidence/spec-tests.txt": "ae366c05025ff933b0685c832b31bfbe849436c36b4fc7f85d31fa77218a04bc",
+            "src/specs.rs": "c57fd65b3f79a99229521b10c4d3a52d2f1727460bb684278f8a26d36f70c854",
+            "src/specs/checks.rs": "7409610b46f8334042ad35d5dd56ebe53e1372cc17e1c2306bf1f3cf8bab2340",
+            "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+            "tests/catalog_contracts.rs": "c8a601425665adebbf23f42f1e185dc9e9db935055c9a81c87c32bfd7c2466d6",
+            "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051"
+          },
+          "method": "native_report",
+          "observation": "18 spec + 22 catalog tests passed; эквивалентный повтор сохраняет решение, изменённые входы и наблюдение делают его stale, legacy читается без перезаписи.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0029/evidence/spec-tests.txt",
+          "scenario": "HG-0029-S1",
+          "scenario_sha256": "333f1cb0df48727362a562d44859b111c5d34188e050b43a47899b3dbd77bd0a"
+        },
+        "HG-0029-S2": {
+          "captured_at": "2026-09-26T08:33:06.871929+00:00",
+          "command": "cargo test --locked --test spec_contracts --test catalog_contracts",
+          "files": {
+            "specs/changes/HG-0029/evidence/spec-tests.txt": "ae366c05025ff933b0685c832b31bfbe849436c36b4fc7f85d31fa77218a04bc",
+            "src/specs.rs": "c57fd65b3f79a99229521b10c4d3a52d2f1727460bb684278f8a26d36f70c854",
+            "src/specs/checks.rs": "7409610b46f8334042ad35d5dd56ebe53e1372cc17e1c2306bf1f3cf8bab2340",
+            "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+            "tests/catalog_contracts.rs": "c8a601425665adebbf23f42f1e185dc9e9db935055c9a81c87c32bfd7c2466d6",
+            "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051"
+          },
+          "method": "native_report",
+          "observation": "18 spec + 22 catalog tests passed; эквивалентный повтор сохраняет решение, изменённые входы и наблюдение делают его stale, legacy читается без перезаписи.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0029/evidence/spec-tests.txt",
+          "scenario": "HG-0029-S2",
+          "scenario_sha256": "ed00055004093c841669a4cfbbeca2292f05f0bca0887bbb5eedb706c6d23fec"
+        }
+      },
+      "recorded_at": 1790411602,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0029-S1": {
+          "captured_at": "2026-09-26T08:33:06.141278+00:00",
+          "command": "cargo test --locked --test spec_contracts --test catalog_contracts",
+          "files": {
+            "specs/changes/HG-0029/evidence/spec-tests.txt": "ae366c05025ff933b0685c832b31bfbe849436c36b4fc7f85d31fa77218a04bc",
+            "src/specs.rs": "c57fd65b3f79a99229521b10c4d3a52d2f1727460bb684278f8a26d36f70c854",
+            "src/specs/checks.rs": "7409610b46f8334042ad35d5dd56ebe53e1372cc17e1c2306bf1f3cf8bab2340",
+            "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+            "tests/catalog_contracts.rs": "c8a601425665adebbf23f42f1e185dc9e9db935055c9a81c87c32bfd7c2466d6",
+            "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051"
+          },
+          "method": "native_report",
+          "observation": "18 spec + 22 catalog tests passed; эквивалентный повтор сохраняет решение, изменённые входы и наблюдение делают его stale, legacy читается без перезаписи.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0029/evidence/spec-tests.txt",
+          "scenario": "HG-0029-S1",
+          "scenario_sha256": "333f1cb0df48727362a562d44859b111c5d34188e050b43a47899b3dbd77bd0a"
+        },
+        "HG-0029-S2": {
+          "captured_at": "2026-09-26T08:33:06.871929+00:00",
+          "command": "cargo test --locked --test spec_contracts --test catalog_contracts",
+          "files": {
+            "specs/changes/HG-0029/evidence/spec-tests.txt": "ae366c05025ff933b0685c832b31bfbe849436c36b4fc7f85d31fa77218a04bc",
+            "src/specs.rs": "c57fd65b3f79a99229521b10c4d3a52d2f1727460bb684278f8a26d36f70c854",
+            "src/specs/checks.rs": "7409610b46f8334042ad35d5dd56ebe53e1372cc17e1c2306bf1f3cf8bab2340",
+            "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+            "tests/catalog_contracts.rs": "c8a601425665adebbf23f42f1e185dc9e9db935055c9a81c87c32bfd7c2466d6",
+            "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051"
+          },
+          "method": "native_report",
+          "observation": "18 spec + 22 catalog tests passed; эквивалентный повтор сохраняет решение, изменённые входы и наблюдение делают его stale, legacy читается без перезаписи.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0029/evidence/spec-tests.txt",
+          "scenario": "HG-0029-S2",
+          "scenario_sha256": "ed00055004093c841669a4cfbbeca2292f05f0bca0887bbb5eedb706c6d23fec"
+        }
+      },
+      "recorded_at": 1790412603,
+      "review": {
+        "change_sha256": "abea6ca7ecb45f32a7721aa4995a3466273e467ca9fa17a34ac2943374cf6409",
+        "conclusion": "REVIEW_GO_WITH_CONDITIONS: P1 устранён, новых дефектов нет. Условие фокусных тестов выполнено: 18 spec + 22 catalog passed. Полный барьер перед approve цепочки.",
+        "reviewer": "/root/refactor_review",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0029-S1": {
+          "captured_at": "2026-09-26T08:50:02.262807+00:00",
+          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
+          "files": {
+            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
+            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
+            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
+            "src/specs.rs": "f3ec73f936e975b6062997fca5f0e16877c69acb9ea3670cfa7ae6f3e2454fb8",
+            "src/specs/checks.rs": "2d51ae3010448b2efbd0790289bccaa2a087d0d5c76c8220cd8b6fbcd2e2f6b7",
+            "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+            "tests/catalog_contracts.rs": "ab46b3d6651fb863b93c0518a04cc8623ac02918960d8542f2f52030925e14ed",
+            "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051",
+            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+          },
+          "input_paths": [
+            ".config/nextest.toml",
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/specs.rs",
+            "src/specs/checks.rs",
+            "src/specs/progress.rs",
+            "tests/catalog_contracts.rs",
+            "tests/spec_contracts.rs",
+            "tests/support/mod.rs"
+          ],
+          "method": "native_report",
+          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0032/evidence/junit.xml",
+          "scenario": "HG-0029-S1",
+          "scenario_sha256": "333f1cb0df48727362a562d44859b111c5d34188e050b43a47899b3dbd77bd0a"
+        },
+        "HG-0029-S2": {
+          "captured_at": "2026-09-26T08:33:06.871929+00:00",
+          "command": "cargo test --locked --test spec_contracts --test catalog_contracts",
+          "files": {
+            "specs/changes/HG-0029/evidence/spec-tests.txt": "ae366c05025ff933b0685c832b31bfbe849436c36b4fc7f85d31fa77218a04bc",
+            "src/specs.rs": "c57fd65b3f79a99229521b10c4d3a52d2f1727460bb684278f8a26d36f70c854",
+            "src/specs/checks.rs": "7409610b46f8334042ad35d5dd56ebe53e1372cc17e1c2306bf1f3cf8bab2340",
+            "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+            "tests/catalog_contracts.rs": "c8a601425665adebbf23f42f1e185dc9e9db935055c9a81c87c32bfd7c2466d6",
+            "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051"
+          },
+          "method": "native_report",
+          "observation": "18 spec + 22 catalog tests passed; эквивалентный повтор сохраняет решение, изменённые входы и наблюдение делают его stale, legacy читается без перезаписи.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0029/evidence/spec-tests.txt",
+          "scenario": "HG-0029-S2",
+          "scenario_sha256": "ed00055004093c841669a4cfbbeca2292f05f0bca0887bbb5eedb706c6d23fec"
+        }
+      },
+      "recorded_at": 1790412607,
+      "review": {
+        "change_sha256": "abea6ca7ecb45f32a7721aa4995a3466273e467ca9fa17a34ac2943374cf6409",
+        "conclusion": "REVIEW_GO_WITH_CONDITIONS: P1 устранён, новых дефектов нет. Условие фокусных тестов выполнено: 18 spec + 22 catalog passed. Полный барьер перед approve цепочки.",
+        "reviewer": "/root/refactor_review",
+        "verdict": "go"
+      }
+    },
+    {
+      "evidence": {
+        "HG-0029-S1": {
+          "captured_at": "2026-09-26T08:50:02.262807+00:00",
+          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
+          "files": {
+            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
+            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
+            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
+            "src/specs.rs": "f3ec73f936e975b6062997fca5f0e16877c69acb9ea3670cfa7ae6f3e2454fb8",
+            "src/specs/checks.rs": "2d51ae3010448b2efbd0790289bccaa2a087d0d5c76c8220cd8b6fbcd2e2f6b7",
+            "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+            "tests/catalog_contracts.rs": "ab46b3d6651fb863b93c0518a04cc8623ac02918960d8542f2f52030925e14ed",
+            "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051",
+            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+          },
+          "input_paths": [
+            ".config/nextest.toml",
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/specs.rs",
+            "src/specs/checks.rs",
+            "src/specs/progress.rs",
+            "tests/catalog_contracts.rs",
+            "tests/spec_contracts.rs",
+            "tests/support/mod.rs"
+          ],
+          "method": "native_report",
+          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0032/evidence/junit.xml",
+          "scenario": "HG-0029-S1",
+          "scenario_sha256": "333f1cb0df48727362a562d44859b111c5d34188e050b43a47899b3dbd77bd0a"
+        },
+        "HG-0029-S2": {
+          "captured_at": "2026-09-26T08:50:06.726195+00:00",
+          "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify",
+          "files": {
+            ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+            "Cargo.lock": "1b8b2f2ff82960a626cb5b2e43b838e01c2642e78e6ba7213c50826059889c91",
+            "Cargo.toml": "a4f60a3365bf2ff63731ace9308a70521a76d8a747c3cb749983d129412109a3",
+            "specs/changes/HG-0032/evidence/junit.xml": "073bc5e9e2eb9f8ddb536ddc89ecb76309b1c8f790780362f4dbb4e82baf287a",
+            "src/specs.rs": "f3ec73f936e975b6062997fca5f0e16877c69acb9ea3670cfa7ae6f3e2454fb8",
+            "src/specs/checks.rs": "2d51ae3010448b2efbd0790289bccaa2a087d0d5c76c8220cd8b6fbcd2e2f6b7",
+            "src/specs/progress.rs": "0a5181999199f96f10b46fd79f7fe32d6a963d9d5324e383062ff2bedd03dc89",
+            "tests/catalog_contracts.rs": "ab46b3d6651fb863b93c0518a04cc8623ac02918960d8542f2f52030925e14ed",
+            "tests/spec_contracts.rs": "c884ba97444db20b335bc9ff5ae1aa0ed469faa3a5979c58d098506428825051",
+            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+          },
+          "input_paths": [
+            ".config/nextest.toml",
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/specs.rs",
+            "src/specs/checks.rs",
+            "src/specs/progress.rs",
+            "tests/catalog_contracts.rs",
+            "tests/spec_contracts.rs",
+            "tests/support/mod.rs"
+          ],
+          "method": "native_report",
+          "observation": "Nextest de837f85-70de-489e-b775-f0bf63876f32: 134/134 passed, 0 skipped. Trace: 57/57 автоматических сценариев; соответствующий сценарий связан с прошедшими тестами.",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0032/evidence/junit.xml",
+          "scenario": "HG-0029-S2",
+          "scenario_sha256": "ed00055004093c841669a4cfbbeca2292f05f0bca0887bbb5eedb706c6d23fec"
+        }
+      },
+      "recorded_at": 1790412823,
+      "review": {
+        "change_sha256": "abea6ca7ecb45f32a7721aa4995a3466273e467ca9fa17a34ac2943374cf6409",
+        "conclusion": "REVIEW_GO_WITH_CONDITIONS: P1 устранён, новых дефектов нет. Условие фокусных тестов выполнено: 18 spec + 22 catalog passed. Полный барьер перед approve цепочки.",
+        "reviewer": "/root/refactor_review",
+        "verdict": "go"
+      }
+    }
+  ],
+  "review": {
+    "change_sha256": "cd81cacbc2bc8eb8a0b890d079fcd5320971a900cb6a6911189bb3d9fa209da7",
+    "conclusion": "Итоговый REVIEW_GO цепочки HG26–32: staged 91 файл сверен по blob IDs; входы evidence актуальны; Nextest 134/134, trace 57/57, doctor passed, inspect только внешние ссылки. Пилот агента и активация не заявляются; известный остаток вне автоматической трассировки сохранён.",
+    "reviewer": "/root/refactor_review",
+    "verdict": "go"
+  },
+  "runs": []
+}

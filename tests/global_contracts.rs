@@ -47,6 +47,124 @@ fn kit_manifest_uses_stable_lf_bytes() {
 fn exe() -> PathBuf {
     PathBuf::from(env!("CARGO_BIN_EXE_highgrade"))
 }
+
+fn change_candidate_skill(next: &Path) -> Vec<u8> {
+    let rel = "skills/highgrade-work/SKILL.md";
+    let mut bytes = fs::read(next.join(rel)).unwrap();
+    bytes.extend_from_slice(b"\nCandidate instruction.\n");
+    write(&next.join(rel), &bytes);
+    let path = next.join("manifest.json");
+    let mut manifest: Value = serde_json::from_slice(&fs::read(&path).unwrap()).unwrap();
+    manifest["files"][rel] = json!(hash(&bytes));
+    write(&path, &serde_json::to_vec_pretty(&manifest).unwrap());
+    bytes
+}
+
+// highgrade: HG-0027-S1
+#[test]
+fn update_replaces_owned_skill_and_preserves_user_edit() {
+    let profile = temp();
+    global::install(&profile, &source(), &exe()).unwrap();
+    let next = candidate();
+    let expected = change_candidate_skill(&next);
+    let skill = profile.join(".agents/skills/highgrade-work/SKILL.md");
+    let before = fs::read(&skill).unwrap();
+    let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
+    assert_eq!(fs::read(&skill).unwrap(), before);
+    write(&skill, b"user edit");
+    assert!(
+        global::update(
+            &profile,
+            Some(&next),
+            Some(&exe()),
+            true,
+            preview.measurements[0]["candidate_sha256"].as_str()
+        )
+        .is_err()
+    );
+    assert_eq!(fs::read(&skill).unwrap(), b"user edit");
+    write(&skill, &before);
+    global::update(
+        &profile,
+        Some(&next),
+        Some(&exe()),
+        true,
+        preview.measurements[0]["candidate_sha256"].as_str(),
+    )
+    .unwrap();
+    assert_eq!(fs::read(&skill).unwrap(), expected);
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    assert!(
+        !profile
+            .join(".highgrade/global/skill-transaction.json")
+            .exists()
+    );
+}
+
+// highgrade: HG-0027-S2
+#[test]
+fn interrupted_skill_update_recovers_without_overwriting_user_edit() {
+    let profile = temp();
+    global::install(&profile, &source(), &exe()).unwrap();
+    let rel = ".agents/skills/highgrade-work/SKILL.md";
+    let skill = profile.join(rel);
+    let before = fs::read(&skill).unwrap();
+    let pointer: Value =
+        serde_json::from_slice(&fs::read(profile.join(".highgrade/global/active.json")).unwrap())
+            .unwrap();
+    let after = b"candidate bytes";
+    let tx = json!({"old_active":pointer,"candidate":next_release(),"before":{rel:before},"after":{rel:hash(after)}});
+    let tx_path = profile.join(".highgrade/global/skill-transaction.json");
+    write(&tx_path, &serde_json::to_vec_pretty(&tx).unwrap());
+    write(&skill, after);
+    assert!(
+        global::status(&profile)
+            .unwrap_err()
+            .contains("GlobalSkillRecoveryRequired")
+    );
+    write(&skill, b"new user edit");
+    assert!(
+        global::recover(&profile)
+            .unwrap_err()
+            .contains("GlobalRouterChanged")
+    );
+    assert_eq!(fs::read(&skill).unwrap(), b"new user edit");
+    assert!(tx_path.exists());
+    write(&skill, after);
+    assert_eq!(global::recover(&profile).unwrap().status, "passed");
+    assert_eq!(fs::read(&skill).unwrap(), before);
+    assert!(!tx_path.exists());
+}
+
+// highgrade: HG-0027-S2
+#[test]
+fn failed_candidate_stage_restores_changed_skill() {
+    let profile = temp();
+    global::install(&profile, &source(), &exe()).unwrap();
+    let next = candidate();
+    change_candidate_skill(&next);
+    let skill = profile.join(".agents/skills/highgrade-work/SKILL.md");
+    let before = fs::read(&skill).unwrap();
+    let blocked = profile
+        .join(".highgrade/global/releases")
+        .join(next_release())
+        .join("rules.md");
+    write(&blocked, b"foreign content");
+    let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
+    assert!(
+        global::update(
+            &profile,
+            Some(&next),
+            Some(&exe()),
+            true,
+            preview.measurements[0]["candidate_sha256"].as_str()
+        )
+        .is_err()
+    );
+    assert_eq!(fs::read(&skill).unwrap(), before);
+    assert_eq!(fs::read(&blocked).unwrap(), b"foreign content");
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+}
 fn write(p: &Path, bytes: &[u8]) {
     fs::create_dir_all(p.parent().unwrap()).unwrap();
     fs::write(p, bytes).unwrap();
@@ -130,7 +248,7 @@ fn installed_runtime_references_survive_removal_of_source_copy() {
     assert_eq!(global::status(&profile).unwrap().status, "passed");
 }
 
-// highgrade: HG-0020-S9
+// highgrade: HG-0020-S9, HG-0027-S3
 #[test]
 fn planner_router_is_portable() {
     let copied = temp();
@@ -163,6 +281,11 @@ fn planner_router_is_portable() {
         fs::read_to_string(&router)
             .unwrap()
             .contains("procedures/planner.md")
+    );
+    assert!(
+        fs::read_to_string(&router)
+            .unwrap()
+            .contains("## План и продолжение")
     );
     assert_eq!(global::status(&profile).unwrap().status, "passed");
 }

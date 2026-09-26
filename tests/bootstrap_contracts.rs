@@ -298,8 +298,80 @@ fn missing_link_is_distinct_from_missing_file_and_registry_path_mismatch() {
         "missing"
     );
     let connected = highgrade::inspect::inspect(fixture.root(), None, None).unwrap();
-    assert!(finding(&connected, "CanonicalRolePathMismatch"));
+    assert!(!finding(&connected, "CanonicalRolePathMismatch"));
     assert!(finding(&connected, "RequiredLinkMissingOrInvalid"));
+}
+
+// highgrade: HG-0028-S1
+#[test]
+fn connected_project_uses_registered_existing_path() {
+    let fixture = Fixture::new();
+    fixture.canonical();
+    fs::rename(
+        fixture.root().join("docs/ARCHITECTURE.md"),
+        fixture.root().join("docs/system.md"),
+    )
+    .unwrap();
+    fixture.registry("docs/system.md");
+    fixture.write("README.md", "[Agents](AGENTS.md) [Architecture](docs/system.md) [Engineering](docs/ENGINEERING.md) [Development](docs/DEVELOPMENT.md)\n");
+    let report = highgrade::inspect::inspect(fixture.root(), None, None).unwrap();
+    assert_eq!(report.status, "passed", "{:?}", report.findings);
+    fixture.write("README.md", "[Agents](AGENTS.md) [Architecture](docs/ARCHITECTURE.md) [Engineering](docs/ENGINEERING.md) [Development](docs/DEVELOPMENT.md)\n");
+    let invalid = highgrade::inspect::inspect(fixture.root(), None, None).unwrap();
+    assert!(finding(&invalid, "RequiredLinkMissingOrInvalid"));
+}
+
+// highgrade: HG-0028-S2
+#[test]
+fn combined_roles_are_counted_once_and_invalid_assignments_fail() {
+    let fixture = Fixture::new();
+    fixture.canonical();
+    let path = fixture.root().join(".highgrade/project/documents.json");
+    let mut registry: Value = serde_json::from_slice(&fs::read(&path).unwrap()).unwrap();
+    let documents = registry["documents"].as_array_mut().unwrap();
+    documents.truncate(1);
+    documents[0].as_object_mut().unwrap().remove("role");
+    documents[0]["roles"] = json!([
+        "purpose-navigation",
+        "agent-rules",
+        "current-architecture",
+        "engineering-rules",
+        "commands-procedures"
+    ]);
+    documents[0]["scope"] = json!(["docs"]);
+    fixture.write(
+        "README.md",
+        "[Instructions](.highgrade/project/INSTRUCTIONS.md)\n",
+    );
+    fs::write(&path, registry.to_string()).unwrap();
+    let report = highgrade::inspect::inspect(fixture.root(), None, None).unwrap();
+    assert_eq!(report.status, "passed", "{:?}", report.findings);
+    assert_eq!(
+        report
+            .measurements
+            .iter()
+            .filter(|m| m["path"] == "README.md")
+            .count(),
+        1
+    );
+    registry["documents"][0]["roles"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!("agent-rules"));
+    fs::write(&path, registry.to_string()).unwrap();
+    assert!(finding(
+        &highgrade::inspect::inspect(fixture.root(), None, None).unwrap(),
+        "DuplicateRole"
+    ));
+    registry["documents"][0]["roles"] = json!(["purpose-navigation"]);
+    fs::write(&path, registry.to_string()).unwrap();
+    assert!(finding(
+        &highgrade::inspect::inspect(fixture.root(), None, None).unwrap(),
+        "RequiredRoleMissing"
+    ));
+    registry["documents"][0]["path"] = json!("../outside.md");
+    fs::write(&path, registry.to_string()).unwrap();
+    assert!(highgrade::inspect::inspect(fixture.root(), None, None).is_err());
 }
 
 // highgrade: HG-0009-S10

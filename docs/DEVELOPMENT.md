@@ -14,21 +14,17 @@ $hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.e
 & $hgExe spec-schema --root "$PWD"
 ```
 
-Для короткой сверки перед переходом между этапами: `& $hgExe spec-check --root "$PWD" --id HG-CHANGE --brief true`. Вывод содержит точные хеши, статусы и причины повторной проверки без полного журнала; `spec-read` оставь для редактирования change или разбора конкретного пробела.
+Краткий статус: `spec-check --id HG-CHANGE --brief true`. Рабочий контекст: `spec-read --view summary|editable`; full — для истории.
 
-Каталог v3 ведёт CLI активной Поставки; версию проверяет `global-status`. В пустом проекте `spec-list` возвращает `store_sha256=absent`. Маршрут: `spec-new` с хешем → `spec-read` → правка change → `spec-save` с хешем снимка. Каталог напрямую не редактируй; параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
+Каталог ведёт совместимая CLI; global-status определяет установленную, target/debug — кандидат разработки. Маршрут: `spec-new` с хешем → `spec-read --view editable` → `spec-edit --input patch.json --expected HASH --validate true`. Полный spec-save остаётся совместимым. Каталог напрямую не редактируй; параметры — в [справочнике](../kit/references/cli.md#структурированные-спецификации).
 
-Далее: `spec-validate` → работа и тесты → `spec-evidence` → независимое ревью и `spec-review` → `spec-check` → `spec-integrate`. Решение человека пишет `spec-decide`; оно и право на commit/push не следуют из проверки. Старый store мигрирует через `spec-migrate --to directory` с backup. Фокусные тесты: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
-
-## Архив прежнего каталога
-
-Прежние OpenSpec-файлы и [карта переноса](archive/legacy-openspec/migration.json) сохранены в [архиве](archive/legacy-openspec/); соответствие прежних ID — в [архиве канонизации](archive/legacy-native-specs/2026-09-25/). Действующий каталог — `specs/`. Выборочный `spec-transfer` не доказывает поведение или приёмку.
+Далее: `spec-validate` → работа и тесты → `spec-evidence` → независимое ревью и `spec-review` → `spec-integrate --brief true` (включает проверку готовности). Отдельный spec-check нужен для просмотра причин. Решение человека пишет spec-decide. Фокус CLI: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
 
 ## Сценарии и исходные результаты
 
-Метка `// highgrade: HG-...` связывает сценарий с настоящим Rust-тестом. Требования к доказательствам — в [QUALITY](workflow/QUALITY.md).
+Метка `// highgrade: HG-...` связывает сценарий с Rust-тестом; trace требует фактический результат. Checks для spec-run необязательны, но объявленная связь должна совпадать. Требования к доказательствам — в [QUALITY](workflow/QUALITY.md).
 
-Связка ниже проверяет действующий нативный каталог и связь автоматических сценариев с тестами; готовность каждого изменения отдельно определяет `spec-check`.
+Связка проверяет каталог и автоматические сценарии; готовность изменения — spec-check.
 
 Из корня запусти `cargo-nextest` 0.9.146 из `target/highgrade/tools/bin/` (изолированный файл вызывай с аргументом `nextest`).
 
@@ -53,25 +49,24 @@ if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
 
 ## Выбор проверок
 
-`kit/` и документы: `check-repository`, `inspect` бюджета; при новом поведении — упражнение. Rust: фокусный тест и один полный Nextest/trace. `spec-run` считай тестовым запуском. После интеграции каталога повтори `prepare`/`trace`/`verify`; Nextest — лишь если переиспользование отвергнуто. Сбой: адресно.
+| Изменение | Достаточная проверка | Когда расширять |
+|---|---|---|
+| Формулировки, инструкции, навигация | Смысловое ревью diff, check-repository, render-skills --check, inspect | При новом исполнимом контракте — соответствующие тесты |
+| Rust CLI, формат, установка | Узкие контрактные тесты; один полный Nextest/trace для итоговой редакции цепочки | При конкретном непокрытом риске или отказе переиспользования |
+| Только результаты/метаданные каталога | spec-validate/check; prepare/trace/verify при изменении трассировки | Nextest лишь при изменении его значимых входов |
+| Сборка/активация | build-release.py из SHA, preview/apply одного кандидата, global-status | Ошибка — адресная диагностика и восстановление |
 
-`spec-stats --root "$PWD" --id HG-CHANGE` читает время запусков без повторного выполнения; используй при замедлении. Ручное наблюдение человек подтверждает в чате для точной версии; сохрани источник и не повторяй автоматически.
+Малые правки промптов и инструкций не требуют агентных упражнений на импровизированных проектах. Для изменения поведения агента упражнение назначается только при конкретном риске, который не закрывают смысловое ревью и доступные проверки; пилот внешнего проекта требует поручения. Структура текста не доказывает будущее поведение агента. Роли добавляются только под отдельную необходимую работу; обязательного набора специалистов нет.
+
+`spec-run` — фактический запуск, а не бесплатная фиксация уже готового отчёта. После интеграции переиспользуй актуальный Nextest через prepare/trace/verify. Фокусные проверки допустимы на промежуточных этапах; полный барьер обязателен до итогового approve.
+
+`spec-stats --id HG-CHANGE` читает время запусков без выполнения тестов. Ручное наблюдение человек подтверждает в чате для точной версии; сохрани источник и не повторяй автоматически.
 
 ## Rust CLI и глобальная поставка
 
-Активация — в [BUILD](BUILD.md). Для навыков/документов Cargo не нужен. Rust: фокусные тесты и Nextest/trace. При активации единственная обязательная release-сборка — `build-release.py` из SHA; без кандидата отдельную release-сборку назначай лишь при конкретном риске.
+Для текстовых правок Cargo не нужен. Активация: одна release-сборка build-release.py из SHA по [BUILD](BUILD.md).
 
-```powershell
-cargo fmt --all -- --check
-cargo build --locked
-.\target\debug\highgrade.exe global-install --profile '<пустой-временный-профиль>' --source (Join-Path $PWD 'kit') --candidate-exe (Join-Path $PWD 'target\debug\highgrade.exe')
-.\target\debug\highgrade.exe global-status --profile '<пустой-временный-профиль>'
-.\target\debug\highgrade.exe doctor --root "$PWD"
-.\target\debug\highgrade.exe inspect --root "$PWD" --registry '.highgrade/project/documents.json'
-.\target\debug\highgrade.exe inspect --bootstrap --root "$PWD"
-```
-
-Установку проверяй в изолированном профиле; обновление описано в [справочнике](../kit/references/cli.md). Код 2/unknown у диагностики не является PASS.
+Диагностика: `target/debug/highgrade.exe doctor --root "$PWD"` и `inspect --root "$PWD"`. Установку/обновление проверяют global_contracts; дополнительные профили нужны только для непокрытого риска. Код unknown не является PASS.
 
 Временные пробы — только в `target/highgrade/tmp/<запуск>`; после задачи убирай их. Структура и обслуживание — в [BUILD](BUILD.md); контроль размера: `python scripts/target-maintenance.py --check`.
 
@@ -79,7 +74,7 @@ cargo build --locked
 
 ```powershell
 node scripts/check-repository.mjs
-node scripts/check-repository.mjs --verify-import
+python scripts/render-skills.py --check
 ```
 
 Структура и импорт проверяются скриптом; бюджеты — inspect. Реестр: `.highgrade/project/documents.json`.
@@ -88,6 +83,6 @@ node scripts/check-repository.mjs --verify-import
 
 SVG Vectorizer — [README](../plugins/svg-vectorizer/README.md); Code Health Audit — [SKILL.md](../plugins/code-health-audit/skills/code-health-audit/SKILL.md). Проверки поведения — в собственных окружениях плагинов.
 
-## Публикация
+## Принятие и публикация
 
-`highgrade-approve` по [проектной инструкции](../.highgrade/project/INSTRUCTIONS.md) создаёт коммит и при назначении активирует точный SHA. В зависимой цепочке активация — после последнего коммита, если новая CLI не нужна раньше. `highgrade-push` отдельно отправляет выбранный диапазон. Перед отправкой проверь состав, лицензию, секреты и хеши `kit/` по SHA; после — удалённый SHA и CI. Активацию проверяй через `global-status`.
+Полномочия и последовательность — в [местной инструкции](../.highgrade/project/INSTRUCTIONS.md), сборка — в [BUILD](BUILD.md). Push разрешается отдельно.

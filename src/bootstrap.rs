@@ -212,11 +212,20 @@ fn navigation(
     root: &Path,
     report: &mut Report,
     project_exclusions: Option<&BTreeSet<String>>,
+    registered: Option<&BTreeMap<String, String>>,
 ) -> (Vec<Value>, usize) {
+    let required: Vec<&str> = REQUIRED
+        .iter()
+        .map(|(path, role)| {
+            role.and_then(|r| registered.and_then(|m| m.get(r)))
+                .map(String::as_str)
+                .unwrap_or(path)
+        })
+        .collect();
     let mut sources = BTreeMap::new();
     let mut read_files = 0;
     for source in [0, 1, 5] {
-        let path = REQUIRED[source].0;
+        let path = required[source];
         let excluded = project_exclusions.is_some_and(|set| skipped_path(path, set));
         let links = if excluded || file_state(root, path) != "present" {
             None
@@ -247,10 +256,11 @@ fn navigation(
     }
     let mut rows = vec![];
     for (from, to) in LINKS {
-        let source = REQUIRED[from].0;
-        let target = REQUIRED[to].0;
+        let source = required[from];
+        let target = required[to];
         let status = match &sources[&from] {
             None => "unknown",
+            Some(_) if source == target => "present",
             Some(links) if links.iter().any(|(path, _)| path == target) => {
                 if project_exclusions.is_some_and(|set| skipped_path(target, set)) {
                     "unknown"
@@ -280,29 +290,31 @@ fn navigation(
 }
 
 pub fn check_connected(root: &Path, roles: &BTreeMap<String, String>, report: &mut Report) {
-    for (path, role) in REQUIRED {
+    for (default, role) in REQUIRED {
+        let path = match role {
+            Some(role) => match roles.get(role) {
+                Some(path) => path.as_str(),
+                None => continue,
+            },
+            None => default,
+        };
         match file_state(root, path) {
             "present" => {}
             "absent" | "invalid" => report.finding(
                 "failed",
-                "CanonicalPathMissing",
+                "RegisteredPathMissing",
                 path,
                 "Обязательный путь отсутствует или не является файлом.",
             ),
             _ => report.finding(
                 "unknown",
-                "CanonicalPathUnknown",
+                "RegisteredPathUnknown",
                 path,
                 "Обязательный путь не удалось проверить.",
             ),
         }
-        if let Some(role) = role {
-            if roles.get(role).map(String::as_str) != Some(path) {
-                report.finding("failed", "CanonicalRolePathMismatch", path, role);
-            }
-        }
     }
-    let (required_links, _) = navigation(root, report, None);
+    let (required_links, _) = navigation(root, report, None, Some(roles));
     report
         .measurements
         .push(json!({"required_links":required_links}));
@@ -573,8 +585,12 @@ impl Scan {
             };
             slots.push(json!({"expected_path":path,"role":role,"path_state":state,"candidate_status":candidate_status,"candidates":self.candidates[index]}));
         }
-        let (links, link_reads) =
-            navigation(&self.root, &mut self.report, Some(&self.project_exclusions));
+        let (links, link_reads) = navigation(
+            &self.root,
+            &mut self.report,
+            Some(&self.project_exclusions),
+            None,
+        );
         self.read_files += link_reads;
         self.report.measurements.push(json!({
             "mode":"bootstrap",

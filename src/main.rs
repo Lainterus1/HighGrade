@@ -11,7 +11,7 @@ fn run() -> Result<Report> {
         }
         let mut r = Report::new("help");
         r.measurements.push(json!({
-            "project_commands":"doctor inspect inventory trace spec-list spec-new spec-read spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-stats",
+            "project_commands":"doctor inspect inventory trace spec-list spec-new spec-read spec-edit spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-stats",
             "installation_commands":"global-install global-update global-status legacy-install legacy-update",
             "project_root":"--root PATH",
             "spec_start":"spec-list --root PATH; spec-new --root PATH --title TITLE --expected HASH",
@@ -63,7 +63,7 @@ fn run() -> Result<Report> {
             "--apply",
             "--candidate-sha256",
         ],
-        "global-status" => vec!["--profile"],
+        "global-status" | "global-recover" => vec!["--profile"],
         "legacy-install" => vec!["--root", "--source", "--audit"],
         "legacy-update" => vec![
             "--root",
@@ -84,12 +84,21 @@ fn run() -> Result<Report> {
         "spec-tag-remove" => vec!["--root", "--expected", "--id"],
         "spec-tag-merge" => vec!["--root", "--expected", "--from", "--into"],
         "spec-new" => vec!["--root", "--id", "--title", "--expected"],
-        "spec-integrate" | "spec-transfer" => vec!["--root", "--id", "--expected"],
+        "spec-integrate" => vec!["--root", "--id", "--expected", "--brief"],
+        "spec-transfer" => vec!["--root", "--id", "--expected"],
         "spec-migrate" => vec!["--root", "--expected", "--to"],
         "spec-init" => vec!["--root", "--directory"],
         "spec-recover" => vec!["--root", "--expected"],
         "spec-decide" => vec!["--root", "--expected", "--input"],
-        "spec-read" => vec!["--root", "--id", "--requirement"],
+        "spec-read" => vec!["--root", "--id", "--requirement", "--view", "--tag"],
+        "spec-edit" => vec![
+            "--root",
+            "--id",
+            "--expected",
+            "--input",
+            "--validate",
+            "--brief",
+        ],
         "spec-diff" | "spec-validate" => vec!["--root", "--id"],
         "spec-check" => vec!["--root", "--id", "--brief"],
         "spec-save" | "spec-evidence" => vec!["--root", "--id", "--expected", "--input"],
@@ -146,6 +155,7 @@ fn run() -> Result<Report> {
             Path::new(get("--source")?),
             Path::new(get("--candidate-exe")?),
         ),
+        "global-recover" => highgrade::global::recover(Path::new(get("--profile")?)),
         "global-update" => highgrade::global::update(
             Path::new(get("--profile")?),
             options.get("--source").map(Path::new),

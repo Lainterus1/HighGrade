@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-26T08:12:37.171946+00:00",
+  "checks": {
+    "nextest": "127/127 passed, 0 skipped",
+    "trace": "51/51 automatic scenarios passed; 74 outside automatic trace",
+    "render-skills --check": "passed",
+    "check-repository": "passed",
+    "inspect": "only ExternalLinkUnchecked warnings"
+  },
+  "notes": [
+    "Rust trace marker corrected to comma-separated scenario IDs before final Nextest.",
+    "source-scenarios manual count now ignores retired IDs; current catalog reproduces and verifies this regression.",
+    "Full procedures are embedded in generated skills; paths resolve against active release.",
+    "No user-profile activation, human observation or future agent stability claimed."
+  ]
+}

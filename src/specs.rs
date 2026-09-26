@@ -82,6 +82,8 @@ pub struct Evidence {
     pub observation: String,
     pub scenario_sha256: String,
     pub files: BTreeMap<String, String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub input_paths: Option<BTreeSet<String>>,
     pub report: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, PartialEq)]
@@ -127,6 +129,8 @@ pub struct Change {
     pub tags: BTreeSet<String>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub checks: Vec<checks::Check>,
+    #[serde(default, skip_serializing_if = "BTreeSet::is_empty")]
+    pub shared_inputs: BTreeSet<String>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub runs: Vec<checks::Run>,
 }
@@ -423,6 +427,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         op,
         "spec-new"
             | "spec-save"
+            | "spec-edit"
             | "spec-evidence"
             | "spec-review"
             | "spec-integrate"
@@ -476,6 +481,20 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
     }
     if change_id.is_some() && options.contains_key("--requirement") {
         return Err("Usage: choose --id or --requirement".into());
+    }
+    if options
+        .get("--view")
+        .is_some_and(|v| !matches!(v.as_str(), "full" | "summary" | "editable" | "requirements"))
+    {
+        return Err("Usage: --view full|summary|editable|requirements".into());
+    }
+    if options.contains_key("--tag")
+        && op == "spec-read"
+        && (options.get("--view").map(String::as_str) != Some("requirements")
+            || change_id.is_some()
+            || options.contains_key("--requirement"))
+    {
+        return Err("Usage: --tag requires spec-read --view requirements without an id".into());
     }
     match op {
         "spec-list" => {
@@ -536,6 +555,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 related_to: vec![],
                 tags: BTreeSet::new(),
                 checks: vec![],
+                shared_inputs: BTreeSet::new(),
                 runs: vec![],
                 goal: String::new(),
                 rationale: String::new(),
@@ -556,6 +576,34 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             };
             store.changes.insert(key.into(), c);
             progress::advance(&mut store, key)?;
+        }
+        "spec-edit" => {
+            let patch: Value = decode(
+                &paths::read_limited(&paths::safe(&root, get("--input")?)?, LIMIT)?,
+                "/edit",
+            )?;
+            let fields = patch.as_object().ok_or("InvalidEdit: expected object")?;
+            let c = change_mut(&mut store, get("--id")?)?;
+            let mut value = serde_json::to_value(&*c).unwrap();
+            for (key, field) in fields {
+                if !EDITABLE.contains(&key.as_str()) {
+                    return Err(format!("ProtectedField: {key}"));
+                }
+                value[key] = field.clone();
+            }
+            *c = decode(&serde_json::to_vec(&value).unwrap(), "/change")?;
+            if options.get("--validate").is_some_and(|v| v == "true") {
+                readiness(
+                    &root,
+                    &store,
+                    &store.changes[get("--id")?],
+                    &mut report,
+                    false,
+                );
+                if report.exit_code() != 0 {
+                    return Ok(report);
+                }
+            }
         }
         "spec-save" => {
             let input = paths::safe(&root, get("--input")?)?;
@@ -581,7 +629,28 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             *c = incoming;
         }
         "spec-read" | "spec-diff" | "spec-check" | "spec-validate" => {
-            if let Some(key) = change_id {
+            if op == "spec-read"
+                && options.get("--view").is_some_and(|v| v == "requirements")
+                && change_id.is_none()
+                && !options.contains_key("--requirement")
+            {
+                let tag = options.get("--tag");
+                if tag.is_some_and(|t| !store.tags.contains_key(t)) {
+                    return Err("UnknownTag".into());
+                }
+                let selected: BTreeSet<_> = store
+                    .changes
+                    .values()
+                    .filter(|c| tag.is_none_or(|t| c.tags.contains(t)))
+                    .flat_map(|c| c.operations.iter().map(Delta::id))
+                    .collect();
+                let requirements: Vec<_> = store
+                    .requirements
+                    .values()
+                    .filter(|r| tag.is_none() || selected.contains(r.id.as_str()))
+                    .collect();
+                report.measurements.push(json!({"requirements":requirements,"selection":"current requirements; tag coverage follows explicit change tags"}));
+            } else if let Some(key) = change_id {
                 let c = store.changes.get(key).ok_or("ChangeMissing: /changes/id")?;
                 if op == "spec-check" || op == "spec-validate" {
                     readiness(&root, &store, c, &mut report, op == "spec-check");
@@ -678,11 +747,9 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                     "Complete the contract transfer tasks before transfer.",
                 );
             }
-            if !c
-                .review
-                .as_ref()
-                .is_some_and(|r| r.verdict == Verdict::Go && r.change_sha256 == revision(&c))
-            {
+            if !c.review.as_ref().is_some_and(|r| {
+                r.verdict == Verdict::Go && progress::matches_revision(&c, &r.change_sha256)
+            }) {
                 report.finding(
                     "failed",
                     "TransferReviewMissingOrStale",
@@ -773,7 +840,32 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         .push(json!({"store_sha256":current_sha,"schema_version":store.schema_version}));
     if let Some(key) = change_id {
         if let Some(c) = store.changes.get(key) {
-            if op != "spec-stats"
+            if matches!(op, "spec-edit" | "spec-integrate")
+                && options.get("--brief").is_some_and(|v| v == "true")
+            {
+                let mut state = Report::new("spec-check");
+                readiness(&root, &store, c, &mut state, true);
+                report.measurements.push(brief(&root, &store, c, &state));
+            } else if op == "spec-read" && options.get("--view").is_some_and(|v| v != "full") {
+                let view = options["--view"].as_str();
+                let value = serde_json::to_value(c).unwrap();
+                let selected = match view {
+                    "editable" => Value::Object(
+                        EDITABLE
+                            .iter()
+                            .filter_map(|key| value.get(*key).map(|v| ((*key).into(), v.clone())))
+                            .collect(),
+                    ),
+                    "summary" => {
+                        json!({"id":c.id,"title":c.title,"goal":c.goal,"scope":c.scope,"tasks":c.tasks,"questions":c.questions,"links":relations::metadata(&store,c),"contract_sha256":progress::contract_revision(c)})
+                    }
+                    "requirements" => json!({"id":c.id,"operations":c.operations}),
+                    _ => return Err("Usage: --view full|summary|editable|requirements".into()),
+                };
+                report
+                    .measurements
+                    .push(json!({"view":view,"value":selected}));
+            } else if op != "spec-stats"
                 && !(op == "spec-check" && options.get("--brief").is_some_and(|v| v == "true"))
             {
                 report
@@ -784,6 +876,20 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
     }
     Ok(report)
 }
+const EDITABLE: &[&str] = &[
+    "title",
+    "goal",
+    "rationale",
+    "scope",
+    "questions",
+    "tasks",
+    "operations",
+    "depends_on",
+    "related_to",
+    "tags",
+    "checks",
+    "shared_inputs",
+];
 
 fn readiness(root: &Path, store: &Store, c: &Change, report: &mut Report, complete: bool) {
     let mut missing = |location: &str, code: &str| {
@@ -911,10 +1017,9 @@ fn readiness(root: &Path, store: &Store, c: &Change, report: &mut Report, comple
         }
     }
     if complete
-        && !c
-            .review
-            .as_ref()
-            .is_some_and(|r| r.verdict == Verdict::Go && r.change_sha256 == revision(c))
+        && !c.review.as_ref().is_some_and(|r| {
+            r.verdict == Verdict::Go && progress::matches_revision(c, &r.change_sha256)
+        })
     {
         missing("/review", "ReviewMissingOrStale");
     }
@@ -977,7 +1082,7 @@ fn brief(root: &Path, store: &Store, c: &Change, report: &Report) -> Value {
     let review = match c.review.as_ref() {
         None => "missing",
         Some(r) if r.verdict != Verdict::Go => "no_go",
-        Some(r) if r.change_sha256 != current_revision => "stale",
+        Some(r) if !progress::matches_revision(c, &r.change_sha256) => "stale",
         Some(_) => "go",
     };
     if review != "go" {
@@ -996,6 +1101,7 @@ fn brief(root: &Path, store: &Store, c: &Change, report: &Report) -> Value {
             "technical": if technical_ready { "ready" } else { "in_progress" },
             "human": human,
             "change_sha256": current_revision,
+            "contract_sha256": progress::contract_revision(c),
             "inputs_sha256": progress::inputs_hash(root, c).ok(),
             "review": review,
             "verified_revision": verified_revision,
@@ -1058,6 +1164,7 @@ fn record_evidence(root: &Path, c: &mut Change, input: &Path) -> Result<()> {
                 r.scenarios.iter().find(|s| s.id == v.scenario).unwrap(),
             ),
             files,
+            input_paths: Some(v.inputs.into_iter().collect()),
             report: v.report,
         },
     );
@@ -1150,6 +1257,7 @@ fn import(root: &Path, store: &mut Store, key: &str, input: &str, source: &str) 
         related_to: vec![],
         tags: BTreeSet::new(),
         checks: vec![],
+        shared_inputs: BTreeSet::new(),
         runs: vec![],
         goal: format!("Transfer {} without changing its contract", r.id),
         rationale:

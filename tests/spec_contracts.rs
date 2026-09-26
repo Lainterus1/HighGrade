@@ -1043,6 +1043,7 @@ fn isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work() {
     // Revise the returned active specification and re-review before the next decision.
     let mut edited = change(&root, &ids[2]);
     edited["title"] = json!("Third: clarified version check");
+    edited["scope"] = json!("Version check with clarified compatibility boundary");
     save(&root, &ids[2], &edited);
     assert_eq!(listing(&root)["summary"]["stale"], 1);
     review(&root, &ids[2]);
@@ -1056,6 +1057,75 @@ fn isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work() {
             .len(),
         2
     );
+}
+
+// highgrade: HG-0029-S1, HG-0029-S2
+#[test]
+fn equivalent_evidence_refresh_preserves_decision_but_changed_observation_does_not() {
+    let root = root();
+    complete(&root, "HG-A");
+    decide(&root, vec![item(&root, "HG-A", "accepted")]).unwrap();
+    let previous = change(&root, "HG-A");
+    fs::write(root.join("repeat.txt"), "fresh native report, same result").unwrap();
+    let mut input = json!({"command":"calculator test","captured_at":"2026-09-26T01:00:00Z","method":"native_report","scenario":"HG-A-S1","outcome":"passed","observation":"The calculator test returned 5","inputs":["logic.txt"],"report":"repeat.txt"});
+    write(&root, "evidence.json", &input);
+    let record = || {
+        call(
+            &root,
+            "spec-evidence",
+            &[
+                ("--id", "HG-A"),
+                ("--expected", &sha(&root)),
+                ("--input", "evidence.json"),
+            ],
+        )
+        .unwrap()
+    };
+    record();
+    assert_eq!(check(&root, "HG-A").status, "passed");
+    assert_eq!(listing(&root)["summary"]["accepted"], 1);
+    assert_eq!(change(&root, "HG-A")["acceptance"], previous["acceptance"]);
+    assert_ne!(change(&root, "HG-A")["evidence"], previous["evidence"]);
+    // A report still has integrity checks, even though its bytes are not contract inputs.
+    fs::write(root.join("repeat.txt"), "tampered").unwrap();
+    assert_eq!(check(&root, "HG-A").status, "failed");
+    fs::write(root.join("repeat.txt"), "fresh native report, same result").unwrap();
+    input["observation"] = json!("A different material observation");
+    write(&root, "evidence.json", &input);
+    record();
+    assert_eq!(check(&root, "HG-A").status, "failed");
+    assert_eq!(listing(&root)["summary"]["stale"], 1);
+}
+
+// highgrade: HG-0029-S2
+#[test]
+fn report_that_is_also_an_input_never_hides_changed_implementation() {
+    let root = root();
+    complete(&root, "HG-A");
+    write(
+        &root,
+        "evidence.json",
+        &json!({"command":"calculator test","captured_at":"2026-09-26T00:00:00Z","method":"native_report","scenario":"HG-A-S1","outcome":"passed","observation":"The calculator test returned 5","inputs":["logic.txt"],"report":"logic.txt"}),
+    );
+    let record = || {
+        call(
+            &root,
+            "spec-evidence",
+            &[
+                ("--id", "HG-A"),
+                ("--expected", &sha(&root)),
+                ("--input", "evidence.json"),
+            ],
+        )
+        .unwrap()
+    };
+    record();
+    review(&root, "HG-A");
+    decide(&root, vec![item(&root, "HG-A", "accepted")]).unwrap();
+    fs::write(root.join("logic.txt"), "changed implementation").unwrap();
+    record();
+    assert_eq!(check(&root, "HG-A").status, "failed");
+    assert_eq!(listing(&root)["summary"]["stale"], 1);
 }
 
 // highgrade: HG-0012-S2

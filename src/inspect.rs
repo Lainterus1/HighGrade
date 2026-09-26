@@ -296,16 +296,40 @@ pub fn inspect(root: &Path, registry: Option<&str>, scope: Option<&str>) -> Resu
     let mut scope_covered = false;
     for (index, doc) in rows.iter().enumerate() {
         let path = doc["path"].as_str().ok_or("ConfigInvalid: document.path")?;
-        let role = doc["role"].as_str().ok_or("ConfigInvalid: document.role")?;
+        let document_roles: Vec<&str> = match (doc.get("role"), doc.get("roles")) {
+            (Some(role), None) => vec![
+                role.as_str()
+                    .filter(|s| !s.is_empty())
+                    .ok_or("ConfigInvalid: document.role")?,
+            ],
+            (None, Some(list)) => {
+                let values = list
+                    .as_array()
+                    .filter(|a| !a.is_empty())
+                    .ok_or("ConfigInvalid: document.roles")?;
+                values
+                    .iter()
+                    .map(|v| {
+                        v.as_str()
+                            .filter(|s| !s.is_empty())
+                            .ok_or("ConfigInvalid: document.roles item")
+                    })
+                    .collect::<std::result::Result<_, _>>()?
+            }
+            _ => return Err("ConfigInvalid: use either role or roles".into()),
+        };
+        let role = document_roles[0];
         if index < docs.len() {
             let id = doc["id"].as_str().ok_or("ConfigInvalid: document.id")?;
             if !ids.insert(id) {
                 r.finding("failed", "DuplicateId", path, id);
             }
-            if !roles.insert(role) {
-                r.finding("failed", "DuplicateRole", path, role);
+            for role in &document_roles {
+                if !roles.insert(*role) {
+                    r.finding("failed", "DuplicateRole", path, role);
+                }
+                role_paths.insert((*role).to_owned(), path.to_owned());
             }
-            role_paths.insert(role.to_owned(), path.to_owned());
         }
         if !known_paths.insert(path.to_lowercase()) {
             r.finding("failed", "DuplicatePath", path, "Путь назначен повторно.");

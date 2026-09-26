@@ -62,7 +62,7 @@ pub fn statistics(root: &Path, s: &Store, id: &str) -> Result<Value> {
             .runner
             .as_ref()
             .and_then(|id| s.runners.get(id))
-            .and_then(|runner| inputs(root, check, runner).ok());
+            .and_then(|runner| inputs(root, check, runner, &change.shared_inputs).ok());
         let comparable = |run: &Run| {
             run.check_sha256 == current_revision
                 && current_inputs.as_ref().is_some_and(|now| {
@@ -134,6 +134,9 @@ pub fn validate(s: &Store) -> Result<()> {
         }
     }
     for c in s.changes.values() {
+        for path in &c.shared_inputs {
+            paths::relative(path)?;
+        }
         let scenarios: BTreeSet<_> = c
             .operations
             .iter()
@@ -211,6 +214,16 @@ pub fn stale_reason(root: &Path, s: &Store, c: &Change, b: &Check) -> Option<Val
             json!({"kind":"check","id":b.id,"reason":reason,"path":path,"next":"rerun_check"}),
         );
     }
+    if let Some(runner) = b.runner.as_ref().and_then(|id| s.runners.get(id)) {
+        match inputs(root, b, runner, &c.shared_inputs) {
+            Ok(current) if run.inputs_after.as_ref() == Some(&current) => {}
+            _ => {
+                return Some(
+                    json!({"kind":"check","id":b.id,"reason":"input_set_changed_or_unavailable","next":"rerun_check"}),
+                );
+            }
+        }
+    }
     None
 }
 fn parse(format: &str, text: &str, selector: &str) -> Outcome {
@@ -257,8 +270,13 @@ fn parse(format: &str, text: &str, selector: &str) -> Outcome {
         Outcome::Passed
     }
 }
-fn inputs(root: &Path, b: &Check, r: &Runner) -> Result<BTreeMap<String, String>> {
-    let mut rels = b.inputs.clone();
+fn inputs(
+    root: &Path,
+    b: &Check,
+    r: &Runner,
+    shared: &BTreeSet<String>,
+) -> Result<BTreeMap<String, String>> {
+    let mut rels = b.inputs.union(shared).cloned().collect::<BTreeSet<_>>();
     rels.insert(b.file.clone());
     if r.program.contains('/') {
         rels.insert(r.program.clone());
@@ -302,7 +320,7 @@ pub fn execute(
         };
         let r = &s.runners[runner_id];
         let result = (|| -> Result<Run> {
-            let before = inputs(root, &b, r)?;
+            let before = inputs(root, &b, r, &c.shared_inputs)?;
             let stamp = std::time::SystemTime::now()
                 .duration_since(std::time::UNIX_EPOCH)
                 .map_err(|e| e.to_string())?
@@ -405,7 +423,7 @@ pub fn execute(
             } else {
                 Outcome::Failed
             };
-            let after = inputs(root, &b, r);
+            let after = inputs(root, &b, r, &c.shared_inputs);
             let mut note = note;
             if !after.as_ref().is_ok_and(|a| *a == before) {
                 outcome = Outcome::Unknown;
@@ -456,8 +474,15 @@ pub fn execute(
             .iter()
             .all(|b| b.runner.is_some() && fresh(root, s, c, b));
         let mut files = BTreeMap::new();
+        let mut input_paths = BTreeSet::new();
         for b in &bindings {
             if let Some(run) = c.runs.iter().rev().find(|r| r.check == b.id) {
+                input_paths.extend(
+                    run.inputs_after
+                        .as_ref()
+                        .map(|m| m.keys().cloned().collect::<BTreeSet<_>>())
+                        .unwrap_or_else(|| run.files.keys().cloned().collect()),
+                );
                 files.extend(run.files.clone());
             }
         }
@@ -474,7 +499,7 @@ pub fn execute(
             .find(|(b, _)| b.scenario_ids.contains(&scenario))
             .unwrap()
             .1;
-        let e=Evidence{command:format!("spec-run --id {id} --check {selected}"),captured_at:newest.started_at.to_string(),method:"native_report".into(),scenario:scenario.clone(),outcome:if passed {Outcome::Passed} else {Outcome::Unknown},observation:"Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью".into(),scenario_sha256:scenario_revision(r,sc),files,report:newest.report.clone()};
+        let e=Evidence{command:format!("spec-run --id {id} --check {selected}"),captured_at:newest.started_at.to_string(),method:"native_report".into(),scenario:scenario.clone(),outcome:if passed {Outcome::Passed} else {Outcome::Unknown},observation:"Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью".into(),scenario_sha256:scenario_revision(r,sc),files,input_paths:Some(input_paths),report:newest.report.clone()};
         s.changes.get_mut(id).unwrap().evidence.insert(scenario, e);
     }
     for (b, run) in observed {

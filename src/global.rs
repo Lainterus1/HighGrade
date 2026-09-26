@@ -8,6 +8,7 @@ use std::{
 
 const ACTIVE: &str = ".highgrade/global/active.json";
 const LOCK: &str = ".highgrade/global/install.lock";
+const SKILL_TRANSACTION: &str = ".highgrade/global/skill-transaction.json";
 const APPROVE_SKILL: &str = "skills/highgrade-approve/SKILL.md";
 const PUSH_SKILL: &str = "skills/highgrade-push/SKILL.md";
 const PLANNER_SKILL: &str = "skills/highgrade-planner/SKILL.md";
@@ -391,6 +392,77 @@ fn retire_router(profile: &Path, rel: &str, expected: &str) -> Result<()> {
     }
     fs::remove_file(path).map_err(|e| format!("GlobalRouterCleanupFailed: {rel}: {e}"))
 }
+
+#[derive(serde::Serialize, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+struct SkillTransaction {
+    old_active: Value,
+    candidate: String,
+    before: BTreeMap<String, Vec<u8>>,
+    after: BTreeMap<String, String>,
+}
+
+fn recover_skills(profile: &Path) -> Result<()> {
+    let path = paths::safe(profile, SKILL_TRANSACTION)?;
+    if !path.exists() {
+        return Ok(());
+    }
+    let tx: SkillTransaction =
+        serde_json::from_slice(&paths::read_limited(&path, 8 * 1024 * 1024)?)
+            .map_err(|e| format!("GlobalSkillTransactionInvalid: {e}"))?;
+    let pointer = crate::read_json(&paths::safe(profile, ACTIVE)?)?;
+    if pointer == tx.old_active {
+        let old = pointer["release"]
+            .as_str()
+            .ok_or("GlobalSkillTransactionInvalid")?;
+        if !valid_release(old) || !valid_release(&tx.candidate) || old == tx.candidate {
+            return Err("GlobalSkillTransactionInvalid".into());
+        }
+        let journal_bytes =
+            paths::read_limited(&paths::safe(profile, &journal_file(old))?, 8 * 1024 * 1024)?;
+        if pointer["journal_sha256"].as_str() != Some(hash(&journal_bytes).as_str()) {
+            return Err("GlobalSkillTransactionJournalChanged".into());
+        }
+        let journal: Value = serde_json::from_slice(&journal_bytes).map_err(|e| e.to_string())?;
+        if tx.before.keys().ne(tx.after.keys()) {
+            return Err("GlobalSkillTransactionInvalid".into());
+        }
+        // Validate the whole set before restoring any member. A user's edit is
+        // never silently overwritten, even when recovery is only partial.
+        for (rel, bytes) in &tx.before {
+            if !SKILLS.iter().any(|name| router(name) == *rel)
+                || journal["files"][rel].as_str() != Some(hash(bytes).as_str())
+            {
+                return Err("GlobalSkillTransactionInvalid".into());
+            }
+            let current = paths::read_limited(&paths::safe(profile, rel)?, 8 * 1024 * 1024)?;
+            if current != *bytes && hash(&current) != tx.after[rel] {
+                return Err(format!("GlobalRouterChanged: {rel}"));
+            }
+        }
+        for (rel, bytes) in &tx.before {
+            let target = paths::safe(profile, rel)?;
+            if paths::read_limited(&target, 8 * 1024 * 1024)? != *bytes {
+                package::replace_active(&target, bytes)?;
+            }
+        }
+        active(profile)?;
+    } else if pointer["release"].as_str() == Some(tx.candidate.as_str()) {
+        active(profile)?;
+    } else {
+        return Err("GlobalSkillTransactionActiveChanged".into());
+    }
+    fs::remove_file(path).map_err(|e| e.to_string())
+}
+
+pub fn recover(profile: &Path) -> Result<Report> {
+    let profile = paths::root(profile)?;
+    let _guard = lock(&profile)?;
+    recover_skills(&profile)?;
+    let mut report = status(&profile)?;
+    report.operation = "global-recover".into();
+    Ok(report)
+}
 fn stage(profile: &Path, c: &Candidate) -> Result<()> {
     install::put_once(profile, &journal_file(&c.release), &c.journal)?;
     let new_routers = [
@@ -638,6 +710,9 @@ fn retire_failed_candidate(profile: &Path, candidate: &Candidate) -> Result<()> 
 }
 pub fn status(profile: &Path) -> Result<Report> {
     let profile = paths::root(profile)?;
+    if paths::safe(&profile, SKILL_TRANSACTION)?.exists() {
+        return Err("GlobalSkillRecoveryRequired: run global-recover".into());
+    }
     let mut r = Report::new("global-status");
     match active(&profile)? {
         Some((release, _)) => {
@@ -722,6 +797,9 @@ pub fn update(
     expected_sha256: Option<&str>,
 ) -> Result<Report> {
     let profile = paths::root(profile)?;
+    if paths::safe(&profile, SKILL_TRANSACTION)?.exists() {
+        return Err("GlobalSkillRecoveryRequired: run global-recover".into());
+    }
     let (old, old_hash) = active(&profile)?.ok_or("GlobalNotInstalled")?;
     let mut c = candidate(
         source.ok_or("Usage: --source required")?,
@@ -743,7 +821,7 @@ pub fn update(
     )?)
     .map_err(|e| e.to_string())?;
     let mut adapted = false;
-    for name in PREVIOUS_SKILLS {
+    for name in SKILLS {
         let rel = router(name);
         if old_journal["files"][rel.as_str()].is_string() {
             let installed = paths::read_limited(&paths::safe(&profile, &rel)?, 8 * 1024 * 1024)?;
@@ -764,14 +842,19 @@ pub fn update(
     let candidate_journal = paths::safe(&profile, &journal_file(&c.release))?;
     let resuming = candidate_journal.exists()
         && paths::read_limited(&candidate_journal, 8 * 1024 * 1024)? == c.journal;
+    let mut before = BTreeMap::new();
     for s in SKILLS {
         let rel = router(s);
         let target = paths::safe(&profile, &rel)?;
-        if target.exists()
-            && (!old_journal["files"][rel.as_str()].is_string() && !resuming
-                || c.files.get(&rel) != Some(&paths::read_limited(&target, 8 * 1024 * 1024)?))
-        {
-            return Err(format!("GlobalRouterIncompatible: {s}"));
+        if target.exists() {
+            let installed = paths::read_limited(&target, 8 * 1024 * 1024)?;
+            if old_journal["files"][rel.as_str()].as_str() == Some(hash(&installed).as_str()) {
+                if c.files.get(&rel) != Some(&installed) {
+                    before.insert(rel, installed);
+                }
+            } else if !resuming || c.files.get(&rel) != Some(&installed) {
+                return Err(format!("GlobalRouterIncompatible: {s}"));
+            }
         }
     }
     let mut r = Report::new("global-update");
@@ -791,7 +874,32 @@ pub fn update(
     if active(&profile)? != Some((old.clone(), old_hash.clone())) {
         return Err("GlobalActiveChanged".into());
     }
+    if !before.is_empty() {
+        let tx = SkillTransaction {
+            old_active: crate::read_json(&paths::safe(&profile, ACTIVE)?)?,
+            candidate: c.release.clone(),
+            after: before
+                .keys()
+                .map(|rel| (rel.clone(), hash(&c.files[rel])))
+                .collect(),
+            before,
+        };
+        install::put_once(
+            &profile,
+            SKILL_TRANSACTION,
+            &serde_json::to_vec_pretty(&tx).map_err(|e| e.to_string())?,
+        )?;
+        for rel in tx.before.keys() {
+            if let Err(error) = package::replace_active(&paths::safe(&profile, rel)?, &c.files[rel])
+            {
+                recover_skills(&profile)
+                    .map_err(|e| format!("GlobalSkillRestoreFailed: {error}; {e}"))?;
+                return Err(error);
+            }
+        }
+    }
     if let Err(error) = stage(&profile, &c) {
+        recover_skills(&profile)?;
         retire_failed_candidate(&profile, &c)
             .map_err(|cleanup| format!("GlobalStageFailed: {error}; {cleanup}"))?;
         return Err(error);
@@ -799,6 +907,7 @@ pub fn update(
     let active_path = paths::safe(&profile, ACTIVE)?;
     if let Err(error) = package::replace_active(&active_path, &active_bytes(&c.release, &c.journal))
     {
+        recover_skills(&profile)?;
         let routers = remove_new_routers(&profile, &old_journal, &c);
         let release = retire_failed_candidate(&profile, &c);
         if let Err(cleanup) = routers.and(release) {
@@ -821,8 +930,8 @@ pub fn update(
         .and_then(|_| package::verify_binary(&installed_exe, &c.cli_version))
         .and_then(|_| package::verify_doctor(&installed_exe, &probe_root))
     {
-        let old_journal_bytes = verify_release(&profile, &old)?;
-        package::replace_active(&active_path, &active_bytes(&old, &old_journal_bytes))?;
+        package::replace_active(&active_path, &serde_json::to_vec_pretty(&json!({"schema_version":3,"status":"connected","release":old,"journal_sha256":old_hash})).map_err(|e| e.to_string())?)?;
+        recover_skills(&profile)?;
         let routers = remove_new_routers(&profile, &old_journal, &c);
         let release = retire_failed_candidate(&profile, &c);
         if let Err(cleanup) = routers.and(release) {
@@ -830,6 +939,7 @@ pub fn update(
         }
         return Err(format!("GlobalPostcheckFailedRestoredPrevious: {e}"));
     }
+    recover_skills(&profile)?;
     for (rel, _) in old_routers {
         if !c.files.contains_key(&rel) {
             let expected = old_journal["files"][rel.as_str()].as_str().unwrap();
