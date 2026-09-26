@@ -98,6 +98,62 @@ class TargetMaintenanceTests(unittest.TestCase):
             module.maintain(self.root, apply=True, scratch=('../candidate',))
         self.assertEqual((self.project / 'candidate/highgrade.exe').read_bytes(), b'candidate')
 
+    def test_selected_preview_and_real_build_cache_cleanup(self):
+        (self.root / 'Cargo.toml').write_text('[package]\nname="cleanup_fixture"\nversion="0.1.0"\nedition="2021"\n')
+        (self.root / 'src').mkdir()
+        (self.root / 'src/lib.rs').write_text('pub fn value() -> u8 { 1 }\n')
+        cache = self.project / 'build-cache'
+        subprocess.run(['cargo', 'build', '--offline', '--release', '--target-dir', str(cache)],
+                       cwd=self.root, check=True, capture_output=True)
+        (cache / 'foreign.txt').write_text('outside Cargo release output')
+        reports = self.project / 'reports'
+        reports.mkdir()
+        (reports / 'old.log').write_text('obsolete')
+        (reports / 'keep.log').write_text('keep')
+        before = {str(p.relative_to(self.root)): p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+        result = subprocess.run(['python', str(Path(module.__file__).resolve()), '--root', str(self.root),
+                                 '--cache', 'build-cache', '--scratch', 'run-1', '--report', 'old.log'],
+                                check=True, capture_output=True, text=True)
+        import json
+        preview = json.loads(result.stdout)
+        self.assertEqual(preview['status'], 'preview')
+        self.assertEqual(before, {str(p.relative_to(self.root)): p.read_bytes() for p in self.root.rglob('*') if p.is_file()})
+        with patch.object(module, 'active_builds', return_value=[]):
+            applied = module.maintain(self.root, apply=True, caches=('build-cache',), scratch=('run-1',), reports=('old.log',))
+        self.assertEqual(applied['planned'], preview['planned'])
+        self.assertEqual(applied['cargo_commands'], preview['cargo_commands'])
+        self.assertFalse((cache / 'release').exists())
+        self.assertFalse((reports / 'old.log').exists())
+        self.assertEqual((reports / 'keep.log').read_text(), 'keep')
+        self.assertEqual((cache / 'foreign.txt').read_text(), 'outside Cargo release output')
+        self.assertEqual((self.project / 'candidate/highgrade.exe').read_bytes(), b'candidate')
+
+    def test_invalid_mixed_selection_refuses_before_deleting_scratch(self):
+        for args in [{'caches': ('unknown',)}, {'reports': ('../candidate/highgrade.exe',)}, {'reports': ('missing.log',)}]:
+            with self.subTest(args=args), patch.object(module, 'active_builds', return_value=[]):
+                with self.assertRaises(ValueError):
+                    module.maintain(self.root, apply=True, scratch=('run-1',), **args)
+            self.assertTrue((self.project / 'tmp/run-1/input.json').exists())
+        (self.project / 'work').mkdir()
+        (self.project / 'work/build.lock').write_text('running')
+        with patch.object(module, 'active_builds', return_value=[]):
+            with self.assertRaisesRegex(ValueError, 'build work'):
+                module.maintain(self.root, apply=True, scratch=('run-1',))
+        self.assertTrue((self.project / 'tmp/run-1/input.json').exists())
+
+    def test_cache_file_refuses_before_removing_selected_scratch(self):
+        for relative in ['build-cache', 'build-cache/release']:
+            with self.subTest(relative=relative):
+                path = self.project / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('foreign file')
+                with patch.object(module, 'active_builds', return_value=[]):
+                    with self.assertRaisesRegex(ValueError, 'not a directory'):
+                        module.maintain(self.root, apply=True, caches=('build-cache',), scratch=('run-1',))
+                self.assertTrue((self.project / 'tmp/run-1/input.json').exists())
+                self.assertEqual(path.read_text(), 'foreign file')
+                path.unlink()
+
 
 if __name__ == '__main__':
     unittest.main()

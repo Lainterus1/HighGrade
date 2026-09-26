@@ -9,7 +9,7 @@
 | Команда | Параметры и результат |
 |---|---|
 | `issue-list` | Необязательные `--query`, `--tag`, `--status`; сводка, `verification_current` и `store_sha256` |
-| `issue-read` | `--id ISS-0001`, `--view summary|full`; full включает квитанции случаев |
+| `issue-read` | `--id ISS-0001`, `--view summary\|full`; full включает квитанции случаев |
 | `issue-new` | `--expected HASH --input content.json`; новая открытая карточка |
 | `issue-edit` | `--id ID --expected HASH --input patch.json`; изменения полей content |
 | `issue-record` | `--id ID --expected HASH --input observation.json`; один наблюдаемый случай |

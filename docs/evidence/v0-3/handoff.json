@@ -1,0 +1,95 @@
+{
+  "release": "v0-3-0",
+  "version": "0.3.0",
+  "specs": {
+    "HG-0038": {
+      "id": "HG-0038",
+      "blockers": [],
+      "change_sha256": "6f88d28510372f472458613fdbc96280710196388227d9207c3e9859631d578b",
+      "contract_sha256": "4e9e10fe1e36efb82a2a9e4210e1b6ef56a6751a559022027cf2302adb6fe897",
+      "human": "pending",
+      "inputs_sha256": "8f3cd858b0b34d0db91f33f660e5986f8ab40fe44942606cab0660d2ff3b24fb",
+      "technical": "ready",
+      "verified_revision": null,
+      "review": "go"
+    },
+    "HG-0039": {
+      "id": "HG-0039",
+      "blockers": [],
+      "change_sha256": "5fd49edb49163ef1e4cf4cb43f6dcea702da5fa8613790390e421d930434651f",
+      "contract_sha256": "012d951dc6df17933184cc0746b4a67c05698b6db022727f9b3da963e5c906dc",
+      "human": "pending",
+      "inputs_sha256": "3ec71c91fc08d982ad97f92b35d8998b08eb5d449707f81ac36c6244b8cba8cb",
+      "technical": "ready",
+      "verified_revision": null,
+      "review": "go"
+    },
+    "HG-0040": {
+      "id": "HG-0040",
+      "blockers": [],
+      "change_sha256": "15845c371ef3b2657a81246651309ce4ee73592ca026af2edf77771d459ff4e1",
+      "contract_sha256": "0566b8786dd6d80ac9f5eb8a96822f417b324705f765519fe49ec5b113752cc7",
+      "human": "pending",
+      "inputs_sha256": "4aa985624a9aa1d380ccdbd2257de066cf8cc7f00ebbe466d7fc7f61c689cab3",
+      "technical": "ready",
+      "verified_revision": null,
+      "review": "go"
+    },
+    "HG-0041": {
+      "id": "HG-0041",
+      "blockers": [],
+      "change_sha256": "22d03079fcd316563a7d792be0c98c963ad4c8bf69f6d59a5113f5c8adbff69b",
+      "contract_sha256": "ecd07edf0609ccb8bc345681f35e4116ad94bc4b1d2e4d305f3f595bd3537144",
+      "human": "stale",
+      "inputs_sha256": "7a99e1b74dc928a67319071f1f0c8cec5fba388fdf10b13f5001d75ded86be77",
+      "technical": "ready",
+      "verified_revision": null,
+      "review": "go"
+    },
+    "HG-0042": {
+      "id": "HG-0042",
+      "blockers": [],
+      "change_sha256": "eed7bba18f6abf5e3d445f1bf2787679f5c9d84bdc3f00803640319e284bc25f",
+      "contract_sha256": "a8c300dd9662bedcaef2e5125196fa671618ac783380e44b618ce8c1390972f3",
+      "human": "stale",
+      "inputs_sha256": "f878134ae40715dfdceca0c81c28b7da4e3cba48e3b55ccc6881913fb89d7f7a",
+      "technical": "ready",
+      "verified_revision": null,
+      "review": "go"
+    },
+    "HG-0043": {
+      "id": "HG-0043",
+      "blockers": [],
+      "change_sha256": "5742bc2ad7c10bc64bedf8c315c3a78edc8f35fd324868637d817822751b8191",
+      "contract_sha256": "b4380767107350e56a2663696165180711e6732a782d6ee10a78394c6a91c52e",
+      "human": "pending",
+      "inputs_sha256": "8ed91e2b9e21e8ca9c765cbcfa9b8972d82aed8461535ba7d0954cb879768d6a",
+      "technical": "ready",
+      "verified_revision": null,
+      "review": "go"
+    },
+    "HG-0044": {
+      "id": "HG-0044",
+      "blockers": [],
+      "change_sha256": "202694bea5ea1ce1afe2b68e13d77f112c2b58e67603c1e47a2a09b7684ec821",
+      "contract_sha256": "cffd39b14c1fd6bb1dcb94de7a5094c33305133ded0a151390111a4239d53f95",
+      "human": "pending",
+      "inputs_sha256": "dc0777108954e023d22840d68118bb4ae2472e1fad8c7d13201fd72f5c308383",
+      "technical": "ready",
+      "verified_revision": null,
+      "review": "go"
+    }
+  },
+  "source_revision": "The commit containing this handoff; its exact SHA is recorded by candidate.json during build-release.py.",
+  "human_acceptance": "Prior 39-spec decision preserved in docs/evidence/spec-verification/2026-09-26-owner-acceptance.json. New or materially refreshed results are not automatically accepted.",
+  "review_actions": [
+    "Прочитать нормативную таблицу: редактура не требует агентного пилота, факт исполнения остаётся отдельным доказательством.",
+    "Сверить Python-log: preview сохраняет байты, apply удаляет выборку, смешанные опасные параметры отказывают до удаления.",
+    "Сверить trace/JUnit и области inputs: 81 automatic, 158 executed; остальные сценарии не объявлены автоматически пройденными."
+  ],
+  "limitations": [
+    "No new agent execution exercises.",
+    "Cleanup has no rollback for Cargo runtime errors.",
+    "Commit, activation, push and CI are verified after this committed handoff."
+  ]
+}

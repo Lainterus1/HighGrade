@@ -1,0 +1,1842 @@
+{
+  "schema": "highgrade-owner-decision-v1",
+  "date_utc": "2026-09-26T12:03:26.848822+00:00",
+  "decided_by": "владелец проекта — сообщение в текущем чате",
+  "source_quote": "составь задачу , а также я хочу чтобы это версия стала 0.3 после завершения, затем активация и отправка в git. Все спецификации подтверждены мной",
+  "decision": "Автор подтвердил все существующие спецификации текущего снимка.",
+  "scope": [
+    "HG-0002",
+    "HG-0003",
+    "HG-0004",
+    "HG-0006",
+    "HG-0008",
+    "HG-0009",
+    "HG-0010",
+    "HG-0011",
+    "HG-0012",
+    "HG-0013",
+    "HG-0014",
+    "HG-0015",
+    "HG-0016",
+    "HG-0017",
+    "HG-0018",
+    "HG-0019",
+    "HG-0020",
+    "HG-0021",
+    "HG-0022",
+    "HG-0023",
+    "HG-0024",
+    "HG-0025",
+    "HG-0026",
+    "HG-0027",
+    "HG-0028",
+    "HG-0029",
+    "HG-0030",
+    "HG-0031",
+    "HG-0032",
+    "HG-0033",
+    "HG-0034",
+    "HG-0035",
+    "HG-0036",
+    "HG-0037",
+    "HG-0038",
+    "HG-0039",
+    "HG-0040",
+    "HG-0041",
+    "HG-0042"
+  ],
+  "source_head": "cf0f12498fb5dc0b6415eb9d7be91164e97e85b4",
+  "store_sha256_before": "557b8e6da282a9565bf9078926486e12bc9451a3a6f8778097f1874c90033a23",
+  "planned_release": "0.3.0",
+  "authorized_release_actions": [
+    "local_commit",
+    "activation",
+    "push_origin_main"
+  ],
+  "limitations": [
+    "37 технически неготовых записей нельзя пометить accepted штатной CLI без актуальных доказательств. Решение автора сохранено независимо; технические статусы и наблюдения не подменяются.",
+    "Подтверждение существующих редакций не является свидетельством исполнения будущих изменений версии 0.3.0."
+  ],
+  "specifications": [
+    {
+      "id": "HG-0002",
+      "title": "Проектный каталог спецификаций и миграция",
+      "change_sha256": "a4f4da56052e867ad5108c3ef21c51b30c78178ad87ef683357fab63115bb321",
+      "inputs_sha256": "4a31f168c4fe914e6748632bc3107ed24257fbea100b77920e3693ccea9ba9ea",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "stale",
+      "blockers_at_decision": [
+        {
+          "id": "check-1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-2",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-3",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-4",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-5",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-6",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-7",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-8",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-9",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-10",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0002-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0002-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0002-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0003",
+      "title": "Связи, теги и выборочный контекст",
+      "change_sha256": "e68d8bcb863bd9aa39359ecc6edca57fb9407a11972223b7eb46a9aeb36c3404",
+      "inputs_sha256": "10688576216b63e6d00de308e98a146c29fdbd89703ab9ea2d0cbfa89dcf64dd",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "stale",
+      "blockers_at_decision": [
+        {
+          "id": "check-1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-2",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0003-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0003-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0003-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0004",
+      "title": "Привязки проверок и самостоятельный workflow",
+      "change_sha256": "a96fa66cbb93274e4382cacf9794c80d97f74456c922aeb62b02a3cc160a9f41",
+      "inputs_sha256": "32679ae9d16ba733cd361999dc0c990d43478ff750bf1d54795ecdb97786e755",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "stale",
+      "blockers_at_decision": [
+        {
+          "id": "check-1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-2",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-3",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "check-4",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0004-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0004-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0004-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0006",
+      "title": "Выбор достаточного маршрута работы и исправление по существующему контракту",
+      "change_sha256": "f386f12095c02147896c1877b9ef024cf1757436184f2da78c64ec6bef97ac82",
+      "inputs_sha256": "8517ba5417e1067e8fc4036e63a36fffd0b1396ac61b5bd39756d8c19555833e",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0006-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/task.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0006-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/task.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0006-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/spec.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0006-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/task.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0006-S5",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/task.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0006-S6",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/task.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0006-S7",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/approve.md",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0008",
+      "title": "Перенос проверенного контракта без ложного PASS",
+      "change_sha256": "08f78b0ff43c7a068d150bd7eb22a425c3562b14347167d55b3b1af5370b00da",
+      "inputs_sha256": "3f1c00238c33b7c3ce83594dea4330ecbd9a187b78cf9cfce65a314fd3987d90",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0008-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0008-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0008-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0008-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0009",
+      "title": "Адаптация и структура проекта",
+      "change_sha256": "cd74d0e6af0e27f817c4e21a7ab6daa6c0d2a6222f8a4f1448fb73e485973929",
+      "inputs_sha256": "1176167d7df04ce4f1d17aff8a8772ee28585055b49daefb436dfb3e2286cecc",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0009-C4",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-C5",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-C7",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-C8",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-C10",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-C11",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-C15",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-C16",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-C19",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-C20",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S5",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S6",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S7",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S8",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S9",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S10",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S11",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S12",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S13",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S14",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S15",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S16",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S17",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S18",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S19",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S20",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0010",
+      "title": "Самостоятельная Поставка и адаптация",
+      "change_sha256": "8387c4cbe66eb75967fcb740939638c9caca6d9fefaca6bde44e10776c1a09b8",
+      "inputs_sha256": "ff966e8a4d74ed0d671104ab8a8cf3da8cf21e348a8a6bc514cdc0a0ad2cc800",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0010-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-C4",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-C10",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-C11",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-C12",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S2",
+          "kind": "evidence",
+          "next": "record_evidence",
+          "reason": "missing_evidence"
+        },
+        {
+          "id": "HG-0010-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S10",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S11",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S12",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S13",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "kind": "review",
+          "next": "repeat_review",
+          "reason": "missing"
+        }
+      ]
+    },
+    {
+      "id": "HG-0011",
+      "title": "Принятие, публикация и обновление",
+      "change_sha256": "ec167c38b9fc5c396a9d06f855da74024e609cbff540cda702e9efbcb3d19fb7",
+      "inputs_sha256": "55570478fc63e7b6dd6263bf15454df86bad616d229feea16f299f8fb7e9362c",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0011-C9",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0011-C10",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0011-S2",
+          "kind": "evidence",
+          "next": "record_evidence",
+          "reason": "missing_evidence"
+        },
+        {
+          "id": "HG-0011-S5",
+          "kind": "evidence",
+          "next": "record_evidence",
+          "reason": "missing_evidence"
+        },
+        {
+          "id": "HG-0011-S6",
+          "kind": "evidence",
+          "next": "record_evidence",
+          "reason": "missing_evidence"
+        },
+        {
+          "id": "HG-0011-S7",
+          "kind": "evidence",
+          "next": "record_evidence",
+          "reason": "missing_evidence"
+        },
+        {
+          "id": "HG-0011-S8",
+          "kind": "evidence",
+          "next": "record_evidence",
+          "reason": "missing_evidence"
+        },
+        {
+          "id": "HG-0011-S9",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0011-S10",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0011-S11",
+          "kind": "evidence",
+          "next": "record_evidence",
+          "reason": "missing_evidence"
+        },
+        {
+          "id": "HG-0011-S12",
+          "kind": "evidence",
+          "next": "record_evidence",
+          "reason": "missing_evidence"
+        },
+        {
+          "kind": "review",
+          "next": "repeat_review",
+          "reason": "missing"
+        }
+      ]
+    },
+    {
+      "id": "HG-0012",
+      "title": "Нумерация, прогресс и решение человека",
+      "change_sha256": "6261bbf1137f779251a5e36f0c4b8bfc264a7a6f753176c14b960f47bd64f8d7",
+      "inputs_sha256": "52f088a31a08f882628b3a694ff2dd1610a83fa3507168172e32f996551930d1",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0012-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0012-C2",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0012-C3",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0012-C4",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0012-C5",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0012-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0012-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0012-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0012-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0012-S5",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0013",
+      "title": "Структурированные спецификации",
+      "change_sha256": "83d635a72205abf11152ef9f2b61f78c4ef0327428f05d05b4c377992d67af1c",
+      "inputs_sha256": "40e3956fd2fa1a875192ae0120beef81de649cdad56c3d89c642a65caac98f82",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0013-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0013-C2",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0013-C3",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0013-C4",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0013-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0013-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0013-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0013-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0014",
+      "title": "Маршрут работы Проекта",
+      "change_sha256": "103404b6fcb396417ab528db8c1706acd77700d8c40382fd4d5388736aa71e09",
+      "inputs_sha256": "f66f8e5db2b20fe7a0d1b9d48e3a4cbb5077889901f60baa8cec266f26d73bd0",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0014-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0014-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0015",
+      "title": "Диагностика доступности инструментов",
+      "change_sha256": "116cc29ad28b307273137d589f87e78bdc822c55fa84162de072c966b033b578",
+      "inputs_sha256": "e8d05bad8645a05f0abc6ae4b44ba739092e77319542bf5f6a89b92f4e047d9e",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0015-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0015-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0016",
+      "title": "Вопросы при проработке задачи",
+      "change_sha256": "0c4749e3ef766a04a9c1eee7a92e8e2d88d8847f61229137e8da2a690a18d7b7",
+      "inputs_sha256": "b8ee93a92466e75206e9e9f6f8aeca8714168c1e385dd4730d0b78528d519422",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0016-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0016-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0016-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0017",
+      "title": "Проверяемый маршрут сценария",
+      "change_sha256": "76c33c58e2a56b4d66a7abe31a28830996d0a97738a015103a019b30e5a072b6",
+      "inputs_sha256": "f2f987626415a63df98ad8b17db93f6b626980ddeed814a3d06317c41c638f63",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0017-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0018",
+      "title": "Имя High Grade и независимое ревью субагентом",
+      "change_sha256": "e16e8cd91a1a09b43947c0ea6df8a246c0f146970d24cf2c20c44af1dbaf77a5",
+      "inputs_sha256": "1e41d048369082fdb7f0afdb1da26d35f6bfa9ebd3a13aba1b2d1ac38544dea8",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0018-C3",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "src/inspect.rs",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0018-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".github/workflows/verify.yml",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0018-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "src/inspect.rs",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0018-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "src/inspect.rs",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0019",
+      "title": "Жизненный цикл каталога target Проекта",
+      "change_sha256": "80f66893147c8417e5631f98ea4bcd24f1e578875ff076f24447513b37a60577",
+      "inputs_sha256": "8220cbfa6ebdff0501ceee7461e117b3983da019e1c95ac73a729a45d6ec2e03",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0019-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/BUILD.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0019-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/BUILD.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0019-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/BUILD.md",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0020",
+      "title": "Highgrade Planner и поэтапный Goal",
+      "change_sha256": "8140ded8117bdf039f501a4d245e0ed2fa163f9ed7140a7865672cf0d420e854",
+      "inputs_sha256": "af3c08c3263138e20187f433e5671beb6aab2239c7701ece8ee8fd767e897800",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "stale",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0020-C4",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0020-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0020-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0020-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0020-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0020-S5",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0020-S6",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0020-S7",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0020-S8",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0020-S9",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0021",
+      "title": "Достаточные проверки и устойчивые доказательства",
+      "change_sha256": "19f401574687d048fb537c73f18d88e234b28c00efb62573188d2f006f02144c",
+      "inputs_sha256": "cb16aa5fa250ef60bf5e348c2c49b52a1bf3cc1fb5031aca91d47dd070817073",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "stale",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0021-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/DEVELOPMENT.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0021-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/spec.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0021-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/DEVELOPMENT.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0021-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/work.md",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0022",
+      "title": "Однопроходное завершение задач High Grade",
+      "change_sha256": "82298ee8728cc6e99a9601cef0988496881219c66102c6f60eb2f1bd7b5bbf75",
+      "inputs_sha256": "b5cac1c91ec68f61beae05ea592dfd9b1fb4a5de91ffaf67c4fd38719d182877",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0022-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0022-C2",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0022-C3",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0022-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0022-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0022-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0022-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0023",
+      "title": "Быстрые проверки и статистика запусков",
+      "change_sha256": "8aebb372b6ed94d8f158b2cf781d6f2c74fd20a0f0fd422427e9c35e7646b578",
+      "inputs_sha256": "ef6d7d3019447ea59fb95ce525193131f26a89aa2196916045383e48de221fd5",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0023-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "src/main.rs",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0023-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "src/main.rs",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0023-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "src/main.rs",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0023-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/DEVELOPMENT.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0023-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/work.md",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0024",
+      "title": "Честный учёт проверок и ресурсов тестов",
+      "change_sha256": "4840b2b7264ff08c460ed9388d36c6db35ed4811dd84cbc70a14b5bf2077ab29",
+      "inputs_sha256": "17942083fe34f417e1e3b09b89e5de5d3a18fd5471f37269fd9f3ffa96da257f",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0024-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "scripts/source-scenarios.mjs",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0024-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "scripts/source-scenarios.mjs",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0024-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "scripts/source-scenarios.mjs",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0024-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "scripts/source-scenarios.mjs",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0024-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "tests/bootstrap_contracts.rs",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0025",
+      "title": "Экономный маршрут проверок и активации",
+      "change_sha256": "14fb761c82362338a0d7e306895933fd927900d6e809830c8063b319825de61a",
+      "inputs_sha256": "4a67c39beecd80c1cab94bf885a4a8243f0309b17709f0691038766e1753db03",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0025-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".github/workflows/verify.yml",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0025-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0025-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0026",
+      "title": "Достаточные проверки и единые правила процесса",
+      "change_sha256": "7163cedeb104433ea5d3183fe9ef0f3c4d5e67f4f5aca333af0386b5ca8551a0",
+      "inputs_sha256": "52ed7826b00560a81a2abfc6494fa94fd8f7fc23a612b112909f6bd17d105f04",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0026-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/spec.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0026-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/spec.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0026-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/spec.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0026-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/spec.md",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0027",
+      "title": "Прямые инструкции навыков и безопасное обновление",
+      "change_sha256": "f2cf1ece442b2517080afd31be0e7b368aabe2428021c39b25c1db626d186e9b",
+      "inputs_sha256": "27585a973da90ddf09d52d8f8e60685969395fd8bac13807fb7a473396f28f98",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0027-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0027-C2",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0027-C3",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0027-C4",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "kit/manifest.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0027-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0027-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0027-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0028",
+      "title": "Подключение без обязательного переноса документов",
+      "change_sha256": "8c6a9ec06e33195661b749e217d0ec70aa038203c88f5d67dffab7ce4bda2b53",
+      "inputs_sha256": "f5969770bc59d3a6d41ca354fec08d0562807e36a2b31012c523e85ae746d037",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0028-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0028-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0028-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/init.md",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S15",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0009-S16",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0029",
+      "title": "Актуальность контракта, доказательств и решений",
+      "change_sha256": "e9bb49f0f8ce7d043b96361bb6e935591b60b010ba8575d5f5b90dbe9f0305b3",
+      "inputs_sha256": "050338c1f6e768c212ab270b4d5e2730ddd9d66f15dc83012eb880ba545aefd5",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0029-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0029-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0030",
+      "title": "Компактное чтение и редактирование спецификаций",
+      "change_sha256": "ab09de3cc7cd5592037821c4b9f512b6ad240bfad230ff199a6306a81630bad2",
+      "inputs_sha256": "741089a3f8c80789baddf5da76413437abe3aaefd35572c4ec4f03af45a78100",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0030-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0030-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0031",
+      "title": "Совмещённая приёмка и активация точного результата",
+      "change_sha256": "a48c6520462921e1a020fcf14a92a9b9c6f5ea0b37f2190a5fc174bc3a156a7c",
+      "inputs_sha256": "b48f0d53b23bc0af23b7bb3ea0c75f5e93c514f402c7a258ec054c29a1698984",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0031-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "kit/procedures/update.md",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0032",
+      "title": "Минимальная адаптация проекта и итоговый маршрут выпуска",
+      "change_sha256": "ae70826fe040c574dad1b0521ba6f62912e11f4a42fb521c2820781f239567c1",
+      "inputs_sha256": "d1e76c264bf5e62b726d1c6e795a22a2f9b0bcc4b254c68565b046241a7d1001",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0032-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".highgrade/project/INSTRUCTIONS.md",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0033",
+      "title": "Компактная история результатов без потери восстановления",
+      "change_sha256": "761fe7e8bba391f9763adfff7587433b2b6106bf8074714c9737c096578f3027",
+      "inputs_sha256": "43fa7befdeee40294c7c64531a1aa30a2ee1ddae4139cfe1fd988774b59c070d",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0033-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0033-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0034",
+      "title": "Пакетное оформление и повторное использование отчётов",
+      "change_sha256": "e87c2afa08b21e8835c433f0c8087ac4d34f08706f9d000d8b460551d87c2355",
+      "inputs_sha256": "43fa7befdeee40294c7c64531a1aa30a2ee1ddae4139cfe1fd988774b59c070d",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0034-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0034-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0034-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0035",
+      "title": "Самодостаточная справка команд CLI",
+      "change_sha256": "1cdc763ba50e8a20ee7b63af0152b2514fe8ab968d0586ca26094bca0913e434",
+      "inputs_sha256": "43fa7befdeee40294c7c64531a1aa30a2ee1ddae4139cfe1fd988774b59c070d",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0035-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0035-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0036",
+      "title": "Однозначные статусы и диагностика выбранного действия",
+      "change_sha256": "e631438e570ce7b5a6fff74d86f53285d3d814feed9a8e19ea424fe9fcf2cb7e",
+      "inputs_sha256": "43fa7befdeee40294c7c64531a1aa30a2ee1ddae4139cfe1fd988774b59c070d",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0036-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0036-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0036-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0037",
+      "title": "Выборочные операции каталога без лишних конфликтов",
+      "change_sha256": "c8436bb5b0868b69584c859a95b163cd5bf4a30c0795cbed8b86cfab2af377a8",
+      "inputs_sha256": "43fa7befdeee40294c7c64531a1aa30a2ee1ddae4139cfe1fd988774b59c070d",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0037-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0037-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0038",
+      "title": "Безопасные теги и разметка интегрированных спецификаций",
+      "change_sha256": "3f1b72ef4f6b25c46a91b5ec7372580abc66ef26487592760331b2767595c7a2",
+      "inputs_sha256": "29423d2493b3a279e55ed5b54960afef00819ee4c730287b871313fd349d02b5",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0038-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0038-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0039",
+      "title": "Baseline затронутых требований для новых спецификаций",
+      "change_sha256": "10f195d03f60ce160fdb34e1171197f3af77659d8f413f5ac5f23da7f0a7b18e",
+      "inputs_sha256": "29423d2493b3a279e55ed5b54960afef00819ee4c730287b871313fd349d02b5",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0039-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0039-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0040",
+      "title": "Содержательное представление спек и тематическая документация Tools",
+      "change_sha256": "57df42b3b76e88976172aeef974223f0394f927b952e3c941c7a8362a59f8fed",
+      "inputs_sha256": "29423d2493b3a279e55ed5b54960afef00819ee4c730287b871313fd349d02b5",
+      "technical_at_decision": "in_progress",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": [
+        {
+          "id": "HG-0040-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0040-S2",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": ".gitattributes",
+          "reason": "input_changed"
+        }
+      ]
+    },
+    {
+      "id": "HG-0041",
+      "title": "Проектный JSON-реестр проблем и CLI",
+      "change_sha256": "bc5ef265f9ff0a389b06ff9ed6b778069f058167f400d51447f73a2435cc4941",
+      "inputs_sha256": "63c838acb625891455c234c0c9ac383059732ec049c7760a5482eabef2b967b5",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": []
+    },
+    {
+      "id": "HG-0042",
+      "title": "Процедура Fixer и повторное использование решений",
+      "change_sha256": "ea4d92bbbddc02866becfeb3c5e567dd01cf3d684a20f4cc3d0505c401a30703",
+      "inputs_sha256": "63c838acb625891455c234c0c9ac383059732ec049c7760a5482eabef2b967b5",
+      "technical_at_decision": "ready",
+      "cli_human_before_decision": "pending",
+      "blockers_at_decision": []
+    }
+  ],
+  "cli_accepted_ids": [
+    "HG-0041",
+    "HG-0042"
+  ]
+}

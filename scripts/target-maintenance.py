@@ -72,16 +72,35 @@ def active_builds():
     return sorted(names & {'cargo', 'rustc', 'cargo-nextest'})
 
 
-def maintain(root, apply=False, caches=(), scratch=()):
+def maintain(root, apply=False, caches=(), scratch=(), reports=()):
     root = Path(root).resolve(strict=True)
     before = inventory(root)
     selected = tuple(dict.fromkeys(scratch))
+    caches = tuple(dict.fromkeys(caches))
+    reports = tuple(dict.fromkeys(reports))
+    if any(name not in ('debug', 'release', 'build-cache') for name in caches):
+        raise ValueError('Unknown cache selection')
     for name in selected:
         if name in ('.', '..') or '/' in name or '\\' in name or ':' in name or name not in before['scratch']:
             raise ValueError(f'Unknown or unsafe scratch selection: {name}')
+    report_dir = root / 'target/highgrade/reports'
+    for name in reports:
+        if (name in ('', '.', '..') or any(c in name for c in '/\\:')
+                or not (report_dir / name).is_file()):
+            raise ValueError(f'Unknown or unsafe report selection: {name}')
+    commands = []
+    for cache in caches:
+        directory = root / ('target/highgrade/build-cache' if cache == 'build-cache' else 'target')
+        directory.resolve().relative_to(root)
+        for path in (directory, directory / ('debug' if cache == 'debug' else 'release')):
+            if path.exists() and not path.is_dir():
+                raise ValueError(f'Cache destination is not a directory: {path}')
+        commands.append(['cargo', 'clean', '--target-dir', str(directory),
+                         *(['--profile', 'test'] if cache == 'debug' else ['--release'])])
     report = {'before': before, 'budget_mib': BUDGET_MIB,
               'planned': [f'target/highgrade/tmp/{name}' for name in selected]
-              + [f'cargo clean --{"release" if name == "release" else "profile test"}' for name in caches]}
+              + [f'target/highgrade/reports/{name}' for name in reports],
+              'cargo_commands': commands}
     if not apply:
         report['status'] = 'preview'
         return report
@@ -95,6 +114,9 @@ def maintain(root, apply=False, caches=(), scratch=()):
     if (project / 'candidate.previous').exists() or (work.is_dir() and any(work.iterdir())):
         raise ValueError('Candidate recovery or build work exists; nothing removed')
     scratch = project / 'tmp'
+    # Resolve every destination before any mutation; inventory already refused links.
+    for child in [*(scratch / name for name in selected), *(report_dir / name for name in reports)]:
+        child.resolve(strict=True).relative_to(root / 'target')
     if scratch.is_dir():
         for name in selected:
             child = scratch / name
@@ -106,11 +128,9 @@ def maintain(root, apply=False, caches=(), scratch=()):
                 shutil.rmtree(child)
             else:
                 child.unlink()
-    for cache in caches:
-        command = ['cargo', 'clean', '--target-dir', str(root / 'target'),
-                   '--release' if cache == 'release' else '--profile']
-        if cache == 'debug':
-            command.append('test')
+    for name in reports:
+        (report_dir / name).unlink()
+    for command in commands:
         subprocess.run(command, cwd=root, check=True)
     report['after'] = inventory(root)
     report['status'] = 'applied'
@@ -123,13 +143,13 @@ def main():
     parser.add_argument('--apply', action='store_true', help='remove only listed scratch and selected caches')
     parser.add_argument('--scratch', action='append', default=[], metavar='NAME',
                         help='select one direct child of target/highgrade/tmp for removal')
-    parser.add_argument('--cache', choices=('debug', 'release'), action='append', default=[])
+    parser.add_argument('--cache', choices=('debug', 'release', 'build-cache'), action='append', default=[])
+    parser.add_argument('--report', action='append', default=[], metavar='NAME',
+                        help='select one direct file of target/highgrade/reports')
     parser.add_argument('--check', action='store_true', help='exit 2 on unknown paths or budget excess')
     args = parser.parse_args()
-    if (args.cache or args.scratch) and not args.apply:
-        parser.error('--cache and --scratch require --apply')
     try:
-        report = maintain(args.root, args.apply, tuple(dict.fromkeys(args.cache)), tuple(args.scratch))
+        report = maintain(args.root, args.apply, tuple(args.cache), tuple(args.scratch), tuple(args.report))
     except (OSError, ValueError, subprocess.CalledProcessError) as error:
         parser.exit(1, f'Target maintenance refused: {error}\n')
     print(json.dumps(report, ensure_ascii=False, indent=2))

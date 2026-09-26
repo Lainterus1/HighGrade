@@ -70,8 +70,12 @@ try {
     if (selectedRoute.route_bytes >= 96000) fail(`selected route exceeded ceiling ${count}`);
     if (count === 200 && !fullReport.findings.some((item) => item.code === 'BudgetExceeded' && item.location === 'context-route')) fail('200-spec full route did not warn');
     write(root, 'tests/empty.rs', '// highgrade: HG-SCALE-S003\n#[test]\nfn apparent_test() {}\n');
-    const orphanCheck = command(process.execPath, [checker, 'check', root]);
-    if (orphanCheck.status === 0 || !orphanCheck.stderr.includes('test marker has no configured automatic check')) fail(`orphan marker not rejected ${count}`);
+    const markerCheck = command(process.execPath, [checker, 'check', root]);
+    if (markerCheck.status !== 0 || JSON.parse(markerCheck.stdout).automatic !== 1) fail(`standalone marker not recognized ${count}`);
+    write(root, 'tests/empty.rs', '// highgrade: HG-SCALE-UNKNOWN\n#[test]\nfn apparent_test() {}\n');
+    const unknownMarker = command(process.execPath, [checker, 'check', root]);
+    if (unknownMarker.status === 0 || !unknownMarker.stderr.includes('unknown marker')) fail(`unknown marker not rejected ${count}`);
+    write(root, 'tests/empty.rs', '// highgrade: HG-SCALE-S003\n#[test]\nfn apparent_test() {}\n');
     write(root, 'specs/changes/HG-SCALE-CHECK/spec.json', JSON.stringify({ archived: true, operations: [], checks: [{ runner: 'rust-contracts', scenario_ids: ['HG-SCALE-S003'], file: 'tests/empty.rs', selector: 'different_test' }] }));
     const wrongSelector = command(process.execPath, [checker, 'check', root]);
     if (wrongSelector.status === 0 || !wrongSelector.stderr.includes('test marker does not match its configured file and selector')) fail(`wrong selector not rejected ${count}`);
@@ -89,7 +93,7 @@ try {
     write(root, duplicate, source.replace('HG-SCALE-S002', 'HG-SCALE-S001'));
     const duplicateCheck = command(process.execPath, [checker, 'check', root]);
     if (duplicateCheck.status === 0 || !duplicateCheck.stderr.includes('duplicate ID')) fail(`duplicate ID not rejected ${count}`);
-    results.push({ specs: count, selected_bytes: selectedRoute.route_bytes, full_bytes: fullRoute.route_bytes, duplicate_rejected: true, orphan_marker_rejected: true, wrong_selector_rejected: true, extra_marker_rejected: true, missing_marker_rejected: true });
+    results.push({ specs: count, selected_bytes: selectedRoute.route_bytes, full_bytes: fullRoute.route_bytes, duplicate_rejected: true, standalone_marker_recognized: true, unknown_marker_rejected: true, wrong_selector_rejected: true, extra_marker_rejected: true, missing_marker_rejected: true });
   }
   console.log(JSON.stringify({ status: 'passed', results }, null, 2));
 } catch (cause) {
