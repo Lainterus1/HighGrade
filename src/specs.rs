@@ -487,6 +487,9 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 Err(e) => report.finding("unknown", "ActiveSpecConflict", "/changes", &e),
             }
         }
+        "spec-stats" => report
+            .measurements
+            .push(checks::statistics(&root, &store, get("--id")?)?),
         "spec-runner-set" => {
             let runner = decode(
                 &paths::read_limited(&paths::safe(&root, get("--input")?)?, LIMIT)?,
@@ -770,7 +773,9 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         .push(json!({"store_sha256":current_sha,"schema_version":store.schema_version}));
     if let Some(key) = change_id {
         if let Some(c) = store.changes.get(key) {
-            if !(op == "spec-check" && options.get("--brief").is_some_and(|v| v == "true")) {
+            if op != "spec-stats"
+                && !(op == "spec-check" && options.get("--brief").is_some_and(|v| v == "true"))
+            {
                 report
                     .measurements
                     .push(json!({"change":c,"links":relations::metadata(&store,c),"change_sha256":revision(c),"inputs_sha256":progress::inputs_hash(&root,c).ok()}));

@@ -1,0 +1,747 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0023-S1": {
+      "captured_at": "1790398167",
+      "command": "spec-run --id HG-0023 --check HG-0023-C1",
+      "files": {
+        "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log": "f8cf8680f25be7f43117e93846d325c97e58e74f35f6092646dffac991c2f461",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+        "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+        "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+      },
+      "method": "native_report",
+      "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log",
+      "scenario": "HG-0023-S1",
+      "scenario_sha256": "e012d0bc4dc7b88a8c4f42a34c51d60a5ab69307a950a69ce2c057788679480b"
+    },
+    "HG-0023-S2": {
+      "captured_at": "1790398167",
+      "command": "spec-run --id HG-0023 --check HG-0023-C1",
+      "files": {
+        "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log": "f8cf8680f25be7f43117e93846d325c97e58e74f35f6092646dffac991c2f461",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+        "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+        "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+      },
+      "method": "native_report",
+      "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log",
+      "scenario": "HG-0023-S2",
+      "scenario_sha256": "f6528f71edc6c2855c3ff591fd94bd7ff2a6e989d40da5e57da3327c106fa6c9"
+    },
+    "HG-0023-S3": {
+      "captured_at": "2026-09-26T04:50:11.114730+00:00",
+      "command": "фокусный cargo test, spec-run HG-0023-C1, Nextest и source-scenarios verify",
+      "files": {
+        "docs/DEVELOPMENT.md": "082089c0f551a45e806a2140a951ce9ce9b20f1df0ae181490a4b5ba26f8eb60",
+        "docs/evidence/spec-verification/HG-0023-selection.json": "f912cc6395ff54e9d5d97014fa5d9762638d895ce51e7801d5d2744dbbbdaab8",
+        "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+        "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+        "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+      },
+      "method": "manual",
+      "observation": "Финальный маршрут: узкий тест и обязательный барьер 122/122; автоматические сценарии 45/45; дублирующая cargo-выборка пропущена по покрытию. Ошибочный повтор list/run указан в отчёте.",
+      "outcome": "passed",
+      "report": "docs/evidence/spec-verification/HG-0023-selection.json",
+      "scenario": "HG-0023-S3",
+      "scenario_sha256": "bf8a6a6baef0debee3aab69a5e2901732716a013a9bd12a4a27b945e2f922820"
+    },
+    "HG-0023-S4": {
+      "captured_at": "2026-09-26T04:50:14.965598+00:00",
+      "command": "изолированная учебная проба spec-evidence и spec-check",
+      "files": {
+        "docs/evidence/spec-verification/HG-0023-chat-exercise.json": "128d27d19caf785521c0af7981c5c11e0f163f5b1a9e377ac3701da0c8b4621a",
+        "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+        "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+        "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b"
+      },
+      "method": "manual",
+      "observation": "Со слов пользователя (синтетический пример, не приёмка текущего продукта): demo-v1 сохранена запись; после смены входа demo-v2 доказательство стало stale, агент не повторял ручной шаг.",
+      "outcome": "passed",
+      "report": "docs/evidence/spec-verification/HG-0023-chat-exercise.json",
+      "scenario": "HG-0023-S4",
+      "scenario_sha256": "873f39b3064d09a147b6194f117e8e7bddb6ad834105842a93510cc68b95b98a"
+    }
+  },
+  "history": [
+    {
+      "evidence": {},
+      "recorded_at": 1790397105,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0023-S1": {
+          "captured_at": "1790397103",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790397103974865400.log": "1536749804bfd492aa86f1207df1380ab9aa7ac4b3d74d2e90aa84fe5cb92c66",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e30faf112cf883b0e9b2bf9dd81701883bc11c436de577455116989254d3df40",
+            "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+            "tests/catalog_contracts.rs": "efaa741aa7eb73186c50724654e5d838a1a48d15012fd520b469f6063753d04d"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397103974865400.log",
+          "scenario": "HG-0023-S1",
+          "scenario_sha256": "e012d0bc4dc7b88a8c4f42a34c51d60a5ab69307a950a69ce2c057788679480b"
+        },
+        "HG-0023-S2": {
+          "captured_at": "1790397103",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790397103974865400.log": "1536749804bfd492aa86f1207df1380ab9aa7ac4b3d74d2e90aa84fe5cb92c66",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e30faf112cf883b0e9b2bf9dd81701883bc11c436de577455116989254d3df40",
+            "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+            "tests/catalog_contracts.rs": "efaa741aa7eb73186c50724654e5d838a1a48d15012fd520b469f6063753d04d"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397103974865400.log",
+          "scenario": "HG-0023-S2",
+          "scenario_sha256": "f6528f71edc6c2855c3ff591fd94bd7ff2a6e989d40da5e57da3327c106fa6c9"
+        }
+      },
+      "recorded_at": 1790397565,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0023-S1": {
+          "captured_at": "1790397562",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log": "6a3a9f55f30280855837ea17231c2495022f83eb81b006d5b92f80edcefa43f5",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+            "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log",
+          "scenario": "HG-0023-S1",
+          "scenario_sha256": "e012d0bc4dc7b88a8c4f42a34c51d60a5ab69307a950a69ce2c057788679480b"
+        },
+        "HG-0023-S2": {
+          "captured_at": "1790397562",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log": "6a3a9f55f30280855837ea17231c2495022f83eb81b006d5b92f80edcefa43f5",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+            "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log",
+          "scenario": "HG-0023-S2",
+          "scenario_sha256": "f6528f71edc6c2855c3ff591fd94bd7ff2a6e989d40da5e57da3327c106fa6c9"
+        }
+      },
+      "recorded_at": 1790397659,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0023-S1": {
+          "captured_at": "1790397562",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log": "6a3a9f55f30280855837ea17231c2495022f83eb81b006d5b92f80edcefa43f5",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+            "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log",
+          "scenario": "HG-0023-S1",
+          "scenario_sha256": "e012d0bc4dc7b88a8c4f42a34c51d60a5ab69307a950a69ce2c057788679480b"
+        },
+        "HG-0023-S2": {
+          "captured_at": "1790397562",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log": "6a3a9f55f30280855837ea17231c2495022f83eb81b006d5b92f80edcefa43f5",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+            "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log",
+          "scenario": "HG-0023-S2",
+          "scenario_sha256": "f6528f71edc6c2855c3ff591fd94bd7ff2a6e989d40da5e57da3327c106fa6c9"
+        },
+        "HG-0023-S3": {
+          "captured_at": "2026-09-26T04:40:58.744266+00:00",
+          "command": "фокусный cargo test, spec-run HG-0023-C1, Nextest и source-scenarios verify",
+          "files": {
+            "docs/DEVELOPMENT.md": "082089c0f551a45e806a2140a951ce9ce9b20f1df0ae181490a4b5ba26f8eb60",
+            "docs/evidence/spec-verification/HG-0023-selection.json": "f912cc6395ff54e9d5d97014fa5d9762638d895ce51e7801d5d2744dbbbdaab8",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "manual",
+          "observation": "Финальный маршрут: узкий тест и обязательный барьер 122/122; автоматические сценарии 45/45; дублирующая cargo-выборка пропущена по покрытию. Ошибочный повтор list/run указан в отчёте.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-selection.json",
+          "scenario": "HG-0023-S3",
+          "scenario_sha256": "bf8a6a6baef0debee3aab69a5e2901732716a013a9bd12a4a27b945e2f922820"
+        }
+      },
+      "recorded_at": 1790397663,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0023-S1": {
+          "captured_at": "1790397562",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log": "6a3a9f55f30280855837ea17231c2495022f83eb81b006d5b92f80edcefa43f5",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+            "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log",
+          "scenario": "HG-0023-S1",
+          "scenario_sha256": "e012d0bc4dc7b88a8c4f42a34c51d60a5ab69307a950a69ce2c057788679480b"
+        },
+        "HG-0023-S2": {
+          "captured_at": "1790397562",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log": "6a3a9f55f30280855837ea17231c2495022f83eb81b006d5b92f80edcefa43f5",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+            "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log",
+          "scenario": "HG-0023-S2",
+          "scenario_sha256": "f6528f71edc6c2855c3ff591fd94bd7ff2a6e989d40da5e57da3327c106fa6c9"
+        },
+        "HG-0023-S3": {
+          "captured_at": "2026-09-26T04:40:58.744266+00:00",
+          "command": "фокусный cargo test, spec-run HG-0023-C1, Nextest и source-scenarios verify",
+          "files": {
+            "docs/DEVELOPMENT.md": "082089c0f551a45e806a2140a951ce9ce9b20f1df0ae181490a4b5ba26f8eb60",
+            "docs/evidence/spec-verification/HG-0023-selection.json": "f912cc6395ff54e9d5d97014fa5d9762638d895ce51e7801d5d2744dbbbdaab8",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "manual",
+          "observation": "Финальный маршрут: узкий тест и обязательный барьер 122/122; автоматические сценарии 45/45; дублирующая cargo-выборка пропущена по покрытию. Ошибочный повтор list/run указан в отчёте.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-selection.json",
+          "scenario": "HG-0023-S3",
+          "scenario_sha256": "bf8a6a6baef0debee3aab69a5e2901732716a013a9bd12a4a27b945e2f922820"
+        },
+        "HG-0023-S4": {
+          "captured_at": "2026-09-26T04:41:03.108409+00:00",
+          "command": "изолированная учебная проба spec-evidence и spec-check",
+          "files": {
+            "docs/evidence/spec-verification/HG-0023-chat-exercise.json": "128d27d19caf785521c0af7981c5c11e0f163f5b1a9e377ac3701da0c8b4621a",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c"
+          },
+          "method": "manual",
+          "observation": "Со слов пользователя (синтетический пример, не приёмка текущего продукта): demo-v1 сохранена запись; после смены входа demo-v2 доказательство стало stale, агент не повторял ручной шаг.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-chat-exercise.json",
+          "scenario": "HG-0023-S4",
+          "scenario_sha256": "873f39b3064d09a147b6194f117e8e7bddb6ad834105842a93510cc68b95b98a"
+        }
+      },
+      "recorded_at": 1790398027,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0023-S1": {
+          "captured_at": "1790398025",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790398025306542700.log": "3f727d5a3a420bdfa39342e6d90b2ebe0a8721ff568987165bad63b731293231",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+            "src/specs/checks.rs": "634e54d3f64c791cdb7f55cc3ffac35563cf36fa54efe02054b02c7b07e2eb0e",
+            "tests/catalog_contracts.rs": "e5e2ebc1fd98af8f3f12d2afc11febb68a193dda0f4305d56474430da912c351"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398025306542700.log",
+          "scenario": "HG-0023-S1",
+          "scenario_sha256": "e012d0bc4dc7b88a8c4f42a34c51d60a5ab69307a950a69ce2c057788679480b"
+        },
+        "HG-0023-S2": {
+          "captured_at": "1790398025",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790398025306542700.log": "3f727d5a3a420bdfa39342e6d90b2ebe0a8721ff568987165bad63b731293231",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+            "src/specs/checks.rs": "634e54d3f64c791cdb7f55cc3ffac35563cf36fa54efe02054b02c7b07e2eb0e",
+            "tests/catalog_contracts.rs": "e5e2ebc1fd98af8f3f12d2afc11febb68a193dda0f4305d56474430da912c351"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398025306542700.log",
+          "scenario": "HG-0023-S2",
+          "scenario_sha256": "f6528f71edc6c2855c3ff591fd94bd7ff2a6e989d40da5e57da3327c106fa6c9"
+        },
+        "HG-0023-S3": {
+          "captured_at": "2026-09-26T04:40:58.744266+00:00",
+          "command": "фокусный cargo test, spec-run HG-0023-C1, Nextest и source-scenarios verify",
+          "files": {
+            "docs/DEVELOPMENT.md": "082089c0f551a45e806a2140a951ce9ce9b20f1df0ae181490a4b5ba26f8eb60",
+            "docs/evidence/spec-verification/HG-0023-selection.json": "f912cc6395ff54e9d5d97014fa5d9762638d895ce51e7801d5d2744dbbbdaab8",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "manual",
+          "observation": "Финальный маршрут: узкий тест и обязательный барьер 122/122; автоматические сценарии 45/45; дублирующая cargo-выборка пропущена по покрытию. Ошибочный повтор list/run указан в отчёте.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-selection.json",
+          "scenario": "HG-0023-S3",
+          "scenario_sha256": "bf8a6a6baef0debee3aab69a5e2901732716a013a9bd12a4a27b945e2f922820"
+        },
+        "HG-0023-S4": {
+          "captured_at": "2026-09-26T04:41:03.108409+00:00",
+          "command": "изолированная учебная проба spec-evidence и spec-check",
+          "files": {
+            "docs/evidence/spec-verification/HG-0023-chat-exercise.json": "128d27d19caf785521c0af7981c5c11e0f163f5b1a9e377ac3701da0c8b4621a",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c"
+          },
+          "method": "manual",
+          "observation": "Со слов пользователя (синтетический пример, не приёмка текущего продукта): demo-v1 сохранена запись; после смены входа demo-v2 доказательство стало stale, агент не повторял ручной шаг.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-chat-exercise.json",
+          "scenario": "HG-0023-S4",
+          "scenario_sha256": "873f39b3064d09a147b6194f117e8e7bddb6ad834105842a93510cc68b95b98a"
+        }
+      },
+      "recorded_at": 1790398168,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0023-S1": {
+          "captured_at": "1790398167",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log": "f8cf8680f25be7f43117e93846d325c97e58e74f35f6092646dffac991c2f461",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+            "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+            "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log",
+          "scenario": "HG-0023-S1",
+          "scenario_sha256": "e012d0bc4dc7b88a8c4f42a34c51d60a5ab69307a950a69ce2c057788679480b"
+        },
+        "HG-0023-S2": {
+          "captured_at": "1790398167",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log": "f8cf8680f25be7f43117e93846d325c97e58e74f35f6092646dffac991c2f461",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+            "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+            "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log",
+          "scenario": "HG-0023-S2",
+          "scenario_sha256": "f6528f71edc6c2855c3ff591fd94bd7ff2a6e989d40da5e57da3327c106fa6c9"
+        },
+        "HG-0023-S3": {
+          "captured_at": "2026-09-26T04:40:58.744266+00:00",
+          "command": "фокусный cargo test, spec-run HG-0023-C1, Nextest и source-scenarios verify",
+          "files": {
+            "docs/DEVELOPMENT.md": "082089c0f551a45e806a2140a951ce9ce9b20f1df0ae181490a4b5ba26f8eb60",
+            "docs/evidence/spec-verification/HG-0023-selection.json": "f912cc6395ff54e9d5d97014fa5d9762638d895ce51e7801d5d2744dbbbdaab8",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+          },
+          "method": "manual",
+          "observation": "Финальный маршрут: узкий тест и обязательный барьер 122/122; автоматические сценарии 45/45; дублирующая cargo-выборка пропущена по покрытию. Ошибочный повтор list/run указан в отчёте.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-selection.json",
+          "scenario": "HG-0023-S3",
+          "scenario_sha256": "bf8a6a6baef0debee3aab69a5e2901732716a013a9bd12a4a27b945e2f922820"
+        },
+        "HG-0023-S4": {
+          "captured_at": "2026-09-26T04:41:03.108409+00:00",
+          "command": "изолированная учебная проба spec-evidence и spec-check",
+          "files": {
+            "docs/evidence/spec-verification/HG-0023-chat-exercise.json": "128d27d19caf785521c0af7981c5c11e0f163f5b1a9e377ac3701da0c8b4621a",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c"
+          },
+          "method": "manual",
+          "observation": "Со слов пользователя (синтетический пример, не приёмка текущего продукта): demo-v1 сохранена запись; после смены входа demo-v2 доказательство стало stale, агент не повторял ручной шаг.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-chat-exercise.json",
+          "scenario": "HG-0023-S4",
+          "scenario_sha256": "873f39b3064d09a147b6194f117e8e7bddb6ad834105842a93510cc68b95b98a"
+        }
+      },
+      "recorded_at": 1790398211,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0023-S1": {
+          "captured_at": "1790398167",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log": "f8cf8680f25be7f43117e93846d325c97e58e74f35f6092646dffac991c2f461",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+            "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+            "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log",
+          "scenario": "HG-0023-S1",
+          "scenario_sha256": "e012d0bc4dc7b88a8c4f42a34c51d60a5ab69307a950a69ce2c057788679480b"
+        },
+        "HG-0023-S2": {
+          "captured_at": "1790398167",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log": "f8cf8680f25be7f43117e93846d325c97e58e74f35f6092646dffac991c2f461",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+            "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+            "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log",
+          "scenario": "HG-0023-S2",
+          "scenario_sha256": "f6528f71edc6c2855c3ff591fd94bd7ff2a6e989d40da5e57da3327c106fa6c9"
+        },
+        "HG-0023-S3": {
+          "captured_at": "2026-09-26T04:50:11.114730+00:00",
+          "command": "фокусный cargo test, spec-run HG-0023-C1, Nextest и source-scenarios verify",
+          "files": {
+            "docs/DEVELOPMENT.md": "082089c0f551a45e806a2140a951ce9ce9b20f1df0ae181490a4b5ba26f8eb60",
+            "docs/evidence/spec-verification/HG-0023-selection.json": "f912cc6395ff54e9d5d97014fa5d9762638d895ce51e7801d5d2744dbbbdaab8",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+          },
+          "method": "manual",
+          "observation": "Финальный маршрут: узкий тест и обязательный барьер 122/122; автоматические сценарии 45/45; дублирующая cargo-выборка пропущена по покрытию. Ошибочный повтор list/run указан в отчёте.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-selection.json",
+          "scenario": "HG-0023-S3",
+          "scenario_sha256": "bf8a6a6baef0debee3aab69a5e2901732716a013a9bd12a4a27b945e2f922820"
+        },
+        "HG-0023-S4": {
+          "captured_at": "2026-09-26T04:41:03.108409+00:00",
+          "command": "изолированная учебная проба spec-evidence и spec-check",
+          "files": {
+            "docs/evidence/spec-verification/HG-0023-chat-exercise.json": "128d27d19caf785521c0af7981c5c11e0f163f5b1a9e377ac3701da0c8b4621a",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c"
+          },
+          "method": "manual",
+          "observation": "Со слов пользователя (синтетический пример, не приёмка текущего продукта): demo-v1 сохранена запись; после смены входа demo-v2 доказательство стало stale, агент не повторял ручной шаг.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-chat-exercise.json",
+          "scenario": "HG-0023-S4",
+          "scenario_sha256": "873f39b3064d09a147b6194f117e8e7bddb6ad834105842a93510cc68b95b98a"
+        }
+      },
+      "recorded_at": 1790398215,
+      "review": null
+    },
+    {
+      "evidence": {
+        "HG-0023-S1": {
+          "captured_at": "1790398167",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log": "f8cf8680f25be7f43117e93846d325c97e58e74f35f6092646dffac991c2f461",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+            "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+            "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log",
+          "scenario": "HG-0023-S1",
+          "scenario_sha256": "e012d0bc4dc7b88a8c4f42a34c51d60a5ab69307a950a69ce2c057788679480b"
+        },
+        "HG-0023-S2": {
+          "captured_at": "1790398167",
+          "command": "spec-run --id HG-0023 --check HG-0023-C1",
+          "files": {
+            "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log": "f8cf8680f25be7f43117e93846d325c97e58e74f35f6092646dffac991c2f461",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+            "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+            "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+            "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+          },
+          "method": "native_report",
+          "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log",
+          "scenario": "HG-0023-S2",
+          "scenario_sha256": "f6528f71edc6c2855c3ff591fd94bd7ff2a6e989d40da5e57da3327c106fa6c9"
+        },
+        "HG-0023-S3": {
+          "captured_at": "2026-09-26T04:50:11.114730+00:00",
+          "command": "фокусный cargo test, spec-run HG-0023-C1, Nextest и source-scenarios verify",
+          "files": {
+            "docs/DEVELOPMENT.md": "082089c0f551a45e806a2140a951ce9ce9b20f1df0ae181490a4b5ba26f8eb60",
+            "docs/evidence/spec-verification/HG-0023-selection.json": "f912cc6395ff54e9d5d97014fa5d9762638d895ce51e7801d5d2744dbbbdaab8",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+          },
+          "method": "manual",
+          "observation": "Финальный маршрут: узкий тест и обязательный барьер 122/122; автоматические сценарии 45/45; дублирующая cargo-выборка пропущена по покрытию. Ошибочный повтор list/run указан в отчёте.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-selection.json",
+          "scenario": "HG-0023-S3",
+          "scenario_sha256": "bf8a6a6baef0debee3aab69a5e2901732716a013a9bd12a4a27b945e2f922820"
+        },
+        "HG-0023-S4": {
+          "captured_at": "2026-09-26T04:50:14.965598+00:00",
+          "command": "изолированная учебная проба spec-evidence и spec-check",
+          "files": {
+            "docs/evidence/spec-verification/HG-0023-chat-exercise.json": "128d27d19caf785521c0af7981c5c11e0f163f5b1a9e377ac3701da0c8b4621a",
+            "kit/procedures/work.md": "c5022fd10b518b937ba5d380526da1feadf25b95401ac46069326e21a6050aa4",
+            "kit/templates/DEVELOPMENT.md": "aaf1d664dd0defacc98b345502ec695d9bfb016082ed43196e4a2733f7f14f70",
+            "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b"
+          },
+          "method": "manual",
+          "observation": "Со слов пользователя (синтетический пример, не приёмка текущего продукта): demo-v1 сохранена запись; после смены входа demo-v2 доказательство стало stale, агент не повторял ручной шаг.",
+          "outcome": "passed",
+          "report": "docs/evidence/spec-verification/HG-0023-chat-exercise.json",
+          "scenario": "HG-0023-S4",
+          "scenario_sha256": "873f39b3064d09a147b6194f117e8e7bddb6ad834105842a93510cc68b95b98a"
+        }
+      },
+      "recorded_at": 1790398323,
+      "review": null
+    }
+  ],
+  "review": {
+    "change_sha256": "90a8b8902c5fa3f852755934708039ac420f74825a27124b2fe7cfd44deffd7f",
+    "conclusion": "REVIEW_GO: код, сценарии и входы проверены; 122/122 Nextest и 45/45 автоматических сценариев. До активации использовать CLI 0.2.19; ручной чат проверен учебным примером, не является приемкой продукта.",
+    "reviewer": "independent_reviewer hg0023_review",
+    "verdict": "go"
+  },
+  "runs": [
+    {
+      "check": "HG-0023-C1",
+      "check_sha256": "51ca569096e0e8487bd22b1703a0f7404ec95cf9e8c2cbfd86f9799af7c0de4e",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "catalog_contracts",
+        "run_statistics_track_attempts_without_execution",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "duration_ms": 1700,
+      "files": {
+        "specs/changes/HG-0023/evidence/HG-0023-C1-1790397103974865400.log": "1536749804bfd492aa86f1207df1380ab9aa7ac4b3d74d2e90aa84fe5cb92c66",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "e30faf112cf883b0e9b2bf9dd81701883bc11c436de577455116989254d3df40",
+        "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+        "tests/catalog_contracts.rs": "efaa741aa7eb73186c50724654e5d838a1a48d15012fd520b469f6063753d04d"
+      },
+      "inputs_after": {
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "e30faf112cf883b0e9b2bf9dd81701883bc11c436de577455116989254d3df40",
+        "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+        "tests/catalog_contracts.rs": "efaa741aa7eb73186c50724654e5d838a1a48d15012fd520b469f6063753d04d"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397103974865400.log",
+      "started_at": 1790397103
+    },
+    {
+      "check": "HG-0023-C1",
+      "check_sha256": "51ca569096e0e8487bd22b1703a0f7404ec95cf9e8c2cbfd86f9799af7c0de4e",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "catalog_contracts",
+        "run_statistics_track_attempts_without_execution",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "duration_ms": 2774,
+      "files": {
+        "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log": "6a3a9f55f30280855837ea17231c2495022f83eb81b006d5b92f80edcefa43f5",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+        "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+        "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+      },
+      "inputs_after": {
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+        "src/specs/checks.rs": "558713f35c5da3f6817245d73e2b9cd995a5c5707a92df87452d61bf95fa8910",
+        "tests/catalog_contracts.rs": "c02fcb8d997ad728c69ce758ccce480b1f80820ac6d980686884e49b95074f78"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790397562831980800.log",
+      "started_at": 1790397562
+    },
+    {
+      "check": "HG-0023-C1",
+      "check_sha256": "51ca569096e0e8487bd22b1703a0f7404ec95cf9e8c2cbfd86f9799af7c0de4e",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "catalog_contracts",
+        "run_statistics_track_attempts_without_execution",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "duration_ms": 1816,
+      "files": {
+        "specs/changes/HG-0023/evidence/HG-0023-C1-1790398025306542700.log": "3f727d5a3a420bdfa39342e6d90b2ebe0a8721ff568987165bad63b731293231",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+        "src/specs/checks.rs": "634e54d3f64c791cdb7f55cc3ffac35563cf36fa54efe02054b02c7b07e2eb0e",
+        "tests/catalog_contracts.rs": "e5e2ebc1fd98af8f3f12d2afc11febb68a193dda0f4305d56474430da912c351"
+      },
+      "inputs_after": {
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "e474a2c2b253d89020a3d192aa781f394033b555a36ba6637dc5889eecffee5c",
+        "src/specs/checks.rs": "634e54d3f64c791cdb7f55cc3ffac35563cf36fa54efe02054b02c7b07e2eb0e",
+        "tests/catalog_contracts.rs": "e5e2ebc1fd98af8f3f12d2afc11febb68a193dda0f4305d56474430da912c351"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398025306542700.log",
+      "started_at": 1790398025
+    },
+    {
+      "check": "HG-0023-C1",
+      "check_sha256": "51ca569096e0e8487bd22b1703a0f7404ec95cf9e8c2cbfd86f9799af7c0de4e",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "catalog_contracts",
+        "run_statistics_track_attempts_without_execution",
+        "--",
+        "--exact"
+      ],
+      "cwd": "\\\\?\\D:\\my_projects\\MyCodex",
+      "duration_ms": 1820,
+      "files": {
+        "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log": "f8cf8680f25be7f43117e93846d325c97e58e74f35f6092646dffac991c2f461",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+        "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+        "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+      },
+      "inputs_after": {
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/main.rs": "bc81f4e27b078395f6b0af69b41f118d5e51a038f4462848c7b200d35b0b69ac",
+        "src/specs.rs": "efa0e060212ec38fc15ea6edc597920aae410093094159bd6fab78b78c70897b",
+        "src/specs/checks.rs": "fb4952a0ac5f894c51d8590d93cca1c1c1b144542c5e7ea0af743cce81b2d748",
+        "tests/catalog_contracts.rs": "f579f16398cfc958880094035b9e98a36571632b9a7bcb1b8bafef972c01ac83"
+      },
+      "observation": "Process status: Some(ExitStatus(ExitStatus(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0023/evidence/HG-0023-C1-1790398167036817200.log",
+      "started_at": 1790398167
+    }
+  ]
+}

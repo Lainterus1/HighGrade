@@ -33,6 +33,8 @@ pub struct Runner {
 pub struct Run {
     pub check: String,
     pub started_at: u64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub duration_ms: Option<u64>,
     pub command: Vec<String>,
     pub cwd: String,
     pub inputs_after: Option<BTreeMap<String, String>>,
@@ -41,6 +43,65 @@ pub struct Run {
     pub observation: String,
     pub files: BTreeMap<String, String>,
     pub report: String,
+}
+pub fn statistics(root: &Path, s: &Store, id: &str) -> Result<Value> {
+    let change = s.changes.get(id).ok_or("ChangeMissing")?;
+    let mut checks = Vec::new();
+    for check in &change.checks {
+        let current_revision = revision(s, check);
+        let attempts: Vec<_> = change
+            .runs
+            .iter()
+            .filter(|run| run.check == check.id)
+            .collect();
+        let current_attempts: Vec<_> = attempts
+            .iter()
+            .filter(|run| run.check_sha256 == current_revision)
+            .collect();
+        let current_inputs = check
+            .runner
+            .as_ref()
+            .and_then(|id| s.runners.get(id))
+            .and_then(|runner| inputs(root, check, runner).ok());
+        let comparable = |run: &Run| {
+            run.check_sha256 == current_revision
+                && current_inputs.as_ref().is_some_and(|now| {
+                    run.inputs_after.as_ref() == Some(now)
+                        && now
+                            .iter()
+                            .all(|(path, hash)| run.files.get(path) == Some(hash))
+                })
+        };
+        let comparable_attempts: Vec<_> = attempts.iter().filter(|run| comparable(run)).collect();
+        let mut durations: Vec<_> = comparable_attempts
+            .iter()
+            .filter_map(|run| run.duration_ms)
+            .collect();
+        durations.sort_unstable();
+        let latest = attempts.last();
+        let measured_total = attempts
+            .iter()
+            .filter(|run| run.duration_ms.is_some())
+            .count();
+        checks.push(json!({
+            "check": check.id,
+            "runner": check.runner,
+            "attempts": attempts.len(),
+            "measured_attempts": measured_total,
+            "unmeasured_attempts": attempts.len() - measured_total,
+            "current_revision_attempts": current_attempts.len(),
+            "comparable_attempts": comparable_attempts.len(),
+            "comparable_measured_attempts": durations.len(),
+            "current_inputs_available": current_inputs.is_some(),
+            "latest_current_revision": latest.is_some_and(|run| run.check_sha256 == current_revision),
+            "latest_comparable": latest.is_some_and(|run| comparable(run)),
+            "latest_outcome": latest.map(|run| &run.outcome),
+            "latest_duration_ms": latest.and_then(|run| run.duration_ms),
+            "median_duration_ms": durations.get(durations.len() / 2).copied(),
+            "max_duration_ms": durations.last().copied(),
+        }));
+    }
+    Ok(json!({"id":id,"checks":checks}))
 }
 pub fn validate(s: &Store) -> Result<()> {
     if s.schema_version < 3
@@ -298,8 +359,8 @@ pub fn execute(
                 .stdout(output.try_clone().map_err(|e| e.to_string())?)
                 .stderr(output)
                 .spawn();
-            let (successful, note) = match process {
-                Err(e) => (false, format!("RunnerStartFailed: {e}")),
+            let (successful, note, spawned) = match process {
+                Err(e) => (false, format!("RunnerStartFailed: {e}"), false),
                 Ok(mut child) => {
                     let status = loop {
                         if let Some(status) = child.try_wait().map_err(|e| e.to_string())? {
@@ -328,11 +389,14 @@ pub fn execute(
                         } else {
                             format!("Process status: {status:?}")
                         },
+                        true,
                     )
                 }
             };
             let source = if r.format == "junit" { &xml } else { &log };
-            let mut outcome = if successful {
+            let mut outcome = if !spawned {
+                Outcome::Unknown
+            } else if successful {
                 paths::read_limited(&paths::safe(root, source)?, 64 * 1024 * 1024)
                     .ok()
                     .and_then(|b| String::from_utf8(b).ok())
@@ -356,6 +420,8 @@ pub fn execute(
             Ok(Run {
                 check: b.id.clone(),
                 started_at,
+                duration_ms: spawned
+                    .then(|| started.elapsed().as_millis().min(u128::from(u64::MAX)) as u64),
                 command: std::iter::once(program.clone()).chain(args).collect(),
                 cwd: cwd.to_string_lossy().into_owned(),
                 inputs_after: after.ok(),
@@ -366,7 +432,7 @@ pub fn execute(
                 report: report_path,
             })
         })();
-        let run=result.unwrap_or_else(|e| Run {check:b.id.clone(),started_at:progress::now().unwrap_or(0),check_sha256:revision(s,&b),command:std::iter::once(r.program.clone()).chain(r.args.clone()).collect(),cwd:r.cwd.clone(),inputs_after:None,outcome:Outcome::Unknown,observation:format!("CheckNotCompleted: {e}; command contains configured placeholders if execution did not start"),files:BTreeMap::new(),report:String::new()});
+        let run=result.unwrap_or_else(|e| Run {check:b.id.clone(),started_at:progress::now().unwrap_or(0),duration_ms:None,check_sha256:revision(s,&b),command:std::iter::once(r.program.clone()).chain(r.args.clone()).collect(),cwd:r.cwd.clone(),inputs_after:None,outcome:Outcome::Unknown,observation:format!("CheckNotCompleted: {e}; command contains configured placeholders if execution did not start"),files:BTreeMap::new(),report:String::new()});
         observed.push((b.clone(), run));
     }
     // Retain every result, including failures. All bindings for a scenario must

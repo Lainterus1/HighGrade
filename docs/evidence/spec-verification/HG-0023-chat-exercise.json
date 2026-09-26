@@ -1,0 +1,38 @@
+{
+  "kind": "synthetic_chat_exercise",
+  "status": "passed",
+  "fixture_chat": "Учебный пример, не сообщение пользователя этой задачи: «Проверил demo-v1: открыл экран, нажал Сохранить, запись появилась».\n",
+  "preparation": "В пустом изолированном каталоге создать HG-0001 с ручной проверкой demo-v1 и logic.txt=demo-v1",
+  "commands": [
+    "spec-new --expected absent",
+    "spec-save --id HG-0001 --input spec-edit.json",
+    "spec-evidence --id HG-0001 --input evidence.json",
+    "spec-check --id HG-0001 --brief true",
+    "изменить logic.txt на demo-v2",
+    "spec-check --id HG-0001 --brief true"
+  ],
+  "recorded_method": "manual",
+  "recorded_observation": "Со слов пользователя (синтетический пример): demo-v1, открыл экран, нажал Сохранить, запись появилась",
+  "before_blockers": [
+    {
+      "kind": "review",
+      "next": "repeat_review",
+      "reason": "missing"
+    }
+  ],
+  "after_blockers": [
+    {
+      "id": "HG-0001-S1",
+      "kind": "evidence",
+      "next": "repeat_scenario",
+      "path": "logic.txt",
+      "reason": "input_changed"
+    },
+    {
+      "kind": "review",
+      "next": "repeat_review",
+      "reason": "missing"
+    }
+  ],
+  "interpretation": "Учебное подтверждение привязано к demo-v1; после изменения входа на demo-v2 доказательство стало stale. Фактического сообщения пользователя о продукте не было."
+}

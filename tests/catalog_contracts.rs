@@ -735,6 +735,118 @@ fn explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// highgrade: HG-0023-S1, HG-0023-S2
+#[test]
+fn run_statistics_track_attempts_without_execution() {
+    let root = root();
+    runner_fixture(&root);
+    let empty = call(&root, "spec-stats", &[("--id", "HG-0001")]).unwrap();
+    assert_eq!(empty.measurements[0]["checks"][0]["attempts"], 0);
+    assert!(empty.measurements[0]["checks"][0]["latest_duration_ms"].is_null());
+
+    let run = |root: &Path| {
+        call(
+            root,
+            "spec-run",
+            &[
+                ("--id", "HG-0001"),
+                ("--check", "sum"),
+                ("--expected", &sha(root)),
+            ],
+        )
+        .unwrap()
+    };
+    assert_eq!(run(&root).status, "passed");
+    let results_path = root.join("specs/changes/HG-0001/results.json");
+    let mut legacy: Value = serde_json::from_slice(&fs::read(&results_path).unwrap()).unwrap();
+    legacy["runs"][0]
+        .as_object_mut()
+        .unwrap()
+        .remove("duration_ms");
+    fs::write(&results_path, serde_json::to_vec_pretty(&legacy).unwrap()).unwrap();
+
+    fs::write(root.join("test_math.py"), "import unittest\nclass Cases(unittest.TestCase):\n    def test_sum(self): self.fail('failed assertion')\n").unwrap();
+    assert_eq!(run(&root).status, "failed");
+    let changed_inputs = call(&root, "spec-stats", &[("--id", "HG-0001")]).unwrap();
+    let row = &changed_inputs.measurements[0]["checks"][0];
+    assert_eq!(row["current_revision_attempts"], 2);
+    assert_eq!(row["comparable_attempts"], 1);
+    assert_eq!(row["comparable_measured_attempts"], 1);
+    fs::write(root.join("mode.txt"), "timeout").unwrap();
+    let mut runner = json(&root, "runner.json");
+    runner["timeout_seconds"] = json!(1);
+    put(&root, "runner.json", &runner);
+    call(
+        &root,
+        "spec-runner-set",
+        &[
+            ("--id", "unit"),
+            ("--input", "runner.json"),
+            ("--expected", &sha(&root)),
+        ],
+    )
+    .unwrap();
+    assert_eq!(run(&root).status, "failed");
+    let before = fs::read(&results_path).unwrap();
+    let stats = call(&root, "spec-stats", &[("--id", "HG-0001")]).unwrap();
+    assert_eq!(stats.measurements.len(), 2);
+    let row = &stats.measurements[0]["checks"][0];
+    assert_eq!(row["attempts"], 3);
+    assert_eq!(row["measured_attempts"], 2);
+    assert_eq!(row["unmeasured_attempts"], 1);
+    assert_eq!(row["current_revision_attempts"], 1);
+    assert_eq!(row["comparable_attempts"], 1);
+    assert_eq!(row["comparable_measured_attempts"], 1);
+    assert_eq!(row["latest_current_revision"], true);
+    assert_eq!(row["latest_comparable"], true);
+    assert_eq!(row["latest_outcome"], "failed");
+    assert!(row["latest_duration_ms"].as_u64().unwrap() >= 1000);
+    assert!(row["median_duration_ms"].as_u64().unwrap() >= 1000);
+    assert_eq!(fs::read(&results_path).unwrap(), before);
+    assert_eq!(
+        call(&root, "spec-stats", &[("--id", "HG-0001")])
+            .unwrap()
+            .measurements,
+        stats.measurements
+    );
+    let mut runner = json(&root, "runner.json");
+    runner["program"] = json!("highgrade-missing-runner-for-test");
+    put(&root, "runner.json", &runner);
+    call(
+        &root,
+        "spec-runner-set",
+        &[
+            ("--id", "unit"),
+            ("--input", "runner.json"),
+            ("--expected", &sha(&root)),
+        ],
+    )
+    .unwrap();
+    assert_eq!(run(&root).status, "failed");
+    let missing = call(&root, "spec-stats", &[("--id", "HG-0001")]).unwrap();
+    let row = &missing.measurements[0]["checks"][0];
+    assert_eq!(row["attempts"], 4);
+    assert_eq!(row["measured_attempts"], 2);
+    assert_eq!(row["unmeasured_attempts"], 2);
+    assert_eq!(row["current_revision_attempts"], 1);
+    assert_eq!(row["comparable_attempts"], 1);
+    assert_eq!(row["comparable_measured_attempts"], 0);
+    assert!(row["median_duration_ms"].is_null());
+    assert_eq!(row["latest_current_revision"], true);
+    assert_eq!(row["latest_outcome"], "unknown");
+    assert!(row["latest_duration_ms"].is_null());
+    assert!(
+        specs::load(&root).unwrap().0.changes["HG-0001"]
+            .runs
+            .last()
+            .unwrap()
+            .observation
+            .contains("RunnerStartFailed")
+    );
+    assert!(call(&root, "spec-stats", &[("--id", "missing")]).is_err());
+    fs::remove_dir_all(root).unwrap();
+}
+
 // highgrade: HG-0004-S1
 #[test]
 fn multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit() {

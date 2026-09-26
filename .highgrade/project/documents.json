@@ -94,7 +94,7 @@
         "agreed": true,
         "min": 4200,
         "baseline": 6000,
-        "current": 8000,
+        "current": 9000,
         "ceiling": 9000,
         "history": [
           {
@@ -103,9 +103,16 @@
             "reason": "The project now documents the exact native nextest and trace evidence commands for executable scenarios; staged DEVELOPMENT is 7484 bytes.",
             "reduction_considered": "Kept only one command sequence in DEVELOPMENT and avoided a second runner or duplicated test registry.",
             "next_review": "After archiving adopt-executable-scenarios or two real tasks."
+          },
+          {
+            "from": 8000,
+            "to": 9000,
+            "reason": "Existing native scenario and release commands had reached 8362 bytes; the concise test statistics route brings DEVELOPMENT within the agreed 9000-byte ceiling.",
+            "reduction_considered": "Shortened the new guidance and kept detailed selection and manual-evidence rules only in the shipped procedure; no duplicate command sequence was added.",
+            "next_review": "After two real tasks using the test statistics route."
           }
         ],
-        "review_trigger": "after two real tasks using executable scenarios or if DEVELOPMENT exceeds 8000 bytes"
+        "review_trigger": "after two real tasks using the test statistics route or if DEVELOPMENT exceeds 9000 bytes"
       },
       "budget_status": "agreed",
       "loading": "task",

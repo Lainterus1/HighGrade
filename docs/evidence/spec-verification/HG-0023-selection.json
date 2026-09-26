@@ -1,0 +1,43 @@
+{
+  "scenario": "HG-0023-S3",
+  "scope": "Фактическая работа над HG-0023 в этом проекте",
+  "status": "passed",
+  "selection": [
+    {
+      "role": "узкая проверка изменённого поведения",
+      "command": "cargo test --locked --test catalog_contracts run_statistics_track_attempts_without_execution -- --exact",
+      "observed": "1 тест прошёл; отдельный запуск через spec-run HG-0023-C1 проверил ещё и привязку, запись исхода и времени"
+    },
+    {
+      "role": "обязательный барьер Rust",
+      "command": "cargo-nextest nextest run --locked --profile highgrade --no-fail-fast",
+      "observed": "Финальный прогон: 122 теста прошли, 0 пропущено"
+    },
+    {
+      "role": "независимая проверка привязок сценариев",
+      "command": "node scripts/source-scenarios.mjs check; prepare; highgrade trace; node scripts/source-scenarios.mjs verify",
+      "observed": "45 автоматических сценариев подтверждены; 68 ручных или неподтверждённых не объявлены PASS"
+    },
+    {
+      "role": "структура Поставки и импорт",
+      "command": "node scripts/check-repository.mjs --verify-import",
+      "observed": "PASSED; 54 импортированных файла сверены"
+    }
+  ],
+  "skipped": [
+    {
+      "command": "cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts",
+      "reason": "Повторяет уже выполненные тесты Nextest и не добавляет самостоятельного покрытия"
+    },
+    {
+      "command": "отдельный профилировщик перед каждым запуском",
+      "reason": "Замер длительности собирается самим spec-run; узкое место не обнаружено"
+    },
+    {
+      "command": "повторение ручного UI-наблюдения агентом",
+      "reason": "Сценарий передан человеку; учебный пример проверен отдельно и не является приёмкой продукта"
+    }
+  ],
+  "retries": "До финального прогона барьер повторялся после CRLF в kit, исправления маркера и одного нестабильного теста, прошедшего адресный повтор. Ещё один полный повтор понадобился из-за ошибочного порядка list/run для trace; это издержка выполнения задачи, а не рекомендованный маршрут.",
+  "limitations": "Журнал выбора показывает один реальный маршрут, но не доказывает устойчивость действий каждого будущего агента. Изменение проверенных входов требует адресной перепроверки."
+}
