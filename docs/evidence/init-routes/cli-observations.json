@@ -1,0 +1,5271 @@
+{
+  "status": "passed",
+  "cli_sha256": "450d3f54300e14726994879c2df0546998ed8c91d680b50f2f4a73e17d390710",
+  "limit": "Data fixtures establish representability only, not agent behavior or product readiness",
+  "operations": [
+    {
+      "case": "empty",
+      "operation": "inventory",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "structure": {
+          "complete": true,
+          "entries": {},
+          "exclusions_sha256": null,
+          "omitted": {}
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "inspect",
+      "exit_code": 1,
+      "status": "failed",
+      "findings": [
+        {
+          "code": "CanonicalPathMissing",
+          "location": "README.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": "AGENTS.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": "docs/ARCHITECTURE.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": "docs/ENGINEERING.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": "docs/DEVELOPMENT.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": ".highgrade/project/INSTRUCTIONS.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": ".highgrade/project/documents.json",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        }
+      ],
+      "result": {
+        "adaptation": "required",
+        "applied": false,
+        "candidate_scan": "performed",
+        "compatibility_status": "failed",
+        "directories_seen": 0,
+        "exclusion_counts": {},
+        "exclusions": [],
+        "files_seen": 0,
+        "limits": {
+          "candidates_per_slot": 12,
+          "depth": 64,
+          "entries": 50000,
+          "exclusion_paths": 32,
+          "output_bytes": 65536,
+          "path_bytes": 200,
+          "read_bytes_per_file": 65536,
+          "read_files": 128
+        },
+        "mode": "bootstrap",
+        "read_files": 0,
+        "required_links": [
+          {
+            "from": "README.md",
+            "status": "unknown",
+            "to": "AGENTS.md"
+          },
+          {
+            "from": "README.md",
+            "status": "unknown",
+            "to": "docs/ARCHITECTURE.md"
+          },
+          {
+            "from": "README.md",
+            "status": "unknown",
+            "to": "docs/ENGINEERING.md"
+          },
+          {
+            "from": "README.md",
+            "status": "unknown",
+            "to": "docs/DEVELOPMENT.md"
+          },
+          {
+            "from": "AGENTS.md",
+            "status": "unknown",
+            "to": ".highgrade/project/INSTRUCTIONS.md"
+          },
+          {
+            "from": ".highgrade/project/INSTRUCTIONS.md",
+            "status": "unknown",
+            "to": ".highgrade/project/documents.json"
+          }
+        ],
+        "schema_version": 1,
+        "slots": [
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": "README.md",
+            "path_state": "absent",
+            "role": "purpose-navigation"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": "AGENTS.md",
+            "path_state": "absent",
+            "role": "agent-rules"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": "docs/ARCHITECTURE.md",
+            "path_state": "absent",
+            "role": "current-architecture"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": "docs/ENGINEERING.md",
+            "path_state": "absent",
+            "role": "engineering-rules"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": "docs/DEVELOPMENT.md",
+            "path_state": "absent",
+            "role": "commands-procedures"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": ".highgrade/project/INSTRUCTIONS.md",
+            "path_state": "absent",
+            "role": null
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": ".highgrade/project/documents.json",
+            "path_state": "absent",
+            "role": null
+          }
+        ],
+        "unknown_counts": {},
+        "validation": "passed",
+        "visited_entries": 0
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-new",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Определить цель подключения",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Не определено: purpose",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "scope",
+              "description": "Не определено: scope",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "preservation",
+              "description": "Не определено: preservation",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "changes",
+              "description": "Не определено: changes",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "local_rules",
+              "description": "Не определено: local_rules",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "environment",
+              "description": "Не определено: environment",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "mandate",
+              "description": "Не определено: mandate",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [],
+            "components": [],
+            "findings": [],
+            "knowledge": [],
+            "observations": [],
+            "processes": [],
+            "routes": [],
+            "skills": []
+          },
+          "source_paths": [],
+          "stage": "survey"
+        },
+        "revision": 1,
+        "survey_sha256": "57af08a34fc5269f78aee5c797695613d4ac3621ab2cacf8387b587cdf08d0a7"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "57af08a34fc5269f78aee5c797695613d4ac3621ab2cacf8387b587cdf08d0a7",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "state": "confirmed",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "state": "unknown",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ]
+          },
+          "source_paths": [],
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "57af08a34fc5269f78aee5c797695613d4ac3621ab2cacf8387b587cdf08d0a7",
+        "value": {
+          "goal": "Определить цель подключения",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [],
+          "stage": "survey"
+        },
+        "revision": 1,
+        "survey_sha256": "01ab3065518b62dd097636850c247146e568d0e9b1bb08ffefa324b99fc10056"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "01ab3065518b62dd097636850c247146e568d0e9b1bb08ffefa324b99fc10056",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-snapshot",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [],
+          "stage": "survey"
+        },
+        "revision": 1,
+        "survey_sha256": "414f042f9db2a672c76545e729b7fe1d8e86fd057da833ef01d91a6bf512c687"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "414f042f9db2a672c76545e729b7fe1d8e86fd057da833ef01d91a6bf512c687",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-review",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [],
+          "stage": "survey"
+        },
+        "revision": 1,
+        "survey_sha256": "bea6251b12d13c9397adae9940388dcffce2a363203380804911a3b6935d5647"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-check",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "adaptation_ready": true,
+        "blockers": [],
+        "changed_sources": [],
+        "completion_ready": true,
+        "historically_completed": false,
+        "other_dependencies": [],
+        "permission": "not_assessed",
+        "plan_ready": true,
+        "review_go": true,
+        "review_record_current": true,
+        "semantic_correctness": "not_certified",
+        "snapshot_current": true,
+        "structure": "valid",
+        "survey_sha256": "bea6251b12d13c9397adae9940388dcffce2a363203380804911a3b6935d5647",
+        "system_actions": [
+          "plan",
+          "adaptation",
+          "completion"
+        ],
+        "unknown_sources": [],
+        "user_acceptance": "not_recorded_by_this_tool"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "bea6251b12d13c9397adae9940388dcffce2a363203380804911a3b6935d5647",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [],
+          "stage": "adapting"
+        },
+        "revision": 1,
+        "survey_sha256": "eaa52c616a8c54b6ef45e880270557d91d1d500411a70bddf4c163c0b41180a5"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "eaa52c616a8c54b6ef45e880270557d91d1d500411a70bddf4c163c0b41180a5",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Preparation refined; actual stage preserved",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [],
+          "stage": "adapting"
+        },
+        "revision": 1,
+        "survey_sha256": "d230f833f1ca3b13e21b1ca596a71f38d2651d79f5524f1d021f23a81c0eeb6d"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-check",
+      "exit_code": 2,
+      "status": "unknown",
+      "findings": [
+        {
+          "code": "SurveyIncomplete",
+          "location": ".highgrade/project/survey.json",
+          "message": "See separate decisions, source freshness and review record.",
+          "status": "unknown"
+        }
+      ],
+      "result": {
+        "adaptation_ready": false,
+        "blockers": [],
+        "changed_sources": [],
+        "completion_ready": false,
+        "historically_completed": false,
+        "other_dependencies": [],
+        "permission": "not_assessed",
+        "plan_ready": false,
+        "review_go": false,
+        "review_record_current": false,
+        "semantic_correctness": "not_certified",
+        "snapshot_current": true,
+        "structure": "valid",
+        "survey_sha256": "d230f833f1ca3b13e21b1ca596a71f38d2651d79f5524f1d021f23a81c0eeb6d",
+        "system_actions": [
+          "plan",
+          "adaptation",
+          "completion"
+        ],
+        "unknown_sources": [],
+        "user_acceptance": "not_recorded_by_this_tool"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "d230f833f1ca3b13e21b1ca596a71f38d2651d79f5524f1d021f23a81c0eeb6d",
+        "value": {
+          "goal": "Preparation refined; actual stage preserved",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "spec-init",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "catalog_path": "specs/catalog.json",
+        "directory": "specs",
+        "pointer_path": "specs-location.json",
+        "store_sha256": "7d267d921a12dc06c9eb94157e2eae02a20730a0546db254b66b05468a7aceb2"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "spec-new",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "change": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "goal": "",
+          "rationale": "",
+          "scope": "",
+          "questions": [],
+          "operations": [
+            {
+              "action": "add",
+              "requirement": {
+                "id": "HG-0001-R1",
+                "title": "",
+                "statement": "",
+                "scenarios": [
+                  {
+                    "id": "HG-0001-S1",
+                    "given": "",
+                    "when": "",
+                    "then": "",
+                    "verification": ""
+                  }
+                ]
+              }
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "",
+              "done": false
+            }
+          ],
+          "imports": {},
+          "baseline": {},
+          "scoped_baseline": true,
+          "created_at": 1790488978,
+          "archived": false,
+          "abandoned_reason": null,
+          "evidence": {},
+          "review": null,
+          "acceptance": []
+        },
+        "change_sha256": "9d634b7599114a32bc0d5db93cde4a0894355ff89fe5406f23ce0de9e6e1b513",
+        "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "schema_version": 3,
+        "store_sha256": "7b3161e8c31d03d0bc8c64ec55137850a2d9b78386ac4337cd2b19a0f2a48d90"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "spec-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "change": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "goal": "Describe the first result",
+          "rationale": "Fixture for postponed elaboration",
+          "scope": "Initial bounded result",
+          "questions": [
+            "Clarify an implementation detail before work"
+          ],
+          "operations": [
+            {
+              "action": "add",
+              "requirement": {
+                "id": "HG-0001-R1",
+                "title": "Read selected source",
+                "statement": "The selected supported source is read without changing its bytes. Supported formats remain an explicit open question.",
+                "scenarios": [
+                  {
+                    "id": "HG-0001-S1",
+                    "given": "A selected supported source and its original bytes",
+                    "when": "The source is read",
+                    "then": "Its content is returned and original bytes stay unchanged",
+                    "verification": "A future test compares content and source bytes for the agreed format."
+                  }
+                ]
+              }
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "Clarify the supported input format",
+              "done": false
+            },
+            {
+              "id": "HG-0001-T2",
+              "description": "Implement reading the agreed source",
+              "done": false
+            }
+          ],
+          "imports": {},
+          "baseline": {},
+          "scoped_baseline": true,
+          "created_at": 1790488978,
+          "archived": false,
+          "abandoned_reason": null,
+          "evidence": {},
+          "review": null,
+          "acceptance": []
+        },
+        "change_sha256": "68739b428dcfc340c17d26fb3ca0033398a8d340c4aed2613ffc40dc27d4c434",
+        "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "schema_version": 3,
+        "store_sha256": "e38e89ee44e84ba9aa254faaf1a3ded95160c086b4104a0f475dd78678fc96ef"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "spec-validate",
+      "exit_code": 1,
+      "status": "failed",
+      "findings": [
+        {
+          "code": "OpenQuestions",
+          "location": "/questions",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        }
+      ],
+      "result": {
+        "change": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "goal": "Describe the first result",
+          "rationale": "Fixture for postponed elaboration",
+          "scope": "Initial bounded result",
+          "questions": [
+            "Clarify an implementation detail before work"
+          ],
+          "operations": [
+            {
+              "action": "add",
+              "requirement": {
+                "id": "HG-0001-R1",
+                "title": "Read selected source",
+                "statement": "The selected supported source is read without changing its bytes. Supported formats remain an explicit open question.",
+                "scenarios": [
+                  {
+                    "id": "HG-0001-S1",
+                    "given": "A selected supported source and its original bytes",
+                    "when": "The source is read",
+                    "then": "Its content is returned and original bytes stay unchanged",
+                    "verification": "A future test compares content and source bytes for the agreed format."
+                  }
+                ]
+              }
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "Clarify the supported input format",
+              "done": false
+            },
+            {
+              "id": "HG-0001-T2",
+              "description": "Implement reading the agreed source",
+              "done": false
+            }
+          ],
+          "imports": {},
+          "baseline": {},
+          "scoped_baseline": true,
+          "created_at": 1790488978,
+          "archived": false,
+          "abandoned_reason": null,
+          "evidence": {},
+          "review": null,
+          "acceptance": []
+        },
+        "change_sha256": "68739b428dcfc340c17d26fb3ca0033398a8d340c4aed2613ffc40dc27d4c434",
+        "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "schema_version": 3,
+        "store_sha256": "e38e89ee44e84ba9aa254faaf1a3ded95160c086b4104a0f475dd78678fc96ef"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "spec-check",
+      "exit_code": 1,
+      "status": "failed",
+      "findings": [
+        {
+          "code": "OpenQuestions",
+          "location": "/questions",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        },
+        {
+          "code": "TasksIncomplete",
+          "location": "/tasks",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        },
+        {
+          "code": "EvidenceMissingOrStale",
+          "location": "/operations/0/requirement/scenarios/0",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        },
+        {
+          "code": "ReviewMissingOrStale",
+          "location": "/review",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        }
+      ],
+      "result": {
+        "brief": {
+          "id": "HG-0001",
+          "blockers": [
+            {
+              "id": "HG-0001-S1",
+              "kind": "evidence",
+              "next": "record_evidence",
+              "reason": "missing_evidence"
+            },
+            {
+              "kind": "review",
+              "next": "repeat_review",
+              "reason": "missing"
+            }
+          ],
+          "change_sha256": "68739b428dcfc340c17d26fb3ca0033398a8d340c4aed2613ffc40dc27d4c434",
+          "contract_sha256": "9489417c670bcf94bc0ba8394f371dbd36f19ee52cb744bdc13a0435d9044921",
+          "human": "pending",
+          "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "technical": "in_progress",
+          "verified_revision": null,
+          "review": "missing"
+        },
+        "schema_version": 3,
+        "store_sha256": "e38e89ee44e84ba9aa254faaf1a3ded95160c086b4104a0f475dd78678fc96ef"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "d230f833f1ca3b13e21b1ca596a71f38d2651d79f5524f1d021f23a81c0eeb6d",
+        "value": {
+          "goal": "Preparation refined; actual stage preserved",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-snapshot",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Preparation refined; actual stage preserved",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [],
+          "stage": "adapting"
+        },
+        "revision": 1,
+        "survey_sha256": "d230f833f1ca3b13e21b1ca596a71f38d2651d79f5524f1d021f23a81c0eeb6d"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "d230f833f1ca3b13e21b1ca596a71f38d2651d79f5524f1d021f23a81c0eeb6d",
+        "value": {
+          "goal": "Preparation refined; actual stage preserved",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-review",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Preparation refined; actual stage preserved",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [],
+          "stage": "adapting"
+        },
+        "revision": 1,
+        "survey_sha256": "a88f716943038466ed76d0a16d84e32d002018bd57a3c5c81f20fcbe2da65e62"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "a88f716943038466ed76d0a16d84e32d002018bd57a3c5c81f20fcbe2da65e62",
+        "value": {
+          "goal": "Preparation refined; actual stage preserved",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Preparation refined; actual stage preserved",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [],
+          "stage": "completed"
+        },
+        "revision": 1,
+        "survey_sha256": "08abee80e13b93ce0090c292b3304c89a00706e13dca7bdf911ea9b4680c3fc4"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "survey-check",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "adaptation_ready": true,
+        "blockers": [],
+        "changed_sources": [],
+        "completion_ready": true,
+        "historically_completed": true,
+        "other_dependencies": [],
+        "permission": "not_assessed",
+        "plan_ready": true,
+        "review_go": true,
+        "review_record_current": true,
+        "semantic_correctness": "not_certified",
+        "snapshot_current": true,
+        "structure": "valid",
+        "survey_sha256": "08abee80e13b93ce0090c292b3304c89a00706e13dca7bdf911ea9b4680c3fc4",
+        "system_actions": [
+          "plan",
+          "adaptation",
+          "completion"
+        ],
+        "unknown_sources": [],
+        "user_acceptance": "not_recorded_by_this_tool"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "spec-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "local_sha256": "fb7c0985e51c21898b34e94497be066837f284bc1be4250599bfda1a5ad91259",
+        "schema_version": 3,
+        "store_sha256": "e38e89ee44e84ba9aa254faaf1a3ded95160c086b4104a0f475dd78678fc96ef",
+        "value": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "tags": [],
+          "goal": "Describe the first result",
+          "rationale": "Fixture for postponed elaboration",
+          "scope": "Initial bounded result",
+          "questions": [
+            "Clarify an implementation detail before work"
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "Clarify the supported input format",
+              "done": false
+            },
+            {
+              "id": "HG-0001-T2",
+              "description": "Implement reading the agreed source",
+              "done": false
+            }
+          ],
+          "contract_sha256": "9489417c670bcf94bc0ba8394f371dbd36f19ee52cb744bdc13a0435d9044921",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          }
+        },
+        "view": "summary"
+      }
+    },
+    {
+      "case": "empty",
+      "operation": "spec-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "change": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "goal": "Describe the first result",
+          "rationale": "Fixture for postponed elaboration",
+          "scope": "Initial bounded result",
+          "questions": [
+            "Choose the exact text encoding before work"
+          ],
+          "operations": [
+            {
+              "action": "add",
+              "requirement": {
+                "id": "HG-0001-R1",
+                "title": "Read selected source",
+                "statement": "The selected supported source is read without changing its bytes. Supported formats remain an explicit open question.",
+                "scenarios": [
+                  {
+                    "id": "HG-0001-S1",
+                    "given": "A selected supported source and its original bytes",
+                    "when": "The source is read",
+                    "then": "Its content is returned and original bytes stay unchanged",
+                    "verification": "A future test compares content and source bytes for the agreed format."
+                  }
+                ]
+              }
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "Clarify the supported input format",
+              "done": false
+            },
+            {
+              "id": "HG-0001-T2",
+              "description": "Implement reading the agreed source",
+              "done": false
+            }
+          ],
+          "imports": {},
+          "baseline": {},
+          "scoped_baseline": true,
+          "created_at": 1790488978,
+          "archived": false,
+          "abandoned_reason": null,
+          "evidence": {},
+          "review": null,
+          "acceptance": []
+        },
+        "change_sha256": "e2f49501e4e003e9928a074c23817b3c1fc66658a885bed74dfd88845bb1d77d",
+        "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "schema_version": 3,
+        "store_sha256": "ba51fa4b27bfba7bff5ad02151ba209d0c763beb0e6f491de686f3fadf3bb35a"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "inventory",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "structure": {
+          "complete": true,
+          "entries": {
+            "README.md": "file"
+          },
+          "exclusions_sha256": null,
+          "omitted": {}
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "inspect",
+      "exit_code": 1,
+      "status": "failed",
+      "findings": [
+        {
+          "code": "CanonicalPathMissing",
+          "location": "AGENTS.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": "docs/ARCHITECTURE.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": "docs/ENGINEERING.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": "docs/DEVELOPMENT.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": ".highgrade/project/INSTRUCTIONS.md",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "CanonicalPathMissing",
+          "location": ".highgrade/project/documents.json",
+          "message": "Обязательный путь отсутствует или не является файлом.",
+          "status": "failed"
+        },
+        {
+          "code": "RequiredLinkMissingOrInvalid",
+          "location": "README.md",
+          "message": "AGENTS.md",
+          "status": "failed"
+        },
+        {
+          "code": "RequiredLinkMissingOrInvalid",
+          "location": "README.md",
+          "message": "docs/ARCHITECTURE.md",
+          "status": "failed"
+        },
+        {
+          "code": "RequiredLinkMissingOrInvalid",
+          "location": "README.md",
+          "message": "docs/ENGINEERING.md",
+          "status": "failed"
+        },
+        {
+          "code": "RequiredLinkMissingOrInvalid",
+          "location": "README.md",
+          "message": "docs/DEVELOPMENT.md",
+          "status": "failed"
+        }
+      ],
+      "result": {
+        "adaptation": "required",
+        "applied": false,
+        "candidate_scan": "performed",
+        "compatibility_status": "failed",
+        "directories_seen": 0,
+        "exclusion_counts": {},
+        "exclusions": [],
+        "files_seen": 1,
+        "limits": {
+          "candidates_per_slot": 12,
+          "depth": 64,
+          "entries": 50000,
+          "exclusion_paths": 32,
+          "output_bytes": 65536,
+          "path_bytes": 200,
+          "read_bytes_per_file": 65536,
+          "read_files": 128
+        },
+        "mode": "bootstrap",
+        "read_files": 2,
+        "required_links": [
+          {
+            "from": "README.md",
+            "status": "missing",
+            "to": "AGENTS.md"
+          },
+          {
+            "from": "README.md",
+            "status": "missing",
+            "to": "docs/ARCHITECTURE.md"
+          },
+          {
+            "from": "README.md",
+            "status": "missing",
+            "to": "docs/ENGINEERING.md"
+          },
+          {
+            "from": "README.md",
+            "status": "missing",
+            "to": "docs/DEVELOPMENT.md"
+          },
+          {
+            "from": "AGENTS.md",
+            "status": "unknown",
+            "to": ".highgrade/project/INSTRUCTIONS.md"
+          },
+          {
+            "from": ".highgrade/project/INSTRUCTIONS.md",
+            "status": "unknown",
+            "to": ".highgrade/project/documents.json"
+          }
+        ],
+        "schema_version": 1,
+        "slots": [
+          {
+            "candidate_status": "not_needed",
+            "candidates": [],
+            "expected_path": "README.md",
+            "path_state": "present",
+            "role": "purpose-navigation"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": "AGENTS.md",
+            "path_state": "absent",
+            "role": "agent-rules"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": "docs/ARCHITECTURE.md",
+            "path_state": "absent",
+            "role": "current-architecture"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": "docs/ENGINEERING.md",
+            "path_state": "absent",
+            "role": "engineering-rules"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": "docs/DEVELOPMENT.md",
+            "path_state": "absent",
+            "role": "commands-procedures"
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": ".highgrade/project/INSTRUCTIONS.md",
+            "path_state": "absent",
+            "role": null
+          },
+          {
+            "candidate_status": "not_found_in_scan",
+            "candidates": [],
+            "expected_path": ".highgrade/project/documents.json",
+            "path_state": "absent",
+            "role": null
+          }
+        ],
+        "unknown_counts": {},
+        "validation": "passed",
+        "visited_entries": 1
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-new",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Определить цель подключения",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Не определено: purpose",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "scope",
+              "description": "Не определено: scope",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "preservation",
+              "description": "Не определено: preservation",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "changes",
+              "description": "Не определено: changes",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "local_rules",
+              "description": "Не определено: local_rules",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "environment",
+              "description": "Не определено: environment",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "mandate",
+              "description": "Не определено: mandate",
+              "basis": [],
+              "blocks": [
+                "adaptation"
+              ],
+              "sources": [],
+              "state": "unknown"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [],
+            "components": [],
+            "findings": [],
+            "knowledge": [],
+            "observations": [],
+            "processes": [],
+            "routes": [],
+            "skills": []
+          },
+          "source_paths": [],
+          "stage": "survey"
+        },
+        "revision": 1,
+        "survey_sha256": "57af08a34fc5269f78aee5c797695613d4ac3621ab2cacf8387b587cdf08d0a7"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "57af08a34fc5269f78aee5c797695613d4ac3621ab2cacf8387b587cdf08d0a7",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "state": "confirmed",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "state": "unknown",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "state": "confirmed",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "sources": [],
+                "blocks": []
+              }
+            ]
+          },
+          "source_paths": [
+            "README.md"
+          ],
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "57af08a34fc5269f78aee5c797695613d4ac3621ab2cacf8387b587cdf08d0a7",
+        "value": {
+          "goal": "Определить цель подключения",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [
+            "README.md"
+          ],
+          "stage": "survey"
+        },
+        "revision": 1,
+        "survey_sha256": "554e5fb609d482c2f714ab3d0ea6f999cc536e4ad581d31156197bed574f50d2"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "554e5fb609d482c2f714ab3d0ea6f999cc536e4ad581d31156197bed574f50d2",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-snapshot",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [
+            "README.md"
+          ],
+          "stage": "survey"
+        },
+        "revision": 1,
+        "survey_sha256": "84d23f5eb18a65fa3f67279bdac324c2cfa48ede180e6629e7e332cd8f446750"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "84d23f5eb18a65fa3f67279bdac324c2cfa48ede180e6629e7e332cd8f446750",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-review",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [
+            "README.md"
+          ],
+          "stage": "survey"
+        },
+        "revision": 1,
+        "survey_sha256": "ddb2608544892d605624d6923cd7b6011e5bbb9e033f52938cd6ebae7c6e13db"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-check",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "adaptation_ready": true,
+        "blockers": [],
+        "changed_sources": [],
+        "completion_ready": true,
+        "historically_completed": false,
+        "other_dependencies": [],
+        "permission": "not_assessed",
+        "plan_ready": true,
+        "review_go": true,
+        "review_record_current": true,
+        "semantic_correctness": "not_certified",
+        "snapshot_current": true,
+        "structure": "valid",
+        "survey_sha256": "ddb2608544892d605624d6923cd7b6011e5bbb9e033f52938cd6ebae7c6e13db",
+        "system_actions": [
+          "plan",
+          "adaptation",
+          "completion"
+        ],
+        "unknown_sources": [],
+        "user_acceptance": "not_recorded_by_this_tool"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "ddb2608544892d605624d6923cd7b6011e5bbb9e033f52938cd6ebae7c6e13db",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "survey"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [
+            "README.md"
+          ],
+          "stage": "adapting"
+        },
+        "revision": 1,
+        "survey_sha256": "d638c1c1c475a26f08d30d892da014d9e029cf2a80fd36ad03f5021bacd92200"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "d638c1c1c475a26f08d30d892da014d9e029cf2a80fd36ad03f5021bacd92200",
+        "value": {
+          "goal": "Prepare repository and initial requirements, without product implementation",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Preparation refined; actual stage preserved",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [
+            "README.md"
+          ],
+          "stage": "adapting"
+        },
+        "revision": 1,
+        "survey_sha256": "541c602743a15b89ea03848ebd75fc930e8906249618ecedcd2bb4789a9ed155"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-check",
+      "exit_code": 2,
+      "status": "unknown",
+      "findings": [
+        {
+          "code": "SurveyIncomplete",
+          "location": ".highgrade/project/survey.json",
+          "message": "See separate decisions, source freshness and review record.",
+          "status": "unknown"
+        }
+      ],
+      "result": {
+        "adaptation_ready": false,
+        "blockers": [],
+        "changed_sources": [],
+        "completion_ready": false,
+        "historically_completed": false,
+        "other_dependencies": [],
+        "permission": "not_assessed",
+        "plan_ready": false,
+        "review_go": false,
+        "review_record_current": false,
+        "semantic_correctness": "not_certified",
+        "snapshot_current": true,
+        "structure": "valid",
+        "survey_sha256": "541c602743a15b89ea03848ebd75fc930e8906249618ecedcd2bb4789a9ed155",
+        "system_actions": [
+          "plan",
+          "adaptation",
+          "completion"
+        ],
+        "unknown_sources": [],
+        "user_acceptance": "not_recorded_by_this_tool"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "541c602743a15b89ea03848ebd75fc930e8906249618ecedcd2bb4789a9ed155",
+        "value": {
+          "goal": "Preparation refined; actual stage preserved",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "spec-init",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "catalog_path": "specs/catalog.json",
+        "directory": "specs",
+        "pointer_path": "specs-location.json",
+        "store_sha256": "7d267d921a12dc06c9eb94157e2eae02a20730a0546db254b66b05468a7aceb2"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "spec-new",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "change": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "goal": "",
+          "rationale": "",
+          "scope": "",
+          "questions": [],
+          "operations": [
+            {
+              "action": "add",
+              "requirement": {
+                "id": "HG-0001-R1",
+                "title": "",
+                "statement": "",
+                "scenarios": [
+                  {
+                    "id": "HG-0001-S1",
+                    "given": "",
+                    "when": "",
+                    "then": "",
+                    "verification": ""
+                  }
+                ]
+              }
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "",
+              "done": false
+            }
+          ],
+          "imports": {},
+          "baseline": {},
+          "scoped_baseline": true,
+          "created_at": 1790488979,
+          "archived": false,
+          "abandoned_reason": null,
+          "evidence": {},
+          "review": null,
+          "acceptance": []
+        },
+        "change_sha256": "9d634b7599114a32bc0d5db93cde4a0894355ff89fe5406f23ce0de9e6e1b513",
+        "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "schema_version": 3,
+        "store_sha256": "8e5f801e57d1ca16c165c555e295089457078155f6d4640142010ca1072cee06"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "spec-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "change": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "goal": "Describe the first result",
+          "rationale": "Fixture for postponed elaboration",
+          "scope": "Initial bounded result",
+          "questions": [
+            "Clarify an implementation detail before work"
+          ],
+          "operations": [
+            {
+              "action": "add",
+              "requirement": {
+                "id": "HG-0001-R1",
+                "title": "Read selected source",
+                "statement": "The selected supported source is read without changing its bytes. Supported formats remain an explicit open question.",
+                "scenarios": [
+                  {
+                    "id": "HG-0001-S1",
+                    "given": "A selected supported source and its original bytes",
+                    "when": "The source is read",
+                    "then": "Its content is returned and original bytes stay unchanged",
+                    "verification": "A future test compares content and source bytes for the agreed format."
+                  }
+                ]
+              }
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "Clarify the supported input format",
+              "done": false
+            },
+            {
+              "id": "HG-0001-T2",
+              "description": "Implement reading the agreed source",
+              "done": false
+            }
+          ],
+          "imports": {},
+          "baseline": {},
+          "scoped_baseline": true,
+          "created_at": 1790488979,
+          "archived": false,
+          "abandoned_reason": null,
+          "evidence": {},
+          "review": null,
+          "acceptance": []
+        },
+        "change_sha256": "68739b428dcfc340c17d26fb3ca0033398a8d340c4aed2613ffc40dc27d4c434",
+        "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "schema_version": 3,
+        "store_sha256": "7fea5a398f0696275d653f67336deb6498025d0e1d99529281718dafbe53f4a2"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "spec-validate",
+      "exit_code": 1,
+      "status": "failed",
+      "findings": [
+        {
+          "code": "OpenQuestions",
+          "location": "/questions",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        }
+      ],
+      "result": {
+        "change": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "goal": "Describe the first result",
+          "rationale": "Fixture for postponed elaboration",
+          "scope": "Initial bounded result",
+          "questions": [
+            "Clarify an implementation detail before work"
+          ],
+          "operations": [
+            {
+              "action": "add",
+              "requirement": {
+                "id": "HG-0001-R1",
+                "title": "Read selected source",
+                "statement": "The selected supported source is read without changing its bytes. Supported formats remain an explicit open question.",
+                "scenarios": [
+                  {
+                    "id": "HG-0001-S1",
+                    "given": "A selected supported source and its original bytes",
+                    "when": "The source is read",
+                    "then": "Its content is returned and original bytes stay unchanged",
+                    "verification": "A future test compares content and source bytes for the agreed format."
+                  }
+                ]
+              }
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "Clarify the supported input format",
+              "done": false
+            },
+            {
+              "id": "HG-0001-T2",
+              "description": "Implement reading the agreed source",
+              "done": false
+            }
+          ],
+          "imports": {},
+          "baseline": {},
+          "scoped_baseline": true,
+          "created_at": 1790488979,
+          "archived": false,
+          "abandoned_reason": null,
+          "evidence": {},
+          "review": null,
+          "acceptance": []
+        },
+        "change_sha256": "68739b428dcfc340c17d26fb3ca0033398a8d340c4aed2613ffc40dc27d4c434",
+        "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "schema_version": 3,
+        "store_sha256": "7fea5a398f0696275d653f67336deb6498025d0e1d99529281718dafbe53f4a2"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "spec-check",
+      "exit_code": 1,
+      "status": "failed",
+      "findings": [
+        {
+          "code": "OpenQuestions",
+          "location": "/questions",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        },
+        {
+          "code": "TasksIncomplete",
+          "location": "/tasks",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        },
+        {
+          "code": "EvidenceMissingOrStale",
+          "location": "/operations/0/requirement/scenarios/0",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        },
+        {
+          "code": "ReviewMissingOrStale",
+          "location": "/review",
+          "message": "Change is not ready for integration.",
+          "status": "failed"
+        }
+      ],
+      "result": {
+        "brief": {
+          "id": "HG-0001",
+          "blockers": [
+            {
+              "id": "HG-0001-S1",
+              "kind": "evidence",
+              "next": "record_evidence",
+              "reason": "missing_evidence"
+            },
+            {
+              "kind": "review",
+              "next": "repeat_review",
+              "reason": "missing"
+            }
+          ],
+          "change_sha256": "68739b428dcfc340c17d26fb3ca0033398a8d340c4aed2613ffc40dc27d4c434",
+          "contract_sha256": "9489417c670bcf94bc0ba8394f371dbd36f19ee52cb744bdc13a0435d9044921",
+          "human": "pending",
+          "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "technical": "in_progress",
+          "verified_revision": null,
+          "review": "missing"
+        },
+        "schema_version": 3,
+        "store_sha256": "7fea5a398f0696275d653f67336deb6498025d0e1d99529281718dafbe53f4a2"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "541c602743a15b89ea03848ebd75fc930e8906249618ecedcd2bb4789a9ed155",
+        "value": {
+          "goal": "Preparation refined; actual stage preserved",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-snapshot",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Preparation refined; actual stage preserved",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [
+            "README.md"
+          ],
+          "stage": "adapting"
+        },
+        "revision": 1,
+        "survey_sha256": "541c602743a15b89ea03848ebd75fc930e8906249618ecedcd2bb4789a9ed155"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "541c602743a15b89ea03848ebd75fc930e8906249618ecedcd2bb4789a9ed155",
+        "value": {
+          "goal": "Preparation refined; actual stage preserved",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-review",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Preparation refined; actual stage preserved",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "Уточнить неизвестные ключевые решения",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [
+            "README.md"
+          ],
+          "stage": "adapting"
+        },
+        "revision": 1,
+        "survey_sha256": "5cd977cd976149050d2ed6fe26830135c2114386e8d15f758fbf720b21a6fc0e"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "survey_sha256": "5cd977cd976149050d2ed6fe26830135c2114386e8d15f758fbf720b21a6fc0e",
+        "value": {
+          "goal": "Preparation refined; actual stage preserved",
+          "history_count": 0,
+          "next": "Уточнить неизвестные ключевые решения",
+          "revision": 1,
+          "stage": "adapting"
+        }
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "content": {
+          "goal": "Preparation refined; actual stage preserved",
+          "scope": [
+            "."
+          ],
+          "areas": [],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Fixture decision: purpose",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Fixture decision: scope",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Fixture decision: preservation",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Fixture decision: changes",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Fixture decision: local_rules",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Fixture decision: environment",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Fixture decision: mandate",
+              "basis": [
+                "Explicit synthetic fixture mandate: preparation only"
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-state",
+                "description": "Decision: define a future component; not yet implemented",
+                "basis": [
+                  "Synthetic design decision"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "components-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "findings-state",
+                "description": "Future product detail belongs to the draft specification; outside completed preparation",
+                "basis": [],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observations-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "processes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "routes-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-state",
+                "description": "Observed absence at this stage; no implementation claimed",
+                "basis": [
+                  "Inventory of bounded fixture"
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [
+            "README.md"
+          ],
+          "stage": "completed"
+        },
+        "revision": 1,
+        "survey_sha256": "0f17c3c01f34d07d5f6700ec101bddde01bf643d7b6e25659da6514f0cb0873b"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "survey-check",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "adaptation_ready": true,
+        "blockers": [],
+        "changed_sources": [],
+        "completion_ready": true,
+        "historically_completed": true,
+        "other_dependencies": [],
+        "permission": "not_assessed",
+        "plan_ready": true,
+        "review_go": true,
+        "review_record_current": true,
+        "semantic_correctness": "not_certified",
+        "snapshot_current": true,
+        "structure": "valid",
+        "survey_sha256": "0f17c3c01f34d07d5f6700ec101bddde01bf643d7b6e25659da6514f0cb0873b",
+        "system_actions": [
+          "plan",
+          "adaptation",
+          "completion"
+        ],
+        "unknown_sources": [],
+        "user_acceptance": "not_recorded_by_this_tool"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "spec-read",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "local_sha256": "b5b5f55cf599c7632e7bf4d20e1027da25d37f871dec07dc7ee43fdc8c3681b7",
+        "schema_version": 3,
+        "store_sha256": "7fea5a398f0696275d653f67336deb6498025d0e1d99529281718dafbe53f4a2",
+        "value": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "tags": [],
+          "goal": "Describe the first result",
+          "rationale": "Fixture for postponed elaboration",
+          "scope": "Initial bounded result",
+          "questions": [
+            "Clarify an implementation detail before work"
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "Clarify the supported input format",
+              "done": false
+            },
+            {
+              "id": "HG-0001-T2",
+              "description": "Implement reading the agreed source",
+              "done": false
+            }
+          ],
+          "contract_sha256": "9489417c670bcf94bc0ba8394f371dbd36f19ee52cb744bdc13a0435d9044921",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          }
+        },
+        "view": "summary"
+      }
+    },
+    {
+      "case": "template",
+      "operation": "spec-edit",
+      "exit_code": 0,
+      "status": "passed",
+      "findings": [],
+      "result": {
+        "change": {
+          "id": "HG-0001",
+          "title": "Initial draft result",
+          "goal": "Describe the first result",
+          "rationale": "Fixture for postponed elaboration",
+          "scope": "Initial bounded result",
+          "questions": [
+            "Choose the exact text encoding before work"
+          ],
+          "operations": [
+            {
+              "action": "add",
+              "requirement": {
+                "id": "HG-0001-R1",
+                "title": "Read selected source",
+                "statement": "The selected supported source is read without changing its bytes. Supported formats remain an explicit open question.",
+                "scenarios": [
+                  {
+                    "id": "HG-0001-S1",
+                    "given": "A selected supported source and its original bytes",
+                    "when": "The source is read",
+                    "then": "Its content is returned and original bytes stay unchanged",
+                    "verification": "A future test compares content and source bytes for the agreed format."
+                  }
+                ]
+              }
+            }
+          ],
+          "tasks": [
+            {
+              "id": "HG-0001-T1",
+              "description": "Clarify the supported input format",
+              "done": false
+            },
+            {
+              "id": "HG-0001-T2",
+              "description": "Implement reading the agreed source",
+              "done": false
+            }
+          ],
+          "imports": {},
+          "baseline": {},
+          "scoped_baseline": true,
+          "created_at": 1790488979,
+          "archived": false,
+          "abandoned_reason": null,
+          "evidence": {},
+          "review": null,
+          "acceptance": []
+        },
+        "change_sha256": "e2f49501e4e003e9928a074c23817b3c1fc66658a885bed74dfd88845bb1d77d",
+        "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "schema_version": 3,
+        "store_sha256": "30bf3fde4aba72681dda089cb590fa9065e593a5f9bedbb5cc6e882e0d1f04b1"
+      }
+    }
+  ]
+}
