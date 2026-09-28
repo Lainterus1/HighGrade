@@ -10,9 +10,17 @@
         "agreed": true,
         "min": 4550,
         "baseline": 6500,
-        "current": 6500,
+        "current": 7600,
         "ceiling": 9000,
-        "history": [],
+        "history": [
+          {
+            "from": 6500,
+            "to": 7600,
+            "reason": "Добавлен проверяемый Linux quick start рядом с Windows, README 7207 bytes.",
+            "reduction_considered": "Подробности установки остаются в справочнике; вход содержит только сборку и global-install/status.",
+            "next_review": "После следующего изменения quick start."
+          }
+        ],
         "review_trigger": "after two real tasks using the High Grade workflow"
       },
       "budget_status": "agreed",
@@ -968,6 +976,20 @@
       "scope": [
         "docs"
       ]
+    },
+    {
+      "path": "docs/releases/v0-3-4.md",
+      "role": "release-evidence",
+      "active": true,
+      "loading": "history",
+      "scope": []
+    },
+    {
+      "path": "docs/evidence/linux-support/review.md",
+      "role": "linux-compatibility-review",
+      "active": true,
+      "loading": "history",
+      "scope": []
     }
   ],
   "schema_version": 1,

@@ -90,7 +90,7 @@ function sources() {
 }
 
 function nativeHash() {
-  const cli = path.resolve('target/debug/highgrade.exe');
+  const cli = path.resolve(`target/debug/highgrade${process.platform === 'win32' ? '.exe' : ''}`);
   const result = spawnSync(cli, ['spec-list', '--root', root], { encoding: 'utf8' });
   if (result.status !== 0) fail(`spec-list failed: ${result.stdout || result.stderr}`);
   const digest = JSON.parse(result.stdout).measurements.find((item) => typeof item.trace_sha256 === 'string')?.trace_sha256;

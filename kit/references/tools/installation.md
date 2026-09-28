@@ -24,3 +24,21 @@
 
 
 Preview global-update дополнительно возвращает `validation=passed`, `decision=required`, `applied=false`.
+
+## Linux (Bash)
+
+Соберите CLI штатным Cargo с закреплённым toolchain. Профиль — домашний каталог пользователя; команды получают абсолютный путь кандидата. Для готового кандидата:
+
+```bash
+hgCandidate="$PWD/target/highgrade/candidate"
+"$hgCandidate/highgrade" global-install --profile "$HOME" --source "$hgCandidate/kit" --candidate-exe "$hgCandidate/highgrade"
+hgRelease=$(python -c 'import json,pathlib; print(json.loads((pathlib.Path.home()/".highgrade/global/active.json").read_text())["release"])')
+hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
+"$hgExe" global-status --profile "$HOME"
+"$hgExe" doctor --root "$PWD"
+"$hgCandidate/highgrade" global-update --profile "$HOME" --source "$hgCandidate/kit" --candidate-exe "$hgCandidate/highgrade"
+# После сверки preview повторите ту же команду с:
+# --apply true --candidate-sha256 '<отпечаток-из-preview>'
+```
+
+CLI устанавливается с правами 0700. `InstalledExecutableNotExecutable` означает потерю права исполнения; status не исправляет файлы. Перед восстановлением прав сверяйте принадлежность и хеш бинарника с журналом. Ограничение noexec или отказ доступа не обходите: используйте разрешённый исполняемый профиль. Соседние навыки и их ссылки не изменяются. Recovery восстанавливает прерванную транзакцию; произвольный откат выпуска этой командой не предоставляется.

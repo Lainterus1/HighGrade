@@ -168,6 +168,12 @@ fn failed_candidate_stage_restores_changed_skill() {
 fn write(p: &Path, bytes: &[u8]) {
     fs::create_dir_all(p.parent().unwrap()).unwrap();
     fs::write(p, bytes).unwrap();
+    // Historical release fixtures must model an executable Unix CLI.
+    #[cfg(unix)]
+    if p.file_name() == Some(std::ffi::OsStr::new("highgrade")) {
+        use std::os::unix::fs::PermissionsExt;
+        fs::set_permissions(p, fs::Permissions::from_mode(0o700)).unwrap();
+    }
 }
 fn copy_tree(from: &Path, to: &Path) {
     fs::create_dir_all(to).unwrap();
@@ -1444,4 +1450,52 @@ fn is_survey_material(rel: &str) -> bool {
         "templates/survey.json",
     ]
     .contains(&rel)
+}
+
+#[cfg(unix)]
+#[test]
+fn unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills() {
+    use std::os::unix::fs::{PermissionsExt, symlink};
+    let root = temp();
+    let profile = root.join("профиль с пробелами");
+    let neighbor = root.join("external-skill");
+    fs::create_dir_all(profile.join(".agents/skills")).unwrap();
+    fs::create_dir(&neighbor).unwrap();
+    fs::write(neighbor.join("SKILL.md"), "keep neighbor").unwrap();
+    let link = profile.join(".agents/skills/omarchy");
+    symlink(&neighbor, &link).unwrap();
+    global::install(&profile, &source(), &exe()).unwrap();
+    let installed = profile.join(format!(
+        ".highgrade/global/releases/{}/highgrade",
+        current_release()
+    ));
+    assert_eq!(
+        fs::metadata(&installed).unwrap().permissions().mode() & 0o777,
+        0o700
+    );
+    assert!(
+        Command::new(&installed)
+            .arg("--version")
+            .status()
+            .unwrap()
+            .success()
+    );
+    assert_eq!(fs::read_link(&link).unwrap(), neighbor);
+    assert_eq!(
+        fs::read_to_string(link.join("SKILL.md")).unwrap(),
+        "keep neighbor"
+    );
+    let skill = profile.join(".agents/skills/highgrade-init/SKILL.md");
+    assert_eq!(fs::metadata(skill).unwrap().permissions().mode() & 0o111, 0);
+    let active = fs::read(profile.join(".highgrade/global/active.json")).unwrap();
+    fs::set_permissions(&installed, fs::Permissions::from_mode(0o600)).unwrap();
+    assert!(
+        global::status(&profile)
+            .unwrap_err()
+            .contains("InstalledExecutableNotExecutable")
+    );
+    assert_eq!(
+        fs::read(profile.join(".highgrade/global/active.json")).unwrap(),
+        active
+    );
 }

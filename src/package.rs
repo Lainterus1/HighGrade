@@ -2,13 +2,14 @@ use crate::{Report, Result, hash, install, paths, read_json};
 use serde_json::{Value, json};
 use std::{
     collections::BTreeMap,
-    fs::{self, File, OpenOptions},
-    io::Write,
+    fs::{self, File},
     path::Path,
     process::{Command, Stdio},
     thread,
     time::{Duration, Instant},
 };
+#[cfg(windows)]
+use std::{fs::OpenOptions, io::Write};
 
 const ACTIVE: &str = ".highgrade/active.json";
 const LOCK: &str = ".highgrade/install.lock";
@@ -155,6 +156,13 @@ fn release_verified(root: &Path, release: &str) -> Result<Vec<u8>> {
             return Err(format!("InstalledFileChanged: {rel}"));
         }
     }
+    install::verify_executable(&paths::safe(
+        root,
+        &format!(
+            ".highgrade/releases/{release}/highgrade{}",
+            std::env::consts::EXE_SUFFIX
+        ),
+    )?)?;
     Ok(bytes)
 }
 pub fn active(root: &Path) -> Result<Option<(String, String)>> {
@@ -297,7 +305,7 @@ fn lock(root: &Path) -> Result<File> {
 fn stage(root: &Path, c: &Candidate) -> Result<()> {
     install::put_once(root, &journal_path(&c.release), &c.journal)?;
     for (rel, data) in &c.files {
-        install::put_once(root, rel, data)?;
+        install::put_release_file(root, rel, data)?;
     }
     release_verified(root, &c.release)?;
     Ok(())

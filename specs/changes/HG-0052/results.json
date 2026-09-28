@@ -1,0 +1,109 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0052-S1": {
+      "captured_at": "2026-09-28",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "files": {
+        "Cargo.lock": "a03744956614e1665c0958c576651efeb789f39700074f1e4f4ca2dba07d2b95",
+        "Cargo.toml": "7bae751497025f4d93111069e37fa22eee002c048a53771d300bda5e553ce588",
+        "docs/evidence/linux-support/nextest.xml": "d98b0fb01dbb5c38c78346166cc1a9a12ffb18090a491b8f1f8566df55769195",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "src/global.rs": "cfa25303813abafea5eba1f6a78a0508a93c85edd7a7cfe407400a8aa5bb4fe5",
+        "src/install.rs": "c428d9e11258e0f35da2b3c1b9b2be790d7b36b1b2f34166e038e68286662c7a",
+        "src/package.rs": "b5dfbcb2cc9f74962f6f717f08ee0616d8d4f721a9a5a3f48f949c5d9d00bf1d",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "tests/contracts.rs": "8f743a64d4a2a6bb154a8c6b9a43aaa18e73a95485b85035a074bc6d69a3ff33",
+        "tests/global_contracts.rs": "e7ca6d8595a4a1c1ca4b726833acbda5ae5495893fb868d5a1a6690ac2e421aa",
+        "tests/package_contracts.rs": "e4120dd860fa3f8c5652c231b768c546c79cd67457edb1450f72029084015dda",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/survey_contracts.rs": "ee918f304371b0362ac8e17377d492135c3f07b9da96f3be9db517faebe55b6b"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/global.rs",
+        "src/install.rs",
+        "src/package.rs",
+        "src/paths.rs",
+        "tests/contracts.rs",
+        "tests/global_contracts.rs",
+        "tests/package_contracts.rs",
+        "tests/support/mod.rs",
+        "tests/survey_contracts.rs"
+      ],
+      "method": "native_report",
+      "observation": "Фактически выполнены 175 Linux тестов, включая Unix path/neighbor/permission regression, update/recovery/conflicts и legacy executable diagnostics. Windows CI не запускался; пользовательского пилота нет.",
+      "outcome": "passed",
+      "report": "docs/evidence/linux-support/nextest.xml",
+      "scenario": "HG-0052-S1",
+      "scenario_sha256": "f2128ba91352dd9ba0b3090b2d23bf42de6edb3868e1cad841c9fbadc504ed2f"
+    }
+  },
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790576336,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0052-S1": "88678efbfc24b989ba16ef48d5ccf900f4e7f459f4a13433c2728203ce2ba86a"
+        },
+        "recorded_at": 1790576354,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    ],
+    "objects": {
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "88678efbfc24b989ba16ef48d5ccf900f4e7f459f4a13433c2728203ce2ba86a": {
+        "captured_at": "2026-09-28",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "files": {
+          "Cargo.lock": "a03744956614e1665c0958c576651efeb789f39700074f1e4f4ca2dba07d2b95",
+          "Cargo.toml": "7bae751497025f4d93111069e37fa22eee002c048a53771d300bda5e553ce588",
+          "docs/evidence/linux-support/nextest.xml": "d98b0fb01dbb5c38c78346166cc1a9a12ffb18090a491b8f1f8566df55769195",
+          "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+          "src/global.rs": "cfa25303813abafea5eba1f6a78a0508a93c85edd7a7cfe407400a8aa5bb4fe5",
+          "src/install.rs": "c428d9e11258e0f35da2b3c1b9b2be790d7b36b1b2f34166e038e68286662c7a",
+          "src/package.rs": "b5dfbcb2cc9f74962f6f717f08ee0616d8d4f721a9a5a3f48f949c5d9d00bf1d",
+          "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+          "tests/contracts.rs": "8f743a64d4a2a6bb154a8c6b9a43aaa18e73a95485b85035a074bc6d69a3ff33",
+          "tests/global_contracts.rs": "e7ca6d8595a4a1c1ca4b726833acbda5ae5495893fb868d5a1a6690ac2e421aa",
+          "tests/package_contracts.rs": "e4120dd860fa3f8c5652c231b768c546c79cd67457edb1450f72029084015dda",
+          "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+          "tests/survey_contracts.rs": "ee918f304371b0362ac8e17377d492135c3f07b9da96f3be9db517faebe55b6b"
+        },
+        "input_paths": [
+          "Cargo.lock",
+          "Cargo.toml",
+          "rust-toolchain.toml",
+          "src/global.rs",
+          "src/install.rs",
+          "src/package.rs",
+          "src/paths.rs",
+          "tests/contracts.rs",
+          "tests/global_contracts.rs",
+          "tests/package_contracts.rs",
+          "tests/support/mod.rs",
+          "tests/survey_contracts.rs"
+        ],
+        "method": "native_report",
+        "observation": "Фактически выполнены 175 Linux тестов, включая Unix path/neighbor/permission regression, update/recovery/conflicts и legacy executable diagnostics. Windows CI не запускался; пользовательского пилота нет.",
+        "outcome": "passed",
+        "report": "docs/evidence/linux-support/nextest.xml",
+        "scenario": "HG-0052-S1",
+        "scenario_sha256": "f2128ba91352dd9ba0b3090b2d23bf42de6edb3868e1cad841c9fbadc504ed2f"
+      }
+    }
+  },
+  "review": {
+    "change_sha256": "4bc39ea59e1664019b3ce4bacb6505b5e6a0a6947b4f9c77b9296f7d784474da",
+    "conclusion": "Независимый субагент: блокирующих замечаний нет после исправлений; docs/evidence/linux-support/review.md. Windows CI и пользовательский пилот не подтверждены.",
+    "reviewer": "independent-linux-review",
+    "verdict": "go"
+  },
+  "runs": []
+}

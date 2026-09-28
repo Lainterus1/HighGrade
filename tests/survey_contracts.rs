@@ -251,27 +251,31 @@ fn discovery_limits_and_missing_sources_are_explicitly_incomplete() {
     assert!(s.omitted.values().any(|v| v == "entry_limit"));
     assert!(discovery::structure(&root, "../outside").is_err());
 }
-#[cfg(windows)]
 // highgrade: HG-0046-S1, HG-0046-S3
 #[test]
 fn survey_refuses_junctions_and_preserves_outside_sentinel() {
     let root = TestDir::new("hg-survey-");
     let outside = TestDir::new("hg-survey-outside-");
     fs::write(outside.join("sentinel"), "outside").unwrap();
-    let quote = |p: &Path| p.to_string_lossy().replace('\'', "''");
-    let script = format!(
-        "New-Item -ItemType Junction -Path '{}' -Target '{}' | Out-Null",
-        quote(&root.join("link")),
-        quote(&outside)
-    );
-    assert!(
-        Command::new("powershell.exe")
-            .args(["-NoProfile", "-NonInteractive", "-Command", &script])
-            .output()
-            .unwrap()
-            .status
-            .success()
-    );
+    #[cfg(windows)]
+    {
+        let quote = |p: &Path| p.to_string_lossy().replace('\'', "''");
+        let script = format!(
+            "New-Item -ItemType Junction -Path '{}' -Target '{}' | Out-Null",
+            quote(&root.join("link")),
+            quote(&outside)
+        );
+        assert!(
+            Command::new("powershell.exe")
+                .args(["-NoProfile", "-NonInteractive", "-Command", &script])
+                .output()
+                .unwrap()
+                .status
+                .success()
+        );
+    }
+    #[cfg(unix)]
+    std::os::unix::fs::symlink(&outside, root.join("link")).unwrap();
     let s = discovery::structure(&root, ".").unwrap();
     assert!(!s.complete);
     assert!(!s.entries.contains_key("link/sentinel"));
@@ -291,7 +295,10 @@ fn survey_refuses_junctions_and_preserves_outside_sentinel() {
     )
     .unwrap();
     assert_eq!(status(&root)["snapshot_current"], false);
+    #[cfg(windows)]
     fs::remove_dir(root.join("link")).unwrap();
+    #[cfg(unix)]
+    fs::remove_file(root.join("link")).unwrap();
     assert_eq!(status(&root)["snapshot_current"], false);
     assert_eq!(status(&root)["completion_ready"], false);
     assert_eq!(
@@ -362,7 +369,7 @@ fn survey_assets_and_schema_work_from_installed_release() {
     let release = profile
         .join(".highgrade/global/releases")
         .join(manifest["release"].as_str().unwrap());
-    let output = Command::new(release.join("highgrade.exe"))
+    let output = Command::new(release.join(format!("highgrade{}", std::env::consts::EXE_SUFFIX)))
         .args(["survey-schema", "--root", profile.to_str().unwrap()])
         .output()
         .unwrap();

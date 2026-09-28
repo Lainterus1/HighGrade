@@ -25,11 +25,23 @@
 
 ## Быстрый старт
 
-Для **Windows** нужны [Codex](https://openai.com/codex/), Git и [Rust с Cargo](https://rustup.rs/) 1.89 или новее.
+Для **Windows и Linux x86_64** нужны [Codex](https://openai.com/codex/), Git и [Rust с Cargo](https://rustup.rs/) 1.89 или новее.
 
 ### 1. Установите
 
-В PowerShell:
+В Linux (Bash):
+
+```bash
+git clone https://github.com/Lainterus1/HighGrade.git
+cd HighGrade
+cargo build --release --locked
+./target/release/highgrade global-install --profile "$HOME" --source "$PWD/kit" --candidate-exe "$PWD/target/release/highgrade"
+./target/release/highgrade global-status --profile "$HOME"
+```
+
+Сборочная версия закреплена в `rust-toolchain.toml`; rustup устанавливает её при первом запуске Cargo. После установки навыки обнаруживаются Codex из `~/.agents/skills`; если список не обновился, перезапустите Codex. Установка не подключает рабочие проекты автоматически.
+
+В Windows (PowerShell):
 
 ```powershell
 git clone https://github.com/Lainterus1/HighGrade.git

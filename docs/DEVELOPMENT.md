@@ -26,24 +26,7 @@ $hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.e
 
 Связка проверяет каталог и автоматические сценарии; готовность изменения — spec-check.
 
-Nextest 0.9.146: если `target/highgrade/tools/bin/cargo-nextest.exe` отсутствует, установи `cargo install cargo-nextest --version 0.9.146 --locked --root target/highgrade/tools`. Запуск бинарника — с аргументом `nextest`. Установка нужна один раз после клонирования/удаления tools; обычная очистка tools сохраняет.
-
-```powershell
-New-Item -ItemType Directory -Force target/nextest/highgrade | Out-Null
-$nextest = (Resolve-Path 'target/highgrade/tools/bin/cargo-nextest.exe').Path
-node scripts/source-scenarios.mjs check
-if ($LASTEXITCODE -ne 0) { throw 'native scenario catalog check failed' }
-& $nextest nextest list --locked --message-format json | Set-Content -Encoding utf8 target/nextest/highgrade/list.json
-if ($LASTEXITCODE -ne 0) { throw 'nextest list failed' }
-& $nextest nextest run --locked --profile highgrade
-if ($LASTEXITCODE -ne 0) { throw 'nextest run failed' }
-node scripts/source-scenarios.mjs prepare
-if ($LASTEXITCODE -ne 0) { throw 'scenario preparation failed' }
-target/debug/highgrade.exe trace --root "$PWD" --record target/nextest/highgrade/run.json | Set-Content -Encoding utf8 target/nextest/highgrade/trace.json
-if ($LASTEXITCODE -notin @(0, 2)) { throw 'trace failed' }
-node scripts/source-scenarios.mjs verify
-if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
-```
+Nextest 0.9.146 установите готовым бинарником для своей ОС в `target/highgrade/tools/bin` и добавьте этот каталог в PATH. Rust проекта закреплён отдельно: сборка Nextest из исходников может требовать более новый компилятор. Команды общего Windows/Linux CI и локального барьера приведены ниже в разделе «Linux и общий CI».
 
 `prepare` отвергает устаревший отчёт. После `spec-integrate` повтори `prepare`/`trace`/`verify`. Nextest переиспользуется лишь при эквивалентном каталоге и неизменных входах; иначе повтори его. Причину показывает `native_report_reason`.
 
@@ -88,3 +71,22 @@ SVG Vectorizer — [README](../plugins/svg-vectorizer/README.md); Code Health Au
 ## Принятие и публикация
 
 Полномочия и последовательность — в [местной инструкции](../.highgrade/project/INSTRUCTIONS.md), сборка — в [BUILD](BUILD.md). Push разрешается отдельно.
+
+## Linux и общий CI
+
+Rust закреплён в `rust-toolchain.toml`. На Linux имя CLI и Nextest не имеет `.exe`; для повторяемого общего барьера после установки Nextest 0.9.146 в PATH:
+
+```bash
+cargo fmt --all -- --check
+python -m unittest discover -s scripts/tests -v
+python scripts/render-skills.py --check
+python scripts/verify.py tests
+python scripts/verify.py specs
+python scripts/verify.py scenarios
+node scripts/check-scenario-scale.mjs
+node scripts/check-scenario-reuse.mjs
+node scripts/check-repository.mjs
+python scripts/verify.py inspect
+```
+
+Те же Python entry points выполняются в Windows/Linux CI. Локальный Linux-прогон не доказывает Windows CI. Проверка технической установки не является пользовательским пилотом навыков.
