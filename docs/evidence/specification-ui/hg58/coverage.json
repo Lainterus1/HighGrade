@@ -1,0 +1,102 @@
+{
+  "HG-0054-S1": [
+    "visual",
+    "reading, font and real visual reference; narrow and 200 percent layout preserve controls and focus",
+    "desktop.png, narrow.png, zoom-200.png: читаемый документ, доступные действия, без наложений."
+  ],
+  "HG-0054-S2": [
+    "manual",
+    "Смысловое ревью ui/README.md и импортов SpecWorkspace/NativeDocument",
+    "Один theme.css, общие shadcn-примитивы, истории рядом; демонстрация использует производственный NativeDocument."
+  ],
+  "HG-0058-S1": [
+    "native",
+    "HG58 typography operations and compact reading at desktop mobile and reduced motion",
+    "native-1440/390/720.png: без горизонтального переполнения; исходный текст, открытая готовность, загружен Manrope; фокус 2px без тени, reduced motion 0s. Дополнительно final visual: диалог и длинный документ."
+  ],
+  "HG-0054-S5": [
+    "visual",
+    "editing, validation, discard and decision dialog are keyboard usable; every documented state renders without accessibility violations or backend writes; HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 percent (keyboard.json)",
+    "Все истории видимы, axe без нарушений; редактор/ошибка/отмена/диалог, Escape и возврат фокуса; backend-записей нет."
+  ],
+  "HG-0054-S7": [
+    "visual",
+    "reading, font and real visual reference; narrow and 200 percent layout preserve controls and focus; HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 percent (keyboard.json)",
+    "Локальный Manrope загружен, внешних запросов нет; широкое/узкое окно и эквивалент viewport 200%."
+  ],
+  "HG-0054-S8": [
+    "visual",
+    "brand is vector-only and adapted icons render at their real sizes; HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 percent (keyboard.json)",
+    "icons.png: собственная геометрия четырёх навигационных знаков рядом с оригиналами; 16/20/24 px, stroke 1.75, SVG декоративный aria-hidden."
+  ],
+  "HG-0058-S2": [
+    "native",
+    "HG58 typography operations and compact reading at desktop mobile and reduced motion; HG56 S6 S7: agreement is bound to visible content and actual baseline diff",
+    "Три доступных имени операций, исходная ссылка HG-0003-R1 сохранена; реальные ID в diff не скрываются."
+  ],
+  "HG-0055-S3": [
+    "native",
+    "HG55 S3 S4: full source operations and hostile text remain inert; HG55 S3 S6: compact source view and rapid selection show the last chosen spec",
+    "Компактное чтение исходных операций без пересказа и служебных разделов; скрытые данные сохраняются."
+  ],
+  "HG-0055-S4": [
+    "native",
+    "HG55 S3 S4: full source operations and hostile text remain inert",
+    "Недоверенный текст показан как данные; чтение не изменяет каталог."
+  ],
+  "HG-0055-S5": [
+    "native",
+    "HG55 S5: one actual handoff action or quiet reading",
+    "Одна актуальная форма решения либо спокойное чтение; дубликата статуса нет."
+  ],
+  "HG-0055-S6": [
+    "native",
+    "HG55 S6: context restored and external CLI edit requires explicit refresh",
+    "Выбор, поиск, фильтр, раскрытое требование и позиция восстанавливаются; внешняя редакция загружается явно."
+  ],
+  "HG-0055-S7": [
+    "native",
+    "HG55 S7: unavailable API preserves visible document and retries; HG55 S7: slow first snapshot is reused and temporary StoreBusy does not fail startup",
+    "При потере API остаётся документ, повтор работает; StoreBusy не ломает первоначальный снимок."
+  ],
+  "HG-0058-S3": [
+    "native",
+    "HG55 S3 S6: compact source view and rapid selection show the last chosen spec; Latest selection does not wait for an obsolete read",
+    "Последний выбранный документ сохраняется; запрос C не ждёт задержанное устаревшее B."
+  ],
+  "HG-0056-S1": [
+    "native",
+    "HG56 S1 S2: explicit save, validation, cancel and navigation retain correct bytes",
+    "Явное сохранение меняет допустимые поля и then, а скрытые поля и ID остаются."
+  ],
+  "HG-0056-S2": [
+    "native",
+    "HG56 S1 S2: explicit save, validation, cancel and navigation retain correct bytes",
+    "Отмена и переход с несохранённым текстом не пишут документ."
+  ],
+  "HG-0056-S3": [
+    "native",
+    "HG56 S3: integrated and protected content cannot be edited through UI or API",
+    "Интегрированная спека read-only; запрещённые поля отклоняются API. Внешний маршрут изменения описан в docs/UI.md."
+  ],
+  "HG-0058-S4": [
+    "native",
+    "HG56 S1 S2: explicit save, validation, cancel and navigation retain correct bytes; HG56 S1: delayed write locks fields and navigation until confirmation; HG56 S4 S5: local CAS, conflict comparison and lost response never blindly retry writes",
+    "Изменён только целевой then; скрытые поля/ID сохранены; запись не отменяется навигацией, конфликт и потеря ответа не перезаписывают слепо."
+  ],
+  "HG-0056-S8": [
+    "native",
+    "HG56 S8 S10: accepted result stays visible and only answered question closes",
+    "Автор и проверенная версия заданы в диалоге, принятие связано с показанным результатом и остаётся видимым."
+  ],
+  "HG-0056-S9": [
+    "native",
+    "HG56 S8 S9: result readiness and required return explanation are checked at write time",
+    "Неготовый результат не принимается, возврат требует комментарий, барьеры проверяются при записи."
+  ],
+  "HG-0056-S10": [
+    "native",
+    "HG56 S8 S10: accepted result stays visible and only answered question closes; HG56 S8 S9: result readiness and required return explanation are checked at write time",
+    "Ответ закрывает только свой вопрос; возврат с объяснением передаёт ход агенту без согласования всего содержания."
+  ]
+}

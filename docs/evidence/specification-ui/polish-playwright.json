@@ -1,0 +1,354 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Progs\\NodeJS\\node.exe",
+      "D:\\my_projects\\MyCodex\\ui\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "native.spec.ts"
+    ],
+    "configFile": "D:\\my_projects\\MyCodex\\ui\\playwright.config.ts",
+    "rootDir": "D:/my_projects/MyCodex/ui/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/my_projects/MyCodex/target/highgrade/ui-playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/my_projects/MyCodex/ui/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../target/highgrade/tmp/ui-refinement/polish-playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "native.spec.ts",
+      "file": "native.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HG55 S1 S2: real catalog filters counts and empty states preserve files",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4445,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T08:49:34.714Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-0bde8463ffa9dff002e2",
+          "file": "native.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "HG55 S3 S4: full source operations and hostile text remain inert",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8785,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: 'Задачи и проверки' })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByRole('button', { name: 'Задачи и проверки' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Задачи и проверки' })\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: 'Задачи и проверки' })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByRole('button', { name: 'Задачи и проверки' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Задачи и проверки' })\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n    at D:\\my_projects\\MyCodex\\ui\\tests\\native.spec.ts:19:752",
+                    "location": {
+                      "file": "D:\\my_projects\\MyCodex\\ui\\tests\\native.spec.ts",
+                      "column": 752,
+                      "line": 19
+                    },
+                    "snippet": "  17 |  const c=f.cli('spec-read','--id','HG-0005').change;const hostile='<script>window.specAttack=true</script><img src=\"https://tracker.invalid/pixel\"> javascript:alert(1)';\n  18 |  f.edit('HG-0005',{rationale:'',scope:hostile,questions:['Незаполненный вопрос'],depends_on:[{id:'HG-0003',reason:'Основание зависимости'}],operations:[...c.operations,{action:'remove',id:'HG-0003-R1',reason:'Убираем прежнее правило с исключением X'}]});const before=f.hash();const external:string[]=[];page.on('request',r=>{if(!r.url().startsWith(url))external.push(r.url())});\n> 19 |  await page.goto(url);await page.getByRole('button',{name:'В работе'}).click();await page.locator('.spec-row').filter({hasText:'HG-0005'}).click();await expect(page.locator('.document')).toContainText(hostile);await expect(page.locator('.document')).toContainText('Убираем прежнее правило с исключением X');await page.getByRole('button',{name:'Подробности',exact:true}).click();await expect(page.locator('.document')).toContainText('не указано');await page.getByRole('button',{name:'Критерии готовности и сценарии'}).click();await expect(page.locator('.document')).toContainText('Сверка с источником');await expect(page.getByRole('button',{name:'Зависимости и связи'})).toHaveCount(0);await expect(page.getByRole('button',{name:'Задачи и проверки'})).toHaveCount(0);expect(await page.evaluate(()=>Reflect.get(window,'specAttack'))).toBeUndefined();expect(external).toEqual([]);expect(f.hash()).toEqual(before);\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^\n  20 |  expect((await new AxeBuilder({page}).include('.workspace').analyze()).violations).toEqual([]);\n  21 | });\n  22 | test('HG55 S5: one actual handoff action or quiet reading',async({page})=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\native.spec.ts",
+                        "column": 752,
+                        "line": 19
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: 'Задачи и проверки' })\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" getByRole('button', { name: 'Задачи и проверки' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Задачи и проверки' })\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n\n  17 |  const c=f.cli('spec-read','--id','HG-0005').change;const hostile='<script>window.specAttack=true</script><img src=\"https://tracker.invalid/pixel\"> javascript:alert(1)';\n  18 |  f.edit('HG-0005',{rationale:'',scope:hostile,questions:['Незаполненный вопрос'],depends_on:[{id:'HG-0003',reason:'Основание зависимости'}],operations:[...c.operations,{action:'remove',id:'HG-0003-R1',reason:'Убираем прежнее правило с исключением X'}]});const before=f.hash();const external:string[]=[];page.on('request',r=>{if(!r.url().startsWith(url))external.push(r.url())});\n> 19 |  await page.goto(url);await page.getByRole('button',{name:'В работе'}).click();await page.locator('.spec-row').filter({hasText:'HG-0005'}).click();await expect(page.locator('.document')).toContainText(hostile);await expect(page.locator('.document')).toContainText('Убираем прежнее правило с исключением X');await page.getByRole('button',{name:'Подробности',exact:true}).click();await expect(page.locator('.document')).toContainText('не указано');await page.getByRole('button',{name:'Критерии готовности и сценарии'}).click();await expect(page.locator('.document')).toContainText('Сверка с источником');await expect(page.getByRole('button',{name:'Зависимости и связи'})).toHaveCount(0);await expect(page.getByRole('button',{name:'Задачи и проверки'})).toHaveCount(0);expect(await page.evaluate(()=>Reflect.get(window,'specAttack'))).toBeUndefined();expect(external).toEqual([]);expect(f.hash()).toEqual(before);\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^\n  20 |  expect((await new AxeBuilder({page}).include('.workspace').analyze()).violations).toEqual([]);\n  21 | });\n  22 | test('HG55 S5: one actual handoff action or quiet reading',async({page})=>{\n    at D:\\my_projects\\MyCodex\\ui\\tests\\native.spec.ts:19:752"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T08:49:39.519Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\my_projects\\MyCodex\\target\\highgrade\\ui-playwright\\native-HG55-S3-S4-full-sou-c54c4-d-hostile-text-remain-inert\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\native.spec.ts",
+                    "column": 752,
+                    "line": 19
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-3e377094242e1f511ace",
+          "file": "native.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "HG55 S5: one actual handoff action or quiet reading",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3925,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T08:49:48.782Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-3c11dff70c49f6c1b1a6",
+          "file": "native.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "HG55 S6: context restored and external CLI edit requires explicit refresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4290,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T08:49:52.998Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-cc480bf46f46e87f95db",
+          "file": "native.spec.ts",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "HG55 S7: unavailable API preserves visible document and retries",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3841,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T08:49:57.303Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-552733e4f393fba40f9f",
+          "file": "native.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "HG55 S7: slow first snapshot is reused and temporary StoreBusy does not fail startup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17804,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T08:50:01.164Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-2c834c1e155e4685fc9f",
+          "file": "native.spec.ts",
+          "line": 35,
+          "column": 1
+        },
+        {
+          "title": "HG55 S3 S6: compact source view and rapid selection show the last chosen spec",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4148,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-28T08:50:18.991Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-6e952683e604d75eef32",
+          "file": "native.spec.ts",
+          "line": 45,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-28T08:49:34.165Z",
+    "duration": 49154.849,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

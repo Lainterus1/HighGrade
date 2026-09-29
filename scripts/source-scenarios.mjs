@@ -119,7 +119,7 @@ function prepare(source) {
   const pinned = ['specs/catalog.json', ...files('specs/requirements').filter((item) => item.endsWith('.json')),
     ...files('specs/changes').filter((item) => item.endsWith('/spec.json')),
     ...source.testSources, ...files('tests/support').filter((item) => item.endsWith('.rs')),
-    inventory, ...files('src').filter((item) => item.endsWith('.rs')),
+    inventory, ...files('src').filter((item) => /\.(rs|html|js)$/.test(item)), 'build.rs', ...files('ui/dist'),
     ...files('tests/fixtures/native-v1'), 'Cargo.toml', 'Cargo.lock', '.config/nextest.toml', '.gitattributes'];
   const reportTime = statSync(abs(report)).mtimeMs;
   const isSpec = (file) => file === 'specs/catalog.json' || file.startsWith('specs/requirements/') || file.startsWith('specs/changes/');

@@ -4,6 +4,7 @@ use std::{collections::BTreeMap, path::Path};
 
 fn allowed_options(op: &str) -> Result<Vec<&'static str>> {
     Ok(match op {
+        "ui" => vec!["--root", "--no-open"],
         "survey-new" | "survey-schema" | "survey-check" => vec!["--root"],
         "survey-read" => vec!["--root", "--view"],
         "survey-edit" => vec!["--root", "--expected", "--input"],
@@ -46,6 +47,8 @@ fn allowed_options(op: &str) -> Result<Vec<&'static str>> {
         "trace" => vec!["--root", "--record"],
         "spec-schema" | "spec-tags" => vec!["--root"],
         "spec-list" => vec!["--root", "--id", "--tag", "--technical", "--human"],
+        "spec-ui" => vec!["--root"],
+        "spec-attention" => vec!["--root", "--id", "--expected", "--input"],
         "spec-tag-set" => vec!["--root", "--expected", "--id", "--title", "--description"],
         "spec-runner-set" => vec!["--root", "--expected", "--id", "--input"],
         "spec-run" => vec!["--root", "--expected", "--id", "--check"],
@@ -173,6 +176,7 @@ fn command_help(op: &str) -> Result<Report> {
         "spec-evidence-batch" => "evidence_batch",
         "spec-run-import" => "report_import",
         "spec-decide" => "decision_input",
+        "spec-attention" => "attention_input",
         "spec-runner-set" => "runner",
         _ => "",
     };
@@ -268,12 +272,15 @@ fn run() -> Result<Report> {
             .map(String::as_str)
             .ok_or_else(|| format!("Usage: required {key}"))
     };
-    let root = if op.starts_with("global-") {
+    let root = if op == "ui" {
+        Path::new(options.get("--root").map(String::as_str).unwrap_or("."))
+    } else if op.starts_with("global-") {
         Path::new(".")
     } else {
         Path::new(get("--root")?)
     };
     match op.as_str() {
+        "ui" => highgrade::ui::run(root, options.get("--no-open").is_some_and(|v| v == "true")),
         _ if op.starts_with("survey-") => highgrade::survey::command(root, &op, &options),
         _ if op.starts_with("issue-") => highgrade::issues::command(root, &op, &options),
         _ if op.starts_with("spec-") => highgrade::specs::command(root, &op, &options),

@@ -25,7 +25,7 @@
 
 ## Быстрый старт
 
-Для **Windows** нужны [Codex](https://openai.com/codex/), Git и [Rust с Cargo](https://rustup.rs/) 1.89 или новее.
+Сборка на **Windows**: [Codex](https://openai.com/codex/), Git, [Rust/Cargo](https://rustup.rs/) 1.89+, Node 24/npm. Установленный UI требует только браузер.
 
 ### 1. Установите
 
@@ -34,6 +34,10 @@
 ```powershell
 git clone https://github.com/Lainterus1/HighGrade.git
 cd HighGrade
+Push-Location ui
+npm ci
+npm run build
+Pop-Location
 cargo build --release --locked
 .\target\release\highgrade.exe global-install `
   --profile "$env:USERPROFILE" `
@@ -50,6 +54,8 @@ cargo build --release --locked
 
 Init готовит репозиторий и начальные спеки; их проработка и реализация — позже. OpenSpec не требуется.
 
+Просмотр и правка спек: `highgrade ui --root D:/project`. [Интерфейс и ограничения](docs/UI.md).
+
 ### 3. Выполняйте задачи
 
 | Если нужно… | Используйте |
@@ -63,7 +69,7 @@ Init готовит репозиторий и начальные спеки; и�
 | Отправить выбранные коммиты | `highgrade-push` |
 | Обновить общую установку | `highgrade-update` |
 
-`spec-list` показывает состояние [спецификаций](specs/README.md).
+Каталог: `spec-list`, [спецификации](specs/README.md).
 
 ## Термины и границы
 
@@ -71,6 +77,6 @@ Init готовит репозиторий и начальные спеки; и�
 
 ## Для разработчиков Поставки
 
-[AGENTS](AGENTS.md) — правила; [ARCHITECTURE](docs/ARCHITECTURE.md) — устройство; [ENGINEERING](docs/ENGINEERING.md) — инженерные соглашения; [DEVELOPMENT](docs/DEVELOPMENT.md) — проверки; [карта документов](docs/README.md) — остальные источники. Поставка — `kit/`, CLI — `src/`, тесты — `tests/`.
+[AGENTS](AGENTS.md) — правила; [ARCHITECTURE](docs/ARCHITECTURE.md) — устройство; [ENGINEERING](docs/ENGINEERING.md) — инженерные соглашения; [DEVELOPMENT](docs/DEVELOPMENT.md) — проверки; [карта документов](docs/README.md) — остальные источники.
 
-Собственные исходники распространяются по [MIT](LICENSE). Происхождение импортированных плагинов указано в [NOTICE](NOTICE.md).
+Лицензии: [MIT](LICENSE), [импортированные плагины](NOTICE.md).

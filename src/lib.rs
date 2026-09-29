@@ -9,6 +9,7 @@ pub mod paths;
 pub mod specs;
 pub mod survey;
 pub mod trace;
+pub mod ui;
 
 use serde::Serialize;
 use serde_json::{Value, json};

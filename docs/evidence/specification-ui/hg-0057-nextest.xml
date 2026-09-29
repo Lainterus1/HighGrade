@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="nextest-run" tests="189" skipped="0" failures="0" errors="0" uuid="7a856af2-341a-40c6-a91a-a0ec81c3095f" timestamp="2026-09-27T20:08:27.147+07:00" time="47.584">
+    <testsuite name="highgrade::bootstrap_contracts" tests="18" skipped="0" errors="0" failures="0">
+        <testcase name="bootstrap_skips_generated_skill_outputs" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="0.050"/>
+        <testcase name="bootstrap_reports_all_slots_before_registry_exists" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="0.074"/>
+        <testcase name="bootstrap_does_not_read_excluded_sources_or_offer_excluded_link_targets" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="0.185"/>
+        <testcase name="bootstrap_distinguishes_adaptation_from_technical_failure" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="0.186"/>
+        <testcase name="alternative_name_is_candidate_but_never_accepted_as_role" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="0.275"/>
+        <testcase name="canonical_project_has_separate_path_and_link_evidence" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.225+07:00" time="0.273"/>
+        <testcase name="bundled_templates_match_the_canonical_bootstrap_contract" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.203+07:00" time="0.330"/>
+        <testcase name="cli_accepts_bootstrap_without_registry_and_rejects_map_and_conflicts" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.235+07:00" time="0.410"/>
+        <testcase name="complete_project_still_checks_exclusion_input_without_walking_tree" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.337+07:00" time="0.318"/>
+        <testcase name="exclusions_are_safe_and_bad_registry_does_not_hide_candidates" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.519+07:00" time="0.171"/>
+        <testcase name="combined_roles_are_counted_once_and_invalid_assignments_fail" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.336+07:00" time="0.385"/>
+        <testcase name="candidate_and_input_limits_keep_partial_evidence" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.211+07:00" time="0.514"/>
+        <testcase name="complete_project_still_reports_missing_navigation_without_candidate_walk" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.426+07:00" time="0.302"/>
+        <testcase name="migrated_architecture_with_old_readme_link_is_reported" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.533+07:00" time="0.219"/>
+        <testcase name="connected_project_uses_registered_existing_path" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.498+07:00" time="0.268"/>
+        <testcase name="missing_link_is_distinct_from_missing_file_and_registry_path_mismatch" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.647+07:00" time="0.375"/>
+        <testcase name="bootstrap_reports_multiple_unvisited_locations_with_a_count" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="1.051"/>
+        <testcase name="bootstrap_skips_junction_and_matches_exclusion_case" classname="highgrade::bootstrap_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="1.372"/>
+    </testsuite>
+    <testsuite name="highgrade" tests="3" skipped="0" errors="0" failures="0">
+        <testcase name="specs::progress::metadata_compatibility::old_tagged_revision_survives_metadata_but_not_material_drift" classname="highgrade" timestamp="2026-09-27T20:08:27.151+07:00" time="0.060"/>
+        <testcase name="trace::id_tests::accepts_project_ids_and_rejects_malformed_ids" classname="highgrade" timestamp="2026-09-27T20:08:27.151+07:00" time="0.084"/>
+        <testcase name="ui::bundle::tests::embedded_bundle_rejects_missing_changed_and_incompatible_resources" classname="highgrade" timestamp="2026-09-27T20:08:27.151+07:00" time="0.368"/>
+    </testsuite>
+    <testsuite name="highgrade::attention_contracts" tests="6" skipped="0" errors="0" failures="0">
+        <testcase name="projection_preserves_bytes_excludes_legacy_and_reports_corruption" classname="highgrade::attention_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="0.943"/>
+        <testcase name="answers_in_reverse_request_order_use_recorded_sequence" classname="highgrade::attention_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="1.629"/>
+        <testcase name="queue_priority_categories_and_counts_are_deterministic" classname="highgrade::attention_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="1.758"/>
+        <testcase name="content_snapshots_metadata_and_stale_writes_are_distinct" classname="highgrade::attention_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="2.061"/>
+        <testcase name="explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_request" classname="highgrade::attention_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="4.949"/>
+        <testcase name="result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement" classname="highgrade::attention_contracts" timestamp="2026-09-27T20:08:27.151+07:00" time="6.521"/>
+    </testsuite>
+    <testsuite name="highgrade::catalog_contracts" tests="39" skipped="0" errors="0" failures="0">
+        <testcase name="compact_catalog_accepts_empty_changes_and_new_changes" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:27.725+07:00" time="0.633"/>
+        <testcase name="action_diagnostics_check_runner_without_execution" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:27.656+07:00" time="0.749"/>
+        <testcase name="compact_views_and_atomic_edit_protect_results_and_cas" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:27.766+07:00" time="0.787"/>
+        <testcase name="explicit_migration_preserves_all_data_and_detects_legacy_writer" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.525+07:00" time="0.348"/>
+        <testcase name="evidence_batch_is_atomic_and_exact_repeat_is_noop" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.359+07:00" time="0.591"/>
+        <testcase name="foreign_directory_and_unknown_fields_are_not_adopted" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.874+07:00" time="0.132"/>
+        <testcase name="foreign_structured_files_are_not_deleted" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.909+07:00" time="0.163"/>
+        <testcase name="explicit_links_reject_missing_cycles_and_do_not_inherit_content" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.405+07:00" time="0.842"/>
+        <testcase name="interrupted_transaction_refuses_reads_and_recovers_only_observed_targets" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:29.006+07:00" time="0.291"/>
+        <testcase name="malformed_recovery_never_unblocks_catalog" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:29.247+07:00" time="1.416"/>
+        <testcase name="batch_failure_keeps_prior_results_and_each_scenario_owns_its_report" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:27.690+07:00" time="3.010"/>
+        <testcase name="equivalent_native_runs_keep_material_revision_and_append_history" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.202+07:00" time="2.502"/>
+        <testcase name="compact_transaction_limit_and_recovery_preserve_catalog" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:27.753+07:00" time="2.983"/>
+        <testcase name="first_baseline_capture_rejects_local_cas_after_target_changed" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.780+07:00" time="2.244"/>
+        <testcase name="readable_presentation_preserves_values_and_puts_service_fields_last" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:30.736+07:00" time="0.428"/>
+        <testcase name="local_edit_rejects_dependency_runner_drift" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:29.212+07:00" time="1.973"/>
+        <testcase name="recovery_cannot_delete_a_required_specification" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.024+07:00" time="0.244"/>
+        <testcase name="integrated_recheck_retains_history_and_invalidates_old_acceptance" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.950+07:00" time="2.380"/>
+        <testcase name="recovery_reconstructs_partial_staging_and_missing_first_document" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.163+07:00" time="0.312"/>
+        <testcase name="project_catalog_survives_service_removal_and_preserves_siblings" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:30.705+07:00" time="0.851"/>
+        <testcase name="selected_directory_is_project_owned_and_self_contained" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.330+07:00" time="0.345"/>
+        <testcase name="metadata_batch_preserves_integrated_history_and_rejects_invalid_batches" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:29.298+07:00" time="2.449"/>
+        <testcase name="native_report_import_reuses_suite_and_rejects_stale_or_missing_results" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:30.701+07:00" time="1.077"/>
+        <testcase name="selected_list_and_local_edit_preserve_independent_work" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.475+07:00" time="0.566"/>
+        <testcase name="launch_selector_is_literal_and_distinct_from_strict_report_identity" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:29.072+07:00" time="2.993"/>
+        <testcase name="spec_check_brief_reports_affected_inputs" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.681+07:00" time="0.711"/>
+        <testcase name="two_catalog_writers_cannot_allocate_the_same_number" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:32.067+07:00" time="0.370"/>
+        <testcase name="spec_check_brief_returns_stable_handoff" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.778+07:00" time="0.694"/>
+        <testcase name="spec_check_brief_reports_stale_run" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.747+07:00" time="1.192"/>
+        <testcase name="shared_inputs_track_content_and_membership" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.556+07:00" time="1.499"/>
+        <testcase name="compact_history_preserves_observations_and_rejects_corruption" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:27.728+07:00" time="5.481"/>
+        <testcase name="scoped_baseline_captures_only_selected_requirements_and_never_refreshes" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.271+07:00" time="2.083"/>
+        <testcase name="multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:30.663+07:00" time="2.719"/>
+        <testcase name="tags_merge_atomically_and_filters_keep_dependencies_discoverable" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:32.041+07:00" time="1.896"/>
+        <testcase name="cargo_runner_requires_a_real_exact_test" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:27.721+07:00" time="6.233"/>
+        <testcase name="run_statistics_track_attempts_without_execution" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:31.186+07:00" time="4.571"/>
+        <testcase name="delivery_audits_bundle_and_git_index_without_changing_readiness" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.022+07:00" time="11.652"/>
+        <testcase name="delivery_reads_index_bytes_without_filters_or_index_flag_shortcuts" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.094+07:00" time="12.693"/>
+        <testcase name="explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift" classname="highgrade::catalog_contracts" timestamp="2026-09-27T20:08:28.554+07:00" time="13.043"/>
+    </testsuite>
+    <testsuite name="highgrade::contracts" tests="34" skipped="0" errors="0" failures="0">
+        <testcase name="broken_links_and_anchors_are_failures" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.101+07:00" time="0.199"/>
+        <testcase name="budget_history_cannot_skip_or_exceed_ceiling" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.300+07:00" time="0.146"/>
+        <testcase name="colocated_document_does_not_cover_its_parent" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.446+07:00" time="0.121"/>
+        <testcase name="cli_errors_keep_the_report_contract" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.437+07:00" time="0.180"/>
+        <testcase name="default_inspect_uses_only_highgrade_registry" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.617+07:00" time="0.186"/>
+        <testcase name="conflicting_skill_is_not_adopted_even_if_equal" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.568+07:00" time="0.365"/>
+        <testcase name="diagnostic_summary_keeps_unknown_and_errors_separate" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.803+07:00" time="0.165"/>
+        <testcase name="entry_does_not_hide_unmapped_sibling" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.933+07:00" time="0.132"/>
+        <testcase name="exceeding_agreed_budget_warns_without_raising_it" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.939+07:00" time="0.129"/>
+        <testcase name="install_rejects_stale_audit" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.065+07:00" time="0.206"/>
+        <testcase name="install_requires_audit_before_writes" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.068+07:00" time="0.207"/>
+        <testcase name="links_support_reference_unicode_parent_and_code_exclusion" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.276+07:00" time="0.171"/>
+        <testcase name="measures_utf8_crlf_and_does_not_modify_inputs" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.354+07:00" time="0.115"/>
+        <testcase name="junction_is_not_followed" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.272+07:00" time="0.217"/>
+        <testcase name="missing_budget_is_unknown_not_success" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.382+07:00" time="0.119"/>
+        <testcase name="incomplete_temp_is_preserved_and_not_activated" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.969+07:00" time="0.558"/>
+        <testcase name="missing_roles_duplicates_and_files_are_reported" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.447+07:00" time="0.118"/>
+        <testcase name="new_area_is_unknown" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.501+07:00" time="0.074"/>
+        <testcase name="named_results_preserve_legacy_and_do_not_pick_ambiguous_values" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.489+07:00" time="0.086"/>
+        <testcase name="package_hash_failure_writes_nothing" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.527+07:00" time="0.106"/>
+        <testcase name="complete_temp_can_resume_publication" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.472+07:00" time="1.217"/>
+        <testcase name="parent_scope_reads_child_documents" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.565+07:00" time="0.181"/>
+        <testcase name="scoped_inspection_selects_sources_and_reports_unmapped_scope" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.633+07:00" time="0.139"/>
+        <testcase name="source_inventory_is_case_sensitive_and_stable" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.672+07:00" time="0.115"/>
+        <testcase name="scenario_ids_in_headings_are_not_broken_markdown_links" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.575+07:00" time="0.233"/>
+        <testcase name="traversal_and_ads_are_rejected" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.746+07:00" time="0.124"/>
+        <testcase name="unresolved_reference_is_not_silent" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.772+07:00" time="0.132"/>
+        <testcase name="valid_budget_history_passes" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.787+07:00" time="0.140"/>
+        <testcase name="task_checkboxes_and_inline_code_are_not_references" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.690+07:00" time="0.244"/>
+        <testcase name="recovery_does_not_overwrite_foreign_edit" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.575+07:00" time="0.813"/>
+        <testcase name="install_preserves_agents_and_repeats_without_duplicates" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.055+07:00" time="1.584"/>
+        <testcase name="modified_installed_file_is_detected" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.469+07:00" time="1.186"/>
+        <testcase name="cli_command_help_is_available_without_a_project" classname="highgrade::contracts" timestamp="2026-09-27T20:08:32.392+07:00" time="3.555"/>
+        <testcase name="interruption_at_each_publication_boundary_resumes" classname="highgrade::contracts" timestamp="2026-09-27T20:08:33.210+07:00" time="5.124"/>
+    </testsuite>
+    <testsuite name="highgrade::global_contracts" tests="28" skipped="0" errors="0" failures="0">
+        <testcase name="doctor_reports_unavailable_tool_without_claiming_version" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:33.808+07:00" time="0.266"/>
+        <testcase name="global_update_rejects_manual_rollback_option" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:34.639+07:00" time="0.389"/>
+        <testcase name="global_install_rejects_hash_and_foreign_router_without_activation" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:33.954+07:00" time="1.873"/>
+        <testcase name="kit_manifest_uses_stable_lf_bytes" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:35.756+07:00" time="0.233"/>
+        <testcase name="shipped_tool_references_resolve_without_repository_files" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:41.597+07:00" time="0.396"/>
+        <testcase name="installed_runtime_references_survive_removal_of_source_copy" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:34.655+07:00" time="8.379"/>
+        <testcase name="failed_stage_preserves_foreign_candidate_journal" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:33.934+07:00" time="10.500"/>
+        <testcase name="supported_adapter_does_not_claim_semantic_readiness" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:44.434+07:00" time="0.090"/>
+        <testcase name="interrupted_skill_update_recovers_without_overwriting_user_edit" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:35.029+07:00" time="10.757"/>
+        <testcase name="unsupported_project_adapter_is_a_failure" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:45.786+07:00" time="0.142"/>
+        <testcase name="global_install_does_not_touch_project_and_checks_adapter" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:33.937+07:00" time="12.275"/>
+        <testcase name="planner_router_is_portable" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:38.335+07:00" time="8.236"/>
+        <testcase name="shipped_registry_example_is_accepted_without_inventing_budgets" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:40.787+07:00" time="6.071"/>
+        <testcase name="nine_skill_release_upgrades_to_thematic_tool_references" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:35.990+07:00" time="15.254"/>
+        <testcase name="locked_v026_router_is_inactive_after_switch" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:35.948+07:00" time="15.545"/>
+        <testcase name="failed_forward_pointer_change_allows_a_different_candidate" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:33.905+07:00" time="19.484"/>
+        <testcase name="failed_candidate_stage_restores_changed_skill" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:33.870+07:00" time="20.702"/>
+        <testcase name="global_update_preserves_project_adaptation_in_profile" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:34.074+07:00" time="20.933"/>
+        <testcase name="planner_update_accepts_prior_eight_skill_release" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:39.674+07:00" time="18.309"/>
+        <testcase name="legacy_deploy_migrates_to_approve_push_and_cleans_old_release" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:35.827+07:00" time="23.808"/>
+        <testcase name="failed_stage_does_not_leave_new_routers" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:33.928+07:00" time="26.021"/>
+        <testcase name="six_skill_release_preserves_owned_crlf_routers" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:41.994+07:00" time="18.319"/>
+        <testcase name="v026_deploy_migrates_to_two_routes_and_removes_old_release" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:46.571+07:00" time="15.285"/>
+        <testcase name="six_skill_release_updates_to_approve_push_and_cleans_old_release" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:43.035+07:00" time="18.945"/>
+        <testcase name="global_update_preview_switch_and_cleanup_keep_unrelated_files" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:34.389+07:00" time="28.168"/>
+        <testcase name="thematic_tools_release_upgrades_to_fixer_materials" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:44.524+07:00" time="18.163"/>
+        <testcase name="update_replaces_owned_skill_and_preserves_user_edit" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:46.213+07:00" time="21.231"/>
+        <testcase name="update_preserves_foreign_file_in_old_release" classname="highgrade::global_contracts" timestamp="2026-09-27T20:08:45.928+07:00" time="28.802"/>
+    </testsuite>
+    <testsuite name="highgrade::issue_contracts" tests="6" skipped="0" errors="0" failures="0">
+        <testcase name="foreign_catalog_versions_and_unsafe_recovery_are_rejected" classname="highgrade::issue_contracts" timestamp="2026-09-27T20:08:46.858+07:00" time="0.178"/>
+        <testcase name="interrupted_issue_transaction_requires_explicit_safe_recovery" classname="highgrade::issue_contracts" timestamp="2026-09-27T20:08:47.036+07:00" time="0.229"/>
+        <testcase name="invalid_edits_and_concurrent_writers_leave_whole_catalog" classname="highgrade::issue_contracts" timestamp="2026-09-27T20:08:47.266+07:00" time="0.286"/>
+        <testcase name="issue_catalog_search_and_read_never_execute_recipes" classname="highgrade::issue_contracts" timestamp="2026-09-27T20:08:47.552+07:00" time="0.228"/>
+        <testcase name="issue_evidence_rejects_case_variants_of_owned_paths" classname="highgrade::issue_contracts" timestamp="2026-09-27T20:08:47.780+07:00" time="0.165"/>
+        <testcase name="occurrence_receipts_are_idempotent_and_verification_is_material" classname="highgrade::issue_contracts" timestamp="2026-09-27T20:08:47.946+07:00" time="0.900"/>
+    </testsuite>
+    <testsuite name="highgrade::package_contracts" tests="7" skipped="0" errors="0" failures="0">
+        <testcase name="bundled_skill_frontmatter_uses_safe_scalars" classname="highgrade::package_contracts" timestamp="2026-09-27T20:08:48.846+07:00" time="0.231"/>
+        <testcase name="full_install_rejects_pending_audit_and_foreign_skill" classname="highgrade::package_contracts" timestamp="2026-09-27T20:08:51.493+07:00" time="0.473"/>
+        <testcase name="candidate_conflict_never_changes_active_release" classname="highgrade::package_contracts" timestamp="2026-09-27T20:08:49.077+07:00" time="3.807"/>
+        <testcase name="full_install_keeps_project_files_and_repeats" classname="highgrade::package_contracts" timestamp="2026-09-27T20:08:51.244+07:00" time="1.664"/>
+        <testcase name="project_exclusions_require_an_explicit_reason_and_fresh_audit" classname="highgrade::package_contracts" timestamp="2026-09-27T20:08:51.967+07:00" time="1.391"/>
+        <testcase name="update_rejects_manifest_cli_version_mismatch" classname="highgrade::package_contracts" timestamp="2026-09-27T20:08:52.885+07:00" time="6.067"/>
+        <testcase name="update_requires_fresh_explicit_decision_and_preserves_adaptation" classname="highgrade::package_contracts" timestamp="2026-09-27T20:08:52.908+07:00" time="20.432"/>
+    </testsuite>
+    <testsuite name="highgrade::spec_contracts" tests="18" skipped="0" errors="0" failures="0">
+        <testcase name="competing_processes_and_failed_replace_preserve_whole_store" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:53.389+07:00" time="0.296"/>
+        <testcase name="automatic_numbers_survive_abandon_failure_and_competing_cli_writers" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:53.358+07:00" time="0.473"/>
+        <testcase name="drafts_are_readable_but_unknown_versions_and_fields_never_write" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:53.685+07:00" time="0.220"/>
+        <testcase name="equivalent_evidence_refresh_preserves_decision_but_changed_observation_does_not" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:53.831+07:00" time="0.498"/>
+        <testcase name="evidence_and_review_go_stale_without_losing_unaffected_observations" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:53.906+07:00" time="0.479"/>
+        <testcase name="human_history_is_atomic_protected_and_bound_to_spec_and_implementation" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:54.330+07:00" time="0.880"/>
+        <testcase name="native_doctor_does_not_require_openspec_or_execute_external_tools" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:55.211+07:00" time="0.093"/>
+        <testcase name="integration_rejects_stale_base_and_requires_removal_reason" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:54.385+07:00" time="1.029"/>
+        <testcase name="isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:54.573+07:00" time="1.080"/>
+        <testcase name="negative_review_and_sibling_scenario_regressions" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:55.304+07:00" time="0.357"/>
+        <testcase name="json_progress_rejects_missing_skipped_unknown_and_negative_review" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:55.008+07:00" time="0.881"/>
+        <testcase name="report_that_is_also_an_input_never_hides_changed_implementation" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:55.652+07:00" time="0.301"/>
+        <testcase name="returned_integrated_spec_is_corrected_by_a_new_change_without_rewriting_history" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:55.661+07:00" time="0.548"/>
+        <testcase name="reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:55.889+07:00" time="0.497"/>
+        <testcase name="selected_import_retains_source_and_leaves_other_legacy_requirements" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:56.209+07:00" time="0.376"/>
+        <testcase name="reviewed_import_transfer_works_with_directory_catalog" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:55.954+07:00" time="0.652"/>
+        <testcase name="v1_migration_preserves_exact_backup_ids_evidence_and_review_digest" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:56.387+07:00" time="0.289"/>
+        <testcase name="read_payload_and_cas_always_describe_the_same_snapshot" classname="highgrade::spec_contracts" timestamp="2026-09-27T20:08:55.414+07:00" time="2.467"/>
+    </testsuite>
+    <testsuite name="highgrade::survey_contracts" tests="14" skipped="0" errors="0" failures="0">
+        <testcase name="explicit_decision_plan_block_is_not_lost" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:56.676+07:00" time="0.327"/>
+        <testcase name="adapting_edits_keep_stage_and_invalidate_review_without_rewind" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:56.585+07:00" time="0.418"/>
+        <testcase name="negative_review_is_current_but_does_not_allow_transition" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:57.003+07:00" time="0.203"/>
+        <testcase name="structural_inventory_keeps_configuration_and_never_hashes_large_or_secret_files" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:57.206+07:00" time="0.390"/>
+        <testcase name="plan_preserves_action_blockers_without_granting_permission" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:57.003+07:00" time="0.642"/>
+        <testcase name="survey_cas_invalid_inputs_and_lock_leave_document_unchanged" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:57.645+07:00" time="0.394"/>
+        <testcase name="survey_help_exposes_its_own_schema_and_required_arguments" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:57.881+07:00" time="0.158"/>
+        <testcase name="survey_markdown_preserves_meaning_without_debug_or_empty_labels" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:57.983+07:00" time="0.133"/>
+        <testcase name="survey_starts_without_specs_and_reading_never_executes_or_writes" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:58.040+07:00" time="0.171"/>
+        <testcase name="survey_tracks_only_selected_sources_and_preserves_completed_history" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:58.117+07:00" time="0.261"/>
+        <testcase name="unresolved_decision_and_dependent_findings_do_not_become_ready" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:58.211+07:00" time="0.335"/>
+        <testcase name="survey_refuses_junctions_and_preserves_outside_sentinel" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:58.039+07:00" time="1.430"/>
+        <testcase name="survey_assets_and_schema_work_from_installed_release" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:57.596+07:00" time="5.471"/>
+        <testcase name="discovery_limits_and_missing_sources_are_explicitly_incomplete" classname="highgrade::survey_contracts" timestamp="2026-09-27T20:08:56.606+07:00" time="6.917"/>
+    </testsuite>
+    <testsuite name="highgrade::temp_contracts" tests="1" skipped="0" errors="0" failures="0">
+        <testcase name="test_dir_cleans_after_panic_and_keeps_foreign_directory" classname="highgrade::temp_contracts" timestamp="2026-09-27T20:08:58.379+07:00" time="0.075"/>
+    </testsuite>
+    <testsuite name="highgrade::trace_contracts" tests="10" skipped="0" errors="0" failures="0">
+        <testcase name="active_modified_requirement_replaces_base_for_trace" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:58.454+07:00" time="0.110"/>
+        <testcase name="duplicate_and_unknown_scenario_ids_do_not_pass" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:58.564+07:00" time="0.184"/>
+        <testcase name="automatic_trace_keeps_scope_and_outcomes_distinct" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:58.546+07:00" time="0.294"/>
+        <testcase name="native_owner_replaces_only_imported_markdown_and_ignores_evidence_metadata" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:58.748+07:00" time="0.290"/>
+        <testcase name="native_reports_remain_readable_after_checkout_moves" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:58.840+07:00" time="0.228"/>
+        <testcase name="playwright_resolves_source_relative_to_report_root" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:58.951+07:00" time="0.133"/>
+        <testcase name="rust_requires_real_listed_passing_result" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:59.084+07:00" time="0.144"/>
+        <testcase name="playwright_uses_annotation_and_result_not_just_link" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:59.039+07:00" time="0.267"/>
+        <testcase name="reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:59.069+07:00" time="0.394"/>
+        <testcase name="rust_skip_failure_unknown_and_empty_are_unconfirmed" classname="highgrade::trace_contracts" timestamp="2026-09-27T20:08:59.229+07:00" time="0.446"/>
+    </testsuite>
+    <testsuite name="highgrade::ui_contracts" tests="5" skipped="0" errors="0" failures="0">
+        <testcase name="server_shutdown_during_write_request_never_reports_false_success" classname="highgrade::ui_contracts" timestamp="2026-09-27T20:08:59.636+07:00" time="0.711"/>
+        <testcase name="missing_empty_corrupt_and_interrupted_catalogs_remain_distinct" classname="highgrade::ui_contracts" timestamp="2026-09-27T20:08:59.470+07:00" time="2.433"/>
+        <testcase name="hostile_origins_tokens_paths_and_extra_fields_never_mutate" classname="highgrade::ui_contracts" timestamp="2026-09-27T20:08:59.306+07:00" time="2.652"/>
+        <testcase name="unsupported_record_cannot_be_read_or_edited_by_direct_url" classname="highgrade::ui_contracts" timestamp="2026-09-27T20:08:59.675+07:00" time="2.532"/>
+        <testcase name="isolated_servers_share_cli_cas_and_run_without_node" classname="highgrade::ui_contracts" timestamp="2026-09-27T20:08:59.463+07:00" time="5.121"/>
+    </testsuite>
+</testsuites>

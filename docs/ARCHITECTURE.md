@@ -42,4 +42,6 @@ CLI даёт именованный result, представления и spec-e
 
 `src/issues.rs` — необязательный проектный [реестр проблем](../kit/references/tools/issues.md) с CAS и восстановлением; маршрут — [Fixer](../kit/procedures/fix.md).
 
+[UI/API](UI.md), [UI](../ui/README.md).
+
 `src/survey.rs` хранит JSON обследования с CAS/атомарной заменой, снимками и историей; `src/discovery.rs` даёт ограниченный обзор структуры. Новый режим inventory не меняет legacy snapshot. [Модель и команды](../kit/references/tools/survey.md) работают до specs/реестра.

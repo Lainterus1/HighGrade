@@ -142,6 +142,7 @@ fn contract_revision_mode(c: &Change, old: bool) -> String {
     let object = value.as_object_mut().unwrap();
     for field in [
         "evidence",
+        "attention",
         "runs",
         "review",
         "acceptance",
@@ -278,6 +279,16 @@ pub(super) fn human_state(root: &Path, c: &Change, technical_ready: bool) -> &'s
 }
 pub(super) fn decide(root: &Path, s: &mut Store, input: &Path) -> Result<()> {
     let v: DecisionInput = decode(&paths::read_limited(input, LIMIT)?, "/decisions")?;
+    decide_input(root, s, v)
+}
+pub(super) fn decide_value(root: &Path, s: &mut Store, value: Value) -> Result<()> {
+    decide_input(
+        root,
+        s,
+        serde_json::from_value(value).map_err(|e| e.to_string())?,
+    )
+}
+fn decide_input(root: &Path, s: &mut Store, v: DecisionInput) -> Result<()> {
     if v.decisions.is_empty() {
         return Err("DecisionIncomplete: empty batch".into());
     }
@@ -308,6 +319,19 @@ pub(super) fn decide(root: &Path, s: &mut Store, input: &Path) -> Result<()> {
         }
     }
     for item in v.decisions {
+        attention::record_result(
+            s.changes.get_mut(&item.id).unwrap(),
+            &item.change_sha256,
+            &item.inputs_sha256,
+            if item.decision == HumanVerdict::Accepted {
+                "accepted"
+            } else {
+                "needs_changes"
+            },
+            &item.decided_by,
+            &item.comment,
+            at,
+        )?;
         s.changes
             .get_mut(&item.id)
             .unwrap()

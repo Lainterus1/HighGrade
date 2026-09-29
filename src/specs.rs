@@ -12,6 +12,7 @@ use std::{
 mod checks;
 mod delivery;
 pub use delivery::diagnose as diagnose_delivery;
+mod attention;
 mod presentation;
 mod progress;
 mod relations;
@@ -80,7 +81,7 @@ pub fn diagnose(
     Ok(report)
 }
 pub fn input_schemas() -> Value {
-    json!({"change":schemars::schema_for!(Change),"metadata_batch":schemars::schema_for!(Vec<MetadataInput>),"evidence_input":schemars::schema_for!(EvidenceInput),"evidence_batch":schemars::schema_for!(Vec<BatchEvidence>),"report_import":schemars::schema_for!(checks::ImportReport),"decision_input":schemars::schema_for!(progress::DecisionInput),"runner":schemars::schema_for!(checks::Runner)})
+    json!({"attention_input":schemars::schema_for!(attention::Input),"change":schemars::schema_for!(Change),"metadata_batch":schemars::schema_for!(Vec<MetadataInput>),"evidence_input":schemars::schema_for!(EvidenceInput),"evidence_batch":schemars::schema_for!(Vec<BatchEvidence>),"report_import":schemars::schema_for!(checks::ImportReport),"decision_input":schemars::schema_for!(progress::DecisionInput),"runner":schemars::schema_for!(checks::Runner)})
 }
 const LIMIT: u64 = 8 * 1024 * 1024;
 
@@ -169,6 +170,8 @@ pub struct Review {
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct Change {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub attention: Option<attention::Attention>,
     pub id: String,
     pub goal: String,
     pub rationale: String,
@@ -330,6 +333,7 @@ fn requirement_ids(r: &Requirement, ids: &mut BTreeSet<String>) -> Result<()> {
     Ok(())
 }
 fn integrity(s: &Store) -> Result<()> {
+    attention::validate(s)?;
     relations::validate(s)?;
     checks::validate(s)?;
     let mut names = BTreeSet::new();
@@ -468,6 +472,36 @@ fn change_mut<'a>(s: &'a mut Store, id: &str) -> Result<&'a mut Change> {
 
 /// Uniform CLI envelope; payload is the selective editable artifact, never a second authority.
 pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Result<Report> {
+    command_inner(root, op, options, None, false)
+}
+pub fn ui_read(root: &Path, id: &str) -> Result<Report> {
+    command_inner(
+        root,
+        "spec-read",
+        &BTreeMap::from([("--id".into(), id.into())]),
+        None,
+        true,
+    )
+}
+/// Typed HTTP writes enter the same lock, validation and CAS path without input files.
+pub fn command_input(
+    root: &Path,
+    op: &str,
+    options: &BTreeMap<String, String>,
+    input: Value,
+) -> Result<Report> {
+    if !matches!(op, "spec-edit" | "spec-attention") {
+        return Err("OperationNotAllowed".into());
+    }
+    command_inner(root, op, options, Some(input), true)
+}
+fn command_inner(
+    root: &Path,
+    op: &str,
+    options: &BTreeMap<String, String>,
+    input: Option<Value>,
+    ui_only: bool,
+) -> Result<Report> {
     let root = paths::root(root)?;
     let get = |k: &str| {
         options
@@ -476,6 +510,15 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             .ok_or_else(|| format!("Usage: required {k}"))
     };
     let mut report = Report::new(op);
+    let read_input = || -> Result<Value> {
+        match &input {
+            Some(v) => Ok(v.clone()),
+            None => decode(
+                &paths::read_limited(&paths::safe(&root, get("--input")?)?, LIMIT)?,
+                "/input",
+            ),
+        }
+    };
     report.limitations.push("Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage.".into());
     if op == "spec-schema" {
         let mut schema =
@@ -524,6 +567,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 | "spec-abandon"
                 | "spec-migrate"
                 | "spec-decide"
+                | "spec-attention"
                 | "spec-tag-set"
                 | "spec-tag-remove"
                 | "spec-tag-merge"
@@ -549,6 +593,12 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             "absent".into(),
         )
     };
+    if ui_only {
+        let c = store.changes.get(get("--id")?).ok_or("ChangeMissing")?;
+        if !attention::supported(&store, c) {
+            return Err("UiProfileUnsupported".into());
+        }
+    }
     if mutation && options.contains_key("--expected-local") {
         if op != "spec-edit" || options.contains_key("--expected") {
             return Err("Usage: spec-edit accepts either --expected or --expected-local".into());
@@ -592,6 +642,10 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
         return Err("Usage: --tag requires spec-read --view requirements without an id".into());
     }
     match op {
+        "spec-ui" => report.measurements.push(attention::project(&root, &store)?),
+        "spec-attention" => {
+            attention::mutate_value(&root, &mut store, get("--id")?, read_input()?)?
+        }
         "spec-list" => {
             report
                 .measurements
@@ -650,6 +704,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 }],
             };
             let c = Change {
+                attention: None,
                 id: key.into(),
                 title: options.get("--title").cloned().unwrap_or_default(),
                 created_at: Some(progress::now()?),
@@ -684,10 +739,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
             progress::advance(&mut store, key)?;
         }
         "spec-edit" => {
-            let patch: Value = decode(
-                &paths::read_limited(&paths::safe(&root, get("--input")?)?, LIMIT)?,
-                "/edit",
-            )?;
+            let patch = read_input()?;
             let fields = patch.as_object().ok_or("InvalidEdit: expected object")?;
             let requirements = store.requirements.clone();
             let c = change_mut(&mut store, get("--id")?)?;
@@ -743,6 +795,7 @@ pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Res
                 || incoming.abandoned_reason != c.abandoned_reason
                 || incoming.created_at != c.created_at
                 || incoming.acceptance != c.acceptance
+                || incoming.attention != c.attention
                 || incoming.history != c.history
                 || incoming.runs != c.runs
             {
@@ -1492,6 +1545,7 @@ fn import(root: &Path, store: &mut Store, key: &str, input: &str, source: &str) 
         },
     );
     let c = Change {
+        attention: None,
         id: key.into(),
         title: format!("Transfer {}", r.id),
         created_at: Some(progress::now()?),

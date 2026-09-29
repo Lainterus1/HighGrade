@@ -1,6 +1,6 @@
 [package]
 name = "highgrade"
-version = "0.3.3"
+version = "0.3.4"
 edition = "2024"
 rust-version = "1.89"
 publish = false
@@ -13,8 +13,10 @@ sha2 = "=0.10.9"
 pulldown-cmark = { version = "=0.13.0", default-features = false }
 roxmltree = "=0.20.0"
 schemars = "=1.2.2"
+axum = { version = "=0.8.9", default-features = false, features = ["http1", "json", "tokio"] }
+tokio = { version = "=1.48.0", features = ["rt-multi-thread", "net", "signal", "sync", "time"] }
+getrandom = "=0.4.3"
 
 [profile.dev]
 debug = "line-tables-only"
 incremental = false
-

@@ -126,6 +126,17 @@ def build(root, revision):
                     extract(archive, source)
                     environment = os.environ.copy()
                     environment['CARGO_TARGET_DIR'] = str(cache)
+                    environment['HIGHGRADE_SOURCE_SHA'] = sha
+                    if (source / 'ui/package.json').is_file():
+                        npm = shutil.which('npm.cmd' if os.name == 'nt' else 'npm')
+                        if not npm:
+                            raise ValueError('Node/npm is required to build the UI, not to run the release')
+                        for arguments in [('ci', '--no-audit', '--no-fund'), ('run', 'build')]:
+                            subprocess.run([npm, *arguments], cwd=source / 'ui',
+                                           env=environment, check=True, stdout=log, stderr=log)
+                        bundle = json.loads((source / 'ui/dist/highgrade-ui.json').read_text(encoding='utf-8'))
+                        if bundle.get('source_sha') != sha:
+                            raise ValueError('UI source revision does not match the candidate')
                     build = subprocess.run(
                         ['cargo', 'build', '--release', '--locked',
                          '--message-format=json-render-diagnostics', '--manifest-path',

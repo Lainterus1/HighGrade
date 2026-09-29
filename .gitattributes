@@ -39,3 +39,14 @@ docs/evidence/pilot-followup/** -text -whitespace
 docs/evidence/pilot-release-v032/** -text -whitespace
 
 docs/evidence/init-routes/** -text -whitespace
+
+# Preserve exact bytes of UI verification inputs and immutable reports.
+ui/** -text whitespace=cr-at-eol
+Cargo.toml -text whitespace=cr-at-eol
+Cargo.lock -text whitespace=cr-at-eol
+docs/UI.md -text whitespace=cr-at-eol
+docs/evidence/specification-ui/** -text -whitespace
+
+# Preserve upstream license wording and whitespace verbatim.
+ui/licenses/** -whitespace
+ui/public/licenses/** -whitespace

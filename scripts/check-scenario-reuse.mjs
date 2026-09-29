@@ -16,7 +16,7 @@ const run = () => spawnSync(process.execPath, [checker, 'prepare', fixture],
 const fail = (message) => { throw new Error(message); };
 
 try {
-  for (const file of ['specs', 'src', 'tests', 'Cargo.toml', 'Cargo.lock', '.gitattributes',
+  for (const file of ['specs', 'src', 'tests', 'build.rs', 'ui/dist', 'Cargo.toml', 'Cargo.lock', '.gitattributes',
     '.config/nextest.toml', 'target/nextest/highgrade/list.json',
     'target/nextest/highgrade/junit.xml', 'target/nextest/highgrade/run.json']) copy(file);
   const recordPath = at('target/nextest/highgrade/run.json');

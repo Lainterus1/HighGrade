@@ -1,6 +1,6 @@
 # Разработка и проверки
 
-Команды — из корня; нужны Python 3.12, Node.js и Rust/Cargo. Для операций каталога и диагностики используй установленную CLI (ниже); кандидат target/debug нужен для проверки изменённого Rust-кода и создаётся Nextest либо `cargo build --locked`. После очистки не считай его существующим.
+Нужны Python 3.12, Node.js и Rust. Команды — из корня. Кандидат CLI: Nextest либо `cargo build --locked`.
 
 ## Изменения требований: нативные спецификации
 
@@ -26,7 +26,7 @@ $hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.e
 
 Связка проверяет каталог и автоматические сценарии; готовность изменения — spec-check.
 
-Nextest 0.9.146: если `target/highgrade/tools/bin/cargo-nextest.exe` отсутствует, установи `cargo install cargo-nextest --version 0.9.146 --locked --root target/highgrade/tools`. Запуск бинарника — с аргументом `nextest`. Установка нужна один раз после клонирования/удаления tools; обычная очистка tools сохраняет.
+Если Nextest отсутствует: `cargo install cargo-nextest --version 0.9.146 --locked --root target/highgrade/tools`. Запуск — ниже; обычная очистка сохраняет tools.
 
 ```powershell
 New-Item -ItemType Directory -Force target/nextest/highgrade | Out-Null
@@ -58,9 +58,9 @@ if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
 
 Нормативные инструкции проверяются смысловым ревью; агентное упражнение нужно только для вопроса об исполнении, не закрытого чтением. Пилот внешнего проекта требует поручения. Новая обязательная роль без отдельной необходимости не вводится.
 
-Общий отчёт Nextest и входы сценария различаются по [work](../kit/procedures/work.md#область-входов-доказательства). Полный барьер нужен для итоговой редакции цепочки; после интеграции переиспользуй его через prepare/trace/verify.
+Общий отчёт Nextest и входы сценария различаются по [work](../kit/procedures/work.md#область-входов-доказательства).
 
-`spec-stats --id HG-CHANGE` читает длительности без запуска. Наблюдение человека фиксируй со ссылкой на сообщение.
+`spec-stats --id HG-CHANGE` читает длительности без запуска. Для наблюдения человека сохрани ссылку на сообщение.
 
 ## Rust CLI и глобальная поставка
 
@@ -80,6 +80,10 @@ python scripts/render-skills.py --check
 ```
 
 Структура и импорт проверяются скриптом; бюджеты — inspect. Реестр: `.highgrade/project/documents.json`.
+
+## Интерфейс и Storybook
+
+Из ui: `npm ci`, `npm run build`, `npm run build-storybook`; из корня `cargo build --locked`. Каталог: `npm run storybook`. Playwright/axe: обслужи ui/storybook-static на 127.0.0.1:6006, `npm test` из ui: чтение/запись/CAS, клавиатура, ресурсы. Chrome — HIGHGRADE_CHROME или Windows-путь. Installed E2E: HIGHGRADE_UI_CANDIDATE, HIGHGRADE_UI_SOURCE_SHA, HIGHGRADE_OLD_SOURCE/EXE; `npx playwright test installed.spec.ts`. Без тестовых выпусков тест пропущен. [Сборка](BUILD.md#ресурсы-интерфейса).
 
 ## Отдельные плагины
 
