@@ -51,7 +51,7 @@ if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
 
 | Изменение | Достаточная проверка | Когда расширять |
 |---|---|---|
-| Формулировки, инструкции, навигация | Смысловое ревью diff, check-repository, render-skills --check, inspect | При новом исполнимом контракте — соответствующие тесты |
+| Документы, UI/API | Смысловая сверка [UI](UI.md), [ui/README](../ui/README.md) и diff; check-repository, render-skills --check, inspect | Новое поведение — его тесты |
 | Rust CLI, формат, установка | Узкие контрактные тесты; один полный Nextest/trace для итоговой редакции цепочки | При конкретном непокрытом риске или отказе переиспользования |
 | Только результаты/метаданные каталога | spec-validate/check; prepare/trace/verify при изменении трассировки | Nextest лишь при изменении его значимых входов |
 | Сборка/активация | build-release.py из SHA, preview/apply одного кандидата, global-status | Ошибка — адресная диагностика и восстановление |

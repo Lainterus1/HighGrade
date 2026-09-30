@@ -45,17 +45,17 @@ mod tests {
     #[test]
     fn embedded_bundle_rejects_missing_changed_and_incompatible_resources() {
         let assets = super::super::UI_ASSETS;
-        validate(assets, "1").unwrap();
+        validate(assets, super::super::API_VERSION).unwrap();
         assert!(
-            validate(&[], "1")
+            validate(&[], super::super::API_VERSION)
                 .unwrap_err()
                 .starts_with("UiBundleInvalid:")
         );
-        assert!(validate(&assets[1..], "1").is_err());
+        assert!(validate(&assets[1..], super::super::API_VERSION).is_err());
         assert!(validate(assets, "99").is_err());
         let mut changed = assets.to_vec();
         let entry = changed.iter_mut().find(|a| a.0 == "/index.html").unwrap();
         entry.2 = b"corrupt";
-        assert!(validate(&changed, "1").is_err());
+        assert!(validate(&changed, super::super::API_VERSION).is_err());
     }
 }

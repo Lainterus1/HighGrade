@@ -1,0 +1,1303 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Progs\\NodeJS\\node.exe",
+      "D:\\my_projects\\MyCodex\\ui\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "D:\\my_projects\\MyCodex\\ui\\playwright.config.ts",
+    "rootDir": "D:/my_projects/MyCodex/ui/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/my_projects/MyCodex/target/highgrade/ui-playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/my_projects/MyCodex/ui/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "D:\\my_projects\\MyCodex\\docs\\evidence\\release-v035\\playwright-all.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "edit.spec.ts",
+      "file": "edit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HG56 S1 S2: explicit save, validation, cancel and navigation retain correct bytes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5227,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:18.021Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ed70afab1bbfad1daab-4b20729671b173575983",
+          "file": "edit.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "HG56 S3: integrated and protected content cannot be edited through UI or API",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4319,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:23.730Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ed70afab1bbfad1daab-6b4bf85ffb57103ecfc5",
+          "file": "edit.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "HG56 S1: delayed write locks fields and navigation until confirmation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4407,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:28.067Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ed70afab1bbfad1daab-fa2650baebba3ae7a027",
+          "file": "edit.spec.ts",
+          "line": 19,
+          "column": 1
+        },
+        {
+          "title": "HG56 S4 S5: local CAS, conflict comparison and lost response never blindly retry writes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5513,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:32.485Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ed70afab1bbfad1daab-d994d16ff6ee10124a12",
+          "file": "edit.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "HG56 S6 S7: agreement is bound to visible content and actual baseline diff",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5570,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:38.011Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ed70afab1bbfad1daab-a806f96385853d519944",
+          "file": "edit.spec.ts",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "HG56 S8 S9: result readiness and required return explanation are checked at write time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4526,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:43.593Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ed70afab1bbfad1daab-ca447cafa57a3daa9898",
+          "file": "edit.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "HG56 S7: a changed visible revision cannot be agreed through an already open dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4455,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:48.129Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ed70afab1bbfad1daab-8c37c16b71c92665306f",
+          "file": "edit.spec.ts",
+          "line": 34,
+          "column": 1
+        },
+        {
+          "title": "HG56 S8 S10: accepted result stays visible and only answered question closes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5497,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:52.596Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ed70afab1bbfad1daab-f19c34e37a97f9f7d528",
+          "file": "edit.spec.ts",
+          "line": 37,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "hg58-keyboard.spec.ts",
+      "file": "hg58-keyboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 percent",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 174,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n\n    at D:\\my_projects\\MyCodex\\ui\\tests\\hg58-keyboard.spec.ts:4:13",
+                    "location": {
+                      "file": "D:\\my_projects\\MyCodex\\ui\\tests\\hg58-keyboard.spec.ts",
+                      "column": 13,
+                      "line": 4
+                    },
+                    "snippet": "  2 | test('HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 percent',async({page})=>{\n  3 |  const external:string[]=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:6006')&&!r.url().startsWith('data:'))external.push(r.url())});\n> 4 |  await page.goto('/iframe.html?id='+encodeURIComponent('спецификации-рабочее-пространство--approval')+'&viewMode=story');\n    |             ^\n  5 |  const nav=page.locator('.nav button');await expect(nav).toHaveCount(4);\n  6 |  for(let i=0;i<4;i++){\n  7 |   for(let tries=0;tries<30 && !(await nav.nth(i).evaluate(e=>e===document.activeElement));tries++)await page.keyboard.press('Tab');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\hg58-keyboard.spec.ts",
+                        "column": 13,
+                        "line": 4
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n\n\n  2 | test('HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 percent',async({page})=>{\n  3 |  const external:string[]=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:6006')&&!r.url().startsWith('data:'))external.push(r.url())});\n> 4 |  await page.goto('/iframe.html?id='+encodeURIComponent('спецификации-рабочее-пространство--approval')+'&viewMode=story');\n    |             ^\n  5 |  const nav=page.locator('.nav button');await expect(nav).toHaveCount(4);\n  6 |  for(let i=0;i<4;i++){\n  7 |   for(let tries=0;tries<30 && !(await nav.nth(i).evaluate(e=>e===document.activeElement));tries++)await page.keyboard.press('Tab');\n    at D:\\my_projects\\MyCodex\\ui\\tests\\hg58-keyboard.spec.ts:4:13"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:58.119Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\my_projects\\MyCodex\\target\\highgrade\\ui-playwright\\hg58-keyboard-HG58-keyboar-00d31-ghts-at-100-and-200-percent\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\hg58-keyboard.spec.ts",
+                    "column": 13,
+                    "line": 4
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8f063e281235004ab954-ff87ba6cd09797e28912",
+          "file": "hg58-keyboard.spec.ts",
+          "line": 2,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "hg58.spec.ts",
+      "file": "hg58.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HG58 typography operations and compact reading at desktop mobile and reduced motion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4755,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:32:58.746Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d9f138701ec1728000c0-1d9593570613dcf6e912",
+          "file": "hg58.spec.ts",
+          "line": 5,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "installed.spec.ts",
+      "file": "installed.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HG57 S1-S7: installed release, recovery, two roots, local assets and full human workflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Requires exact-SHA candidate built in an isolated release fixture",
+                  "location": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\installed.spec.ts",
+                    "line": 8,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:03.816Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Requires exact-SHA candidate built in an isolated release fixture",
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\installed.spec.ts",
+                        "line": 8,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "af10486f2e5a1e588644-b51cc7605344927d46ae",
+          "file": "installed.spec.ts",
+          "line": 10,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "native.spec.ts",
+      "file": "native.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HG55 S1 S2: real catalog filters counts and empty states preserve files",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4869,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:03.892Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-0bde8463ffa9dff002e2",
+          "file": "native.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "HG59 S3 S4: integrated history stays visible without a false work selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6500,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:08.777Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-05e91af8233fc64a8ecf",
+          "file": "native.spec.ts",
+          "line": 19,
+          "column": 1
+        },
+        {
+          "title": "HG55 S3 S4: full source operations and hostile text remain inert",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4667,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:15.289Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-3e377094242e1f511ace",
+          "file": "native.spec.ts",
+          "line": 51,
+          "column": 1
+        },
+        {
+          "title": "HG55 S5: one actual handoff action or quiet reading",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4420,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:19.966Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-3c11dff70c49f6c1b1a6",
+          "file": "native.spec.ts",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "HG55 S6: context restored and external CLI edit requires explicit refresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4997,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:24.397Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-cc480bf46f46e87f95db",
+          "file": "native.spec.ts",
+          "line": 63,
+          "column": 1
+        },
+        {
+          "title": "HG55 S7: unavailable API preserves visible document and retries",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4131,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:29.404Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-552733e4f393fba40f9f",
+          "file": "native.spec.ts",
+          "line": 68,
+          "column": 1
+        },
+        {
+          "title": "HG55 S7: slow first snapshot is reused and temporary StoreBusy does not fail startup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18175,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:33.546Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-2c834c1e155e4685fc9f",
+          "file": "native.spec.ts",
+          "line": 72,
+          "column": 1
+        },
+        {
+          "title": "HG55 S3 S6: compact source view and rapid selection show the last chosen spec",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4472,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:51.734Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-6e952683e604d75eef32",
+          "file": "native.spec.ts",
+          "line": 82,
+          "column": 1
+        },
+        {
+          "title": "Latest selection does not wait for an obsolete read",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4138,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:33:56.216Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-29ea01e96d1953bca239",
+          "file": "native.spec.ts",
+          "line": 114,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "visual.spec.ts",
+      "file": "visual.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "reading, font and real visual reference",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1155,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:7:13",
+                    "location": {
+                      "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                      "column": 13,
+                      "line": 7
+                    },
+                    "snippet": "   5 | test('reading, font and real visual reference',async({page})=>{\n   6 |  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));const external:string[]=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:6006')&&!r.url().startsWith('data:'))external.push(r.url())});\n>  7 |  await page.goto(screen('approval'));await expect(page.getByRole('heading',{name:'Интерфейс спецификаций',exact:true})).toBeVisible();await page.evaluate(()=>document.fonts.ready);expect(await page.locator('.document').evaluate(e=>!!(e.querySelector('.eyebrow')!.compareDocumentPosition(e.querySelector('h1')!) & Node.DOCUMENT_POSITION_FOLLOWING))).toBeTruthy();\n     |             ^\n   8 |  expect(await page.evaluate(()=>document.fonts.check('16px Manrope','Требования HighGrade'))).toBeTruthy();\n   9 |  expect(await page.evaluate(()=>[...document.fonts].some(f=>f.family==='Manrope'&&f.status==='loaded'))).toBeTruthy();\n  10 |  await page.screenshot({path:'../target/highgrade/tmp/hg58/desktop.png',fullPage:true});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                        "column": 13,
+                        "line": 7
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n\n\n   5 | test('reading, font and real visual reference',async({page})=>{\n   6 |  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));const external:string[]=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:6006')&&!r.url().startsWith('data:'))external.push(r.url())});\n>  7 |  await page.goto(screen('approval'));await expect(page.getByRole('heading',{name:'Интерфейс спецификаций',exact:true})).toBeVisible();await page.evaluate(()=>document.fonts.ready);expect(await page.locator('.document').evaluate(e=>!!(e.querySelector('.eyebrow')!.compareDocumentPosition(e.querySelector('h1')!) & Node.DOCUMENT_POSITION_FOLLOWING))).toBeTruthy();\n     |             ^\n   8 |  expect(await page.evaluate(()=>document.fonts.check('16px Manrope','Требования HighGrade'))).toBeTruthy();\n   9 |  expect(await page.evaluate(()=>[...document.fonts].some(f=>f.family==='Manrope'&&f.status==='loaded'))).toBeTruthy();\n  10 |  await page.screenshot({path:'../target/highgrade/tmp/hg58/desktop.png',fullPage:true});\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:7:13"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:34:00.374Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\my_projects\\MyCodex\\target\\highgrade\\ui-playwright\\visual-reading-font-and-real-visual-reference\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                    "column": 13,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8324bb52c49185e48ff4-872112ef4c65b14631b4",
+          "file": "visual.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "editing, validation, discard and decision dialog are keyboard usable",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 241,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:16:13",
+                    "location": {
+                      "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                      "column": 13,
+                      "line": 16
+                    },
+                    "snippet": "  14 | test('editing, validation, discard and decision dialog are keyboard usable',async({page})=>{\n  15 |  const writes:string[]=[];page.on('request',r=>{if(r.method()!=='GET')writes.push(r.url())});\n> 16 |  await page.goto(screen('approval'));await page.getByRole('button',{name:'Редактировать',exact:true}).click();\n     |             ^\n  17 |  await expect(page.getByLabel('Цель',{exact:true})).toBeFocused();await page.getByLabel('Цель',{exact:true}).fill('');await page.getByRole('button',{name:'Сохранить изменения'}).click();await expect(page.getByRole('alert')).toContainText('не может быть пустым');\n  18 |  await page.getByLabel('Цель',{exact:true}).fill('Мой несохранённый текст');await page.getByRole('button',{name:'Отмена',exact:true}).click();await expect(page.getByRole('dialog')).toBeVisible();await page.getByRole('button',{name:'Продолжить редактирование'}).click();await expect(page.getByLabel('Цель',{exact:true})).toHaveValue('Мой несохранённый текст');\n  19 |  await page.getByRole('button',{name:'Отмена',exact:true}).click();await page.getByRole('button',{name:'Отменить правки',exact:true}).click();await expect(page.getByRole('button',{name:'Редактировать',exact:true})).toBeFocused();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                        "column": 13,
+                        "line": 16
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n\n\n  14 | test('editing, validation, discard and decision dialog are keyboard usable',async({page})=>{\n  15 |  const writes:string[]=[];page.on('request',r=>{if(r.method()!=='GET')writes.push(r.url())});\n> 16 |  await page.goto(screen('approval'));await page.getByRole('button',{name:'Редактировать',exact:true}).click();\n     |             ^\n  17 |  await expect(page.getByLabel('Цель',{exact:true})).toBeFocused();await page.getByLabel('Цель',{exact:true}).fill('');await page.getByRole('button',{name:'Сохранить изменения'}).click();await expect(page.getByRole('alert')).toContainText('не может быть пустым');\n  18 |  await page.getByLabel('Цель',{exact:true}).fill('Мой несохранённый текст');await page.getByRole('button',{name:'Отмена',exact:true}).click();await expect(page.getByRole('dialog')).toBeVisible();await page.getByRole('button',{name:'Продолжить редактирование'}).click();await expect(page.getByLabel('Цель',{exact:true})).toHaveValue('Мой несохранённый текст');\n  19 |  await page.getByRole('button',{name:'Отмена',exact:true}).click();await page.getByRole('button',{name:'Отменить правки',exact:true}).click();await expect(page.getByRole('button',{name:'Редактировать',exact:true})).toBeFocused();\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:16:13"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:34:02.040Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\my_projects\\MyCodex\\target\\highgrade\\ui-playwright\\visual-editing-validation--b91aa--dialog-are-keyboard-usable\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                    "column": 13,
+                    "line": 16
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8324bb52c49185e48ff4-40af4d1acb84e464d779",
+          "file": "visual.spec.ts",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "narrow and 200 percent layout preserve controls and focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 246,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--long&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--long&viewMode=story\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--long&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--long&viewMode=story\", waiting until \"load\"\u001b[22m\n\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:24:64",
+                    "location": {
+                      "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                      "column": 64,
+                      "line": 24
+                    },
+                    "snippet": "  22 | });\n  23 | test('narrow and 200 percent layout preserve controls and focus',async({page})=>{\n> 24 |  await page.setViewportSize({width:720,height:900});await page.goto(screen('long'));await page.getByRole('button',{name:'Открыть список спецификаций'}).click();await page.getByLabel('Поиск по спецификациям').fill('zzzz');await expect(page.getByRole('status')).toContainText('Ничего не найдено');await page.getByRole('button',{name:'Открыть список спецификаций'}).click();\n     |                                                                ^\n  25 |  await expect(page.locator('.mobile-context')).toContainText('Демонстрационные данные');await expect(page.locator('.mobile-context')).toContainText('D:\\\\my_projects\\\\MyCodex');\n  26 |  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();await page.screenshot({path:'../target/highgrade/tmp/hg58/narrow.png',fullPage:true});\n  27 |  // Browser zoom 200% has half the CSS viewport at the same physical pixel size."
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                        "column": 64,
+                        "line": 24
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--long&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--long&viewMode=story\", waiting until \"load\"\u001b[22m\n\n\n  22 | });\n  23 | test('narrow and 200 percent layout preserve controls and focus',async({page})=>{\n> 24 |  await page.setViewportSize({width:720,height:900});await page.goto(screen('long'));await page.getByRole('button',{name:'Открыть список спецификаций'}).click();await page.getByLabel('Поиск по спецификациям').fill('zzzz');await expect(page.getByRole('status')).toContainText('Ничего не найдено');await page.getByRole('button',{name:'Открыть список спецификаций'}).click();\n     |                                                                ^\n  25 |  await expect(page.locator('.mobile-context')).toContainText('Демонстрационные данные');await expect(page.locator('.mobile-context')).toContainText('D:\\\\my_projects\\\\MyCodex');\n  26 |  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();await page.screenshot({path:'../target/highgrade/tmp/hg58/narrow.png',fullPage:true});\n  27 |  // Browser zoom 200% has half the CSS viewport at the same physical pixel size.\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:24:64"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:34:03.107Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\my_projects\\MyCodex\\target\\highgrade\\ui-playwright\\visual-narrow-and-200-perc-15de7-preserve-controls-and-focus\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                    "column": 64,
+                    "line": 24
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8324bb52c49185e48ff4-389baa8a050a72caf564",
+          "file": "visual.spec.ts",
+          "line": 23,
+          "column": 1
+        },
+        {
+          "title": "selecting a specification changes its content and required action",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 256,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:32:13",
+                    "location": {
+                      "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                      "column": 13,
+                      "line": 32
+                    },
+                    "snippet": "  30 | });\n  31 | test('selecting a specification changes its content and required action',async({page})=>{\n> 32 |  await page.goto(screen('approval'));\n     |             ^\n  33 |  await page.locator('.spec-row').filter({hasText:'HG-DEMO-02'}).click();\n  34 |  await expect(page.getByRole('button',{name:'Принять результат',exact:true})).toBeVisible();\n  35 |  await expect(page.getByRole('heading',{name:'Готово, когда',exact:true})).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                        "column": 13,
+                        "line": 32
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B5%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE--approval&viewMode=story\", waiting until \"load\"\u001b[22m\n\n\n  30 | });\n  31 | test('selecting a specification changes its content and required action',async({page})=>{\n> 32 |  await page.goto(screen('approval'));\n     |             ^\n  33 |  await page.locator('.spec-row').filter({hasText:'HG-DEMO-02'}).click();\n  34 |  await expect(page.getByRole('button',{name:'Принять результат',exact:true})).toBeVisible();\n  35 |  await expect(page.getByRole('heading',{name:'Готово, когда',exact:true})).toBeVisible();\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:32:13"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:34:04.173Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\my_projects\\MyCodex\\target\\highgrade\\ui-playwright\\visual-selecting-a-specifi-5071e-content-and-required-action\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                    "column": 13,
+                    "line": 32
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8324bb52c49185e48ff4-0fd99ce7f629e55f57ab",
+          "file": "visual.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "every documented state renders without accessibility violations or backend writes",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 174,
+                  "error": {
+                    "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:6006\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:6006/index.json\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.63.0 (x64; windows 10.0) node/24.15\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n",
+                    "stack": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:6006\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:6006/index.json\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.63.0 (x64; windows 10.0) node/24.15\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:45:28",
+                    "location": {
+                      "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                      "column": 28,
+                      "line": 45
+                    },
+                    "snippet": "  43 | });\n  44 | test('every documented state renders without accessibility violations or backend writes',async({page,request})=>{\n> 45 |  const index=await request.get('/index.json');const entries=Object.values((await index.json()).entries) as {id:string;type:string}[];\n     |                            ^\n  46 |  expect(entries.filter(e=>e.type==='story').length).toBeGreaterThanOrEqual(25);\n  47 |  const writes:string[]=[];page.on('request',r=>{if(r.method()!=='GET')writes.push(r.url())});\n  48 |  for(const entry of entries.filter(e=>e.type==='story')) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                        "column": 28,
+                        "line": 45
+                      },
+                      "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:6006\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:6006/index.json\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.63.0 (x64; windows 10.0) node/24.15\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n\n  43 | });\n  44 | test('every documented state renders without accessibility violations or backend writes',async({page,request})=>{\n> 45 |  const index=await request.get('/index.json');const entries=Object.values((await index.json()).entries) as {id:string;type:string}[];\n     |                            ^\n  46 |  expect(entries.filter(e=>e.type==='story').length).toBeGreaterThanOrEqual(25);\n  47 |  const writes:string[]=[];page.on('request',r=>{if(r.method()!=='GET')writes.push(r.url())});\n  48 |  for(const entry of entries.filter(e=>e.type==='story')) {\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:45:28"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:34:05.275Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\my_projects\\MyCodex\\target\\highgrade\\ui-playwright\\visual-every-documented-st-f9c34-iolations-or-backend-writes\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                    "column": 28,
+                    "line": 45
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8324bb52c49185e48ff4-99e78cc90dbcf1563174",
+          "file": "visual.spec.ts",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "brand is vector-only and adapted icons render at their real sizes",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 231,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA--icons&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA--icons&viewMode=story\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA--icons&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA--icons&viewMode=story\", waiting until \"load\"\u001b[22m\n\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:58:13",
+                    "location": {
+                      "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                      "column": 13,
+                      "line": 58
+                    },
+                    "snippet": "  56 | test('brand is vector-only and adapted icons render at their real sizes',async({page})=>{\n  57 |  for(const file of ['mark','wordmark','mark-mono','wordmark-mono']){const svg=readFileSync(`src/assets/brand/${file}.svg`,'utf8');expect(svg).not.toMatch(/<(?:image|script|foreignObject)\\b|data:image/);expect(svg).toContain('<path');}\n> 58 |  await page.goto('/iframe.html?id='+encodeURIComponent('основы-визуальный-язык--icons')+'&viewMode=story');\n     |             ^\n  59 |  for(const size of [16,20,24]){const icons=page.locator(`.icon-examples svg[width=\"${size}\"]`);await expect(icons).toHaveCount(4);for(const icon of await icons.all()){await expect(icon).toHaveAttribute('stroke-width','1.75');await expect(icon).toHaveAttribute('aria-hidden','true')}}\n  60 | });\n  61 | test('catalog manager navigation and component controls work',async({page})=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                        "column": 13,
+                        "line": 58
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/iframe.html?id=%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA--icons&viewMode=story\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/iframe.html?id=%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D1%8F%D0%B7%D1%8B%D0%BA--icons&viewMode=story\", waiting until \"load\"\u001b[22m\n\n\n  56 | test('brand is vector-only and adapted icons render at their real sizes',async({page})=>{\n  57 |  for(const file of ['mark','wordmark','mark-mono','wordmark-mono']){const svg=readFileSync(`src/assets/brand/${file}.svg`,'utf8');expect(svg).not.toMatch(/<(?:image|script|foreignObject)\\b|data:image/);expect(svg).toContain('<path');}\n> 58 |  await page.goto('/iframe.html?id='+encodeURIComponent('основы-визуальный-язык--icons')+'&viewMode=story');\n     |             ^\n  59 |  for(const size of [16,20,24]){const icons=page.locator(`.icon-examples svg[width=\"${size}\"]`);await expect(icons).toHaveCount(4);for(const icon of await icons.all()){await expect(icon).toHaveAttribute('stroke-width','1.75');await expect(icon).toHaveAttribute('aria-hidden','true')}}\n  60 | });\n  61 | test('catalog manager navigation and component controls work',async({page})=>{\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:58:13"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:34:06.256Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\my_projects\\MyCodex\\target\\highgrade\\ui-playwright\\visual-brand-is-vector-onl-c083a--render-at-their-real-sizes\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                    "column": 13,
+                    "line": 58
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8324bb52c49185e48ff4-12351f38164b10d20009",
+          "file": "visual.spec.ts",
+          "line": 56,
+          "column": 1
+        },
+        {
+          "title": "catalog manager navigation and component controls work",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 231,
+                  "error": {
+                    "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/?path=/story/%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0--primary\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/?path=/story/%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0--primary\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/?path=/story/%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0--primary\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/?path=/story/%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0--primary\", waiting until \"load\"\u001b[22m\n\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:62:13",
+                    "location": {
+                      "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                      "column": 13,
+                      "line": 62
+                    },
+                    "snippet": "  60 | });\n  61 | test('catalog manager navigation and component controls work',async({page})=>{\n> 62 |  await page.goto('/?path=/story/'+encodeURIComponent('компоненты-кнопка--primary'));\n     |             ^\n  63 |  await expect(page.getByRole('button',{name:'Controls'})).toBeVisible();\n  64 |  const control=page.getByRole('row').filter({has:page.getByText('children',{exact:true})}).getByRole('textbox');await expect(control).toBeVisible();await control.fill('Проверить требования');await expect(page.frameLocator('#storybook-preview-iframe').getByRole('button',{name:'Проверить требования'})).toBeVisible();\n  65 |  await page.screenshot({path:'../target/highgrade/tmp/hg58/storybook.png',fullPage:true});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                        "column": 13,
+                        "line": 62
+                      },
+                      "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:6006/?path=/story/%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0--primary\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:6006/?path=/story/%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0--primary\", waiting until \"load\"\u001b[22m\n\n\n  60 | });\n  61 | test('catalog manager navigation and component controls work',async({page})=>{\n> 62 |  await page.goto('/?path=/story/'+encodeURIComponent('компоненты-кнопка--primary'));\n     |             ^\n  63 |  await expect(page.getByRole('button',{name:'Controls'})).toBeVisible();\n  64 |  const control=page.getByRole('row').filter({has:page.getByText('children',{exact:true})}).getByRole('textbox');await expect(control).toBeVisible();await control.fill('Проверить требования');await expect(page.frameLocator('#storybook-preview-iframe').getByRole('button',{name:'Проверить требования'})).toBeVisible();\n  65 |  await page.screenshot({path:'../target/highgrade/tmp/hg58/storybook.png',fullPage:true});\n    at D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts:62:13"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-30T04:34:07.292Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\my_projects\\MyCodex\\target\\highgrade\\ui-playwright\\visual-catalog-manager-nav-3a820-and-component-controls-work\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\my_projects\\MyCodex\\ui\\tests\\visual.spec.ts",
+                    "column": 13,
+                    "line": 62
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "8324bb52c49185e48ff4-2fd1752b395f7f2773af",
+          "file": "visual.spec.ts",
+          "line": 61,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-30T04:32:17.062Z",
+    "duration": 110916.003,
+    "expected": 18,
+    "skipped": 1,
+    "unexpected": 8,
+    "flaky": 0
+  }
+}

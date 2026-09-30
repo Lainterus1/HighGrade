@@ -291,6 +291,7 @@ pub(super) fn project(root: &Path, s: &Store) -> Result<Value> {
         ("needs_decision", 0),
         ("in_work", 0),
         ("completed", 0),
+        ("historical", 0),
         ("cancelled", 0),
         ("unknown", 0),
     ]);
@@ -346,6 +347,8 @@ pub(super) fn project(root: &Path, s: &Store) -> Result<Value> {
             "unknown"
         } else if technical_ready && human == "accepted" {
             "completed"
+        } else if c.archived {
+            "historical"
         } else {
             "in_work"
         };
@@ -366,7 +369,7 @@ pub(super) fn project(root: &Path, s: &Store) -> Result<Value> {
         rows.push(json!({"id":c.id,"title":c.title,"tags":c.tags,"created_at":c.created_at,"category":category,"content_sha256":sha,
             "requirements_agreement":match last_decision {None=>"pending",Some(r) if r.content_sha256==sha=>r.response.as_ref().unwrap().decision.as_str(),Some(_)=>"stale"},
             "primary_action":open.first(),"requests":open,"history":requests,"changes_since_agreement":if baseline.is_some(){Some(changes)}else{None},
-            "diagnostic":inputs.err(),"editable":!c.archived,"technical_ready":technical_ready,"human":human}));
+            "diagnostic":inputs.err(),"editable":!c.archived,"integrated":c.archived&&c.abandoned_reason.is_none(),"technical_ready":technical_ready,"human":human}));
     }
     rows.sort_by_key(|r| {
         (

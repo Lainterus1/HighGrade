@@ -18,7 +18,7 @@ use std::{
 };
 use tokio::{net::TcpListener, sync::Notify};
 
-const API_VERSION: &str = "1";
+const API_VERSION: &str = "2";
 mod bundle;
 include!(concat!(env!("OUT_DIR"), "/ui_assets.rs"));
 #[derive(Clone)]

@@ -78,9 +78,14 @@ impl Server {
             .find(|(k, _)| *k == "Host")
             .map(|(_, v)| *v)
             .unwrap_or(&self.host);
-        write!(stream,"{method} {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\nContent-Type: application/json\r\nContent-Length: {}\r\nX-HighGrade-Api: 1\r\n",body.len()).unwrap();
+        let api_version = headers
+            .iter()
+            .find(|(k, _)| *k == "X-HighGrade-Api")
+            .map(|(_, v)| *v)
+            .unwrap_or("2");
+        write!(stream,"{method} {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\nContent-Type: application/json\r\nContent-Length: {}\r\nX-HighGrade-Api: {api_version}\r\n",body.len()).unwrap();
         for (k, v) in headers {
-            if *k != "Host" {
+            if *k != "Host" && *k != "X-HighGrade-Api" {
                 write!(stream, "{k}: {v}\r\n").unwrap();
             }
         }
@@ -139,7 +144,7 @@ fn create(root: &Path) {
         ],
     );
 }
-// highgrade: HG-0053-S1, HG-0053-S2, HG-0053-S4, HG-0053-S6, HG-0053-S7
+// highgrade: HG-0053-S1, HG-0053-S2, HG-0053-S4, HG-0053-S6, HG-0053-S7, HG-0059-S2
 #[test]
 fn isolated_servers_share_cli_cas_and_run_without_node() {
     let a = TestDir::new("hg-http-a-");
@@ -156,6 +161,7 @@ fn isolated_servers_share_cli_cas_and_run_without_node() {
     for (s, p) in [(&one, &a), (&two, &b)] {
         let (_, body) = s.http("GET", "/api/session", None, &[]);
         let v: Value = serde_json::from_str(&body).unwrap();
+        assert_eq!(v["api_version"], "2");
         assert_eq!(
             Path::new(v["project"]["root"].as_str().unwrap()),
             highgrade::paths::root(p).unwrap()
@@ -172,6 +178,13 @@ fn isolated_servers_share_cli_cas_and_run_without_node() {
             .unwrap();
         assert_eq!(s.http("GET", &format!("/{script}"), None, &[]).0, 200);
     }
+    let before_version_check = sha(&a);
+    assert_eq!(
+        one.http("GET", "/api/specs", None, &[("X-HighGrade-Api", "1")])
+            .0,
+        409
+    );
+    assert_eq!(sha(&a), before_version_check);
     let before_b = sha(&b);
     let old = sha(&a);
     let (status, body) = one.post(
@@ -205,7 +218,7 @@ fn isolated_servers_share_cli_cas_and_run_without_node() {
     assert_eq!(sha(&a), before);
     // Incomplete request is disconnected before its body; it must not mutate anything.
     let mut stream = TcpStream::connect(&one.host).unwrap();
-    write!(stream,"POST /api/specs/HG-0001/edit HTTP/1.1\r\nHost: {}\r\nOrigin: http://{}\r\nX-HighGrade-Api: 1\r\nX-HighGrade-Token: {}\r\nContent-Type: application/json\r\nContent-Length: 500\r\n\r\n{{",one.host,one.host,one.token).unwrap();
+    write!(stream,"POST /api/specs/HG-0001/edit HTTP/1.1\r\nHost: {}\r\nOrigin: http://{}\r\nX-HighGrade-Api: 2\r\nX-HighGrade-Token: {}\r\nContent-Type: application/json\r\nContent-Length: 500\r\n\r\n{{",one.host,one.host,one.token).unwrap();
     drop(stream);
     one.stop();
     assert_eq!(sha(&a), before);
@@ -367,7 +380,7 @@ fn server_shutdown_during_write_request_never_reports_false_success() {
     stream
         .set_read_timeout(Some(Duration::from_secs(5)))
         .unwrap();
-    write!(stream,"POST /api/specs/HG-0001/edit HTTP/1.1\r\nHost: {}\r\nOrigin: http://{}\r\nX-HighGrade-Token: {}\r\nX-HighGrade-Api: 1\r\nExpect: 100-continue\r\nContent-Type: application/json\r\nContent-Length: 500\r\n\r\n",s.host,s.host,s.token).unwrap();
+    write!(stream,"POST /api/specs/HG-0001/edit HTTP/1.1\r\nHost: {}\r\nOrigin: http://{}\r\nX-HighGrade-Token: {}\r\nX-HighGrade-Api: 2\r\nExpect: 100-continue\r\nContent-Type: application/json\r\nContent-Length: 500\r\n\r\n",s.host,s.host,s.token).unwrap();
     let mut interim = [0u8; 25];
     stream.read_exact(&mut interim).unwrap();
     assert_eq!(&interim, b"HTTP/1.1 100 Continue\r\n\r\n");
@@ -385,7 +398,7 @@ fn server_shutdown_during_write_request_never_reports_false_success() {
     stream
         .set_read_timeout(Some(Duration::from_secs(5)))
         .unwrap();
-    write!(stream,"POST /api/specs/HG-0001/edit HTTP/1.1\r\nHost: {}\r\nOrigin: http://{}\r\nX-HighGrade-Token: {}\r\nX-HighGrade-Api: 1\r\nExpect: 100-continue\r\nContent-Type: application/json\r\nConnection: close\r\nContent-Length: {}\r\n\r\n",s.host,s.host,s.token,body.len()).unwrap();
+    write!(stream,"POST /api/specs/HG-0001/edit HTTP/1.1\r\nHost: {}\r\nOrigin: http://{}\r\nX-HighGrade-Token: {}\r\nX-HighGrade-Api: 2\r\nExpect: 100-continue\r\nContent-Type: application/json\r\nConnection: close\r\nContent-Length: {}\r\n\r\n",s.host,s.host,s.token,body.len()).unwrap();
     stream.read_exact(&mut interim).unwrap();
     assert_eq!(s.post("/api/shutdown", json!({})).0, 200);
     stream.write_all(body.as_bytes()).unwrap();

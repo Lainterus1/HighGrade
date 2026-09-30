@@ -3,7 +3,7 @@ import {Plus,Pencil,Minus} from 'lucide-react';
 
 type GroupStatus='add'|'modify'|'remove'|'done'|'pending'|'passed'|'failed'|'skipped'|'go'|'no_go';
 const labels:Record<QueueCategory|GroupStatus,string>={
- needs_decision:'Нужно решение',in_work:'В работе',completed:'Результат принят',
+ needs_decision:'Нужно решение',in_work:'В работе',completed:'Результат принят',historical:'Интегрировано',
  cancelled:'Отменена',unknown:'Не удалось проверить',
  add:'Добавить',modify:'Изменить',remove:'Удалить',done:'Выполнено',pending:'Ожидает выполнения',
  passed:'Пройдено',failed:'Не пройдено',skipped:'Пропущено',go:'Одобрено',no_go:'Нужна доработка',

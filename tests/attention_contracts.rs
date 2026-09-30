@@ -247,6 +247,123 @@ fn evidence(p: &Path, id: &str, time: &str) {
     )
     .unwrap();
 }
+fn integrated_fixture(p: &Path, number: u32) -> String {
+    let id = format!("HG-{number:04}");
+    call(
+        p,
+        "spec-new",
+        &[("--title", "История"), ("--expected", &sha(p))],
+    )
+    .unwrap();
+    edit(
+        p,
+        &id,
+        json!({"goal":"Результат","rationale":"Причина","scope":"Область",
+        "tasks":[{"id":format!("{id}-T1"),"description":"Работа","done":true}],
+        "operations":[{"action":"add","requirement":{"id":format!("{id}-R1"),"title":"Требование","statement":"Условие",
+            "scenarios":[{"id":format!("{id}-S1"),"given":"Дано","when":"Действие","then":"Результат","verification":"Наблюдение"}]}}]}),
+    );
+    let source = format!("{id}-logic.txt");
+    let report = format!("{id}-report.txt");
+    fs::write(p.join(&source), "v1").unwrap();
+    fs::write(p.join(&report), "Fixture observation").unwrap();
+    put(
+        p,
+        json!({"command":"isolated fixture observation","captured_at":"2026-09-29T00:00:00Z","method":"manual",
+        "scenario":format!("{id}-S1"),"outcome":"passed","observation":"fixture satisfied","inputs":[source],"report":report}),
+    );
+    assert_eq!(
+        call(
+            p,
+            "spec-evidence",
+            &[
+                ("--id", &id),
+                ("--expected", &sha(p)),
+                ("--input", "input.json")
+            ]
+        )
+        .unwrap()
+        .status,
+        "passed"
+    );
+    assert_eq!(
+        call(
+            p,
+            "spec-review",
+            &[
+                ("--id", &id),
+                ("--expected", &sha(p)),
+                ("--reviewer", "fixture reviewer"),
+                ("--verdict", "go"),
+                ("--conclusion", "Fixture contract satisfied")
+            ]
+        )
+        .unwrap()
+        .status,
+        "passed"
+    );
+    assert_eq!(
+        call(
+            p,
+            "spec-integrate",
+            &[("--id", &id), ("--expected", &sha(p))]
+        )
+        .unwrap()
+        .status,
+        "passed"
+    );
+    id
+}
+fn accept_fixture(p: &Path, id: &str) {
+    request(p, id, "result", "result");
+    let r = row(p, id);
+    assert_eq!(mutate(p,id,json!({"action":"respond","request_id":"result","content_sha256":r["content_sha256"],
+        "decision":"accepted","author":"Fixture user","comment":"","verified_revision":"fixture-build-v1"})).unwrap().status,"passed");
+}
+// highgrade: HG-0059-S1
+#[test]
+fn integrated_history_is_not_current_work_or_current_acceptance() {
+    let p = setup();
+    request(&p, "HG-0002", "question", "question");
+    call(
+        &p,
+        "spec-abandon",
+        &[
+            ("--id", "HG-0003"),
+            ("--expected", &sha(&p)),
+            ("--reason", "Отмена"),
+        ],
+    )
+    .unwrap();
+    let stale = integrated_fixture(&p, 4);
+    accept_fixture(&p, &stale);
+    fs::write(p.join(format!("{stale}-logic.txt")), "v2").unwrap();
+    let current = integrated_fixture(&p, 5);
+    accept_fixture(&p, &current);
+    let missing = integrated_fixture(&p, 6);
+    fs::remove_file(p.join(format!("{missing}-logic.txt"))).unwrap();
+    let before = sha(&p);
+    let projection = ui(&p);
+    assert_eq!(projection, ui(&p));
+    assert_eq!(sha(&p), before);
+    for (id, category, integrated) in [
+        ("HG-0001", "in_work", false),
+        ("HG-0002", "needs_decision", false),
+        ("HG-0003", "cancelled", false),
+        ("HG-0004", "historical", true),
+        ("HG-0005", "completed", true),
+        ("HG-0006", "unknown", true),
+    ] {
+        let r = row(&p, id);
+        assert_eq!(r["category"], category, "{id}");
+        assert_eq!(r["integrated"], integrated, "{id}");
+        assert_eq!(projection["counts"][category], 1, "{category}");
+    }
+    assert_eq!(row(&p, &stale)["technical_ready"], false);
+    assert_eq!(row(&p, &stale)["human"], "stale");
+    request(&p, &stale, "late question", "question");
+    assert_eq!(row(&p, &stale)["category"], "needs_decision");
+}
 // highgrade: HG-0052-S1, HG-0052-S4, HG-0052-S6, HG-0052-S8, HG-0052-S9, HG-0052-S10
 #[test]
 fn result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement() {

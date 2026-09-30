@@ -26,5 +26,5 @@ if(process.argv[2]==='prepare'){
  const provenance=sources.map(source=>({source,sha256:hash(source),delivered:Object.keys(files).filter(p=>files[p]===hash(source)),license:source.includes('fonts')?'licenses/Manrope-OFL.txt':source.includes('icons')?'licenses/Lucide-LICENSE.txt':'licenses/README.md'}));
  // Adapted React geometry is compiled into this exact JS, not shipped as a separate SVG.
  for(const item of provenance)if(item.source==='src/components/icons.tsx')item.delivered=Object.keys(files).filter(p=>p.endsWith('.js'));
- writeFileSync('dist/highgrade-ui.json',JSON.stringify({schema_version:1,api_version:'1',cli_version:cliVersion,source_sha:process.env.HIGHGRADE_SOURCE_SHA??null,files,provenance,dependencies:json('package.json').dependencies},null,2)+'\n');
+ writeFileSync('dist/highgrade-ui.json',JSON.stringify({schema_version:1,api_version:'2',cli_version:cliVersion,source_sha:process.env.HIGHGRADE_SOURCE_SHA??null,files,provenance,dependencies:json('package.json').dependencies},null,2)+'\n');
 }else throw Error('Expected prepare or manifest');

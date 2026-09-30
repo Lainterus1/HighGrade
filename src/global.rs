@@ -101,6 +101,7 @@ const TOOL_REFERENCES: [&str; 4] = [
     "references/tools/installation.md",
     "references/tools/diagnostics.md",
 ];
+const REVIEW_MATERIALS: [&str; 1] = ["references/review.md"];
 const PRIOR_MATERIALS: [&str; 18] = [
     "rules.md",
     "procedures/init.md",
@@ -255,6 +256,7 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
             + TOOL_REFERENCES.len()
             + FIXER_MATERIALS.len()
             + SURVEY_MATERIALS.len()
+            + REVIEW_MATERIALS.len()
     {
         return Err("GlobalManifestFilesInvalid".into());
     }
@@ -264,6 +266,7 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
         .chain(TOOL_REFERENCES.iter())
         .chain(FIXER_MATERIALS.iter())
         .chain(SURVEY_MATERIALS.iter())
+        .chain(REVIEW_MATERIALS.iter())
         .map(|s| s.to_string())
         .chain(SKILLS.iter().map(|s| format!("skills/{s}/SKILL.md")))
     {
@@ -346,6 +349,12 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
             .iter()
             .map(|rel| release_file(release, rel)),
     );
+    let mut with_review = with_survey.clone();
+    with_review.extend(
+        REVIEW_MATERIALS
+            .iter()
+            .map(|rel| release_file(release, rel)),
+    );
     let mut prior = expected(&PRIOR_SKILLS, &PRIOR_MATERIALS);
     for rel in [APPROVE_SKILL, PUSH_SKILL] {
         prior.insert(release_file(release, rel));
@@ -359,6 +368,7 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
         && actual != with_tools.iter().map(String::as_str).collect()
         && actual != with_fixer.iter().map(String::as_str).collect()
         && actual != with_survey.iter().map(String::as_str).collect()
+        && actual != with_review.iter().map(String::as_str).collect()
         && actual != prior.iter().map(String::as_str).collect()
         && actual != deploy.iter().map(String::as_str).collect()
         && actual != legacy.iter().map(String::as_str).collect()
@@ -558,6 +568,7 @@ fn retire_release(profile: &Path, release: &str) -> Result<()> {
         .iter()
         .chain(TOOL_REFERENCES.iter())
         .chain(FIXER_MATERIALS.iter())
+        .chain(REVIEW_MATERIALS.iter())
         .chain(PRIOR_MATERIALS.iter())
         .chain(SURVEY_MATERIALS.iter())
         .chain(DEPLOY_MATERIALS.iter())

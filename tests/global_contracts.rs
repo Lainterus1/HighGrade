@@ -766,6 +766,7 @@ fn profile_before_fixer(planner: bool, tools: bool) -> TestDir {
         if (!tools && rel.starts_with("references/tools/"))
             || rel == "procedures/fix.md"
             || rel == "references/tools/issues.md"
+            || rel == "references/review.md"
             || is_survey_material(rel)
         {
             continue;
@@ -840,6 +841,7 @@ fn six_skill_profile() -> TestDir {
     {
         if rel.starts_with("references/tools/")
             || rel == "procedures/fix.md"
+            || rel == "references/review.md"
             || is_survey_material(rel)
         {
             continue;
@@ -912,6 +914,7 @@ fn old_deploy_profile(release: &str, skill_name: &str) -> TestDir {
     for (rel, _) in manifest["files"].as_object().unwrap() {
         if rel.starts_with("references/tools/")
             || rel == "procedures/fix.md"
+            || rel == "references/review.md"
             || is_survey_material(rel)
         {
             continue;

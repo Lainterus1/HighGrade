@@ -7,11 +7,11 @@
 | Устройство, инженерные правила, команды и сборка Проекта | [ARCHITECTURE](ARCHITECTURE.md), [ENGINEERING](ENGINEERING.md), [DEVELOPMENT](DEVELOPMENT.md), [BUILD](BUILD.md) |
 | Действующий маршрут, качество и контекст | [GLOBAL](workflow/GLOBAL.md), [QUALITY](workflow/QUALITY.md), [CONTEXT](workflow/CONTEXT.md) |
 | Техническая справка инструментов Поставки | [Tools](../kit/references/cli.md): спецификации, проверки, установка, диагностика, проблемы |
-| Текущая многоэтапная работа | Основные задачи — в `specs/`; местное состояние — `.highgrade/local/`. `plans/` — только незавершённые отдельные планы |
+| Текущая многоэтапная работа | Основные задачи — в `specs/`; местное состояние — `.highgrade/local/`. `plans/` хранит незавершённые отдельные планы и ссылки на архив, если прежний путь указан в интегрированных спеках |
 | Проверки и выпуски | `evidence/`, `reviews/`, [записи выпусков](releases/) |
 | Примеры и машинные записи переноса | `examples/`, `imports/` |
 | Ранние исследования и предложения | `research/`, `proposals/` — история, не действующие правила |
-| Локальный интерфейс спек | [Запуск и API](UI.md), [маршрут HG-0052–HG-0057](plans/specification-ui-sequence.md) с остановкой после визуального этапа; [основание и изображения](proposals/specification-ui-task.md) |
+| Локальный интерфейс спек | [Запуск, поведение и API](UI.md); [разработка UI и Storybook](../ui/README.md). Завершённый [маршрут HG-0052–HG-0057](archive/plans/specification-ui-sequence.md) и [исходное предложение](proposals/specification-ui-task.md) — история |
 | Завершённая и заменённая работа | [архив](archive/README.md) |
 
 `evidence/` и `reviews/` сохраняют результаты проверок; их возраст сам по себе не основание для удаления. При завершении плана его переносят в `archive/plans/` с причиной и исправляют действующие ссылки. История решений лежит в [архиве](archive/workflow/SPECIFICATION.md) и не задаёт текущие правила. Роли и загрузку документов определяет [проектный реестр](../.highgrade/project/documents.json).

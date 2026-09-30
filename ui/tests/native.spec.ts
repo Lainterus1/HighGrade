@@ -1,17 +1,52 @@
 import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import {fixture} from './native-fixture';
+import {readFileSync,writeFileSync,unlinkSync} from 'node:fs';
+import path from 'node:path';
 test.setTimeout(90000);
 let f:ReturnType<typeof fixture>;let url:string;
 test.beforeEach(async()=>{f=fixture();url=await f.start()});test.afterEach(async()=>{await f?.close()});
 test('HG55 S1 S2: real catalog filters counts and empty states preserve files',async({page})=>{
+ const dated=path.join(f.root,'specs/changes/HG-0005/spec.json');const datedSpec=JSON.parse(readFileSync(dated,'utf8'));datedSpec.created_at+=3600;writeFileSync(dated,JSON.stringify(datedSpec));
  const before=f.hash();await page.goto(url);await expect(page.locator('.spec-row')).toHaveCount(3);
  await page.getByLabel('Тема',{exact:true}).selectOption('interface');await expect(page.locator('.spec-row')).toHaveCount(1);await expect(page.locator('.spec-row')).toContainText('HG-0002');
  await page.getByLabel('Поиск по спецификациям').fill('absent');await expect(page.getByRole('status')).toContainText('Ничего не найдено');await page.getByRole('button',{name:'Сбросить фильтры'}).click();
- await page.getByRole('button',{name:'Все спецификации'}).click();await expect(page.locator('.spec-row')).toHaveCount(5);await page.getByLabel('Показать отменённые').check();await expect(page.locator('.spec-row')).toHaveCount(6);await page.locator('.spec-row').filter({hasText:'HG-0007'}).click();await expect(page.locator('.document .eyebrow')).toContainText('Отменена');await page.getByLabel('Порядок').selectOption('date');
+ await page.getByRole('button',{name:'Все спецификации'}).click();await expect(page.locator('.spec-row')).toHaveCount(5);await page.getByLabel('Показать отменённые').check();await expect(page.locator('.spec-row')).toHaveCount(6);await page.locator('.spec-row').filter({hasText:'HG-0007'}).click();await expect(page.locator('.document .eyebrow')).toContainText('Отменена');await page.getByLabel('Порядок').selectOption('date');await expect(page.locator('.spec-row').first()).toContainText('HG-0005');
  await page.getByRole('button',{name:'Завершены'}).click();await expect(page.locator('.spec-row')).toContainText('HG-0004');await expect(page.getByText('Прежний формат: 1')).toBeVisible();expect(f.hash()).toEqual(before);
  for(const id of ['HG-0001','HG-0002','HG-0003']){const r=f.row(id);f.attention(id,{action:'respond',request_id:r.primary_action.id,content_sha256:r.content_sha256,decision:r.primary_action.kind==='question'?'answer':'accepted',author:'Test user',comment:'Ответ теста',verified_revision:r.primary_action.change_sha256})}
  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await page.getByRole('button',{name:'Нужно решение'}).click();await expect(page.getByRole('status').filter({hasText:'Сейчас решений не требуется'})).toBeVisible();
+});
+test('HG59 S3 S4: integrated history stays visible without a false work selection',async({page})=>{
+ for(const id of ['HG-0001','HG-0002'])f.cli('spec-abandon','--id',id,'--expected',f.sha(),'--reason','Fixture without current work');
+ f.edit('HG-0005',{tags:['interface']});f.ready('HG-0005');f.handoff('HG-0005','result');
+ const needsChanges=f.row('HG-0005');f.attention('HG-0005',{action:'respond',request_id:'result',content_sha256:needsChanges.content_sha256,decision:'needs_changes',author:'Fixture user',comment:'Изменить результат',verified_revision:'fixture-build-v1'});
+ writeFileSync(path.join(f.root,'proof.txt'),'Evidence changed after the observed run');
+ expect(f.cli('spec-new','--title','Недоступная история','--expected',f.sha()).change.id).toBe('HG-0008');
+ f.edit('HG-0008',{goal:'История',rationale:'Fixture',scope:'Fixture',tasks:[{id:'HG-0008-T1',description:'Работа',done:true}],operations:[{action:'add',requirement:{id:'HG-0008-R1',title:'Условие',statement:'Условие',scenarios:[{id:'HG-0008-S1',given:'Дано',when:'Действие',then:'Результат',verification:'Наблюдение'}]}}]});
+ const source=path.join(f.root,'history-proof.txt'),report=path.join(f.root,'history-report.txt'),input=path.join(f.root,'history-input.json');
+ writeFileSync(source,'Observed fixture');writeFileSync(report,'Observed fixture');writeFileSync(input,JSON.stringify({command:'isolated fixture observation',captured_at:'2026-09-29T00:00:00Z',method:'manual',scenario:'HG-0008-S1',outcome:'passed',observation:'fixture satisfied',inputs:['history-proof.txt'],report:'history-report.txt'}));
+ f.cli('spec-evidence','--id','HG-0008','--expected',f.sha(),'--input','history-input.json');
+ f.cli('spec-review','--id','HG-0008','--expected',f.sha(),'--reviewer','fixture','--verdict','go','--conclusion','Fixture contract satisfied');
+ f.cli('spec-integrate','--id','HG-0008','--expected',f.sha());unlinkSync(source);
+ expect(f.row('HG-0004').category).toBe('historical');expect(f.row('HG-0005').category).toBe('historical');expect(f.row('HG-0008').category).toBe('unknown');
+ const before=f.hash();await page.goto(url);
+ await expect(page.getByRole('button',{name:'Все спецификации'})).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('.spec-row[aria-current="true"]')).toHaveCount(1);
+ await page.getByRole('button',{name:'В работе'}).click();await expect(page.locator('.spec-row')).toHaveCount(0);await expect(page.locator('.document')).toHaveCount(0);
+ await expect(page.locator('.empty-state')).toContainText('В этом разделе пока нет спецификаций');
+ await page.getByRole('button',{name:'Все спецификации'}).click();await page.getByLabel('Поиск по спецификациям').fill('HG-0004');
+ await expect(page.locator('.spec-row')).toHaveCount(1);await page.locator('.spec-row').click();
+ await expect(page.locator('.document .eyebrow .status-badge')).toHaveText('Интегрировано');
+ await expect(page.locator('.document .status-context')).toContainText('текущая проверка устарела');
+ await expect(page.locator('.document .acceptance-context')).toContainText('Прежнее решение: результат принят. Сейчас это решение неактуально.');
+ await page.getByLabel('Поиск по спецификациям').fill('');await page.getByLabel('Тема',{exact:true}).selectOption('interface');
+ await expect(page.locator('.spec-row')).toHaveCount(1);await expect(page.locator('.spec-row')).toContainText('HG-0005');
+ await page.locator('.spec-row').click();await expect(page.locator('.document .acceptance-context')).toContainText('Прежнее решение: требуются изменения. Сейчас это решение неактуально.');
+ await page.getByLabel('Тема',{exact:true}).selectOption('');await page.locator('.spec-row').filter({hasText:'HG-0008'}).click();
+ await expect(page.locator('.document .eyebrow .status-badge')).toHaveText('Не удалось проверить');
+ await expect(page.locator('.document .status-context')).toContainText('входы текущей проверки недоступны');
+ await expect(page.locator('.document .acceptance-context')).toHaveText('Прежней приёмки результата нет.');
+ expect(f.hash()).toEqual(before);
 });
 test('HG55 S3 S4: full source operations and hostile text remain inert',async({page})=>{
  const c=f.cli('spec-read','--id','HG-0005').change;const hostile='<script>window.specAttack=true</script><img src="https://tracker.invalid/pixel"> javascript:alert(1)';
