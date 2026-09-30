@@ -1,0 +1,89 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0061-S5": {
+      "captured_at": "2026-09-30T13:32:09Z",
+      "command": "python scripts/verify.py tests",
+      "files": {
+        "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+        "Cargo.toml": "fdf2d14e8e4cac65e5f4162c52937630b38cb996012d2001f26ac964ea4560cc",
+        "docs/evidence/audit-reliability/rust-junit.xml": "97b889ef407bcddc6abb9daae0381b73e59e923e90b40300982c3b60e88ee60a",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "251f34ea08402f425e8f925158534fe911224644761b40ff8521ab0e8c732588",
+        "src/specs/attention.rs": "ec651d48f057373dd8e73f5b8e3ad1ea05e8538a2958b588aaf00a2ac72a682e",
+        "src/specs/progress.rs": "1f9dce8498e06c7a8a9ffa14a9fc72c0eb16effb20968ac509b7a68420cc8a05",
+        "src/specs/storage.rs": "ba0af3976764314e739297babb0c3c37c7caa6c97a983fd441bca1a9c70d1509",
+        "tests/attention_contracts.rs": "ddfa5e594e7bf1e74e661ce2ba64c2454ed84f1297baf08fd8f2563b9996e572",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/progress.rs",
+        "src/specs/storage.rs",
+        "tests/attention_contracts.rs",
+        "tests/support/mod.rs"
+      ],
+      "method": "native_report",
+      "observation": "Все актуальные request/response повторы и изменённые версии/барьеры проверены attention_contracts; эквивалентный повтор не записывает каталог. Исходный JUnit содержит 196 реально выполненных tests, 0 skipped/failures/errors; это не человеческая приёмка.",
+      "outcome": "passed",
+      "report": "docs/evidence/audit-reliability/rust-junit.xml",
+      "scenario": "HG-0061-S5",
+      "scenario_sha256": "e97ea04ebe22c9a9abd29678e1d45360aa913c85a0a15498f214103cebffeb0a"
+    },
+    "HG-0061-S6": {
+      "captured_at": "2026-09-30T13:32:09Z",
+      "command": "python scripts/verify.py tests",
+      "files": {
+        "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+        "Cargo.toml": "fdf2d14e8e4cac65e5f4162c52937630b38cb996012d2001f26ac964ea4560cc",
+        "docs/evidence/audit-reliability/rust-junit.xml": "97b889ef407bcddc6abb9daae0381b73e59e923e90b40300982c3b60e88ee60a",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "251f34ea08402f425e8f925158534fe911224644761b40ff8521ab0e8c732588",
+        "src/specs/attention.rs": "ec651d48f057373dd8e73f5b8e3ad1ea05e8538a2958b588aaf00a2ac72a682e",
+        "src/specs/progress.rs": "1f9dce8498e06c7a8a9ffa14a9fc72c0eb16effb20968ac509b7a68420cc8a05",
+        "src/specs/storage.rs": "ba0af3976764314e739297babb0c3c37c7caa6c97a983fd441bca1a9c70d1509",
+        "tests/attention_contracts.rs": "ddfa5e594e7bf1e74e661ce2ba64c2454ed84f1297baf08fd8f2563b9996e572",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/progress.rs",
+        "src/specs/storage.rs",
+        "tests/attention_contracts.rs",
+        "tests/support/mod.rs"
+      ],
+      "method": "native_report",
+      "observation": "Legacy JSON читается, сохраняется побайтно при безопасном no-op; неоднозначная версия отвергается, новый response хранит verified_revision. Исходный JUnit содержит 196 реально выполненных tests, 0 skipped/failures/errors; это не человеческая приёмка.",
+      "outcome": "passed",
+      "report": "docs/evidence/audit-reliability/rust-junit.xml",
+      "scenario": "HG-0061-S6",
+      "scenario_sha256": "777420fcf8d7871a483244f7dcbe6195d7421666954d7baa63dde29164267e2a"
+    }
+  },
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790775306,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    ],
+    "objects": {
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null
+    }
+  },
+  "review": null,
+  "runs": []
+}

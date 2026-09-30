@@ -85,6 +85,26 @@ def extract(archive, destination):
                 raise ValueError(f'Unsupported Git archive member: {member.name}')
 
 
+def verify_ui(executable, source, sha):
+    """Probe the bytes Cargo actually produced before replacing any candidate."""
+    manifest = json.loads((source / 'kit/manifest.json').read_text(encoding='utf-8'))
+    result = subprocess.run([str(executable), 'ui', '--check', 'true'],
+                            capture_output=True, text=True, encoding='utf-8', timeout=10)
+    try:
+        report = json.loads(result.stdout)
+        bundle = report['measurements'][0]
+        valid = (result.returncode == 0 and report['operation'] == 'ui-check'
+                 and report['status'] == 'passed'
+                 and bundle['cli_version'] == manifest['cli_version']
+                 and bundle['source_sha'] == sha
+                 and isinstance(bundle['api_version'], str) and bundle['api_version']
+                 and isinstance(bundle['files'], int) and bundle['files'] > 0)
+    except (ValueError, KeyError, IndexError, TypeError):
+        valid = False
+    if not valid:
+        raise ValueError('UiBundleInvalid: candidate must report a complete UI for this exact source/version')
+
+
 def build(root, revision):
     root = Path(root).absolute()
     target = safe_path(root, root / 'target')
@@ -127,16 +147,17 @@ def build(root, revision):
                     environment = os.environ.copy()
                     environment['CARGO_TARGET_DIR'] = str(cache)
                     environment['HIGHGRADE_SOURCE_SHA'] = sha
-                    if (source / 'ui/package.json').is_file():
-                        npm = shutil.which('npm.cmd' if os.name == 'nt' else 'npm')
-                        if not npm:
-                            raise ValueError('Node/npm is required to build the UI, not to run the release')
-                        for arguments in [('ci', '--no-audit', '--no-fund'), ('run', 'build')]:
-                            subprocess.run([npm, *arguments], cwd=source / 'ui',
-                                           env=environment, check=True, stdout=log, stderr=log)
-                        bundle = json.loads((source / 'ui/dist/highgrade-ui.json').read_text(encoding='utf-8'))
-                        if bundle.get('source_sha') != sha:
-                            raise ValueError('UI source revision does not match the candidate')
+                    if not (source / 'ui/package.json').is_file():
+                        raise ValueError('UiBundleInvalid: release sources must include the UI package')
+                    npm = shutil.which('npm.cmd' if os.name == 'nt' else 'npm')
+                    if not npm:
+                        raise ValueError('Node/npm is required to build the UI, not to run the release')
+                    for arguments in [('ci', '--no-audit', '--no-fund'), ('run', 'build')]:
+                        subprocess.run([npm, *arguments], cwd=source / 'ui',
+                                       env=environment, check=True, stdout=log, stderr=log)
+                    bundle = json.loads((source / 'ui/dist/highgrade-ui.json').read_text(encoding='utf-8'))
+                    if bundle.get('source_sha') != sha:
+                        raise ValueError('UI source revision does not match the candidate')
                     build = subprocess.run(
                         ['cargo', 'build', '--release', '--locked',
                          '--message-format=json-render-diagnostics', '--manifest-path',
@@ -161,6 +182,7 @@ def build(root, revision):
                             artifacts.append(safe_path(cache, message['executable']))
                     if len(artifacts) != 1 or not artifacts[0].is_file():
                         raise ValueError('Cargo did not report one highgrade executable')
+                    verify_ui(artifacts[0], source, sha)
                     staged = temp / 'candidate'
                     staged.mkdir()
                     executable = 'highgrade.exe' if os.name == 'nt' else 'highgrade'

@@ -330,6 +330,7 @@ fn decide_input(root: &Path, s: &mut Store, v: DecisionInput) -> Result<()> {
             },
             &item.decided_by,
             &item.comment,
+            &item.verified_revision,
             at,
         )?;
         s.changes
