@@ -820,8 +820,16 @@ fn native_report_import_reuses_suite_and_rejects_stale_or_missing_results() {
         specs::load(&root).unwrap().0.changes["HG-0001"].runs.len(),
         2
     );
-    for body in ["<skipped/>", "<failure/>", "<error/>"] {
-        fs::write(root.join("suite.xml"),format!("<testsuite><testcase classname='Cases' name='test_sum'>{body}</testcase></testsuite>")).unwrap();
+    for body in [
+        "<skipped/>",
+        "<failure/>",
+        "<error/>",
+        "<rerunFailure/>",
+        "<flakyFailure/>",
+        "<rerunError/>",
+        "<flakyError/>",
+    ] {
+        fs::write(root.join("suite.xml"),format!("<testsuite><testcase classname='Cases' name='test_sum'>{body}</testcase><testcase classname='Cases' name='test_other'/></testsuite>")).unwrap();
         assert!(import().unwrap_err().contains("ImportedCheckNotPassed"));
         assert_eq!(first, sha(&root));
     }
@@ -1203,6 +1211,71 @@ fn explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift() {
         7
     );
     fs::remove_dir_all(root).unwrap();
+}
+
+#[test]
+fn junit_failure_attempts_cannot_pass_even_when_runner_exits_zero() {
+    let root = root();
+    runner_fixture(&root);
+    fs::write(
+        root.join("test_math.py"),
+        "import unittest\nclass Cases(unittest.TestCase):\n    def test_sum(self): self.fail('real assertion failure')\n",
+    )
+    .unwrap();
+    let runner = fs::read_to_string(root.join("runner.py")).unwrap();
+    fs::write(
+        root.join("runner.py"),
+        runner
+            .replace("ET.SubElement(case,'failure')", "ET.SubElement(case,mode)")
+            .replace(
+                "sys.exit(0 if result.wasSuccessful() else 1)",
+                "sys.exit(0)",
+            ),
+    )
+    .unwrap();
+    for tag in [
+        "failure",
+        "error",
+        "rerunFailure",
+        "flakyFailure",
+        "rerunError",
+        "flakyError",
+    ] {
+        fs::write(root.join("mode.txt"), tag).unwrap();
+        let report = call(
+            &root,
+            "spec-run",
+            &[
+                ("--id", "HG-0001"),
+                ("--check", "all"),
+                ("--expected", &sha(&root)),
+            ],
+        )
+        .unwrap();
+        assert_eq!(report.status, "failed", "{tag}: {report:?}");
+        let state = specs::load(&root).unwrap().0;
+        let change = &state.changes["HG-0001"];
+        let run = change.runs.last().unwrap();
+        assert_eq!(
+            serde_json::to_value(&run.outcome).unwrap(),
+            "failed",
+            "{tag}"
+        );
+        assert_eq!(
+            serde_json::to_value(&change.evidence["HG-0001-S1"].outcome).unwrap(),
+            "unknown",
+            "{tag}"
+        );
+        assert!(
+            fs::read_to_string(root.join(&run.report))
+                .unwrap()
+                .contains(tag)
+        );
+    }
+    assert_eq!(
+        specs::load(&root).unwrap().0.changes["HG-0001"].runs.len(),
+        6
+    );
 }
 
 // highgrade: HG-0023-S1, HG-0023-S2
