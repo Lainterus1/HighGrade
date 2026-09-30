@@ -17,18 +17,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2025, ubuntu-24.04]
+        include:
+          - os: windows-2025
+            previous_sha: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+          - os: ubuntu-24.04
+            previous_sha: fda4117312ca4c5af4388c960081dac94c10ea8f
     runs-on: ${{ matrix.os }}
     timeout-minutes: 40
     env:
       HIGHGRADE_UI_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-      HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+      HIGHGRADE_OLD_SOURCE_SHA: ${{ matrix.previous_sha }}
     steps:
       - uses: actions/checkout@v7
         with:
           ref: ${{ env.HIGHGRADE_UI_SOURCE_SHA }}
           persist-credentials: false
-      - name: Check out pinned previous v0.3.5 fixture
+      - name: Check out pinned platform predecessor
         uses: actions/checkout@v7
         with:
           ref: ${{ env.HIGHGRADE_OLD_SOURCE_SHA }}

@@ -67,6 +67,8 @@ python scripts/target-maintenance.py --check
 
 Playwright использует свой Chromium либо исполняемый файл `HIGHGRADE_CHROME`.
 
-Windows/Ubuntu CI собирает точный head-коммит PR (при push — `github.sha`) штатным сборщиком, а предыдущий v0.3.5 — из закреплённого `e60b6d4d4c3631c7140b037581f0bcdb2573befd` его собственным сборщиком. Установка выполняется только во временный профиль. Подмена версии текущего бинарника предыдущей запрещена.
+Windows/Ubuntu CI собирает точный head-коммит PR (при push — `github.sha`) штатным сборщиком, а предыдущие платформенные выпуски — из закреплённых ниже SHA их собственными сборщиками. Установка выполняется только во временный профиль. Подмена версии текущего бинарника предыдущей запрещена.
 
 Для локального `npx playwright test installed.spec.ts` из ui задайте `HIGHGRADE_UI_REQUIRED=true`, `HIGHGRADE_UI_CANDIDATE`, `HIGHGRADE_UI_SOURCE_SHA`, `HIGHGRADE_UI_VERSION`, `HIGHGRADE_OLD_SOURCE`, `HIGHGRADE_OLD_EXE`, `HIGHGRADE_OLD_SOURCE_SHA`, `HIGHGRADE_OLD_VERSION`. Пути ведут к двум кандидатам/kit/CLI; SHA и версии берутся из их исходных коммитов. Проверяются candidate.json, хеши файлов и версии обоих исполняемых файлов, затем установка/обновление, восстановление и UI двух проектов. В CI required включён всегда; отсутствующие, частичные или несовпадающие входы дают ошибку. Лишь локальный запуск без настроенных входов и без required может быть skipped. `node --test ui/scripts/tests/installed-config.test.mjs` проверяет этот барьер без выпусков.
+
+Предыдущие installed-фикстуры закреплены по платформе: Windows — `e60b6d4d4c3631c7140b037581f0bcdb2573befd` (0.3.5), Linux — `fda4117312ca4c5af4388c960081dac94c10ea8f` (0.3.4). Это исходные ветки до объединения в 0.3.6: установщик Windows-ветки 0.3.5 теряет Unix execute-bit. Исторические исходники/бинарники не исправляются для теста.

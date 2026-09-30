@@ -34,7 +34,7 @@ class UiBuildTests(unittest.TestCase):
                 if sha:
                     env['HIGHGRADE_SOURCE_SHA'] = sha
                 result = subprocess.run(['cargo', 'build', '--offline', *(['--release'] if release else [])],
-                                        cwd=root, env=env, capture_output=True, text=True)
+                                        cwd=root, env=env, capture_output=True, text=True, encoding='utf-8')
                 self.assertEqual(result.returncode == 0, success, result.stdout + result.stderr)
                 if not success:
                     self.assertIn('UiBundleInvalid', result.stderr)
