@@ -1,0 +1,651 @@
+{
+  "ambiguous_result_keys": [
+    "bytes",
+    "lines",
+    "path",
+    "role",
+    "sha256",
+    "token_estimate",
+    "token_method"
+  ],
+  "findings": [
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "README.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "README.md",
+      "message": "https://openai.com/codex/",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "README.md",
+      "message": "https://rustup.rs/",
+      "status": "warning"
+    },
+    {
+      "code": "BudgetExceeded",
+      "location": "docs/DEVELOPMENT.md",
+      "message": "9081 bytes > 9000; требуется пересмотр, не автоматическое повышение",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-10.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-11.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-12.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-13.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/runs/36025300799",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-13.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+      "status": "warning"
+    },
+    {
+      "code": "ExternalLinkUnchecked",
+      "location": "docs/releases/v0-2-14.md",
+      "message": "https://github.com/Lainterus1/HighGrade/actions/runs/36038750322",
+      "status": "warning"
+    }
+  ],
+  "limitations": [
+    "Структурная проверка, не смысловой аудит. Сеть не использована. История бюджета проверяется внутри записи; изменение согласованной базы требует отдельного сравнения/решения автора.",
+    "Якоря: стандартные Markdown-заголовки, Unicode lowercase; HTML/custom anchors и отдельные диалекты могут требовать ручной проверки. --scope использует явную карту, не граф зависимостей кода."
+  ],
+  "measurements": [
+    {
+      "bytes": 7372,
+      "lines": 95,
+      "path": "README.md",
+      "role": "purpose-navigation",
+      "sha256": "9236ad361d04e70109923607cd5c93463a7c22f55b4a2f5d2c540449ca545a77",
+      "token_estimate": 1212,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3521,
+      "lines": 24,
+      "path": "AGENTS.md",
+      "role": "agent-rules",
+      "sha256": "5b29ac220630c0188eac7a22cf61081f663338e5baa3f82b542ac0cc100e001b",
+      "token_estimate": 541,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 6992,
+      "lines": 47,
+      "path": "docs/ARCHITECTURE.md",
+      "role": "current-architecture",
+      "sha256": "473b4ebc3ca13cb1f8a2783184879a0cbfa46db8a9565fc5b06475f43515cc28",
+      "token_estimate": 1144,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 4542,
+      "lines": 21,
+      "path": "docs/ENGINEERING.md",
+      "role": "engineering-rules",
+      "sha256": "57fd7bcecd715222e7f2a414b6eba6967d0ae82c4617626fa40ee878c781d579",
+      "token_estimate": 668,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 9081,
+      "lines": 103,
+      "path": "docs/DEVELOPMENT.md",
+      "role": "commands-procedures",
+      "sha256": "4e5f5bc47455c098e0f0d01e05776f7a9f8b4461404868d3446056330b9b29da",
+      "token_estimate": 1597,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2441,
+      "lines": 14,
+      "path": "plugins/README.md",
+      "role": "component-navigation",
+      "sha256": "7bc290cc3b1798abac78777f8c4eb568dbca20073654ab468d75765a57903f6a",
+      "token_estimate": 386,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 6598,
+      "lines": 27,
+      "path": "docs/workflow/QUALITY.md",
+      "role": "current-quality-and-evidence-rules",
+      "sha256": "64371a248f99ddeef0f6cd552866cdf33f600e6ba69147b158f787b9802bc143",
+      "token_estimate": 983,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 71,
+      "lines": 3,
+      "path": ".config/nextest.toml",
+      "role": "native-rust-scenario-report-configuration",
+      "sha256": "952f01bf5fc38734095de7647ee873ad8c36f78437a1b558338f02ac43865fde",
+      "token_estimate": 18,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 5195,
+      "lines": 39,
+      "path": "docs/workflow/CONTEXT.md",
+      "role": "accepted-context-policy",
+      "sha256": "60d7ada5f4a7ad7f577014b9a5e3090ac73f4770804e2e4fee207732c54027a4",
+      "token_estimate": 778,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 4358,
+      "lines": 25,
+      "path": "docs/research/bdd-workflow.md",
+      "role": "research-evidence",
+      "sha256": "97a3f3a3723feb3928713259c663e8acdfedee9a6378e487731e40b64aa235ba",
+      "token_estimate": 639,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 19436,
+      "lines": 89,
+      "path": "docs/archive/README.md",
+      "role": "archive-navigation",
+      "sha256": "062421a394ab44b158a588ac10d262a6d3f196aca06c18fffdfd7e5f4f21d577",
+      "token_estimate": 3264,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 5792,
+      "lines": 37,
+      "path": "docs/reviews/project-organization-review.md",
+      "role": "organization-evidence",
+      "sha256": "3757194fa68d98d8a7663e4e7f98f3a2109d4730a924d3ed8cdf02547cfc1439",
+      "token_estimate": 884,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 19382,
+      "lines": 82,
+      "path": "docs/reviews/first-release-review.md",
+      "role": "first-release-document-review",
+      "sha256": "3c47c71c77ce532984c8e085b54ce910850630c9170ee39dae5ab884b7f36711",
+      "token_estimate": 2800,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 8203,
+      "lines": 38,
+      "path": "docs/reviews/p0-p2-review.md",
+      "role": "p0-p2-evidence",
+      "sha256": "adab85cf6d4a404d8825c87b86e70e6664ceb935d3010e588dc9d0d8aea34ed6",
+      "token_estimate": 1236,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 4483,
+      "lines": 27,
+      "path": "docs/workflow/GLOBAL.md",
+      "role": "current-global-workflow-contract",
+      "sha256": "cabe63072f0fd719759dcb4daead792a86e3e9d3a5c076766bd6cc04c95b2749",
+      "token_estimate": 702,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 12842,
+      "lines": 46,
+      "path": "docs/reviews/executable-scenarios-review.md",
+      "role": "executable-scenarios-final-review",
+      "sha256": "1d29ebe5160625431d9bebfc0012bef99a2cb39a21360c297fa4b437b325d2d9",
+      "token_estimate": 1984,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3377,
+      "lines": 52,
+      "path": "docs/evidence/executable-scenarios/run.json",
+      "role": "executable-scenarios-native-run-record",
+      "sha256": "91e8e804e6c8364c51418b232e5aa75d1b3dd9f284ded6b58c9745bb50eda7ff",
+      "token_estimate": 845,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 14635,
+      "lines": 57,
+      "path": "docs/reviews/portable-delivery.md",
+      "role": "portable-delivery-evidence",
+      "sha256": "68411254d9c6d3d26546d287ce8e34c23a8c74b2eebf43581b909a3cb9406b06",
+      "token_estimate": 2274,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3132,
+      "lines": 11,
+      "path": "docs/releases/v0-2-10.md",
+      "role": "release-evidence",
+      "sha256": "6eeac0fedac69a5940583877bea1697680e5b59c33f0b305eec2716db8c5c1ea",
+      "token_estimate": 514,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2299,
+      "lines": 11,
+      "path": "docs/releases/v0-2-11.md",
+      "role": "release-evidence",
+      "sha256": "cc2d337560588e3087d43991c17cededbb99d06934a9d7c2ec9703997660aa42",
+      "token_estimate": 390,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 8386,
+      "lines": 46,
+      "path": "docs/reviews/structured-specifications.md",
+      "role": "structured-specifications-evidence",
+      "sha256": "907639833f4e6a7cf5fac2842be341a3745a315545675ed294794e64221d276f",
+      "token_estimate": 1308,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2291,
+      "lines": 13,
+      "path": "docs/releases/v0-2-12.md",
+      "role": "release-evidence",
+      "sha256": "ee390cdb223a55ce3af0663d70f42ee25f11fffcfe8b307de949113a368d222e",
+      "token_estimate": 376,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 8186,
+      "lines": 47,
+      "path": "docs/reviews/spec-progress.md",
+      "role": "spec-progress-evidence-and-handoff",
+      "sha256": "c8493fc77ba6b6a5763c0248be0e6a338c2d0264c29a22054dedff7fdb21a698",
+      "token_estimate": 1294,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 5071,
+      "lines": 30,
+      "path": "docs/releases/v0-2-13.md",
+      "role": "release-evidence",
+      "sha256": "ae77189c58a98be595c474649cc9d52c7afa56ac61af8bf445d392b307c2708b",
+      "token_estimate": 814,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 1973,
+      "lines": 21,
+      "path": "specs/README.md",
+      "role": "native-spec-catalog-navigation",
+      "sha256": "f56bfcdd0dc826496a1b07d26af486cda2f41f1ad4218a352edca6dec5e3e9b2",
+      "token_estimate": 317,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 806,
+      "lines": 5,
+      "path": "docs/examples/spec-catalog/README.md",
+      "role": "current-catalog-example",
+      "sha256": "32c0b6cfea5fe87ea1184f004655aa17b19aef515118b9b49ef9a850d436ec14",
+      "token_estimate": 121,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 6673,
+      "lines": 29,
+      "path": "docs/reviews/spec-catalog.md",
+      "role": "catalog-verification-history",
+      "sha256": "9fd8cdb29e7f40335916f812de31881833fd2eb98a7d5092cba8d0bfc4e91ac4",
+      "token_estimate": 1002,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3048,
+      "lines": 21,
+      "path": "docs/releases/v0-2-14.md",
+      "role": "release-record",
+      "sha256": "d39f583194721b60093be8822469cd69a815414d73206d09a99c58fc9377ff28",
+      "token_estimate": 517,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 15919,
+      "lines": 74,
+      "path": "docs/BUILD.md",
+      "role": "project-build-lifecycle",
+      "sha256": "2682e35c0781a63fc6a9dfa6063764997a71889b12e09654786bbcb615c74b98",
+      "token_estimate": 2554,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2310,
+      "lines": 133,
+      "path": "specs/catalog.json",
+      "role": "native-requirement-catalog",
+      "sha256": "90d1bc7a158d197681d9c60b212734d06f1b5ead8e6dc53a93d8c46514f55ee7",
+      "token_estimate": 578,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 3061,
+      "lines": 17,
+      "path": "docs/README.md",
+      "role": "project-document-navigation",
+      "sha256": "0483dfe8884b170cb4861aa06dc6b04b7e07ac9f5014d46e36499d2089dbbbd9",
+      "token_estimate": 506,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 13236,
+      "lines": 51,
+      "path": "docs/UI.md",
+      "role": "local-ui-behavior-and-api",
+      "sha256": "d4267d1890d94feab977f58358b94fae01f18b0d7ff6e084ecd5929ca6158f00",
+      "token_estimate": 1953,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 4715,
+      "lines": 27,
+      "path": "ui/README.md",
+      "role": "ui-development-guide",
+      "sha256": "ae856e2cb27be695cc1bfecd1512908a1427dbe9c2418175756fcc98a2b8d0cd",
+      "token_estimate": 731,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 1799,
+      "lines": 7,
+      "path": "docs/releases/v0-3-6.md",
+      "role": "current-release-note",
+      "sha256": "d4e8e6e47258732e017c0e42dc4744d40b46a9e97a02ad43ee56fb7f084e2bc6",
+      "token_estimate": 283,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 5187,
+      "lines": 28,
+      "path": "docs/evidence/release-v036/verification.md",
+      "role": "current-release-verification",
+      "sha256": "86f58a572575ecc8734b5cd6cefd5bcb1dccdd8f0a6cb8e98a2949e183996b8c",
+      "token_estimate": 851,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 2253,
+      "lines": 9,
+      "path": "docs/releases/v0-3-4.md",
+      "role": "release-history",
+      "sha256": "4a925cde538a5e4cb3f3f3144c131d992aac0e114efd1d7c89779f8d94a47987",
+      "token_estimate": 345,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "required_links": [
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "AGENTS.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/ARCHITECTURE.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/ENGINEERING.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "docs/DEVELOPMENT.md"
+        },
+        {
+          "from": "AGENTS.md",
+          "status": "present",
+          "to": ".highgrade/project/INSTRUCTIONS.md"
+        },
+        {
+          "from": ".highgrade/project/INSTRUCTIONS.md",
+          "status": "present",
+          "to": ".highgrade/project/documents.json"
+        }
+      ]
+    },
+    {
+      "diagnostic_summary": {
+        "accepted_limitations": "consult_survey_basis_and_project_instructions; not_certified_by_inspect",
+        "errors": [],
+        "unknown": [],
+        "warnings": [
+          {
+            "code": "ExternalLinkUnchecked",
+            "location": "README.md",
+            "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+            "status": "warning"
+          },
+          {
+            "code": "ExternalLinkUnchecked",
+            "location": "README.md",
+            "message": "https://openai.com/codex/",
+            "status": "warning"
+          },
+          {
+            "code": "ExternalLinkUnchecked",
+            "location": "README.md",
+            "message": "https://rustup.rs/",
+            "status": "warning"
+          },
+          {
+            "code": "BudgetExceeded",
+            "location": "docs/DEVELOPMENT.md",
+            "message": "9081 bytes > 9000; требуется пересмотр, не автоматическое повышение",
+            "status": "warning"
+          },
+          {
+            "code": "ExternalLinkUnchecked",
+            "location": "docs/releases/v0-2-10.md",
+            "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+            "status": "warning"
+          },
+          {
+            "code": "ExternalLinkUnchecked",
+            "location": "docs/releases/v0-2-11.md",
+            "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+            "status": "warning"
+          },
+          {
+            "code": "ExternalLinkUnchecked",
+            "location": "docs/releases/v0-2-12.md",
+            "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+            "status": "warning"
+          },
+          {
+            "code": "ExternalLinkUnchecked",
+            "location": "docs/releases/v0-2-13.md",
+            "message": "https://github.com/Lainterus1/HighGrade/actions/runs/36025300799",
+            "status": "warning"
+          },
+          {
+            "code": "ExternalLinkUnchecked",
+            "location": "docs/releases/v0-2-13.md",
+            "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+            "status": "warning"
+          },
+          {
+            "code": "ExternalLinkUnchecked",
+            "location": "docs/releases/v0-2-14.md",
+            "message": "https://github.com/Lainterus1/HighGrade/actions/runs/36038750322",
+            "status": "warning"
+          }
+        ]
+      }
+    },
+    {
+      "scope": "all-registered",
+      "registry": ".highgrade/project/documents.json",
+      "route": [
+        "README.md",
+        "AGENTS.md",
+        "docs/ARCHITECTURE.md",
+        "docs/ENGINEERING.md",
+        "docs/DEVELOPMENT.md",
+        "plugins/README.md",
+        "docs/workflow/QUALITY.md",
+        ".config/nextest.toml",
+        "docs/workflow/CONTEXT.md",
+        "docs/workflow/GLOBAL.md",
+        "specs/README.md",
+        "docs/examples/spec-catalog/README.md",
+        "docs/BUILD.md",
+        "docs/UI.md",
+        "ui/README.md"
+      ],
+      "route_bytes": 86945
+    }
+  ],
+  "operation": "inspect",
+  "result": {
+    "scope": "all-registered",
+    "diagnostic_summary": {
+      "accepted_limitations": "consult_survey_basis_and_project_instructions; not_certified_by_inspect",
+      "errors": [],
+      "unknown": [],
+      "warnings": [
+        {
+          "code": "ExternalLinkUnchecked",
+          "location": "README.md",
+          "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+          "status": "warning"
+        },
+        {
+          "code": "ExternalLinkUnchecked",
+          "location": "README.md",
+          "message": "https://openai.com/codex/",
+          "status": "warning"
+        },
+        {
+          "code": "ExternalLinkUnchecked",
+          "location": "README.md",
+          "message": "https://rustup.rs/",
+          "status": "warning"
+        },
+        {
+          "code": "BudgetExceeded",
+          "location": "docs/DEVELOPMENT.md",
+          "message": "9081 bytes > 9000; требуется пересмотр, не автоматическое повышение",
+          "status": "warning"
+        },
+        {
+          "code": "ExternalLinkUnchecked",
+          "location": "docs/releases/v0-2-10.md",
+          "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+          "status": "warning"
+        },
+        {
+          "code": "ExternalLinkUnchecked",
+          "location": "docs/releases/v0-2-11.md",
+          "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+          "status": "warning"
+        },
+        {
+          "code": "ExternalLinkUnchecked",
+          "location": "docs/releases/v0-2-12.md",
+          "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+          "status": "warning"
+        },
+        {
+          "code": "ExternalLinkUnchecked",
+          "location": "docs/releases/v0-2-13.md",
+          "message": "https://github.com/Lainterus1/HighGrade/actions/runs/36025300799",
+          "status": "warning"
+        },
+        {
+          "code": "ExternalLinkUnchecked",
+          "location": "docs/releases/v0-2-13.md",
+          "message": "https://github.com/Lainterus1/HighGrade/actions/workflows/verify.yml",
+          "status": "warning"
+        },
+        {
+          "code": "ExternalLinkUnchecked",
+          "location": "docs/releases/v0-2-14.md",
+          "message": "https://github.com/Lainterus1/HighGrade/actions/runs/36038750322",
+          "status": "warning"
+        }
+      ]
+    },
+    "registry": ".highgrade/project/documents.json",
+    "required_links": [
+      {
+        "from": "README.md",
+        "status": "present",
+        "to": "AGENTS.md"
+      },
+      {
+        "from": "README.md",
+        "status": "present",
+        "to": "docs/ARCHITECTURE.md"
+      },
+      {
+        "from": "README.md",
+        "status": "present",
+        "to": "docs/ENGINEERING.md"
+      },
+      {
+        "from": "README.md",
+        "status": "present",
+        "to": "docs/DEVELOPMENT.md"
+      },
+      {
+        "from": "AGENTS.md",
+        "status": "present",
+        "to": ".highgrade/project/INSTRUCTIONS.md"
+      },
+      {
+        "from": ".highgrade/project/INSTRUCTIONS.md",
+        "status": "present",
+        "to": ".highgrade/project/documents.json"
+      }
+    ],
+    "route": [
+      "README.md",
+      "AGENTS.md",
+      "docs/ARCHITECTURE.md",
+      "docs/ENGINEERING.md",
+      "docs/DEVELOPMENT.md",
+      "plugins/README.md",
+      "docs/workflow/QUALITY.md",
+      ".config/nextest.toml",
+      "docs/workflow/CONTEXT.md",
+      "docs/workflow/GLOBAL.md",
+      "specs/README.md",
+      "docs/examples/spec-catalog/README.md",
+      "docs/BUILD.md",
+      "docs/UI.md",
+      "ui/README.md"
+    ],
+    "route_bytes": 86945
+  },
+  "status": "warning"
+}

@@ -1,0 +1,44 @@
+{
+  "captured_at": "2026-09-30T17:56:28.652361+00:00",
+  "git": "git version 2.52.0",
+  "baseline_sha": "c561dbaed7a55c54319ed957dd176b37deee5bdf",
+  "checkout": "git clone --no-hardlinks --no-checkout; git config --local core.autocrlf true; git checkout --detach BASELINE_SHA",
+  "candidate": "Copy only candidate .gitattributes, remove docs/DEVELOPMENT.md from fixture worktree, git checkout -- docs/DEVELOPMENT.md",
+  "inspect_command": "target/debug/highgrade inspect --root . (fixture cwd)",
+  "tool_source": "Candidate local debug CLI, baseline Rust source unchanged",
+  "results": [
+    {
+      "variant": "baseline",
+      "checkout_bytes": 9081,
+      "checkout_crlf": 103,
+      "sha256": "4e5f5bc47455c098e0f0d01e05776f7a9f8b4461404868d3446056330b9b29da",
+      "inspect_exit_code": 0,
+      "inspect_status": "warning",
+      "findings": [
+        {
+          "code": "BudgetExceeded",
+          "location": "docs/DEVELOPMENT.md",
+          "message": "9081 bytes > 9000; требуется пересмотр, не автоматическое повышение",
+          "status": "warning"
+        }
+      ],
+      "attributes": [
+        "docs/DEVELOPMENT.md: text: unspecified",
+        "docs/DEVELOPMENT.md: eol: unspecified"
+      ]
+    },
+    {
+      "variant": "candidate",
+      "checkout_bytes": 8978,
+      "checkout_crlf": 0,
+      "sha256": "46daf2b494a37298560e8c2699e683236c86ac01891029f5ae3f8256b4beb53b",
+      "inspect_exit_code": 0,
+      "inspect_status": "warning",
+      "findings": [],
+      "attributes": [
+        "docs/DEVELOPMENT.md: text: set",
+        "docs/DEVELOPMENT.md: eol: lf"
+      ]
+    }
+  ]
+}

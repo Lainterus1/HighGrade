@@ -1,0 +1,55 @@
+{
+  "captured_at": "2026-09-30T18:00:53.122737+00:00",
+  "baseline_sha": "c561dbaed7a55c54319ed957dd176b37deee5bdf",
+  "branch": "fix/portable-document-budget",
+  "platform": "Linux; real Git core.autocrlf conversion, no Windows runtime claim",
+  "tools": {
+    "python": "Python 3.12.14",
+    "git": "git version 2.52.0",
+    "node": "v24.19.0",
+    "cargo": "cargo 1.89.0 (c24e10642 2025-06-23)",
+    "nextest": "cargo-nextest 0.9.146 (8af696ddc 2026-09-21)\nrelease: 0.9.146\ncommit-hash: 8af696ddcce8fff2962d6a5168b6d138b8616a35\ncommit-date: 2026-09-21\nhost: x86_64-unknown-linux-gnu"
+  },
+  "source_sha256": {
+    ".gitattributes": "0b1f07729f4a371c49f7fe839e881f3aa152958e1c20e30b83ceb9342381526b",
+    "scripts/tests/test_document_budget.py": "699a9e81ce8f544ca1ede2f194a858a294e5a3fabcc1385d2d928b1d730357d1",
+    "docs/DEVELOPMENT.md": "46daf2b494a37298560e8c2699e683236c86ac01891029f5ae3f8256b4beb53b",
+    ".highgrade/project/documents.json": "a9823895bd6d2c1d0aea7519600c5eaf05a7a53a1c5085ddbe36117f9dd39932"
+  },
+  "native_input_attributes_sha256": "0b1f07729f4a371c49f7fe839e881f3aa152958e1c20e30b83ceb9342381526b",
+  "preservation": "git diff --exit-code HEAD -- docs/DEVELOPMENT.md .highgrade/project/documents.json docs/archive passed; only .gitattributes changed among tracked files",
+  "results": {
+    "python_passed": 20,
+    "native_passed": 196,
+    "native_skipped": 0,
+    "automatic_scenarios_passed": 118,
+    "outside_automatic_trace": 131,
+    "inspect_budget_warnings": 0,
+    "inspect_external_link_warnings": 9,
+    "spec_validation": "passed",
+    "scenario_scale": "passed",
+    "scenario_reuse": "passed",
+    "format_structure_generated_skills": "passed"
+  },
+  "artifact_sha256": {
+    "README.md": "cfa3a1aa4fa023059518a5f1276689499045921bfb54a40f5b9074850f181e8a",
+    "baseline-reproduction.json": "085a95c579cd8ad6fcc8818a59a4d685681f66a5f4ca21b1a0c9316d943df779",
+    "checkout-baseline-inspect.json": "7ac9558e3bf14640ab895d279b5d8b18bc028517831b86d6f55178dda41d1e13",
+    "checkout-candidate-inspect.json": "a89e6f6a2366aaef69efb2437d57ec6cc9188eebccad68e0b112d205d2e1b1c9",
+    "checkout-comparison.json": "cb57af31fee58b34697a1272d6f557313d079b5e02831307092df867462e012a",
+    "inspect.json": "f563db7297ecdeb635a2cd2d5eeb38818eaca74917410f15c264fcf66295cedd",
+    "native/junit.xml": "d3b82bf9f23aff936d9d6ada27504707c51064cf4d55915608e853abbba087ce",
+    "native/list.json": "b8dbcbedd34b22913490d89cea6032e77171c2ebfb835e8e389160ded612da16",
+    "native/run.json": "96e40d99785019fd93bf6dd0f18ee8bc397c6e2ff0dab6e3aef3cd99dc2ed62d",
+    "native/trace.json": "0a729ec59d76fc2cc41995186eb9ba4ee473ffe02521c170005d9cebe35f6ef4",
+    "native-tests.log": "4b7590b2d45e4d44d35c60c816dd170e0b394ab5806e028618b324d1f96c451e",
+    "python-tests.log": "7ea13fa96f3f9255eeff65cf4b023f888d94e56ec38cb88b78b1f04cc5724599",
+    "regression-after.log": "aa0a3f19cfb7139c1feb0fba91f5447cbffe5cdcd304d3719f79881f32de7fac",
+    "regression-before.log": "a975078faed3983040cc195f12484802e1a6395fce6fd75f46b253d36aaff002",
+    "scenario-checks-busy.log": "ed6511d1ef71ec811c2d8bdb8e74d9871aebe178e8fd3d83e24aaf00817da221",
+    "scenario-checks.log": "2052ecc7a90b768d0bc019101d662ab4b83c35960043599e4f831136bf1048fd",
+    "specs.log": "7ce983b653ef28d9bc0d5266848b273a63d6a47385923ff2bde42c351cacf66e",
+    "structure-checks.log": "9bd8cdd220ed79ccaaf2ffac43f5b3c9cd06264ee7cc462c96b7a17fbf2e9127",
+    "ui-build.log": "59dce9ebd93b0e0e4f0ff8ee7bb6d01147419e0f31cade7c3783a740a13f7add"
+  }
+}

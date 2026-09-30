@@ -1,0 +1,15 @@
+test_development_budget_survives_git_checkout_line_endings (test_document_budget.DocumentBudgetTests.test_development_budget_survives_git_checkout_line_endings) ... 
+  test_development_budget_survives_git_checkout_line_endings (test_document_budget.DocumentBudgetTests.test_development_budget_survives_git_checkout_line_endings) (autocrlf='true') ... FAIL
+
+======================================================================
+FAIL: test_development_budget_survives_git_checkout_line_endings (test_document_budget.DocumentBudgetTests.test_development_budget_survives_git_checkout_line_endings) (autocrlf='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/highgrade-document-eol/scripts/tests/test_document_budget.py", line 49, in test_development_budget_survives_git_checkout_line_endings
+    self.assertLessEqual(len(actual), budget['ceiling'])
+AssertionError: 9081 not less than or equal to 9000
+
+----------------------------------------------------------------------
+Ran 1 test in 0.018s
+
+FAILED (failures=1)

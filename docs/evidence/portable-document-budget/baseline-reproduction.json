@@ -1,0 +1,24 @@
+{
+  "captured_at": "2026-09-30T17:53:46.412172+00:00",
+  "baseline_sha": "c561dbaed7a55c54319ed957dd176b37deee5bdf",
+  "document": "docs/DEVELOPMENT.md",
+  "source_bytes": 8978,
+  "source_lf": 103,
+  "source_crlf": 0,
+  "source_sha256": "46daf2b494a37298560e8c2699e683236c86ac01891029f5ae3f8256b4beb53b",
+  "checkout_command": "git -c core.autocrlf=true checkout -- docs/DEVELOPMENT.md",
+  "checkout_bytes": 9081,
+  "checkout_crlf": 103,
+  "registered_ceiling_bytes": 9000,
+  "budget_exceeded": true,
+  "attributes": [
+    "docs/DEVELOPMENT.md: text: unspecified",
+    "docs/DEVELOPMENT.md: eol: unspecified"
+  ],
+  "hypothesis": "Exact docs/DEVELOPMENT.md text eol=lf keeps Git checkout bytes stable without changing content or the registered budget.",
+  "success_criteria": [
+    "Real Git checkout under core.autocrlf=true,false,input returns the unchanged canonical 8978-byte document and stays at or below its registered 9000-byte ceiling.",
+    "Behavioral regression fails without the attribute and passes with it.",
+    "Unrelated attributes, document meaning, registry and archived bytes remain unchanged; focused Python and complete native barriers pass."
+  ]
+}
