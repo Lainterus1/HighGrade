@@ -12,10 +12,10 @@ test('HG57 S1-S7: installed release, recovery, two roots, local assets and full 
  const parent=path.resolve('../target/highgrade/tmp');const profile=path.join(parent,'ui-installed-profile');expect(existsSync(profile)).toBeFalsy();mkdirSync(profile);
  const f=fixture(candidateExe),other=fixture(candidateExe);const before=f.hash(),beforeOther=other.hash();
  const sha=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
- function cli(op:string,args:string[]=[],success=true){const p=spawnSync(candidateExe,[op,'--profile',profile,...args],{encoding:'utf8',windowsHide:true});const r=JSON.parse(p.stdout);if(success)expect(p.status,p.stdout).toBe(0);else expect(p.status).not.toBe(0);return r}
+ function cli(op:string,args:string[]=[],success=true,executable=candidateExe){const p=spawnSync(executable,[op,'--profile',profile,...args],{encoding:'utf8',windowsHide:true});const r=JSON.parse(p.stdout);if(success)expect(p.status,p.stdout).toBe(0);else expect(p.status).not.toBe(0);return r}
  const oldSource=process.env.HIGHGRADE_OLD_SOURCE!;const oldExe=process.env.HIGHGRADE_OLD_EXE!;
  try{
- cli('global-install',['--source',oldSource,'--candidate-exe',oldExe]);
+ cli('global-install',['--source',oldSource,'--candidate-exe',oldExe],true,oldExe);
  const pointerPath=path.join(profile,'.highgrade/global/active.json');const oldPointer=JSON.parse(readFileSync(pointerPath,'utf8'));
  const skillRel='.agents/skills/highgrade-work/SKILL.md',skillPath=path.join(profile,skillRel);const skillBefore=readFileSync(skillPath),interrupted=Buffer.from('Interrupted test candidate');
  const transactionPath=path.join(profile,'.highgrade/global/skill-transaction.json');writeFileSync(transactionPath,JSON.stringify({old_active:oldPointer,candidate:manifest.release,before:{[skillRel]:[...skillBefore]},after:{[skillRel]:sha(interrupted)}}));writeFileSync(skillPath,interrupted);
