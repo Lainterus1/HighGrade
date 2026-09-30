@@ -54,7 +54,7 @@ def main():
         result = report('inspect')
         if any(f['status'] in ('failed', 'unknown') for f in result['findings']):
             raise RuntimeError(result)
-        print(json.dumps(result, ensure_ascii=False))
+        print(json.dumps(result, ensure_ascii=True))
 
 
 if __name__ == '__main__':
