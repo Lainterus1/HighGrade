@@ -15,7 +15,7 @@
 | `spec-save` | `--id HG-CHANGE --expected HASH --input edit.json`; сохранение редакции change |
 | `spec-diff` | `--id HG-CHANGE`; операции и текущие требования для сравнения |
 | `spec-validate` | `--id HG-CHANGE`; наполненность требований, сценариев и задач, вопросы и база |
-| `spec-integrate` | `--id HG-CHANGE --expected HASH`; после check включить требования и архивировать change |
+| `spec-integrate` | `--id HG-CHANGE --expected HASH`; проверить готовность, включить требования и архивировать change |
 | `spec-transfer` | `--id HG-CHANGE --expected HASH`; перенести проверенный импорт прежнего контракта без объявления сценариев пройденными |
 | `spec-abandon` | `--id HG-CHANGE --expected HASH --reason TEXT`; сохранить отвергнутый черновик в истории без изменения требований |
 | `spec-migrate` | `--expected HASH --to directory`: v1/v2 → каталог; без --to сохраняется прежний переход v1 → v2 |
