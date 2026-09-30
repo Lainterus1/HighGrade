@@ -386,6 +386,13 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
             return Err(format!("GlobalInstalledFileChanged: {rel}"));
         }
     }
+    install::verify_executable(&paths::safe(
+        profile,
+        &format!(
+            ".highgrade/global/releases/{release}/highgrade{}",
+            std::env::consts::EXE_SUFFIX
+        ),
+    )?)?;
     Ok(bytes)
 }
 fn active(profile: &Path) -> Result<Option<(String, String)>> {
@@ -516,7 +523,7 @@ fn stage(profile: &Path, c: &Candidate) -> Result<()> {
     ];
     for (rel, data) in &c.files {
         if !new_routers.contains(rel) {
-            install::put_once(profile, rel, data)?;
+            install::put_release_file(profile, rel, data)?;
         }
     }
     let mut created = Vec::new();

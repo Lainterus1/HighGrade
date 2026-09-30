@@ -147,7 +147,7 @@ fn next_source() -> TestDir {
 }
 fn candidate_exe(source: &Path) -> PathBuf {
     let path = source.join("candidate.exe");
-    write(&path, &fs::read(env!("CARGO_BIN_EXE_highgrade")).unwrap());
+    fs::copy(env!("CARGO_BIN_EXE_highgrade"), &path).unwrap();
     path
 }
 #[test]
@@ -330,8 +330,9 @@ fn update_requires_fresh_explicit_decision_and_preserves_adaptation() {
     );
     assert_eq!(
         fs::read(root.join(format!(
-            ".highgrade/releases/{}/highgrade.exe",
-            next_release()
+            ".highgrade/releases/{}/highgrade{}",
+            next_release(),
+            std::env::consts::EXE_SUFFIX
         )))
         .unwrap(),
         fs::read(&selected_exe).unwrap()

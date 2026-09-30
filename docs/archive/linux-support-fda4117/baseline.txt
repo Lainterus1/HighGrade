@@ -1,0 +1,348 @@
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded generic-array v0.14.7
+  Downloaded ref-cast-impl v1.0.27
+  Downloaded itoa v1.0.18
+  Downloaded version_check v0.9.5
+  Downloaded crypto-common v0.1.7
+  Downloaded block-buffer v0.10.4
+  Downloaded cpufeatures v0.2.17
+  Downloaded ref-cast v1.0.27
+  Downloaded dyn-clone v1.0.20
+  Downloaded cfg-if v1.0.5
+  Downloaded sha2 v0.10.9
+  Downloaded quote v1.0.47
+  Downloaded unicase v2.9.0
+  Downloaded zmij v1.0.23
+  Downloaded serde_derive_internals v0.30.0
+  Downloaded digest v0.10.7
+  Downloaded bitflags v2.13.2
+  Downloaded schemars_derive v1.2.2
+  Downloaded roxmltree v0.20.0
+  Downloaded unicode-ident v1.0.26
+  Downloaded proc-macro2 v1.0.107
+  Downloaded serde_derive v1.0.229
+  Downloaded serde_core v1.0.229
+  Downloaded serde v1.0.229
+  Downloaded typenum v1.20.1
+  Downloaded schemars v1.2.2
+  Downloaded memchr v2.8.3
+  Downloaded serde_json v1.0.151
+  Downloaded pulldown-cmark v0.13.0
+  Downloaded syn v3.0.6
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.26
+   Compiling version_check v0.9.5
+   Compiling serde_core v1.0.229
+   Compiling typenum v1.20.1
+   Compiling zmij v1.0.23
+   Compiling serde v1.0.229
+   Compiling memchr v2.8.3
+   Compiling ref-cast v1.0.27
+   Compiling serde_json v1.0.151
+   Compiling itoa v1.0.18
+   Compiling pulldown-cmark v0.13.0
+   Compiling dyn-clone v1.0.20
+   Compiling unicase v2.9.0
+   Compiling cpufeatures v0.2.17
+   Compiling bitflags v2.13.2
+   Compiling cfg-if v1.0.5
+   Compiling roxmltree v0.20.0
+   Compiling generic-array v0.14.7
+   Compiling syn v3.0.6
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling digest v0.10.7
+   Compiling sha2 v0.10.9
+   Compiling serde_derive_internals v0.30.0
+   Compiling serde_derive v1.0.229
+   Compiling ref-cast-impl v1.0.27
+   Compiling schemars_derive v1.2.2
+   Compiling schemars v1.2.2
+   Compiling highgrade v0.3.3 (/home/lainterus/Documents/ChatGPT/Linux/HighGrade)
+warning: unused import: `OpenOptions`
+ --> src/package.rs:5:22
+  |
+5 |     fs::{self, File, OpenOptions},
+  |                      ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `io::Write`
+ --> src/package.rs:6:5
+  |
+6 |     io::Write,
+  |     ^^^^^^^^^
+
+warning: `highgrade` (lib test) generated 2 warnings (2 duplicates)
+warning: `highgrade` (lib) generated 2 warnings (run `cargo fix --lib -p highgrade` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.03s
+     Running unittests src/lib.rs (target/debug/deps/highgrade-88e28a1fe8f01eed)
+
+running 2 tests
+test trace::id_tests::accepts_project_ids_and_rejects_malformed_ids ... ok
+test specs::progress::metadata_compatibility::old_tagged_revision_survives_metadata_but_not_material_drift ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/highgrade-18c6d01b51bdee3a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/bootstrap_contracts.rs (target/debug/deps/bootstrap_contracts-4d9d5a6c026ed4f8)
+
+running 17 tests
+test bootstrap_reports_all_slots_before_registry_exists ... ok
+test bootstrap_distinguishes_adaptation_from_technical_failure ... ok
+test bootstrap_skips_generated_skill_outputs ... ok
+test complete_project_still_reports_missing_navigation_without_candidate_walk ... ok
+test complete_project_still_checks_exclusion_input_without_walking_tree ... ok
+test alternative_name_is_candidate_but_never_accepted_as_role ... ok
+test migrated_architecture_with_old_readme_link_is_reported ... ok
+test bootstrap_does_not_read_excluded_sources_or_offer_excluded_link_targets ... ok
+test canonical_project_has_separate_path_and_link_evidence ... ok
+test exclusions_are_safe_and_bad_registry_does_not_hide_candidates ... ok
+test candidate_and_input_limits_keep_partial_evidence ... ok
+test bundled_templates_match_the_canonical_bootstrap_contract ... ok
+test combined_roles_are_counted_once_and_invalid_assignments_fail ... ok
+test missing_link_is_distinct_from_missing_file_and_registry_path_mismatch ... ok
+test connected_project_uses_registered_existing_path ... ok
+test bootstrap_reports_multiple_unvisited_locations_with_a_count ... ok
+test cli_accepts_bootstrap_without_registry_and_rejects_map_and_conflicts ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/catalog_contracts.rs (target/debug/deps/catalog_contracts-20ac632917efa3e3)
+
+running 39 tests
+test foreign_directory_and_unknown_fields_are_not_adopted ... ok
+test foreign_structured_files_are_not_deleted ... ok
+test compact_catalog_accepts_empty_changes_and_new_changes ... ok
+test compact_views_and_atomic_edit_protect_results_and_cas ... ok
+test explicit_migration_preserves_all_data_and_detects_legacy_writer ... ok
+test evidence_batch_is_atomic_and_exact_repeat_is_noop ... ok
+test malformed_recovery_never_unblocks_catalog ... ok
+test interrupted_transaction_refuses_reads_and_recovers_only_observed_targets ... ok
+test action_diagnostics_check_runner_without_execution ... ok
+test explicit_links_reject_missing_cycles_and_do_not_inherit_content ... ok
+test first_baseline_capture_rejects_local_cas_after_target_changed ... ok
+test readable_presentation_preserves_values_and_puts_service_fields_last ... ok
+test local_edit_rejects_dependency_runner_drift ... ok
+test recovery_cannot_delete_a_required_specification ... ok
+test recovery_reconstructs_partial_staging_and_missing_first_document ... ok
+test integrated_recheck_retains_history_and_invalidates_old_acceptance ... ok
+test project_catalog_survives_service_removal_and_preserves_siblings ... ok
+test selected_directory_is_project_owned_and_self_contained ... ok
+test native_report_import_reuses_suite_and_rejects_stale_or_missing_results ... ok
+test selected_list_and_local_edit_preserve_independent_work ... ok
+test metadata_batch_preserves_integrated_history_and_rejects_invalid_batches ... ok
+test spec_check_brief_reports_affected_inputs ... ok
+test spec_check_brief_returns_stable_handoff ... ok
+test launch_selector_is_literal_and_distinct_from_strict_report_identity ... ok
+test two_catalog_writers_cannot_allocate_the_same_number ... ok
+test scoped_baseline_captures_only_selected_requirements_and_never_refreshes ... ok
+test equivalent_native_runs_keep_material_revision_and_append_history ... ok
+test shared_inputs_track_content_and_membership ... ok
+test spec_check_brief_reports_stale_run ... ok
+test delivery_audits_bundle_and_git_index_without_changing_readiness ... ok
+test tags_merge_atomically_and_filters_keep_dependencies_discoverable ... ok
+test compact_history_preserves_observations_and_rejects_corruption ... ok
+test batch_failure_keeps_prior_results_and_each_scenario_owns_its_report ... ok
+test delivery_reads_index_bytes_without_filters_or_index_flag_shortcuts ... ok
+test multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit ... ok
+test cargo_runner_requires_a_real_exact_test ... ok
+test compact_transaction_limit_and_recovery_preserve_catalog ... ok
+test run_statistics_track_attempts_without_execution ... ok
+test explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift ... ok
+
+test result: ok. 39 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.48s
+
+     Running tests/contracts.rs (target/debug/deps/contracts-ef9ffbda055b9bae)
+
+running 33 tests
+test entry_does_not_hide_unmapped_sibling ... ok
+test colocated_document_does_not_cover_its_parent ... ok
+test broken_links_and_anchors_are_failures ... ok
+test exceeding_agreed_budget_warns_without_raising_it ... ok
+test diagnostic_summary_keeps_unknown_and_errors_separate ... ok
+test budget_history_cannot_skip_or_exceed_ceiling ... ok
+test install_rejects_stale_audit ... ok
+test default_inspect_uses_only_highgrade_registry ... ok
+test install_requires_audit_before_writes ... ok
+test links_support_reference_unicode_parent_and_code_exclusion ... ok
+test missing_budget_is_unknown_not_success ... ok
+test missing_roles_duplicates_and_files_are_reported ... ok
+test measures_utf8_crlf_and_does_not_modify_inputs ... ok
+test source_inventory_is_case_sensitive_and_stable ... ok
+test named_results_preserve_legacy_and_do_not_pick_ambiguous_values ... ok
+test traversal_and_ads_are_rejected ... ok
+test cli_errors_keep_the_report_contract ... ok
+test new_area_is_unknown ... ok
+test scenario_ids_in_headings_are_not_broken_markdown_links ... ok
+test package_hash_failure_writes_nothing ... ok
+test parent_scope_reads_child_documents ... ok
+test task_checkboxes_and_inline_code_are_not_references ... ok
+test unresolved_reference_is_not_silent ... ok
+test valid_budget_history_passes ... ok
+test scoped_inspection_selects_sources_and_reports_unmapped_scope ... ok
+test cli_command_help_is_available_without_a_project ... ok
+test conflicting_skill_is_not_adopted_even_if_equal ... ok
+test recovery_does_not_overwrite_foreign_edit ... ok
+test incomplete_temp_is_preserved_and_not_activated ... ok
+test modified_installed_file_is_detected ... ok
+test complete_temp_can_resume_publication ... ok
+test install_preserves_agents_and_repeats_without_duplicates ... ok
+test interruption_at_each_publication_boundary_resumes ... ok
+
+test result: ok. 33 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.60s
+
+     Running tests/global_contracts.rs (target/debug/deps/global_contracts-f13ae8cfb351fb88)
+
+running 26 tests
+test global_update_rejects_manual_rollback_option ... ok
+test doctor_reports_unavailable_tool_without_claiming_version ... ok
+test shipped_tool_references_resolve_without_repository_files ... ok
+test kit_manifest_uses_stable_lf_bytes ... ok
+test global_install_rejects_hash_and_foreign_router_without_activation ... ok
+test supported_adapter_does_not_claim_semantic_readiness ... ok
+test failed_candidate_stage_restores_changed_skill ... FAILED
+test unsupported_project_adapter_is_a_failure ... ok
+test global_update_preview_switch_and_cleanup_keep_unrelated_files ... FAILED
+test global_update_preserves_project_adaptation_in_profile ... FAILED
+test interrupted_skill_update_recovers_without_overwriting_user_edit ... FAILED
+test planner_router_is_portable ... FAILED
+test installed_runtime_references_survive_removal_of_source_copy ... FAILED
+test shipped_registry_example_is_accepted_without_inventing_budgets ... FAILED
+test global_install_does_not_touch_project_and_checks_adapter ... FAILED
+test update_replaces_owned_skill_and_preserves_user_edit ... FAILED
+test update_preserves_foreign_file_in_old_release ... FAILED
+test failed_stage_preserves_foreign_candidate_journal ... ok
+test legacy_deploy_migrates_to_approve_push_and_cleans_old_release ... FAILED
+test nine_skill_release_upgrades_to_thematic_tool_references ... FAILED
+test planner_update_accepts_prior_eight_skill_release ... FAILED
+test six_skill_release_preserves_owned_crlf_routers ... FAILED
+test thematic_tools_release_upgrades_to_fixer_materials ... FAILED
+test six_skill_release_updates_to_approve_push_and_cleans_old_release ... FAILED
+test v026_deploy_migrates_to_two_routes_and_removes_old_release ... FAILED
+test failed_stage_does_not_leave_new_routers ... FAILED
+
+failures:
+
+---- failed_candidate_stage_restores_changed_skill stdout ----
+
+thread 'failed_candidate_stage_restores_changed_skill' panicked at tests/global_contracts.rs:143:50:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- global_update_preview_switch_and_cleanup_keep_unrelated_files stdout ----
+
+thread 'global_update_preview_switch_and_cleanup_keep_unrelated_files' panicked at tests/global_contracts.rs:471:50:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- global_update_preserves_project_adaptation_in_profile stdout ----
+
+thread 'global_update_preserves_project_adaptation_in_profile' panicked at tests/global_contracts.rs:1259:54:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- interrupted_skill_update_recovers_without_overwriting_user_edit stdout ----
+
+thread 'interrupted_skill_update_recovers_without_overwriting_user_edit' panicked at tests/global_contracts.rs:108:50:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- planner_router_is_portable stdout ----
+
+thread 'planner_router_is_portable' panicked at tests/global_contracts.rs:260:52:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- installed_runtime_references_survive_removal_of_source_copy stdout ----
+
+thread 'installed_runtime_references_survive_removal_of_source_copy' panicked at tests/global_contracts.rs:208:52:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- shipped_registry_example_is_accepted_without_inventing_budgets stdout ----
+
+thread 'shipped_registry_example_is_accepted_without_inventing_budgets' panicked at tests/global_contracts.rs:337:54:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- global_install_does_not_touch_project_and_checks_adapter stdout ----
+
+thread 'global_install_does_not_touch_project_and_checks_adapter' panicked at tests/global_contracts.rs:396:63:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- update_replaces_owned_skill_and_preserves_user_edit stdout ----
+
+thread 'update_replaces_owned_skill_and_preserves_user_edit' panicked at tests/global_contracts.rs:67:50:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- update_preserves_foreign_file_in_old_release stdout ----
+
+thread 'update_preserves_foreign_file_in_old_release' panicked at tests/global_contracts.rs:544:50:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- legacy_deploy_migrates_to_approve_push_and_cleans_old_release stdout ----
+
+thread 'legacy_deploy_migrates_to_approve_push_and_cleans_old_release' panicked at tests/global_contracts.rs:664:6:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- nine_skill_release_upgrades_to_thematic_tool_references stdout ----
+
+thread 'nine_skill_release_upgrades_to_thematic_tool_references' panicked at tests/global_contracts.rs:1390:6:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- planner_update_accepts_prior_eight_skill_release stdout ----
+
+thread 'planner_update_accepts_prior_eight_skill_release' panicked at tests/global_contracts.rs:309:10:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- six_skill_release_preserves_owned_crlf_routers stdout ----
+
+thread 'six_skill_release_preserves_owned_crlf_routers' panicked at tests/global_contracts.rs:1033:6:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- thematic_tools_release_upgrades_to_fixer_materials stdout ----
+
+thread 'thematic_tools_release_upgrades_to_fixer_materials' panicked at tests/global_contracts.rs:1425:6:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- six_skill_release_updates_to_approve_push_and_cleans_old_release stdout ----
+
+thread 'six_skill_release_updates_to_approve_push_and_cleans_old_release' panicked at tests/global_contracts.rs:1068:6:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- v026_deploy_migrates_to_two_routes_and_removes_old_release stdout ----
+
+thread 'v026_deploy_migrates_to_two_routes_and_removes_old_release' panicked at tests/global_contracts.rs:692:6:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+---- failed_stage_does_not_leave_new_routers stdout ----
+
+thread 'failed_stage_does_not_leave_new_routers' panicked at tests/global_contracts.rs:1126:6:
+called `Result::unwrap()` on an `Err` value: "CandidateExecutableInvalid: Permission denied (os error 13)"
+
+
+failures:
+    failed_candidate_stage_restores_changed_skill
+    failed_stage_does_not_leave_new_routers
+    global_install_does_not_touch_project_and_checks_adapter
+    global_update_preserves_project_adaptation_in_profile
+    global_update_preview_switch_and_cleanup_keep_unrelated_files
+    installed_runtime_references_survive_removal_of_source_copy
+    interrupted_skill_update_recovers_without_overwriting_user_edit
+    legacy_deploy_migrates_to_approve_push_and_cleans_old_release
+    nine_skill_release_upgrades_to_thematic_tool_references
+    planner_router_is_portable
+    planner_update_accepts_prior_eight_skill_release
+    shipped_registry_example_is_accepted_without_inventing_budgets
+    six_skill_release_preserves_owned_crlf_routers
+    six_skill_release_updates_to_approve_push_and_cleans_old_release
+    thematic_tools_release_upgrades_to_fixer_materials
+    update_preserves_foreign_file_in_old_release
+    update_replaces_owned_skill_and_preserves_user_edit
+    v026_deploy_migrates_to_two_routes_and_removes_old_release
+
+test result: FAILED. 8 passed; 18 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.81s
+
+error: test failed, to rerun pass `--test global_contracts`

@@ -1,14 +1,15 @@
 import {test,expect} from '@playwright/test';
 import {spawnSync} from 'node:child_process';
-import {readFileSync,writeFileSync,mkdirSync,rmSync,existsSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdirSync,rmSync,existsSync,chmodSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {fixture} from './native-fixture';
 const configured=process.env.HIGHGRADE_UI_CANDIDATE;
+const binaryName=process.platform==='win32'?'highgrade.exe':'highgrade';
 test.skip(!configured,'Requires exact-SHA candidate built in an isolated release fixture');
 test.setTimeout(180000);
 test('HG57 S1-S7: installed release, recovery, two roots, local assets and full human workflow',async({page,request})=>{
- const candidate=path.resolve(configured!);const candidateExe=path.join(candidate,'highgrade.exe');const manifest=JSON.parse(readFileSync(path.join(candidate,'kit/manifest.json'),'utf8'));
+ const candidate=path.resolve(configured!);const candidateExe=path.join(candidate,binaryName);const manifest=JSON.parse(readFileSync(path.join(candidate,'kit/manifest.json'),'utf8'));
  const parent=path.resolve('../target/highgrade/tmp');const profile=path.join(parent,'ui-installed-profile');expect(existsSync(profile)).toBeFalsy();mkdirSync(profile);
  const f=fixture(candidateExe),other=fixture(candidateExe);const before=f.hash(),beforeOther=other.hash();
  const sha=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
@@ -22,7 +23,7 @@ test('HG57 S1-S7: installed release, recovery, two roots, local assets and full 
  expect(JSON.stringify(cli('global-status',[],false))).toContain('GlobalSkillRecoveryRequired');cli('global-recover');expect(readFileSync(skillPath)).toEqual(skillBefore);expect(JSON.parse(readFileSync(pointerPath,'utf8'))).toEqual(oldPointer);
  const args=['--source',path.join(candidate,'kit'),'--candidate-exe',candidateExe];const preview=cli('global-update',args,false);expect(preview.result.validation).toBe('passed');const fingerprint=preview.measurements.find((m:any)=>m.candidate_sha256).candidate_sha256;
  cli('global-update',[...args,'--apply','true','--candidate-sha256',fingerprint]);cli('global-status');
- const active=JSON.parse(readFileSync(pointerPath,'utf8'));expect(active.release).toBe(manifest.release);const installed=path.join(profile,'.highgrade/global/releases',active.release,'highgrade.exe');expect(sha(readFileSync(installed))).toBe(sha(readFileSync(candidateExe)));
+ const active=JSON.parse(readFileSync(pointerPath,'utf8'));expect(active.release).toBe(manifest.release);const installed=path.join(profile,'.highgrade/global/releases',active.release,binaryName);expect(sha(readFileSync(installed))).toBe(sha(readFileSync(candidateExe)));
  expect(f.hash()).toEqual(before);expect(other.hash()).toEqual(beforeOther);
  const url=await f.start(installed),otherUrl=await other.start(installed);expect(url).not.toBe(otherUrl);
  const external:string[]=[],errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/*',route=>{const u=new URL(route.request().url());if(u.hostname!=='127.0.0.1'){external.push(u.href);return route.abort()}return route.continue()});
@@ -36,7 +37,7 @@ test('HG57 S1-S7: installed release, recovery, two roots, local assets and full 
  f.handoff('HG-0005','requirements');await page.getByRole('button',{name:'Обновить',exact:true}).click();await page.getByRole('button',{name:'Согласовать требования',exact:true}).click();await page.getByLabel('Ваше имя',{exact:true}).fill('Тестовый пользователь');await page.getByRole('button',{name:'Подтвердить',exact:true}).click();await expect(page.getByRole('status')).toContainText('Состояние сохранено');expect(f.cli('spec-read','--id','HG-0005').change.tasks[0].done).toBe(false);
  f.ready('HG-0005');f.handoff('HG-0005','result');await page.getByRole('button',{name:'Обновить',exact:true}).click();await page.getByRole('button',{name:'Принять результат',exact:true}).click();await page.getByLabel('Ваше имя',{exact:true}).fill('Тестовый пользователь');await page.getByLabel('Версия проверенного результата',{exact:true}).fill(process.env.HIGHGRADE_UI_SOURCE_SHA!);await page.getByRole('button',{name:'Подтвердить',exact:true}).click();await expect(page.getByRole('status')).toContainText('Состояние сохранено');expect(f.cli('spec-read','--id','HG-0005').change.acceptance.at(-1).verified_revision).toBe(process.env.HIGHGRADE_UI_SOURCE_SHA);expect(f.row('HG-0005').category).toBe('completed');
  await page.screenshot({path:test.info().outputPath('installed.png'),fullPage:true});expect(other.hash()).toEqual(beforeOther);expect(external).toEqual([]);expect(errors).toEqual([]);
- const catalogNow=f.hash();const bytes=readFileSync(installed);const needle=Buffer.from(`"api_version": "${bundle.api_version}"`);const position=bytes.indexOf(needle);expect(position).toBeGreaterThan(0);expect(bytes.indexOf(needle,position+1)).toBe(-1);const damaged=Buffer.from(bytes);damaged[position+needle.length-2]='9'.charCodeAt(0);const invalidExe=path.join(profile,'incompatible-ui.exe');writeFileSync(invalidExe,damaged);const rejected=spawnSync(invalidExe,['ui','--root',f.root,'--no-open','true'],{encoding:'utf8',env:{...process.env,PATH:''},windowsHide:true});expect(rejected.status).not.toBe(0);expect(rejected.stdout).toContain('UiBundleInvalid');expect(rejected.stdout).not.toContain('ui_url');expect(f.hash()).toEqual(catalogNow);
+ const catalogNow=f.hash();const bytes=readFileSync(installed);const needle=Buffer.from(`"api_version": "${bundle.api_version}"`);const position=bytes.indexOf(needle);expect(position).toBeGreaterThan(0);expect(bytes.indexOf(needle,position+1)).toBe(-1);const damaged=Buffer.from(bytes);damaged[position+needle.length-2]='9'.charCodeAt(0);const invalidExe=path.join(profile,'incompatible-ui'+(process.platform==='win32'?'.exe':''));writeFileSync(invalidExe,damaged);if(process.platform!=='win32')chmodSync(invalidExe,0o700);const rejected=spawnSync(invalidExe,['ui','--root',f.root,'--no-open','true'],{encoding:'utf8',env:{...process.env,PATH:''},windowsHide:true});expect(rejected.status).not.toBe(0);expect(rejected.stdout).toContain('UiBundleInvalid');expect(rejected.stdout).not.toContain('ui_url');expect(f.hash()).toEqual(catalogNow);
  const stopped=await(await request.get(otherUrl+'/api/session')).json();expect((await request.post(otherUrl+'/api/shutdown',{headers:{Origin:otherUrl,'X-HighGrade-Token':stopped.token,'X-HighGrade-Api':stopped.api_version}})).ok()).toBeTruthy();
  }finally{await f.close();await other.close();if(path.dirname(profile)!==parent)throw Error('Unsafe cleanup');rmSync(profile,{recursive:true,force:true})}
 });

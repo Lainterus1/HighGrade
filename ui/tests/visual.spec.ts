@@ -22,7 +22,7 @@ test('editing, validation, discard and decision dialog are keyboard usable',asyn
 });
 test('narrow and 200 percent layout preserve controls and focus',async({page})=>{
  await page.setViewportSize({width:720,height:900});await page.goto(screen('long'));await page.getByRole('button',{name:'Открыть список спецификаций'}).click();await page.getByLabel('Поиск по спецификациям').fill('zzzz');await expect(page.getByRole('status')).toContainText('Ничего не найдено');await page.getByRole('button',{name:'Открыть список спецификаций'}).click();
- await expect(page.locator('.mobile-context')).toContainText('Демонстрационные данные');await expect(page.locator('.mobile-context')).toContainText('D:\\my_projects\\MyCodex');
+ await expect(page.locator('.mobile-context')).toContainText('Демонстрационные данные');await expect(page.locator('.mobile-context')).toContainText('Projects/MyCodex');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();await page.screenshot({path:'../target/highgrade/tmp/hg58/narrow.png',fullPage:true});
  // Browser zoom 200% has half the CSS viewport at the same physical pixel size.
  const cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setDeviceMetricsOverride',{width:720,height:450,deviceScaleFactor:2,mobile:false});await page.goto(screen('approval'));

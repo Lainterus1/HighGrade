@@ -15,7 +15,7 @@ import wordmark from '@/assets/brand/wordmark.svg';
 export interface WorkspaceProps {state?:ScreenState; document?:SpecDocument;project?:{name:string;root:string}}
 const nav:{id:Category;label:string}[]=[{id:'all',label:'Все спецификации'},{id:'decision',label:'Нужно решение'},{id:'work',label:'В работе'},{id:'completed',label:'Завершены'}];
 const names={approval:'Согласовать требования',question:'Ответить на вопрос',acceptance:'Принять результат'};
-export function SpecWorkspace({state:initialState='approval',document:source=demoSpec,project={name:'MyCodex',root:'D:\\my_projects\\MyCodex'}}:WorkspaceProps) {
+export function SpecWorkspace({state:initialState='approval',document:source=demoSpec,project={name:'MyCodex',root:'Projects/MyCodex'}}:WorkspaceProps) {
  const [state,setState]=useState(initialState);
  if(state==='long')source={...source,requirements:Array.from({length:9},(_,i)=>({...source.requirements[i%3],id:`HG-DEMO-LONG-R${i+1}`,scenarios:source.requirements[i%3].scenarios.map((s,j)=>({...s,id:`HG-DEMO-LONG-S${i+1}-${j+1}`}))}))};
  const [doc,setDoc]=useState(source);const [draft,setDraft]=useState(source);const [category,setCategory]=useState<Category>('decision');const [search,setSearch]=useState(state==='search-empty'?'ничего не найдено':'');const [editing,setEditing]=useState(['editing','conflict','validation'].includes(state));const [dirty,setDirty]=useState(false);const [menu,setMenu]=useState(false);const [width,setWidth]=useState(288);const [dialog,setDialog]=useState<'decision'|'discard'|null>(null);const [answer,setAnswer]=useState('');const [message,setMessage]=useState('');const [error,setError]=useState(state==='validation'?'Поле «Цель» не может быть пустым.':'');const [conflict,setConflict]=useState(state==='conflict');

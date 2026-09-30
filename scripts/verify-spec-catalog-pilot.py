@@ -1,13 +1,15 @@
 import datetime
 import hashlib
 import json
+import os
 import pathlib
 import shutil
 import subprocess
 import tempfile
 
 repo = pathlib.Path(__file__).resolve().parents[1]
-candidate = repo / "target/debug/highgrade.exe"
+binary_name = "highgrade.exe" if os.name == "nt" else "highgrade"
+candidate = repo / "target/debug" / binary_name
 output = repo / "docs/evidence/spec-catalog/isolated-pilot-refresh.json"
 operations = []
 
@@ -49,7 +51,7 @@ with tempfile.TemporaryDirectory(prefix="hg-spec-catalog-") as work_name:
     shutil.copytree(repo / "kit", source)
     installation = call(candidate, "global-install", "--profile", profile, "--source", source, "--candidate-exe", candidate)
     release = installation["measurements"][0]["release"]
-    installed = profile / ".highgrade/global/releases" / release / "highgrade.exe"
+    installed = profile / ".highgrade/global/releases" / release / binary_name
     status = call(installed, "global-status", "--profile", profile)
     assert status["measurements"][0]["release"] == release
     doctor = subprocess.run([str(installed), "doctor", "--root", str(project)], cwd=project,
@@ -89,7 +91,7 @@ with tempfile.TemporaryDirectory(prefix="hg-spec-catalog-") as work_name:
     (project / "probe.txt").write_text("Создание HG-0001 и проверка spec-list", encoding="utf-8")
     (project / "list-report.json").write_text(json.dumps(listed, ensure_ascii=False), encoding="utf-8")
     evidence = {"scenario": "HG-0001-S1", "method": "manual",
-                "command": "installed highgrade.exe spec-list --root project",
+                "command": f"installed {binary_name} spec-list --root project",
                 "captured_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
                 "outcome": "passed", "observation": "Фактический spec-list содержит HG-0001",
                 "inputs": ["probe.txt"], "report": "list-report.json"}

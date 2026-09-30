@@ -640,3 +640,22 @@ fn diagnostic_summary_keeps_unknown_and_errors_separate() {
     assert_eq!(r.exit_code(), 1);
     assert!(reg["documents"][0]["budget"].is_null());
 }
+
+#[cfg(unix)]
+#[test]
+fn legacy_install_detects_lost_executable_permission() {
+    use std::os::unix::fs::PermissionsExt;
+    let (root, source) = fixture();
+    install(&root, &source, "audit.json", None).unwrap();
+    let cli = root.join(".highgrade/releases/p0p2-prototype/highgrade");
+    assert_eq!(
+        fs::metadata(&cli).unwrap().permissions().mode() & 0o777,
+        0o700
+    );
+    fs::set_permissions(&cli, fs::Permissions::from_mode(0o600)).unwrap();
+    assert!(
+        verify(&paths::root(&root).unwrap())
+            .unwrap_err()
+            .contains("InstalledExecutableNotExecutable")
+    );
+}

@@ -16,7 +16,7 @@ const run = () => spawnSync(process.execPath, [checker, 'prepare', fixture],
 const fail = (message) => { throw new Error(message); };
 
 try {
-  for (const file of ['specs', 'src', 'tests', 'build.rs', 'ui/dist', 'Cargo.toml', 'Cargo.lock', '.gitattributes',
+  for (const file of ['specs', 'src', 'tests', 'build.rs', 'ui/dist', 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', '.gitattributes',
     '.config/nextest.toml', 'target/nextest/highgrade/list.json',
     'target/nextest/highgrade/junit.xml', 'target/nextest/highgrade/run.json']) copy(file);
   const recordPath = at('target/nextest/highgrade/run.json');
@@ -54,8 +54,15 @@ try {
   if (rustHash.status === 0 || !rustHash.stderr.includes('specification or test inputs changed')) {
     fail(`changed Rust hash was accepted with restored mtime: ${rustHash.stdout || rustHash.stderr}`);
   }
+  const toolchainPath = at('rust-toolchain.toml');
+  writeFileSync(toolchainPath, `${readFileSync(toolchainPath, 'utf8')}\n# changed after report\n`);
+  const toolchain = run();
+  if (toolchain.status === 0 || !toolchain.stderr.includes('rust-toolchain.toml: source changed after')) {
+    fail(`changed Rust toolchain was accepted: ${toolchain.stdout || toolchain.stderr}`);
+  }
   console.log(JSON.stringify({ status: 'passed', equivalent_reused: true,
-    changed_scenario_rejected: true, changed_rust_rejected: true, changed_rust_hash_rejected: true }));
+    changed_scenario_rejected: true, changed_rust_rejected: true, changed_rust_hash_rejected: true,
+    changed_toolchain_rejected: true }));
 } catch (cause) {
   console.error(JSON.stringify({ status: 'failed', message: String(cause.message ?? cause) }));
   process.exitCode = 1;

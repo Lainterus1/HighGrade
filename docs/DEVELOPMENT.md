@@ -1,6 +1,6 @@
 # Разработка и проверки
 
-Нужны Python 3.12, Node.js и Rust. Команды — из корня. Кандидат CLI: Nextest либо `cargo build --locked`.
+Нужны Python 3.12+, Node.js 24 и Rust 1.89. Команды — из корня. Кандидат CLI: Nextest либо `cargo build --locked`.
 
 ## Изменения требований: нативные спецификации
 
@@ -12,6 +12,13 @@ $hgActive = Get-Content "$hgProfile/.highgrade/global/active.json" -Raw | Conver
 $hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.exe"
 & $hgExe spec-list --root "$PWD"
 & $hgExe spec-schema --root "$PWD"
+```
+
+```bash
+hgRelease=$(python -c 'import json,pathlib; print(json.loads((pathlib.Path.home()/".highgrade/global/active.json").read_text())["release"])')
+hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
+"$hgExe" spec-list --root "$PWD"
+"$hgExe" spec-schema --root "$PWD"
 ```
 
 Краткий статус: `spec-check --id HG-CHANGE --brief true`. Рабочий контекст: `spec-read --view summary|editable`; full — для истории.
@@ -26,24 +33,7 @@ $hgExe = "$hgProfile/.highgrade/global/releases/$($hgActive.release)/highgrade.e
 
 Связка проверяет каталог и автоматические сценарии; готовность изменения — spec-check.
 
-Если Nextest отсутствует: `cargo install cargo-nextest --version 0.9.146 --locked --root target/highgrade/tools`. Запуск — ниже; обычная очистка сохраняет tools.
-
-```powershell
-New-Item -ItemType Directory -Force target/nextest/highgrade | Out-Null
-$nextest = (Resolve-Path 'target/highgrade/tools/bin/cargo-nextest.exe').Path
-node scripts/source-scenarios.mjs check
-if ($LASTEXITCODE -ne 0) { throw 'native scenario catalog check failed' }
-& $nextest nextest list --locked --message-format json | Set-Content -Encoding utf8 target/nextest/highgrade/list.json
-if ($LASTEXITCODE -ne 0) { throw 'nextest list failed' }
-& $nextest nextest run --locked --profile highgrade
-if ($LASTEXITCODE -ne 0) { throw 'nextest run failed' }
-node scripts/source-scenarios.mjs prepare
-if ($LASTEXITCODE -ne 0) { throw 'scenario preparation failed' }
-target/debug/highgrade.exe trace --root "$PWD" --record target/nextest/highgrade/run.json | Set-Content -Encoding utf8 target/nextest/highgrade/trace.json
-if ($LASTEXITCODE -notin @(0, 2)) { throw 'trace failed' }
-node scripts/source-scenarios.mjs verify
-if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
-```
+Nextest 0.9.146 установите готовым бинарником для своей ОС в `target/highgrade/tools/bin` и добавьте каталог в PATH. Rust проекта закреплён отдельно: сборка Nextest из исходников может требовать более новый компилятор. Общие команды проверки приведены ниже.
 
 `prepare` отвергает устаревший отчёт. После `spec-integrate` повтори `prepare`/`trace`/`verify`. Nextest переиспользуется лишь при эквивалентном каталоге и неизменных входах; иначе повтори его. Причину показывает `native_report_reason`.
 
@@ -68,13 +58,13 @@ if ($LASTEXITCODE -ne 0) { throw 'scenario verification failed' }
 
 Активация: build-release.py из SHA по [BUILD](BUILD.md).
 
-Диагностика: `& $hgExe doctor --root "$PWD"` и `& $hgExe inspect --root "$PWD"` (выбор $hgExe выше). Установку/обновление проверяют global_contracts; дополнительные профили нужны только для непокрытого риска. Код unknown не является PASS.
+Диагностика: CLI активного выпуска `doctor --root <проект>` и `inspect --root <проект>`. Установку/обновление проверяют global_contracts; дополнительные профили нужны только для непокрытого риска. Код unknown не является PASS.
 
 Временные пробы — только в `target/highgrade/tmp/<запуск>`; после задачи убирай их. Структура и обслуживание — в [BUILD](BUILD.md); контроль размера: `python scripts/target-maintenance.py --check`.
 
 ## Структура и документы
 
-```powershell
+```text
 node scripts/check-repository.mjs
 python scripts/render-skills.py --check
 ```
@@ -83,7 +73,7 @@ python scripts/render-skills.py --check
 
 ## Интерфейс и Storybook
 
-Из ui: `npm ci`, `npm run build`, `npm run build-storybook`; из корня `cargo build --locked`. Каталог: `npm run storybook`. Playwright/axe: обслужи ui/storybook-static на 127.0.0.1:6006, `npm test` из ui: чтение/запись/CAS, клавиатура, ресурсы. Chrome — HIGHGRADE_CHROME или Windows-путь. Installed E2E: HIGHGRADE_UI_CANDIDATE, HIGHGRADE_UI_SOURCE_SHA, HIGHGRADE_OLD_SOURCE/EXE; `npx playwright test installed.spec.ts`. Без тестовых выпусков тест пропущен. [Сборка](BUILD.md#ресурсы-интерфейса).
+Из ui: `npm ci`, `npm run build`, `npm run build-storybook`; из корня `cargo build --locked`. Каталог: `npm run storybook`. Playwright/axe: обслужи ui/storybook-static на 127.0.0.1:6006, `npm test` из ui: чтение/запись/CAS, клавиатура, ресурсы. Playwright использует свой Chromium, либо браузер из `HIGHGRADE_CHROME`. Installed E2E: HIGHGRADE_UI_CANDIDATE, HIGHGRADE_UI_SOURCE_SHA, HIGHGRADE_OLD_SOURCE/EXE; `npx playwright test installed.spec.ts`. Без тестовых выпусков тест пропущен. [Сборка](BUILD.md#ресурсы-интерфейса).
 
 ## Отдельные плагины
 
@@ -92,3 +82,22 @@ SVG Vectorizer — [README](../plugins/svg-vectorizer/README.md); Code Health Au
 ## Принятие и публикация
 
 Полномочия и последовательность — в [местной инструкции](../.highgrade/project/INSTRUCTIONS.md), сборка — в [BUILD](BUILD.md). Push разрешается отдельно.
+
+## Общие проверки и CI
+
+Rust закреплён в `rust-toolchain.toml`. Для повторяемого общего барьера после установки Nextest 0.9.146 в PATH:
+
+```bash
+cargo fmt --all -- --check
+python -m unittest discover -s scripts/tests -v
+python scripts/render-skills.py --check
+python scripts/verify.py tests
+python scripts/verify.py specs
+python scripts/verify.py scenarios
+node scripts/check-scenario-scale.mjs
+node scripts/check-scenario-reuse.mjs
+node scripts/check-repository.mjs
+python scripts/verify.py inspect
+```
+
+Те же Python entry points выполняются в Windows и Ubuntu CI. Локальный прогон подтверждает только текущую ОС; Windows CI объединённого коммита возможен после публикации. Проверка технической установки не является пользовательским пилотом навыков.

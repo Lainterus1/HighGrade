@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 const project = path.resolve('.');
-const cli = path.join(project, 'target/debug/highgrade.exe');
+const cli = path.join(project, `target/debug/highgrade${process.platform === 'win32' ? '.exe' : ''}`);
 const checker = path.join(project, 'scripts/source-scenarios.mjs');
 const fixtureRoot = mkdtempSync(path.join(os.tmpdir(), 'highgrade-scale-'));
 const results = [];

@@ -139,9 +139,58 @@ pub fn inventory(root: &Path, audit_rel: &str) -> Result<BTreeMap<String, String
 }
 
 pub(crate) fn put_once(root: &Path, rel: &str, data: &[u8]) -> Result<()> {
+    put_file(root, rel, data, false)
+}
+
+/// Release maps contain one CLI; only that file receives executable permissions.
+pub(crate) fn put_release_file(root: &Path, rel: &str, data: &[u8]) -> Result<()> {
+    let executable = Path::new(rel).file_name()
+        == Some(std::ffi::OsStr::new(&format!(
+            "highgrade{}",
+            std::env::consts::EXE_SUFFIX
+        )));
+    put_file(root, rel, data, executable)
+}
+
+pub(crate) fn verify_executable(path: &Path) -> Result<()> {
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        let mode = fs::metadata(path)
+            .map_err(|e| e.to_string())?
+            .permissions()
+            .mode();
+        if mode & 0o100 == 0 {
+            return Err(format!(
+                "InstalledExecutableNotExecutable: {}",
+                path.display()
+            ));
+        }
+    }
+    #[cfg(not(unix))]
+    let _ = path;
+    Ok(())
+}
+
+fn executable_permissions(file: &File) -> Result<()> {
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        file.set_permissions(fs::Permissions::from_mode(0o700))
+            .map_err(|e| e.to_string())?;
+    }
+    #[cfg(not(unix))]
+    let _ = file;
+    Ok(())
+}
+
+fn put_file(root: &Path, rel: &str, data: &[u8], executable: bool) -> Result<()> {
     let dest = paths::safe(root, rel)?;
     if dest.exists() {
         if paths::read_limited(&dest, 128 * 1024 * 1024)? == data {
+            if executable {
+                verify_executable(&dest)?;
+            }
             return Ok(());
         }
         return Err(format!("DestinationConflict: {rel}"));
@@ -167,6 +216,9 @@ pub(crate) fn put_once(root: &Path, rel: &str, data: &[u8]) -> Result<()> {
         Err(e) => return Err(e.to_string()),
     };
     file.write_all(data).map_err(|e| e.to_string())?;
+    if executable {
+        executable_permissions(&file)?;
+    }
     file.sync_all().map_err(|e| e.to_string())?;
     drop(file);
     // A hard-link is an atomic no-clobber publication, unlike Unix rename.
@@ -198,6 +250,14 @@ pub fn verify(root: &Path) -> Result<()> {
             )?))
         {
             return Err(format!("InstalledFileChanged: {rel}"));
+        }
+        if Path::new(rel).file_name()
+            == Some(std::ffi::OsStr::new(&format!(
+                "highgrade{}",
+                std::env::consts::EXE_SUFFIX
+            )))
+        {
+            verify_executable(&paths::safe(root, rel)?)?;
         }
     }
     Ok(())
@@ -314,7 +374,7 @@ pub fn install(
         return Err("TestInterruption".into());
     }
     for (index, (rel, data)) in contents.iter().enumerate() {
-        put_once(&root, rel, data)?;
+        put_release_file(&root, rel, data)?;
         if stop_after == Some(index + 1) {
             return Err("TestInterruption".into());
         }

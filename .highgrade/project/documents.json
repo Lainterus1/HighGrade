@@ -10,9 +10,17 @@
         "agreed": true,
         "min": 4550,
         "baseline": 6500,
-        "current": 6500,
+        "current": 7600,
         "ceiling": 9000,
-        "history": [],
+        "history": [
+          {
+            "from": 6500,
+            "to": 7600,
+            "reason": "Добавлен проверяемый Linux quick start рядом с Windows, README 7207 bytes.",
+            "reduction_considered": "Подробности установки остаются в справочнике; вход содержит только сборку и global-install/status.",
+            "next_review": "После следующего изменения quick start."
+          }
+        ],
         "review_trigger": "after two real tasks using the High Grade workflow"
       },
       "budget_status": "agreed",
@@ -990,6 +998,48 @@
       "scope": [
         "ui"
       ]
+    },
+    {
+      "path": "docs/releases/v0-3-6.md",
+      "role": "current-release-note",
+      "active": true,
+      "loading": "history",
+      "scope": []
+    },
+    {
+      "path": "docs/evidence/release-v036/verification.md",
+      "role": "current-release-verification",
+      "active": true,
+      "loading": "history",
+      "scope": []
+    },
+    {
+      "path": "docs/reviews/release-v036.md",
+      "role": "release-review",
+      "active": false,
+      "loading": "history",
+      "scope": []
+    },
+    {
+      "path": "docs/releases/v0-3-4.md",
+      "role": "release-history",
+      "active": true,
+      "loading": "history",
+      "scope": []
+    },
+    {
+      "path": "docs/archive/releases/v0-3-4-linux-local.md",
+      "role": "historical-local-release-note",
+      "active": false,
+      "loading": "history",
+      "scope": []
+    },
+    {
+      "path": "docs/archive/linux-support-fda4117/review.md",
+      "role": "historical-linux-compatibility-review",
+      "active": false,
+      "loading": "history",
+      "scope": []
     }
   ],
   "schema_version": 1,

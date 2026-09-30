@@ -25,11 +25,24 @@
 
 ## Быстрый старт
 
-Сборка на **Windows**: [Codex](https://openai.com/codex/), Git, [Rust/Cargo](https://rustup.rs/) 1.89+, Node 24/npm. Установленный UI требует только браузер.
+Для сборки нужны [Codex](https://openai.com/codex/), Git, [Rust/Cargo](https://rustup.rs/) 1.89+ и Node 24/npm. Установленному UI нужен браузер.
 
 ### 1. Установите
 
-В PowerShell:
+В Linux (Bash):
+
+```bash
+git clone https://github.com/Lainterus1/HighGrade.git
+cd HighGrade
+(cd ui && npm ci && npm run build)
+cargo build --release --locked
+./target/release/highgrade global-install --profile "$HOME" --source "$PWD/kit" --candidate-exe "$PWD/target/release/highgrade"
+./target/release/highgrade global-status --profile "$HOME"
+```
+
+Сборочная версия закреплена в `rust-toolchain.toml`; rustup устанавливает её при первом запуске Cargo. После установки навыки обнаруживаются Codex из `~/.agents/skills`; если список не обновился, перезапустите Codex. Установка не подключает рабочие проекты автоматически.
+
+В Windows (PowerShell):
 
 ```powershell
 git clone https://github.com/Lainterus1/HighGrade.git
@@ -54,7 +67,7 @@ cargo build --release --locked
 
 Init готовит репозиторий и начальные спеки; их проработка и реализация — позже. OpenSpec не требуется.
 
-Просмотр и правка спек: `highgrade ui --root D:/project`. [Интерфейс и ограничения](docs/UI.md).
+Просмотр и правка спек: `highgrade ui --root <путь-к-проекту>`. [Интерфейс и ограничения](docs/UI.md).
 
 ### 3. Выполняйте задачи
 

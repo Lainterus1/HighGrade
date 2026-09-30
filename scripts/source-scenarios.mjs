@@ -90,7 +90,7 @@ function sources() {
 }
 
 function nativeHash() {
-  const cli = path.resolve('target/debug/highgrade.exe');
+  const cli = path.resolve(`target/debug/highgrade${process.platform === 'win32' ? '.exe' : ''}`);
   const result = spawnSync(cli, ['spec-list', '--root', root], { encoding: 'utf8' });
   if (result.status !== 0) fail(`spec-list failed: ${result.stdout || result.stderr}`);
   const digest = JSON.parse(result.stdout).measurements.find((item) => typeof item.trace_sha256 === 'string')?.trace_sha256;
@@ -120,7 +120,7 @@ function prepare(source) {
     ...files('specs/changes').filter((item) => item.endsWith('/spec.json')),
     ...source.testSources, ...files('tests/support').filter((item) => item.endsWith('.rs')),
     inventory, ...files('src').filter((item) => /\.(rs|html|js)$/.test(item)), 'build.rs', ...files('ui/dist'),
-    ...files('tests/fixtures/native-v1'), 'Cargo.toml', 'Cargo.lock', '.config/nextest.toml', '.gitattributes'];
+    ...files('tests/fixtures/native-v1'), 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', '.config/nextest.toml', '.gitattributes'];
   const reportTime = statSync(abs(report)).mtimeMs;
   const isSpec = (file) => file === 'specs/catalog.json' || file.startsWith('specs/requirements/') || file.startsWith('specs/changes/');
   for (const file of pinned.filter((item) => !isSpec(item) && item !== inventory)) {

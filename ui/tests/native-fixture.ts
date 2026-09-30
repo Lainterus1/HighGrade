@@ -3,7 +3,7 @@ import {mkdtempSync,mkdirSync,readFileSync,writeFileSync,readdirSync,rmSync} fro
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 const repository=path.resolve('..');
-export const exe=process.env.HIGHGRADE_TEST_EXE??path.join(repository,'target/debug/highgrade.exe');
+export const exe=process.env.HIGHGRADE_TEST_EXE??path.join(repository,'target/debug',process.platform==='win32'?'highgrade.exe':'highgrade');
 export function fixture(executable=exe){
  const parent=path.join(repository,'target/highgrade/tmp');mkdirSync(parent,{recursive:true});const root=mkdtempSync(path.join(parent,'native-ui-'));
  function cli(operation:string,...args:string[]):any{for(let attempt=0;;attempt++){const p=spawnSync(executable,[operation,'--root',root,...args],{encoding:'utf8',windowsHide:true});const report=JSON.parse(p.stdout);if(!p.status)return report.result;if(attempt<10&&report.findings?.[0]?.message.startsWith('StoreBusy:')){Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,30);continue}throw Error(p.stdout)}}
