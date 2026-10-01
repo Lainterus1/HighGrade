@@ -73,7 +73,7 @@ python scripts/render-skills.py --check
 
 ## Интерфейс и Storybook
 
-Из ui: `npm ci`, `npm run build`, `npm run build-storybook`; из корня `cargo build --locked`. Каталог: `npm run storybook`. Playwright/axe: обслужи ui/storybook-static на 127.0.0.1:6006, `npm test` из ui: чтение/запись/CAS, клавиатура, ресурсы. Playwright использует свой Chromium, либо браузер из `HIGHGRADE_CHROME`. Installed E2E: HIGHGRADE_UI_CANDIDATE, HIGHGRADE_UI_SOURCE_SHA, HIGHGRADE_OLD_SOURCE/EXE; `npx playwright test installed.spec.ts`. Без тестовых выпусков тест пропущен. [Сборка](BUILD.md#ресурсы-интерфейса).
+ui: `npm ci`, `npm run build`, `npm run build-storybook`, `npm test`; корень: `cargo build --locked`. `npm run storybook`: 127.0.0.1:6006. [Installed E2E и браузер](BUILD.md#обязательный-installed-e2e).
 
 ## Отдельные плагины
 

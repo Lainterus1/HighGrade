@@ -4,7 +4,7 @@ use std::{collections::BTreeMap, path::Path};
 
 fn allowed_options(op: &str) -> Result<Vec<&'static str>> {
     Ok(match op {
-        "ui" => vec!["--root", "--no-open"],
+        "ui" => vec!["--root", "--no-open", "--check"],
         "survey-new" | "survey-schema" | "survey-check" => vec!["--root"],
         "survey-read" => vec!["--root", "--view"],
         "survey-edit" => vec!["--root", "--expected", "--input"],
@@ -101,6 +101,8 @@ fn command_help(op: &str) -> Result<Report> {
     let options = allowed_options(op)?;
     let mut required = if op.starts_with("global-") {
         vec!["--profile"]
+    } else if op == "ui" {
+        vec![]
     } else {
         vec!["--root"]
     };
@@ -114,7 +116,7 @@ fn command_help(op: &str) -> Result<Report> {
     {
         required.push("--id");
     }
-    if options.contains(&"--check") && op != "doctor" {
+    if options.contains(&"--check") && !matches!(op, "doctor" | "ui") {
         required.push("--check");
     }
     match op {
@@ -130,6 +132,9 @@ fn command_help(op: &str) -> Result<Report> {
         _ => {}
     }
     let mut example_options = required.clone();
+    if op == "ui" {
+        example_options.push("--root");
+    }
     match op {
         "spec-read" => example_options.push("--id"),
         "spec-new" => example_options.push("--title"),
@@ -180,7 +185,7 @@ fn command_help(op: &str) -> Result<Report> {
         "spec-runner-set" => "runner",
         _ => "",
     };
-    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"spec-read"=>"--id or --requirement; --view requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read; first modify/remove baseline capture requires --expected","doctor"=>"Optional --action spec-read|spec-run|spec-delivery; spec-run and spec-delivery require --id; delivery uses Git index or --bundle JSON path list","spec-metadata"=>"Preview by default; --apply true commits the entire validated batch with --expected CAS", "global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":if op.starts_with("survey-") {"highgrade survey-schema --root PATH"} else if op.starts_with("issue-") {"highgrade issue-schema --root PATH"} else {"highgrade spec-schema --root PATH"}}));
+    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"ui"=>"--root defaults to current directory '.'; --no-open true prevents opening the browser; --check true validates embedded UI without a project, browser or listener and cannot be combined with --root or --no-open", "spec-read"=>"--id or --requirement; --view requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read; first modify/remove baseline capture requires --expected","doctor"=>"Optional --action spec-read|spec-run|spec-delivery; spec-run and spec-delivery require --id; delivery uses Git index or --bundle JSON path list","spec-metadata"=>"Preview by default; --apply true commits the entire validated batch with --expected CAS", "global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":if op.starts_with("survey-") {"highgrade survey-schema --root PATH"} else if op.starts_with("issue-") {"highgrade issue-schema --root PATH"} else {"highgrade spec-schema --root PATH"}}));
     Ok(r)
 }
 
@@ -193,11 +198,11 @@ fn run() -> Result<Report> {
         }
         let mut r = Report::new("help");
         r.measurements.push(json!({
-            "project_commands":"survey-new survey-read survey-edit survey-snapshot survey-review survey-check survey-reopen survey-schema doctor inspect inventory trace spec-list spec-new spec-read spec-edit spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-run-inputs spec-run-import spec-evidence-batch spec-stats spec-metadata",
+            "project_commands":"ui spec-ui spec-attention survey-new survey-read survey-edit survey-snapshot survey-review survey-check survey-reopen survey-schema doctor inspect inventory trace spec-list spec-new spec-read spec-edit spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-run-inputs spec-run-import spec-evidence-batch spec-stats spec-metadata",
             "issue_commands":"issue-list issue-read issue-new issue-edit issue-record issue-validate issue-schema issue-recover",
             "installation_commands":"global-install global-update global-status global-recover",
             "compatibility_commands":"legacy-install legacy-update",
-            "project_root":"--root PATH",
+            "project_root":"--root PATH (required except ui; ui defaults to current directory '.')",
             "spec_start":"spec-list --root PATH; spec-new --root PATH --title TITLE --expected HASH",
             "spec_formats":"spec-schema --root PATH",
             "reference":"Installed release references/cli.md; --version"
@@ -266,6 +271,14 @@ fn run() -> Result<Report> {
     {
         return Err("Usage: --bundle requires doctor --action spec-delivery".into());
     }
+    if op == "ui" && options.contains_key("--check") {
+        if options.get("--check").map(String::as_str) != Some("true") {
+            return Err("Usage: ui --check принимает только true".into());
+        }
+        if options.contains_key("--root") || options.contains_key("--no-open") {
+            return Err("Usage: ui --check cannot be combined with --root or --no-open".into());
+        }
+    }
     let get = |key: &str| {
         options
             .get(key)
@@ -280,6 +293,7 @@ fn run() -> Result<Report> {
         Path::new(get("--root")?)
     };
     match op.as_str() {
+        "ui" if options.contains_key("--check") => highgrade::ui::check(),
         "ui" => highgrade::ui::run(root, options.get("--no-open").is_some_and(|v| v == "true")),
         _ if op.starts_with("survey-") => highgrade::survey::command(root, &op, &options),
         _ if op.starts_with("issue-") => highgrade::issues::command(root, &op, &options),

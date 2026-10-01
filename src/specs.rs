@@ -641,10 +641,11 @@ fn command_inner(
     {
         return Err("Usage: --tag requires spec-read --view requirements without an id".into());
     }
+    let mut write_needed = mutation;
     match op {
         "spec-ui" => report.measurements.push(attention::project(&root, &store)?),
         "spec-attention" => {
-            attention::mutate_value(&root, &mut store, get("--id")?, read_input()?)?
+            write_needed = attention::mutate_value(&root, &mut store, get("--id")?, read_input()?)?;
         }
         "spec-list" => {
             report
@@ -1079,7 +1080,9 @@ fn command_inner(
         if load_unlocked(&root)?.1 != sha {
             return Err("StoreConflict: inputs changed during operation".into());
         }
-        write(&root, &store)?;
+        if write_needed {
+            write(&root, &store)?;
+        }
     }
     let current_sha = if mutation {
         load_unlocked(&root)?.1

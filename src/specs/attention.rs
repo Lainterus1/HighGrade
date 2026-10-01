@@ -17,6 +17,8 @@ pub struct Response {
     pub author: String,
     pub comment: String,
     pub at: u64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub verified_revision: Option<String>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -100,6 +102,14 @@ pub(super) fn validate(s: &Store) -> Result<()> {
                         &response.author,
                         &response.comment,
                     )?;
+                    if let Some(revision) = &response.verified_revision {
+                        if r.kind != Kind::Result
+                            || revision.trim().is_empty()
+                            || !result_response_matches(c, r, response, revision)
+                        {
+                            return Err("AttentionCorrupt: response verified revision".into());
+                        }
+                    }
                 }
             }
         }
@@ -118,6 +128,34 @@ fn valid_response(kind: &Kind, decision: &str, author: &str, comment: &str) -> R
     }
     Ok(())
 }
+fn result_response_matches(
+    c: &Change,
+    request: &Request,
+    response: &Response,
+    verified_revision: &str,
+) -> bool {
+    let mut decisions = c.acceptance.iter().filter(|d| {
+        d.change_sha256 == request.change_sha256
+            && d.inputs_sha256 == request.inputs_sha256
+            && d.decided_at == response.at
+            && d.decided_by == response.author
+            && d.comment == response.comment
+            && match d.decision {
+                progress::HumanVerdict::Accepted => response.decision == "accepted",
+                progress::HumanVerdict::NeedsChanges => response.decision == "needs_changes",
+            }
+    });
+    if let Some(recorded) = &response.verified_revision {
+        return recorded == verified_revision
+            && decisions.any(|d| d.verified_revision == *recorded);
+    }
+    // Legacy responses lack a build ID. Time is only second-precise, so a
+    // matching timestamp alone cannot distinguish conflicting decisions.
+    decisions.next().is_some_and(|first| {
+        first.verified_revision == verified_revision
+            && decisions.all(|d| d.verified_revision == first.verified_revision)
+    })
+}
 pub(super) fn record_result(
     c: &mut Change,
     revision: &str,
@@ -125,6 +163,7 @@ pub(super) fn record_result(
     decision: &str,
     author: &str,
     comment: &str,
+    verified_revision: &str,
     at: u64,
 ) -> Result<()> {
     if let Some(a) = &mut c.attention {
@@ -149,13 +188,14 @@ pub(super) fn record_result(
                     author: author.into(),
                     comment: comment.into(),
                     at,
+                    verified_revision: Some(verified_revision.into()),
                 });
             }
         }
     }
     Ok(())
 }
-pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -> Result<()> {
+pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -> Result<bool> {
     let input: Input =
         serde_json::from_value(value).map_err(|e| format!("InvalidAttention: {e}"))?;
     let c = s.changes.get(id).ok_or("ChangeMissing")?;
@@ -181,16 +221,27 @@ pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -
             if request_id.trim().is_empty() || reason.trim().is_empty() {
                 return Err("AttentionRequestIncomplete".into());
             }
-            if let Some(old) = c
+            let previous = c
                 .attention
                 .as_ref()
-                .and_then(|a| a.requests.iter().find(|r| r.id == request_id))
-            {
-                if old.kind == kind && old.reason == reason && old.content_sha256 == sha {
-                    return Ok(());
-                }
+                .and_then(|a| a.requests.iter().find(|r| r.id == request_id));
+            if previous.is_some_and(|old| {
+                old.kind != kind || old.reason != reason || old.content_sha256 != sha
+            }) {
                 return Err("AttentionRequestConflict".into());
             }
+            let revision = progress::revision(c);
+            let inputs = if kind == Kind::Result {
+                let inputs = progress::inputs_hash(root, c)?;
+                if previous
+                    .is_some_and(|old| old.change_sha256 != revision || old.inputs_sha256 != inputs)
+                {
+                    return Err("DecisionStale: reviewed specification or inputs changed".into());
+                }
+                inputs
+            } else {
+                String::new()
+            };
             if kind == Kind::Requirements {
                 let mut report = Report::new("spec-validate");
                 readiness(root, s, c, &mut report, false);
@@ -201,17 +252,16 @@ pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -
             if kind == Kind::Result && !ready(root, s, c) {
                 return Err("DecisionNotReady".into());
             }
+            if previous.is_some() {
+                return Ok(false);
+            }
             let request = Request {
                 id: request_id,
                 kind: kind.clone(),
                 reason,
                 content_sha256: sha.clone(),
-                change_sha256: progress::revision(c),
-                inputs_sha256: if kind == Kind::Result {
-                    progress::inputs_hash(root, c)?
-                } else {
-                    String::new()
-                },
+                change_sha256: revision,
+                inputs_sha256: inputs,
                 at,
                 response: None,
             };
@@ -243,11 +293,28 @@ pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -
             }
             valid_response(&r.kind, &decision, &author, &comment)?;
             if let Some(previous) = &r.response {
+                if r.kind == Kind::Result {
+                    if verified_revision.trim().is_empty() {
+                        return Err("DecisionIncomplete: verified revision".into());
+                    }
+                    if r.change_sha256 != progress::revision(c)
+                        || r.inputs_sha256 != progress::inputs_hash(root, c)?
+                    {
+                        return Err(
+                            "DecisionStale: reviewed specification or inputs changed".into()
+                        );
+                    }
+                    if decision == "accepted" && !ready(root, s, c) {
+                        return Err("DecisionNotReady: technical checks must pass".into());
+                    }
+                }
                 if previous.decision == decision
                     && previous.author == author
                     && previous.comment == comment
+                    && (r.kind != Kind::Result
+                        || result_response_matches(c, &r, previous, &verified_revision))
                 {
-                    return Ok(());
+                    return Ok(false);
                 }
                 return Err("AttentionAlreadyAnswered".into());
             }
@@ -258,7 +325,7 @@ pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -
                     json!({"decisions":[{"id":id,"decision":decision,"decided_by":author,
                     "comment":comment,"verified_revision":verified_revision,"change_sha256":r.change_sha256,"inputs_sha256":r.inputs_sha256}]}),
                 )?;
-                return Ok(());
+                return Ok(true);
             }
             let a = s.changes.get_mut(id).unwrap().attention.as_mut().unwrap();
             let sequence = a
@@ -279,10 +346,11 @@ pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -
                 author,
                 comment,
                 at,
+                verified_revision: None,
             });
         }
     }
-    Ok(())
+    Ok(true)
 }
 pub(super) fn project(root: &Path, s: &Store) -> Result<Value> {
     let mut rows = Vec::new();

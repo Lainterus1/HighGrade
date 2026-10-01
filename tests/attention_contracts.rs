@@ -77,6 +77,30 @@ fn mutate(p: &Path, id: &str, v: Value) -> highgrade::Result<highgrade::Report> 
         ],
     )
 }
+fn catalog_bytes(p: &Path) -> BTreeMap<String, Vec<u8>> {
+    fn collect(p: &Path, rel: &str, files: &mut BTreeMap<String, Vec<u8>>) {
+        for entry in fs::read_dir(p.join(rel)).unwrap() {
+            let entry = entry.unwrap();
+            let path = format!("{rel}/{}", entry.file_name().to_str().unwrap());
+            if entry.file_type().unwrap().is_dir() {
+                collect(p, &path, files);
+            } else {
+                files.insert(path, fs::read(entry.path()).unwrap());
+            }
+        }
+    }
+    let mut files = BTreeMap::new();
+    collect(p, "specs", &mut files);
+    files
+}
+fn rejects_without_writes(p: &Path, id: &str, value: Value, expected: &str) {
+    let before = catalog_bytes(p);
+    let error = mutate(p, id, value)
+        .err()
+        .expect("mutation must be rejected");
+    assert!(error.contains(expected), "{error}");
+    assert_eq!(catalog_bytes(p), before);
+}
 fn request(p: &Path, id: &str, key: &str, kind: &str) {
     mutate(p,id,json!({"action":"request","request_id":key,"kind":kind,"reason":key,"content_sha256":row(p,id)["content_sha256"]})).unwrap();
 }
@@ -122,6 +146,9 @@ fn explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_re
     request(&p, id, "approval", "requirements");
     assert_eq!(sha(&p), before);
     response(&p, id, "approval", "accepted", "").unwrap();
+    let before = catalog_bytes(&p);
+    response(&p, id, "approval", "accepted", "").unwrap();
+    assert_eq!(catalog_bytes(&p), before);
     assert_eq!(row(&p, id)["requirements_agreement"], "accepted");
     let c = &specs::load(&p).unwrap().0.changes[id];
     assert!(!c.tasks[0].done && c.acceptance.is_empty() && c.evidence.is_empty() && !c.archived);
@@ -451,4 +478,267 @@ fn answers_in_reverse_request_order_use_recorded_sequence() {
     let r = row(&p, id);
     assert_eq!(r["history"][0]["response"]["sequence"], 2);
     assert_eq!(r["history"][1]["response"]["sequence"], 1);
+}
+
+// highgrade: HG-0052-S4, HG-0052-S6, HG-0052-S9, HG-0061-S5
+#[test]
+fn repeated_requests_recheck_readiness_and_preserve_unrelated_questions() {
+    let p = setup();
+    let id = "HG-0001";
+    let request = json!({"action":"request","request_id":"approval","kind":"requirements",
+        "reason":"Проверить требования","content_sha256":row(&p,id)["content_sha256"]});
+    mutate(&p, id, request.clone()).unwrap();
+    let before = catalog_bytes(&p);
+    mutate(&p, id, request.clone()).unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+    for (field, value) in [("reason", "Другое основание"), ("kind", "question")] {
+        let mut different = request.clone();
+        different[field] = json!(value);
+        rejects_without_writes(&p, id, different, "AttentionRequestConflict");
+    }
+    edit(&p, id, json!({"questions":["Уточнить условия"]}));
+    assert_eq!(row(&p, id)["content_sha256"], request["content_sha256"]);
+    rejects_without_writes(&p, id, request, "RequirementsNotPrepared");
+    let question = json!({"action":"request","request_id":"question","kind":"question",
+        "reason":"Уточнить условия","content_sha256":row(&p,id)["content_sha256"]});
+    mutate(&p, id, question.clone()).unwrap();
+    let before = catalog_bytes(&p);
+    mutate(&p, id, question).unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+}
+
+// highgrade: HG-0052-S4, HG-0052-S6, HG-0052-S8, HG-0052-S9, HG-0061-S5
+#[test]
+fn repeated_result_requests_recheck_inputs_revision_and_readiness() {
+    let p = TestDir::new("hg-attention-repeat-request-");
+    let id = integrated_fixture(&p, 1);
+    let request = json!({"action":"request","request_id":"result","kind":"result",
+        "reason":"Принять результат","content_sha256":row(&p,&id)["content_sha256"]});
+    mutate(&p, &id, request.clone()).unwrap();
+    let before = catalog_bytes(&p);
+    mutate(&p, &id, request.clone()).unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+    let report = p.join(format!("{id}-report.txt"));
+    fs::write(&report, "Changed report, unchanged implementation").unwrap();
+    rejects_without_writes(&p, &id, request.clone(), "DecisionNotReady");
+    fs::write(&report, "Fixture observation").unwrap();
+    let source = p.join(format!("{id}-logic.txt"));
+    fs::write(&source, "v2").unwrap();
+    rejects_without_writes(&p, &id, request.clone(), "DecisionStale");
+    fs::remove_file(&source).unwrap();
+    let before = catalog_bytes(&p);
+    assert!(mutate(&p, &id, request.clone()).is_err());
+    assert_eq!(catalog_bytes(&p), before);
+    fs::write(&source, "v1").unwrap();
+    put(
+        &p,
+        json!({"command":"isolated fixture observation","captured_at":"2026-09-29T01:00:00Z",
+        "method":"manual","scenario":format!("{id}-S1"),"outcome":"passed","observation":"fixture satisfied",
+        "inputs":[format!("{id}-logic.txt")],"report":format!("{id}-report.txt")}),
+    );
+    call(
+        &p,
+        "spec-evidence",
+        &[
+            ("--id", &id),
+            ("--expected", &sha(&p)),
+            ("--input", "input.json"),
+        ],
+    )
+    .unwrap();
+    let before = catalog_bytes(&p);
+    mutate(&p, &id, request.clone()).unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+    put(
+        &p,
+        json!({"command":"isolated fixture observation","captured_at":"2026-09-29T02:00:00Z",
+        "method":"manual","scenario":format!("{id}-S1"),"outcome":"passed","observation":"a materially different observation",
+        "inputs":[format!("{id}-logic.txt")],"report":format!("{id}-report.txt")}),
+    );
+    call(
+        &p,
+        "spec-evidence",
+        &[
+            ("--id", &id),
+            ("--expected", &sha(&p)),
+            ("--input", "input.json"),
+        ],
+    )
+    .unwrap();
+    assert_eq!(row(&p, &id)["content_sha256"], request["content_sha256"]);
+    rejects_without_writes(&p, &id, request, "DecisionStale");
+}
+
+fn result_response(p: &Path, id: &str, key: &str, revision: &str) -> Value {
+    json!({"action":"respond","request_id":key,"content_sha256":row(p,id)["content_sha256"],
+        "decision":"accepted","author":"Автор","comment":"","verified_revision":revision})
+}
+fn decide_result(p: &Path, id: &str, revision: &str) {
+    let loaded = call(p, "spec-read", &[("--id", id)]).unwrap();
+    let snapshot = loaded
+        .measurements
+        .iter()
+        .find(|v| v.get("change_sha256").is_some())
+        .unwrap();
+    put(
+        p,
+        json!({"decisions":[{"id":id,"decision":"accepted","decided_by":"Автор","comment":"",
+        "verified_revision":revision,"change_sha256":snapshot["change_sha256"],"inputs_sha256":snapshot["inputs_sha256"]}]}),
+    );
+    call(
+        p,
+        "spec-decide",
+        &[("--expected", &sha(p)), ("--input", "input.json")],
+    )
+    .unwrap();
+}
+
+// highgrade: HG-0052-S4, HG-0052-S6, HG-0052-S9, HG-0061-S5
+#[test]
+fn repeated_result_responses_preserve_exact_revision_and_recheck_gates() {
+    let p = TestDir::new("hg-attention-repeat-response-");
+    let id = integrated_fixture(&p, 1);
+    request(&p, &id, "result", "result");
+    let response = result_response(&p, &id, "result", "fixture-v1");
+    mutate(&p, &id, response.clone()).unwrap();
+    let before = catalog_bytes(&p);
+    mutate(&p, &id, response.clone()).unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+    for revision in ["", " ", "fixture-v2"] {
+        let mut different = response.clone();
+        different["verified_revision"] = json!(revision);
+        rejects_without_writes(
+            &p,
+            &id,
+            different,
+            if revision.trim().is_empty() {
+                "DecisionIncomplete"
+            } else {
+                "AttentionAlreadyAnswered"
+            },
+        );
+    }
+    for (field, value) in [
+        ("author", "Другой автор"),
+        ("comment", "Другой комментарий"),
+    ] {
+        let mut different = response.clone();
+        different[field] = json!(value);
+        rejects_without_writes(&p, &id, different, "AttentionAlreadyAnswered");
+    }
+    let mut different = response.clone();
+    different["decision"] = json!("needs_changes");
+    different["comment"] = json!("Доработать");
+    rejects_without_writes(&p, &id, different, "AttentionAlreadyAnswered");
+    let report = p.join(format!("{id}-report.txt"));
+    fs::write(&report, "Changed report, unchanged implementation").unwrap();
+    rejects_without_writes(&p, &id, response.clone(), "DecisionNotReady");
+    fs::write(&report, "Fixture observation").unwrap();
+    let source = p.join(format!("{id}-logic.txt"));
+    fs::write(&source, "v2").unwrap();
+    rejects_without_writes(&p, &id, response.clone(), "DecisionStale");
+    fs::remove_file(&source).unwrap();
+    let before = catalog_bytes(&p);
+    assert!(mutate(&p, &id, response.clone()).is_err());
+    assert_eq!(catalog_bytes(&p), before);
+    fs::write(&source, "v1").unwrap();
+    let before = catalog_bytes(&p);
+    mutate(&p, &id, response).unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+    assert_eq!(specs::load(&p).unwrap().0.changes[&id].acceptance.len(), 1);
+}
+
+// highgrade: HG-0052-S6, HG-0052-S9, HG-0061-S5
+#[test]
+fn result_responses_keep_their_revision_when_later_decisions_share_snapshot() {
+    let p = TestDir::new("hg-attention-response-history-");
+    let id = integrated_fixture(&p, 1);
+    request(&p, &id, "first", "result");
+    request(&p, &id, "same-decision", "result");
+    decide_result(&p, &id, "fixture-v1");
+    request(&p, &id, "later", "result");
+    decide_result(&p, &id, "fixture-v2");
+    let before = catalog_bytes(&p);
+    for key in ["first", "same-decision"] {
+        mutate(&p, &id, result_response(&p, &id, key, "fixture-v1")).unwrap();
+        assert_eq!(catalog_bytes(&p), before);
+        rejects_without_writes(
+            &p,
+            &id,
+            result_response(&p, &id, key, "fixture-v2"),
+            "AttentionAlreadyAnswered",
+        );
+    }
+    mutate(&p, &id, result_response(&p, &id, "later", "fixture-v2")).unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+    rejects_without_writes(
+        &p,
+        &id,
+        result_response(&p, &id, "later", "fixture-v1"),
+        "AttentionAlreadyAnswered",
+    );
+    assert_eq!(specs::load(&p).unwrap().0.changes[&id].acceptance.len(), 2);
+}
+
+// highgrade: HG-0052-S6, HG-0052-S9, HG-0061-S6
+#[test]
+fn legacy_result_responses_require_unambiguous_acceptance_revision() {
+    let p = TestDir::new("hg-attention-legacy-response-");
+    let id = integrated_fixture(&p, 1);
+    request(&p, &id, "result", "result");
+    let response = result_response(&p, &id, "result", "fixture-v1");
+    mutate(&p, &id, response.clone()).unwrap();
+    // Model the historical response format, which did not store the verified build.
+    let spec = p.join(format!("specs/changes/{id}/spec.json"));
+    let mut value: Value = serde_json::from_slice(&fs::read(&spec).unwrap()).unwrap();
+    value["attention"]["requests"][0]["response"]
+        .as_object_mut()
+        .unwrap()
+        .remove("verified_revision");
+    let legacy_response = value["attention"]["requests"][0]["response"].clone();
+    // A no-op must preserve even non-canonical historical formatting.
+    fs::write(&spec, serde_json::to_vec(&value).unwrap()).unwrap();
+    let before = catalog_bytes(&p);
+    let before_sha = sha(&p);
+    let repeated = mutate(&p, &id, response.clone()).unwrap();
+    assert_eq!(repeated.status, "passed");
+    assert_eq!(repeated.measurements[0]["store_sha256"], before_sha);
+    assert_eq!(catalog_bytes(&p), before);
+    rejects_without_writes(
+        &p,
+        &id,
+        result_response(&p, &id, "result", "fixture-v2"),
+        "AttentionAlreadyAnswered",
+    );
+    // Two otherwise identical decisions in the same second cannot identify which
+    // verified build closed a legacy response. Neither candidate is a safe repeat.
+    let results = p.join(format!("specs/changes/{id}/results.json"));
+    let mut value: Value = serde_json::from_slice(&fs::read(&results).unwrap()).unwrap();
+    let mut ambiguous = value["acceptance"][0].clone();
+    ambiguous["verified_revision"] = json!("fixture-v2");
+    value["acceptance"].as_array_mut().unwrap().push(ambiguous);
+    fs::write(&results, serde_json::to_vec_pretty(&value).unwrap()).unwrap();
+    rejects_without_writes(&p, &id, response, "AttentionAlreadyAnswered");
+    rejects_without_writes(
+        &p,
+        &id,
+        result_response(&p, &id, "result", "fixture-v2"),
+        "AttentionAlreadyAnswered",
+    );
+    request(&p, &id, "new-result", "result");
+    mutate(
+        &p,
+        &id,
+        result_response(&p, &id, "new-result", "fixture-v3"),
+    )
+    .unwrap();
+    let value: Value = serde_json::from_slice(&fs::read(&spec).unwrap()).unwrap();
+    assert_eq!(
+        value["attention"]["requests"][0]["response"],
+        legacy_response
+    );
+    assert_eq!(
+        value["attention"]["requests"][1]["response"]["verified_revision"],
+        "fixture-v3"
+    );
 }

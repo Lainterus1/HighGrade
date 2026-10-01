@@ -21,15 +21,34 @@ class ReleaseBuildTests(unittest.TestCase):
         (self.root / 'src').mkdir()
         (self.root / 'kit').mkdir()
         (self.root / 'Cargo.toml').write_text('[package]\nname="highgrade"\nversion="0.0.0"\nedition="2021"\n')
-        (self.root / 'src/main.rs').write_text('fn main() { println!("committed"); }')
+        (self.root / 'src/main.rs').write_text(self.program('committed'))
         (self.root / 'kit/version.txt').write_text('committed kit')
+        (self.root / 'kit/manifest.json').write_text(json.dumps({'cli_version': '0.0.0'}))
+        (self.root / 'ui').mkdir()
+        (self.root / 'ui/package.json').write_text(json.dumps({
+            'name': 'release-fixture', 'version': '0.0.0', 'scripts': {'build': 'node build.cjs'}}))
+        (self.root / 'ui/package-lock.json').write_text(json.dumps({
+            'name': 'release-fixture', 'version': '0.0.0', 'lockfileVersion': 3,
+            'packages': {'': {'name': 'release-fixture', 'version': '0.0.0'}}}))
+        (self.root / 'ui/build.cjs').write_text(
+            "const fs=require('node:fs');fs.mkdirSync('dist',{recursive:true});"
+            "fs.writeFileSync('dist/highgrade-ui.json',JSON.stringify({source_sha:process.env.HIGHGRADE_SOURCE_SHA}));")
         self.run_command('cargo', 'generate-lockfile')
         self.run_command('git', 'init', '-q')
         self.run_command('git', 'config', 'user.email', 'test@example.invalid')
         self.run_command('git', 'config', 'user.name', 'Local test')
-        self.run_command('git', 'add', 'Cargo.toml', 'Cargo.lock', 'src', 'kit')
+        self.run_command('git', 'add', 'Cargo.toml', 'Cargo.lock', 'src', 'kit', 'ui')
         self.run_command('git', 'commit', '-qm', 'fixture')
         self.sha = self.run_command('git', 'rev-parse', 'HEAD').strip()
+
+    @staticmethod
+    def program(label):
+        # Controlled CLI probe for lifecycle tests; real bundle checks have their own suite.
+        return r'''fn main() {
+            if std::env::args().skip(1).collect::<Vec<_>>() == ["ui", "--check", "true"] {
+                println!("{{\"operation\":\"ui-check\",\"status\":\"passed\",\"measurements\":[{{\"cli_version\":\"0.0.0\",\"api_version\":\"2\",\"source_sha\":\"{}\",\"files\":1}}]}}", option_env!("HIGHGRADE_SOURCE_SHA").unwrap_or("development"));
+            } else { println!("LABEL"); }
+        }'''.replace('LABEL', label)
 
     def run_command(self, *args):
         return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
@@ -58,6 +77,38 @@ class ReleaseBuildTests(unittest.TestCase):
             module.build(self.root, 'HEAD')
         self.assertEqual(module.files(candidate), before)
         self.assertIn('FAILED:', (self.root / 'target/highgrade/reports/release-build.log').read_text())
+        self.assert_no_temporary_sources()
+
+    def test_missing_ui_sources_and_failed_probe_preserve_candidate(self):
+        module.build(self.root, self.sha)
+        candidate = self.root / 'target/highgrade/candidate'
+        before = module.files(candidate)
+        self.run_command('git', 'rm', '-r', 'ui')
+        self.run_command('git', 'commit', '-qm', 'missing UI package')
+        with self.assertRaisesRegex(ValueError, 'UiBundleInvalid'):
+            module.build(self.root, 'HEAD')
+        self.assertEqual(module.files(candidate), before)
+        self.assert_no_temporary_sources()
+        self.run_command('git', 'restore', '--source', self.sha, '--staged', '--worktree', 'ui')
+        (self.root / 'src/main.rs').write_text('fn main() { println!("missing UI probe"); }')
+        self.run_command('git', 'add', 'src/main.rs')
+        self.run_command('git', 'commit', '-qm', 'binary without UI')
+        with self.assertRaisesRegex(ValueError, 'UiBundleInvalid'):
+            module.build(self.root, 'HEAD')
+        self.assertEqual(module.files(candidate), before)
+        self.assert_no_temporary_sources()
+
+    def test_wrong_embedded_source_is_not_promoted(self):
+        module.build(self.root, self.sha)
+        candidate = self.root / 'target/highgrade/candidate'
+        before = module.files(candidate)
+        (self.root / 'src/main.rs').write_text(self.program('bad').replace(
+            'option_env!("HIGHGRADE_SOURCE_SHA").unwrap_or("development")', '"wrong-source"'))
+        self.run_command('git', 'add', 'src/main.rs')
+        self.run_command('git', 'commit', '-qm', 'wrong embedded source')
+        with self.assertRaisesRegex(ValueError, 'UiBundleInvalid'):
+            module.build(self.root, 'HEAD')
+        self.assertEqual(module.files(candidate), before)
         self.assert_no_temporary_sources()
 
     def test_foreign_candidate_data_is_preserved(self):
@@ -116,7 +167,7 @@ class ReleaseBuildTests(unittest.TestCase):
                          env=environment, check=True, capture_output=True)
             return result
 
-        (self.root / 'src/main.rs').write_text('fn main() { println!("different developer build"); }')
+        (self.root / 'src/main.rs').write_text(self.program('different developer build'))
         with patch.object(subprocess, 'run', run_with_competing_build):
             module.build(self.root, self.sha)
         executable = self.root / 'target/highgrade/candidate' / ('highgrade.exe' if os.name == 'nt' else 'highgrade')
@@ -124,7 +175,7 @@ class ReleaseBuildTests(unittest.TestCase):
 
     def test_target_override_uses_artifact_from_current_build(self):
         module.build(self.root, self.sha)
-        (self.root / 'src/main.rs').write_text('fn main() { println!("new commit"); }')
+        (self.root / 'src/main.rs').write_text(self.program('new commit'))
         self.run_command('git', 'add', 'src/main.rs')
         self.run_command('git', 'commit', '-qm', 'second source')
         second_sha = self.run_command('git', 'rev-parse', 'HEAD').strip()

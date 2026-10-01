@@ -1,17 +1,77 @@
 import {decisionReason} from './decisionCopy';
-import {useEffect,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {api,readSpec,errorText,type Handoff,type ReadResult,type Session} from '@/api/client';
-import {Button} from '@/components/ui/button';import {Input} from '@/components/ui/input';import {Textarea} from '@/components/ui/textarea';
+import {Button} from '@/components/ui/button';
+import {Input} from '@/components/ui/input';
+import {Textarea} from '@/components/ui/textarea';
 import {Dialog,DialogContent,DialogHeader,DialogTitle,DialogDescription,DialogFooter} from '@/components/ui/dialog';
-export function DecisionDialog({request,read,session,onClose,onSaved,onBusy}:{onBusy:(v:boolean)=>void;request:Handoff;read:ReadResult;session:Session;onClose:()=>void;onSaved:()=>Promise<void>}){
- const [verifiedRevision,setVerifiedRevision]=useState('');
- const [author,setAuthor]=useState('');const [comment,setComment]=useState('');const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [uncertain,setUncertain]=useState(false);
+import {decisionDraftKey,decisionRevision,readDecisionDraft,writeDecisionDraft,clearDecisionDraft,type DecisionDraft} from './decisionDrafts';
+
+type Props={onBusy:(v:boolean)=>void;request:Handoff;read:ReadResult;session:Session;onClose:()=>void;onSaved:()=>Promise<void>};
+export function DecisionDialog(props:Props){
+ const draftKey=decisionDraftKey(props.session,props.read,props.request);
+ const revision=decisionRevision(props.read,props.request);
+ // A new target cannot keep another form's state, even without a parent unmount.
+ return <DecisionForm key={JSON.stringify([draftKey,revision])} {...props} draftKey={draftKey} revision={revision}/>;
+}
+
+function DecisionForm({request,read,session,onClose,onSaved,onBusy,draftKey,revision}:Props&{draftKey:string;revision:string}){
+ const [draft,setDraft]=useState(()=>readDecisionDraft(draftKey,revision));
+ const draftRef=useRef(draft);
+ const [busy,setBusy]=useState(false);
+ const busyRef=useRef(false),alive=useRef(true),expected=useRef(read.store_sha256);
+ const update=(patch:Partial<DecisionDraft>)=>{
+  const next={...draftRef.current,...patch};draftRef.current=next;
+  writeDecisionDraft(draftKey,next);setDraft(next);return next;
+ };
+ useEffect(()=>{alive.current=true;writeDecisionDraft(draftKey,draftRef.current);return()=>{alive.current=false}},[draftKey]);
  useEffect(()=>{onBusy(busy);return()=>onBusy(false)},[busy,onBusy]);
  const title=request.kind==='question'?'Ответить на вопрос':request.kind==='requirements'?'Согласовать требования':'Принять результат';
- const decide=async(decision:string)=>{if(request.kind==='result'&&!verifiedRevision.trim()){setError('Укажите Git SHA или неизменяемый build ID проверенной реализации.');return}if(!author.trim()){setError('Укажите ваше имя.');return}if((decision==='answer'||decision==='needs_changes')&&!comment.trim()){setError('Добавьте ответ или пояснение.');return}setBusy(true);setError('');try{
-  await api(`/api/specs/${read.change.id}/attention`,{method:'POST',headers:{'Content-Type':'application/json','X-HighGrade-Token':session.token},body:JSON.stringify({expected:read.store_sha256,input:{action:'respond',request_id:request.id,content_sha256:request.content_sha256,decision,author:author.trim(),comment,verified_revision:request.kind==='result'?verifiedRevision.trim():''}})});
-  await onSaved();onClose();
- }catch(e){setError(errorText(e));setUncertain(true)}finally{setBusy(false)}};
- const inspect=async()=>{setBusy(true);try{const current=await readSpec(read.change.id);const response=(current.change as unknown as {attention?:{requests:Handoff[]}}).attention?.requests.find(r=>r.id===request.id)?.response;if(response){setError(`В проекте записано решение: ${response.decision}; автор: ${response.author}. Обновите документ.`)}else setError('Ответ не найден в текущем состоянии. Закройте окно и обновите документ перед новой попыткой.')}catch(e){setError(errorText(e))}finally{setBusy(false)}};
- return <Dialog open onOpenChange={open=>{if(!open&&!busy)onClose()}}><DialogContent className={request.kind==='result'?'decision-dialog-compact':undefined}><DialogHeader><DialogTitle>{title}</DialogTitle><DialogDescription>{request.kind==='requirements'?'Согласие относится только к показанному содержанию. Это не разрешение выполнять работу и не запуск агента.':request.kind==='result'?'Подтвердите проверенную версию.':'Ответ закроет только этот записанный вопрос.'}</DialogDescription></DialogHeader>{decisionReason(request)&&<p className="source-text">{decisionReason(request)}</p>}{request.kind==='result'&&<><label htmlFor="verified-revision">Версия проверенного результата</label><Input id="verified-revision" placeholder="Git SHA или неизменяемый build ID" value={verifiedRevision} onChange={e=>setVerifiedRevision(e.target.value)} disabled={busy}/></>}<label htmlFor="decision-author">Ваше имя</label><Input id="decision-author" disabled={busy} value={author} onChange={e=>setAuthor(e.target.value)}/><label htmlFor="decision-comment">{request.kind==='question'?'Ответ':'Комментарий'}</label><Textarea id="decision-comment" disabled={busy} value={comment} onChange={e=>setComment(e.target.value)}/>{error&&<div role="alert" className="notice error"><p>{error}</p>{uncertain&&<Button variant="outline" onClick={inspect} disabled={busy}>Проверить состояние решения</Button>}</div>}<DialogFooter><Button variant="outline" onClick={onClose} disabled={busy}>Закрыть</Button>{request.kind!=='question'&&<Button variant="outline" onClick={()=>decide('needs_changes')} disabled={busy||uncertain}>Вернуть на доработку</Button>}<Button onClick={()=>decide(request.kind==='question'?'answer':'accepted')} disabled={busy||uncertain}>{request.kind==='question'?'Сохранить ответ':'Подтвердить'}</Button></DialogFooter></DialogContent></Dialog>;
+ const close=()=>{if(!busyRef.current)onClose()};
+ const decide=async(decision:string)=>{
+  if(busyRef.current||draftRef.current.uncertain)return;
+  const {author,comment,verifiedRevision}=draftRef.current;
+  if(request.kind==='result'&&!verifiedRevision.trim()){update({error:'Укажите Git SHA или неизменяемый build ID проверенной реализации.'});return}
+  if(!author.trim()){update({error:'Укажите ваше имя.'});return}
+  if((decision==='answer'||decision==='needs_changes')&&!comment.trim()){update({error:'Добавьте ответ или пояснение.'});return}
+  busyRef.current=true;setBusy(true);
+  // Persist before starting the request: dismissal/unmount must not enable a retry.
+  update({uncertain:true,error:''});
+  try{
+   await api(`/api/specs/${read.change.id}/attention`,{method:'POST',headers:{'Content-Type':'application/json','X-HighGrade-Token':session.token},body:JSON.stringify({expected:expected.current,input:{action:'respond',request_id:request.id,content_sha256:request.content_sha256,decision,author:author.trim(),comment,verified_revision:request.kind==='result'?verifiedRevision.trim():''}})});
+   if(!alive.current)return;
+   clearDecisionDraft(draftKey);
+   await onSaved();if(alive.current)onClose();
+  }catch(e){if(alive.current)update({error:errorText(e),uncertain:true})}
+  finally{busyRef.current=false;if(alive.current)setBusy(false)}
+ };
+ const inspect=async()=>{
+  if(busyRef.current)return;
+  busyRef.current=true;setBusy(true);
+  try{
+   const current=await readSpec(read.change.id);
+   if(!alive.current)return;
+   const latest=(current.change as unknown as {attention?:{requests:Handoff[]}}).attention?.requests.find(r=>r.id===request.id);
+   if(latest?.response){
+    update({uncertain:true,verifiedRevision:decisionRevision(current,latest)===revision?draftRef.current.verifiedRevision:'',error:`В проекте записано решение: ${latest.response.decision}; автор: ${latest.response.author}. Обновите документ.`});
+   }else if(!latest||decisionRevision(current,latest)!==revision){
+    update({uncertain:true,verifiedRevision:'',error:'Редакция обращения изменилась или обращение недоступно. Закройте окно и обновите документ перед новой попыткой. Автор и комментарий сохранятся; проверенную версию укажите заново.'});
+   }else{
+    expected.current=current.store_sha256;
+    update({uncertain:false,error:'Ответ не найден в текущем состоянии. Проверьте черновик и сохраните решение отдельным нажатием.'});
+   }
+  }catch(e){if(alive.current)update({error:errorText(e)})}
+  finally{busyRef.current=false;if(alive.current)setBusy(false)}
+ };
+ return <Dialog open onOpenChange={open=>{if(!open)close()}}><DialogContent className={request.kind==='result'?'decision-dialog-compact':undefined}>
+  <DialogHeader><DialogTitle>{title}</DialogTitle><DialogDescription>{request.kind==='requirements'?'Согласие относится только к показанному содержанию. Это не разрешение выполнять работу и не запуск агента.':request.kind==='result'?'Подтвердите проверенную версию.':'Ответ закроет только этот записанный вопрос.'}</DialogDescription></DialogHeader>
+  {decisionReason(request)&&<p className="source-text">{decisionReason(request)}</p>}
+  {request.kind==='result'&&<><label htmlFor="verified-revision">Версия проверенного результата</label><Input id="verified-revision" placeholder="Git SHA или неизменяемый build ID" value={draft.verifiedRevision} onChange={e=>update({verifiedRevision:e.target.value})} disabled={busy}/></>}
+  <label htmlFor="decision-author">Ваше имя</label><Input id="decision-author" disabled={busy} value={draft.author} onChange={e=>update({author:e.target.value})}/>
+  <label htmlFor="decision-comment">{request.kind==='question'?'Ответ':'Комментарий'}</label><Textarea id="decision-comment" disabled={busy} value={draft.comment} onChange={e=>update({comment:e.target.value})}/>
+  {draft.error&&<div role="alert" className="notice error"><p>{draft.error}</p>{draft.uncertain&&<Button variant="outline" onClick={inspect} disabled={busy}>Проверить состояние решения</Button>}</div>}
+  {/* A remount during an unfinished POST still offers a read-only recovery path. */}
+  {draft.uncertain&&!draft.error&&!busy&&<div role="alert" className="notice error"><p>Исход записи не подтверждён. Проверьте состояние решения перед новой попыткой.</p><Button variant="outline" onClick={inspect}>Проверить состояние решения</Button></div>}
+  <DialogFooter><Button variant="outline" onClick={close} disabled={busy}>Закрыть</Button>{request.kind!=='question'&&<Button variant="outline" onClick={()=>decide('needs_changes')} disabled={busy||draft.uncertain}>Вернуть на доработку</Button>}<Button onClick={()=>decide(request.kind==='question'?'answer':'accepted')} disabled={busy||draft.uncertain}>{request.kind==='question'?'Сохранить ответ':'Подтвердить'}</Button></DialogFooter>
+ </DialogContent></Dialog>;
 }

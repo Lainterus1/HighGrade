@@ -18,8 +18,8 @@ use std::{
 };
 use tokio::{net::TcpListener, sync::Notify};
 
-const API_VERSION: &str = "2";
 mod bundle;
+const API_VERSION: &str = bundle::API_VERSION;
 include!(concat!(env!("OUT_DIR"), "/ui_assets.rs"));
 #[derive(Clone)]
 struct App {
@@ -248,6 +248,17 @@ fn router(app: App) -> Router {
         .layer(DefaultBodyLimit::max(1024 * 1024))
         .layer(middleware::from_fn_with_state(app.clone(), boundary))
         .with_state(app)
+}
+pub fn check() -> Result<Report> {
+    let manifest = bundle::validate(UI_ASSETS, API_VERSION)?;
+    let mut report = Report::new("ui-check");
+    report.measurements.push(json!({
+        "cli_version": manifest.cli_version,
+        "api_version": manifest.api_version,
+        "source_sha": manifest.source_sha,
+        "files": manifest.files.len(),
+    }));
+    Ok(report)
 }
 pub fn run(root: &Path, no_open: bool) -> Result<Report> {
     bundle::validate(UI_ASSETS, API_VERSION)?;

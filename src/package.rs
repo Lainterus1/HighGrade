@@ -218,6 +218,7 @@ fn binary_report(executable: &Path, args: &[&str]) -> Result<Value> {
     let code = output.status.code();
     if (args.first() == Some(&"--version") && code != Some(0))
         || (args.first() == Some(&"doctor") && ![Some(0), Some(2)].contains(&code))
+        || (args.first() == Some(&"ui") && code != Some(0))
     {
         let excerpt = String::from_utf8_lossy(&output.stdout)
             .chars()
@@ -250,6 +251,21 @@ pub(crate) fn verify_doctor(executable: &Path, root: &Path) -> Result<()> {
             .any(|v| report["status"] == *v)
     {
         return Err("CandidateDoctorFailed".into());
+    }
+    Ok(())
+}
+pub(crate) fn verify_ui(executable: &Path, expected_version: &str) -> Result<()> {
+    let report = binary_report(executable, &["ui", "--check", "true"])
+        .map_err(|error| format!("CandidateUiBundleInvalid: {error}"))?;
+    if report["operation"] != "ui-check"
+        || report["status"] != "passed"
+        || report["measurements"][0]["cli_version"].as_str() != Some(expected_version)
+        || report["measurements"][0]["api_version"]
+            .as_str()
+            .is_none_or(str::is_empty)
+        || report["measurements"][0]["files"].as_u64().unwrap_or(0) == 0
+    {
+        return Err("CandidateUiBundleInvalid: complete matching UI report required".into());
     }
     Ok(())
 }

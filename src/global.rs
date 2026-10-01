@@ -247,6 +247,7 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
         return Err("GlobalManifestInvalid: cli_version".into());
     }
     package::verify_binary(executable, version)?;
+    package::verify_ui(executable, version)?;
     let hashes = manifest["files"]
         .as_object()
         .ok_or("GlobalManifestInvalid: files")?;
@@ -544,6 +545,7 @@ fn stage(profile: &Path, c: &Candidate) -> Result<()> {
             ),
         )?;
         package::verify_binary(&installed_exe, &c.cli_version)?;
+        package::verify_ui(&installed_exe, &c.cli_version)?;
         let probe_root = paths::safe(
             profile,
             &format!(".highgrade/global/releases/{}", c.release),
@@ -984,6 +986,7 @@ pub fn update(
     )?;
     if let Err(e) = active(&profile)
         .and_then(|_| package::verify_binary(&installed_exe, &c.cli_version))
+        .and_then(|_| package::verify_ui(&installed_exe, &c.cli_version))
         .and_then(|_| package::verify_doctor(&installed_exe, &probe_root))
     {
         package::replace_active(&active_path, &serde_json::to_vec_pretty(&json!({"schema_version":3,"status":"connected","release":old,"journal_sha256":old_hash})).map_err(|e| e.to_string())?)?;

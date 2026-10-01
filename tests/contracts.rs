@@ -15,19 +15,33 @@ use support::TestDir;
 // highgrade: HG-0035-S1, HG-0035-S2
 #[test]
 fn cli_command_help_is_available_without_a_project() {
+    let root = TestDir::new("hg-help-");
     let output = std::process::Command::new(env!("CARGO_BIN_EXE_highgrade"))
+        .current_dir(&root)
         .arg("--help")
         .output()
         .unwrap();
     let help: Value = serde_json::from_slice(&output.stdout).unwrap();
+    assert!(output.status.success());
     let m = &help["measurements"][0];
+    for command in ["ui", "spec-ui", "spec-attention"] {
+        assert!(
+            m["project_commands"]
+                .as_str()
+                .unwrap()
+                .split_whitespace()
+                .any(|item| item == command)
+        );
+    }
     for group in [
         "project_commands",
+        "issue_commands",
         "installation_commands",
         "compatibility_commands",
     ] {
         for command in m[group].as_str().unwrap().split_whitespace() {
             let result = std::process::Command::new(env!("CARGO_BIN_EXE_highgrade"))
+                .current_dir(&root)
                 .args([command, "--help"])
                 .output()
                 .unwrap();
@@ -37,7 +51,38 @@ fn cli_command_help_is_available_without_a_project() {
                 String::from_utf8_lossy(&result.stdout)
             );
             let result: Value = serde_json::from_slice(&result.stdout).unwrap();
-            assert!(result["measurements"][0]["options"].is_array());
+            let detail = &result["measurements"][0];
+            assert!(detail["options"].is_array());
+            assert_eq!(detail["command"], command);
+            if command == "ui" {
+                assert!(
+                    !detail["required"]
+                        .as_array()
+                        .unwrap()
+                        .contains(&json!("--root"))
+                );
+                assert!(
+                    !detail["required"]
+                        .as_array()
+                        .unwrap()
+                        .contains(&json!("--check"))
+                );
+                assert!(
+                    detail["conditions"]
+                        .as_str()
+                        .unwrap()
+                        .contains("defaults to current directory")
+                );
+            }
+            for required in detail["required"].as_array().unwrap() {
+                assert!(
+                    detail["options"].as_array().unwrap().contains(required),
+                    "{command}: required parameter must be accepted"
+                );
+            }
+            if command == "spec-attention" {
+                assert!(detail["input_schema"].is_object());
+            }
             assert!(
                 result["measurements"][0]["example"]
                     .as_str()
@@ -46,6 +91,11 @@ fn cli_command_help_is_available_without_a_project() {
             );
         }
     }
+    assert_eq!(
+        fs::read_dir(&root).unwrap().count(),
+        0,
+        "help must not create project, lock, UI, or browser state"
+    );
     let output = std::process::Command::new(env!("CARGO_BIN_EXE_highgrade"))
         .args(["spec-read", "--wrong", "x"])
         .output()

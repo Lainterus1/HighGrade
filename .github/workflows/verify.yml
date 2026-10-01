@@ -17,11 +17,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2025, ubuntu-24.04]
+        include:
+          - os: windows-2025
+            previous_sha: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+          - os: ubuntu-24.04
+            previous_sha: fda4117312ca4c5af4388c960081dac94c10ea8f
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    env:
+      HIGHGRADE_UI_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      HIGHGRADE_OLD_SOURCE_SHA: ${{ matrix.previous_sha }}
     steps:
       - uses: actions/checkout@v7
         with:
+          ref: ${{ env.HIGHGRADE_UI_SOURCE_SHA }}
+          persist-credentials: false
+      - name: Check out pinned platform predecessor
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ env.HIGHGRADE_OLD_SOURCE_SHA }}
+          path: target/highgrade/tmp/installed-previous
           persist-credentials: false
       - uses: actions/setup-python@v6
         with:
@@ -49,7 +64,10 @@ jobs:
             ~/.cargo/git
             target/debug
             target/release
+            target/highgrade/build-cache
           key: ${{ runner.os }}-rust-v1-${{ hashFiles('Cargo.lock', 'Cargo.toml', 'rust-toolchain.toml') }}
+      - name: Fetch locked Rust dependencies for offline lifecycle fixtures
+        run: cargo fetch --locked
       - name: Check release build lifecycle
         run: python -m unittest discover -s scripts/tests -v
       - name: Check generated skills
@@ -73,7 +91,11 @@ jobs:
         run: npx playwright install chromium
       - name: Check native interface
         working-directory: ui
-        run: npx playwright test native.spec.ts
+        env:
+          HIGHGRADE_UI_REPORT: ${{ github.workspace }}/target/highgrade/reports/native-playwright.json
+        run: npx playwright test native.spec.ts decision.spec.ts edit.spec.ts --fail-on-flaky-tests --output ../target/highgrade/ui-playwright/native
+      - name: Check required installed fixture guard
+        run: node --test ui/scripts/tests/installed-config.test.mjs
 
       - name: Validate active specifications
         run: python scripts/verify.py specs
@@ -85,8 +107,53 @@ jobs:
         run: node scripts/check-scenario-scale.mjs
       - name: Check scenario report reuse guard
         run: node scripts/check-scenario-reuse.mjs
-      - name: Build release
-        run: cargo build --release --locked
+      - name: Build exact current candidate
+        run: python scripts/build-release.py ${{ env.HIGHGRADE_UI_SOURCE_SHA }}
+      - name: Build authentic previous release with its own builder
+        working-directory: target/highgrade/tmp/installed-previous
+        run: python scripts/build-release.py ${{ env.HIGHGRADE_OLD_SOURCE_SHA }}
+      - name: Configure mandatory exact-version installed fixtures
+        shell: python
+        run: |
+          import os, pathlib, subprocess, tomllib
+          root = pathlib.Path.cwd()
+          current = root / 'target/highgrade/candidate'
+          previous_root = root / 'target/highgrade/tmp/installed-previous'
+          previous = previous_root / 'target/highgrade/candidate'
+          binary = 'highgrade.exe' if os.name == 'nt' else 'highgrade'
+          def version(repository, sha):
+              source = subprocess.check_output(['git', 'show', f'{sha}:Cargo.toml'], cwd=repository)
+              return tomllib.loads(source.decode('utf-8'))['package']['version']
+          values = {
+              'HIGHGRADE_UI_REQUIRED': 'true',
+              'HIGHGRADE_UI_CANDIDATE': current,
+              'HIGHGRADE_UI_SOURCE_SHA': os.environ['HIGHGRADE_UI_SOURCE_SHA'],
+              'HIGHGRADE_UI_VERSION': version(root, os.environ['HIGHGRADE_UI_SOURCE_SHA']),
+              'HIGHGRADE_OLD_SOURCE': previous / 'kit',
+              'HIGHGRADE_OLD_EXE': previous / binary,
+              'HIGHGRADE_OLD_VERSION': version(previous_root, os.environ['HIGHGRADE_OLD_SOURCE_SHA']),
+              'HIGHGRADE_UI_REPORT': root / 'target/highgrade/reports/installed-playwright.json',
+          }
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output:
+              for key, value in values.items():
+                  output.write(f'{key}={value}\n')
+      - name: Verify installed current and previous releases
+        working-directory: ui
+        run: npx playwright test installed.spec.ts --fail-on-flaky-tests --output ../target/highgrade/ui-playwright/installed
+      - name: Preserve verification reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: installed-ui-${{ matrix.os }}
+          path: |
+            target/highgrade/reports/installed-playwright.json
+            target/highgrade/reports/native-playwright.json
+            target/highgrade/reports/release-build.log
+            target/highgrade/tmp/installed-previous/target/highgrade/reports/release-build.log
+            target/highgrade/ui-playwright
+            target/nextest/highgrade/junit.xml
+            target/nextest/highgrade/list.json
+          if-no-files-found: warn
       - name: Check repository structure
         run: node scripts/check-repository.mjs
       - name: Inspect registered project context
