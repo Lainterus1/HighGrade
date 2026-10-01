@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "current": {
+    "number": 1,
+    "content": {
+      "goal": "Минимально подключить High Grade к существующему проекту без изменения продукта",
+      "scope": [
+        "."
+      ],
+      "stage": "completed",
+      "next": "",
+      "decisions": [
+        {
+          "id": "purpose",
+          "state": "confirmed",
+          "description": "Продолжаем существующий маленький Python-проект; минимально подключаем High Grade",
+          "basis": [
+            "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+          ],
+          "sources": [],
+          "blocks": []
+        },
+        {
+          "id": "scope",
+          "state": "confirmed",
+          "description": "Весь маленький проект; соседние проекты и профиль установки вне области записи",
+          "basis": [
+            "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+          ],
+          "sources": [],
+          "blocks": []
+        },
+        {
+          "id": "preservation",
+          "state": "confirmed",
+          "description": "Сохраняем поведение, исходники, MIT-лицензию, проверку и Git-историю; обнаруженное starting/ready не исправляем в Init",
+          "basis": [
+            "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+          ],
+          "sources": [],
+          "blocks": []
+        },
+        {
+          "id": "changes",
+          "state": "confirmed",
+          "description": "Разрешены местные инструкции, навигация, реестр и обследование; продуктовые требования не реализуются",
+          "basis": [
+            "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+          ],
+          "sources": [],
+          "blocks": []
+        },
+        {
+          "id": "local_rules",
+          "state": "confirmed",
+          "description": "README задаёт pre-submit, кандидатный commit, origin/feature/ready, PR base integration, exact-SHA CI и отсутствие автодеплоя; новых local skills нет",
+          "basis": [
+            "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+          ],
+          "sources": [
+            "README.md"
+          ],
+          "blocks": []
+        },
+        {
+          "id": "environment",
+          "state": "confirmed",
+          "description": "Локальная Python/Git-среда; платные и внешние сервисы не подключать; язык новых материалов русский",
+          "basis": [
+            "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+          ],
+          "sources": [],
+          "blocks": []
+        },
+        {
+          "id": "mandate",
+          "state": "confirmed",
+          "description": "Подготовить местные инструкции и обследование; без реализации, коммита и публикации",
+          "basis": [
+            "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+          ],
+          "sources": [],
+          "blocks": []
+        }
+      ],
+      "sections": {
+        "adaptation": [
+          {
+            "id": "adaptation-minimal",
+            "state": "confirmed",
+            "description": "Подготовлены AGENTS, местная инструкция, реестр с неизвестными бюджетами; README дополнен без изменения исходного абзаца. Спеки не создавались, так как новых требований нет",
+            "basis": [
+              "Собственная смысловая сверка подготовленных документов и фактических проверок 2026-10-01"
+            ],
+            "sources": [
+              ".highgrade/project/INSTRUCTIONS.md",
+              ".highgrade/project/documents.json",
+              "AGENTS.md",
+              "README.md"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "adaptation-exclusion",
+            "state": "confirmed",
+            "description": "Из обхода исключена только .pilot как изменяемые вспомогательные журналы; обязательный исходный отчёт сохранён в evidence, исходный .gitignore не менялся",
+            "basis": [
+              "Собственная смысловая сверка подготовленных документов и фактических проверок 2026-10-01"
+            ],
+            "sources": [
+              ".gitignore",
+              ".highgrade/project/inventory-exclusions.json",
+              "evidence/init-baseline.json"
+            ],
+            "blocks": []
+          }
+        ],
+        "components": [
+          {
+            "id": "component-app",
+            "state": "confirmed",
+            "description": "app.py содержит message(), возвращающую starting; tools/check.py исполняет этот реальный модуль и ожидает ready",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              "app.py",
+              "tools/check.py"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "component-git",
+            "state": "confirmed",
+            "description": "Существующий локальный Git и origin сохранены; репозиторий не переинициализируется",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              "README.md"
+            ],
+            "blocks": []
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding-baseline",
+            "state": "confirmed",
+            "description": "Исходная реализация и проверка расходятся starting/ready; продуктовая готовность не подтверждена. Для будущего Work нужно поручение и сверка ожидаемого поведения",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              "app.py",
+              "evidence/init-baseline.json",
+              "tools/check.py"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "finding-ci",
+            "state": "unknown",
+            "description": "Источник/команда финального удалённого CI пока недоступны; это ограничение будущей финальной готовности, не блок подготовки инструкции",
+            "basis": [
+              "README явно указывает remote CI not yet available"
+            ],
+            "sources": [
+              "README.md"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "finding-budget",
+            "state": "unknown",
+            "description": "Автор не согласовал численные бюджеты; оставить null/unknown без фиктивного согласия",
+            "basis": [
+              "В поручении и README лимиты не заданы"
+            ],
+            "sources": [
+              "README.md"
+            ],
+            "blocks": []
+          }
+        ],
+        "knowledge": [
+          {
+            "id": "knowledge-owners",
+            "state": "confirmed",
+            "description": "README объединяет назначение/навигацию, архитектуру, инженерные правила и команды; AGENTS задаёт полномочия; местная инструкция связывает этапы; реестр фиксирует пять ролей",
+            "basis": [
+              "Собственная смысловая сверка подготовленных документов и фактических проверок 2026-10-01"
+            ],
+            "sources": [
+              ".highgrade/project/INSTRUCTIONS.md",
+              ".highgrade/project/documents.json",
+              "AGENTS.md",
+              "README.md"
+            ],
+            "blocks": []
+          }
+        ],
+        "observations": [
+          {
+            "id": "observation-inventory",
+            "state": "confirmed",
+            "description": "inventory --mode structure: passed/complete; прочитаны все существовавшие значимые текстовые файлы; .git учтён как метаданные и не сканировался",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              ".gitignore",
+              "LICENSE",
+              "README.md",
+              "app.py",
+              "tools/audit.py",
+              "tools/check.py"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "observation-test",
+            "state": "confirmed",
+            "description": "2026-10-01: python3 tools/check.py выполнена, exit 1, passed=false; хеши зафиксированы в исходном отчёте",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              "evidence/init-baseline.json"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "observation-bootstrap",
+            "state": "confirmed",
+            "description": "inspect --bootstrap: validation=passed, adaptation=required, status=failed из-за ещё отсутствующих документов; это не общий PASS",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              "README.md"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "observation-inspect",
+            "state": "confirmed",
+            "description": "Обычный inspect после подготовки: структурных errors нет, все required_links present; status unknown только BudgetNotAgreed README/AGENTS/context-route. Полный отчёт .pilot/init-inspect.json",
+            "basis": [
+              "Собственная смысловая сверка подготовленных документов и фактических проверок 2026-10-01"
+            ],
+            "sources": [
+              ".highgrade/project/documents.json",
+              "AGENTS.md",
+              "README.md"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "observation-doctor",
+            "state": "confirmed",
+            "description": "doctor после подготовки: project_instruction compatible, scope schema-only; overall unknown из-за legacy cargo/openspec, которые не требуются локальной Python-проверке. Отчёт .pilot/init-doctor.json",
+            "basis": [
+              "Собственная смысловая сверка подготовленных документов и фактических проверок 2026-10-01"
+            ],
+            "sources": [
+              ".highgrade/project/INSTRUCTIONS.md"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "observation-preservation",
+            "state": "confirmed",
+            "description": "Сверены SHA-256 app.py/tools/check.py/tools/audit.py/LICENSE/.gitignore и прежний HEAD; изменения отсутствуют, README сохраняет исходный абзац. Коммит/push/продуктовая реализация не выполнялись",
+            "basis": [
+              "Собственная смысловая сверка подготовленных документов и фактических проверок 2026-10-01"
+            ],
+            "sources": [
+              ".gitignore",
+              "LICENSE",
+              "README.md",
+              "app.py",
+              "tools/audit.py",
+              "tools/check.py"
+            ],
+            "blocks": []
+          }
+        ],
+        "processes": [
+          {
+            "id": "process-gates",
+            "state": "confirmed",
+            "description": "Локальный pre-submit: python3 tools/check.py. Финальный барьер: remote exact-SHA CI; PR обязателен перед integration. Локальная активация и release ID неприменимы",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              "README.md",
+              "tools/check.py"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "process-format",
+            "state": "confirmed",
+            "description": "В исходном проекте отсутствуют formatter/linter/CI-конфигурации; новые Markdown/JSON не покрыты ими. JSON сериализует Python json/CLI, проверяются структура и ссылки; существующий тест не ослабляется",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              ".gitignore",
+              "tools/check.py"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "process-evidence",
+            "state": "confirmed",
+            "description": "Исходный отчёт baseline сохранён в evidence/init-baseline.json; локальные временные журналы в игнорируемой .pilot, обязательные доказательства передаются с задачей",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              ".gitignore",
+              "evidence/init-baseline.json"
+            ],
+            "blocks": []
+          }
+        ],
+        "routes": [
+          {
+            "id": "route-technical",
+            "state": "confirmed",
+            "description": "Техническая задача без изменения контракта: task/work, локальная проверка; commit/push только по отдельному поручению",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              "README.md",
+              "tools/check.py"
+            ],
+            "blocks": []
+          },
+          {
+            "id": "route-candidate",
+            "state": "confirmed",
+            "description": "После успешного pre-submit кандидат может быть локально закоммичен и отдельно отправлен в origin/feature/ready; pending CI остаётся Work, PR в integration требует отдельного разрешения",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              "README.md"
+            ],
+            "blocks": []
+          }
+        ],
+        "skills": [
+          {
+            "id": "skills-existing",
+            "state": "confirmed",
+            "description": "Проектных навыков при структурном обзоре не обнаружено; используются установленные навыки, Поставка не копируется в проект",
+            "basis": [
+              "Поручение пользователя на Init; чтение файлов и структура проекта 2026-10-01"
+            ],
+            "sources": [
+              "README.md"
+            ],
+            "blocks": []
+          }
+        ]
+      },
+      "source_paths": [
+        ".gitignore",
+        ".highgrade/project/INSTRUCTIONS.md",
+        ".highgrade/project/documents.json",
+        ".highgrade/project/inventory-exclusions.json",
+        "AGENTS.md",
+        "LICENSE",
+        "README.md",
+        "app.py",
+        "evidence/init-baseline.json",
+        "tools/audit.py",
+        "tools/check.py"
+      ],
+      "areas": [
+        "evidence",
+        "tools"
+      ]
+    },
+    "snapshot": {
+      "files": {
+        ".gitignore": "4f4a9cdd0e187f03f0f64713157a287fe59c37924cfe641f6e1bbd709d533dc5",
+        ".highgrade/project/INSTRUCTIONS.md": "f59def72785a6169f4f24bec69d7ec039679abc937241f5104ecdd1235a27108",
+        ".highgrade/project/documents.json": "96a37f84f89a722ebe84ae123b6eb8457bfd91d7326f71195db1192ea0e8466e",
+        ".highgrade/project/inventory-exclusions.json": "e91adc947d81de4c6fac550e8cdd2544ce3a0cdb4e6582305835eb8f33a6b92d",
+        "AGENTS.md": "fb82899cd8dfe847a6f9ddd1416327ffb32af5194e434430e4421cfdaedcf5ba",
+        "LICENSE": "2119890c583f29add559660a31ffbb1be7b9c70ceb3492947e3b6e5f0285f9d5",
+        "README.md": "536694c0021295d43375afab5fbba59d723381990015092e02dfd29201c58f52",
+        "app.py": "77865efeead07d854622569393e9116d1ea68111fade22bc49ca9e1c38b3e717",
+        "evidence/init-baseline.json": "08f615ae886250f740c5fa14bc137b9510cd344d7587b1107c5d1de1a27e8724",
+        "tools/audit.py": "f1c549416ef59e7d50c7ca16f0cf14f2e9d1cc470fbe9c850f1261991c9f7b7f",
+        "tools/check.py": "e4e3c1330059df953261a6374b5b5a17fcdbf7535f9af73ad1f5ae139e62fe85"
+      },
+      "areas": {
+        "evidence": {
+          "entries": {
+            "evidence/init-baseline.json": "file"
+          },
+          "omitted": {},
+          "complete": true,
+          "exclusions_sha256": "e91adc947d81de4c6fac550e8cdd2544ce3a0cdb4e6582305835eb8f33a6b92d"
+        },
+        "tools": {
+          "entries": {
+            "tools/audit.py": "file",
+            "tools/check.py": "file"
+          },
+          "omitted": {},
+          "complete": true,
+          "exclusions_sha256": "e91adc947d81de4c6fac550e8cdd2544ce3a0cdb4e6582305835eb8f33a6b92d"
+        }
+      },
+      "exclusions_sha256": "e91adc947d81de4c6fac550e8cdd2544ce3a0cdb4e6582305835eb8f33a6b92d"
+    },
+    "review": {
+      "reviewer": "исполнитель Init",
+      "verdict": "go",
+      "conclusion": "Сверены исходное поручение, README и подготовленные маршруты commit/push/PR/CI без расширения полномочий. Продукт и исходный неуспех теста сохранены. Роли/ссылки проверены; бюджеты и источник CI честно неизвестны. Собственная смысловая сверка адаптации, не независимое GO продукта и не приёмка.",
+      "content_sha256": "99e0f836a217a13b1e7071e6f6f24846b7451076ed199c48cd8aadccd1bc0486",
+      "snapshot_sha256": "e1b1e04adf44812f08ab3e6e72cae43cfeb320aa86eaaf61900099cc7d9e1c39"
+    }
+  },
+  "history": []
+}

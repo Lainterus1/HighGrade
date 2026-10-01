@@ -9,19 +9,32 @@ use std::{
 const ACTIVE: &str = ".highgrade/global/active.json";
 const LOCK: &str = ".highgrade/global/install.lock";
 const SKILL_TRANSACTION: &str = ".highgrade/global/skill-transaction.json";
+const COMMIT_SKILL: &str = "skills/highgrade-commit/SKILL.md";
 const APPROVE_SKILL: &str = "skills/highgrade-approve/SKILL.md";
 const PUSH_SKILL: &str = "skills/highgrade-push/SKILL.md";
 const PLANNER_SKILL: &str = "skills/highgrade-planner/SKILL.md";
 const DEPLOY_SKILL: &str = "skills/highgrade-deploy/SKILL.md";
 const LEGACY_DEPLOY_SKILL: &str = "skills/deploy/SKILL.md";
-const TRANSITION_SKILLS: [(&str, &str); 5] = [
+const TRANSITION_SKILLS: [(&str, &str); 6] = [
     ("deploy", LEGACY_DEPLOY_SKILL),
     ("highgrade-deploy", DEPLOY_SKILL),
     ("highgrade-approve", APPROVE_SKILL),
+    ("highgrade-commit", COMMIT_SKILL),
     ("highgrade-push", PUSH_SKILL),
     ("highgrade-planner", PLANNER_SKILL),
 ];
 const SKILLS: [&str; 9] = [
+    "highgrade-init",
+    "highgrade-task",
+    "highgrade-spec",
+    "highgrade-work",
+    "highgrade-clear",
+    "highgrade-update",
+    "highgrade-commit",
+    "highgrade-push",
+    "highgrade-planner",
+];
+const APPROVE_SKILLS: [&str; 9] = [
     "highgrade-init",
     "highgrade-task",
     "highgrade-spec",
@@ -69,6 +82,27 @@ const PREVIOUS_SKILLS: [&str; 6] = [
     "highgrade-update",
 ];
 const MATERIALS: [&str; 19] = [
+    "rules.md",
+    "procedures/init.md",
+    "procedures/task.md",
+    "procedures/spec.md",
+    "procedures/work.md",
+    "procedures/clear.md",
+    "procedures/update.md",
+    "procedures/commit.md",
+    "procedures/push.md",
+    "procedures/archive.md",
+    "references/audit.md",
+    "references/cli.md",
+    "templates/README.md",
+    "templates/AGENTS.md",
+    "templates/ARCHITECTURE.md",
+    "templates/ENGINEERING.md",
+    "templates/DEVELOPMENT.md",
+    "templates/INSTRUCTIONS.md",
+    "procedures/planner.md",
+];
+const APPROVE_MATERIALS: [&str; 19] = [
     "rules.md",
     "procedures/init.md",
     "procedures/task.md",
@@ -186,7 +220,7 @@ fn owned_routers(journal: &Value) -> Vec<(String, &'static str)> {
         .collect()
 }
 fn remove_new_routers(profile: &Path, old_journal: &Value, candidate: &Candidate) -> Result<()> {
-    for name in ["highgrade-approve", "highgrade-push", "highgrade-planner"] {
+    for name in ["highgrade-commit", "highgrade-push", "highgrade-planner"] {
         let rel = router(name);
         if !old_journal["files"][rel.as_str()].is_string() {
             let expected = candidate
@@ -285,7 +319,7 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
         };
         files.insert(target, data);
     }
-    for rel in [APPROVE_SKILL, PUSH_SKILL] {
+    for rel in [COMMIT_SKILL, PUSH_SKILL] {
         files.insert(
             release_file(release, rel),
             paths::read_limited(&paths::safe(&source, rel)?, 8 * 1024 * 1024)?,
@@ -336,7 +370,7 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
             )))
             .collect()
     };
-    let mut current = expected(&SKILLS, &MATERIALS);
+    let mut current = expected(&APPROVE_SKILLS, &APPROVE_MATERIALS);
     for rel in [APPROVE_SKILL, PUSH_SKILL] {
         current.insert(release_file(release, rel));
     }
@@ -356,6 +390,16 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
             .iter()
             .map(|rel| release_file(release, rel)),
     );
+    let mut commit = expected(&SKILLS, &MATERIALS);
+    commit.extend(
+        TOOL_REFERENCES
+            .iter()
+            .chain(FIXER_MATERIALS.iter())
+            .chain(SURVEY_MATERIALS.iter())
+            .chain(REVIEW_MATERIALS.iter())
+            .chain([COMMIT_SKILL, PUSH_SKILL].iter())
+            .map(|rel| release_file(release, rel)),
+    );
     let mut prior = expected(&PRIOR_SKILLS, &PRIOR_MATERIALS);
     for rel in [APPROVE_SKILL, PUSH_SKILL] {
         prior.insert(release_file(release, rel));
@@ -365,7 +409,8 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     let mut legacy = expected(&LEGACY_SKILLS, &DEPLOY_MATERIALS);
     legacy.insert(release_file(release, LEGACY_DEPLOY_SKILL));
     let previous = expected(&PREVIOUS_SKILLS, &PREVIOUS_MATERIALS);
-    if actual != current.iter().map(String::as_str).collect()
+    if actual != commit.iter().map(String::as_str).collect()
+        && actual != current.iter().map(String::as_str).collect()
         && actual != with_tools.iter().map(String::as_str).collect()
         && actual != with_fixer.iter().map(String::as_str).collect()
         && actual != with_survey.iter().map(String::as_str).collect()
@@ -452,6 +497,10 @@ struct SkillTransaction {
     candidate: String,
     before: BTreeMap<String, Vec<u8>>,
     after: BTreeMap<String, String>,
+    #[serde(default)]
+    introduced: BTreeMap<String, String>,
+    #[serde(default)]
+    retired: BTreeMap<String, String>,
 }
 
 fn recover_skills(profile: &Path) -> Result<()> {
@@ -463,32 +512,71 @@ fn recover_skills(profile: &Path) -> Result<()> {
         serde_json::from_slice(&paths::read_limited(&path, 8 * 1024 * 1024)?)
             .map_err(|e| format!("GlobalSkillTransactionInvalid: {e}"))?;
     let pointer = crate::read_json(&paths::safe(profile, ACTIVE)?)?;
+    let old = tx.old_active["release"]
+        .as_str()
+        .ok_or("GlobalSkillTransactionInvalid")?;
+    if !valid_release(old) || !valid_release(&tx.candidate) || old == tx.candidate {
+        return Err("GlobalSkillTransactionInvalid".into());
+    }
+    let journal_bytes =
+        paths::read_limited(&paths::safe(profile, &journal_file(old))?, 8 * 1024 * 1024)?;
+    if tx.old_active["journal_sha256"].as_str() != Some(hash(&journal_bytes).as_str()) {
+        return Err("GlobalSkillTransactionJournalChanged".into());
+    }
+    let journal: Value = serde_json::from_slice(&journal_bytes).map_err(|e| e.to_string())?;
+    if tx.before.keys().ne(tx.after.keys()) {
+        return Err("GlobalSkillTransactionInvalid".into());
+    }
+    for (rel, bytes) in &tx.before {
+        if !SKILLS
+            .iter()
+            .chain(APPROVE_SKILLS.iter())
+            .any(|name| router(name) == *rel)
+            || journal["files"][rel].as_str() != Some(hash(bytes).as_str())
+        {
+            return Err("GlobalSkillTransactionInvalid".into());
+        }
+    }
+    for (rel, expected) in &tx.introduced {
+        if !SKILLS.iter().any(|name| router(name) == *rel)
+            || journal["files"][rel].is_string()
+            || expected.len() != 64
+            || !expected.bytes().all(|b| b.is_ascii_hexdigit())
+        {
+            return Err("GlobalSkillTransactionInvalid".into());
+        }
+    }
+    for (rel, expected) in &tx.retired {
+        // Only the Approve-to-Commit rename adds retirement to the transaction.
+        // Older deploy cleanup retains its historical warning-only contract.
+        if *rel != router("highgrade-approve")
+            || journal["files"][rel].as_str() != Some(expected.as_str())
+        {
+            return Err("GlobalSkillTransactionInvalid".into());
+        }
+    }
     if pointer == tx.old_active {
-        let old = pointer["release"]
-            .as_str()
-            .ok_or("GlobalSkillTransactionInvalid")?;
-        if !valid_release(old) || !valid_release(&tx.candidate) || old == tx.candidate {
-            return Err("GlobalSkillTransactionInvalid".into());
-        }
-        let journal_bytes =
-            paths::read_limited(&paths::safe(profile, &journal_file(old))?, 8 * 1024 * 1024)?;
-        if pointer["journal_sha256"].as_str() != Some(hash(&journal_bytes).as_str()) {
-            return Err("GlobalSkillTransactionJournalChanged".into());
-        }
-        let journal: Value = serde_json::from_slice(&journal_bytes).map_err(|e| e.to_string())?;
-        if tx.before.keys().ne(tx.after.keys()) {
-            return Err("GlobalSkillTransactionInvalid".into());
-        }
-        // Validate the whole set before restoring any member. A user's edit is
-        // never silently overwritten, even when recovery is only partial.
+        // Validate the whole set before restoring or removing any member. A
+        // user's edit is never silently overwritten during partial recovery.
         for (rel, bytes) in &tx.before {
-            if !SKILLS.iter().any(|name| router(name) == *rel)
-                || journal["files"][rel].as_str() != Some(hash(bytes).as_str())
-            {
-                return Err("GlobalSkillTransactionInvalid".into());
-            }
             let current = paths::read_limited(&paths::safe(profile, rel)?, 8 * 1024 * 1024)?;
             if current != *bytes && hash(&current) != tx.after[rel] {
+                return Err(format!("GlobalRouterChanged: {rel}"));
+            }
+        }
+        for (rel, expected) in &tx.introduced {
+            let target = paths::safe(profile, rel)?;
+            if target.exists() && hash(&paths::read_limited(&target, 8 * 1024 * 1024)?) != *expected
+            {
+                return Err(format!("GlobalRouterChanged: {rel}"));
+            }
+        }
+        for (rel, expected) in &tx.retired {
+            if hash(&paths::read_limited(
+                &paths::safe(profile, rel)?,
+                8 * 1024 * 1024,
+            )?) != *expected
+            {
                 return Err(format!("GlobalRouterChanged: {rel}"));
             }
         }
@@ -498,9 +586,15 @@ fn recover_skills(profile: &Path) -> Result<()> {
                 package::replace_active(&target, bytes)?;
             }
         }
+        for (rel, expected) in &tx.introduced {
+            retire_router(profile, rel, expected)?;
+        }
         active(profile)?;
     } else if pointer["release"].as_str() == Some(tx.candidate.as_str()) {
         active(profile)?;
+        for (rel, expected) in &tx.retired {
+            retire_router(profile, rel, expected)?;
+        }
     } else {
         return Err("GlobalSkillTransactionActiveChanged".into());
     }
@@ -518,7 +612,7 @@ pub fn recover(profile: &Path) -> Result<Report> {
 fn stage(profile: &Path, c: &Candidate) -> Result<()> {
     install::put_once(profile, &journal_file(&c.release), &c.journal)?;
     let new_routers = [
-        router("highgrade-approve"),
+        router("highgrade-commit"),
         router("highgrade-push"),
         router("highgrade-planner"),
     ];
@@ -578,6 +672,7 @@ fn retire_release(profile: &Path, release: &str) -> Result<()> {
         .chain(TOOL_REFERENCES.iter())
         .chain(FIXER_MATERIALS.iter())
         .chain(REVIEW_MATERIALS.iter())
+        .chain(APPROVE_MATERIALS.iter())
         .chain(PRIOR_MATERIALS.iter())
         .chain(SURVEY_MATERIALS.iter())
         .chain(DEPLOY_MATERIALS.iter())
@@ -586,6 +681,7 @@ fn retire_release(profile: &Path, release: &str) -> Result<()> {
         .chain(
             SKILLS
                 .iter()
+                .chain(APPROVE_SKILLS.iter())
                 .chain(PRIOR_SKILLS.iter())
                 .chain(DEPLOY_SKILLS.iter())
                 .chain(LEGACY_SKILLS.iter())
@@ -610,6 +706,7 @@ fn retire_release(profile: &Path, release: &str) -> Result<()> {
             owned.push((rel.as_str(), expected.as_str().unwrap()));
         } else if !SKILLS
             .iter()
+            .chain(APPROVE_SKILLS.iter())
             .chain(PRIOR_SKILLS.iter())
             .chain(DEPLOY_SKILLS.iter())
             .chain(LEGACY_SKILLS.iter())
@@ -782,6 +879,7 @@ pub fn status(profile: &Path) -> Result<Report> {
                 "deploy",
                 "highgrade-deploy",
                 "highgrade-approve",
+                "highgrade-commit",
                 "highgrade-push",
                 "highgrade-planner",
             ] {
@@ -823,7 +921,10 @@ pub fn install(profile: &Path, source: &Path, executable: &Path) -> Result<Repor
     let resuming = existing_journal.exists()
         && paths::read_limited(&existing_journal, 8 * 1024 * 1024)? == c.journal;
     if !resuming {
-        for s in SKILLS.into_iter().chain(["deploy", "highgrade-deploy"]) {
+        for s in SKILLS
+            .into_iter()
+            .chain(["deploy", "highgrade-deploy", "highgrade-approve"])
+        {
             if paths::safe(&profile, &router(s))?.exists() {
                 return Err(format!("GlobalSkillConflict: {s}"));
             }
@@ -895,6 +996,12 @@ pub fn update(
     if adapted {
         c.journal = journal_bytes(&c.release, &c.manifest_hash, &c.files)?;
     }
+    let approve_router = router("highgrade-approve");
+    if !old_journal["files"][approve_router.as_str()].is_string()
+        && paths::safe(&profile, &approve_router)?.exists()
+    {
+        return Err("GlobalRouterIncompatible: highgrade-approve".into());
+    }
     let old_routers = owned_routers(&old_journal);
     let candidate_journal = paths::safe(&profile, &journal_file(&c.release))?;
     let resuming = candidate_journal.exists()
@@ -932,7 +1039,21 @@ pub fn update(
     if active(&profile)? != Some((old.clone(), old_hash.clone())) {
         return Err("GlobalActiveChanged".into());
     }
-    if !before.is_empty() {
+    let introduced: BTreeMap<String, String> = SKILLS
+        .iter()
+        .map(|name| router(name))
+        .filter(|rel| !old_journal["files"][rel].is_string())
+        .map(|rel| {
+            let expected = hash(&c.files[&rel]);
+            (rel, expected)
+        })
+        .collect();
+    let retired: BTreeMap<String, String> = old_journal["files"][approve_router.as_str()]
+        .as_str()
+        .map(|expected| (approve_router, expected.to_owned()))
+        .into_iter()
+        .collect();
+    if !before.is_empty() || !introduced.is_empty() || !retired.is_empty() {
         let tx = SkillTransaction {
             old_active: crate::read_json(&paths::safe(&profile, ACTIVE)?)?,
             candidate: c.release.clone(),
@@ -941,6 +1062,8 @@ pub fn update(
                 .map(|rel| (rel.clone(), hash(&c.files[rel])))
                 .collect(),
             before,
+            introduced,
+            retired,
         };
         install::put_once(
             &profile,

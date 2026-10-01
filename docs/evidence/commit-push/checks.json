@@ -1,0 +1,119 @@
+{
+  "platform": "Linux",
+  "scope": "local candidate; no publication or user installation",
+  "checks": [
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "report": "docs/evidence/commit-push/fmt.txt",
+      "started_at": "2026-10-01T06:12:17.891120+00:00",
+      "duration_seconds": 0.295,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-v"
+      ],
+      "report": "docs/evidence/commit-push/python-tests.txt",
+      "started_at": "2026-10-01T06:12:18.186115+00:00",
+      "duration_seconds": 26.367,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "scripts/render-skills.py",
+        "--check"
+      ],
+      "report": "docs/evidence/commit-push/render-skills.txt",
+      "started_at": "2026-10-01T06:12:44.553716+00:00",
+      "duration_seconds": 0.031,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "scripts/verify.py",
+        "tests"
+      ],
+      "report": "docs/evidence/commit-push/nextest.txt",
+      "started_at": "2026-10-01T06:15:18.003881+00:00",
+      "duration_seconds": 75.353,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "scripts/verify.py",
+        "scenarios"
+      ],
+      "report": "docs/evidence/commit-push/scenarios.txt",
+      "started_at": "2026-10-01T06:16:33.357614+00:00",
+      "duration_seconds": 22.371,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/check-scenario-scale.mjs"
+      ],
+      "report": "docs/evidence/commit-push/scale.json",
+      "started_at": "2026-10-01T06:16:55.729017+00:00",
+      "duration_seconds": 1.017,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/check-scenario-reuse.mjs"
+      ],
+      "report": "docs/evidence/commit-push/reuse.json",
+      "started_at": "2026-10-01T06:16:56.746082+00:00",
+      "duration_seconds": 21.871,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "scripts/check-repository.mjs"
+      ],
+      "report": "docs/evidence/commit-push/repository.json",
+      "started_at": "2026-10-01T06:17:18.617164+00:00",
+      "duration_seconds": 0.067,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "scripts/verify.py",
+        "inspect"
+      ],
+      "report": "docs/evidence/commit-push/inspect.json",
+      "started_at": "2026-10-01T06:17:18.684729+00:00",
+      "duration_seconds": 0.063,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "scripts/verify.py",
+        "specs"
+      ],
+      "report": "docs/evidence/commit-push/spec-validation.txt",
+      "started_at": "2026-10-01T06:17:18.748304+00:00",
+      "duration_seconds": 149.578,
+      "exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "files": {
+    ".gitignore": "4f4a9cdd0e187f03f0f64713157a287fe59c37924cfe641f6e1bbd709d533dc5",
+    ".highgrade/local/plan.json": "2d999e1913e1633426fa15a23977c5447b89b8d516788ca05c0aea47a4a80e79",
+    ".highgrade/local/state.json": "feabbe77960bc4b64591da3dfe7288131e35f6d704c05389dcaa11fa9d94ba70",
+    ".highgrade/project/INSTRUCTIONS.md": "6eb48b78b54d3afb50ea2df1d223a93b67dfdc438a6b18e5d7e79d150f9d74f8",
+    ".pilot/actions.jsonl": "a78d6d7aacf39d892fe10da30423749e7315448a6dbc149b28924b58193ba1a3",
+    ".pilot/docs-check-calls.jsonl": "cc930a8a2116b5bda7452d34998ab4e2d39eeaa9adbd3bca3557fc7e84b56e10",
+    ".pilot/response.txt": "e26c04fffdcf5cfb07a2eb462d40d723e09c6cfec0f3b8e95b2b5504e78501f7",
+    ".pilot/test-calls.jsonl": "914f3d703b84e4607725f771b733193e7f54d94c1897b6555a390b837873fd1c",
+    "AGENTS.md": "5d4927a726349a47fed5c6c7b06c44c443ab4cb5ac440d700e11c08d8b5409be",
+    "LICENSE": "aa7af98e96399be17c3428a80e95b72514d3f11f1056052182bbe9dca2ee19d4",
+    "README.md": "0f2044903311b4189767901be18f8389a4429b2c8fb523bbfca0d268a2b94de5",
+    "app.py": "368c7e07acb73f8712adc271b496b004a1b11ecdbacd6f545e84a5810b5e1c17",
+    "colleague.txt": "8cfccd4d686267d278e755088ddca911d21184ee0b4dc3d32cec84092d646ef0",
+    "evidence/beta.json": "1003271a66f7038db596a9dc36585745bc381092687851a2de0853a9e9527a44",
+    "evidence/work.json": "8a24a6a81dfe6547fe5aefd0374e9ae83135c2713d2f20b7cc0ba99be4484239",
+    "tasks/alpha.json": "f12fe1bf2b8789a2b9edfb5a485f24fc6d98c39e4fa4a4b28a92a3707ee37750",
+    "tasks/beta.json": "acc4234f31f766afa8118f0f9c3a25a136aba272379719d1ef1344f7be6cd2a7",
+    "tools/audit.py": "f1c549416ef59e7d50c7ca16f0cf14f2e9d1cc470fbe9c850f1261991c9f7b7f",
+    "tools/check.py": "e4e3c1330059df953261a6374b5b5a17fcdbf7535f9af73ad1f5ae139e62fe85",
+    "tools/check_docs.py": "5dc22b9d5ad0f208913d8c3846f3a357a310ade5bacc16eba4c23dd773b1cdc6"
+  },
+  "head": {
+    "exit": 0,
+    "stdout": "5be507894e33a4539b3f5634e374b41afa324bc9\n",
+    "stderr": ""
+  },
+  "status": {
+    "exit": 0,
+    "stdout": " M .highgrade/project/INSTRUCTIONS.md\n M README.md\n M app.py\n?? .highgrade/local/\n?? evidence/\n?? tasks/beta.json\n?? tools/check_docs.py\n",
+    "stderr": ""
+  },
+  "log": {
+    "exit": 0,
+    "stdout": "5be507894e33a4539b3f5634e374b41afa324bc9 Baseline fixture\n",
+    "stderr": ""
+  },
+  "diff": {
+    "exit": 0,
+    "stdout": "diff --git a/.highgrade/project/INSTRUCTIONS.md b/.highgrade/project/INSTRUCTIONS.md\nindex d259efc..372a610 100644\n--- a/.highgrade/project/INSTRUCTIONS.md\n+++ b/.highgrade/project/INSTRUCTIONS.md\n@@ -3,3 +3,5 @@ highgrade_project_schema: 1\n ---\n # Pilot project workflow\n This self-contained toy project has no native specification catalog. Task ownership is in tasks/. The only implementation check is python3 tools/check.py. evidence/work.json contains the actual last invocation and SHA-256 of every check input. Reuse a successful result if those inputs are identical. Review the actual diff, task ownership, public-domain fixture provenance, MIT license and secret/cache absence before committing. For this tiny project no separate review agent is required. A commit selects the task's listed paths plus its work evidence; other changes belong to someone else. No human acceptance is recorded by default. Local activation: none unless the project says otherwise below. No release number is required. Unknown push route does not affect local work.\n+\n+The current technical chain is alpha (ready greeting) then beta (documentation for the verified greeting). Task contracts are tasks/alpha.json and tasks/beta.json; actual prior checks are evidence/work.json and evidence/beta.json. Beta check is python3 tools/check_docs.py and follows the same exact-input reuse rule. The local plan and continuation state live in .highgrade/local/plan.json and .highgrade/local/state.json. These are temporary process state, not product outputs. No new native requirements are involved.\ndiff --git a/README.md b/README.md\nindex a7f4123..dafcbce 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n # Toy greeting\n-Run python3 tools/check.py to validate the greeting.\n+Use message() for the ready greeting.\ndiff --git a/app.py b/app.py\nindex db15ce2..8758924 100644\n--- a/app.py\n+++ b/app.py\n@@ -1,2 +1,2 @@\n def message():\n-    return \"starting\"\n+    return \"ready\"\n",
+    "stderr": ""
+  },
+  "staged": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "remote": {
+    "exit": 128,
+    "stdout": "",
+    "stderr": "fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\n"
+  },
+  "test_calls": [
+    {
+      "command": "python3 tools/check.py",
+      "passed": true,
+      "inputs": {
+        "app.py": "368c7e07acb73f8712adc271b496b004a1b11ecdbacd6f545e84a5810b5e1c17",
+        "tools/check.py": "e4e3c1330059df953261a6374b5b5a17fcdbf7535f9af73ad1f5ae139e62fe85"
+      }
+    }
+  ],
+  "activation_calls": []
+}
