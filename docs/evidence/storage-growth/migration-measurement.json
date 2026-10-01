@@ -1,0 +1,24 @@
+{
+  "source_revision": "fd39b0d03ed7c8bda69559774f8bbf20b49a2834",
+  "source_catalog_version": 4,
+  "target_catalog_version": 5,
+  "command": "target/debug/highgrade spec-migrate --root <isolated git archive> --to shared-inputs --expected <observed hash>",
+  "changes_verified": 59,
+  "all_changes_and_evidence_fingerprints_equal": true,
+  "logical_digest_before": "5dacd2be33a5c9dae99ec8edf82d5393715b42a1172e739017402e05e111bc17",
+  "logical_digest_after": "5dacd2be33a5c9dae99ec8edf82d5393715b42a1172e739017402e05e111bc17",
+  "migration_idempotent": true,
+  "older_cli_refuses_v5": true,
+  "results_bytes_before": 14769920,
+  "results_bytes_after": 4778945,
+  "results_bytes_saved": 9990975,
+  "hg0063_before": 1714470,
+  "hg0063_after": 661344,
+  "hg0063_manifests": 29,
+  "changed_catalog_files": 60,
+  "limitations": [
+    "Size and lossless readback measured; no GitHub upload performance claim",
+    "Original worktrees and evidence are unchanged; isolated copy removed after measurement",
+    "No tests are reclassified by migration; existing unknown observations retained"
+  ]
+}

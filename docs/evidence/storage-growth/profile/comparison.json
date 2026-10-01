@@ -1,0 +1,179 @@
+{
+  "source_sha": "69e1c098b4ca5552b1f3b1ffe66ee808d8d81ab7",
+  "method": "fresh pinned Git archive; nextest list then ordinary dev build per variant; independent owned targets",
+  "measurements": [
+    {
+      "variant": "baseline",
+      "phase": "nextest-list",
+      "command": [
+        "cargo",
+        "nextest",
+        "list",
+        "--locked",
+        "--offline",
+        "--message-format",
+        "json"
+      ],
+      "profile_environment": {},
+      "exit": 0,
+      "seconds": 18.28,
+      "retained": {
+        "unique_bytes": 638900603,
+        "allocated_file_bytes": 641433600
+      },
+      "sampled_peak": {
+        "unique_bytes": 641245074,
+        "allocated_file_bytes": 643784704
+      },
+      "sample_count": 157,
+      "cli_exists": true,
+      "test_count": 197,
+      "normalized_inventory_sha256": "dee2352354b49b91fa71025f653f2f3ab9c6b02f371e10200e6cc093b729f67b"
+    },
+    {
+      "variant": "baseline",
+      "phase": "dev-build-after-tests",
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--offline"
+      ],
+      "profile_environment": {},
+      "exit": 0,
+      "seconds": 6.72,
+      "retained": {
+        "unique_bytes": 638906621,
+        "allocated_file_bytes": 641441792
+      },
+      "sampled_peak": {
+        "unique_bytes": 666695795,
+        "allocated_file_bytes": 668082176
+      },
+      "sample_count": 58,
+      "cli_exists": true
+    },
+    {
+      "variant": "dev-debug-0",
+      "phase": "nextest-list",
+      "command": [
+        "cargo",
+        "nextest",
+        "list",
+        "--locked",
+        "--offline",
+        "--message-format",
+        "json"
+      ],
+      "profile_environment": {
+        "CARGO_PROFILE_DEV_DEBUG": "0"
+      },
+      "exit": 0,
+      "seconds": 18.11,
+      "retained": {
+        "unique_bytes": 307655662,
+        "allocated_file_bytes": 310145024
+      },
+      "sampled_peak": {
+        "unique_bytes": 307655662,
+        "allocated_file_bytes": 310145024
+      },
+      "sample_count": 154,
+      "cli_exists": true,
+      "test_count": 197,
+      "normalized_inventory_sha256": "dee2352354b49b91fa71025f653f2f3ab9c6b02f371e10200e6cc093b729f67b"
+    },
+    {
+      "variant": "dev-debug-0",
+      "phase": "dev-build-after-tests",
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--offline"
+      ],
+      "profile_environment": {
+        "CARGO_PROFILE_DEV_DEBUG": "0"
+      },
+      "exit": 0,
+      "seconds": 6.62,
+      "retained": {
+        "unique_bytes": 307661692,
+        "allocated_file_bytes": 310153216
+      },
+      "sampled_peak": {
+        "unique_bytes": 320122001,
+        "allocated_file_bytes": 320724992
+      },
+      "sample_count": 58,
+      "cli_exists": true
+    },
+    {
+      "variant": "test-debug-0",
+      "phase": "nextest-list",
+      "command": [
+        "cargo",
+        "nextest",
+        "list",
+        "--locked",
+        "--offline",
+        "--message-format",
+        "json"
+      ],
+      "profile_environment": {
+        "CARGO_PROFILE_TEST_DEBUG": "0"
+      },
+      "exit": 0,
+      "seconds": 17.53,
+      "retained": {
+        "unique_bytes": 307654722,
+        "allocated_file_bytes": 310145024
+      },
+      "sampled_peak": {
+        "unique_bytes": 307654722,
+        "allocated_file_bytes": 310145024
+      },
+      "sample_count": 151,
+      "cli_exists": true,
+      "test_count": 197,
+      "normalized_inventory_sha256": "dee2352354b49b91fa71025f653f2f3ab9c6b02f371e10200e6cc093b729f67b"
+    },
+    {
+      "variant": "test-debug-0",
+      "phase": "dev-build-after-tests",
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--offline"
+      ],
+      "profile_environment": {
+        "CARGO_PROFILE_TEST_DEBUG": "0"
+      },
+      "exit": 0,
+      "seconds": 17.35,
+      "retained": {
+        "unique_bytes": 641300164,
+        "allocated_file_bytes": 646008832
+      },
+      "sampled_peak": {
+        "unique_bytes": 641300164,
+        "allocated_file_bytes": 646008832
+      },
+      "sample_count": 127,
+      "cli_exists": true
+    }
+  ],
+  "variants": {
+    "baseline": {},
+    "dev-debug-0": {
+      "CARGO_PROFILE_DEV_DEBUG": "0"
+    },
+    "test-debug-0": {
+      "CARGO_PROFILE_TEST_DEBUG": "0"
+    }
+  },
+  "identical_test_inventory": true,
+  "scope_note": "No UI bundle; CLI-only development build. Sampled target peaks are observations, not hard upper bounds or whole-process disk peaks.",
+  "split_profile_rerun_report": "split-test-profile.json"
+}
