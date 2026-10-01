@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 CLI = ROOT / 'target/debug' / ('highgrade.exe' if os.name == 'nt' else 'highgrade')
@@ -33,8 +34,11 @@ def main():
     parser.add_argument('step', choices=['tests', 'specs', 'scenarios', 'inspect'])
     step = parser.parse_args().step
     if step == 'tests':
+        attempt_id = uuid.uuid4().hex
+        run(['node', 'scripts/source-scenarios.mjs', 'capture', ROOT, attempt_id])
         run(['cargo', 'nextest', 'list', '--locked', '--message-format', 'json'], REPORTS / 'list.json')
         run(['cargo', 'nextest', 'run', '--locked', '--profile', 'highgrade'])
+        run(['node', 'scripts/source-scenarios.mjs', 'complete', ROOT, attempt_id])
     elif step == 'specs':
         catalog = report('spec-list')
         if catalog['status'] != 'passed':

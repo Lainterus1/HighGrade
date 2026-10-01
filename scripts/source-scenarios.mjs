@@ -1,12 +1,16 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, mkdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(process.argv[3] ?? '.');
 const mode = process.argv[2];
 const abs = (file) => path.join(root, file);
 const read = (file) => JSON.parse(readFileSync(abs(file), 'utf8'));
+const readHashed = (file) => {
+  const bytes = readFileSync(abs(file));
+  return { value: JSON.parse(bytes.toString('utf8')), sha256: createHash('sha256').update(bytes).digest('hex') };
+};
 const sha = (file) => createHash('sha256').update(readFileSync(abs(file))).digest('hex');
 const digest = (value) => createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex');
 const canonical = (value) => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
@@ -98,9 +102,78 @@ function nativeHash() {
   return digest;
 }
 
-function prepare(source) {
-  const inventory = 'target/nextest/highgrade/list.json', report = 'target/nextest/highgrade/junit.xml', record = 'target/nextest/highgrade/run.json';
-  const xml = readFileSync(abs(report), 'utf8');
+const inventory = 'target/nextest/highgrade/list.json';
+const nativeReport = 'target/nextest/highgrade/junit.xml';
+const record = 'target/nextest/highgrade/run.json';
+const attempt = 'target/nextest/highgrade/attempt.json';
+const completion = 'target/nextest/highgrade/completion.json';
+const attemptId = process.argv[4];
+const validAttemptId = (value) => typeof value === 'string' && /^[a-f0-9]{32}$/.test(value);
+const isSpec = (file) => file === 'specs/catalog.json' || file.startsWith('specs/requirements/') || file.startsWith('specs/changes/');
+const save = (file, value) => {
+  const temporary = `${abs(file)}.${process.pid}.${randomUUID()}.tmp`;
+  try {
+    writeFileSync(temporary, `${JSON.stringify(value, null, 2)}\n`);
+    renameSync(temporary, abs(file));
+  } finally {
+    rmSync(temporary, { force: true });
+  }
+};
+
+function inputHashes(source) {
+  const pinned = ['specs/catalog.json', ...files('specs/requirements').filter((item) => item.endsWith('.json')),
+    ...files('specs/changes').filter((item) => item.endsWith('/spec.json')),
+    ...source.testSources, ...files('tests/support').filter((item) => item.endsWith('.rs')),
+    ...files('src').filter((item) => /\.(rs|html|js)$/.test(item)), 'build.rs', ...files('ui/dist'),
+    ...files('kit'), ...files('bundle'), ...files('tests/fixtures'),
+    'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', '.config/nextest.toml', '.gitattributes',
+    'scripts/source-scenarios.mjs', 'scripts/verify.py'];
+  return Object.fromEntries(pinned.sort().map((file) => [file, sha(file)]));
+}
+
+function beginAttempt() {
+  mkdirSync(abs('target/nextest/highgrade'), { recursive: true });
+  // Invalidate first, even if source discovery, listing or the runner is interrupted.
+  rmSync(abs(attempt), { force: true });
+  save(attempt, { schema_version: 1, state: 'running', attempt_id: attemptId, capture_root: root });
+  for (const file of [completion, inventory, nativeReport, record, 'target/nextest/highgrade/trace.json']) rmSync(abs(file), { force: true });
+}
+
+function capture(source) {
+  save(attempt, { schema_version: 1, state: 'running', attempt_id: attemptId, capture_root: root,
+    captured_at: new Date().toISOString(), scenario_sha256: source.scenarioSha256, source_hashes: inputHashes(source) });
+  return { attempt, state: 'running' };
+}
+
+function checkedAttempt(source, state) {
+  if (!existsSync(abs(attempt))) fail('native test attempt is missing; rerun python scripts/verify.py tests');
+  const captured = readHashed(attempt);
+  const previous = captured.value;
+  const manifestHashes = { [attempt]: captured.sha256 };
+  if (previous.schema_version !== 1 || previous.state !== 'running' || !validAttemptId(previous.attempt_id) ||
+      typeof previous.capture_root !== 'string' || !path.isAbsolute(previous.capture_root) ||
+      (state === 'running' && (previous.capture_root !== root || previous.attempt_id !== attemptId)) ||
+      !previous.source_hashes || !previous.captured_at) fail('native test attempt is incomplete or superseded; rerun python scripts/verify.py tests');
+  let completed;
+  if (state === 'completed') {
+    if (!existsSync(abs(completion))) fail('native test attempt is incomplete; rerun python scripts/verify.py tests');
+    const stamp = readHashed(completion);
+    completed = stamp.value;
+    manifestHashes[completion] = stamp.sha256;
+    if (completed.schema_version !== 1 || completed.state !== 'completed' || completed.attempt_id !== previous.attempt_id) {
+      fail('native test attempt is incomplete or superseded; rerun python scripts/verify.py tests');
+    }
+  }
+  const current = inputHashes(source);
+  const nonSpec = (hashes) => Object.fromEntries(Object.entries(hashes).filter(([file]) => !isSpec(file)));
+  if (digest(nonSpec(previous.source_hashes)) !== digest(nonSpec(current)) || previous.scenario_sha256 !== source.scenarioSha256) {
+    fail('specification or test inputs changed since capture; rerun nextest with python scripts/verify.py tests');
+  }
+  return { previous, current, completed, manifestHashes };
+}
+
+function passedReport() {
+  const xml = readFileSync(abs(nativeReport), 'utf8');
   const number = (tag, name) => {
     const value = tag.match(new RegExp(`\\b${name}="(\\d+)"`))?.[1];
     if (value === undefined) fail(`nextest JUnit lacks ${name}`);
@@ -116,43 +189,73 @@ function prepare(source) {
   if (!listed || typeof listed !== 'object') fail('nextest inventory has no rust suites');
   const listedTests = Object.values(listed).reduce((sum, suite) => sum + Object.keys(suite.testcases ?? {}).length, 0);
   if (listedTests !== totals.tests) fail(`nextest JUnit has ${totals.tests}/${listedTests} listed tests`);
-  const pinned = ['specs/catalog.json', ...files('specs/requirements').filter((item) => item.endsWith('.json')),
-    ...files('specs/changes').filter((item) => item.endsWith('/spec.json')),
-    ...source.testSources, ...files('tests/support').filter((item) => item.endsWith('.rs')),
-    inventory, ...files('src').filter((item) => /\.(rs|html|js)$/.test(item)), 'build.rs', ...files('ui/dist'),
-    ...files('tests/fixtures/native-v1'), 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', '.config/nextest.toml', '.gitattributes'];
-  const reportTime = statSync(abs(report)).mtimeMs;
-  const isSpec = (file) => file === 'specs/catalog.json' || file.startsWith('specs/requirements/') || file.startsWith('specs/changes/');
-  for (const file of pinned.filter((item) => !isSpec(item) && item !== inventory)) {
-    if (statSync(abs(file)).mtimeMs > reportTime) fail(`${file}: source changed after the native test report; rerun nextest`);
+  return totals.tests;
+}
+
+function complete(source) {
+  const { previous } = checkedAttempt(source, 'running');
+  const tests = passedReport();
+  // Never replace the capture: a newer concurrent capture must not inherit this success.
+  save(completion, { schema_version: 1, state: 'completed', attempt_id: previous.attempt_id,
+    report_sha256: sha(nativeReport), inventory_sha256: sha(inventory) });
+  return { attempt, state: 'completed', native_tests_passed: tests };
+}
+
+function recordContext(source) {
+  const { previous, current, completed, manifestHashes } = checkedAttempt(source, 'completed');
+  const reportHash = sha(nativeReport), inventoryHash = sha(inventory);
+  if (completed.report_sha256 !== reportHash || completed.inventory_sha256 !== inventoryHash) {
+    fail('native report or inventory changed after completion; rerun nextest with python scripts/verify.py tests');
   }
-  if (statSync(abs(inventory)).mtimeMs > reportTime) fail('nextest inventory is newer than the test report; rerun nextest');
-  const changedSpec = pinned.some((file) => isSpec(file) && statSync(abs(file)).mtimeMs > reportTime);
-  if (changedSpec) {
-    if (!existsSync(abs(record))) fail('specification changed after the native test report; rerun nextest');
-    const previous = read(record);
-    const nonSpec = pinned.filter((file) => !isSpec(file)).sort();
-    const previousNonSpec = Object.keys(previous.source_hashes ?? {}).filter((file) => !isSpec(file)).sort();
-    if (previous.capture_root !== root || previous.exit_code !== 0 || previous.tool !== 'rust-nextest' ||
-        previous.report !== report || previous.inventory !== inventory ||
-        JSON.stringify(previousNonSpec) !== JSON.stringify(nonSpec) ||
-        previous.report_sha256 !== sha(report) || previous.scenario_sha256 !== source.scenarioSha256 ||
-        pinned.some((file) => !isSpec(file) && previous.source_hashes?.[file] !== sha(file))) {
-      fail('specification or test inputs changed after the native test report; rerun nextest');
-    }
+  const tests = passedReport();
+  const sourceHashes = { ...current, ...manifestHashes, [inventory]: inventoryHash, 'specs/catalog.json': nativeHash() };
+  const data = { schema_version: 1, tool: 'rust-nextest', command: 'cargo nextest run --locked --profile highgrade',
+    scope: 'active native High Grade specifications and Rust integration tests', captured_at: previous.captured_at, capture_root: previous.capture_root,
+    exit_code: 0, report: nativeReport, report_sha256: reportHash, spec_files: ['specs/catalog.json'], test_sources: source.testSources,
+    source_hashes: sourceHashes, inventory, scenario_sha256: source.scenarioSha256 };
+  return { previous, current, tests, data };
+}
+
+function assertRecordIdentity(data) {
+  const expected = { ...data.source_hashes, [nativeReport]: data.report_sha256 };
+  // The capture is read last: capture invalidates it before clearing other reports.
+  for (const file of [nativeReport, inventory, completion, attempt]) {
+    if (sha(file) !== expected[file]) fail('native verification attempt or report was superseded; rerun scenarios');
   }
-  const sourceHashes = Object.fromEntries(pinned.map((file) => [file, file === 'specs/catalog.json' ? nativeHash() : sha(file)]));
-  writeFileSync(abs(record), `${JSON.stringify({ schema_version: 1, tool: 'rust-nextest', command: 'cargo nextest run --locked --profile highgrade',
-    scope: 'active native High Grade specifications and Rust integration tests', captured_at: new Date().toISOString(), capture_root: root,
-    exit_code: 0, report, report_sha256: sha(report), spec_files: ['specs/catalog.json'], test_sources: source.testSources,
-    source_hashes: sourceHashes, inventory, scenario_sha256: source.scenarioSha256 }, null, 2)}\n`);
-  return { record, pinned_files: pinned.length, native_tests_passed: totals.tests,
+}
+
+function currentPublication(expected) {
+  const current = recordContext(sources());
+  const published = readHashed(record);
+  if (digest(current.data) !== digest(expected) || digest(published.value) !== digest(expected)) {
+    fail('prepared native run was changed or superseded; rerun scenarios');
+  }
+  assertRecordIdentity(expected);
+  return published;
+}
+
+function prepare(source) {
+  const { previous, current, tests, data } = recordContext(source);
+  const specHashes = (hashes) => Object.fromEntries(Object.entries(hashes).filter(([file]) => isSpec(file)));
+  const changedSpec = digest(specHashes(previous.source_hashes)) !== digest(specHashes(current));
+  save(record, data);
+  // Publication is not a lock: later trace/verify also validate these manifest inputs.
+  currentPublication(data);
+  return { record, pinned_files: Object.keys(data.source_hashes).length, native_tests_passed: tests,
     native_report_reused: changedSpec, native_report_reason: changedSpec ? 'equivalent_specification' : 'fresh_report' };
 }
 
 function verify(source) {
-  const trace = read('target/nextest/highgrade/trace.json');
+  const { data } = recordContext(source);
+  const published = currentPublication(data);
+  const tracePath = 'target/nextest/highgrade/trace.json';
+  const traceInput = readHashed(tracePath);
+  const trace = traceInput.value;
   if (trace.operation !== 'trace') fail('native trace did not produce a trace report');
+  const provenance = trace.measurements.filter((item) => typeof item.tool === 'string');
+  if (provenance.length !== 1 || ['tool', 'report', 'report_sha256', 'command', 'scope', 'captured_at'].some((field) => provenance[0][field] !== data[field])) {
+    fail('native trace does not match the prepared run and report');
+  }
   const rows = trace.measurements.filter((item) => typeof item.scenario_id === 'string');
   if (rows.length !== source.scenarios.size) fail(`trace covered ${rows.length}/${source.scenarios.size} scenarios`);
   const byId = new Map(rows.map((item) => [item.scenario_id, item]));
@@ -166,15 +269,25 @@ function verify(source) {
       counts.test_cases_missing !== 0 ||
       counts.unlinked_test_cases !== counts.test_cases_reported - counts.linked_test_cases ||
       counts.outside_automatic_trace !== source.manual.length + source.noDeclaredCheck.length) fail('trace scope counters disagree with source and outcomes');
+  // Recheck after consuming trace, including source freshness. This is an observation
+  // boundary, not a promise that concurrent writers cannot change files afterward.
+  if (currentPublication(data).sha256 !== published.sha256 || sha(tracePath) !== traceInput.sha256) {
+    fail('native verification inputs changed while verifying; rerun scenarios');
+  }
+  assertRecordIdentity(data);
   return { ...counts };
 }
 
 try {
-  if (!['check', 'prepare', 'verify'].includes(mode)) fail('usage: node scripts/source-scenarios.mjs check|prepare|verify [root]');
+  if (!['check', 'capture', 'complete', 'prepare', 'verify'].includes(mode)) fail('usage: node scripts/source-scenarios.mjs check|capture|complete|prepare|verify [root] [attempt-id]');
+  if (['capture', 'complete'].includes(mode) && !validAttemptId(attemptId)) fail('native test attempt ID required; use python scripts/verify.py tests');
+  if (mode === 'capture') beginAttempt();
   const source = sources();
   const summary = { requirements: source.requirements.size, scenarios: source.scenarios.size,
     automatic: source.automatic.length, manual_check_scenarios: source.manual.length,
     no_declared_check_scenarios: source.noDeclaredCheck.length, no_declared_check_ids: source.noDeclaredCheck };
+  if (mode === 'capture') Object.assign(summary, capture(source));
+  if (mode === 'complete') Object.assign(summary, complete(source));
   if (mode === 'prepare') Object.assign(summary, prepare(source));
   if (mode === 'verify') Object.assign(summary, verify(source));
   console.log(JSON.stringify({ status: 'passed', ...summary }, null, 2));
