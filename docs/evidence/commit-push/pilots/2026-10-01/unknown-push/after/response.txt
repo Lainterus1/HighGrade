@@ -1,0 +1,9 @@
+Push is blocked: the requested HEAD range contains an unassigned commit outside task alpha.
+
+- Alpha: 3a697937068a0df546f2b9f7b6a6b4cae10766fa, with app.py and verified work evidence
+- Extra commit: 097e451845583c051fea05615c761394880ad188 adds mystery.txt, whose content is Unassigned independent content. No task source assigns this file to alpha
+- Requested destination: the local origin remote, branch delivery. That branch is still absent; no push was attempted
+- Alpha’s successful check evidence matches its committed inputs and was reused. The whole proposed range is not cleared for publication
+- Both commits remain local. No commit rewrite, activation, PR/CI action or human acceptance record was made
+
+Should I send only the alpha commit to origin/delivery, or should the extra commit first be assigned a task and reviewed? I will not guess the ownership or silently change the requested range.

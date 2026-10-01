@@ -1,0 +1,124 @@
+{
+  "captured_at": "2026-10-01T05:30:32.286001+00:00",
+  "observations": [
+    {
+      "command": [
+        "candidate/highgrade",
+        "global-install",
+        "--profile",
+        "/workspace/shared/HighGrade/target/highgrade/tmp/update-preview-8v3xu2w_/profile",
+        "--source",
+        "/workspace/shared/HighGrade-update/kit",
+        "--candidate-exe",
+        "/workspace/shared/HighGrade/target/debug/highgrade"
+      ],
+      "exit_code": 0,
+      "output": {
+        "ambiguous_result_keys": [],
+        "findings": [],
+        "limitations": [],
+        "measurements": [
+          {
+            "connected": true,
+            "profile": "/workspace/shared/HighGrade/target/highgrade/tmp/update-preview-8v3xu2w_/profile",
+            "release": "v0-3-6"
+          },
+          {
+            "manifest_sha256": "2065f3a8eb7648e374104fa5504cc2e7b44a3ddee82b3af00cb17c20fa5013ea"
+          }
+        ],
+        "operation": "global-install",
+        "result": {
+          "connected": true,
+          "manifest_sha256": "2065f3a8eb7648e374104fa5504cc2e7b44a3ddee82b3af00cb17c20fa5013ea",
+          "profile": "/workspace/shared/HighGrade/target/highgrade/tmp/update-preview-8v3xu2w_/profile",
+          "release": "v0-3-6"
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "command": [
+        "candidate/highgrade",
+        "global-update",
+        "--profile",
+        "/workspace/shared/HighGrade/target/highgrade/tmp/update-preview-8v3xu2w_/profile",
+        "--source",
+        "/workspace/shared/HighGrade/target/highgrade/tmp/update-preview-8v3xu2w_/kit",
+        "--candidate-exe",
+        "/workspace/shared/HighGrade/target/debug/highgrade"
+      ],
+      "exit_code": 2,
+      "output": {
+        "ambiguous_result_keys": [],
+        "findings": [
+          {
+            "code": "SemanticReviewRequired",
+            "location": "global-update",
+            "message": "Сравните смысл общих правил перед применением.",
+            "status": "unknown"
+          }
+        ],
+        "limitations": [],
+        "measurements": [
+          {
+            "apply": false,
+            "candidate": "v0-3-7",
+            "candidate_sha256": "a67d5566763228d39dddf42a33004e6d1bc98514a013699935d7e8c6d5ff40c1",
+            "from": "v0-3-6",
+            "manifest_sha256": "b05ddd1aba9965765d4036014c2a671d71bf7816f8df2743cf1454b9924b28c7"
+          },
+          {
+            "applied": false,
+            "decision": "required",
+            "next": "review candidate, then apply its candidate_sha256",
+            "validation": "passed"
+          }
+        ],
+        "operation": "global-update",
+        "result": {
+          "applied": false,
+          "apply": false,
+          "candidate": "v0-3-7",
+          "candidate_sha256": "a67d5566763228d39dddf42a33004e6d1bc98514a013699935d7e8c6d5ff40c1",
+          "decision": "required",
+          "from": "v0-3-6",
+          "manifest_sha256": "b05ddd1aba9965765d4036014c2a671d71bf7816f8df2743cf1454b9924b28c7",
+          "next": "review candidate, then apply its candidate_sha256",
+          "validation": "passed"
+        },
+        "status": "unknown"
+      }
+    },
+    {
+      "command": [
+        "candidate/highgrade",
+        "global-status",
+        "--profile",
+        "/workspace/shared/HighGrade/target/highgrade/tmp/update-preview-8v3xu2w_/profile"
+      ],
+      "exit_code": 0,
+      "output": {
+        "ambiguous_result_keys": [],
+        "findings": [],
+        "limitations": [],
+        "measurements": [
+          {
+            "connected": true,
+            "profile": "/workspace/shared/HighGrade/target/highgrade/tmp/update-preview-8v3xu2w_/profile",
+            "release": "v0-3-6"
+          }
+        ],
+        "operation": "global-status",
+        "result": {
+          "connected": true,
+          "profile": "/workspace/shared/HighGrade/target/highgrade/tmp/update-preview-8v3xu2w_/profile",
+          "release": "v0-3-6"
+        },
+        "status": "passed"
+      }
+    }
+  ],
+  "assertions": "passed: exit 2; unknown; SemanticReviewRequired; validation passed; decision required; applied false; active pointer unchanged; status passed",
+  "scope": "Temporary isolated profile only; no application, user installation, project migration or model execution."
+}

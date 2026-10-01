@@ -20,12 +20,52 @@ def linked(path):
 
 
 def inventory(root):
+    """Measure payload once per inode; expose pathname and allocated sizes too.
+
+    ``mib`` is the portable, hardlink-deduplicated payload used by the budget.
+    ``logical_mib`` counts every pathname. ``physical_mib`` includes directory
+    allocation when the platform exposes st_blocks, and is otherwise unknown.
+    Areas are measured independently: a hardlink spanning two areas contributes
+    to both area subtotals, but only once to the overall total.
+    """
+    def usage():
+        return {'unique': 0, 'logical': 0, 'physical': 0, 'physical_known': True, 'seen': set()}
+
+    def account(measurement, path, info, is_file):
+        if is_file:
+            measurement['logical'] += info.st_size
+        # A zero/unavailable inode must not collapse unrelated files.
+        identity = (info.st_dev, info.st_ino) if info.st_ino else path
+        if identity in measurement['seen']:
+            return
+        measurement['seen'].add(identity)
+        if is_file:
+            measurement['unique'] += info.st_size
+        blocks = getattr(info, 'st_blocks', None)
+        if blocks is None:
+            measurement['physical_known'] = False
+        else:
+            measurement['physical'] += blocks * 512
+
+    def summarize(measurement):
+        return {
+            'mib': round(measurement['unique'] / 1024 / 1024, 2),
+            'logical_mib': round(measurement['logical'] / 1024 / 1024, 2),
+            'physical_mib': round(measurement['physical'] / 1024 / 1024, 2)
+            if measurement['physical_known'] else None,
+            'hardlink_duplicates_mib': round(
+                (measurement['logical'] - measurement['unique']) / 1024 / 1024, 2),
+        }
+
     target = root / 'target'
+    total = usage()
     if not target.exists() and not target.is_symlink():
-        return {'mib': 0.0, 'unknown_root': [], 'unknown_highgrade': [], 'links': [], 'scratch': []}
+        return {**summarize(total), 'areas': {}, 'unknown_root': [],
+                'unknown_highgrade': [], 'links': [], 'scratch': []}
     if linked(target) or not target.is_dir():
         raise ValueError('target is linked or is not a directory')
-    total = 0
+    account(total, target, target.stat(), False)
+    areas = {}
     links = []
     pending = [target]
     while pending:
@@ -36,10 +76,19 @@ def inventory(root):
                 if linked(path):
                     links.append(path.relative_to(root).as_posix())
                     continue
+                relative = path.relative_to(target).parts
+                area = '/'.join(relative[:2] if relative[0] == 'highgrade' else relative[:1])
+                measurement = areas.setdefault(area, usage())
+                # DirEntry.stat reports zero inode/device identities on Windows;
+                # a fresh path stat supplies the actual hardlink identity.
+                info = path.stat(follow_symlinks=False)
                 if entry.is_dir(follow_symlinks=False):
+                    account(total, path, info, False)
+                    account(measurement, path, info, False)
                     pending.append(path)
                 elif entry.is_file(follow_symlinks=False):
-                    total += entry.stat(follow_symlinks=False).st_size
+                    account(total, path, info, True)
+                    account(measurement, path, info, True)
                 else:
                     links.append(path.relative_to(root).as_posix())
     project = target / 'highgrade'
@@ -49,7 +98,8 @@ def inventory(root):
     if scratch.exists() and (linked(scratch) or not scratch.is_dir()):
         links.append('target/highgrade/tmp')
     return {
-        'mib': round(total / 1024 / 1024, 2),
+        **summarize(total),
+        'areas': {name: summarize(value) for name, value in sorted(areas.items())},
         'unknown_root': sorted(p.name for p in target.iterdir() if p.name not in ROOT_ENTRIES),
         'unknown_highgrade': sorted(p.name for p in project.iterdir() if p.name not in PROJECT_ENTRIES)
         if project.is_dir() and not linked(project) else [],

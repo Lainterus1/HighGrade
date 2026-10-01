@@ -1,0 +1,55 @@
+{
+  "checked_at": "2026-10-01T08:16:49.340046+00:00",
+  "platform": "Linux",
+  "source_parents": {
+    "update": "107e23aa826ea95ad115acdf3a1e4e16a4f4fad6",
+    "commit_push": "fd39b0d03ed7c8bda69559774f8bbf20b49a2834",
+    "storage": "4d98ef094e45344174757cd2ea2b86a8ad76ffe9"
+  },
+  "rust_tests": {
+    "passed": 211,
+    "failed": 0,
+    "skipped": 0,
+    "report": "native/junit.xml"
+  },
+  "python_tests": {
+    "passed": 52,
+    "failed": 0,
+    "report": "python-tests.log"
+  },
+  "catalog_validation": {
+    "command": "python scripts/verify.py specs",
+    "exit_code": 0
+  },
+  "commands_passed": [
+    "cargo fmt --all -- --check",
+    "python scripts/verify.py scenarios",
+    "node scripts/check-scenario-scale.mjs",
+    "node scripts/check-scenario-reuse.mjs",
+    "node scripts/check-repository.mjs",
+    "python scripts/render-skills.py --check",
+    "python scripts/verify.py inspect"
+  ],
+  "limitations": [
+    "Remote exact-SHA Windows/Ubuntu CI follows publication",
+    "Passing native/structural checks do not replace unavailable Planner Goal observations",
+    "Merged historical evidence is revalidated separately; migration alone never makes stale evidence fresh"
+  ],
+  "independent_review": {
+    "candidate_publication": "go",
+    "HG-0062": "go",
+    "HG-0063": "no_go",
+    "mandatory_unknown": [
+      "HG-0020-S6",
+      "HG-0020-S7",
+      "HG-0020-S8"
+    ],
+    "report": "independent-review.md"
+  },
+  "target_check": {
+    "exit_code": 0,
+    "unique_mib": 307.3,
+    "physical_mib": 310.52,
+    "scratch": []
+  }
+}

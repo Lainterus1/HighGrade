@@ -1,10 +1,13 @@
 """Safety checks for the project-owned target layout."""
 
 import importlib.util
+from contextlib import contextmanager, redirect_stdout
+import io
 import os
 from pathlib import Path
 import subprocess
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -13,6 +16,14 @@ spec = importlib.util.spec_from_file_location(
     'target_maintenance', Path(__file__).parents[1] / 'target-maintenance.py')
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
+
+
+def stat_fixture(info, *, without=(), **overrides):
+    # Preserve platform metadata, including Windows reparse-point attributes.
+    fields = {name: getattr(info, name) for name in dir(info)
+              if name.startswith('st_') and name not in without}
+    fields.update(overrides)
+    return SimpleNamespace(**fields)
 
 
 class TargetMaintenanceTests(unittest.TestCase):
@@ -27,6 +38,121 @@ class TargetMaintenanceTests(unittest.TestCase):
         (self.project / 'candidate/highgrade.exe').write_bytes(b'candidate')
         (self.root / 'target/unknown.txt').write_text('foreign')
         (self.project / 'tmp/notes.txt').write_text('foreign scratch')
+
+    def test_inventory_deduplicates_hardlinks_and_reports_each_area(self):
+        debug = self.root / 'target/debug'
+        debug.mkdir()
+        payload = debug / 'binary'
+        payload.write_bytes(b'x' * (2 * 1024 * 1024))
+        os.link(payload, debug / 'binary-alias')
+        reports = self.project / 'reports'
+        reports.mkdir()
+        (reports / 'result.log').write_bytes(b'y' * (1024 * 1024))
+        os.link(payload, reports / 'cross-area-alias')
+
+        report = module.inventory(self.root)
+
+        self.assertEqual(report['mib'], 3.0)
+        self.assertEqual(report['logical_mib'], 7.0)
+        self.assertEqual(report['hardlink_duplicates_mib'], 4.0)
+        self.assertEqual(report['areas']['debug']['mib'], 2.0)
+        self.assertEqual(report['areas']['debug']['logical_mib'], 4.0)
+        self.assertEqual(report['areas']['highgrade/reports']['mib'], 3.0)
+        self.assertEqual(report['areas']['highgrade/reports']['logical_mib'], 3.0)
+        if hasattr(payload.stat(), 'st_blocks'):
+            # Physical allocation includes the directories, without charging
+            # either Cargo's aliases or a cross-area hardlink a second time.
+            paths = [self.root / 'target', *(self.root / 'target').rglob('*')]
+            unique = {(p.stat().st_dev, p.stat().st_ino): p.stat().st_blocks * 512
+                      for p in paths}
+            self.assertEqual(report['physical_mib'], round(sum(unique.values()) / 1024 / 1024, 2))
+        self.assertEqual(payload.read_bytes(), b'x' * (2 * 1024 * 1024))
+
+    def test_inventory_without_allocated_size_reports_unknown_not_estimate(self):
+        stat_path = module.os.stat
+
+        def portable_stat(path, *args, **kwargs):
+            # Windows exposes no st_blocks. Keep every other platform field.
+            return stat_fixture(stat_path(path, *args, **kwargs), without=('st_blocks',))
+
+        with patch.object(module.os, 'stat', portable_stat):
+            report = module.inventory(self.root)
+        self.assertIsNone(report['physical_mib'])
+        self.assertIsNone(report['areas']['highgrade/tmp']['physical_mib'])
+        self.assertEqual(report['mib'], 0.0)
+
+    def test_inventory_does_not_deduplicate_unavailable_inode_ids(self):
+        debug = self.root / 'target/debug'
+        debug.mkdir()
+        for name in ('one', 'two'):
+            (debug / name).write_bytes(b'x' * (1024 * 1024))
+        stat_path = module.os.stat
+
+        def unidentified_stat(path, *args, **kwargs):
+            return stat_fixture(stat_path(path, *args, **kwargs), st_ino=0)
+
+        with patch.object(module.os, 'stat', unidentified_stat):
+            report = module.inventory(self.root)
+        self.assertEqual(report['mib'], 2.0)
+        self.assertEqual(report['logical_mib'], 2.0)
+        self.assertEqual(report['hardlink_duplicates_mib'], 0.0)
+
+    def test_windows_direntry_zero_identity_uses_real_path_stat(self):
+        debug = self.root / 'target/debug'
+        debug.mkdir()
+        payload = debug / 'binary'
+        payload.write_bytes(b'x' * (2 * 1024 * 1024))
+        os.link(payload, debug / 'alias')
+        scan = module.os.scandir
+
+        class WindowsEntry:
+            def __init__(self, entry):
+                self.entry = entry
+
+            def __getattr__(self, name):
+                return getattr(self.entry, name)
+
+            def stat(self, **kwargs):
+                # Windows DirEntry.stat has zero st_ino/st_dev/st_nlink even
+                # when os.stat can provide the true filesystem identity.
+                return stat_fixture(self.entry.stat(**kwargs), st_ino=0, st_dev=0, st_nlink=0)
+
+        @contextmanager
+        def windows_scan(directory):
+            with scan(directory) as entries:
+                yield (WindowsEntry(entry) for entry in entries)
+
+        with patch.object(module.os, 'scandir', windows_scan):
+            report = module.inventory(self.root)
+        self.assertEqual(report['mib'], 2.0)
+        self.assertEqual(report['logical_mib'], 4.0)
+        self.assertEqual(report['hardlink_duplicates_mib'], 2.0)
+        self.assertEqual(report['areas']['debug']['mib'], 2.0)
+
+    def test_missing_target_has_empty_measurements(self):
+        report = module.inventory(self.root / 'absent')
+        self.assertEqual(report['mib'], 0.0)
+        self.assertEqual(report['logical_mib'], 0.0)
+        self.assertEqual(report['physical_mib'], 0.0)
+        self.assertEqual(report['hardlink_duplicates_mib'], 0.0)
+        self.assertEqual(report['areas'], {})
+
+    def test_budget_check_counts_hardlinked_payload_once(self):
+        root = self.root / 'budget-fixture'
+        debug = root / 'target/debug'
+        debug.mkdir(parents=True)
+        payload = debug / 'binary'
+        payload.write_bytes(b'x' * (600 * 1024))
+        os.link(payload, debug / 'alias')
+        output = io.StringIO()
+        with patch.object(module, 'BUDGET_MIB', 1), \
+                patch('sys.argv', ['target-maintenance.py', '--root', str(root), '--check']), \
+                redirect_stdout(output):
+            module.main()
+        import json
+        report = json.loads(output.getvalue())
+        self.assertLess(report['before']['mib'], 1)
+        self.assertGreater(report['before']['logical_mib'], 1)
 
     def test_preview_is_read_only_and_apply_preserves_candidate_and_unknown(self):
         candidate = (self.project / 'candidate/highgrade.exe').read_bytes()

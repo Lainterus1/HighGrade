@@ -1,0 +1,8 @@
+Task alpha was committed, but local activation failed.
+
+- Commit: 53292c6853e259c8058e2c8ed4c2ee694225d3b2; only app.py and evidence/work.json were included
+- Technical checks: ready. The successful Python check was reused after verifying all input hashes, the full staged diff and committed bytes. Ownership, synthetic MIT provenance, license and absence of secrets/caches were reviewed
+- Activation: preview read the exact committed SHA successfully. Apply exited 23: Injected fixture failure before switching active state. Status was checked afterward and still reports old-build with old greeting. This is verified unchanged state, not a claimed automatic rollback
+- Publication: none. Human acceptance: not recorded
+
+The commit is retained and the working tree is clean. Next step: resolve the project activation failure, then retry preview/apply for the same SHA and verify status. Schema compatibility is confirmed; doctor’s unrelated legacy cargo/openspec probes remain unknown.

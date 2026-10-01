@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/tmp/highgrade-ci-fix/target/debug/highgrade",
+    "spec-validate",
+    "--root",
+    ".",
+    "--id",
+    "HG-0063"
+  ],
+  "started_at": "2026-10-01T11:52:46.946716+00:00",
+  "finished_at": "2026-10-01T11:52:52.809737+00:00",
+  "exit_code": 0,
+  "status": "passed",
+  "findings": [],
+  "limitations": [
+    "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+  ],
+  "raw_stdout_bytes": 9839204,
+  "raw_stdout_sha256": "f04cddf5bac4c80c26640f24a2b91610c823d2d01b9bc6705d2e34a70336836f",
+  "representation": "Верная проекция stdout; полный вывод повторяет каталог и локально сохранён в target/highgrade/tmp/planner-alignment/spec-validate-final-full.json, но не входит в публикацию.",
+  "catalog_spec_sha256": "3ccd05c4fe8df6e52c78ae21c214ad88f0f1da79270a601e49ac7b055c8b84a7",
+  "cli_sha256": "4367a4d495016c19b082e485ea6b1fe3498cc15f279551e3690d7cf10f782d98"
+}

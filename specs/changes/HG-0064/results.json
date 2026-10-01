@@ -1,0 +1,276 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0033-S1": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+      "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+      "method": "native_report",
+      "observation": "compact_history_preserves_observations_and_rejects_corruption и shared_inputs_migrate_v3_and_v4_losslessly_and_idempotently прошли; полный readback и уменьшение повторяющегося представления проверены",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/native/junit.xml",
+      "scenario": "HG-0033-S1",
+      "scenario_sha256": "314c966134adfb6be58e79f122a8bf2100930f3b4592cdb327939a61ad3b06fc"
+    },
+    "HG-0033-S2": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+      "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+      "method": "native_report",
+      "observation": "compact_transaction_limit_and_recovery_preserve_catalog, shared_inputs_migration_recovery_validates_complete_prospective_snapshot и shared_inputs_limits_fail_before_any_catalog_write прошли; все порядки частичного журнала и отказ до записи проверены",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/native/junit.xml",
+      "scenario": "HG-0033-S2",
+      "scenario_sha256": "bc2f8aa614c5fe07a1a31a20383fc2e596bbd4b356ee7e801b9ed8b04382344a"
+    },
+    "HG-0064-S1": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+      "input_manifest_sha256": "083168dd41a488cd0462967feb35f35748f2f89684224a519fb4156c6fd4b9ff",
+      "method": "native_report",
+      "observation": "Миграция v3/v4, current/history/review/acceptance и смысловые отпечатки равны; idempotency и отказ старой CLI проверены. Пилот точного fd39b0d сохранил модель всех 59 изменений, HG0063 1714470→661344 байт; опубликованная схема проверена на 59 фактических документах",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/native/junit.xml",
+      "scenario": "HG-0064-S1",
+      "scenario_sha256": "15075c67ff232e5908de1f78abed8b9bed509c7737169c6e14db1aa86472dd71"
+    },
+    "HG-0064-S2": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+      "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+      "method": "native_report",
+      "observation": "shared_inputs_append_reuses_manifests_with_bounded_growth прошёл: 12 новых наблюдений используют один набор, изменённый вход создаёт второй; вся прежняя история сохранена",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/native/junit.xml",
+      "scenario": "HG-0064-S2",
+      "scenario_sha256": "638351858f212680ca589c4d4772f19a1b991247b1053269f8e23a1e438406be"
+    },
+    "HG-0064-S3": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+      "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+      "method": "native_report",
+      "observation": "shared_inputs_fail_closed_on_corrupt_missing_or_ambiguous_data и recovery corruption прошли: неверные хеши/ссылки/inline+reference отклонены без записи",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/native/junit.xml",
+      "scenario": "HG-0064-S3",
+      "scenario_sha256": "cf35ff4d7e5954f5a564fdeab0d0da07da2a1c9459ffaba9502b1e7a9852bb1c"
+    },
+    "HG-0064-S4": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+      "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+      "method": "native_report",
+      "observation": "shared_inputs_preserve_fingerprints_and_stale_detection прошёл: актуальный и stale результаты до/после миграции семантически равны",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/native/junit.xml",
+      "scenario": "HG-0064-S4",
+      "scenario_sha256": "a0dd7543fee87ca5a71fe3a51c3194ca48a71e79aba457f29832bf31fa4a8458"
+    }
+  },
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790841389,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0033-S1": "825a412995ef57fdd1d0a3bfb9828fb95a64bf416cc8f51fc6beb08b720571f8",
+          "HG-0033-S2": "a462dfaad0d778d85c72fdbb3ab34be90d0548b6a86086f016f2a12931236f1b",
+          "HG-0064-S1": "4c9d92d361781b84bec55d2475355576e38e40a08d3683af16561385fa01c872",
+          "HG-0064-S2": "c520ca7421790470c46d50d392af912b672c1bd62e8563521fdc94cb046e21ef",
+          "HG-0064-S3": "0e6b3889411a3131eedc4c320836606b845208689113716ed76ce1766fe25386",
+          "HG-0064-S4": "6c95f2caa0ef1790bae4319a273c90d800ab0b4f9904c8679f4f7ef4c41ce5fa"
+        },
+        "recorded_at": 1790841509,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    ],
+    "objects": {
+      "0e6b3889411a3131eedc4c320836606b845208689113716ed76ce1766fe25386": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+        "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+        "method": "native_report",
+        "observation": "shared_inputs_fail_closed_on_corrupt_missing_or_ambiguous_data и recovery corruption прошли: неверные хеши/ссылки/inline+reference отклонены без записи",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/native/junit.xml",
+        "scenario": "HG-0064-S3",
+        "scenario_sha256": "cf35ff4d7e5954f5a564fdeab0d0da07da2a1c9459ffaba9502b1e7a9852bb1c"
+      },
+      "4c9d92d361781b84bec55d2475355576e38e40a08d3683af16561385fa01c872": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+        "input_manifest_sha256": "083168dd41a488cd0462967feb35f35748f2f89684224a519fb4156c6fd4b9ff",
+        "method": "native_report",
+        "observation": "Миграция v3/v4, current/history/review/acceptance и смысловые отпечатки равны; idempotency и отказ старой CLI проверены. Пилот точного fd39b0d сохранил модель всех 59 изменений, HG0063 1714470→661344 байт; опубликованная схема проверена на 59 фактических документах",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/native/junit.xml",
+        "scenario": "HG-0064-S1",
+        "scenario_sha256": "15075c67ff232e5908de1f78abed8b9bed509c7737169c6e14db1aa86472dd71"
+      },
+      "6c95f2caa0ef1790bae4319a273c90d800ab0b4f9904c8679f4f7ef4c41ce5fa": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+        "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+        "method": "native_report",
+        "observation": "shared_inputs_preserve_fingerprints_and_stale_detection прошёл: актуальный и stale результаты до/после миграции семантически равны",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/native/junit.xml",
+        "scenario": "HG-0064-S4",
+        "scenario_sha256": "a0dd7543fee87ca5a71fe3a51c3194ca48a71e79aba457f29832bf31fa4a8458"
+      },
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "825a412995ef57fdd1d0a3bfb9828fb95a64bf416cc8f51fc6beb08b720571f8": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+        "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+        "method": "native_report",
+        "observation": "compact_history_preserves_observations_and_rejects_corruption и shared_inputs_migrate_v3_and_v4_losslessly_and_idempotently прошли; полный readback и уменьшение повторяющегося представления проверены",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/native/junit.xml",
+        "scenario": "HG-0033-S1",
+        "scenario_sha256": "314c966134adfb6be58e79f122a8bf2100930f3b4592cdb327939a61ad3b06fc"
+      },
+      "a462dfaad0d778d85c72fdbb3ab34be90d0548b6a86086f016f2a12931236f1b": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+        "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+        "method": "native_report",
+        "observation": "compact_transaction_limit_and_recovery_preserve_catalog, shared_inputs_migration_recovery_validates_complete_prospective_snapshot и shared_inputs_limits_fail_before_any_catalog_write прошли; все порядки частичного журнала и отказ до записи проверены",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/native/junit.xml",
+        "scenario": "HG-0033-S2",
+        "scenario_sha256": "bc2f8aa614c5fe07a1a31a20383fc2e596bbd4b356ee7e801b9ed8b04382344a"
+      },
+      "c520ca7421790470c46d50d392af912b672c1bd62e8563521fdc94cb046e21ef": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python scripts/verify.py tests; python scripts/verify.py scenarios",
+        "input_manifest_sha256": "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4",
+        "method": "native_report",
+        "observation": "shared_inputs_append_reuses_manifests_with_bounded_growth прошёл: 12 новых наблюдений используют один набор, изменённый вход создаёт второй; вся прежняя история сохранена",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/native/junit.xml",
+        "scenario": "HG-0064-S2",
+        "scenario_sha256": "638351858f212680ca589c4d4772f19a1b991247b1053269f8e23a1e438406be"
+      }
+    }
+  },
+  "input_manifests": {
+    "083168dd41a488cd0462967feb35f35748f2f89684224a519fb4156c6fd4b9ff": {
+      "files": {
+        ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+        "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+        "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+        "build.rs": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+        "docs/evidence/storage-growth/migration-measurement.json": "b2f554f0607d733de62ee48c2e8ab7ceffc770bf7efeff063ae1de4c6ae360d2",
+        "docs/evidence/storage-growth/native/junit.xml": "e5413746f205546a60741b12d49681c9bfee7fd6d217b7bdf43cdeeb1956e18c",
+        "docs/evidence/storage-growth/shared-input-schema-validation.json": "5b8d2bb993faf2a52870999ce7f1efb34a2b248eb0feefecab32fbf63068f7a5",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "scripts/source-scenarios.mjs": "2d336cd14209b6d6b2cc5f5035508b60bb16c141c13fd50b453b60cd6bfa0050",
+        "scripts/verify.py": "1df893e1494910a671ad64772020e5257cfbb78775a40c778daa06dbf7591ace",
+        "src/lib.rs": "b494be17707029ecd15b8decf37f10a044780b9b3297fe893309ce27917b4302",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "2a2c578c6aef3fadcd4c5aed1f66fa6ca9b4f7dbfb42de92009edf8da81347ef",
+        "src/specs/attention.rs": "ec651d48f057373dd8e73f5b8e3ad1ea05e8538a2958b588aaf00a2ac72a682e",
+        "src/specs/checks.rs": "377d8ab634d99905bfaadc456cb147b61681152fe8f1de7e54977de129fb4df7",
+        "src/specs/delivery.rs": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+        "src/specs/presentation.rs": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+        "src/specs/progress.rs": "1f9dce8498e06c7a8a9ffa14a9fc72c0eb16effb20968ac509b7a68420cc8a05",
+        "src/specs/relations.rs": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+        "src/specs/storage.rs": "f97716a69af8a2ffb01afbfee71a48a482503762ac286b5322601b75e05d40cb",
+        "src/specs/storage/shared_inputs.rs": "1a705e8ba1f6630c37979e8d04b8296d6fdca2d530bc187c40039bd6dcca6f31",
+        "tests/catalog_contracts.rs": "87351c1978981e103f9efa7de212b7150c44b3a192b3c024e17cf984aa118969",
+        "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b",
+        "tests/shared_inputs_contracts.rs": "f6b86fa2a4bb7d73c011dd9269820352b8549c489126ffb80d9c351a6cd05950",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "build.rs",
+        "docs/evidence/storage-growth/migration-measurement.json",
+        "docs/evidence/storage-growth/shared-input-schema-validation.json",
+        "rust-toolchain.toml",
+        "scripts/source-scenarios.mjs",
+        "scripts/verify.py",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/checks.rs",
+        "src/specs/delivery.rs",
+        "src/specs/presentation.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/catalog_contracts.rs",
+        "tests/fixtures/native-v1/store.json",
+        "tests/shared_inputs_contracts.rs",
+        "tests/support/mod.rs"
+      ]
+    },
+    "102d8ccc7d8effd4438523c2fc3f597e7ec2d320928009f94fef541a87ad79f4": {
+      "files": {
+        ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+        "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+        "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+        "build.rs": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+        "docs/evidence/storage-growth/native/junit.xml": "e5413746f205546a60741b12d49681c9bfee7fd6d217b7bdf43cdeeb1956e18c",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "scripts/source-scenarios.mjs": "2d336cd14209b6d6b2cc5f5035508b60bb16c141c13fd50b453b60cd6bfa0050",
+        "scripts/verify.py": "1df893e1494910a671ad64772020e5257cfbb78775a40c778daa06dbf7591ace",
+        "src/lib.rs": "b494be17707029ecd15b8decf37f10a044780b9b3297fe893309ce27917b4302",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "2a2c578c6aef3fadcd4c5aed1f66fa6ca9b4f7dbfb42de92009edf8da81347ef",
+        "src/specs/attention.rs": "ec651d48f057373dd8e73f5b8e3ad1ea05e8538a2958b588aaf00a2ac72a682e",
+        "src/specs/checks.rs": "377d8ab634d99905bfaadc456cb147b61681152fe8f1de7e54977de129fb4df7",
+        "src/specs/delivery.rs": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+        "src/specs/presentation.rs": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+        "src/specs/progress.rs": "1f9dce8498e06c7a8a9ffa14a9fc72c0eb16effb20968ac509b7a68420cc8a05",
+        "src/specs/relations.rs": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+        "src/specs/storage.rs": "f97716a69af8a2ffb01afbfee71a48a482503762ac286b5322601b75e05d40cb",
+        "src/specs/storage/shared_inputs.rs": "1a705e8ba1f6630c37979e8d04b8296d6fdca2d530bc187c40039bd6dcca6f31",
+        "tests/catalog_contracts.rs": "87351c1978981e103f9efa7de212b7150c44b3a192b3c024e17cf984aa118969",
+        "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b",
+        "tests/shared_inputs_contracts.rs": "f6b86fa2a4bb7d73c011dd9269820352b8549c489126ffb80d9c351a6cd05950",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "build.rs",
+        "rust-toolchain.toml",
+        "scripts/source-scenarios.mjs",
+        "scripts/verify.py",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/checks.rs",
+        "src/specs/delivery.rs",
+        "src/specs/presentation.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/catalog_contracts.rs",
+        "tests/fixtures/native-v1/store.json",
+        "tests/shared_inputs_contracts.rs",
+        "tests/support/mod.rs"
+      ]
+    }
+  },
+  "review": {
+    "change_sha256": "ae472285b5ee8e0231b57ff675d1976227e1915e2139cb98f426d51ff951d6b9",
+    "conclusion": "GO: требования, diff и исходные результаты проверены; замечания Windows inode и источника split-profile закрыты. Полное заключение: docs/evidence/storage-growth/independent-review.md. Область — только этап хранения; объединение, публикация, CI и активация отдельно.",
+    "reviewer": "Независимое инженерное ревью",
+    "verdict": "go"
+  },
+  "runs": []
+}

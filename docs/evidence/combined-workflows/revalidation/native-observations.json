@@ -1,0 +1,128 @@
+{
+  "checked_at": "2026-10-01T08:16:26.131033+00:00",
+  "native_captured_at": "2026-10-01T08:05:43.987Z",
+  "attempt_id": "5acb023a7dbf4228817191025a9b20fb",
+  "completion_matches": true,
+  "report_hash_matches": true,
+  "inventory_hash_matches": true,
+  "source_files": 440,
+  "source_mismatches": [],
+  "testcases": 211,
+  "failed_error_skipped": [],
+  "scenarios": {
+    "HG-0022-S4": [
+      {
+        "test": "spec_check_brief_returns_stable_handoff",
+        "source": "tests/catalog_contracts.rs",
+        "matches": 1,
+        "passed": true
+      }
+    ],
+    "HG-0027-S1": [
+      {
+        "test": "update_replaces_owned_skill_and_preserves_user_edit",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      }
+    ],
+    "HG-0027-S2": [
+      {
+        "test": "interrupted_skill_update_recovers_without_overwriting_user_edit",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      },
+      {
+        "test": "failed_candidate_stage_restores_changed_skill",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      }
+    ],
+    "HG-0010-S1": [
+      {
+        "test": "installed_runtime_references_survive_removal_of_source_copy",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      }
+    ],
+    "HG-0027-S3": [
+      {
+        "test": "planner_router_is_portable",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      }
+    ],
+    "HG-0063-S8": [
+      {
+        "test": "managed_approve_migrates_to_commit_without_aliases",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      }
+    ],
+    "HG-0063-S10": [
+      {
+        "test": "approve_migration_preserves_modified_managed_and_foreign_paths",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      },
+      {
+        "test": "six_skill_release_updates_to_commit_push_and_cleans_old_release",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      }
+    ],
+    "HG-0063-S11": [
+      {
+        "test": "failed_approve_migration_preserves_old_route_and_can_retry",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      },
+      {
+        "test": "interrupted_approve_era_transaction_remains_recoverable",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      },
+      {
+        "test": "interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      },
+      {
+        "test": "post_switch_commit_recovery_retires_only_unchanged_owned_approve",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      }
+    ],
+    "HG-0063-S9": [
+      {
+        "test": "legacy_deploy_migrates_to_commit_push_and_cleans_old_release",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      },
+      {
+        "test": "v026_deploy_migrates_to_two_routes_and_removes_old_release",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      },
+      {
+        "test": "six_skill_release_updates_to_commit_push_and_cleans_old_release",
+        "source": "tests/global_contracts.rs",
+        "matches": 1,
+        "passed": true
+      }
+    ]
+  }
+}

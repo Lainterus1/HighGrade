@@ -1,0 +1,41 @@
+{
+  "source_commit": "78350405285c8b3d07190c086f8c3add42d397c2",
+  "probe_source_sha256": "298931e50601a946825e509ec72b9bd50517ec9e3cd9fe3cda4f62a9e115da5d",
+  "candidate_sha256": "0466cdfc5be7ed8244f9323eb53ec2b176d6dc87aa93e8fc3a2c3fc3e9370872",
+  "before": {
+    "model_sha256": "9e62dbbc139fde54fe895f5b419649472aa49d2a89e9646c8d92215cc19c499c",
+    "trace_sha256": "12531ab2680bfac4ff4d3082c3df04093f96939d5c81490d167d20e27a4e400b",
+    "changes": 62,
+    "requirements": 149,
+    "next_number": 66,
+    "hg0063_evidence": 32,
+    "hg0063_passed_observations": 30,
+    "hg0063_unknown_observations": 2,
+    "hg0063_history_snapshots": 5
+  },
+  "after": {
+    "model_sha256": "9e62dbbc139fde54fe895f5b419649472aa49d2a89e9646c8d92215cc19c499c",
+    "trace_sha256": "12531ab2680bfac4ff4d3082c3df04093f96939d5c81490d167d20e27a4e400b",
+    "changes": 62,
+    "requirements": 149,
+    "next_number": 66,
+    "hg0063_evidence": 32,
+    "hg0063_passed_observations": 30,
+    "hg0063_unknown_observations": 2,
+    "hg0063_history_snapshots": 5
+  },
+  "all_store_fields_preserved": true,
+  "idempotent": true,
+  "version_before": 4,
+  "version_after": 5,
+  "total_results_before": 14891754,
+  "total_results_after": 4834188,
+  "hg0063_before": 1714470,
+  "hg0063_after": 661344,
+  "command": "target/debug/highgrade spec-migrate --to shared-inputs --expected <observed hash> --root .",
+  "limitations": [
+    "Stored passed observations are historical statuses, not a claim all inputs remain current after merging",
+    "Migration preserves the two existing Planner Goal unknown observations and all histories",
+    "Full typed Store equality is established through a deterministic digest of every field using one candidate-linked probe"
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "ambiguous_result_keys": [
+    "bytes",
+    "lines",
+    "path",
+    "role",
+    "sha256",
+    "token_estimate",
+    "token_method"
+  ],
+  "findings": [
+    {
+      "code": "BudgetNotAgreed",
+      "location": "README.md",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "AGENTS.md",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "GUIDE.md",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    },
+    {
+      "code": "BudgetNotAgreed",
+      "location": "context-route",
+      "message": "Бюджет не согласован.",
+      "status": "unknown"
+    }
+  ],
+  "limitations": [
+    "Структурная проверка, не смысловой аудит. Сеть не использована. История бюджета проверяется внутри записи; изменение согласованной базы требует отдельного сравнения/решения автора.",
+    "Якоря: стандартные Markdown-заголовки, Unicode lowercase; HTML/custom anchors и отдельные диалекты могут требовать ручной проверки. --scope использует явную карту, не граф зависимостей кода."
+  ],
+  "measurements": [
+    {
+      "bytes": 549,
+      "lines": 5,
+      "path": "README.md",
+      "role": "purpose-navigation",
+      "sha256": "05145aef4a89e93876de7cd63f21744051c173f7e49e3f99b927102c2f4e2cf5",
+      "token_estimate": 81,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 684,
+      "lines": 5,
+      "path": "AGENTS.md",
+      "role": "agent-rules",
+      "sha256": "b883203d17df0cb37e558d7f125f39cbe7958900d8134b47f7dab73d6a8d4aba",
+      "token_estimate": 111,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 1523,
+      "lines": 13,
+      "path": "GUIDE.md",
+      "role": "current-architecture",
+      "sha256": "6ba6127fa4b9463db658afec108f4a4461fdfc64e2418bc70110d9a3481995f4",
+      "token_estimate": 228,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 4577,
+      "lines": 25,
+      "path": ".highgrade/project/INSTRUCTIONS.md",
+      "role": "project-adaptation",
+      "sha256": "464cfe9cad577c4fee23960455e2a5e3844d9e89ebd344a919781b5f09d1e146",
+      "token_estimate": 696,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "bytes": 563,
+      "lines": 6,
+      "path": ".agents/skills/code-review/SKILL.md",
+      "role": "local-domain-review",
+      "sha256": "f27dd0819f68cf8e2de17c0508e89dc442781ac3abd52b3e50fb79236d9d7a01",
+      "token_estimate": 85,
+      "token_method": "unicode_chars/4 heuristic; not model context size"
+    },
+    {
+      "required_links": [
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "AGENTS.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "GUIDE.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "GUIDE.md"
+        },
+        {
+          "from": "README.md",
+          "status": "present",
+          "to": "GUIDE.md"
+        },
+        {
+          "from": "AGENTS.md",
+          "status": "present",
+          "to": ".highgrade/project/INSTRUCTIONS.md"
+        },
+        {
+          "from": ".highgrade/project/INSTRUCTIONS.md",
+          "status": "present",
+          "to": ".highgrade/project/documents.json"
+        }
+      ]
+    },
+    {
+      "diagnostic_summary": {
+        "accepted_limitations": "consult_survey_basis_and_project_instructions; not_certified_by_inspect",
+        "errors": [],
+        "unknown": [
+          {
+            "code": "BudgetNotAgreed",
+            "location": "README.md",
+            "message": "Бюджет не согласован.",
+            "status": "unknown"
+          },
+          {
+            "code": "BudgetNotAgreed",
+            "location": "AGENTS.md",
+            "message": "Бюджет не согласован.",
+            "status": "unknown"
+          },
+          {
+            "code": "BudgetNotAgreed",
+            "location": "GUIDE.md",
+            "message": "Бюджет не согласован.",
+            "status": "unknown"
+          },
+          {
+            "code": "BudgetNotAgreed",
+            "location": "context-route",
+            "message": "Бюджет не согласован.",
+            "status": "unknown"
+          }
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "scope": "all-registered",
+      "registry": ".highgrade/project/documents.json",
+      "route": [
+        "README.md",
+        "AGENTS.md",
+        "GUIDE.md",
+        ".highgrade/project/INSTRUCTIONS.md",
+        ".agents/skills/code-review/SKILL.md"
+      ],
+      "route_bytes": 7896
+    }
+  ],
+  "operation": "inspect",
+  "result": {
+    "scope": "all-registered",
+    "diagnostic_summary": {
+      "accepted_limitations": "consult_survey_basis_and_project_instructions; not_certified_by_inspect",
+      "errors": [],
+      "unknown": [
+        {
+          "code": "BudgetNotAgreed",
+          "location": "README.md",
+          "message": "Бюджет не согласован.",
+          "status": "unknown"
+        },
+        {
+          "code": "BudgetNotAgreed",
+          "location": "AGENTS.md",
+          "message": "Бюджет не согласован.",
+          "status": "unknown"
+        },
+        {
+          "code": "BudgetNotAgreed",
+          "location": "GUIDE.md",
+          "message": "Бюджет не согласован.",
+          "status": "unknown"
+        },
+        {
+          "code": "BudgetNotAgreed",
+          "location": "context-route",
+          "message": "Бюджет не согласован.",
+          "status": "unknown"
+        }
+      ],
+      "warnings": []
+    },
+    "registry": ".highgrade/project/documents.json",
+    "required_links": [
+      {
+        "from": "README.md",
+        "status": "present",
+        "to": "AGENTS.md"
+      },
+      {
+        "from": "README.md",
+        "status": "present",
+        "to": "GUIDE.md"
+      },
+      {
+        "from": "README.md",
+        "status": "present",
+        "to": "GUIDE.md"
+      },
+      {
+        "from": "README.md",
+        "status": "present",
+        "to": "GUIDE.md"
+      },
+      {
+        "from": "AGENTS.md",
+        "status": "present",
+        "to": ".highgrade/project/INSTRUCTIONS.md"
+      },
+      {
+        "from": ".highgrade/project/INSTRUCTIONS.md",
+        "status": "present",
+        "to": ".highgrade/project/documents.json"
+      }
+    ],
+    "route": [
+      "README.md",
+      "AGENTS.md",
+      "GUIDE.md",
+      ".highgrade/project/INSTRUCTIONS.md",
+      ".agents/skills/code-review/SKILL.md"
+    ],
+    "route_bytes": 7896
+  },
+  "status": "unknown"
+}

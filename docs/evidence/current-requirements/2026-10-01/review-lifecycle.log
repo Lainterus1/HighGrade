@@ -1,0 +1,203 @@
+test_developer_release_does_not_replace_candidate_artifact (test_build_release.ReleaseBuildTests.test_developer_release_does_not_replace_candidate_artifact) ... ERROR
+test_double_rename_failure_keeps_recovery_candidate (test_build_release.ReleaseBuildTests.test_double_rename_failure_keeps_recovery_candidate) ... ERROR
+test_exact_revision_repeat_and_failed_build_preserve_candidate (test_build_release.ReleaseBuildTests.test_exact_revision_repeat_and_failed_build_preserve_candidate) ... ERROR
+test_foreign_candidate_data_is_preserved (test_build_release.ReleaseBuildTests.test_foreign_candidate_data_is_preserved) ... ERROR
+test_linked_target_is_refused (test_build_release.ReleaseBuildTests.test_linked_target_is_refused) ... ERROR
+test_missing_ui_sources_and_failed_probe_preserve_candidate (test_build_release.ReleaseBuildTests.test_missing_ui_sources_and_failed_probe_preserve_candidate) ... ERROR
+test_nested_cache_junction_is_refused_before_cargo_writes (test_build_release.ReleaseBuildTests.test_nested_cache_junction_is_refused_before_cargo_writes) ... ERROR
+test_target_override_uses_artifact_from_current_build (test_build_release.ReleaseBuildTests.test_target_override_uses_artifact_from_current_build) ... ERROR
+test_wrong_embedded_source_is_not_promoted (test_build_release.ReleaseBuildTests.test_wrong_embedded_source_is_not_promoted) ... ERROR
+
+======================================================================
+ERROR: test_developer_release_does_not_replace_candidate_artifact (test_build_release.ReleaseBuildTests.test_developer_release_does_not_replace_candidate_artifact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 36, in setUp
+    self.run_command('cargo', 'generate-lockfile')
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 54, in run_command
+    return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+======================================================================
+ERROR: test_double_rename_failure_keeps_recovery_candidate (test_build_release.ReleaseBuildTests.test_double_rename_failure_keeps_recovery_candidate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 36, in setUp
+    self.run_command('cargo', 'generate-lockfile')
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 54, in run_command
+    return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+======================================================================
+ERROR: test_exact_revision_repeat_and_failed_build_preserve_candidate (test_build_release.ReleaseBuildTests.test_exact_revision_repeat_and_failed_build_preserve_candidate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 36, in setUp
+    self.run_command('cargo', 'generate-lockfile')
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 54, in run_command
+    return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+======================================================================
+ERROR: test_foreign_candidate_data_is_preserved (test_build_release.ReleaseBuildTests.test_foreign_candidate_data_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 36, in setUp
+    self.run_command('cargo', 'generate-lockfile')
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 54, in run_command
+    return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+======================================================================
+ERROR: test_linked_target_is_refused (test_build_release.ReleaseBuildTests.test_linked_target_is_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 36, in setUp
+    self.run_command('cargo', 'generate-lockfile')
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 54, in run_command
+    return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+======================================================================
+ERROR: test_missing_ui_sources_and_failed_probe_preserve_candidate (test_build_release.ReleaseBuildTests.test_missing_ui_sources_and_failed_probe_preserve_candidate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 36, in setUp
+    self.run_command('cargo', 'generate-lockfile')
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 54, in run_command
+    return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+======================================================================
+ERROR: test_nested_cache_junction_is_refused_before_cargo_writes (test_build_release.ReleaseBuildTests.test_nested_cache_junction_is_refused_before_cargo_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 36, in setUp
+    self.run_command('cargo', 'generate-lockfile')
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 54, in run_command
+    return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+======================================================================
+ERROR: test_target_override_uses_artifact_from_current_build (test_build_release.ReleaseBuildTests.test_target_override_uses_artifact_from_current_build)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 36, in setUp
+    self.run_command('cargo', 'generate-lockfile')
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 54, in run_command
+    return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+======================================================================
+ERROR: test_wrong_embedded_source_is_not_promoted (test_build_release.ReleaseBuildTests.test_wrong_embedded_source_is_not_promoted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 36, in setUp
+    self.run_command('cargo', 'generate-lockfile')
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_build_release.py", line 54, in run_command
+    return subprocess.check_output(args, cwd=self.root, stderr=subprocess.STDOUT, text=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.012s
+
+FAILED (errors=9)

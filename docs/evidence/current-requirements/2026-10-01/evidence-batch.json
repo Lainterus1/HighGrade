@@ -1,0 +1,208 @@
+[
+  {
+    "id": "HG-0019",
+    "evidence": {
+      "scenario": "HG-0019-S2",
+      "method": "native_report",
+      "command": "python -m unittest discover -s scripts/tests -p test_target_maintenance.py -v",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "outcome": "passed",
+      "observation": "14/14 реальных Python-тестов: read-only preview, выбранная очистка Cargo/scratch/report, сохранение кандидата/неизвестных файлов; отказы active build/recovery, ссылок/выхода пути и неверной смешанной выборки до удаления. Linux; Windows проверяется CI отдельно. Причинная область обоснована в verification.md.",
+      "inputs": [
+        "rust-toolchain.toml",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ],
+      "report": "docs/evidence/current-requirements/2026-10-01/maintenance.log"
+    }
+  },
+  {
+    "id": "HG-0019",
+    "evidence": {
+      "scenario": "HG-0019-S3",
+      "method": "native_report",
+      "command": "python -m unittest discover -s scripts/tests -p test_target_maintenance.py -v",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "outcome": "passed",
+      "observation": "14/14 реальных Python-тестов: read-only preview, выбранная очистка Cargo/scratch/report, сохранение кандидата/неизвестных файлов; отказы active build/recovery, ссылок/выхода пути и неверной смешанной выборки до удаления. Linux; Windows проверяется CI отдельно. Причинная область обоснована в verification.md.",
+      "inputs": [
+        "rust-toolchain.toml",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ],
+      "report": "docs/evidence/current-requirements/2026-10-01/maintenance.log"
+    }
+  },
+  {
+    "id": "HG-0044",
+    "evidence": {
+      "scenario": "HG-0044-S1",
+      "method": "native_report",
+      "command": "python -m unittest discover -s scripts/tests -p test_target_maintenance.py -v",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "outcome": "passed",
+      "observation": "14/14 реальных Python-тестов: read-only preview, выбранная очистка Cargo/scratch/report, сохранение кандидата/неизвестных файлов; отказы active build/recovery, ссылок/выхода пути и неверной смешанной выборки до удаления. Linux; Windows проверяется CI отдельно. Причинная область обоснована в verification.md.",
+      "inputs": [
+        "rust-toolchain.toml",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ],
+      "report": "docs/evidence/current-requirements/2026-10-01/maintenance.log"
+    }
+  },
+  {
+    "id": "HG-0044",
+    "evidence": {
+      "scenario": "HG-0044-S2",
+      "method": "native_report",
+      "command": "python -m unittest discover -s scripts/tests -p test_target_maintenance.py -v",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "outcome": "passed",
+      "observation": "14/14 реальных Python-тестов: read-only preview, выбранная очистка Cargo/scratch/report, сохранение кандидата/неизвестных файлов; отказы active build/recovery, ссылок/выхода пути и неверной смешанной выборки до удаления. Linux; Windows проверяется CI отдельно. Причинная область обоснована в verification.md.",
+      "inputs": [
+        "rust-toolchain.toml",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ],
+      "report": "docs/evidence/current-requirements/2026-10-01/maintenance.log"
+    }
+  },
+  {
+    "id": "HG-0019",
+    "evidence": {
+      "scenario": "HG-0019-S1",
+      "method": "native_report",
+      "command": "python -m unittest discover -s scripts/tests -p test_build_release.py -v",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "outcome": "passed",
+      "observation": "9/9 Git/Cargo/UI lifecycle-фикстур. Точный SHA вместо грязного дерева, repeat/build-cache/candidate/reports, очистка временных исходников, сохранение кандидата при неудачной сборке и дополнительные safety-проверки. Это механизм сборки в изолированной фикстуре; не активация. Фикстурные Cargo/kit/UI создаются самим тестом.",
+      "inputs": [
+        "rust-toolchain.toml",
+        "scripts/build-release.py",
+        "scripts/tests/test_build_release.py"
+      ],
+      "report": "docs/evidence/current-requirements/2026-10-01/release-lifecycle.log"
+    }
+  },
+  {
+    "id": "HG-0043",
+    "evidence": {
+      "scenario": "HG-0043-S1",
+      "method": "manual",
+      "command": "Смысловая сверка текущих Spec/Work/verification/QUALITY/DEVELOPMENT по таблице результатов",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "outcome": "passed",
+      "observation": "Нормативное содержание подтверждается смысловой сверкой; реальное исполнение требует наблюдения; проект использует единую матрицу без обязательного пилота редакторской правки.",
+      "inputs": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "docs/DEVELOPMENT.md",
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/task.md",
+        "kit/procedures/work.md",
+        "kit/references/tools/specifications.md",
+        "kit/references/tools/verification.md",
+        "kit/rules.md"
+      ],
+      "report": "docs/evidence/current-requirements/2026-10-01/verification.md"
+    }
+  },
+  {
+    "id": "HG-0043",
+    "evidence": {
+      "scenario": "HG-0043-S2",
+      "method": "manual",
+      "command": "Смысловая сверка областей + 14 maintenance + 9 lifecycle + cargo test --locked --test catalog_contracts causal_runner_scopes_preserve_siblings_but_invalidate_real_dependencies -- --exact",
+      "captured_at": "2026-10-01T12:30:48.551256+00:00",
+      "outcome": "passed",
+      "observation": "Новые фактические результаты записаны с объяснёнными зависимостями. Реальный spec-run двух независимых областей сохраняет результат при нерелевантном изменении; собственный тест/данные затрагивает одну область, общий модуль/runner/config обе. Старые runs и широкие UI-результаты сохранены. Общий прогон не скопирован в каждую область.",
+      "inputs": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "build.rs",
+        "docs/DEVELOPMENT.md",
+        "docs/evidence/current-requirements/2026-10-01/maintenance.log",
+        "docs/evidence/current-requirements/2026-10-01/release-lifecycle.log",
+        "docs/evidence/current-requirements/2026-10-01/scope-regression-final.log",
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/task.md",
+        "kit/procedures/work.md",
+        "kit/references/tools/specifications.md",
+        "kit/references/tools/verification.md",
+        "kit/rules.md",
+        "rust-toolchain.toml",
+        "scripts/build-release.py",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_build_release.py",
+        "scripts/tests/test_target_maintenance.py",
+        "src/bootstrap.rs",
+        "src/discovery.rs",
+        "src/global.rs",
+        "src/inspect.rs",
+        "src/install.rs",
+        "src/issues.rs",
+        "src/lib.rs",
+        "src/main.rs",
+        "src/package.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/checks.rs",
+        "src/specs/delivery.rs",
+        "src/specs/presentation.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "src/survey.rs",
+        "src/trace.rs",
+        "src/ui.rs",
+        "src/ui/bundle.rs",
+        "tests/catalog_contracts.rs",
+        "tests/fixtures/native-v1/store.json",
+        "tests/support/mod.rs"
+      ],
+      "report": "docs/evidence/current-requirements/2026-10-01/verification.md"
+    }
+  },
+  {
+    "id": "HG-0043",
+    "evidence": {
+      "scenario": "HG-0043-S3",
+      "method": "manual",
+      "command": "Смысловая сверка fix/clear/audit/CONTEXT и навигации",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "outcome": "passed",
+      "observation": "Fixer/карточка владеет повторяемым решением, задача — ссылкой/последствиями; Clear не создаёт отсутствующий реестр; действующие владельцы и архив разведены. Исполнение будущего агента не заявлено.",
+      "inputs": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "docs/README.md",
+        "docs/workflow/CONTEXT.md",
+        "kit/procedures/clear.md",
+        "kit/procedures/fix.md",
+        "kit/references/audit.md",
+        "kit/rules.md"
+      ],
+      "report": "docs/evidence/current-requirements/2026-10-01/verification.md"
+    }
+  },
+  {
+    "id": "HG-0044",
+    "evidence": {
+      "scenario": "HG-0044-S3",
+      "method": "manual",
+      "command": "Смысловая сверка BUILD/DEVELOPMENT/местной инструкции",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "outcome": "passed",
+      "observation": "Пути, сроки жизни и безопасность очистки ясны; specs/issues и необходимые доказательства остаются вне очистки. Nextest0.9.146 и выбор активной CLI/кандидата описаны. Это нормативная сверка, не чистая Windows-машина.",
+      "inputs": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md"
+      ],
+      "report": "docs/evidence/current-requirements/2026-10-01/verification.md"
+    }
+  }
+]

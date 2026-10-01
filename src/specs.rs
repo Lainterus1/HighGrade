@@ -1063,12 +1063,17 @@ fn command_inner(
                     report.measurements.push(json!({"store_sha256":load_unlocked(&root)?.1,"directory_schema_version":4}));
                     return Ok(report);
                 }
+                Some("shared-inputs") => {
+                    storage::share_inputs(&root, &store)?;
+                    report.measurements.push(json!({"store_sha256":load_unlocked(&root)?.1,"directory_schema_version":5}));
+                    return Ok(report);
+                }
                 Some("directory") => storage::migrate(&root, &mut store, &sha)?,
                 None if store.schema_version != 3 => {
                     progress::migrate(&root, &mut store, &sha, &mut report)?
                 }
                 None => {}
-                _ => return Err("Usage: --to directory|compact".into()),
+                _ => return Err("Usage: --to directory|compact|shared-inputs".into()),
             }
         }
         "spec-decide" => {

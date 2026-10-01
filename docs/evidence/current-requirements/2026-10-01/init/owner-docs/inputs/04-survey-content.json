@@ -1,0 +1,214 @@
+{
+  "goal": "Продолжить существующий локальный нормализатор кодов поставки. Новых продуктовых требований нет.",
+  "scope": [
+    "."
+  ],
+  "stage": "survey",
+  "next": "Выполнить разрешённую минимальную адаптацию.",
+  "decisions": [
+    {
+      "id": "purpose",
+      "description": "Продолжить существующий локальный нормализатор кодов поставки. Новых продуктовых требований нет.",
+      "state": "confirmed",
+      "basis": [
+        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+      ],
+      "sources": [],
+      "blocks": []
+    },
+    {
+      "id": "scope",
+      "description": "Весь проект, внепроекный файл не менять.",
+      "state": "confirmed",
+      "basis": [
+        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+      ],
+      "sources": [],
+      "blocks": []
+    },
+    {
+      "id": "preservation",
+      "description": "Сохранить все исходные файлы без изменения.",
+      "state": "confirmed",
+      "basis": [
+        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+      ],
+      "sources": [],
+      "blocks": []
+    },
+    {
+      "id": "changes",
+      "description": "Добавить документы процесса; для нового проекта начальный предметный черновик, без реализации.",
+      "state": "confirmed",
+      "basis": [
+        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+      ],
+      "sources": [],
+      "blocks": []
+    },
+    {
+      "id": "local_rules",
+      "description": "Сохранить GUIDE.md, AGENTS.md и code-review; без замены High Grade.",
+      "state": "confirmed",
+      "basis": [
+        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+      ],
+      "sources": [
+        "GUIDE.md",
+        "AGENTS.md",
+        ".agents/skills/code-review/SKILL.md"
+      ],
+      "blocks": []
+    },
+    {
+      "id": "environment",
+      "description": "Изолированный Linux-каталог, офлайн-подготовка; кандидат CLI 0.3.6; не создавать Git или внешние ресурсы.",
+      "state": "confirmed",
+      "basis": [
+        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+      ],
+      "sources": [],
+      "blocks": []
+    },
+    {
+      "id": "mandate",
+      "description": "Добавить минимальную адаптацию High Grade; сохранить все существующие файлы и роли без перемещения, переписывания или миграции.",
+      "state": "confirmed",
+      "basis": [
+        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+      ],
+      "sources": [],
+      "blocks": []
+    }
+  ],
+  "sections": {
+    "components": [
+      {
+        "id": "component-observed",
+        "description": "code.py содержит normalize через strip; test_code.py содержит два теста. Прочитаны все 6 исходных файлов.",
+        "state": "confirmed",
+        "basis": [
+          "Actual 01-inventory stdout and read-* outputs."
+        ],
+        "sources": [
+          "code.py",
+          "test_code.py"
+        ],
+        "blocks": []
+      }
+    ],
+    "knowledge": [
+      {
+        "id": "knowledge-owners",
+        "description": "README владеет назначением, AGENTS маршрутом; GUIDE совмещает устройство, правила и команды. Содержание прочитано, перенос не нужен.",
+        "state": "confirmed",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "sources": [
+          "README.md",
+          "AGENTS.md",
+          "GUIDE.md"
+        ],
+        "blocks": []
+      }
+    ],
+    "processes": [
+      {
+        "id": "process-observed",
+        "description": "GUIDE назначает python3 -B -m unittest -v test_code. Formatter/linter/CI/ignore отсутствуют по обследованию. Новые MD/JSON не охватываются отсутствующими gates; владельцы документов и CLI владеют своим форматом.",
+        "state": "confirmed",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "sources": [
+          "GUIDE.md"
+        ],
+        "blocks": []
+      }
+    ],
+    "skills": [
+      {
+        "id": "skills-observed",
+        "description": "code-review отвечает за сверку ведущих нулей и внутренних пробелов перед изменением формата; общий маршрут High Grade не заменяет предметный обзор.",
+        "state": "confirmed",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "sources": [
+          ".agents/skills/code-review/SKILL.md"
+        ],
+        "blocks": []
+      }
+    ],
+    "observations": [
+      {
+        "id": "observation-inventory",
+        "description": "Выполнен inventory --mode structure и прочитаны имеющиеся существенные файлы. Это source-guided упражнение: native dispatch установленного навыка не происходил.",
+        "state": "confirmed",
+        "basis": [
+          "Recorded 01-inventory and read-* raw command results."
+        ],
+        "sources": [],
+        "blocks": []
+      }
+    ],
+    "findings": [
+      {
+        "id": "finding-budget",
+        "description": "Бюджеты контекста не согласованы; оставить null и считать BudgetNotAgreed неизвестностью, не PASS. Они не мешают разрешённой подготовке.",
+        "state": "unknown",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "sources": [],
+        "blocks": []
+      },
+      {
+        "id": "finding-future",
+        "description": "Новых продуктовых требований нет; существующий GUIDE не мигрировать и фиктивную спеку не создавать.",
+        "state": "confirmed",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "sources": [],
+        "blocks": []
+      }
+    ],
+    "adaptation": [
+      {
+        "id": "adaptation-plan",
+        "description": "Добавить только .highgrade/project/INSTRUCTIONS.md и реестр с сохранёнными владельцами; survey зафиксирует подготовку. Не менять исходные файлы.",
+        "state": "proposed",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "sources": [],
+        "blocks": []
+      }
+    ],
+    "routes": [
+      {
+        "id": "route-next",
+        "description": "Следующая продуктовая задача сначала использует действующие правила GUIDE; изменение формата вызывает code-review. Полномочий на следующую задачу нет.",
+        "state": "confirmed",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "sources": [],
+        "blocks": []
+      }
+    ]
+  },
+  "source_paths": [
+    ".agents/skills/code-review/SKILL.md",
+    "AGENTS.md",
+    "GUIDE.md",
+    "README.md",
+    "code.py",
+    "test_code.py"
+  ],
+  "areas": [
+    "."
+  ]
+}

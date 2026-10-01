@@ -1,0 +1,59 @@
+{
+  "files": {
+    ".gitignore": "4f4a9cdd0e187f03f0f64713157a287fe59c37924cfe641f6e1bbd709d533dc5",
+    ".highgrade/project/INSTRUCTIONS.md": "c1144eaf67818e47070355763c9063ba1ecab02a0ff1147f2e8178ff16196629",
+    ".pilot/actions.jsonl": "75df6fb62a4fef9f2ec7de4beb12c20ed70f90a215f45ec7090cd1933db2028a",
+    ".pilot/response.txt": "f75df2e04f54db36e501da0bb92566a87900e9789bd82bf178ac2a1fb7e40853",
+    ".pilot/test-calls.jsonl": "914f3d703b84e4607725f771b733193e7f54d94c1897b6555a390b837873fd1c",
+    "AGENTS.md": "5d4927a726349a47fed5c6c7b06c44c443ab4cb5ac440d700e11c08d8b5409be",
+    "LICENSE": "aa7af98e96399be17c3428a80e95b72514d3f11f1056052182bbe9dca2ee19d4",
+    "README.md": "dc2c5adc6bd9c9f0e159ec72043163daa649490f60a6d8d10c97f2e9ae13df8e",
+    "app.py": "368c7e07acb73f8712adc271b496b004a1b11ecdbacd6f545e84a5810b5e1c17",
+    "colleague.txt": "f07028c6c978e9ee06f53448b123db6e4fcab18b47e10f0e58a8d1983fdf239f",
+    "evidence/work.json": "8a24a6a81dfe6547fe5aefd0374e9ae83135c2713d2f20b7cc0ba99be4484239",
+    "tasks/alpha.json": "f12fe1bf2b8789a2b9edfb5a485f24fc6d98c39e4fa4a4b28a92a3707ee37750",
+    "tools/audit.py": "f1c549416ef59e7d50c7ca16f0cf14f2e9d1cc470fbe9c850f1261991c9f7b7f",
+    "tools/check.py": "e4e3c1330059df953261a6374b5b5a17fcdbf7535f9af73ad1f5ae139e62fe85"
+  },
+  "head": {
+    "exit": 0,
+    "stdout": "87d4ee8e378b074952e184f6ab2f66d3eb89fce8\n",
+    "stderr": ""
+  },
+  "status": {
+    "exit": 0,
+    "stdout": "M  colleague.txt\n",
+    "stderr": ""
+  },
+  "log": {
+    "exit": 0,
+    "stdout": "87d4ee8e378b074952e184f6ab2f66d3eb89fce8 alpha: проверенное приветствие\n372ca569751bf0fdbfa80e3d8361b96800f94b45 Baseline fixture\n",
+    "stderr": ""
+  },
+  "diff": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "staged": {
+    "exit": 0,
+    "stdout": "diff --git a/colleague.txt b/colleague.txt\nindex faf4fc7..2760b95 100644\n--- a/colleague.txt\n+++ b/colleague.txt\n@@ -1 +1 @@\n-colleague baseline\n+independent staged colleague change\n",
+    "stderr": ""
+  },
+  "remote": {
+    "exit": 128,
+    "stdout": "",
+    "stderr": "fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\n"
+  },
+  "test_calls": [
+    {
+      "command": "python3 tools/check.py",
+      "passed": true,
+      "inputs": {
+        "app.py": "368c7e07acb73f8712adc271b496b004a1b11ecdbacd6f545e84a5810b5e1c17",
+        "tools/check.py": "e4e3c1330059df953261a6374b5b5a17fcdbf7535f9af73ad1f5ae139e62fe85"
+      }
+    }
+  ],
+  "activation_calls": []
+}

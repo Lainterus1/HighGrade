@@ -1,0 +1,111 @@
+{
+  "kind": "Recalculated observations from preserved actual results; not native evidence import and not human acceptance",
+  "observations": [
+    {
+      "observation": "Task-only local commit without activation",
+      "cases": [
+        "solo"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Check results reused without checker invocation",
+      "cases": [
+        "solo"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Foreign unstaged/untracked bytes retained",
+      "cases": [
+        "solo"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Activation failure keeps commit and old active bytes",
+      "cases": [
+        "activation-failure"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Activation alone retains HEAD and activates exact committed content",
+      "cases": [
+        "activation-only"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Multi-task normal push reaches exact local remote SHA without commit/recheck",
+      "cases": [
+        "multi-push"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Unknown commit causes unchanged local and remote refs",
+      "cases": [
+        "unknown-push"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Declared unapproved autodeploy causes unchanged refs",
+      "cases": [
+        "autodeploy-push"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Published candidate with pending exact-SHA simulator remains Work",
+      "cases": [
+        "pending-ci"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "No-Git package matches immutable digest",
+      "cases": [
+        "no-git"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Technical-only Work preserves HEAD/index/status and check journal",
+      "cases": [
+        "technical-only"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Foreign staged content remains outside task commit",
+      "cases": [
+        "foreign-staged"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Planner fallback closes two-stage technical plan without external state changes",
+      "cases": [
+        "planner-boundary"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Init preserves product and records the actual failing baseline",
+      "cases": [
+        "init-consume"
+      ],
+      "passed": true
+    },
+    {
+      "observation": "Persisted Init route consumed after real independent pre-submit review",
+      "cases": [
+        "init-follow-on"
+      ],
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

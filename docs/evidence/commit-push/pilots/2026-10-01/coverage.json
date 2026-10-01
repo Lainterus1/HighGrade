@@ -1,0 +1,459 @@
+{
+  "method": "Дополнительные фактические supplied-context упражнения. Не заменяют нормативный метод HG-0063-S1–S7 и не импортированы автоматически в native results.",
+  "actor_context": "Один продолжающий актор, независимые локальные фикстуры; не независимые clean-context повторения.",
+  "inherited_scenarios": [
+    {
+      "scenario": "HG-0011-S1",
+      "status": "observed",
+      "cases": [
+        "solo"
+      ],
+      "evidence": [
+        "solo/observed-result.json"
+      ],
+      "observed_outcome": "Локальный task-only commit создан; активация/release/push не навязаны",
+      "limits": "",
+      "report_paths": [
+        "solo/after/response.txt",
+        "solo/report-correction/response-corrected-ru.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "solo/prompt.txt",
+        "solo/before/files.tar.gz",
+        "solo/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "solo/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0011-S2",
+      "status": "observed",
+      "cases": [
+        "activation-failure"
+      ],
+      "evidence": [
+        "activation-failure/observed-result.json"
+      ],
+      "observed_outcome": "Commit сохранён после настоящего apply exit 23; прежние active-state байты сохранены, rollback не объявлен",
+      "limits": "",
+      "report_paths": [
+        "activation-failure/after/response.txt",
+        "activation-failure/report-correction/response-corrected-ru.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "activation-failure/prompt.txt",
+        "activation-failure/before/files.tar.gz",
+        "activation-failure/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "activation-failure/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0011-S3",
+      "status": "observed",
+      "cases": [
+        "solo"
+      ],
+      "evidence": [
+        "solo/observed-result.json"
+      ],
+      "observed_outcome": "Хеши входов сверены; журнал штатного checker остался 1→1",
+      "limits": "",
+      "report_paths": [
+        "solo/after/response.txt",
+        "solo/report-correction/response-corrected-ru.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "solo/prompt.txt",
+        "solo/before/files.tar.gz",
+        "solo/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "solo/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0011-S4",
+      "status": "observed",
+      "cases": [
+        "solo",
+        "foreign-staged"
+      ],
+      "evidence": [
+        "solo/observed-result.json",
+        "foreign-staged/observed-result.json"
+      ],
+      "observed_outcome": "Посторонние unstaged/untracked байты сохранены; отдельный случай сохраняет чужую staged запись индекса при task-only commit",
+      "limits": "",
+      "report_paths": [
+        "solo/after/response.txt",
+        "solo/report-correction/response-corrected-ru.txt",
+        "foreign-staged/after/response.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "solo/prompt.txt",
+        "solo/before/files.tar.gz",
+        "solo/before/history.bundle",
+        "foreign-staged/prompt.txt",
+        "foreign-staged/before/files.tar.gz",
+        "foreign-staged/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "solo/after/actions.project.jsonl",
+        "foreign-staged/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0011-S5",
+      "status": "observed",
+      "cases": [
+        "multi-push"
+      ],
+      "evidence": [
+        "multi-push/observed-result.json"
+      ],
+      "observed_outcome": "Push не создал новый commit и не повторил checker; exact remote SHA проверен",
+      "limits": "",
+      "report_paths": [
+        "multi-push/after/response.txt",
+        "multi-push/report-correction/response-corrected-ru.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "multi-push/prompt.txt",
+        "multi-push/before/files.tar.gz",
+        "multi-push/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "multi-push/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0011-S6",
+      "status": "observed",
+      "cases": [
+        "multi-push"
+      ],
+      "evidence": [
+        "multi-push/observed-result.json"
+      ],
+      "observed_outcome": "Две проверенные задачи реально отправлены в один local bare remote диапазоном; итоговый SHA совпал",
+      "limits": "Не hosted GitHub/GitLab публикация",
+      "report_paths": [
+        "multi-push/after/response.txt",
+        "multi-push/report-correction/response-corrected-ru.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "multi-push/prompt.txt",
+        "multi-push/before/files.tar.gz",
+        "multi-push/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "multi-push/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0011-S7",
+      "status": "observed",
+      "cases": [
+        "unknown-push"
+      ],
+      "evidence": [
+        "unknown-push/observed-result.json"
+      ],
+      "observed_outcome": "Неизвестный commit с mystery.txt назван; HEAD/remote refs не изменились, диапазон не отправлен",
+      "limits": "",
+      "report_paths": [
+        "unknown-push/after/response.txt",
+        "unknown-push/report-correction/response-corrected-ru.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "unknown-push/prompt.txt",
+        "unknown-push/before/files.tar.gz",
+        "unknown-push/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "unknown-push/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0011-S8",
+      "status": "observed",
+      "cases": [
+        "autodeploy-push"
+      ],
+      "evidence": [
+        "autodeploy-push/observed-result.json"
+      ],
+      "observed_outcome": "При объявленном production эффекте push остановлен до разрешения эффекта; ветка remote не создана",
+      "limits": "Последствие объявлено синтетическим runbook; реального production сервиса нет, разрешённая ветка deploy не исполнялась",
+      "report_paths": [
+        "autodeploy-push/after/response.txt",
+        "autodeploy-push/report-correction/response-corrected-ru.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "autodeploy-push/prompt.txt",
+        "autodeploy-push/before/files.tar.gz",
+        "autodeploy-push/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "autodeploy-push/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0011-S11",
+      "status": "observed_with_prompted_language_correction",
+      "cases": [
+        "solo"
+      ],
+      "evidence": [
+        "solo/observed-result.json",
+        "report-corrections.json",
+        "solo/report-correction/observation.json"
+      ],
+      "observed_outcome": "Краткий исходный отчёт раздельно перечислял SHA, проверки, активацию, публикацию и приёмку; отдельная реальная русская коррекция сохранена, исходные байты проверены неизменными",
+      "limits": "Первый отчёт был английским вопреки русскому запросу; это не спонтанный безошибочный русскоязычный прогон",
+      "report_paths": [
+        "solo/after/response.txt",
+        "solo/report-correction/response-corrected-ru.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "solo/prompt.txt",
+        "solo/before/files.tar.gz",
+        "solo/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "solo/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0011-S12",
+      "status": "observed",
+      "cases": [
+        "activation-only"
+      ],
+      "evidence": [
+        "activation-only/observed-result.json"
+      ],
+      "observed_outcome": "Точный ранее закоммиченный результат локально активирован и назван неопубликованным; HEAD не менялся",
+      "limits": "Игрушечная активация в non-native проекте; native spec-decide не проверяется",
+      "report_paths": [
+        "activation-only/after/response.txt",
+        "activation-only/report-correction/response-corrected-ru.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "activation-only/prompt.txt",
+        "activation-only/before/files.tar.gz",
+        "activation-only/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "activation-only/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0004-S3",
+      "status": "runtime_slice_observed",
+      "cases": [],
+      "evidence": [
+        "catalog-survival/catalog-before.json",
+        "catalog-survival/catalog-after.json"
+      ],
+      "observed_outcome": "Установленная CLI создала/нашла/проверила каталог; повторная readiness-проверка стабильна; после удаления конфигурации read passed и байты specs/ прежние",
+      "limits": "catalog-survival/summary.json и команды: structural validate passed, readiness честно failed. Семантика процедур и полная приёмка всей спеки отдельно",
+      "report_paths": [
+        "catalog-survival/summary.json",
+        "catalog-survival/07-validate.json",
+        "catalog-survival/08-check.json",
+        "catalog-survival/09-recheck.json",
+        "catalog-survival/11-read-without-service-config.json"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "catalog_exercise.py",
+        "catalog-survival/patch.json",
+        "catalog-survival/catalog-snapshot/changes/HG-0001/spec.json"
+      ],
+      "execution_journal_paths": [
+        "catalog-survival/01-init.command.json",
+        "catalog-survival/02-list-empty.command.json",
+        "catalog-survival/03-create.command.json",
+        "catalog-survival/04-read-draft.command.json",
+        "catalog-survival/05-edit.command.json",
+        "catalog-survival/06-find.command.json",
+        "catalog-survival/07-validate.command.json",
+        "catalog-survival/08-check.command.json",
+        "catalog-survival/09-recheck.command.json",
+        "catalog-survival/10-remove-service-config.command.json",
+        "catalog-survival/11-read-without-service-config.command.json"
+      ]
+    },
+    {
+      "scenario": "HG-0020-S8",
+      "status": "observed_via_documented_fallback",
+      "cases": [
+        "planner-boundary"
+      ],
+      "evidence": [
+        "planner-boundary/observed-result.json",
+        "planner-boundary/boundary-observation.json"
+      ],
+      "observed_outcome": "Две реально проверенные технические стадии завершены обычным разрешённым планом; продукт/evidence, HEAD и index entries не изменены, оба checker не повторены. Commit/activation/push/acceptance не выведены",
+      "limits": "Goal недоступен, не создавался и не объявлялся завершённым. boundary-observation.json фиксирует fallback и независимую сверку; настоящее закрытие Goal не проверено",
+      "report_paths": [
+        "planner-boundary/after/response.txt"
+      ],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "planner-boundary/prompt.txt",
+        "planner-boundary/before/files.tar.gz",
+        "planner-boundary/before/history.bundle"
+      ],
+      "execution_journal_paths": [
+        "planner-boundary/after/actions.project.jsonl"
+      ]
+    },
+    {
+      "scenario": "HG-0020-S6",
+      "status": "unknown",
+      "cases": [],
+      "evidence": [
+        "planner-boundary/boundary-observation.json"
+      ],
+      "observed_outcome": "Не исполнялся конфликт с настоящим незавершённым Goal",
+      "limits": "Goal-инструмент недоступен; фиктивное состояние не создавалось",
+      "report_paths": [],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "planner-boundary/boundary-observation.json"
+      ],
+      "execution_journal_paths": []
+    },
+    {
+      "scenario": "HG-0020-S7",
+      "status": "unknown",
+      "cases": [],
+      "evidence": [
+        "planner-boundary/boundary-observation.json"
+      ],
+      "observed_outcome": "Не исполнялся настоящий create Goal в режиме plan-only",
+      "limits": "Goal-инструмент недоступен; фиктивное состояние не создавалось",
+      "report_paths": [],
+      "source_paths": [
+        "provenance.json",
+        "installed-context/sha256.json",
+        "planner-boundary/boundary-observation.json"
+      ],
+      "execution_journal_paths": []
+    }
+  ],
+  "additional_observations": [
+    {
+      "related_normative_scenario": "HG-0063-S1",
+      "cases": [
+        "solo"
+      ],
+      "scope": "Дополнительное исполнение выбранного Git-маршрута",
+      "evidence": [
+        "solo/observed-result.json"
+      ]
+    },
+    {
+      "related_normative_scenario": "HG-0063-S2",
+      "cases": [
+        "pending-ci",
+        "init-follow-on"
+      ],
+      "scope": "Настоящий local bare push; pending simulator и unknown/unavailable CI. Hosted PR creation/CI не выполнялись",
+      "evidence": [
+        "pending-ci/observed-result.json",
+        "init-follow-on/observed-result.json"
+      ]
+    },
+    {
+      "related_normative_scenario": "HG-0063-S3",
+      "cases": [
+        "autodeploy-push"
+      ],
+      "scope": "Только остановка неразрешённого объявленного autodeploy; разрешённый deploy не исполнялся",
+      "evidence": [
+        "autodeploy-push/observed-result.json"
+      ]
+    },
+    {
+      "related_normative_scenario": "HG-0063-S4",
+      "cases": [
+        "no-git"
+      ],
+      "scope": "Реальный content-addressed пакет с доступным immutable ID; native acceptance и вариант отсутствующего ID не исполнялись",
+      "evidence": [
+        "no-git/observed-result.json"
+      ]
+    },
+    {
+      "related_normative_scenario": "HG-0063-S5",
+      "cases": [
+        "activation-only"
+      ],
+      "scope": "Агент не вывел приёмку из активируй в non-native проекте. SHA1→accepted→SHA2 и native guards этим случаем не проверены",
+      "evidence": [
+        "activation-only/observed-result.json"
+      ]
+    },
+    {
+      "related_normative_scenario": "HG-0063-S6",
+      "cases": [],
+      "scope": "Нормативная сверка отдельно; фактический squash/rebase в пилот не включён",
+      "evidence": []
+    },
+    {
+      "related_normative_scenario": "HG-0063-S7",
+      "cases": [
+        "init-consume",
+        "init-follow-on"
+      ],
+      "scope": "Init реально сохранил известный маршрут. Последующий Commit/Push прочитал его, остановился на отсутствующем независимом review, затем после реального GO использовал origin/feature/ready и сохранил unknown CI/обязательный PR как Work gap",
+      "evidence": [
+        "init-consume/observed-result.json",
+        "init-follow-on/observed-result.json",
+        "init-consume/after/survey-check.json",
+        "init-consume/after/INSTRUCTIONS.md",
+        "init-follow-on/review-pre-submit.txt",
+        "init-follow-on/after/work-state.json",
+        "init-follow-on/setup.json"
+      ]
+    }
+  ],
+  "last_open_work": null,
+  "delivery_state": "Frozen after final Init follow-on observations and explicitly recorded prompted language corrections. No native evidence records were edited here.",
+  "reporting_and_provenance": {
+    "prompted_language_correction": "report-corrections.json",
+    "continuing_actor": "provenance.json#agent_context",
+    "installed_vs_current_manifest": "provenance.json",
+    "public_prompt_and_journal_excerpts": "public-excerpt-provenance.json",
+    "raw_operation_outcomes_preserved": "Public excerpts omit only non-project report routing; executed project command/results remain, original hashes recorded. Raw originals were not overwritten."
+  }
+}

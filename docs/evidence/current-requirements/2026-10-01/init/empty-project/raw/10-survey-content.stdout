@@ -1,0 +1,403 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [],
+  "limitations": [
+    "Recorded statements are data, not proof of semantic correctness, user acceptance or permission. No project commands are executed."
+  ],
+  "measurements": [
+    {
+      "content": {
+        "goal": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
+        "scope": [
+          "."
+        ],
+        "areas": [
+          "."
+        ],
+        "decisions": [
+          {
+            "id": "purpose",
+            "description": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          },
+          {
+            "id": "scope",
+            "description": "Весь пустой каталог.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          },
+          {
+            "id": "preservation",
+            "description": "Не менять соседний файл outside-sentinel.txt.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          },
+          {
+            "id": "changes",
+            "description": "Добавить документы процесса; для нового проекта начальный предметный черновик, без реализации.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          },
+          {
+            "id": "local_rules",
+            "description": "Исходных местных правил нет.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          },
+          {
+            "id": "environment",
+            "description": "Изолированный Linux-каталог, офлайн-подготовка; кандидат CLI 0.3.6; не создавать Git или внешние ресурсы.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          },
+          {
+            "id": "mandate",
+            "description": "Подготовить минимальную основу High Grade и один предметный черновик спеки; не реализовывать приложение.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          }
+        ],
+        "next": "Выполнить разрешённую минимальную адаптацию.",
+        "sections": {
+          "adaptation": [
+            {
+              "id": "adaptation-plan",
+              "description": "Создать минимальные README, AGENTS, проектную инструкцию и реестр; через CLI создать предметный черновик каталога книг.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "proposed"
+            }
+          ],
+          "components": [
+            {
+              "id": "component-observed",
+              "description": "Исходный каталог пуст: inventory возвратил entries={}; реализации пока нет.",
+              "basis": [
+                "Actual 01-inventory stdout and read-* outputs."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "findings": [
+            {
+              "id": "finding-budget",
+              "description": "Бюджеты контекста не согласованы; оставить null и считать BudgetNotAgreed неизвестностью, не PASS. Они не мешают разрешённой подготовке.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "unknown"
+            },
+            {
+              "id": "finding-future",
+              "description": "Выбор стека и runner относится к будущей реализации, которая не поручена.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "knowledge": [
+            {
+              "id": "knowledge-owners",
+              "description": "Назначить README владельцем назначения, устройства, правил и команд; AGENTS владельцем маршрута.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "proposed"
+            }
+          ],
+          "observations": [
+            {
+              "id": "observation-inventory",
+              "description": "Выполнен inventory --mode structure и прочитаны имеющиеся существенные файлы. Это source-guided упражнение: native dispatch установленного навыка не происходил.",
+              "basis": [
+                "Recorded 01-inventory and read-* raw command results."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "processes": [
+            {
+              "id": "process-observed",
+              "description": "В исходном пустом каталоге нет runner, formatter, linter, CI или ignore. Будущая команда тестирования неизвестна; её выбор относится к будущей реализации.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "routes": [
+            {
+              "id": "route-next",
+              "description": "После init уточнить интерфейс/хранение/runner в первоначальной спеке каталога книг, затем отдельное поручение work.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "skills": [
+            {
+              "id": "skills-observed",
+              "description": "Местных навыков в пустом каталоге не обнаружено.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ]
+        },
+        "source_paths": [],
+        "stage": "survey"
+      },
+      "revision": 1,
+      "survey_sha256": "f1986213cdf98533905f7e84b36ca39e85823c075f2bdaaf6f4770fbf4648dcd"
+    }
+  ],
+  "operation": "survey-edit",
+  "result": {
+    "content": {
+      "goal": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
+      "scope": [
+        "."
+      ],
+      "areas": [
+        "."
+      ],
+      "decisions": [
+        {
+          "id": "purpose",
+          "description": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
+          "basis": [
+            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+          ],
+          "blocks": [],
+          "sources": [],
+          "state": "confirmed"
+        },
+        {
+          "id": "scope",
+          "description": "Весь пустой каталог.",
+          "basis": [
+            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+          ],
+          "blocks": [],
+          "sources": [],
+          "state": "confirmed"
+        },
+        {
+          "id": "preservation",
+          "description": "Не менять соседний файл outside-sentinel.txt.",
+          "basis": [
+            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+          ],
+          "blocks": [],
+          "sources": [],
+          "state": "confirmed"
+        },
+        {
+          "id": "changes",
+          "description": "Добавить документы процесса; для нового проекта начальный предметный черновик, без реализации.",
+          "basis": [
+            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+          ],
+          "blocks": [],
+          "sources": [],
+          "state": "confirmed"
+        },
+        {
+          "id": "local_rules",
+          "description": "Исходных местных правил нет.",
+          "basis": [
+            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+          ],
+          "blocks": [],
+          "sources": [],
+          "state": "confirmed"
+        },
+        {
+          "id": "environment",
+          "description": "Изолированный Linux-каталог, офлайн-подготовка; кандидат CLI 0.3.6; не создавать Git или внешние ресурсы.",
+          "basis": [
+            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+          ],
+          "blocks": [],
+          "sources": [],
+          "state": "confirmed"
+        },
+        {
+          "id": "mandate",
+          "description": "Подготовить минимальную основу High Grade и один предметный черновик спеки; не реализовывать приложение.",
+          "basis": [
+            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+          ],
+          "blocks": [],
+          "sources": [],
+          "state": "confirmed"
+        }
+      ],
+      "next": "Выполнить разрешённую минимальную адаптацию.",
+      "sections": {
+        "adaptation": [
+          {
+            "id": "adaptation-plan",
+            "description": "Создать минимальные README, AGENTS, проектную инструкцию и реестр; через CLI создать предметный черновик каталога книг.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "proposed"
+          }
+        ],
+        "components": [
+          {
+            "id": "component-observed",
+            "description": "Исходный каталог пуст: inventory возвратил entries={}; реализации пока нет.",
+            "basis": [
+              "Actual 01-inventory stdout and read-* outputs."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding-budget",
+            "description": "Бюджеты контекста не согласованы; оставить null и считать BudgetNotAgreed неизвестностью, не PASS. Они не мешают разрешённой подготовке.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "unknown"
+          },
+          {
+            "id": "finding-future",
+            "description": "Выбор стека и runner относится к будущей реализации, которая не поручена.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          }
+        ],
+        "knowledge": [
+          {
+            "id": "knowledge-owners",
+            "description": "Назначить README владельцем назначения, устройства, правил и команд; AGENTS владельцем маршрута.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "proposed"
+          }
+        ],
+        "observations": [
+          {
+            "id": "observation-inventory",
+            "description": "Выполнен inventory --mode structure и прочитаны имеющиеся существенные файлы. Это source-guided упражнение: native dispatch установленного навыка не происходил.",
+            "basis": [
+              "Recorded 01-inventory and read-* raw command results."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          }
+        ],
+        "processes": [
+          {
+            "id": "process-observed",
+            "description": "В исходном пустом каталоге нет runner, formatter, linter, CI или ignore. Будущая команда тестирования неизвестна; её выбор относится к будущей реализации.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          }
+        ],
+        "routes": [
+          {
+            "id": "route-next",
+            "description": "После init уточнить интерфейс/хранение/runner в первоначальной спеке каталога книг, затем отдельное поручение work.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          }
+        ],
+        "skills": [
+          {
+            "id": "skills-observed",
+            "description": "Местных навыков в пустом каталоге не обнаружено.",
+            "basis": [
+              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+            ],
+            "blocks": [],
+            "sources": [],
+            "state": "confirmed"
+          }
+        ]
+      },
+      "source_paths": [],
+      "stage": "survey"
+    },
+    "revision": 1,
+    "survey_sha256": "f1986213cdf98533905f7e84b36ca39e85823c075f2bdaaf6f4770fbf4648dcd"
+  },
+  "status": "passed"
+}

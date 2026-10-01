@@ -341,6 +341,8 @@ syncBuiltinESMExports();
 spec=importlib.util.spec_from_file_location('verify', {str(ROOT / 'scripts/verify.py')!r})
 verify=importlib.util.module_from_spec(spec); spec.loader.exec_module(verify)
 verify.ROOT=pathlib.Path({str(self.root)!r}); verify.REPORTS=verify.ROOT/'target/nextest/highgrade'
+# Disk preflight has its own tests; this fixture deliberately has no Cargo project.
+verify.storage_preflight=lambda: None
 original=verify.run
 def run(args, output=None, codes=(0,)):
     if args[0]=='node': args[1]={str(CHECKER)!r}
@@ -389,11 +391,13 @@ else:
                     child.communicate(timeout=5)
 
     def test_verify_orchestration_completes_only_after_success(self):
-        with patch('sys.argv', ['verify.py', 'tests']), patch.object(verify, 'run') as run:
+        with patch('sys.argv', ['verify.py', 'tests']), patch.object(verify, 'storage_preflight'), \
+                patch.object(verify, 'run') as run:
             verify.main()
         self.assertEqual([call.args[0][2] for call in run.call_args_list], ['capture', 'list', 'run', 'complete'])
         for error in [SystemExit(1), KeyboardInterrupt(), subprocess.TimeoutExpired('cargo', 1)]:
             with self.subTest(error=type(error).__name__), patch('sys.argv', ['verify.py', 'tests']), \
+                    patch.object(verify, 'storage_preflight'), \
                     patch.object(verify, 'run', side_effect=[None, None, error]) as run:
                 with self.assertRaises(type(error)):
                     verify.main()

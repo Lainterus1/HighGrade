@@ -1,0 +1,97 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "started_at": "2026-10-01T10:53:58.594977+00:00",
+  "completed_at": "2026-10-01T10:54:15.662303+00:00",
+  "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44",
+  "python": "3.14.7 (main, Aug 10 2026, 07:46:56) [GCC 16.1.1 20260728]",
+  "base_sha": "d8b8103d29d9cdced63b6e038b28253e342e49a2",
+  "patch_sha256": "535cc75dc9fce2ff6914fd2399db3b94d8abb11e8ae9c627fd982ac59fc13433",
+  "exit_code": 0,
+  "input_paths": [
+    "docs/BUILD.md",
+    "scripts/target-maintenance.py",
+    "scripts/tests/test_target_maintenance.py"
+  ],
+  "inputs_before": {
+    "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+    "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+    "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1"
+  },
+  "inputs_after": {
+    "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+    "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+    "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1"
+  },
+  "input_drift": false,
+  "report": "docs/evidence/storage-growth/ci-followup/python-tests.log",
+  "os_release": {
+    "PRETTY_NAME": "Omarchy",
+    "ID": "omarchy",
+    "ID_LIKE": "arch",
+    "VERSION_ID": "4.0.4"
+  },
+  "node": "v26.8.2",
+  "initial_remote_ci": {
+    "run_id": 36851163012,
+    "head_sha": "d8b8103d29d9cdced63b6e038b28253e342e49a2",
+    "url": "https://github.com/Lainterus1/HighGrade/actions/runs/36851163012",
+    "windows_job": 110332884040,
+    "windows_conclusion": "failure",
+    "failed_step": "Check release build lifecycle",
+    "test_errors": [
+      "test_inventory_does_not_deduplicate_unavailable_inode_ids",
+      "test_inventory_without_allocated_size_reports_unknown_not_estimate"
+    ],
+    "cause": "Synthetic os.stat_result loses Windows st_file_attributes; linked() receives None in fixture tests.",
+    "ubuntu_conclusion": "success"
+  },
+  "native_revalidation": {
+    "command": "env PATH=\"$PWD/target/highgrade/tools/bin:$PATH\" python scripts/verify.py tests",
+    "attempt_id": "55e5ad53c9fe4d44bac05b2938bb683d",
+    "captured_at": "2026-10-01T10:57:28.121Z",
+    "completion_state": "completed",
+    "passed": 211,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "reports": {
+      "target/nextest/highgrade/attempt.json": "d6dd2eace79aa629b0dc450cab7fba6ef6f3660b9c2c158bab23265bbcb61076",
+      "target/nextest/highgrade/completion.json": "1fcfaf00e99815d8e8a9be5db94f191ae5092705b6c1e4946518b7fb5c42bc87",
+      "target/nextest/highgrade/list.json": "60c240633ee40db488d3b121305c1fdb62bf5dbc479f6b35e061f73f67f72a35",
+      "target/nextest/highgrade/junit.xml": "78aaca73b597e68f6cc819103b3dc2395f375c0d570ceb4edb5f74745fa722d9"
+    },
+    "scope": "Local Omarchy with loopback access; independent read-only review confirmed all 440 inputs."
+  },
+  "native_sandbox_attempt": {
+    "completed_tests": 210,
+    "passed": 206,
+    "failed": 4,
+    "unrun": 1,
+    "cause": "Loopback socket bind is denied by sandbox (PermissionError errno 1); UI startup cannot complete. Fresh full rerun with required loopback access passed."
+  },
+  "additional_checks": {
+    "catalog_validation": "passed",
+    "scenario_trace": "passed",
+    "scale_100_200": "passed",
+    "report_reuse": "passed",
+    "generated_skills": "passed",
+    "repository_structure": "passed",
+    "rust_format": "passed",
+    "inspect": {
+      "status": "warning",
+      "failed": 0,
+      "unknown": 0,
+      "external_link_warnings": 9
+    },
+    "scale_reuse_node": "v24.19.0",
+    "sandbox_spawn_diagnostic": "spawnSync EPERM; scale/reuse rerun with required process access passed, source unchanged."
+  }
+}

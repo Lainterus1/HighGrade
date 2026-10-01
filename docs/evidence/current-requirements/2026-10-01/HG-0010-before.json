@@ -1,0 +1,480 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [
+    {
+      "code": "CheckMissingOrStale",
+      "location": "/checks",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "CheckMissingOrStale",
+      "location": "/checks",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "CheckMissingOrStale",
+      "location": "/checks",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "CheckMissingOrStale",
+      "location": "/checks",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "CheckMissingOrStale",
+      "location": "/checks",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/0/requirement/scenarios/0",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/1/requirement/scenarios/0",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/1/requirement/scenarios/1",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/1/requirement/scenarios/2",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/2/requirement/scenarios/0",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/3/requirement/scenarios/0",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/4/requirement/scenarios/0",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/4/requirement/scenarios/1",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/5/requirement/scenarios/0",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/6/requirement/scenarios/0",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/6/requirement/scenarios/1",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/7/requirement/scenarios/0",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/7/requirement/scenarios/1",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/8/requirement/scenarios/0",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/8/requirement/scenarios/1",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "EvidenceMissingOrStale",
+      "location": "/operations/8/requirement/scenarios/2",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    },
+    {
+      "code": "ReviewMissingOrStale",
+      "location": "/review",
+      "message": "Change is not ready for integration.",
+      "status": "failed"
+    }
+  ],
+  "limitations": [
+    "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+  ],
+  "measurements": [
+    {
+      "brief": {
+        "id": "HG-0010",
+        "blockers": [
+          {
+            "id": "HG-0010-C1",
+            "kind": "check",
+            "next": "rerun_check",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-C4",
+            "kind": "check",
+            "next": "rerun_check",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-C10",
+            "kind": "check",
+            "next": "rerun_check",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-C11",
+            "kind": "check",
+            "next": "rerun_check",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-C12",
+            "kind": "check",
+            "next": "rerun_check",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S1",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S2",
+            "kind": "evidence",
+            "next": "record_evidence",
+            "reason": "missing_evidence"
+          },
+          {
+            "id": "HG-0010-S3",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/hg10-gap-s2/pilot/after.json",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S4",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S5",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S6",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/hg10-s6-invalid-input/full-unittest.txt",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S7",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S8",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/hg10-s8-stale-s7/baseline-spec-check.json",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S9",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S10",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S11",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S12",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "Cargo.lock",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S13",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/hg10-gap-s2/pilot/after.json",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S14",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/hg10-update-case/agent-bad-kit-preflight.json",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S15",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/hg10-update-case/agent-bad-kit-preflight.json",
+            "reason": "input_changed"
+          },
+          {
+            "id": "HG-0010-S16",
+            "kind": "evidence",
+            "next": "repeat_scenario",
+            "path": "docs/evidence/agent-pilot/hg10-update-case/agent-bad-kit-preflight.json",
+            "reason": "input_changed"
+          },
+          {
+            "kind": "review",
+            "next": "repeat_review",
+            "reason": "missing"
+          }
+        ],
+        "change_sha256": "8387c4cbe66eb75967fcb740939638c9caca6d9fefaca6bde44e10776c1a09b8",
+        "contract_sha256": "e6c1df5dcdcc0da2d9cb282278f339f6af1910acc8d1cc8f21a86d320930d4f5",
+        "human": "pending",
+        "inputs_sha256": "897baf834d44cc075bf9a5dd00b9870a557a1e02be6b0dbfb4074047a7e4f268",
+        "technical": "in_progress",
+        "verified_revision": null,
+        "review": "missing"
+      }
+    },
+    {
+      "schema_version": 3,
+      "store_sha256": "d40af2785bcba59a4da2bb124986f993cca216c9f31022da17148c8fa4152e13"
+    }
+  ],
+  "operation": "spec-check",
+  "result": {
+    "brief": {
+      "id": "HG-0010",
+      "blockers": [
+        {
+          "id": "HG-0010-C1",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-C4",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-C10",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-C11",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-C12",
+          "kind": "check",
+          "next": "rerun_check",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S1",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S2",
+          "kind": "evidence",
+          "next": "record_evidence",
+          "reason": "missing_evidence"
+        },
+        {
+          "id": "HG-0010-S3",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/hg10-gap-s2/pilot/after.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S4",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S5",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/hg11-approve2-s7/after-snapshot.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S6",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/hg10-s6-invalid-input/full-unittest.txt",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S7",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S8",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/hg10-s8-stale-s7/baseline-spec-check.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S9",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/s7-continuation/continuation-setup.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S10",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S11",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S12",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "Cargo.lock",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S13",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/hg10-gap-s2/pilot/after.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S14",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/hg10-update-case/agent-bad-kit-preflight.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S15",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/hg10-update-case/agent-bad-kit-preflight.json",
+          "reason": "input_changed"
+        },
+        {
+          "id": "HG-0010-S16",
+          "kind": "evidence",
+          "next": "repeat_scenario",
+          "path": "docs/evidence/agent-pilot/hg10-update-case/agent-bad-kit-preflight.json",
+          "reason": "input_changed"
+        },
+        {
+          "kind": "review",
+          "next": "repeat_review",
+          "reason": "missing"
+        }
+      ],
+      "change_sha256": "8387c4cbe66eb75967fcb740939638c9caca6d9fefaca6bde44e10776c1a09b8",
+      "contract_sha256": "e6c1df5dcdcc0da2d9cb282278f339f6af1910acc8d1cc8f21a86d320930d4f5",
+      "human": "pending",
+      "inputs_sha256": "897baf834d44cc075bf9a5dd00b9870a557a1e02be6b0dbfb4074047a7e4f268",
+      "technical": "in_progress",
+      "verified_revision": null,
+      "review": "missing"
+    },
+    "schema_version": 3,
+    "store_sha256": "d40af2785bcba59a4da2bb124986f993cca216c9f31022da17148c8fa4152e13"
+  },
+  "status": "failed"
+}

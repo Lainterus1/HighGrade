@@ -1,0 +1,179 @@
+[
+  {
+    "id": "HG-0063",
+    "evidence": {
+      "scenario": "HG-0020-S1",
+      "method": "manual",
+      "command": "Наблюдение отдельного повторно используемого исполнителя по исходной процедуре; журнал docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/.pilot/actions.jsonl",
+      "captured_at": "2026-10-01T11:49:43.209668+00:00",
+      "outcome": "passed",
+      "observation": "Фактически выбран автоматический маршрут Planner и обычный план; Goal и новая спека не созданы. Обе зависимые стадии выполнены и проверены. Предел: reused actor/supplied source context; Goal API отсутствовал, вариант с доступным API не воспроизведён.",
+      "inputs": [
+        "kit/procedures/planner.md",
+        "kit/procedures/task.md",
+        "kit/rules.md",
+        "kit/templates/AGENTS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/.gitignore",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/.highgrade/local/plan.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/.highgrade/local/state.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/.highgrade/project/INSTRUCTIONS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/.pilot/actions.jsonl",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/.pilot/before.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/.pilot/capability.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/AGENTS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/README.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/app.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/colleague.txt",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/evidence/alpha-before.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/evidence/alpha.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/evidence/beta.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/evidence/chain-completion.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/parent-observation.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/tests/test_app.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/tools/audit.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/tools/check_docs.py"
+      ],
+      "report": "docs/evidence/planner-alignment/2026-10-01/runtime/automatic-route/.pilot/response.txt"
+    }
+  },
+  {
+    "id": "HG-0063",
+    "evidence": {
+      "scenario": "HG-0020-S3",
+      "method": "manual",
+      "command": "Наблюдение отдельного повторно используемого исполнителя по исходной процедуре; журнал docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/.pilot/actions.jsonl",
+      "captured_at": "2026-10-01T11:49:43.209668+00:00",
+      "outcome": "passed",
+      "observation": "Фактически применён прямой Work, без Planner/Goal, плана и новой спеки; app.py исправлен после воспроизведения ошибки, README и чужой файл сохранены. Предел: reused actor/supplied source context; Goal API отсутствовал, вариант с доступным API не воспроизведён.",
+      "inputs": [
+        "kit/procedures/planner.md",
+        "kit/procedures/task.md",
+        "kit/rules.md",
+        "kit/templates/AGENTS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/.gitignore",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/.highgrade/project/INSTRUCTIONS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/.pilot/actions.jsonl",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/.pilot/before.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/.pilot/capability.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/AGENTS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/README.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/app.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/colleague.txt",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/evidence/after.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/evidence/before.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/evidence/completion.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/parent-observation.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/tests/test_app.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/tools/audit.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/tools/check_docs.py"
+      ],
+      "report": "docs/evidence/planner-alignment/2026-10-01/runtime/independent-fix/.pilot/response.txt"
+    }
+  },
+  {
+    "id": "HG-0063",
+    "evidence": {
+      "scenario": "HG-0020-S7",
+      "method": "manual",
+      "command": "Наблюдение отдельного повторно используемого исполнителя по исходной процедуре; журнал docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/.pilot/actions.jsonl",
+      "captured_at": "2026-10-01T11:49:43.209668+00:00",
+      "outcome": "passed",
+      "observation": "Фактически подготовлен только план; все tracked файлы/HEAD/index неизменны, реализация и тесты не выполнялись, Goal не создавался. Предел: reused actor/supplied source context; Goal API отсутствовал, вариант с доступным API не воспроизведён.",
+      "inputs": [
+        "kit/procedures/planner.md",
+        "kit/procedures/task.md",
+        "kit/rules.md",
+        "kit/templates/AGENTS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/.gitignore",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/.highgrade/local/plan.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/.highgrade/local/state.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/.highgrade/project/INSTRUCTIONS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/.pilot/actions.jsonl",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/.pilot/before.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/.pilot/capability.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/AGENTS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/README.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/app.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/colleague.txt",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/parent-observation.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/tests/test_app.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/tools/audit.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/tools/check_docs.py"
+      ],
+      "report": "docs/evidence/planner-alignment/2026-10-01/runtime/plan-only/.pilot/response.txt"
+    }
+  },
+  {
+    "id": "HG-0063",
+    "evidence": {
+      "scenario": "HG-0020-S8",
+      "method": "manual",
+      "command": "Наблюдение отдельного повторно используемого исполнителя по исходной процедуре; журнал docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/.pilot/actions.jsonl",
+      "captured_at": "2026-10-01T11:49:43.209668+00:00",
+      "outcome": "passed",
+      "observation": "Фактически выполнена полная alpha→beta цепочка от ошибки до проверенного результата и Next:none; commit/активация/push/приёмка не выполнялись и не объявлены выполненными. Предел: reused actor/supplied source context; Goal API отсутствовал, вариант с доступным API не воспроизведён.",
+      "inputs": [
+        "kit/procedures/planner.md",
+        "kit/procedures/task.md",
+        "kit/rules.md",
+        "kit/templates/AGENTS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/.gitignore",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/.highgrade/local/plan.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/.highgrade/local/state.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/.highgrade/project/INSTRUCTIONS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/.pilot/actions.jsonl",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/.pilot/before.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/.pilot/capability.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/AGENTS.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/README.md",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/app.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/colleague.txt",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/evidence/alpha-before.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/evidence/alpha.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/evidence/beta.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/evidence/chain-completion.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/parent-observation.json",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/tests/test_app.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/tools/audit.py",
+        "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/tools/check_docs.py"
+      ],
+      "report": "docs/evidence/planner-alignment/2026-10-01/runtime/technical-chain/.pilot/response.txt"
+    }
+  },
+  {
+    "id": "HG-0063",
+    "evidence": {
+      "scenario": "HG-0020-S2",
+      "method": "manual",
+      "command": "Проверка текущего exposed tool catalog без вызова Goal",
+      "captured_at": "2026-10-01T11:49:43.209668+00:00",
+      "outcome": "unknown",
+      "observation": "Настоящий Goal API в текущем сеансе недоступен. Требуемое состояние Goal и его переходы не наблюдались; локальный план не подменяет их.",
+      "inputs": [
+        "kit/procedures/planner.md",
+        "kit/procedures/task.md",
+        "kit/rules.md",
+        "kit/templates/AGENTS.md"
+      ],
+      "report": "docs/evidence/planner-alignment/2026-10-01/goal-capability.json"
+    }
+  },
+  {
+    "id": "HG-0063",
+    "evidence": {
+      "scenario": "HG-0020-S6",
+      "method": "manual",
+      "command": "Проверка текущего exposed tool catalog без вызова Goal",
+      "captured_at": "2026-10-01T11:49:43.209668+00:00",
+      "outcome": "unknown",
+      "observation": "Настоящий Goal API в текущем сеансе недоступен. Требуемое состояние Goal и его переходы не наблюдались; локальный план не подменяет их.",
+      "inputs": [
+        "kit/procedures/planner.md",
+        "kit/procedures/task.md",
+        "kit/rules.md",
+        "kit/templates/AGENTS.md"
+      ],
+      "report": "docs/evidence/planner-alignment/2026-10-01/goal-capability.json"
+    }
+  }
+]

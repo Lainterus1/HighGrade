@@ -1,0 +1,24 @@
+{
+  "started_at": "2026-10-01T11:46:58.260866+00:00",
+  "finished_at": "2026-10-01T11:46:58.322879+00:00",
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "exit_code": 1,
+  "inputs_before": {
+    "app.py": "8b47c70df3984bc0d89472ed03915159253f678864a8ec284cbbd09e2ae587a0",
+    "tests/test_app.py": "0fde59678d869853834489cb0061d1457daf19f72c50811c7c4ccf57d9c86695"
+  },
+  "inputs_after": {
+    "app.py": "8b47c70df3984bc0d89472ed03915159253f678864a8ec284cbbd09e2ae587a0",
+    "tests/test_app.py": "0fde59678d869853834489cb0061d1457daf19f72c50811c7c4ccf57d9c86695"
+  },
+  "stdout": "",
+  "stderr": "test_empty (test_app.Contract.test_empty) ... ok\ntest_normalization (test_app.Contract.test_normalization) ... FAIL\n\n======================================================================\nFAIL: test_normalization (test_app.Contract.test_normalization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/highgrade-planner-fix/target/highgrade/tmp/planner-alignment/technical-chain/tests/test_app.py\", line 5, in test_normalization\n    self.assertEqual(normalize_items([\" A \", \"\", \" B \", \"   \", \"A\"]), [\"A\", \"B\", \"A\"])\nAssertionError: Lists differ: [' A ', '', ' B ', '   ', 'A'] != ['A', 'B', 'A']\n\nFirst differing element 0:\n' A '\n'A'\n\nFirst list contains 2 additional elements.\nFirst extra element 3:\n'   '\n\n- [' A ', '', ' B ', '   ', 'A']\n+ ['A', 'B', 'A']\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
+}

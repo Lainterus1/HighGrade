@@ -1,0 +1,79 @@
+{
+  "base_revision": "69e1c098b4ca5552b1f3b1ffe66ee808d8d81ab7",
+  "environment": "Linux; Rust 1.89.0; worktree candidate CLI, not an active installation",
+  "checks": [
+    {
+      "name": "render-check",
+      "command": [
+        "python",
+        "scripts/render-skills.py",
+        "--check"
+      ],
+      "started_at": "2026-10-01T05:29:23.169217+00:00",
+      "exit_code": 0,
+      "report": "render-check.txt"
+    },
+    {
+      "name": "python-tests",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-v"
+      ],
+      "started_at": "2026-10-01T05:29:23.196689+00:00",
+      "exit_code": 0,
+      "report": "python-tests.txt"
+    },
+    {
+      "name": "global-contracts",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "global_contracts"
+      ],
+      "started_at": "2026-10-01T05:29:49.341019+00:00",
+      "exit_code": 0,
+      "report": "global-contracts.txt"
+    },
+    {
+      "name": "fmt",
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "started_at": "2026-10-01T05:30:36.731654+00:00",
+      "exit_code": 0,
+      "report": "fmt.txt"
+    },
+    {
+      "name": "repository",
+      "command": [
+        "node",
+        "scripts/check-repository.mjs"
+      ],
+      "started_at": "2026-10-01T05:30:37.006891+00:00",
+      "exit_code": 0,
+      "report": "repository.txt"
+    },
+    {
+      "name": "inspect",
+      "command": [
+        "python",
+        "scripts/verify.py",
+        "inspect"
+      ],
+      "started_at": "2026-10-01T05:30:37.064032+00:00",
+      "exit_code": 0,
+      "report": "inspect.txt"
+    }
+  ]
+}

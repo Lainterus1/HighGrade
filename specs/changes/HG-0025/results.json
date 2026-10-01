@@ -4,15 +4,7 @@
     "HG-0025-S1": {
       "captured_at": "2026-09-26T07:02:09.0641255Z",
       "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify before and after spec-integrate; node scripts/check-scenario-reuse.mjs",
-      "files": {
-        ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
-        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-        "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
-        "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
-        "specs/changes/HG-0025/evidence/workflow-verification.json": "57ff13df704e2767805e23e3b67add26b9371edf4e998ad914a16d85cff415ad",
-        "specs/changes/HG-0025/spec.json": "1cb16cb6e45c8da207c80124b3c2bc7c49c47a969231b8d405a9a0360656f776"
-      },
+      "input_manifest_sha256": "7027c71f40b6e3cbfca69c1b4940b6162cd9c74420d8abb6189d8b29db44e17c",
       "method": "manual",
       "observation": "До интеграции Nextest 124/124 и trace 48/48; после интеграции prepare показал native_report_reused=true/equivalent_specification, trace/verify снова 48/48 без второго Nextest. Изолированный guard отверг изменение сценария и Rust-файла, включая восстановленный mtime.",
       "outcome": "passed",
@@ -23,15 +15,7 @@
     "HG-0025-S2": {
       "captured_at": "2026-09-26T07:02:09.8953538Z",
       "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-      "files": {
-        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-        "docs/ENGINEERING.md": "0a9ca21fcbc2167c373ee12a846db94a3b13bf08b441af0aed5adf4b374359fb",
-        "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
-        "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
-        "specs/changes/HG-0025/evidence/workflow-verification.json": "57ff13df704e2767805e23e3b67add26b9371edf4e998ad914a16d85cff415ad"
-      },
+      "input_manifest_sha256": "6fab36dcbfe0285b9119a2eba736a9484e112d27b0795d376cc0052f101b2eb3",
       "method": "manual",
       "observation": "Сверка ENGINEERING, DEVELOPMENT, BUILD, проектной инструкции, build-release.py и существующих тестов показала единственную обязательную release-сборку из SHA, preview/apply по отпечатку и global-status. Прежний выпуск v0-2-20 был активирован из 906ca4c; новый кандидат в этой задаче не собирался.",
       "outcome": "passed",
@@ -42,12 +26,7 @@
     "HG-0025-S3": {
       "captured_at": "2026-09-26T07:02:10.6430717Z",
       "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-      "files": {
-        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-        "specs/changes/HG-0025/evidence/workflow-verification.json": "57ff13df704e2767805e23e3b67add26b9371edf4e998ad914a16d85cff415ad"
-      },
+      "input_manifest_sha256": "4284c7b627e786fcabafa96caa13ec2d916c6d83f4b6e211e108be4e0c478bb4",
       "method": "manual",
       "observation": "Таблица решений по проектной инструкции: промежуточный коммит без нужды в новой активной CLI не получает release ID/активацию; при нужде активируется; последний готовый SHA с назначенной активацией выпускается, push отдельно. Фактическое соблюдение будущим агентом не наблюдалось.",
       "outcome": "passed",
@@ -200,15 +179,7 @@
       "164621d22ffe0e9a09c6f53a0ef5e6f52dc8c0a2e3575935e56c4605c5dd8f97": {
         "captured_at": "2026-09-26T06:59:08.3112234Z",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "docs/ENGINEERING.md": "0a9ca21fcbc2167c373ee12a846db94a3b13bf08b441af0aed5adf4b374359fb",
-          "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
-          "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "df831a187b2a1e743987f26c49b52dddd9338bb572c017de431ea89ae51d2830"
-        },
+        "input_manifest_sha256": "292f62ebd048e76615d1d2fdb498d27839ac72b1a2baf5486956f88781c613a6",
         "method": "manual",
         "observation": "Сверка ENGINEERING, DEVELOPMENT, BUILD, проектной инструкции, build-release.py и существующих тестов показала единственную обязательную release-сборку из SHA, preview/apply по отпечатку и global-status. Прежний выпуск v0-2-20 был активирован из 906ca4c; новый кандидат в этой задаче не собирался.",
         "outcome": "passed",
@@ -219,15 +190,7 @@
       "1d8b320b1f719454bb202d8cd3ead0e1ed5a6ad072cabfe5251fa2a2a893c284": {
         "captured_at": "2026-09-26T06:50:57.737955+00:00",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "docs/ENGINEERING.md": "0a9ca21fcbc2167c373ee12a846db94a3b13bf08b441af0aed5adf4b374359fb",
-          "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
-          "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "67961bbd21d177173db228d6f66fc5587258d5b2f9d154f26c9fdf2d67d24ae1"
-        },
+        "input_manifest_sha256": "e5483fc476fe7e25d0fa59e54a2540b1da8d67a60c640a648ae16582eca94933",
         "method": "manual",
         "observation": "Правила DEVELOPMENT, ENGINEERING, BUILD и проектной инструкции назначают единственную обязательную release-сборку через build-release.py из точного SHA; код сборщика и его тесты сохраняют эту защиту. Предыдущий выпуск v0-2-20 активирован из 906ca4c. В этой задаче новый кандидат не собирался.",
         "outcome": "passed",
@@ -238,15 +201,7 @@
       "1e048da82140cd9e035671ab11fb9d3ab21fc67697540262e57600b3b434ac72": {
         "captured_at": "2026-09-26T06:59:07.5272071Z",
         "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify before and after spec-integrate; node scripts/check-scenario-reuse.mjs",
-        "files": {
-          ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
-          "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "df831a187b2a1e743987f26c49b52dddd9338bb572c017de431ea89ae51d2830",
-          "specs/changes/HG-0025/spec.json": "1cb16cb6e45c8da207c80124b3c2bc7c49c47a969231b8d405a9a0360656f776"
-        },
+        "input_manifest_sha256": "7aa5b40ec6fc43fa3be0a353310edcb9df0a8de2b5273f55b8826b90cf4216c3",
         "method": "manual",
         "observation": "До интеграции Nextest 124/124 и trace 48/48; после интеграции prepare показал native_report_reused=true/equivalent_specification, trace/verify снова 48/48 без второго Nextest. Изолированный guard отверг изменение сценария и Rust-файла, включая восстановленный mtime.",
         "outcome": "passed",
@@ -264,15 +219,7 @@
       "77868fe6bd832fa7bd0956d1d36466689f5baee355ca628a550d7480b2d668b4": {
         "captured_at": "2026-09-26T06:50:29.173472+00:00",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
-          "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "67961bbd21d177173db228d6f66fc5587258d5b2f9d154f26c9fdf2d67d24ae1",
-          "specs/changes/HG-0025/spec.json": "ad9e06ddcceb5a1abbedd73fbc0e4bab836dab9cf4cbb16a334eeb4e473ec16b"
-        },
+        "input_manifest_sha256": "5ec30e3395f580a72e8ca91f4c310b823b4fe89633fdd699e8e4fab1e06cb7b1",
         "method": "manual",
         "observation": "Финальный Nextest: 124/124, skipped=0; trace: 48/48 автоматических. Изолированный check-scenario-reuse подтвердил reuse эквивалентной спеки и отказ после изменения сценария, Rust mtime и Rust SHA при восстановленном mtime.",
         "outcome": "passed",
@@ -283,15 +230,7 @@
       "77bdfdd75ee6f1945f35f1b1d951007fa6f0458328fae8d53ed214dd63e2500e": {
         "captured_at": "2026-09-26T06:53:27.251121+00:00",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
-          "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "f7f2878f3dd4a3e9ec13630135164830b78c68153baba2bc1089e12278d15fba",
-          "specs/changes/HG-0025/spec.json": "e5369dd73a66b6af9768a625bff850fd4c58e1162e8d774f14642a9f98119911"
-        },
+        "input_manifest_sha256": "08ec0c7a86a624d1cbaacc56e75d466b12fb4d2f9c351dd7e32035595d59e677",
         "method": "manual",
         "observation": "Nextest 124/124, skipped=0; trace 48/48 автоматических. Постоянный check-scenario-reuse подтвердил reuse при метадатной правке и отказ после изменения сценария, Rust mtime и Rust SHA при восстановленном времени.",
         "outcome": "passed",
@@ -308,12 +247,7 @@
       "98a7a71cd86c06209912dcac64afff9e1a97b1f5d39fd513207c01ce66e2b988": {
         "captured_at": "2026-09-26T06:59:09.0657530Z",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "df831a187b2a1e743987f26c49b52dddd9338bb572c017de431ea89ae51d2830"
-        },
+        "input_manifest_sha256": "2fbd4ebd8d8b9bb0f58ca9fcab83850b6d37d0f9e2d16b4c2566a10d578220f1",
         "method": "manual",
         "observation": "Таблица решений по проектной инструкции: промежуточный коммит без нужды в новой активной CLI не получает release ID/активацию; при нужде активируется; последний готовый SHA с назначенной активацией выпускается, push отдельно. Фактическое соблюдение будущим агентом не наблюдалось.",
         "outcome": "passed",
@@ -324,15 +258,7 @@
       "9cab3845005c228405f6f02f2a2855f4914c12bea3a50dd4f20681c36042e60c": {
         "captured_at": "2026-09-26T06:53:28.096829+00:00",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "docs/ENGINEERING.md": "0a9ca21fcbc2167c373ee12a846db94a3b13bf08b441af0aed5adf4b374359fb",
-          "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
-          "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "f7f2878f3dd4a3e9ec13630135164830b78c68153baba2bc1089e12278d15fba"
-        },
+        "input_manifest_sha256": "20137389039dada0efbf0d23d51c5602802fb4affb954c28a99a13405d1ed943",
         "method": "manual",
         "observation": "Сверка ENGINEERING, DEVELOPMENT, BUILD, проектной инструкции, build-release.py и существующих тестов показала единственную обязательную release-сборку из SHA, preview/apply по отпечатку и global-status. Прежний выпуск v0-2-20 был активирован из 906ca4c; новый кандидат в этой задаче не собирался.",
         "outcome": "passed",
@@ -343,12 +269,7 @@
       "a0adc2f8864f837e2da18d7762cd8dfd578b2d09c5f7cfa87e2892eb207cdda0": {
         "captured_at": "2026-09-26T06:50:58.537194+00:00",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "67961bbd21d177173db228d6f66fc5587258d5b2f9d154f26c9fdf2d67d24ae1"
-        },
+        "input_manifest_sha256": "a62613eede29fc53f2acabc95e66955a6ea697141c3cd2c65bfa36b6b917ca89",
         "method": "manual",
         "observation": "Для промежуточного коммита без потребности в новой активной CLI правило предписывает отложить release ID и активацию; при потребности в CLI — активировать этап; для последнего готового коммита с назначенной активацией — выпуск из его SHA. Push отдельно. Это проверка решения по проектному правилу, будущая работа агента не наблюдалась.",
         "outcome": "passed",
@@ -359,12 +280,7 @@
       "ac2dbd99affe3d7942952e9895d64c67e9b62769e515d6c1a5abf34afa02d16f": {
         "captured_at": "2026-09-26T07:02:10.6430717Z",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "57ff13df704e2767805e23e3b67add26b9371edf4e998ad914a16d85cff415ad"
-        },
+        "input_manifest_sha256": "4284c7b627e786fcabafa96caa13ec2d916c6d83f4b6e211e108be4e0c478bb4",
         "method": "manual",
         "observation": "Таблица решений по проектной инструкции: промежуточный коммит без нужды в новой активной CLI не получает release ID/активацию; при нужде активируется; последний готовый SHA с назначенной активацией выпускается, push отдельно. Фактическое соблюдение будущим агентом не наблюдалось.",
         "outcome": "passed",
@@ -375,12 +291,7 @@
       "bd1f4cde608718d5a933b174eea945d423a652a99e506a69e0fa261e3dc67b51": {
         "captured_at": "2026-09-26T06:53:28.844664+00:00",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "f7f2878f3dd4a3e9ec13630135164830b78c68153baba2bc1089e12278d15fba"
-        },
+        "input_manifest_sha256": "05edb6f809a823e9831bb818fa3a3b0eb4826782a11eb294000542775ff08563",
         "method": "manual",
         "observation": "Таблица решений по проектной инструкции: промежуточный коммит без нужды в новой активной CLI не получает release ID/активацию; при нужде активируется; последний готовый SHA с назначенной активацией выпускается, push отдельно. Фактическое соблюдение будущим агентом не наблюдалось.",
         "outcome": "passed",
@@ -391,15 +302,7 @@
       "c1be7dff651e3781a99ef8635d2e4a43d0b82f13c5edf011333783dcd5178148": {
         "captured_at": "2026-09-26T07:02:09.8953538Z",
         "command": "Nextest/trace; node scripts/check-scenario-reuse.mjs; review of exact SHA release route and chain decision table",
-        "files": {
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "docs/ENGINEERING.md": "0a9ca21fcbc2167c373ee12a846db94a3b13bf08b441af0aed5adf4b374359fb",
-          "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
-          "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "57ff13df704e2767805e23e3b67add26b9371edf4e998ad914a16d85cff415ad"
-        },
+        "input_manifest_sha256": "6fab36dcbfe0285b9119a2eba736a9484e112d27b0795d376cc0052f101b2eb3",
         "method": "manual",
         "observation": "Сверка ENGINEERING, DEVELOPMENT, BUILD, проектной инструкции, build-release.py и существующих тестов показала единственную обязательную release-сборку из SHA, preview/apply по отпечатку и global-status. Прежний выпуск v0-2-20 был активирован из 906ca4c; новый кандидат в этой задаче не собирался.",
         "outcome": "passed",
@@ -410,15 +313,7 @@
       "cf0c54d6530609d78e265298bd06ad0ce3d4b7ac7c71bf0531f25120058dcfcf": {
         "captured_at": "2026-09-26T07:02:09.0641255Z",
         "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify before and after spec-integrate; node scripts/check-scenario-reuse.mjs",
-        "files": {
-          ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
-          "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "57ff13df704e2767805e23e3b67add26b9371edf4e998ad914a16d85cff415ad",
-          "specs/changes/HG-0025/spec.json": "1cb16cb6e45c8da207c80124b3c2bc7c49c47a969231b8d405a9a0360656f776"
-        },
+        "input_manifest_sha256": "7027c71f40b6e3cbfca69c1b4940b6162cd9c74420d8abb6189d8b29db44e17c",
         "method": "manual",
         "observation": "До интеграции Nextest 124/124 и trace 48/48; после интеграции prepare показал native_report_reused=true/equivalent_specification, trace/verify снова 48/48 без второго Nextest. Изолированный guard отверг изменение сценария и Rust-файла, включая восстановленный mtime.",
         "outcome": "passed",
@@ -429,21 +324,146 @@
       "de251136396b077d1f46f0364ee1e21b1efcbc9ca3323d15127b409ac1bc54b5": {
         "captured_at": "2026-09-26T06:55:53.059623+00:00",
         "command": "cargo-nextest nextest run --locked --profile highgrade; source-scenarios prepare/trace/verify before and after spec-integrate; node scripts/check-scenario-reuse.mjs",
-        "files": {
-          ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
-          ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
-          "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
-          "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
-          "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
-          "specs/changes/HG-0025/evidence/workflow-verification.json": "f7f2878f3dd4a3e9ec13630135164830b78c68153baba2bc1089e12278d15fba",
-          "specs/changes/HG-0025/spec.json": "1cb16cb6e45c8da207c80124b3c2bc7c49c47a969231b8d405a9a0360656f776"
-        },
+        "input_manifest_sha256": "6299b602dafba725990099199617c1d28098ea3a19df38986c4f071146337af3",
         "method": "manual",
         "observation": "До интеграции Nextest 124/124 и trace 48/48; после интеграции prepare показал native_report_reused=true/equivalent_specification, trace/verify снова 48/48 без второго Nextest. Изолированный guard отверг изменение сценария и Rust-файла, включая восстановленный mtime.",
         "outcome": "passed",
         "report": "specs/changes/HG-0025/evidence/workflow-verification.json",
         "scenario": "HG-0025-S1",
         "scenario_sha256": "6c0a413b0a884d6095a6037375f5ad5c2c3b706fe76c27415bde62bc25d5ed4c"
+      }
+    }
+  },
+  "input_manifests": {
+    "05edb6f809a823e9831bb818fa3a3b0eb4826782a11eb294000542775ff08563": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "f7f2878f3dd4a3e9ec13630135164830b78c68153baba2bc1089e12278d15fba"
+      }
+    },
+    "08ec0c7a86a624d1cbaacc56e75d466b12fb4d2f9c351dd7e32035595d59e677": {
+      "files": {
+        ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
+        "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "f7f2878f3dd4a3e9ec13630135164830b78c68153baba2bc1089e12278d15fba",
+        "specs/changes/HG-0025/spec.json": "e5369dd73a66b6af9768a625bff850fd4c58e1162e8d774f14642a9f98119911"
+      }
+    },
+    "20137389039dada0efbf0d23d51c5602802fb4affb954c28a99a13405d1ed943": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "docs/ENGINEERING.md": "0a9ca21fcbc2167c373ee12a846db94a3b13bf08b441af0aed5adf4b374359fb",
+        "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
+        "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "f7f2878f3dd4a3e9ec13630135164830b78c68153baba2bc1089e12278d15fba"
+      }
+    },
+    "292f62ebd048e76615d1d2fdb498d27839ac72b1a2baf5486956f88781c613a6": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "docs/ENGINEERING.md": "0a9ca21fcbc2167c373ee12a846db94a3b13bf08b441af0aed5adf4b374359fb",
+        "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
+        "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "df831a187b2a1e743987f26c49b52dddd9338bb572c017de431ea89ae51d2830"
+      }
+    },
+    "2fbd4ebd8d8b9bb0f58ca9fcab83850b6d37d0f9e2d16b4c2566a10d578220f1": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "df831a187b2a1e743987f26c49b52dddd9338bb572c017de431ea89ae51d2830"
+      }
+    },
+    "4284c7b627e786fcabafa96caa13ec2d916c6d83f4b6e211e108be4e0c478bb4": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "57ff13df704e2767805e23e3b67add26b9371edf4e998ad914a16d85cff415ad"
+      }
+    },
+    "5ec30e3395f580a72e8ca91f4c310b823b4fe89633fdd699e8e4fab1e06cb7b1": {
+      "files": {
+        ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
+        "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "67961bbd21d177173db228d6f66fc5587258d5b2f9d154f26c9fdf2d67d24ae1",
+        "specs/changes/HG-0025/spec.json": "ad9e06ddcceb5a1abbedd73fbc0e4bab836dab9cf4cbb16a334eeb4e473ec16b"
+      }
+    },
+    "6299b602dafba725990099199617c1d28098ea3a19df38986c4f071146337af3": {
+      "files": {
+        ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
+        "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "f7f2878f3dd4a3e9ec13630135164830b78c68153baba2bc1089e12278d15fba",
+        "specs/changes/HG-0025/spec.json": "1cb16cb6e45c8da207c80124b3c2bc7c49c47a969231b8d405a9a0360656f776"
+      }
+    },
+    "6fab36dcbfe0285b9119a2eba736a9484e112d27b0795d376cc0052f101b2eb3": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "docs/ENGINEERING.md": "0a9ca21fcbc2167c373ee12a846db94a3b13bf08b441af0aed5adf4b374359fb",
+        "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
+        "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "57ff13df704e2767805e23e3b67add26b9371edf4e998ad914a16d85cff415ad"
+      }
+    },
+    "7027c71f40b6e3cbfca69c1b4940b6162cd9c74420d8abb6189d8b29db44e17c": {
+      "files": {
+        ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
+        "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "57ff13df704e2767805e23e3b67add26b9371edf4e998ad914a16d85cff415ad",
+        "specs/changes/HG-0025/spec.json": "1cb16cb6e45c8da207c80124b3c2bc7c49c47a969231b8d405a9a0360656f776"
+      }
+    },
+    "7aa5b40ec6fc43fa3be0a353310edcb9df0a8de2b5273f55b8826b90cf4216c3": {
+      "files": {
+        ".github/workflows/verify.yml": "724130bb018a103df66a58ba18de3b5f6c349b066710b41fd3de901a0a34b64a",
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "scripts/check-scenario-reuse.mjs": "6e706ffe145de7edd508c03eea44b496d1cfa3583606e9910036d31ddf41ab11",
+        "scripts/source-scenarios.mjs": "d9c38f8d820fd3a82676ed9d90fcfea1b9f6b753c1d99f31d12cefafa1deb837",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "df831a187b2a1e743987f26c49b52dddd9338bb572c017de431ea89ae51d2830",
+        "specs/changes/HG-0025/spec.json": "1cb16cb6e45c8da207c80124b3c2bc7c49c47a969231b8d405a9a0360656f776"
+      }
+    },
+    "a62613eede29fc53f2acabc95e66955a6ea697141c3cd2c65bfa36b6b917ca89": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "67961bbd21d177173db228d6f66fc5587258d5b2f9d154f26c9fdf2d67d24ae1"
+      }
+    },
+    "e5483fc476fe7e25d0fa59e54a2540b1da8d67a60c640a648ae16582eca94933": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "41fa3680b5b9b83ead7a01e9d7c60910823e1f22fa05477119d10767208a4a18",
+        "docs/BUILD.md": "5176bb5bac8af268e311f851b0b0aef958df87a87b6b250e771dd6a4f0575eab",
+        "docs/DEVELOPMENT.md": "138d58154a132f39aa3f76a0139ddb922540a7e9a36a035b2d7f27c319d117af",
+        "docs/ENGINEERING.md": "0a9ca21fcbc2167c373ee12a846db94a3b13bf08b441af0aed5adf4b374359fb",
+        "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
+        "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
+        "specs/changes/HG-0025/evidence/workflow-verification.json": "67961bbd21d177173db228d6f66fc5587258d5b2f9d154f26c9fdf2d67d24ae1"
       }
     }
   },
