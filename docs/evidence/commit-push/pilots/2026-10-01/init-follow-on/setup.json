@@ -1,0 +1,53 @@
+{
+  "kind": "Observer setup of a copied fixture after actual Init, not actor Commit/Push execution",
+  "source": "../init-consume/after/files.tar.gz",
+  "instruction_sha256": "f59def72785a6169f4f24bec69d7ec039679abc937241f5104ecdd1235a27108",
+  "setup_commands": [
+    {
+      "argv": [
+        "git",
+        "add",
+        "--",
+        "README.md",
+        "AGENTS.md",
+        ".highgrade/project",
+        "evidence/init-baseline.json",
+        "tasks/alpha.json"
+      ],
+      "stdout": "",
+      "stderr": "",
+      "exit": 0
+    },
+    {
+      "argv": [
+        "git",
+        "commit",
+        "-m",
+        "Fixture baseline: preserve Init adaptation and alpha task"
+      ],
+      "stdout": "[work 2637b11] Fixture baseline: preserve Init adaptation and alpha task\n 8 files changed, 597 insertions(+)\n create mode 100644 .highgrade/project/INSTRUCTIONS.md\n create mode 100644 .highgrade/project/documents.json\n create mode 100644 .highgrade/project/inventory-exclusions.json\n create mode 100644 .highgrade/project/survey.json\n create mode 100644 AGENTS.md\n create mode 100644 evidence/init-baseline.json\n create mode 100644 tasks/alpha.json\n",
+      "stderr": "",
+      "exit": 0
+    },
+    {
+      "argv": [
+        "git",
+        "push",
+        "origin",
+        "HEAD:integration"
+      ],
+      "stdout": "",
+      "stderr": "To /workspace/shared/HighGrade-commit/target/highgrade/tmp/portable-pilot-20261001/init-consume-remote.git\n   7dec688..2637b11  HEAD -> integration\n",
+      "exit": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/check.py"
+      ],
+      "stdout": "{\"command\": \"python3 tools/check.py\", \"passed\": true, \"inputs\": {\"app.py\": \"368c7e07acb73f8712adc271b496b004a1b11ecdbacd6f545e84a5810b5e1c17\", \"tools/check.py\": \"e4e3c1330059df953261a6374b5b5a17fcdbf7535f9af73ad1f5ae139e62fe85\"}}\n",
+      "stderr": "",
+      "exit": 0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "command": "python3 tools/check.py",
+  "date_utc": "2026-10-01T06:17:12.161957+00:00",
+  "git_head": "7dec688636c396af8ec69aa2e99b667cf4126c7a",
+  "exit_code": 1,
+  "stdout": "{\"command\": \"python3 tools/check.py\", \"passed\": false, \"inputs\": {\"app.py\": \"77865efeead07d854622569393e9116d1ea68111fade22bc49ca9e1c38b3e717\", \"tools/check.py\": \"e4e3c1330059df953261a6374b5b5a17fcdbf7535f9af73ad1f5ae139e62fe85\"}}\n",
+  "stderr": "",
+  "result": {
+    "command": "python3 tools/check.py",
+    "passed": false,
+    "inputs": {
+      "app.py": "77865efeead07d854622569393e9116d1ea68111fade22bc49ca9e1c38b3e717",
+      "tools/check.py": "e4e3c1330059df953261a6374b5b5a17fcdbf7535f9af73ad1f5ae139e62fe85"
+    }
+  },
+  "interpretation": "Исходная проверка падает: реализация возвращает starting, проверка требует ready. Исходники и критерий сохранены, исправление не входит в Init."
+}

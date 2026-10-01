@@ -1,0 +1,121 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [],
+  "limitations": [
+    "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+  ],
+  "measurements": [
+    {
+      "schema_version": 3,
+      "store_sha256": "ade2f08c951e8739e6fbb84069558c8283e6e649ef1c95d570b952d3398f7463"
+    },
+    {
+      "change": {
+        "id": "HG-0001",
+        "title": "Проверяемая автономность каталога",
+        "goal": "Проверить автономность данных проекта от служебной конфигурации процесса",
+        "rationale": "Изолированное упражнение установленной CLI без исходников Поставки",
+        "scope": "Только синтетический локальный каталог",
+        "questions": [],
+        "operations": [
+          {
+            "action": "add",
+            "requirement": {
+              "id": "HG-0001-R1",
+              "title": "Автономный каталог",
+              "statement": "Каталог проекта SHALL сохранять данные после удаления служебной конфигурации.",
+              "scenarios": [
+                {
+                  "id": "HG-0001-S1",
+                  "given": "В specs/ сохранена спецификация",
+                  "when": "Служебная конфигурация удалена из проекта",
+                  "then": "spec-read возвращает прежнюю спецификацию без потери данных",
+                  "verification": "Фактические CLI-команды и хеши всех файлов каталога"
+                }
+              ]
+            }
+          }
+        ],
+        "tasks": [
+          {
+            "id": "HG-0001-T1",
+            "description": "Проверить чтение каталога после удаления конфигурации",
+            "done": false
+          }
+        ],
+        "imports": {},
+        "baseline": {},
+        "scoped_baseline": true,
+        "created_at": 1790834828,
+        "archived": false,
+        "abandoned_reason": null,
+        "evidence": {},
+        "review": null,
+        "acceptance": []
+      },
+      "change_sha256": "ac001b541574efebab43f9b2ab4e4af8bcd0a1cf36ef7bfb78d1f08b03e8f042",
+      "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "links": {
+        "depends_on": [],
+        "related_to": [],
+        "same_requirements": []
+      }
+    }
+  ],
+  "operation": "spec-edit",
+  "result": {
+    "change": {
+      "id": "HG-0001",
+      "title": "Проверяемая автономность каталога",
+      "goal": "Проверить автономность данных проекта от служебной конфигурации процесса",
+      "rationale": "Изолированное упражнение установленной CLI без исходников Поставки",
+      "scope": "Только синтетический локальный каталог",
+      "questions": [],
+      "operations": [
+        {
+          "action": "add",
+          "requirement": {
+            "id": "HG-0001-R1",
+            "title": "Автономный каталог",
+            "statement": "Каталог проекта SHALL сохранять данные после удаления служебной конфигурации.",
+            "scenarios": [
+              {
+                "id": "HG-0001-S1",
+                "given": "В specs/ сохранена спецификация",
+                "when": "Служебная конфигурация удалена из проекта",
+                "then": "spec-read возвращает прежнюю спецификацию без потери данных",
+                "verification": "Фактические CLI-команды и хеши всех файлов каталога"
+              }
+            ]
+          }
+        }
+      ],
+      "tasks": [
+        {
+          "id": "HG-0001-T1",
+          "description": "Проверить чтение каталога после удаления конфигурации",
+          "done": false
+        }
+      ],
+      "imports": {},
+      "baseline": {},
+      "scoped_baseline": true,
+      "created_at": 1790834828,
+      "archived": false,
+      "abandoned_reason": null,
+      "evidence": {},
+      "review": null,
+      "acceptance": []
+    },
+    "change_sha256": "ac001b541574efebab43f9b2ab4e4af8bcd0a1cf36ef7bfb78d1f08b03e8f042",
+    "inputs_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "links": {
+      "depends_on": [],
+      "related_to": [],
+      "same_requirements": []
+    },
+    "schema_version": 3,
+    "store_sha256": "ade2f08c951e8739e6fbb84069558c8283e6e649ef1c95d570b952d3398f7463"
+  },
+  "status": "passed"
+}

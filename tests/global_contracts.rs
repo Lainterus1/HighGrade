@@ -402,7 +402,7 @@ fn global_install_does_not_touch_project_and_checks_adapter() {
     let report = global::install(&profile, &source(), &exe()).unwrap();
     assert_eq!(report.status, "passed");
     for name in [
-        "init", "task", "spec", "work", "clear", "update", "approve", "push",
+        "init", "task", "spec", "work", "clear", "update", "commit", "push", "planner",
     ] {
         assert!(
             profile
@@ -420,6 +420,22 @@ fn global_install_does_not_touch_project_and_checks_adapter() {
             .join(".agents/skills/highgrade-deploy/SKILL.md")
             .exists()
     );
+    assert!(
+        !profile
+            .join(".agents/skills/highgrade-approve/SKILL.md")
+            .exists()
+    );
+    assert_eq!(
+        fs::read_dir(profile.join(".agents/skills"))
+            .unwrap()
+            .count(),
+        9
+    );
+    let installed_release = profile
+        .join(".highgrade/global/releases")
+        .join(current_release());
+    assert!(installed_release.join("procedures/commit.md").is_file());
+    assert!(!installed_release.join("procedures/approve.md").exists());
     assert_eq!(
         fs::read(project.join("README.md")).unwrap(),
         b"project-owned"
@@ -623,11 +639,312 @@ fn global_update_rejects_manual_rollback_option() {
             .contains("неизвестный параметр")
     );
 }
+// highgrade: HG-0063-S8
 #[test]
-fn legacy_deploy_migrates_to_approve_push_and_cleans_old_release() {
+fn managed_approve_migrates_to_commit_without_aliases() {
+    let profile = approve_profile();
+    let old = profile.join(".agents/skills/highgrade-approve/SKILL.md");
+    let commit = profile.join(".agents/skills/highgrade-commit/SKILL.md");
+    let unrelated = profile.join(".agents/skills/highgrade-approve/personal.txt");
+    write(&unrelated, b"keep my notes");
+    let original = fs::read(&old).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
+    assert_eq!(fs::read(&old).unwrap(), original);
+    assert!(!commit.exists());
+    let applied = global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        preview.measurements[0]["candidate_sha256"].as_str(),
+    )
+    .unwrap();
+    assert_eq!(applied.status, "passed");
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    assert_eq!(
+        fs::read(commit).unwrap(),
+        fs::read(source().join("skills/highgrade-commit/SKILL.md")).unwrap()
+    );
+    assert!(!old.exists());
+    assert!(!profile.join(".highgrade/global/releases/v0-3-5").exists());
+    assert!(
+        !profile
+            .join(".highgrade/global/skill-transaction.json")
+            .exists()
+    );
+    assert_eq!(fs::read(unrelated).unwrap(), b"keep my notes");
+}
+
+// highgrade: HG-0063-S10
+#[test]
+fn approve_migration_preserves_modified_managed_and_foreign_paths() {
+    let profile = approve_profile();
+    let old = profile.join(".agents/skills/highgrade-approve/SKILL.md");
+    let pointer = fs::read(profile.join(".highgrade/global/active.json")).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
+    write(&old, b"user edits to managed Approve");
+    let error = global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        preview.measurements[0]["candidate_sha256"].as_str(),
+    )
+    .unwrap_err();
+    assert!(
+        error.contains("GlobalInstalledFileChanged: .agents/skills/highgrade-approve/SKILL.md")
+    );
+    assert_eq!(fs::read(old).unwrap(), b"user edits to managed Approve");
+    assert_eq!(
+        fs::read(profile.join(".highgrade/global/active.json")).unwrap(),
+        pointer
+    );
+    assert!(
+        !profile
+            .join(".agents/skills/highgrade-commit/SKILL.md")
+            .exists()
+    );
+
+    let conflict = approve_profile();
+    let commit = conflict.join(".agents/skills/highgrade-commit/SKILL.md");
+    let old = conflict.join(".agents/skills/highgrade-approve/SKILL.md");
+    let original = fs::read(&old).unwrap();
+    write(&commit, b"foreign Commit");
+    assert!(
+        global::update(&conflict, Some(&source()), Some(&exe()), false, None)
+            .unwrap_err()
+            .contains("GlobalRouterIncompatible: highgrade-commit")
+    );
+    assert_eq!(fs::read(commit).unwrap(), b"foreign Commit");
+    assert_eq!(fs::read(old).unwrap(), original);
+
+    let foreign = six_skill_profile();
+    let old = foreign.join(".agents/skills/highgrade-approve/SKILL.md");
+    write(&old, b"foreign Approve");
+    assert!(
+        global::update(&foreign, Some(&source()), Some(&exe()), false, None)
+            .unwrap_err()
+            .contains("GlobalRouterIncompatible: highgrade-approve")
+    );
+    assert_eq!(fs::read(old).unwrap(), b"foreign Approve");
+    assert!(
+        !foreign
+            .join(".agents/skills/highgrade-commit/SKILL.md")
+            .exists()
+    );
+
+    let fresh = temp();
+    let old = fresh.join(".agents/skills/highgrade-approve/SKILL.md");
+    write(&old, b"foreign Approve");
+    assert!(
+        global::install(&fresh, &source(), &exe())
+            .unwrap_err()
+            .contains("GlobalSkillConflict: highgrade-approve")
+    );
+    assert_eq!(fs::read(old).unwrap(), b"foreign Approve");
+    assert!(!fresh.join(".highgrade/global/active.json").exists());
+}
+
+// highgrade: HG-0063-S11
+#[test]
+fn failed_approve_migration_preserves_old_route_and_can_retry() {
+    let profile = approve_profile();
+    let old = profile.join(".agents/skills/highgrade-approve/SKILL.md");
+    let original = fs::read(&old).unwrap();
+    let blocked = profile
+        .join(".highgrade/global/releases")
+        .join(current_release())
+        .join("rules.md");
+    write(&blocked, b"foreign candidate content");
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
+    assert!(
+        global::update(
+            &profile,
+            Some(&source()),
+            Some(&exe()),
+            true,
+            preview.measurements[0]["candidate_sha256"].as_str(),
+        )
+        .is_err()
+    );
+    assert_eq!(fs::read(&old).unwrap(), original);
+    assert!(
+        !profile
+            .join(".agents/skills/highgrade-commit/SKILL.md")
+            .exists()
+    );
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-3-5"
+    );
+    assert_eq!(fs::read(&blocked).unwrap(), b"foreign candidate content");
+    fs::remove_file(blocked).unwrap();
+    // Fail after staging all new routers, at the active-pointer replacement.
+    #[cfg(windows)]
+    let pointer_blocker = profile.join(format!(
+        ".highgrade/global/active.{}.part",
+        std::process::id()
+    ));
+    #[cfg(not(windows))]
+    let pointer_blocker = profile.join(".highgrade/global/active.next");
+    #[cfg(windows)]
+    write(&pointer_blocker, b"block pointer replacement");
+    #[cfg(not(windows))]
+    fs::create_dir(&pointer_blocker).unwrap();
+    assert!(
+        global::update(
+            &profile,
+            Some(&source()),
+            Some(&exe()),
+            true,
+            preview.measurements[0]["candidate_sha256"].as_str(),
+        )
+        .is_err()
+    );
+    assert_eq!(fs::read(&old).unwrap(), original);
+    assert!(
+        !profile
+            .join(".agents/skills/highgrade-commit/SKILL.md")
+            .exists()
+    );
+    assert_eq!(
+        global::status(&profile).unwrap().measurements[0]["release"],
+        "v0-3-5"
+    );
+    assert!(
+        !profile
+            .join(".highgrade/global/skill-transaction.json")
+            .exists()
+    );
+    #[cfg(windows)]
+    fs::remove_file(pointer_blocker).unwrap();
+    #[cfg(not(windows))]
+    fs::remove_dir(pointer_blocker).unwrap();
+    global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        preview.measurements[0]["candidate_sha256"].as_str(),
+    )
+    .unwrap();
+    assert!(!old.exists());
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+}
+
+// highgrade: HG-0063-S11
+#[test]
+fn interrupted_approve_era_transaction_remains_recoverable() {
+    let profile = approve_profile();
+    let rel = ".agents/skills/highgrade-approve/SKILL.md";
+    let before = fs::read(profile.join(rel)).unwrap();
+    let pointer: Value =
+        serde_json::from_slice(&fs::read(profile.join(".highgrade/global/active.json")).unwrap())
+            .unwrap();
+    let after = b"old CLI candidate Approve";
+    let tx = json!({"old_active":pointer,"candidate":current_release(),"before":{rel:before},"after":{rel:hash(after)}});
+    write(
+        &profile.join(".highgrade/global/skill-transaction.json"),
+        &serde_json::to_vec_pretty(&tx).unwrap(),
+    );
+    write(&profile.join(rel), after);
+    assert_eq!(global::recover(&profile).unwrap().status, "passed");
+    assert_eq!(fs::read(profile.join(rel)).unwrap(), before);
+}
+
+// highgrade: HG-0063-S11
+#[test]
+fn interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route() {
+    let profile = approve_profile();
+    let approve = ".agents/skills/highgrade-approve/SKILL.md";
+    let commit = ".agents/skills/highgrade-commit/SKILL.md";
+    let work = ".agents/skills/highgrade-work/SKILL.md";
+    let old_approve = fs::read(profile.join(approve)).unwrap();
+    let old_work = fs::read(profile.join(work)).unwrap();
+    let new_work = b"candidate Work";
+    let new_commit = fs::read(source().join("skills/highgrade-commit/SKILL.md")).unwrap();
+    let pointer: Value =
+        serde_json::from_slice(&fs::read(profile.join(".highgrade/global/active.json")).unwrap())
+            .unwrap();
+    let tx = json!({"old_active":pointer,"candidate":current_release(),"before":{work:old_work},"after":{work:hash(new_work)},"introduced":{commit:hash(&new_commit)},"retired":{approve:hash(&old_approve)}});
+    let tx_path = profile.join(".highgrade/global/skill-transaction.json");
+    write(&tx_path, &serde_json::to_vec_pretty(&tx).unwrap());
+    write(&profile.join(work), new_work);
+    write(&profile.join(commit), b"user modified new Commit");
+    assert!(
+        global::recover(&profile)
+            .unwrap_err()
+            .contains("GlobalRouterChanged")
+    );
+    assert_eq!(
+        fs::read(profile.join(commit)).unwrap(),
+        b"user modified new Commit"
+    );
+    assert_eq!(fs::read(profile.join(work)).unwrap(), new_work);
+    assert!(tx_path.exists());
+    write(&profile.join(commit), &new_commit);
+    assert_eq!(global::recover(&profile).unwrap().status, "passed");
+    assert_eq!(fs::read(profile.join(work)).unwrap(), old_work);
+    assert_eq!(fs::read(profile.join(approve)).unwrap(), old_approve);
+    assert!(!profile.join(commit).exists());
+    assert!(!tx_path.exists());
+}
+
+// highgrade: HG-0063-S11
+#[test]
+fn post_switch_commit_recovery_retires_only_unchanged_owned_approve() {
+    let profile = approve_profile();
+    let approve = ".agents/skills/highgrade-approve/SKILL.md";
+    let commit = ".agents/skills/highgrade-commit/SKILL.md";
+    let old_approve = fs::read(profile.join(approve)).unwrap();
+    let pointer: Value =
+        serde_json::from_slice(&fs::read(profile.join(".highgrade/global/active.json")).unwrap())
+            .unwrap();
+    let old_journal =
+        fs::read(profile.join(".highgrade/global/releases/v0-3-5/journal.json")).unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
+    global::update(
+        &profile,
+        Some(&source()),
+        Some(&exe()),
+        true,
+        preview.measurements[0]["candidate_sha256"].as_str(),
+    )
+    .unwrap();
+    // Re-create exactly the crash window after pointer switch, before retired
+    // router cleanup and old-release retirement.
+    write(
+        &profile.join(".highgrade/global/releases/v0-3-5/journal.json"),
+        &old_journal,
+    );
+    let new_commit = fs::read(profile.join(commit)).unwrap();
+    let tx = json!({"old_active":pointer,"candidate":current_release(),"before":{},"after":{},"introduced":{commit:hash(&new_commit)},"retired":{approve:hash(&old_approve)}});
+    let tx_path = profile.join(".highgrade/global/skill-transaction.json");
+    write(&tx_path, &serde_json::to_vec_pretty(&tx).unwrap());
+    write(&profile.join(approve), b"user changed retired Approve");
+    assert!(
+        global::recover(&profile)
+            .unwrap_err()
+            .contains("GlobalRouterChanged")
+    );
+    assert_eq!(
+        fs::read(profile.join(approve)).unwrap(),
+        b"user changed retired Approve"
+    );
+    assert_eq!(fs::read(profile.join(commit)).unwrap(), new_commit);
+    assert!(tx_path.exists());
+    write(&profile.join(approve), &old_approve);
+    assert_eq!(global::recover(&profile).unwrap().status, "passed");
+    assert!(!profile.join(approve).exists());
+    assert!(!tx_path.exists());
+}
+
+// highgrade: HG-0063-S9
+#[test]
+fn legacy_deploy_migrates_to_commit_push_and_cleans_old_release() {
     let profile = legacy_deploy_profile();
     let legacy = profile.join(".agents/skills/deploy/SKILL.md");
-    let approve = profile.join(".agents/skills/highgrade-approve/SKILL.md");
+    let commit = profile.join(".agents/skills/highgrade-commit/SKILL.md");
     let push = profile.join(".agents/skills/highgrade-push/SKILL.md");
     let original = fs::read(&legacy).unwrap();
     let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
@@ -652,7 +969,7 @@ fn legacy_deploy_migrates_to_approve_push_and_cleans_old_release() {
             .is_err()
         );
         assert_eq!(fs::read(&legacy).unwrap(), original);
-        assert!(!approve.exists());
+        assert!(!commit.exists());
         assert!(!push.exists());
         assert_eq!(
             global::status(&profile).unwrap().measurements[0]["release"],
@@ -668,7 +985,7 @@ fn legacy_deploy_migrates_to_approve_push_and_cleans_old_release() {
         Some(fingerprint),
     )
     .unwrap();
-    assert!(approve.is_file());
+    assert!(commit.is_file());
     assert!(push.is_file());
     assert!(!legacy.exists());
     assert_eq!(
@@ -676,13 +993,14 @@ fn legacy_deploy_migrates_to_approve_push_and_cleans_old_release() {
         current_release()
     );
     assert!(!profile.join(".highgrade/global/releases/v0-2-5").exists());
-    assert_ne!(fs::read(&approve).unwrap(), original);
+    assert_ne!(fs::read(&commit).unwrap(), original);
 }
+// highgrade: HG-0063-S9
 #[test]
 fn v026_deploy_migrates_to_two_routes_and_removes_old_release() {
     let profile = deploy_profile();
     let old = profile.join(".agents/skills/highgrade-deploy/SKILL.md");
-    let approve = profile.join(".agents/skills/highgrade-approve/SKILL.md");
+    let commit = profile.join(".agents/skills/highgrade-commit/SKILL.md");
     let push = profile.join(".agents/skills/highgrade-push/SKILL.md");
     let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
@@ -696,7 +1014,7 @@ fn v026_deploy_migrates_to_two_routes_and_removes_old_release() {
         Some(fingerprint),
     )
     .unwrap();
-    assert!(approve.is_file());
+    assert!(commit.is_file());
     assert!(push.is_file());
     assert!(!old.exists());
     assert_eq!(
@@ -705,6 +1023,51 @@ fn v026_deploy_migrates_to_two_routes_and_removes_old_release() {
     );
     assert!(!profile.join(".highgrade/global/releases/v0-2-6").exists());
 }
+// Additional Windows-only regression: source-scenario trace uses the portable
+// recovery tests above; this case requires an actual Windows CI run.
+#[cfg(windows)]
+#[test]
+fn locked_approve_retirement_requires_explicit_recovery() {
+    use std::os::windows::fs::OpenOptionsExt;
+    let profile = approve_profile();
+    let old = profile.join(".agents/skills/highgrade-approve/SKILL.md");
+    let handle = fs::OpenOptions::new()
+        .read(true)
+        .share_mode(1)
+        .open(&old)
+        .unwrap();
+    let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
+    assert!(
+        global::update(
+            &profile,
+            Some(&source()),
+            Some(&exe()),
+            true,
+            preview.measurements[0]["candidate_sha256"].as_str()
+        )
+        .unwrap_err()
+        .contains("GlobalRouterCleanupFailed")
+    );
+    let pointer: Value =
+        serde_json::from_slice(&fs::read(profile.join(".highgrade/global/active.json")).unwrap())
+            .unwrap();
+    assert_eq!(pointer["release"], current_release());
+    assert!(old.is_file());
+    assert!(
+        profile
+            .join(".agents/skills/highgrade-commit/SKILL.md")
+            .is_file()
+    );
+    assert!(
+        global::status(&profile)
+            .unwrap_err()
+            .contains("GlobalSkillRecoveryRequired")
+    );
+    drop(handle);
+    assert_eq!(global::recover(&profile).unwrap().status, "passed");
+    assert!(!old.exists());
+}
+
 #[cfg(windows)]
 #[test]
 fn locked_v026_router_is_inactive_after_switch() {
@@ -732,7 +1095,7 @@ fn locked_v026_router_is_inactive_after_switch() {
     assert!(old.is_file());
     assert!(
         profile
-            .join(".agents/skills/highgrade-approve/SKILL.md")
+            .join(".agents/skills/highgrade-commit/SKILL.md")
             .is_file()
     );
     assert!(
@@ -757,8 +1120,16 @@ fn profile_without_tools(planner: bool) -> TestDir {
     profile_before_fixer(planner, false)
 }
 fn profile_before_fixer(planner: bool, tools: bool) -> TestDir {
+    approve_release_profile(planner, tools, false)
+}
+fn approve_profile() -> TestDir {
+    approve_release_profile(true, true, true)
+}
+fn approve_release_profile(planner: bool, tools: bool, complete: bool) -> TestDir {
     let profile = temp();
-    let release = if tools {
+    let release = if complete {
+        "v0-3-5"
+    } else if tools {
         "v0-2-24"
     } else if planner {
         "v0-2-23"
@@ -770,10 +1141,11 @@ fn profile_before_fixer(planner: bool, tools: bool) -> TestDir {
     let mut checksums = BTreeMap::new();
     for (rel, _) in manifest["files"].as_object().unwrap() {
         if (!tools && rel.starts_with("references/tools/"))
-            || rel == "procedures/fix.md"
-            || rel == "references/tools/issues.md"
-            || rel == "references/review.md"
-            || is_survey_material(rel)
+            || (!complete
+                && (rel == "procedures/fix.md"
+                    || rel == "references/tools/issues.md"
+                    || rel == "references/review.md"
+                    || is_survey_material(rel)))
         {
             continue;
         }
@@ -783,7 +1155,14 @@ fn profile_before_fixer(planner: bool, tools: bool) -> TestDir {
         {
             continue;
         }
-        let data = fs::read(source().join(rel)).unwrap();
+        let data = fs::read_to_string(source().join(rel))
+            .unwrap()
+            .replace("highgrade-commit", "highgrade-approve")
+            .replace("procedures/commit.md", "procedures/approve.md")
+            .into_bytes();
+        let rel = rel
+            .replace("highgrade-commit", "highgrade-approve")
+            .replace("procedures/commit.md", "procedures/approve.md");
         let dest = if let Some(name) = rel
             .strip_prefix("skills/")
             .and_then(|path| path.strip_suffix("/SKILL.md"))
@@ -796,10 +1175,14 @@ fn profile_before_fixer(planner: bool, tools: bool) -> TestDir {
         checksums.insert(dest, hash(&data));
     }
     for rel in [
-        "skills/highgrade-approve/SKILL.md",
+        "skills/highgrade-commit/SKILL.md",
         "skills/highgrade-push/SKILL.md",
     ] {
-        let data = fs::read(source().join(rel)).unwrap();
+        let data = fs::read_to_string(source().join(rel))
+            .unwrap()
+            .replace("highgrade-commit", "highgrade-approve")
+            .into_bytes();
+        let rel = rel.replace("highgrade-commit", "highgrade-approve");
         let dest = format!(".highgrade/global/releases/{release}/{rel}");
         write(&profile.join(&dest), &data);
         checksums.insert(dest, hash(&data));
@@ -853,9 +1236,9 @@ fn six_skill_profile() -> TestDir {
             continue;
         }
         if [
-            "procedures/approve.md",
+            "procedures/commit.md",
             "procedures/push.md",
-            "skills/highgrade-approve/SKILL.md",
+            "skills/highgrade-commit/SKILL.md",
             "skills/highgrade-push/SKILL.md",
             "procedures/planner.md",
             "skills/highgrade-planner/SKILL.md",
@@ -926,9 +1309,9 @@ fn old_deploy_profile(release: &str, skill_name: &str) -> TestDir {
             continue;
         }
         if [
-            "procedures/approve.md",
+            "procedures/commit.md",
             "procedures/push.md",
-            "skills/highgrade-approve/SKILL.md",
+            "skills/highgrade-commit/SKILL.md",
             "skills/highgrade-push/SKILL.md",
             "procedures/planner.md",
             "skills/highgrade-planner/SKILL.md",
@@ -1048,20 +1431,21 @@ fn six_skill_release_preserves_owned_crlf_routers() {
     assert!(!profile.join(".highgrade/global/releases/v0-2-1").exists());
 }
 
+// highgrade: HG-0063-S9, HG-0063-S10
 #[test]
-fn six_skill_release_updates_to_approve_push_and_cleans_old_release() {
+fn six_skill_release_updates_to_commit_push_and_cleans_old_release() {
     let profile = six_skill_profile();
 
-    let approve = profile.join(".agents/skills/highgrade-approve/SKILL.md");
+    let commit = profile.join(".agents/skills/highgrade-commit/SKILL.md");
     let push = profile.join(".agents/skills/highgrade-push/SKILL.md");
-    write(&approve, b"foreign skill");
+    write(&commit, b"foreign skill");
     assert!(
         global::update(&profile, Some(&source()), Some(&exe()), false, None)
             .unwrap_err()
-            .contains("GlobalRouterIncompatible: highgrade-approve")
+            .contains("GlobalRouterIncompatible: highgrade-commit")
     );
-    assert_eq!(fs::read(&approve).unwrap(), b"foreign skill");
-    fs::remove_file(&approve).unwrap();
+    assert_eq!(fs::read(&commit).unwrap(), b"foreign skill");
+    fs::remove_file(&commit).unwrap();
 
     let preview = global::update(&profile, Some(&source()), Some(&exe()), false, None).unwrap();
     let fingerprint = preview.measurements[0]["candidate_sha256"]
@@ -1079,7 +1463,7 @@ fn six_skill_release_updates_to_approve_push_and_cleans_old_release() {
         global::status(&profile).unwrap().measurements[0]["release"],
         current_release()
     );
-    assert!(approve.is_file());
+    assert!(commit.is_file());
     assert!(push.is_file());
     assert!(!profile.join(".highgrade/global/releases/v0-2-1").exists());
 }
@@ -1107,7 +1491,7 @@ fn failed_stage_does_not_leave_new_routers() {
     );
     assert!(
         !profile
-            .join(".agents/skills/highgrade-approve/SKILL.md")
+            .join(".agents/skills/highgrade-commit/SKILL.md")
             .exists()
     );
     assert!(
@@ -1194,7 +1578,7 @@ fn failed_forward_pointer_change_allows_a_different_candidate() {
     );
     assert!(
         !profile
-            .join(".agents/skills/highgrade-approve/SKILL.md")
+            .join(".agents/skills/highgrade-commit/SKILL.md")
             .exists()
     );
     assert!(

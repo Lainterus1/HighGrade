@@ -1,0 +1,74 @@
+{
+  "ambiguous_result_keys": [
+    "executed",
+    "found_in_path",
+    "required_by_legacy_probe",
+    "tool",
+    "version"
+  ],
+  "findings": [
+    {
+      "code": "DependencyMissing",
+      "location": "cargo",
+      "message": "Не найден в PATH; наличие установки и версия не проверены.",
+      "status": "unknown"
+    },
+    {
+      "code": "DependencyMissing",
+      "location": "openspec",
+      "message": "Не найден в PATH; наличие установки и версия не проверены.",
+      "status": "unknown"
+    }
+  ],
+  "limitations": [],
+  "measurements": [
+    {
+      "highgrade_version": "0.3.6",
+      "platform": "linux"
+    },
+    {
+      "executed": false,
+      "found_in_path": false,
+      "required_by_legacy_probe": true,
+      "tool": "cargo",
+      "version": null
+    },
+    {
+      "executed": false,
+      "found_in_path": true,
+      "required_by_legacy_probe": true,
+      "tool": "codex",
+      "version": null
+    },
+    {
+      "executed": false,
+      "found_in_path": true,
+      "required_by_legacy_probe": true,
+      "tool": "node",
+      "version": null
+    },
+    {
+      "executed": false,
+      "found_in_path": false,
+      "required_by_legacy_probe": true,
+      "tool": "openspec",
+      "version": null
+    },
+    {
+      "compatibility_scope": "schema-only",
+      "project_instruction": "compatible",
+      "schema_version": 1,
+      "semantic_compatibility": "not_assessed"
+    }
+  ],
+  "operation": "doctor",
+  "result": {
+    "compatibility_scope": "schema-only",
+    "highgrade_version": "0.3.6",
+    "platform": "linux",
+    "project_instruction": "compatible",
+    "schema_version": 1,
+    "semantic_compatibility": "not_assessed"
+  },
+  "status": "unknown"
+}
