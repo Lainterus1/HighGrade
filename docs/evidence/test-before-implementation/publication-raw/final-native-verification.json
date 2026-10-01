@@ -1,0 +1,44 @@
+{
+  "captured_at": "2026-10-01T16:57:35.421309+00:00",
+  "release": "v0-3-9",
+  "scope": "Финальная техническая проверка после адресных атрибутов передачи, не наблюдение действий агента и не CI",
+  "checks": [
+    {
+      "command": "PATH=\"$PWD/target/highgrade/tools/bin:$PATH\" python scripts/verify.py tests",
+      "outcome": "passed",
+      "tests": 212,
+      "report": "docs/evidence/test-before-implementation/publication-raw/nextest-final.log",
+      "native_report": "docs/evidence/test-before-implementation/publication-raw/final-native/junit.xml"
+    },
+    {
+      "command": "python scripts/verify.py scenarios",
+      "outcome": "passed",
+      "counts": {
+        "automatic_passed": 126,
+        "automatic_scenarios": 126,
+        "linked_test_cases": 136,
+        "outside_automatic_trace": 155,
+        "scenarios_total": 281,
+        "test_cases_executed": 212,
+        "test_cases_missing": 0,
+        "test_cases_reported": 212,
+        "test_cases_skipped": 0,
+        "test_cases_unknown": 0,
+        "unlinked_test_cases": 76
+      },
+      "report": "docs/evidence/test-before-implementation/publication-raw/scenarios-final.log",
+      "run": "docs/evidence/test-before-implementation/publication-raw/final-native/run.json",
+      "trace": "docs/evidence/test-before-implementation/publication-raw/final-native/trace.json"
+    }
+  ],
+  "source_inputs_before": "docs/evidence/test-before-implementation/final-inputs-before.json",
+  "source_inputs_after": "docs/evidence/test-before-implementation/final-inputs-after.json",
+  "source_inputs_stable": true,
+  "checkout_filters": "docs/evidence/test-before-implementation/publication-raw/checkout-filters.json",
+  "remaining": [
+    "commit and exact SHA release-build",
+    "preview/apply/global-status",
+    "exact-SHA Windows/Ubuntu CI",
+    "human acceptance not authorized"
+  ]
+}

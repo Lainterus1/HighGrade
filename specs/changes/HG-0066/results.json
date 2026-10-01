@@ -1,0 +1,604 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0026-S1": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0026-S1",
+      "input_manifest_sha256": "08e69265bcdccbc3bb132ec7fe7f522e0dce1c81a782b1c98cd79b5b7ace3329",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Матрица отличает редактуру, нормативный workflow и CLI; сохранены применимые проектные барьеры. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0026-S1",
+      "scenario_sha256": "b217aea3d4fe7a48e8a020499175bccbcb14642dbd89eb0f49a8f36c2506551f"
+    },
+    "HG-0026-S2": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0026-S2",
+      "input_manifest_sha256": "fecdeb4d8c0a6ecebd7d578efe75206dd61c630c2d10d68b064b6577e6f50145",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Актуальное покрытие переиспользуется на смене этапа; значимый дрейф требует зависимой проверки и утратившего актуальность барьера. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0026-S2",
+      "scenario_sha256": "8b5dc9b07ddef6ca7c6e98846bb9bd12057d4b1f494cd68dbc9fdf25434ab096"
+    },
+    "HG-0066-S1": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S1",
+      "input_manifest_sha256": "09b389cc976caa1bc181ffeea72c70f6573741f59564280d3544f3c94b249a97",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Контрактный исход проверяется на настоящей границе до реализации; нарушение или отсутствие поведения подтверждаются; далее следует короткий цикл с переиспользованием пригодных тестов. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0066-S1",
+      "scenario_sha256": "87a01244d0d4412af942007e0e04b5455d39f4d364664cf0d5d6a21c0ebca69b"
+    },
+    "HG-0066-S2": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S2",
+      "input_manifest_sha256": "fecdeb4d8c0a6ecebd7d578efe75206dd61c630c2d10d68b064b6577e6f50145",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Разрешена минимальная заготовка без основной реализации; после неё проверяется ожидаемый исход; ошибка сборки сама по себе не подтверждает поведение. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0066-S2",
+      "scenario_sha256": "ed02664b1454f456b53c14b66149a90eb0d68dc3af41a030468cc3cb7b0b4f2b"
+    },
+    "HG-0066-S3": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S3",
+      "input_manifest_sha256": "fecdeb4d8c0a6ecebd7d578efe75206dd61c630c2d10d68b064b6577e6f50145",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Зелёный исход требует отличить выполненное ожидание от слабой проверки; правильный код искусственно не ломается, рефакторинг допускает pass до и после. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0066-S3",
+      "scenario_sha256": "ef0101f615827a9e389036da6960f35d34a54975bb1d8c43a1582c1919acbd3b"
+    },
+    "HG-0066-S4": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S4",
+      "input_manifest_sha256": "11004da1204aa6f9a5670d9fbf6b1250ab6c6c6e0f83eeb4f389065ce4664f13",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Сбой среды, selector, skip и пустой набор не выдаются за проверку поведения; подготовка исправляется либо обоснован иной способ без отмены итоговых критериев. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0066-S4",
+      "scenario_sha256": "3f8cb478ad441ababbaf59e520eb5c43743d3d93065790c3228a76a5e7d6e8a0"
+    },
+    "HG-0066-S5": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S5",
+      "input_manifest_sha256": "11004da1204aa6f9a5670d9fbf6b1250ab6c6c6e0f83eeb4f389065ce4664f13",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Начальный failed сохраняется как история с командой и причиной; продуктовый сценарий требует успешного результата актуальной реализации, исходные отчёты не переписываются. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0066-S5",
+      "scenario_sha256": "fe95a266d50acd8a6b4d6d8a13ff3725b825a44d99b0537671f898f6829ababa"
+    },
+    "HG-0066-S6": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S6",
+      "input_manifest_sha256": "592331d91c2e4f5adf9a9e7b9a15b5ff8ae92e78fbf42e85d04d00a776439b6f",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Существующее итоговое ревью сверяет контрактное ожидание, обнаруживаемое нарушение и основания правки; исправление теста допустимо, новый нормативный исход проходит Spec; новая обязательная роль не введена. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0066-S6",
+      "scenario_sha256": "a934afeb3b5bc6d4fbcb2c655c2014faedd2ae10134b5f68fcbf33f0ba09f39f"
+    },
+    "HG-0066-S7": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S7",
+      "input_manifest_sha256": "fbe309db72f718559d2abc04bf855de159e3f46a523360bdfe4ea9699a233de1",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Соразмерные исключения обосновываются в разрешённой области; после ограниченной пробы проверки уточняются до основной реализации; смысловая сверка не выдается за наблюдение агента. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0066-S7",
+      "scenario_sha256": "5079af97c4db1ab015ac652753739884b1099325834a0c7ec670a02e270a4b8b"
+    },
+    "HG-0066-S8": {
+      "captured_at": "2026-10-01T16:45:33.821589+00:00",
+      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S8",
+      "input_manifest_sha256": "31bf42be0e5e5c18b1ebefef9a803133186638d254480d37ee044069e35bfb89",
+      "method": "manual",
+      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Нет квоты отдельного теста по ID, всего набора заранее, нового раннера/формата/property/mutation-инструмента или полного прогона/коммита на цикл; пример проверяет отказ CLI и сохранность каталога, барьеры сохраняются; render-skills --check подтвердил согласованность. Исполнение будущими агентами не наблюдалось.",
+      "outcome": "passed",
+      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "scenario": "HG-0066-S8",
+      "scenario_sha256": "70544f78748bee1c06ea045bf9cb2e4383df54ca21afd649d0b775fd1dbdb4d2"
+    }
+  },
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790867291,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0026-S1": "a3ae8ddbfd891b6c9c670c4c7a7f1f0d462b67ba367f347d66a33b37e8eea500",
+          "HG-0026-S2": "ad44386c8045bbe348a7ae0641d39951d80c8ccd1151df790bd3d487f104ca03",
+          "HG-0066-S1": "3169c06a7175ae9003d4f3395502868e13b7134a8d841f6bd3a035fbb8166914",
+          "HG-0066-S2": "cc0ff34d3f8c49e84e0e87aad71ea01b4d70466f2c99682283b06ef5b4c685fd",
+          "HG-0066-S3": "03ecadb856eb55dad7c208d60ad88a64148170446fcd6aa52b5ad91e25a2c2a0",
+          "HG-0066-S4": "7b0a7d4921db06dfb35dfb705d35cb142499b5c1e2aa5a340e941aa26cefffcb",
+          "HG-0066-S5": "f95b0f00d56981f7b3d46b0b8dfc88d46c6e9558a5981ef03f160635582d7c2b",
+          "HG-0066-S6": "aa35e56c6206d76d70f5760d0631e25d16bd33a68d4495d67418a80dd6ef86c2",
+          "HG-0066-S7": "132b9b78d8f7fda75f7b77fe3f21b15100240af7495f36f886f3a08df172533d",
+          "HG-0066-S8": "cbb56b27c8e0fa8476ae411271ad5f99a08b02090b53271ac3ecf60d035598e8"
+        },
+        "recorded_at": 1790867648,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0026-S1": "a3ae8ddbfd891b6c9c670c4c7a7f1f0d462b67ba367f347d66a33b37e8eea500",
+          "HG-0026-S2": "ad44386c8045bbe348a7ae0641d39951d80c8ccd1151df790bd3d487f104ca03",
+          "HG-0066-S1": "3169c06a7175ae9003d4f3395502868e13b7134a8d841f6bd3a035fbb8166914",
+          "HG-0066-S2": "cc0ff34d3f8c49e84e0e87aad71ea01b4d70466f2c99682283b06ef5b4c685fd",
+          "HG-0066-S3": "03ecadb856eb55dad7c208d60ad88a64148170446fcd6aa52b5ad91e25a2c2a0",
+          "HG-0066-S4": "7b0a7d4921db06dfb35dfb705d35cb142499b5c1e2aa5a340e941aa26cefffcb",
+          "HG-0066-S5": "f95b0f00d56981f7b3d46b0b8dfc88d46c6e9558a5981ef03f160635582d7c2b",
+          "HG-0066-S6": "aa35e56c6206d76d70f5760d0631e25d16bd33a68d4495d67418a80dd6ef86c2",
+          "HG-0066-S7": "132b9b78d8f7fda75f7b77fe3f21b15100240af7495f36f886f3a08df172533d",
+          "HG-0066-S8": "cbb56b27c8e0fa8476ae411271ad5f99a08b02090b53271ac3ecf60d035598e8"
+        },
+        "recorded_at": 1790873134,
+        "review": "17c6211aed84eccf0e265a4290787b399c44997a9d349a90d41ba00e7cf2e6d3"
+      },
+      {
+        "evidence": {
+          "HG-0026-S1": "d0078276d1f4d30ef37b440271050d50b8bfd9ba91f0bf311ebbd049e359f9bd",
+          "HG-0026-S2": "c8fd94bb75ccd7513158ab9600a868dc99cf755f4ad661867c2bf969fe00f4c4",
+          "HG-0066-S1": "d645dc5964bae1bdb90d83185178b883368c54c63943c2216ab886f55f0482dd",
+          "HG-0066-S2": "708eb8e93f58cdaf26c10857ea3b30d1bc394d3151bce385a196788162134beb",
+          "HG-0066-S3": "ade0dfea76468e13de24df6360384eae067d570bc3c9137af096e3ed4ebf655a",
+          "HG-0066-S4": "9626d0277d1c3be2fb3081ebd60a1b1173147bad481749daa700871c3f2b5915",
+          "HG-0066-S5": "032b9c004d22369d76fc18eaa0eb69dce27d7d95b7a066cef724ad8e10cfe583",
+          "HG-0066-S6": "09097df30dcc2e98c337a3394c475bc0869434b4ddb57099aa7b06dd1e420c8d",
+          "HG-0066-S7": "04cbe7ea5ed6e22f0220b56eb34d548c873d1dbfcec6762a0255a72709d75928",
+          "HG-0066-S8": "9eea1abe7e8807479a8cfe44baa2a420d3a85877591c7a95ff51382068543a75"
+        },
+        "recorded_at": 1790874178,
+        "review": "17c6211aed84eccf0e265a4290787b399c44997a9d349a90d41ba00e7cf2e6d3"
+      }
+    ],
+    "objects": {
+      "032b9c004d22369d76fc18eaa0eb69dce27d7d95b7a066cef724ad8e10cfe583": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S5",
+        "input_manifest_sha256": "11004da1204aa6f9a5670d9fbf6b1250ab6c6c6e0f83eeb4f389065ce4664f13",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Начальный failed сохраняется как история с командой и причиной; продуктовый сценарий требует успешного результата актуальной реализации, исходные отчёты не переписываются. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0066-S5",
+        "scenario_sha256": "fe95a266d50acd8a6b4d6d8a13ff3725b825a44d99b0537671f898f6829ababa"
+      },
+      "03ecadb856eb55dad7c208d60ad88a64148170446fcd6aa52b5ad91e25a2c2a0": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0066-S3",
+        "input_manifest_sha256": "fc485da9e39e48e892be4814795c5b4561c1d5db230cd47ce9a27f383ccf3530",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Зелёный исход требует отличить выполненное ожидание от слабой проверки; правильный код искусственно не ломается, рефакторинг допускает pass до и после. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0066-S3",
+        "scenario_sha256": "ef0101f615827a9e389036da6960f35d34a54975bb1d8c43a1582c1919acbd3b"
+      },
+      "04cbe7ea5ed6e22f0220b56eb34d548c873d1dbfcec6762a0255a72709d75928": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S7",
+        "input_manifest_sha256": "fbe309db72f718559d2abc04bf855de159e3f46a523360bdfe4ea9699a233de1",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Соразмерные исключения обосновываются в разрешённой области; после ограниченной пробы проверки уточняются до основной реализации; смысловая сверка не выдается за наблюдение агента. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0066-S7",
+        "scenario_sha256": "5079af97c4db1ab015ac652753739884b1099325834a0c7ec670a02e270a4b8b"
+      },
+      "09097df30dcc2e98c337a3394c475bc0869434b4ddb57099aa7b06dd1e420c8d": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S6",
+        "input_manifest_sha256": "592331d91c2e4f5adf9a9e7b9a15b5ff8ae92e78fbf42e85d04d00a776439b6f",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Существующее итоговое ревью сверяет контрактное ожидание, обнаруживаемое нарушение и основания правки; исправление теста допустимо, новый нормативный исход проходит Spec; новая обязательная роль не введена. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0066-S6",
+        "scenario_sha256": "a934afeb3b5bc6d4fbcb2c655c2014faedd2ae10134b5f68fcbf33f0ba09f39f"
+      },
+      "132b9b78d8f7fda75f7b77fe3f21b15100240af7495f36f886f3a08df172533d": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0066-S7",
+        "input_manifest_sha256": "8708e5ad0c7ae657457797702d45976748c9400a5ead37f6650b7a1d5e9d929f",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Соразмерные исключения обосновываются в разрешённой области; после ограниченной пробы проверки уточняются до основной реализации; смысловая сверка не выдается за наблюдение агента. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0066-S7",
+        "scenario_sha256": "5079af97c4db1ab015ac652753739884b1099325834a0c7ec670a02e270a4b8b"
+      },
+      "17c6211aed84eccf0e265a4290787b399c44997a9d349a90d41ba00e7cf2e6d3": {
+        "change_sha256": "0a5be683ba5def4f709a6e25271e8bb98a0a1ffa574c59e806cfef822a12142a",
+        "conclusion": "GO: все десять нормативных сценариев и актуальность evidence сверены; 212/212 Nextest и 126/126 trace прошли. Исходный независимый итог: docs/reviews/test-before-implementation.md. После интеграции остаётся предусмотренный повтор prepare/trace/verify. Будущие действия агента и приёмка не подтверждались.",
+        "reviewer": "независимый субагент /root/review_hg0066",
+        "verdict": "go"
+      },
+      "3169c06a7175ae9003d4f3395502868e13b7134a8d841f6bd3a035fbb8166914": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0066-S1",
+        "input_manifest_sha256": "51cec67d9accd77914038d22a4eecd95d298a60d285bffb605380c32035c9507",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Контрактный исход проверяется на настоящей границе до реализации; нарушение или отсутствие поведения подтверждаются; далее следует короткий цикл с переиспользованием пригодных тестов. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0066-S1",
+        "scenario_sha256": "87a01244d0d4412af942007e0e04b5455d39f4d364664cf0d5d6a21c0ebca69b"
+      },
+      "708eb8e93f58cdaf26c10857ea3b30d1bc394d3151bce385a196788162134beb": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S2",
+        "input_manifest_sha256": "fecdeb4d8c0a6ecebd7d578efe75206dd61c630c2d10d68b064b6577e6f50145",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Разрешена минимальная заготовка без основной реализации; после неё проверяется ожидаемый исход; ошибка сборки сама по себе не подтверждает поведение. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0066-S2",
+        "scenario_sha256": "ed02664b1454f456b53c14b66149a90eb0d68dc3af41a030468cc3cb7b0b4f2b"
+      },
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "7b0a7d4921db06dfb35dfb705d35cb142499b5c1e2aa5a340e941aa26cefffcb": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0066-S4",
+        "input_manifest_sha256": "bd54c8d544f39ce0fc4adf231c8a95be5bdefcf2537254ca7d49b936da5a0dbd",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Сбой среды, selector, skip и пустой набор не выдаются за проверку поведения; подготовка исправляется либо обоснован иной способ без отмены итоговых критериев. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0066-S4",
+        "scenario_sha256": "3f8cb478ad441ababbaf59e520eb5c43743d3d93065790c3228a76a5e7d6e8a0"
+      },
+      "9626d0277d1c3be2fb3081ebd60a1b1173147bad481749daa700871c3f2b5915": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S4",
+        "input_manifest_sha256": "11004da1204aa6f9a5670d9fbf6b1250ab6c6c6e0f83eeb4f389065ce4664f13",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Сбой среды, selector, skip и пустой набор не выдаются за проверку поведения; подготовка исправляется либо обоснован иной способ без отмены итоговых критериев. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0066-S4",
+        "scenario_sha256": "3f8cb478ad441ababbaf59e520eb5c43743d3d93065790c3228a76a5e7d6e8a0"
+      },
+      "9eea1abe7e8807479a8cfe44baa2a420d3a85877591c7a95ff51382068543a75": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S8",
+        "input_manifest_sha256": "31bf42be0e5e5c18b1ebefef9a803133186638d254480d37ee044069e35bfb89",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Нет квоты отдельного теста по ID, всего набора заранее, нового раннера/формата/property/mutation-инструмента или полного прогона/коммита на цикл; пример проверяет отказ CLI и сохранность каталога, барьеры сохраняются; render-skills --check подтвердил согласованность. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0066-S8",
+        "scenario_sha256": "70544f78748bee1c06ea045bf9cb2e4383df54ca21afd649d0b775fd1dbdb4d2"
+      },
+      "a3ae8ddbfd891b6c9c670c4c7a7f1f0d462b67ba367f347d66a33b37e8eea500": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0026-S1",
+        "input_manifest_sha256": "f4bb2022b8fed9f1267e8f42e0ab5e5f93478b327097627482fe1179ff1b9a76",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Матрица отличает редактуру, нормативный workflow и CLI; сохранены применимые проектные барьеры. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0026-S1",
+        "scenario_sha256": "b217aea3d4fe7a48e8a020499175bccbcb14642dbd89eb0f49a8f36c2506551f"
+      },
+      "aa35e56c6206d76d70f5760d0631e25d16bd33a68d4495d67418a80dd6ef86c2": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0066-S6",
+        "input_manifest_sha256": "44fc5cb177b50989a0c78a9932d7a69af4c14e595826facb7d1da7583ab70205",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Существующее итоговое ревью сверяет контрактное ожидание, обнаруживаемое нарушение и основания правки; исправление теста допустимо, новый нормативный исход проходит Spec; новая обязательная роль не введена. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0066-S6",
+        "scenario_sha256": "a934afeb3b5bc6d4fbcb2c655c2014faedd2ae10134b5f68fcbf33f0ba09f39f"
+      },
+      "ad44386c8045bbe348a7ae0641d39951d80c8ccd1151df790bd3d487f104ca03": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0026-S2",
+        "input_manifest_sha256": "fc485da9e39e48e892be4814795c5b4561c1d5db230cd47ce9a27f383ccf3530",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Актуальное покрытие переиспользуется на смене этапа; значимый дрейф требует зависимой проверки и утратившего актуальность барьера. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0026-S2",
+        "scenario_sha256": "8b5dc9b07ddef6ca7c6e98846bb9bd12057d4b1f494cd68dbc9fdf25434ab096"
+      },
+      "ade0dfea76468e13de24df6360384eae067d570bc3c9137af096e3ed4ebf655a": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S3",
+        "input_manifest_sha256": "fecdeb4d8c0a6ecebd7d578efe75206dd61c630c2d10d68b064b6577e6f50145",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Зелёный исход требует отличить выполненное ожидание от слабой проверки; правильный код искусственно не ломается, рефакторинг допускает pass до и после. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0066-S3",
+        "scenario_sha256": "ef0101f615827a9e389036da6960f35d34a54975bb1d8c43a1582c1919acbd3b"
+      },
+      "c8fd94bb75ccd7513158ab9600a868dc99cf755f4ad661867c2bf969fe00f4c4": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0026-S2",
+        "input_manifest_sha256": "fecdeb4d8c0a6ecebd7d578efe75206dd61c630c2d10d68b064b6577e6f50145",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Актуальное покрытие переиспользуется на смене этапа; значимый дрейф требует зависимой проверки и утратившего актуальность барьера. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0026-S2",
+        "scenario_sha256": "8b5dc9b07ddef6ca7c6e98846bb9bd12057d4b1f494cd68dbc9fdf25434ab096"
+      },
+      "cbb56b27c8e0fa8476ae411271ad5f99a08b02090b53271ac3ecf60d035598e8": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0066-S8",
+        "input_manifest_sha256": "fbdd83886980dda60130d853570fcf1b561b7758714b1acddd1d1d2dea2767a5",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Нет квоты отдельного теста по ID, всего набора заранее, нового раннера/формата/property/mutation-инструмента или полного прогона/коммита на цикл; пример проверяет отказ CLI и сохранность каталога, барьеры сохраняются; render-skills --check подтвердил согласованность. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0066-S8",
+        "scenario_sha256": "70544f78748bee1c06ea045bf9cb2e4383df54ca21afd649d0b775fd1dbdb4d2"
+      },
+      "cc0ff34d3f8c49e84e0e87aad71ea01b4d70466f2c99682283b06ef5b4c685fd": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0066-S2",
+        "input_manifest_sha256": "fc485da9e39e48e892be4814795c5b4561c1d5db230cd47ce9a27f383ccf3530",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Разрешена минимальная заготовка без основной реализации; после неё проверяется ожидаемый исход; ошибка сборки сама по себе не подтверждает поведение. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0066-S2",
+        "scenario_sha256": "ed02664b1454f456b53c14b66149a90eb0d68dc3af41a030468cc3cb7b0b4f2b"
+      },
+      "d0078276d1f4d30ef37b440271050d50b8bfd9ba91f0bf311ebbd049e359f9bd": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0026-S1",
+        "input_manifest_sha256": "08e69265bcdccbc3bb132ec7fe7f522e0dce1c81a782b1c98cd79b5b7ace3329",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Матрица отличает редактуру, нормативный workflow и CLI; сохранены применимые проектные барьеры. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0026-S1",
+        "scenario_sha256": "b217aea3d4fe7a48e8a020499175bccbcb14642dbd89eb0f49a8f36c2506551f"
+      },
+      "d645dc5964bae1bdb90d83185178b883368c54c63943c2216ab886f55f0482dd": {
+        "captured_at": "2026-10-01T16:45:33.821589+00:00",
+        "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S1",
+        "input_manifest_sha256": "09b389cc976caa1bc181ffeea72c70f6573741f59564280d3544f3c94b249a97",
+        "method": "manual",
+        "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Контрактный исход проверяется на настоящей границе до реализации; нарушение или отсутствие поведения подтверждаются; далее следует короткий цикл с переиспользованием пригодных тестов. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/publication-verification.md",
+        "scenario": "HG-0066-S1",
+        "scenario_sha256": "87a01244d0d4412af942007e0e04b5455d39f4d364664cf0d5d6a21c0ebca69b"
+      },
+      "f95b0f00d56981f7b3d46b0b8dfc88d46c6e9558a5981ef03f160635582d7c2b": {
+        "captured_at": "2026-10-01T15:08:10.743055+00:00",
+        "command": "Смысловая сверка нормативных источников с таблицей решений HG-0066: HG-0066-S5",
+        "input_manifest_sha256": "bd54c8d544f39ce0fc4adf231c8a95be5bdefcf2537254ca7d49b936da5a0dbd",
+        "method": "manual",
+        "observation": "Нормативная проверка содержания: Начальный failed сохраняется как история с командой и причиной; продуктовый сценарий требует успешного результата актуальной реализации, исходные отчёты не переписываются. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/verification.md",
+        "scenario": "HG-0066-S5",
+        "scenario_sha256": "fe95a266d50acd8a6b4d6d8a13ff3725b825a44d99b0537671f898f6829ababa"
+      }
+    }
+  },
+  "input_manifests": {
+    "08e69265bcdccbc3bb132ec7fe7f522e0dce1c81a782b1c98cd79b5b7ace3329": {
+      "files": {
+        "docs/DEVELOPMENT.md": "4517140d49e74286a6a0e706f65b2490821a864729ae2b02da36c1b235280fb9",
+        "docs/evidence/test-before-implementation/publication-verification.md": "4429ee205b9ba15f64d7a420ba58a05de81cc1e71f7f9c1ca60696e96cf2a9af",
+        "docs/workflow/QUALITY.md": "71fc1a8294fd3d2e651aec276f8910b0c7d380c5f3a8d0b40f273f6a4a369895",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893"
+      },
+      "input_paths": [
+        "docs/DEVELOPMENT.md",
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/work.md"
+      ]
+    },
+    "09b389cc976caa1bc181ffeea72c70f6573741f59564280d3544f3c94b249a97": {
+      "files": {
+        "docs/evidence/test-before-implementation/publication-verification.md": "4429ee205b9ba15f64d7a420ba58a05de81cc1e71f7f9c1ca60696e96cf2a9af",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/task.md": "3e8655874d7d65a95add6fb595a15c0e9c4f9a14349fea71c7d7c42bbcc73249",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/rules.md": "e0f80dab572769bc8924f297dd243c738e99ac9b153c6c8354027ce3d31209a4"
+      },
+      "input_paths": [
+        "kit/procedures/spec.md",
+        "kit/procedures/task.md",
+        "kit/procedures/work.md",
+        "kit/rules.md"
+      ]
+    },
+    "11004da1204aa6f9a5670d9fbf6b1250ab6c6c6e0f83eeb4f389065ce4664f13": {
+      "files": {
+        "docs/evidence/test-before-implementation/publication-verification.md": "4429ee205b9ba15f64d7a420ba58a05de81cc1e71f7f9c1ca60696e96cf2a9af",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/references/tools/verification.md": "33dae664e5ba13b47f0cc51ef84faa5e3def6dea8403b300448ba008bbfeb2a9"
+      },
+      "input_paths": [
+        "kit/procedures/work.md",
+        "kit/references/tools/verification.md"
+      ]
+    },
+    "31bf42be0e5e5c18b1ebefef9a803133186638d254480d37ee044069e35bfb89": {
+      "files": {
+        "docs/DEVELOPMENT.md": "4517140d49e74286a6a0e706f65b2490821a864729ae2b02da36c1b235280fb9",
+        "docs/evidence/test-before-implementation/publication-raw/render-skills.log": "e45a499d913c3081e1ea4913bd6193acdb389509468682fada28ab0c8bc4d88b",
+        "docs/evidence/test-before-implementation/publication-verification.md": "4429ee205b9ba15f64d7a420ba58a05de81cc1e71f7f9c1ca60696e96cf2a9af",
+        "kit/manifest.json": "03871ab93ff9cdf02f6e996e1a7e54375de5556f2cf662b792c5c481c829adac",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/references/review.md": "f29fc426f6f432ca3cfbd23f6f51cdb163aa99c2b2802083409aac8445e4b960",
+        "kit/skills/highgrade-work/SKILL.md": "18fb7de8e6888c3e81cc81e6f3a7b768b5f1422f31f620b6203dda85dc35cc53",
+        "scripts/render-skills.py": "76f4b88a97fdb90ca681495946c3e5fb4baa71ac8113a2cb6df28cf8149a45de"
+      },
+      "input_paths": [
+        "docs/DEVELOPMENT.md",
+        "docs/evidence/test-before-implementation/publication-raw/render-skills.log",
+        "kit/manifest.json",
+        "kit/procedures/work.md",
+        "kit/references/review.md",
+        "kit/skills/highgrade-work/SKILL.md",
+        "scripts/render-skills.py"
+      ]
+    },
+    "44fc5cb177b50989a0c78a9932d7a69af4c14e595826facb7d1da7583ab70205": {
+      "files": {
+        "docs/evidence/test-before-implementation/verification.md": "2d99911ef28d750c65bdf0c96b3f504ac8a6783f5a97077828cc2bf0801370e3",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/references/review.md": "f29fc426f6f432ca3cfbd23f6f51cdb163aa99c2b2802083409aac8445e4b960"
+      },
+      "input_paths": [
+        "kit/procedures/spec.md",
+        "kit/procedures/work.md",
+        "kit/references/review.md"
+      ]
+    },
+    "51cec67d9accd77914038d22a4eecd95d298a60d285bffb605380c32035c9507": {
+      "files": {
+        "docs/evidence/test-before-implementation/verification.md": "2d99911ef28d750c65bdf0c96b3f504ac8a6783f5a97077828cc2bf0801370e3",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/task.md": "3e8655874d7d65a95add6fb595a15c0e9c4f9a14349fea71c7d7c42bbcc73249",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/rules.md": "e0f80dab572769bc8924f297dd243c738e99ac9b153c6c8354027ce3d31209a4"
+      },
+      "input_paths": [
+        "kit/procedures/spec.md",
+        "kit/procedures/task.md",
+        "kit/procedures/work.md",
+        "kit/rules.md"
+      ]
+    },
+    "592331d91c2e4f5adf9a9e7b9a15b5ff8ae92e78fbf42e85d04d00a776439b6f": {
+      "files": {
+        "docs/evidence/test-before-implementation/publication-verification.md": "4429ee205b9ba15f64d7a420ba58a05de81cc1e71f7f9c1ca60696e96cf2a9af",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/references/review.md": "f29fc426f6f432ca3cfbd23f6f51cdb163aa99c2b2802083409aac8445e4b960"
+      },
+      "input_paths": [
+        "kit/procedures/spec.md",
+        "kit/procedures/work.md",
+        "kit/references/review.md"
+      ]
+    },
+    "8708e5ad0c7ae657457797702d45976748c9400a5ead37f6650b7a1d5e9d929f": {
+      "files": {
+        "docs/evidence/test-before-implementation/verification.md": "2d99911ef28d750c65bdf0c96b3f504ac8a6783f5a97077828cc2bf0801370e3",
+        "docs/workflow/QUALITY.md": "71fc1a8294fd3d2e651aec276f8910b0c7d380c5f3a8d0b40f273f6a4a369895",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/rules.md": "e0f80dab572769bc8924f297dd243c738e99ac9b153c6c8354027ce3d31209a4"
+      },
+      "input_paths": [
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/work.md",
+        "kit/rules.md"
+      ]
+    },
+    "bd54c8d544f39ce0fc4adf231c8a95be5bdefcf2537254ca7d49b936da5a0dbd": {
+      "files": {
+        "docs/evidence/test-before-implementation/verification.md": "2d99911ef28d750c65bdf0c96b3f504ac8a6783f5a97077828cc2bf0801370e3",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/references/tools/verification.md": "33dae664e5ba13b47f0cc51ef84faa5e3def6dea8403b300448ba008bbfeb2a9"
+      },
+      "input_paths": [
+        "kit/procedures/work.md",
+        "kit/references/tools/verification.md"
+      ]
+    },
+    "f4bb2022b8fed9f1267e8f42e0ab5e5f93478b327097627482fe1179ff1b9a76": {
+      "files": {
+        "docs/DEVELOPMENT.md": "4517140d49e74286a6a0e706f65b2490821a864729ae2b02da36c1b235280fb9",
+        "docs/evidence/test-before-implementation/verification.md": "2d99911ef28d750c65bdf0c96b3f504ac8a6783f5a97077828cc2bf0801370e3",
+        "docs/workflow/QUALITY.md": "71fc1a8294fd3d2e651aec276f8910b0c7d380c5f3a8d0b40f273f6a4a369895",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893"
+      },
+      "input_paths": [
+        "docs/DEVELOPMENT.md",
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/work.md"
+      ]
+    },
+    "fbdd83886980dda60130d853570fcf1b561b7758714b1acddd1d1d2dea2767a5": {
+      "files": {
+        "docs/DEVELOPMENT.md": "4517140d49e74286a6a0e706f65b2490821a864729ae2b02da36c1b235280fb9",
+        "docs/evidence/test-before-implementation/verification.md": "2d99911ef28d750c65bdf0c96b3f504ac8a6783f5a97077828cc2bf0801370e3",
+        "kit/manifest.json": "4724c8c42268ca89bdb547c27552d4647111c02277a86b87c2312c0a14425a13",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/references/review.md": "f29fc426f6f432ca3cfbd23f6f51cdb163aa99c2b2802083409aac8445e4b960",
+        "kit/skills/highgrade-work/SKILL.md": "18fb7de8e6888c3e81cc81e6f3a7b768b5f1422f31f620b6203dda85dc35cc53",
+        "scripts/render-skills.py": "76f4b88a97fdb90ca681495946c3e5fb4baa71ac8113a2cb6df28cf8149a45de",
+        "target/highgrade/reports/hg-0066/render-skills.log": "e45a499d913c3081e1ea4913bd6193acdb389509468682fada28ab0c8bc4d88b"
+      },
+      "input_paths": [
+        "docs/DEVELOPMENT.md",
+        "kit/manifest.json",
+        "kit/procedures/work.md",
+        "kit/references/review.md",
+        "kit/skills/highgrade-work/SKILL.md",
+        "scripts/render-skills.py",
+        "target/highgrade/reports/hg-0066/render-skills.log"
+      ]
+    },
+    "fbe309db72f718559d2abc04bf855de159e3f46a523360bdfe4ea9699a233de1": {
+      "files": {
+        "docs/evidence/test-before-implementation/publication-verification.md": "4429ee205b9ba15f64d7a420ba58a05de81cc1e71f7f9c1ca60696e96cf2a9af",
+        "docs/workflow/QUALITY.md": "71fc1a8294fd3d2e651aec276f8910b0c7d380c5f3a8d0b40f273f6a4a369895",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/rules.md": "e0f80dab572769bc8924f297dd243c738e99ac9b153c6c8354027ce3d31209a4"
+      },
+      "input_paths": [
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/work.md",
+        "kit/rules.md"
+      ]
+    },
+    "fc485da9e39e48e892be4814795c5b4561c1d5db230cd47ce9a27f383ccf3530": {
+      "files": {
+        "docs/evidence/test-before-implementation/verification.md": "2d99911ef28d750c65bdf0c96b3f504ac8a6783f5a97077828cc2bf0801370e3",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893"
+      },
+      "input_paths": [
+        "kit/procedures/work.md"
+      ]
+    },
+    "fecdeb4d8c0a6ecebd7d578efe75206dd61c630c2d10d68b064b6577e6f50145": {
+      "files": {
+        "docs/evidence/test-before-implementation/publication-verification.md": "4429ee205b9ba15f64d7a420ba58a05de81cc1e71f7f9c1ca60696e96cf2a9af",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893"
+      },
+      "input_paths": [
+        "kit/procedures/work.md"
+      ]
+    }
+  },
+  "review": {
+    "change_sha256": "4fec806bd35eedc35aeecfbc6db005b4f22b76ce0a4afbbe27f0ab81b9d9d28b",
+    "conclusion": "GO: нормативные десять сценариев, перенос исходных байтов, постоянные inputs и Windows checkout filters подтверждены; финальные 212/212 Nextest,126/126 trace после attrs. Исходный независимый итог docs/reviews/test-before-implementation-publication.md. Это местный pre-submit; будущие build/apply/exact-SHA CI и приёмка ещё не подтверждены.",
+    "reviewer": "независимый субагент /root/review_hg0066",
+    "verdict": "go"
+  },
+  "runs": []
+}

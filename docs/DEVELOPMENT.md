@@ -4,7 +4,7 @@
 
 ## Изменения требований: нативные спецификации
 
-[Выбор маршрута](../kit/procedures/task.md#выбор-достаточного-маршрута): технические задачи идут прямо в work либо через план; зависимую цепочку ведёт [Planner](../kit/procedures/planner.md); Goal требует поручения. spec-list учитывает специфицированные изменения. CLI активной Поставки:
+Маршрут — по [task](../kit/procedures/task.md#выбор-достаточного-маршрута), зависимая работа — через [Planner](../kit/procedures/planner.md); Goal требует поручения. CLI активной Поставки:
 
 ```powershell
 $hgProfile = $env:USERPROFILE
@@ -21,17 +21,19 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 "$hgExe" spec-schema --root "$PWD"
 ```
 
-Краткий статус: `spec-check --id HG-CHANGE --brief true`. Рабочий контекст: `spec-read --view summary|editable`; full — для истории.
+Статус: `spec-check --id HG-CHANGE --brief true`; контекст: `spec-read --view summary|editable`, история — full.
 
-Каталог ведёт совместимая CLI; global-status определяет установленную, target/debug — кандидат разработки. Маршрут: `spec-new` с хешем → `spec-read --view editable` → `spec-edit --input patch.json --expected HASH --validate true`. Полный spec-save остаётся совместимым. Каталог напрямую не редактируй; параметры — в [справочнике](../kit/references/tools/specifications.md#структурированные-спецификации).
+Каталог изменяй совместимой CLI: `spec-new` с хешем → `spec-read --view editable` → `spec-edit --input patch.json --expected HASH --validate true`. Активную версию определяет global-status, target/debug — кандидат. Полный spec-save и параметры — в [справочнике](../kit/references/tools/specifications.md#структурированные-спецификации).
 
-Далее: `spec-validate` → работа и тесты → `spec-evidence` → независимое ревью и `spec-review` → `spec-integrate --brief true` (включает проверку готовности). spec-check показывает причины. Решение человека пишет spec-decide. Фокус CLI: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
+Далее: `spec-validate` → работа/тесты → `spec-evidence` → независимое ревью/`spec-review` → `spec-integrate --brief true` с проверкой готовности. Причины — spec-check, решение человека — spec-decide. Фокус CLI: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
 
 ## Сценарии и исходные результаты
 
 Метка `// highgrade: HG-...` связывает сценарий с Rust-тестом; trace требует фактический результат. Checks для spec-run необязательны, но объявленная связь должна совпадать. Требования к доказательствам — в [QUALITY](workflow/QUALITY.md).
 
-Связка проверяет каталог и автоматические сценарии; готовность изменения — spec-check.
+Каталог/автосценарии — trace; готовность — spec-check.
+
+Пример [проверки до реализации](../kit/procedures/work.md#проверка-до-изменения-реализации): перед исправлением записи тест вызывает реальную CLI с некорректными данными и проверяет отказ и сохранность каталога. После начального провала и исправления повтори узкий тест; итоговые барьеры — по матрице ниже.
 
 Установите бинарник Nextest 0.9.146 в `target/highgrade/tools/bin` и добавьте каталог в PATH. Исходники могут требовать нового Rust.
 
@@ -46,9 +48,9 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 | Только результаты/метаданные каталога | spec-validate/check; prepare/trace/verify при изменении трассировки | Nextest лишь при изменении его значимых входов |
 | Сборка/активация | build-release.py из SHA, preview/apply одного кандидата, global-status | Ошибка — адресная диагностика и восстановление |
 
-Нормативные инструкции требуют смыслового ревью; исполнение — наблюдения. Внешний пилот требует поручения; новые роли без необходимости не вводятся.
+Нормативный смысл — ревью, исполнение — наблюдение; внешний пилот требует поручения. Дополнительные обязательные роли не вводятся.
 
-Владельца текущего контракта найди через spec-list/read. Входы — по [work](../kit/procedures/work.md#область-входов-доказательства), [примеры](evidence/current-requirements/2026-10-01/verification.md); общий снимок запуска их не заменяет.
+Контракт — spec-list/read; причинные входы — [work](../kit/procedures/work.md#область-входов-доказательства), [примеры](evidence/current-requirements/2026-10-01/verification.md). Общий снимок их не заменяет.
 
 `spec-stats --id HG-CHANGE` читает длительности без запуска. Для наблюдения человека сохрани ссылку на сообщение.
 
