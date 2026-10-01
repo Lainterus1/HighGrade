@@ -4,14 +4,7 @@
     "HG-0008-S1": {
       "captured_at": "2026-09-25T05:59:32.609000Z",
       "command": "cargo nextest run --locked --profile highgrade",
-      "files": {
-        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-        "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
-      },
+      "input_manifest_sha256": "9118580cae0f451389581c9f5bb8f520cf0fe5f748dc71496c5956ba91d6e15f",
       "method": "native_report",
       "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
       "outcome": "passed",
@@ -22,14 +15,7 @@
     "HG-0008-S2": {
       "captured_at": "2026-09-25T05:59:32.609000Z",
       "command": "cargo nextest run --locked --profile highgrade",
-      "files": {
-        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-        "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
-      },
+      "input_manifest_sha256": "9118580cae0f451389581c9f5bb8f520cf0fe5f748dc71496c5956ba91d6e15f",
       "method": "native_report",
       "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
       "outcome": "passed",
@@ -40,16 +26,7 @@
     "HG-0008-S3": {
       "captured_at": "2026-09-25T05:59:18+00:00",
       "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
-      "files": {
-        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-        "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
-        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-        "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
-      },
+      "input_manifest_sha256": "326b5cea35b2fcffd1ddbd999b3a47bccc3cc7b308b26c7107aeab3b1c2b32c6",
       "method": "native_report",
       "observation": "Реальный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor прошёл; дополнительные исходники включены в отпечаток для текущей редакции. Следующий spec-run потребует повторить это дополнение.",
       "outcome": "passed",
@@ -248,15 +225,7 @@
       "0ae8606b6376db7a3c42c1922f48a60f869b4cb0e61167e85df09232055c8c96": {
         "captured_at": "2026-09-25T05:59:18Z",
         "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
-          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-          "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
-        },
+        "input_manifest_sha256": "93248c39fb99d0cf6a1d10cd1df1170d67176496ef284ad5706ea397a55765ae",
         "method": "native_report",
         "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
         "outcome": "passed",
@@ -267,14 +236,7 @@
       "1dfc082fbaa334eb22d1ae734c43e4d50c15cee491e6142c365bc48dde17ca4b": {
         "captured_at": "2026-09-25T03:52:02.288Z",
         "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/transfer-tests.txt": "2fff6f72d871b990131f8a63c2b86da0f1293e1161ed5a0a86d6c9cd840f9b44",
-          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "tests/spec_contracts.rs": "aab8db7ae892907fad9ec15f109ab0f9ea45fdd40db2da40404bea33f2ab6644"
-        },
+        "input_manifest_sha256": "bfe3f2481f1eeefb7272f148b820b797b031c471baca2ad1333d625078a4fc8f",
         "method": "native_report",
         "observation": "Negative test passed: missing evidence, incomplete task, absent/stale review, source drift and mixed operations rejected without transfer.",
         "outcome": "passed",
@@ -285,14 +247,7 @@
       "2552340c3cb46ba96b4a9ee6ebbbab4c11e28a4e47c4a22196d9036a33765132": {
         "captured_at": "2026-09-25T05:10:39.193000Z",
         "command": "cargo nextest run --locked --profile highgrade",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-          "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
-        },
+        "input_manifest_sha256": "707f7ecaf25efb85a79385190195958a9b8505343094d25e6de0759ec04acb3a",
         "method": "native_report",
         "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
         "outcome": "passed",
@@ -303,16 +258,7 @@
       "263875852ad86447c9b43382001d61f00ca74d196feddee239d5ac19c631c612": {
         "captured_at": "2026-09-25T05:59:18+00:00",
         "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
-          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-          "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
-        },
+        "input_manifest_sha256": "326b5cea35b2fcffd1ddbd999b3a47bccc3cc7b308b26c7107aeab3b1c2b32c6",
         "method": "native_report",
         "observation": "Реальный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor прошёл; дополнительные исходники включены в отпечаток для текущей редакции. Следующий spec-run потребует повторить это дополнение.",
         "outcome": "passed",
@@ -323,14 +269,7 @@
       "29985bbbc6ff4404f263470375dffb225e41960ecb564ca1c3a862b8e460ca9e": {
         "captured_at": "2026-09-25T04:02:37.825Z",
         "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/transfer-tests.txt": "b0209d694cb4db709e9d62a0ce97279572457e90f0b2ba9c2407efa5f68f4ca1",
-          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "tests/spec_contracts.rs": "aa7594dd7315a56a3e02db7655b2f36c121487c225ca63def75c5cfbd9cb3ea2"
-        },
+        "input_manifest_sha256": "a5f385c37e5afbed7eb098a5b484f28dcf24c1b3b439d10d19c5132c925ef9ec",
         "method": "native_report",
         "observation": "Directory-catalog and legacy-store tests passed: native requirement and origin stored, source bytes retained, status in_progress and human pending.",
         "outcome": "passed",
@@ -341,14 +280,7 @@
       "347e736025e2a8ab2f045f6085e83425b7c2a8657cbe96c2030f90d678495f6c": {
         "captured_at": "2026-09-25T05:42:06.808000Z",
         "command": "cargo nextest run --locked --profile highgrade",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-          "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
-        },
+        "input_manifest_sha256": "e934be73c4b57eee8e99a91dc82d0cc0a49ee8e017c9e21072deb8504aab91fa",
         "method": "native_report",
         "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
         "outcome": "passed",
@@ -359,14 +291,7 @@
       "387b62e960be44bf76ddf4ed8eb4f02914b543cbe33eeffd838c9f09fb16cda4": {
         "captured_at": "2026-09-25T03:52:01.560Z",
         "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/transfer-tests.txt": "2fff6f72d871b990131f8a63c2b86da0f1293e1161ed5a0a86d6c9cd840f9b44",
-          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "tests/spec_contracts.rs": "aab8db7ae892907fad9ec15f109ab0f9ea45fdd40db2da40404bea33f2ab6644"
-        },
+        "input_manifest_sha256": "bfe3f2481f1eeefb7272f148b820b797b031c471baca2ad1333d625078a4fc8f",
         "method": "native_report",
         "observation": "Directory-catalog and legacy-store tests passed: native requirement and origin stored, source bytes retained, status in_progress and human pending.",
         "outcome": "passed",
@@ -377,15 +302,7 @@
       "3a95aa21e93479131761691c5172a7a7e3888b80d1a3569564a6e9ef8187e52f": {
         "captured_at": "1790315727",
         "command": "spec-run --id HG-0008 --check HG-0008-C1",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/HG-0008-C1-1790315727749287600.log": "827157461ce463b9d2bb645218a13239e6aa819035b1d3372e8d66b28fdf8bcf",
-          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-          "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
-        },
+        "input_manifest_sha256": "18da5ef8746ad085251f87313a526a51eaf2b4e51929e9a274d004a1c902a89b",
         "method": "native_report",
         "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
         "outcome": "passed",
@@ -396,14 +313,7 @@
       "3ac983906075e1dd132b58e30c9ee4e5ee0fa22ab820e911559e0d5c46037adf": {
         "captured_at": "2026-09-25T05:54:45.547000Z",
         "command": "cargo nextest run --locked --profile highgrade",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-          "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
-        },
+        "input_manifest_sha256": "daf4bd877d99ea661ea4944181c05b3d3c76f4b45a6f98767407a31f8bb40064",
         "method": "native_report",
         "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
         "outcome": "passed",
@@ -420,14 +330,7 @@
       "518cbf64674521379bb547c4c7c16a467d82fd7a03bf40edf674f5d7f55c74cd": {
         "captured_at": "2026-09-25T04:02:38.689Z",
         "command": "cargo test --locked --test spec_contracts reviewed_ -- --nocapture",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/transfer-tests.txt": "b0209d694cb4db709e9d62a0ce97279572457e90f0b2ba9c2407efa5f68f4ca1",
-          "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "tests/spec_contracts.rs": "aa7594dd7315a56a3e02db7655b2f36c121487c225ca63def75c5cfbd9cb3ea2"
-        },
+        "input_manifest_sha256": "a5f385c37e5afbed7eb098a5b484f28dcf24c1b3b439d10d19c5132c925ef9ec",
         "method": "native_report",
         "observation": "Negative test passed: missing evidence, incomplete task, absent/stale review, source drift, mismatched scenario ID and mixed operations rejected without transfer.",
         "outcome": "passed",
@@ -438,14 +341,7 @@
       "6ea7ff07aed6d9f8c5ffada8f5d2c731fa90abbaf5f53a6580fd42a756bf8ef3": {
         "captured_at": "2026-09-25T05:42:06.808000Z",
         "command": "cargo nextest run --locked --profile highgrade",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-          "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
-        },
+        "input_manifest_sha256": "e934be73c4b57eee8e99a91dc82d0cc0a49ee8e017c9e21072deb8504aab91fa",
         "method": "native_report",
         "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
         "outcome": "passed",
@@ -457,14 +353,7 @@
       "842c8a8d2cac68337f4fe015b30edc8209dce17de5fd391c1b98046526e6f207": {
         "captured_at": "2026-09-25T05:10:39.193000Z",
         "command": "cargo nextest run --locked --profile highgrade",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-          "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
-        },
+        "input_manifest_sha256": "707f7ecaf25efb85a79385190195958a9b8505343094d25e6de0759ec04acb3a",
         "method": "native_report",
         "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
         "outcome": "passed",
@@ -475,15 +364,7 @@
       "92a2e89d8a09bfa780fd1f234b64a508516802f38d9155c4987a59d5f7072122": {
         "captured_at": "1790315544",
         "command": "spec-run --id HG-0008 --check HG-0008-C1",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log": "23b62b9605a7c0f86187cb2253d1cd06690212e30e8570a715834c97fe9f2510",
-          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-          "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
-        },
+        "input_manifest_sha256": "a9d732b0ce5a81a3053af9f47afbe513b587d57d594fd7c4c4f893c701ac2de0",
         "method": "native_report",
         "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
         "outcome": "passed",
@@ -494,14 +375,7 @@
       "a179cf940bb758a722448c9eff6d8d25193cc6917aeab0dd4d2f6b989ac1eb06": {
         "captured_at": "2026-09-25T05:59:32.609000Z",
         "command": "cargo nextest run --locked --profile highgrade",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-          "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
-        },
+        "input_manifest_sha256": "9118580cae0f451389581c9f5bb8f520cf0fe5f748dc71496c5956ba91d6e15f",
         "method": "native_report",
         "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs; ожидаемый исход: Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними",
         "outcome": "passed",
@@ -512,15 +386,7 @@
       "b43440c4b7e2d64e24df38263b3f43722f853113a646b773a56425594edc36de": {
         "captured_at": "2026-09-25T05:55:27Z",
         "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/HG-0008-C1-1790315727749287600.log": "827157461ce463b9d2bb645218a13239e6aa819035b1d3372e8d66b28fdf8bcf",
-          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-          "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
-        },
+        "input_manifest_sha256": "18da5ef8746ad085251f87313a526a51eaf2b4e51929e9a274d004a1c902a89b",
         "method": "native_report",
         "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
         "outcome": "passed",
@@ -531,14 +397,7 @@
       "bce9bb7299c63944bd52e05098f604ea3136b2d2ea7cee544e2f2adfc091aa9e": {
         "captured_at": "2026-09-25T05:59:32.609000Z",
         "command": "cargo nextest run --locked --profile highgrade",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-          "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
-        },
+        "input_manifest_sha256": "9118580cae0f451389581c9f5bb8f520cf0fe5f748dc71496c5956ba91d6e15f",
         "method": "native_report",
         "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
         "outcome": "passed",
@@ -549,15 +408,7 @@
       "c0a4c3af9d6223f64e51ecb137382d7ff1ecf70a45527906db1fc52e5b4bd326": {
         "captured_at": "2026-09-25T05:52:24Z",
         "command": "cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log": "23b62b9605a7c0f86187cb2253d1cd06690212e30e8570a715834c97fe9f2510",
-          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-          "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
-        },
+        "input_manifest_sha256": "a9d732b0ce5a81a3053af9f47afbe513b587d57d594fd7c4c4f893c701ac2de0",
         "method": "native_report",
         "observation": "Точный тест reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor выполнен; ожидаемый исход: перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
         "outcome": "passed",
@@ -568,15 +419,7 @@
       "dc8bca85abbb799a72c640aaaf9f99439b4e9d94e4baa67875a175f01ab4c93f": {
         "captured_at": "1790315958",
         "command": "spec-run --id HG-0008 --check HG-0008-C1",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
-          "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
-          "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
-        },
+        "input_manifest_sha256": "93248c39fb99d0cf6a1d10cd1df1170d67176496ef284ad5706ea397a55765ae",
         "method": "native_report",
         "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
         "outcome": "passed",
@@ -587,14 +430,7 @@
       "e425eafc592a0e6645a40ab6e71db6c49e1dc6bb79b250b6818091c13f23a16f": {
         "captured_at": "2026-09-25T05:54:45.547000Z",
         "command": "cargo nextest run --locked --profile highgrade",
-        "files": {
-          "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
-          "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
-          "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
-          "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
-          "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
-          "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
-        },
+        "input_manifest_sha256": "daf4bd877d99ea661ea4944181c05b3d3c76f4b45a6f98767407a31f8bb40064",
         "method": "native_report",
         "observation": "Исполнены reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs, reviewed_import_transfer_works_with_directory_catalog; ожидаемый исход: Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки",
         "outcome": "passed",
@@ -607,6 +443,113 @@
         "conclusion": "GO: exact transfer behavior and negative paths reviewed; 2/2 focused tests pass; no behavior claimed for historical imports",
         "reviewer": "independent reviewer",
         "verdict": "go"
+      }
+    }
+  },
+  "input_manifests": {
+    "18da5ef8746ad085251f87313a526a51eaf2b4e51929e9a274d004a1c902a89b": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/HG-0008-C1-1790315727749287600.log": "827157461ce463b9d2bb645218a13239e6aa819035b1d3372e8d66b28fdf8bcf",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+      }
+    },
+    "326b5cea35b2fcffd1ddbd999b3a47bccc3cc7b308b26c7107aeab3b1c2b32c6": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+      }
+    },
+    "707f7ecaf25efb85a79385190195958a9b8505343094d25e6de0759ec04acb3a": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "docs/evidence/spec-verification/2026-09-25-nextest.xml": "b64457bf68c08647488385d5d2945e024c001bf0ec7a6abe84ce0200604455b9",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
+      }
+    },
+    "9118580cae0f451389581c9f5bb8f520cf0fe5f748dc71496c5956ba91d6e15f": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "docs/evidence/spec-verification/2026-09-25-nextest.xml": "12b80d802f8ac50e76781e860e75c523255a244932d63c6ad3764d17470cd53c",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      }
+    },
+    "93248c39fb99d0cf6a1d10cd1df1170d67176496ef284ad5706ea397a55765ae": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/HG-0008-C1-1790315958770873400.log": "6e960c94ffbd3b185973ac0f0a65835492cbc87614c2e342e277543d7f7e4e65",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "53e27c08d96d6ab74f52a7bfd3d376a325bbe1f0dad65eb0e986201cdc80389d"
+      }
+    },
+    "a5f385c37e5afbed7eb098a5b484f28dcf24c1b3b439d10d19c5132c925ef9ec": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/transfer-tests.txt": "b0209d694cb4db709e9d62a0ce97279572457e90f0b2ba9c2407efa5f68f4ca1",
+        "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "tests/spec_contracts.rs": "aa7594dd7315a56a3e02db7655b2f36c121487c225ca63def75c5cfbd9cb3ea2"
+      }
+    },
+    "a9d732b0ce5a81a3053af9f47afbe513b587d57d594fd7c4c4f893c701ac2de0": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/HG-0008-C1-1790315544848825600.log": "23b62b9605a7c0f86187cb2253d1cd06690212e30e8570a715834c97fe9f2510",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/trace.rs": "119f00b9614f4822bfdb6c38844f97250897602421fd1e7383a8acdda18245a8",
+        "tests/trace_contracts.rs": "8064a8e106a9ff9602d9c61791679cc269aaf08b99b4d00e5058d2caebd14f78"
+      }
+    },
+    "bfe3f2481f1eeefb7272f148b820b797b031c471baca2ad1333d625078a4fc8f": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "specs/changes/HG-0008/evidence/transfer-tests.txt": "2fff6f72d871b990131f8a63c2b86da0f1293e1161ed5a0a86d6c9cd840f9b44",
+        "src/main.rs": "8a7f5a60839fe62314e067bb6d13cf855bc11eb46101e57a3230bfe9c1677ed9",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "tests/spec_contracts.rs": "aab8db7ae892907fad9ec15f109ab0f9ea45fdd40db2da40404bea33f2ab6644"
+      }
+    },
+    "daf4bd877d99ea661ea4944181c05b3d3c76f4b45a6f98767407a31f8bb40064": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "docs/evidence/spec-verification/2026-09-25-nextest.xml": "1d19e916ec3f5b07274dacf4d2da638629444ee29b133ec6ef15cb5a40f084b3",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "0ab6724ea19b97d03f79702bed2e732d25d5a0cdce16a438efab2bddea171989"
+      }
+    },
+    "e934be73c4b57eee8e99a91dc82d0cc0a49ee8e017c9e21072deb8504aab91fa": {
+      "files": {
+        "Cargo.lock": "3d637687b64d01d66ea37a651f3f19f853534c6420eee702a7132165ee4cbf0d",
+        "Cargo.toml": "1a0bd62d33b7b2dfd47fe39edeff6850be68bff56bfd265d71284e7a495d0e47",
+        "docs/evidence/spec-verification/2026-09-25-nextest.xml": "493a01877b3af60f57f6a0b905c170c1e8c096477b491e1b3308673b9e0a2dfa",
+        "src/specs.rs": "1b6e402c9273d57a0fd7b81eef493076b7d0ed4fa90edf38fc7e5f4510ffdc0b",
+        "src/specs/storage.rs": "137dc7177f7936be0b863dce3a8a5cdeb0f6b4adb051468911f5a7c21aadc68f",
+        "tests/spec_contracts.rs": "5d5f909a74c214cfeeb0ab38f1dd4a90f381b9eea0439010494b5668551f7caa"
       }
     }
   },

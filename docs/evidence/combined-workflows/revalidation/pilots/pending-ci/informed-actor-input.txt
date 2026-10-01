@@ -1,0 +1,46 @@
+Сценарий исполнен продолжающим агентом, ранее читавшим требования и ожидаемые исходы. Это не clean-context пилот и не независимое ревью. Поручение в prompt.txt используется по существу; условие не читать ожидаемые исходы не выполняется и не заявляется.
+Read .highgrade/project/INSTRUCTIONS.md and README.md. Work only in this fixture.
+# Toy greeting
+Run python3 tools/check.py to validate the greeting.
+---
+highgrade_project_schema: 1
+---
+# Pilot project workflow
+This self-contained toy project has no native specification catalog. Task ownership is in tasks/. The only implementation check is python3 tools/check.py. evidence/work.json contains the actual last invocation and SHA-256 of every check input. Reuse a successful result if those inputs are identical. Review the actual diff, task ownership, public-domain fixture provenance, MIT license and secret/cache absence before committing. For this tiny project no separate review agent is required. A commit selects the task's listed paths plus its work evidence; other changes belong to someone else. No human acceptance is recorded by default. Local activation: none unless the project says otherwise below. No release number is required. Unknown push route does not affect local work.
+
+Publication route: origin is the local bare repository /workspace/shared/HighGrade-combined/target/highgrade/tmp/combined-revalidation-20261001/pending-ci-remote.git. Authorized branch destination may be explicitly supplied by the user. No tags, merge, hosted PR or external network is implied. This local remote has no service CI. No automatic deployment occurs unless a runbook explicitly says otherwise.
+
+Project uses a simulated PR workflow: pre-submit is the local check; final technical readiness also requires simulated exact-SHA CI status passed in .pilot/ci.json. Read that file after push and require its SHA to match. Base is integration. A PR is required before integration but creation needs a separate request. If CI is pending/failed/unknown, continuation remains Work; store the open criterion in .pilot/work-state.json. This is a simulator only, not a hosted CI/PR service.
+{
+  "task": "alpha",
+  "request": "Change message() return value from starting to ready",
+  "paths": [
+    "app.py"
+  ],
+  "provenance": "Locally authored synthetic MIT fixture"
+}
+{
+  "command": "python3 tools/check.py",
+  "passed": true,
+  "inputs": {
+    "app.py": "368c7e07acb73f8712adc271b496b004a1b11ecdbacd6f545e84a5810b5e1c17",
+    "tools/check.py": "e4e3c1330059df953261a6374b5b5a17fcdbf7535f9af73ad1f5ae139e62fe85"
+  }
+}
+ M app.py
+?? evidence/
+diff --git a/app.py b/app.py
+index db15ce2..8758924 100644
+--- a/app.py
++++ b/app.py
+@@ -1,2 +1,2 @@
+ def message():
+-    return "starting"
++    return "ready"
+672769b Baseline fixture
+origin	/workspace/shared/HighGrade-combined/target/highgrade/tmp/combined-revalidation-20261001/pending-ci-remote.git (fetch)
+origin	/workspace/shared/HighGrade-combined/target/highgrade/tmp/combined-revalidation-20261001/pending-ci-remote.git (push)
+MIT License
+Copyright (c) 2026 Workflow Pilot Authors
+Permission is hereby granted, free of charge, to use, copy, modify and distribute this toy fixture.
+inputs_match True

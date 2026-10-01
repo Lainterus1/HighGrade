@@ -4,15 +4,7 @@
     "HG-0044-S1": {
       "captured_at": "2026-09-26T12:24:27.384583+00:00",
       "command": "python -m unittest discover -s scripts/tests -v",
-      "files": {
-        "docs/evidence/v0-3/python.log": "0eb2aef58dc15ae2ca7202c9bdef25fcc684b5c111f75ab851373f8f7ad58d28",
-        "scripts/target-maintenance.py": "fe8fcc10a534d81166656f2e3eddaa146c68742837cb3bc0ad4308df53682bf3",
-        "scripts/tests/test_target_maintenance.py": "b91811c76d63329ea505dee752494038a6815fc9c4f5eae3da56f9bf84603545"
-      },
-      "input_paths": [
-        "scripts/target-maintenance.py",
-        "scripts/tests/test_target_maintenance.py"
-      ],
+      "input_manifest_sha256": "fa1e76c1be9977b56063348bcde566aaf77f1962f00e93e3b6c680e2df2012f3",
       "method": "native_report",
       "observation": "Выполнены 8 target-maintenance тестов в составе 15 Python. Реальный Cargo cache preview/apply, отдельный report/scratch и сохранение кандидата/неизвестных соседей.",
       "outcome": "passed",
@@ -23,15 +15,7 @@
     "HG-0044-S2": {
       "captured_at": "2026-09-26T12:24:27.384583+00:00",
       "command": "python -m unittest discover -s scripts/tests -v",
-      "files": {
-        "docs/evidence/v0-3/python.log": "0eb2aef58dc15ae2ca7202c9bdef25fcc684b5c111f75ab851373f8f7ad58d28",
-        "scripts/target-maintenance.py": "fe8fcc10a534d81166656f2e3eddaa146c68742837cb3bc0ad4308df53682bf3",
-        "scripts/tests/test_target_maintenance.py": "b91811c76d63329ea505dee752494038a6815fc9c4f5eae3da56f9bf84603545"
-      },
-      "input_paths": [
-        "scripts/target-maintenance.py",
-        "scripts/tests/test_target_maintenance.py"
-      ],
+      "input_manifest_sha256": "fa1e76c1be9977b56063348bcde566aaf77f1962f00e93e3b6c680e2df2012f3",
       "method": "native_report",
       "observation": "Проверены отказы для mixed selection, cache-file, выхода пути, junction, active build, work и recovery до изменения scratch/sentinel; все 8 target-maintenance тестов passed.",
       "outcome": "passed",
@@ -42,21 +26,7 @@
     "HG-0044-S3": {
       "captured_at": "2026-09-26T12:24:27.384583+00:00",
       "command": "Нормативная сверка текущих владельцев правил и таблица решений",
-      "files": {
-        "docs/BUILD.md": "e03b070c59ba9de521d4d0bb2522eb4ece1944de1aa1818e8f88c3fb810e712a",
-        "docs/DEVELOPMENT.md": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
-        "docs/evidence/v0-3/normative.md": "db3a79b9c54f2a5fee92c9731c731841093c8c720268f131e297482b8bafeee8",
-        "kit/procedures/archive.md": "522ce89ed33e444b3e55020eb788cc858484ff2758d0d4cf6b2f19bea6057f3b",
-        "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
-        "scripts/target-maintenance.py": "fe8fcc10a534d81166656f2e3eddaa146c68742837cb3bc0ad4308df53682bf3"
-      },
-      "input_paths": [
-        "docs/BUILD.md",
-        "docs/DEVELOPMENT.md",
-        "kit/procedures/archive.md",
-        "scripts/build-release.py",
-        "scripts/target-maintenance.py"
-      ],
+      "input_manifest_sha256": "8fe9fb50cfa12ff1463c204c7cf4ed8c88e809ac6ba44b53b2dbbe83b10b4ec4",
       "method": "manual",
       "observation": "BUILD/DEVELOPMENT задают сроки жизни, исключают данные specs/issues из очистки, закрепляют Nextest0.9.146 и выбор CLI после очистки. Документальный маршрут прочитан; чистая машина не имитировалась.",
       "outcome": "passed",
@@ -86,21 +56,7 @@
       "0233d08f17763ce2d3dbde527c8035d292849615f3397c4dec44a96d9a7ac5ff": {
         "captured_at": "2026-09-26T12:24:27.384583+00:00",
         "command": "Нормативная сверка текущих владельцев правил и таблица решений",
-        "files": {
-          "docs/BUILD.md": "e03b070c59ba9de521d4d0bb2522eb4ece1944de1aa1818e8f88c3fb810e712a",
-          "docs/DEVELOPMENT.md": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
-          "docs/evidence/v0-3/normative.md": "db3a79b9c54f2a5fee92c9731c731841093c8c720268f131e297482b8bafeee8",
-          "kit/procedures/archive.md": "522ce89ed33e444b3e55020eb788cc858484ff2758d0d4cf6b2f19bea6057f3b",
-          "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
-          "scripts/target-maintenance.py": "fe8fcc10a534d81166656f2e3eddaa146c68742837cb3bc0ad4308df53682bf3"
-        },
-        "input_paths": [
-          "docs/BUILD.md",
-          "docs/DEVELOPMENT.md",
-          "kit/procedures/archive.md",
-          "scripts/build-release.py",
-          "scripts/target-maintenance.py"
-        ],
+        "input_manifest_sha256": "8fe9fb50cfa12ff1463c204c7cf4ed8c88e809ac6ba44b53b2dbbe83b10b4ec4",
         "method": "manual",
         "observation": "BUILD/DEVELOPMENT задают сроки жизни, исключают данные specs/issues из очистки, закрепляют Nextest0.9.146 и выбор CLI после очистки. Документальный маршрут прочитан; чистая машина не имитировалась.",
         "outcome": "passed",
@@ -112,15 +68,7 @@
       "a76f61cfe8aed88cd88f0f48d83fc248bb9590724a4e078694aaee536217d647": {
         "captured_at": "2026-09-26T12:24:27.384583+00:00",
         "command": "python -m unittest discover -s scripts/tests -v",
-        "files": {
-          "docs/evidence/v0-3/python.log": "0eb2aef58dc15ae2ca7202c9bdef25fcc684b5c111f75ab851373f8f7ad58d28",
-          "scripts/target-maintenance.py": "fe8fcc10a534d81166656f2e3eddaa146c68742837cb3bc0ad4308df53682bf3",
-          "scripts/tests/test_target_maintenance.py": "b91811c76d63329ea505dee752494038a6815fc9c4f5eae3da56f9bf84603545"
-        },
-        "input_paths": [
-          "scripts/target-maintenance.py",
-          "scripts/tests/test_target_maintenance.py"
-        ],
+        "input_manifest_sha256": "fa1e76c1be9977b56063348bcde566aaf77f1962f00e93e3b6c680e2df2012f3",
         "method": "native_report",
         "observation": "Выполнены 8 target-maintenance тестов в составе 15 Python. Реальный Cargo cache preview/apply, отдельный report/scratch и сохранение кандидата/неизвестных соседей.",
         "outcome": "passed",
@@ -131,15 +79,7 @@
       "f82de848220ce4c02fbd99906c5c8aff99b91f15921dd8f00b909080d747633f": {
         "captured_at": "2026-09-26T12:24:27.384583+00:00",
         "command": "python -m unittest discover -s scripts/tests -v",
-        "files": {
-          "docs/evidence/v0-3/python.log": "0eb2aef58dc15ae2ca7202c9bdef25fcc684b5c111f75ab851373f8f7ad58d28",
-          "scripts/target-maintenance.py": "fe8fcc10a534d81166656f2e3eddaa146c68742837cb3bc0ad4308df53682bf3",
-          "scripts/tests/test_target_maintenance.py": "b91811c76d63329ea505dee752494038a6815fc9c4f5eae3da56f9bf84603545"
-        },
-        "input_paths": [
-          "scripts/target-maintenance.py",
-          "scripts/tests/test_target_maintenance.py"
-        ],
+        "input_manifest_sha256": "fa1e76c1be9977b56063348bcde566aaf77f1962f00e93e3b6c680e2df2012f3",
         "method": "native_report",
         "observation": "Проверены отказы для mixed selection, cache-file, выхода пути, junction, active build, work и recovery до изменения scratch/sentinel; все 8 target-maintenance тестов passed.",
         "outcome": "passed",
@@ -147,6 +87,36 @@
         "scenario": "HG-0044-S2",
         "scenario_sha256": "688f5d88098440c4b22dd90dfac3daceab9211e5f2df5656a287bc9614bec020"
       }
+    }
+  },
+  "input_manifests": {
+    "8fe9fb50cfa12ff1463c204c7cf4ed8c88e809ac6ba44b53b2dbbe83b10b4ec4": {
+      "files": {
+        "docs/BUILD.md": "e03b070c59ba9de521d4d0bb2522eb4ece1944de1aa1818e8f88c3fb810e712a",
+        "docs/DEVELOPMENT.md": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
+        "docs/evidence/v0-3/normative.md": "db3a79b9c54f2a5fee92c9731c731841093c8c720268f131e297482b8bafeee8",
+        "kit/procedures/archive.md": "522ce89ed33e444b3e55020eb788cc858484ff2758d0d4cf6b2f19bea6057f3b",
+        "scripts/build-release.py": "69d0ef240a1898d899c5d72adcac4ee0d8018fc8833fe05ff75b3f4d1c864a5c",
+        "scripts/target-maintenance.py": "fe8fcc10a534d81166656f2e3eddaa146c68742837cb3bc0ad4308df53682bf3"
+      },
+      "input_paths": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "kit/procedures/archive.md",
+        "scripts/build-release.py",
+        "scripts/target-maintenance.py"
+      ]
+    },
+    "fa1e76c1be9977b56063348bcde566aaf77f1962f00e93e3b6c680e2df2012f3": {
+      "files": {
+        "docs/evidence/v0-3/python.log": "0eb2aef58dc15ae2ca7202c9bdef25fcc684b5c111f75ab851373f8f7ad58d28",
+        "scripts/target-maintenance.py": "fe8fcc10a534d81166656f2e3eddaa146c68742837cb3bc0ad4308df53682bf3",
+        "scripts/tests/test_target_maintenance.py": "b91811c76d63329ea505dee752494038a6815fc9c4f5eae3da56f9bf84603545"
+      },
+      "input_paths": [
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ]
     }
   },
   "review": {
