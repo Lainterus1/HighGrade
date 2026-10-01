@@ -2,24 +2,24 @@
   "acceptance": [],
   "evidence": {
     "HG-0044-S1": {
-      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "captured_at": "2026-10-01T10:53:58.594977+00:00",
       "command": "python -m unittest discover -s scripts/tests -v",
-      "input_manifest_sha256": "3127f7b15611cf926cd4657dd8ab1d3040b5a883a050b9b9be4e28c6daed438e",
+      "input_manifest_sha256": "fd0003afdf52f3c3c09f253f1dc8091eb99a027fc7dd7a891084bababe8a0964",
       "method": "native_report",
-      "observation": "Реальные fixture Cargo clean и preview/apply сохранили candidate, tools/невыбранные отчёты и посторонние файлы; все 14 maintenance-тестов прошли",
+      "observation": "Все 52 Python-теста прошли на Omarchy 4.0.4, в том числе 14 maintenance-проверок: реальная выборка Cargo clean, preview/apply, сохранность кандидата и чужих файлов. Windows stat-метаданные фикстур сохраняются; actual Windows CI повторяется отдельно.",
       "outcome": "passed",
-      "report": "docs/evidence/storage-growth/python-tests.log",
+      "report": "docs/evidence/storage-growth/ci-followup/python-tests.log",
       "scenario": "HG-0044-S1",
       "scenario_sha256": "e0bf7a707eb44371502e73d4be802ee31a26b8f173a648963d5c8b3cd97a166b"
     },
     "HG-0065-S1": {
-      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "captured_at": "2026-10-01T10:53:58.594977+00:00",
       "command": "python -m unittest discover -s scripts/tests -v",
-      "input_manifest_sha256": "3127f7b15611cf926cd4657dd8ab1d3040b5a883a050b9b9be4e28c6daed438e",
+      "input_manifest_sha256": "fd0003afdf52f3c3c09f253f1dc8091eb99a027fc7dd7a891084bababe8a0964",
       "method": "native_report",
-      "observation": "Hardlink/межобластные aliases считаются один раз; Windows DirEntry-zero regression использует реальный Path.stat. Отсутствие inode/allocated-size и граница 600 МиБ проверены",
+      "observation": "Все 14 maintenance-проверок выполнены в полном Python suite 52/52 на Omarchy 4.0.4. Hardlinks/области/бюджет, отсутствие inode/allocated-size и DirEntry-zero проверены; фикстуры сохраняют st_file_attributes и остальные платформенные поля. Локальная эмуляция не объявляется фактическим Windows CI.",
       "outcome": "passed",
-      "report": "docs/evidence/storage-growth/python-tests.log",
+      "report": "docs/evidence/storage-growth/ci-followup/python-tests.log",
       "scenario": "HG-0065-S1",
       "scenario_sha256": "380f86c514d828948377054f36f2164bf7f4e919163d85a20821498661b47f10"
     },
@@ -74,6 +74,28 @@
         },
         "recorded_at": 1790841542,
         "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0044-S1": "0d1fad5b24bb3df14711cf925de2665fb0790c10674e40df14dbaff9864dce54",
+          "HG-0065-S1": "7057196b13dc98f939b7050d6d6324ff9a8fad1fd810a0c6928ea477a98df2bb",
+          "HG-0065-S2": "17ee7bef0708e56450c8f51db133aa06d3f9f1f11600b0a9c559dad6a8cf17b3",
+          "HG-0065-S3": "bb3577a2be75f9e6f6d2cfe60402ccda1adf8db375cb0bdca0b25dc1d7c743f7",
+          "HG-0065-S4": "c7b9fa58ccab0778199fd539f8d591f9c9bf0e6d733c87c8933b127a235228d9"
+        },
+        "recorded_at": 1790852411,
+        "review": "9ea12f525c0aef0430cd68721f51cb6e2330ff6297985e1b5fcba54d59182e07"
+      },
+      {
+        "evidence": {
+          "HG-0044-S1": "c9cd991d5606ddacc34d7c59572495d3d7f943a18e9ba2bef015516fcb769596",
+          "HG-0065-S1": "94293d20ec1ba3a6a404657a98907d4edb1490b248f9bc05f24845da7757f949",
+          "HG-0065-S2": "17ee7bef0708e56450c8f51db133aa06d3f9f1f11600b0a9c559dad6a8cf17b3",
+          "HG-0065-S3": "bb3577a2be75f9e6f6d2cfe60402ccda1adf8db375cb0bdca0b25dc1d7c743f7",
+          "HG-0065-S4": "c7b9fa58ccab0778199fd539f8d591f9c9bf0e6d733c87c8933b127a235228d9"
+        },
+        "recorded_at": 1790852669,
+        "review": "9ea12f525c0aef0430cd68721f51cb6e2330ff6297985e1b5fcba54d59182e07"
       }
     ],
     "objects": {
@@ -111,6 +133,23 @@
         "scenario_sha256": "380f86c514d828948377054f36f2164bf7f4e919163d85a20821498661b47f10"
       },
       "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "94293d20ec1ba3a6a404657a98907d4edb1490b248f9bc05f24845da7757f949": {
+        "captured_at": "2026-10-01T10:53:58.594977+00:00",
+        "command": "python -m unittest discover -s scripts/tests -v",
+        "input_manifest_sha256": "fd0003afdf52f3c3c09f253f1dc8091eb99a027fc7dd7a891084bababe8a0964",
+        "method": "native_report",
+        "observation": "Все 14 maintenance-проверок выполнены в полном Python suite 52/52 на Omarchy 4.0.4. Hardlinks/области/бюджет, отсутствие inode/allocated-size и DirEntry-zero проверены; фикстуры сохраняют st_file_attributes и остальные платформенные поля. Локальная эмуляция не объявляется фактическим Windows CI.",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/ci-followup/python-tests.log",
+        "scenario": "HG-0065-S1",
+        "scenario_sha256": "380f86c514d828948377054f36f2164bf7f4e919163d85a20821498661b47f10"
+      },
+      "9ea12f525c0aef0430cd68721f51cb6e2330ff6297985e1b5fcba54d59182e07": {
+        "change_sha256": "e299d03a89166437133f9d034256b248bfc3767c8d9bb556cb9177d7bff3b363",
+        "conclusion": "GO: требования, diff и исходные результаты проверены; замечания Windows inode и источника split-profile закрыты. Полное заключение: docs/evidence/storage-growth/independent-review.md. Область — только этап хранения; объединение, публикация, CI и активация отдельно.",
+        "reviewer": "Независимое инженерное ревью",
+        "verdict": "go"
+      },
       "bb3577a2be75f9e6f6d2cfe60402ccda1adf8db375cb0bdca0b25dc1d7c743f7": {
         "captured_at": "2026-10-01T07:56:24.569088+00:00",
         "command": "python -m unittest discover -s scripts/tests -v",
@@ -132,6 +171,17 @@
         "report": "docs/evidence/storage-growth/python-tests.log",
         "scenario": "HG-0065-S4",
         "scenario_sha256": "a4307a2857513081a2fdc96ba803ab0e324bfeb4621c3d651f87889edd0506b4"
+      },
+      "c9cd991d5606ddacc34d7c59572495d3d7f943a18e9ba2bef015516fcb769596": {
+        "captured_at": "2026-10-01T10:53:58.594977+00:00",
+        "command": "python -m unittest discover -s scripts/tests -v",
+        "input_manifest_sha256": "fd0003afdf52f3c3c09f253f1dc8091eb99a027fc7dd7a891084bababe8a0964",
+        "method": "native_report",
+        "observation": "Все 52 Python-теста прошли на Omarchy 4.0.4, в том числе 14 maintenance-проверок: реальная выборка Cargo clean, preview/apply, сохранность кандидата и чужих файлов. Windows stat-метаданные фикстур сохраняются; actual Windows CI повторяется отдельно.",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/ci-followup/python-tests.log",
+        "scenario": "HG-0044-S1",
+        "scenario_sha256": "e0bf7a707eb44371502e73d4be802ee31a26b8f173a648963d5c8b3cd97a166b"
       }
     }
   },
@@ -199,12 +249,25 @@
         "docs/evidence/storage-growth/profile/test-debug-0-nextest-list.stderr.txt",
         "rust-toolchain.toml"
       ]
+    },
+    "fd0003afdf52f3c3c09f253f1dc8091eb99a027fc7dd7a891084bababe8a0964": {
+      "files": {
+        "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+        "docs/evidence/storage-growth/ci-followup/python-tests.log": "034bd8022bd7440f4b41aa4f62255ccb35aa0de051f634e20e8ed039d696faee",
+        "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+        "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1"
+      },
+      "input_paths": [
+        "docs/BUILD.md",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ]
     }
   },
   "review": {
-    "change_sha256": "e299d03a89166437133f9d034256b248bfc3767c8d9bb556cb9177d7bff3b363",
-    "conclusion": "GO: требования, diff и исходные результаты проверены; замечания Windows inode и источника split-profile закрыты. Полное заключение: docs/evidence/storage-growth/independent-review.md. Область — только этап хранения; объединение, публикация, CI и активация отдельно.",
-    "reviewer": "Независимое инженерное ревью",
+    "change_sha256": "61cf96ff86fb80a67643f9fbe7cfab6eb6a0d4b7e1a3484b439f523b5e5e5e6c",
+    "conclusion": "GO независимого ревью адресного fix-коммита и повторного CI: Windows stat-фикстуры сохраняют платформенные поля, production guard/assertions неизменны; Python 52/52 и Nextest 211/211 на Omarchy подтверждены, HG-0044-S1/HG-0065-S1 актуальны с сохранением входов и истории. Exact-SHA Windows/Ubuntu CI нового коммита остаётся отдельным финальным барьером; HG-0063 unknown/no_go, человеческая приёмка не записана.",
+    "reviewer": "/root/publication_review",
     "verdict": "go"
   },
   "runs": []

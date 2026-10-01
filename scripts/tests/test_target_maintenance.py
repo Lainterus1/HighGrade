@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import subprocess
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -15,6 +16,14 @@ spec = importlib.util.spec_from_file_location(
     'target_maintenance', Path(__file__).parents[1] / 'target-maintenance.py')
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
+
+
+def stat_fixture(info, *, without=(), **overrides):
+    # Preserve platform metadata, including Windows reparse-point attributes.
+    fields = {name: getattr(info, name) for name in dir(info)
+              if name.startswith('st_') and name not in without}
+    fields.update(overrides)
+    return SimpleNamespace(**fields)
 
 
 class TargetMaintenanceTests(unittest.TestCase):
@@ -63,9 +72,8 @@ class TargetMaintenanceTests(unittest.TestCase):
         stat_path = module.os.stat
 
         def portable_stat(path, *args, **kwargs):
-            # Windows exposes no st_blocks. The portable stat tuple retains
-            # file identity and payload size without inventing allocation.
-            return os.stat_result(tuple(stat_path(path, *args, **kwargs)))
+            # Windows exposes no st_blocks. Keep every other platform field.
+            return stat_fixture(stat_path(path, *args, **kwargs), without=('st_blocks',))
 
         with patch.object(module.os, 'stat', portable_stat):
             report = module.inventory(self.root)
@@ -81,9 +89,7 @@ class TargetMaintenanceTests(unittest.TestCase):
         stat_path = module.os.stat
 
         def unidentified_stat(path, *args, **kwargs):
-            values = list(stat_path(path, *args, **kwargs))
-            values[1] = 0
-            return os.stat_result(values)
+            return stat_fixture(stat_path(path, *args, **kwargs), st_ino=0)
 
         with patch.object(module.os, 'stat', unidentified_stat):
             report = module.inventory(self.root)
@@ -107,11 +113,9 @@ class TargetMaintenanceTests(unittest.TestCase):
                 return getattr(self.entry, name)
 
             def stat(self, **kwargs):
-                values = list(self.entry.stat(**kwargs))
                 # Windows DirEntry.stat has zero st_ino/st_dev/st_nlink even
                 # when os.stat can provide the true filesystem identity.
-                values[1:4] = [0, 0, 0]
-                return os.stat_result(values)
+                return stat_fixture(self.entry.stat(**kwargs), st_ino=0, st_dev=0, st_nlink=0)
 
         @contextmanager
         def windows_scan(directory):
