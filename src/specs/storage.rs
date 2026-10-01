@@ -1,6 +1,7 @@
 //! Project-owned files. A durable intent journal prevents mixed snapshots from
 //! being reported as successful after an interrupted multi-file transaction.
 use super::*;
+mod shared_inputs;
 
 pub const CATALOG: &str = "specs/catalog.json";
 const JOURNAL: &str = "specs/transaction.json";
@@ -193,7 +194,7 @@ pub fn load(root: &Path) -> Result<(Store, String)> {
 }
 fn decode_snapshot(root: &Path, files: &BTreeMap<String, Vec<u8>>) -> Result<(Store, String)> {
     let h: Header = decode(files.get(CATALOG).ok_or("CatalogMissing")?, CATALOG)?;
-    if !matches!(h.schema_version, 3 | 4) {
+    if !matches!(h.schema_version, 3 | 4 | 5) {
         return Err("UnsupportedVersion: catalog".into());
     }
     if let Some(legacy) = bytes(root, STORE)? {
@@ -233,7 +234,10 @@ fn decode_snapshot(root: &Path, files: &BTreeMap<String, Vec<u8>>) -> Result<(St
                 json!({"evidence":{},"review":null,"acceptance":[],"history":[],"runs":[]})
             };
             let obj = results.as_object_mut().ok_or("InvalidResults")?;
-            if h.schema_version == 4 && files.contains_key(&result_path) {
+            if h.schema_version == 5 && files.contains_key(&result_path) {
+                shared_inputs::expand(obj)?;
+            }
+            if h.schema_version >= 4 && files.contains_key(&result_path) {
                 let history = obj.get_mut("history").ok_or("MissingResultsField")?;
                 *history = expand_history(history)?;
             }
@@ -341,6 +345,13 @@ pub fn compact(root: &Path, s: &Store) -> Result<()> {
     write_format(root, s, Some(4))
 }
 
+pub fn share_inputs(root: &Path, s: &Store) -> Result<()> {
+    if !exists(root)? {
+        return Err("MigrationRequired: use --to directory first".into());
+    }
+    write_format(root, s, Some(5))
+}
+
 fn write_format(root: &Path, s: &Store, format: Option<u32>) -> Result<()> {
     if bytes(root, JOURNAL)?.is_some() {
         return Err("CatalogRecoveryRequired".into());
@@ -367,6 +378,9 @@ fn write_format(root: &Path, s: &Store, format: Option<u32>) -> Result<()> {
         .map(|b| decode::<Header>(b, CATALOG))
         .transpose()?
         .map_or(3, |h| h.schema_version);
+    if format.is_some_and(|target| target < current_format) {
+        return Err("CatalogDowngradeUnsupported".into());
+    }
     let h = Header {
         schema_version: format.unwrap_or(current_format),
         next_number: s.next_number,
@@ -407,8 +421,11 @@ fn write_format(root: &Path, s: &Store, format: Option<u32>) -> Result<()> {
                     .unwrap_or_else(|| json!([])),
             );
         }
-        if h.schema_version == 4 {
+        if h.schema_version >= 4 {
             results.insert("history".into(), compact_history(&results["history"])?);
+        }
+        if h.schema_version == 5 {
+            shared_inputs::compact(&mut results)?;
         }
         new.insert(
             format!("specs/changes/{}/spec.json", c.id),
@@ -564,5 +581,8 @@ pub fn schema() -> Value {
         .as_array_mut()
         .unwrap()
         .retain(|v| !RESULTS.contains(&v.as_str().unwrap()));
-    json!({"catalog":schemars::schema_for!(Header),"spec":spec,"results":results,"compact_history":schemars::schema_for!(CompactHistory),"versions":[3,4],"tags":schemars::schema_for!(BTreeMap<String,relations::Tag>),"runners":schemars::schema_for!(BTreeMap<String,checks::Runner>)})
+    let shared_results = shared_inputs::schema(&results);
+    let mut catalog = serde_json::to_value(schemars::schema_for!(Header)).unwrap();
+    catalog["properties"]["schema_version"]["enum"] = json!([3, 4, 5]);
+    json!({"catalog":catalog,"spec":spec,"results":results,"compact_history":schemars::schema_for!(CompactHistory),"shared_input_results":shared_results,"versions":[3,4,5],"tags":schemars::schema_for!(BTreeMap<String,relations::Tag>),"runners":schemars::schema_for!(BTreeMap<String,checks::Runner>)})
 }

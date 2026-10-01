@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-10-01T07:56:25.768700+00:00",
+  "platform": "Linux",
+  "rust_tests": {
+    "passed": 205,
+    "failed": 0,
+    "skipped": 0,
+    "report": "native/junit.xml"
+  },
+  "python_tests": {
+    "passed": 46,
+    "failed": 0,
+    "report": "python-tests.log"
+  },
+  "catalog_validation": {
+    "command": "python scripts/verify.py specs",
+    "exit_code": 0
+  },
+  "commands_passed": [
+    "cargo fmt --all -- --check",
+    "python scripts/verify.py scenarios",
+    "node scripts/check-scenario-scale.mjs",
+    "node scripts/check-scenario-reuse.mjs",
+    "node scripts/check-repository.mjs",
+    "python scripts/render-skills.py --check",
+    "python scripts/verify.py inspect"
+  ],
+  "limitations": [
+    "Windows CI is not run locally",
+    "Rust source debug symbols are opt-in; test coverage is unchanged",
+    "1 GiB is minimum headroom, not a worst-case usage guarantee",
+    "CLI-only profile comparison does not include UI bundle",
+    "No GitHub transport performance conclusion"
+  ],
+  "target_budget_check": {
+    "command": "python scripts/target-maintenance.py --check",
+    "exit_code": 0,
+    "unique_mib": 306.48,
+    "physical_mib": 309.71,
+    "report": "target-inventory.json"
+  }
+}

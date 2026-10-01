@@ -1,0 +1,69 @@
+{
+  "source_sha": "69e1c098b4ca5552b1f3b1ffe66ee808d8d81ab7",
+  "method": "fresh pinned Git archive; nextest list then ordinary dev build in one owned target with only test debug=0; dev keeps pinned line-tables-only default",
+  "started_at_utc": "2026-10-01T07:53:00.594703+00:00",
+  "measurements": [
+    {
+      "variant": "test-debug-0",
+      "phase": "nextest-list",
+      "command": [
+        "cargo",
+        "nextest",
+        "list",
+        "--locked",
+        "--offline",
+        "--message-format",
+        "json"
+      ],
+      "profile_environment": {
+        "CARGO_PROFILE_TEST_DEBUG": "0"
+      },
+      "exit": 0,
+      "seconds": 17.53,
+      "retained": {
+        "unique_bytes": 307654722,
+        "allocated_file_bytes": 310145024
+      },
+      "sampled_peak": {
+        "unique_bytes": 307654722,
+        "allocated_file_bytes": 310145024
+      },
+      "sample_count": 151,
+      "cli_exists": true,
+      "test_count": 197,
+      "normalized_inventory_sha256": "dee2352354b49b91fa71025f653f2f3ab9c6b02f371e10200e6cc093b729f67b"
+    },
+    {
+      "variant": "test-debug-0",
+      "phase": "dev-build-after-tests",
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--offline"
+      ],
+      "profile_environment": {
+        "CARGO_PROFILE_TEST_DEBUG": "0"
+      },
+      "exit": 0,
+      "seconds": 17.35,
+      "retained": {
+        "unique_bytes": 641300164,
+        "allocated_file_bytes": 646008832
+      },
+      "sampled_peak": {
+        "unique_bytes": 641300164,
+        "allocated_file_bytes": 646008832
+      },
+      "sample_count": 127,
+      "cli_exists": true
+    }
+  ],
+  "profile_environment": {
+    "CARGO_PROFILE_TEST_DEBUG": "0"
+  },
+  "identical_to_saved_baseline_inventory": true,
+  "identical_to_saved_dev_debug_0_inventory": true,
+  "scope_note": "No UI bundle; CLI-only development build. Sampled target peaks are observations, not hard upper bounds or whole-process disk peaks.",
+  "owned_benchmark_removed": true
+}

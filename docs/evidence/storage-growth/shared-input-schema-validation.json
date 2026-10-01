@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "purpose": "Проверить опубликованную JSON Schema v5 на фактических results.json, записанных CLI-кандидатом; это отдельная проверка схемы, не повтор миграции.",
+  "command": "target/debug/highgrade spec-schema --root .; Python jsonschema.Draft202012Validator.check_schema(shared_input_results); validate(each migrated specs/changes/*/results.json)",
+  "source": "Изолированная копия HighGrade-commit после штатной spec-migrate --to shared-inputs, до удаления временного дерева родительским пилотом",
+  "catalog_schema_version": 5,
+  "json_schema_draft": "2020-12",
+  "candidate_sha256": "7a9407012eade970e1711a383532cb1a6f73d1ca7642caf191811430f5df6833",
+  "shared_input_schema_sha256": "a5b0e0e1ed424097b91856fd8b466fc25747cc112e1a595410ab08179b59b6a6",
+  "results_documents_validated": 59,
+  "invalid_inline_plus_reference_rejected": true,
+  "invalid_missing_reference_rejected": true,
+  "packages_installed": false,
+  "limitations": [
+    "JSON Schema проверяет форму данных; криптографические хеши и целостность ссылок проверяет CLI, что покрыто отдельными контрактными тестами."
+  ]
+}

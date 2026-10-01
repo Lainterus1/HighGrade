@@ -1,0 +1,303 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0044-S1": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python -m unittest discover -s scripts/tests -v",
+      "files": {
+        "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+        "docs/evidence/storage-growth/python-tests.log": "577db08bb9433f614594404fca50e6b08b3e30a99eb4da7028288acdf58871f3",
+        "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+        "scripts/tests/test_target_maintenance.py": "ed02ab41ef6086f0368e49f382246075de9508328f6394b744bebdd8781ccbab"
+      },
+      "input_paths": [
+        "docs/BUILD.md",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ],
+      "method": "native_report",
+      "observation": "Реальные fixture Cargo clean и preview/apply сохранили candidate, tools/невыбранные отчёты и посторонние файлы; все 14 maintenance-тестов прошли",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/python-tests.log",
+      "scenario": "HG-0044-S1",
+      "scenario_sha256": "e0bf7a707eb44371502e73d4be802ee31a26b8f173a648963d5c8b3cd97a166b"
+    },
+    "HG-0065-S1": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python -m unittest discover -s scripts/tests -v",
+      "files": {
+        "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+        "docs/evidence/storage-growth/python-tests.log": "577db08bb9433f614594404fca50e6b08b3e30a99eb4da7028288acdf58871f3",
+        "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+        "scripts/tests/test_target_maintenance.py": "ed02ab41ef6086f0368e49f382246075de9508328f6394b744bebdd8781ccbab"
+      },
+      "input_paths": [
+        "docs/BUILD.md",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ],
+      "method": "native_report",
+      "observation": "Hardlink/межобластные aliases считаются один раз; Windows DirEntry-zero regression использует реальный Path.stat. Отсутствие inode/allocated-size и граница 600 МиБ проверены",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/python-tests.log",
+      "scenario": "HG-0065-S1",
+      "scenario_sha256": "380f86c514d828948377054f36f2164bf7f4e919163d85a20821498661b47f10"
+    },
+    "HG-0065-S2": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "cargo nextest list --locked --offline --message-format json; cargo build --locked --offline (baseline/dev0/split variants)",
+      "files": {
+        "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+        "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+        "docs/evidence/storage-growth/profile/baseline-dev-build-after-tests.stderr.txt": "bf2737774781cffcfed10e785fb8357fd78e16652dfa276d4e92255d837dd1ed",
+        "docs/evidence/storage-growth/profile/baseline-nextest-list.json": "3be7eae28f646dd30c7639f85c0ebfb55c0531a24e33392e64c588d39e8728af",
+        "docs/evidence/storage-growth/profile/baseline-nextest-list.stderr.txt": "1beaa237e679ab33cec8dd92fce25956f9f8514cf002015e3b2e488bb5e643d2",
+        "docs/evidence/storage-growth/profile/comparison.json": "98a0c5bb950a439d1f9e06e9b5fb0ca3f83dd413a7aaad68e54ccb99c3049344",
+        "docs/evidence/storage-growth/profile/dev-debug-0-dev-build-after-tests.stderr.txt": "d1bfbb8487dc9fb6fc95f9b5f753e2f3bd04a5964adba2e5de081393bc30ecac",
+        "docs/evidence/storage-growth/profile/dev-debug-0-nextest-list.json": "5ee2a7dd6c357fc4350f15c4c2b1d1db37838bb614469f97085fc6403bfc73b4",
+        "docs/evidence/storage-growth/profile/dev-debug-0-nextest-list.stderr.txt": "935816d0ecd0a2e216dc13e19264b01ebdc1ec6a1fc3c55577db7075d982f3ab",
+        "docs/evidence/storage-growth/profile/split-test-profile.json": "eea25aec909cbd357316b180c3ac199f7c10a0511c944f1de323ed7df6ef165d",
+        "docs/evidence/storage-growth/profile/test-debug-0-dev-build-after-tests.stderr.txt": "93dafe7d9fae82f0987fd93236cfa3d4df8ac7fc032872491662e7cba33c6cf6",
+        "docs/evidence/storage-growth/profile/test-debug-0-nextest-list.json": "cc98f757c98c78b86387da8b74de47abdffe03e386b171b6b9fa9eb26bcb9ba3",
+        "docs/evidence/storage-growth/profile/test-debug-0-nextest-list.stderr.txt": "d52f1d20d54b43c728de9f33d8ad5b5bbed6fd1e6424da1d6afff106ca813957",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8"
+      },
+      "input_paths": [
+        "Cargo.toml",
+        "docs/BUILD.md",
+        "docs/evidence/storage-growth/profile/baseline-dev-build-after-tests.stderr.txt",
+        "docs/evidence/storage-growth/profile/baseline-nextest-list.json",
+        "docs/evidence/storage-growth/profile/baseline-nextest-list.stderr.txt",
+        "docs/evidence/storage-growth/profile/comparison.json",
+        "docs/evidence/storage-growth/profile/dev-debug-0-dev-build-after-tests.stderr.txt",
+        "docs/evidence/storage-growth/profile/dev-debug-0-nextest-list.json",
+        "docs/evidence/storage-growth/profile/dev-debug-0-nextest-list.stderr.txt",
+        "docs/evidence/storage-growth/profile/split-test-profile.json",
+        "docs/evidence/storage-growth/profile/test-debug-0-dev-build-after-tests.stderr.txt",
+        "docs/evidence/storage-growth/profile/test-debug-0-nextest-list.json",
+        "docs/evidence/storage-growth/profile/test-debug-0-nextest-list.stderr.txt",
+        "rust-toolchain.toml"
+      ],
+      "method": "native_report",
+      "observation": "На одном исходном дереве закреплённого SHA 69e1c baseline и общий dev=0 имеют одинаковый перечень 197 тестов; Nextest уже создаёт CLI, последующая dev-сборка не дублирует профиль. Уникальные сохранённые байты 638906621→307661692; split-test-only вариант отдельно сохранён и не выбран",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/profile/comparison.json",
+      "scenario": "HG-0065-S2",
+      "scenario_sha256": "45696ea7d8fcbeec30f473db1cca0740943187f420620d444039f10de13b9d61"
+    },
+    "HG-0065-S3": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python -m unittest discover -s scripts/tests -v",
+      "files": {
+        "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+        "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+        "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+        "docs/evidence/storage-growth/python-tests.log": "577db08bb9433f614594404fca50e6b08b3e30a99eb4da7028288acdf58871f3",
+        "scripts/tests/test_verify.py": "9dd43825439486aea02f239ca2c47519d2d7cd915bd26b3657386b2b46cd0818",
+        "scripts/verify.py": "1df893e1494910a671ad64772020e5257cfbb78775a40c778daa06dbf7591ace"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "docs/BUILD.md",
+        "scripts/tests/test_verify.py",
+        "scripts/verify.py"
+      ],
+      "method": "native_report",
+      "observation": "Низкий запас проекта и отдельно низкий запас Cargo target отвергаются до capture/build; исходные отчёты не заменяются",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/python-tests.log",
+      "scenario": "HG-0065-S3",
+      "scenario_sha256": "63cfe8dbff00201ea2036ed6fe9960cdd16be811c0a2fb5ac6e97d08691de19a"
+    },
+    "HG-0065-S4": {
+      "captured_at": "2026-10-01T07:56:24.569088+00:00",
+      "command": "python -m unittest discover -s scripts/tests -v",
+      "files": {
+        "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+        "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+        "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+        "docs/evidence/storage-growth/python-tests.log": "577db08bb9433f614594404fca50e6b08b3e30a99eb4da7028288acdf58871f3",
+        "scripts/tests/test_verify.py": "9dd43825439486aea02f239ca2c47519d2d7cd915bd26b3657386b2b46cd0818",
+        "scripts/verify.py": "1df893e1494910a671ad64772020e5257cfbb78775a40c778daa06dbf7591ace"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "docs/BUILD.md",
+        "scripts/tests/test_verify.py",
+        "scripts/verify.py"
+      ],
+      "method": "native_report",
+      "observation": "Ровно 1 ГиБ разрешено; effective target разрешён через реальный read-only Cargo metadata, существующий предок вложенного пути выбран правильно",
+      "outcome": "passed",
+      "report": "docs/evidence/storage-growth/python-tests.log",
+      "scenario": "HG-0065-S4",
+      "scenario_sha256": "a4307a2857513081a2fdc96ba803ab0e324bfeb4621c3d651f87889edd0506b4"
+    }
+  },
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790841389,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0044-S1": "0d1fad5b24bb3df14711cf925de2665fb0790c10674e40df14dbaff9864dce54",
+          "HG-0065-S1": "7057196b13dc98f939b7050d6d6324ff9a8fad1fd810a0c6928ea477a98df2bb",
+          "HG-0065-S2": "17ee7bef0708e56450c8f51db133aa06d3f9f1f11600b0a9c559dad6a8cf17b3",
+          "HG-0065-S3": "bb3577a2be75f9e6f6d2cfe60402ccda1adf8db375cb0bdca0b25dc1d7c743f7",
+          "HG-0065-S4": "c7b9fa58ccab0778199fd539f8d591f9c9bf0e6d733c87c8933b127a235228d9"
+        },
+        "recorded_at": 1790841542,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    ],
+    "objects": {
+      "0d1fad5b24bb3df14711cf925de2665fb0790c10674e40df14dbaff9864dce54": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python -m unittest discover -s scripts/tests -v",
+        "files": {
+          "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+          "docs/evidence/storage-growth/python-tests.log": "577db08bb9433f614594404fca50e6b08b3e30a99eb4da7028288acdf58871f3",
+          "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+          "scripts/tests/test_target_maintenance.py": "ed02ab41ef6086f0368e49f382246075de9508328f6394b744bebdd8781ccbab"
+        },
+        "input_paths": [
+          "docs/BUILD.md",
+          "scripts/target-maintenance.py",
+          "scripts/tests/test_target_maintenance.py"
+        ],
+        "method": "native_report",
+        "observation": "Реальные fixture Cargo clean и preview/apply сохранили candidate, tools/невыбранные отчёты и посторонние файлы; все 14 maintenance-тестов прошли",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/python-tests.log",
+        "scenario": "HG-0044-S1",
+        "scenario_sha256": "e0bf7a707eb44371502e73d4be802ee31a26b8f173a648963d5c8b3cd97a166b"
+      },
+      "17ee7bef0708e56450c8f51db133aa06d3f9f1f11600b0a9c559dad6a8cf17b3": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "cargo nextest list --locked --offline --message-format json; cargo build --locked --offline (baseline/dev0/split variants)",
+        "files": {
+          "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+          "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+          "docs/evidence/storage-growth/profile/baseline-dev-build-after-tests.stderr.txt": "bf2737774781cffcfed10e785fb8357fd78e16652dfa276d4e92255d837dd1ed",
+          "docs/evidence/storage-growth/profile/baseline-nextest-list.json": "3be7eae28f646dd30c7639f85c0ebfb55c0531a24e33392e64c588d39e8728af",
+          "docs/evidence/storage-growth/profile/baseline-nextest-list.stderr.txt": "1beaa237e679ab33cec8dd92fce25956f9f8514cf002015e3b2e488bb5e643d2",
+          "docs/evidence/storage-growth/profile/comparison.json": "98a0c5bb950a439d1f9e06e9b5fb0ca3f83dd413a7aaad68e54ccb99c3049344",
+          "docs/evidence/storage-growth/profile/dev-debug-0-dev-build-after-tests.stderr.txt": "d1bfbb8487dc9fb6fc95f9b5f753e2f3bd04a5964adba2e5de081393bc30ecac",
+          "docs/evidence/storage-growth/profile/dev-debug-0-nextest-list.json": "5ee2a7dd6c357fc4350f15c4c2b1d1db37838bb614469f97085fc6403bfc73b4",
+          "docs/evidence/storage-growth/profile/dev-debug-0-nextest-list.stderr.txt": "935816d0ecd0a2e216dc13e19264b01ebdc1ec6a1fc3c55577db7075d982f3ab",
+          "docs/evidence/storage-growth/profile/split-test-profile.json": "eea25aec909cbd357316b180c3ac199f7c10a0511c944f1de323ed7df6ef165d",
+          "docs/evidence/storage-growth/profile/test-debug-0-dev-build-after-tests.stderr.txt": "93dafe7d9fae82f0987fd93236cfa3d4df8ac7fc032872491662e7cba33c6cf6",
+          "docs/evidence/storage-growth/profile/test-debug-0-nextest-list.json": "cc98f757c98c78b86387da8b74de47abdffe03e386b171b6b9fa9eb26bcb9ba3",
+          "docs/evidence/storage-growth/profile/test-debug-0-nextest-list.stderr.txt": "d52f1d20d54b43c728de9f33d8ad5b5bbed6fd1e6424da1d6afff106ca813957",
+          "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8"
+        },
+        "input_paths": [
+          "Cargo.toml",
+          "docs/BUILD.md",
+          "docs/evidence/storage-growth/profile/baseline-dev-build-after-tests.stderr.txt",
+          "docs/evidence/storage-growth/profile/baseline-nextest-list.json",
+          "docs/evidence/storage-growth/profile/baseline-nextest-list.stderr.txt",
+          "docs/evidence/storage-growth/profile/comparison.json",
+          "docs/evidence/storage-growth/profile/dev-debug-0-dev-build-after-tests.stderr.txt",
+          "docs/evidence/storage-growth/profile/dev-debug-0-nextest-list.json",
+          "docs/evidence/storage-growth/profile/dev-debug-0-nextest-list.stderr.txt",
+          "docs/evidence/storage-growth/profile/split-test-profile.json",
+          "docs/evidence/storage-growth/profile/test-debug-0-dev-build-after-tests.stderr.txt",
+          "docs/evidence/storage-growth/profile/test-debug-0-nextest-list.json",
+          "docs/evidence/storage-growth/profile/test-debug-0-nextest-list.stderr.txt",
+          "rust-toolchain.toml"
+        ],
+        "method": "native_report",
+        "observation": "На одном исходном дереве закреплённого SHA 69e1c baseline и общий dev=0 имеют одинаковый перечень 197 тестов; Nextest уже создаёт CLI, последующая dev-сборка не дублирует профиль. Уникальные сохранённые байты 638906621→307661692; split-test-only вариант отдельно сохранён и не выбран",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/profile/comparison.json",
+        "scenario": "HG-0065-S2",
+        "scenario_sha256": "45696ea7d8fcbeec30f473db1cca0740943187f420620d444039f10de13b9d61"
+      },
+      "7057196b13dc98f939b7050d6d6324ff9a8fad1fd810a0c6928ea477a98df2bb": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python -m unittest discover -s scripts/tests -v",
+        "files": {
+          "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+          "docs/evidence/storage-growth/python-tests.log": "577db08bb9433f614594404fca50e6b08b3e30a99eb4da7028288acdf58871f3",
+          "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+          "scripts/tests/test_target_maintenance.py": "ed02ab41ef6086f0368e49f382246075de9508328f6394b744bebdd8781ccbab"
+        },
+        "input_paths": [
+          "docs/BUILD.md",
+          "scripts/target-maintenance.py",
+          "scripts/tests/test_target_maintenance.py"
+        ],
+        "method": "native_report",
+        "observation": "Hardlink/межобластные aliases считаются один раз; Windows DirEntry-zero regression использует реальный Path.stat. Отсутствие inode/allocated-size и граница 600 МиБ проверены",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/python-tests.log",
+        "scenario": "HG-0065-S1",
+        "scenario_sha256": "380f86c514d828948377054f36f2164bf7f4e919163d85a20821498661b47f10"
+      },
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "bb3577a2be75f9e6f6d2cfe60402ccda1adf8db375cb0bdca0b25dc1d7c743f7": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python -m unittest discover -s scripts/tests -v",
+        "files": {
+          "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+          "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+          "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+          "docs/evidence/storage-growth/python-tests.log": "577db08bb9433f614594404fca50e6b08b3e30a99eb4da7028288acdf58871f3",
+          "scripts/tests/test_verify.py": "9dd43825439486aea02f239ca2c47519d2d7cd915bd26b3657386b2b46cd0818",
+          "scripts/verify.py": "1df893e1494910a671ad64772020e5257cfbb78775a40c778daa06dbf7591ace"
+        },
+        "input_paths": [
+          "Cargo.lock",
+          "Cargo.toml",
+          "docs/BUILD.md",
+          "scripts/tests/test_verify.py",
+          "scripts/verify.py"
+        ],
+        "method": "native_report",
+        "observation": "Низкий запас проекта и отдельно низкий запас Cargo target отвергаются до capture/build; исходные отчёты не заменяются",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/python-tests.log",
+        "scenario": "HG-0065-S3",
+        "scenario_sha256": "63cfe8dbff00201ea2036ed6fe9960cdd16be811c0a2fb5ac6e97d08691de19a"
+      },
+      "c7b9fa58ccab0778199fd539f8d591f9c9bf0e6d733c87c8933b127a235228d9": {
+        "captured_at": "2026-10-01T07:56:24.569088+00:00",
+        "command": "python -m unittest discover -s scripts/tests -v",
+        "files": {
+          "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+          "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+          "docs/BUILD.md": "68dacb6e35a71fc6080d4b4e37e535cef2aa2396e88a5ebb08d5c3e56b7f179f",
+          "docs/evidence/storage-growth/python-tests.log": "577db08bb9433f614594404fca50e6b08b3e30a99eb4da7028288acdf58871f3",
+          "scripts/tests/test_verify.py": "9dd43825439486aea02f239ca2c47519d2d7cd915bd26b3657386b2b46cd0818",
+          "scripts/verify.py": "1df893e1494910a671ad64772020e5257cfbb78775a40c778daa06dbf7591ace"
+        },
+        "input_paths": [
+          "Cargo.lock",
+          "Cargo.toml",
+          "docs/BUILD.md",
+          "scripts/tests/test_verify.py",
+          "scripts/verify.py"
+        ],
+        "method": "native_report",
+        "observation": "Ровно 1 ГиБ разрешено; effective target разрешён через реальный read-only Cargo metadata, существующий предок вложенного пути выбран правильно",
+        "outcome": "passed",
+        "report": "docs/evidence/storage-growth/python-tests.log",
+        "scenario": "HG-0065-S4",
+        "scenario_sha256": "a4307a2857513081a2fdc96ba803ab0e324bfeb4621c3d651f87889edd0506b4"
+      }
+    }
+  },
+  "review": {
+    "change_sha256": "e299d03a89166437133f9d034256b248bfc3767c8d9bb556cb9177d7bff3b363",
+    "conclusion": "GO: требования, diff и исходные результаты проверены; замечания Windows inode и источника split-profile закрыты. Полное заключение: docs/evidence/storage-growth/independent-review.md. Область — только этап хранения; объединение, публикация, CI и активация отдельно.",
+    "reviewer": "Независимое инженерное ревью",
+    "verdict": "go"
+  },
+  "runs": []
+}
