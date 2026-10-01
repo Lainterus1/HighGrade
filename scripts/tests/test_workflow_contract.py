@@ -42,6 +42,21 @@ class WorkflowContractTests(unittest.TestCase):
             for boundary in ('pre-submit', 'Work', 'Git', 'SHA', 'приёмк'):
                 self.assertIn(boundary, body)
 
+    def test_planner_route_does_not_grant_goal_or_plan_only_execution(self):
+        # A structural regression tripwire. Semantic review and actor observations
+        # remain mandatory; this does not claim a real Goal API was exercised.
+        task = (KIT / 'procedures/task.md').read_text(encoding='utf-8')
+        template = (KIT / 'templates/AGENTS.md').read_text(encoding='utf-8')
+        planner = (KIT / 'procedures/planner.md').read_text(encoding='utf-8')
+        self.assertIn('Автоматический выбор Planner не разрешает Goal', task)
+        self.assertIn('Запрос только на план не разрешает Goal или реализацию', task)
+        self.assertIn('Принятие этого маршрута не разрешает создание Goal', template)
+        self.assertIn('подготовь план без Goal и реализации', template)
+        self.assertNotIn('это принятое проектом поручение на Goal', template)
+        self.assertNotIn('ограничь Goal подготовкой плана', template)
+        self.assertIn('сам по себе не разрешает создание Goal', planner)
+        self.assertIn('запрос только на план не разрешают создавать Goal', planner)
+
     def test_all_current_kit_markdown_links_resolve_after_the_rename(self):
         for path in KIT.rglob('*.md'):
             if {'skills', 'templates'} & set(path.relative_to(KIT).parts):
