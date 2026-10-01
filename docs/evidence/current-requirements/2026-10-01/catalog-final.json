@@ -1,0 +1,4009 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [],
+  "limitations": [
+    "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+  ],
+  "measurements": [
+    {
+      "changes": [
+        {
+          "id": "HG-0002",
+          "title": "Проектный каталог спецификаций и миграция",
+          "tags": [
+            "specifications"
+          ],
+          "goal": "Проектный каталог спецификаций и миграция",
+          "change_sha256": "a4f4da56052e867ad5108c3ef21c51b30c78178ad87ef683357fab63115bb321",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790269056,
+          "archived": true
+        },
+        {
+          "id": "HG-0003",
+          "title": "Связи, теги и выборочный контекст",
+          "tags": [
+            "specifications"
+          ],
+          "goal": "Связи, теги и выборочный контекст",
+          "change_sha256": "e68d8bcb863bd9aa39359ecc6edca57fb9407a11972223b7eb46a9aeb36c3404",
+          "human": "stale",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0002",
+                "title": "Проектный каталог спецификаций и миграция",
+                "integrated": true,
+                "reason": "Используется каталог и метаданные предыдущего этапа"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790269056,
+          "archived": true
+        },
+        {
+          "id": "HG-0004",
+          "title": "Привязки проверок и самостоятельный workflow",
+          "tags": [
+            "verification",
+            "workflow"
+          ],
+          "goal": "Привязки проверок и самостоятельный workflow",
+          "change_sha256": "a96fa66cbb93274e4382cacf9794c80d97f74456c922aeb62b02a3cc160a9f41",
+          "human": "stale",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0003",
+                "title": "Связи, теги и выборочный контекст",
+                "integrated": true,
+                "reason": "Используется каталог и метаданные предыдущего этапа"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0063",
+                "title": "Переносимый Commit и раздельные состояния доставки"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790269057,
+          "archived": true
+        },
+        {
+          "id": "HG-0006",
+          "title": "Выбор достаточного маршрута работы и исправление по существующему контракту",
+          "tags": [
+            "specifications",
+            "workflow"
+          ],
+          "goal": "Агент выбирает прямую работу, технический план или изменение спецификации по контракту задачи без потери проверок",
+          "change_sha256": "f386f12095c02147896c1877b9ef024cf1757436184f2da78c64ec6bef97ac82",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790275951,
+          "archived": true
+        },
+        {
+          "id": "HG-0008",
+          "title": "Перенос проверенного контракта без ложного PASS",
+          "tags": [
+            "specifications",
+            "verification"
+          ],
+          "goal": "Перенести ранее действующий контракт из сохранённого источника в нативный каталог без выдуманных доказательств его исполнения",
+          "change_sha256": "08f78b0ff43c7a068d150bd7eb22a425c3562b14347167d55b3b1af5370b00da",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790307705,
+          "archived": true
+        },
+        {
+          "id": "HG-0009",
+          "title": "Адаптация и структура проекта",
+          "tags": [
+            "documentation",
+            "workflow"
+          ],
+          "goal": "Действующие требования области «Адаптация и структура проекта» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+          "change_sha256": "cd74d0e6af0e27f817c4e21a7ab6daa6c0d2a6222f8a4f1448fb73e485973929",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0028",
+                "title": "Подключение без обязательного переноса документов"
+              },
+              {
+                "id": "HG-0047",
+                "title": "Последовательная инициализация и адаптация"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790312522,
+          "archived": true
+        },
+        {
+          "id": "HG-0010",
+          "title": "Самостоятельная Поставка и адаптация",
+          "tags": [
+            "documentation",
+            "installation"
+          ],
+          "goal": "Действующие требования области «Самостоятельная Поставка и адаптация» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+          "change_sha256": "7caee28e88d595142a4f53e34468204576ca6b4dd6ec8541d62d0fcff70312c8",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0027",
+                "title": "Прямые инструкции навыков и безопасное обновление"
+              },
+              {
+                "id": "HG-0063",
+                "title": "Переносимый Commit и раздельные состояния доставки"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790312524,
+          "archived": true
+        },
+        {
+          "id": "HG-0011",
+          "title": "Принятие, публикация и обновление",
+          "tags": [
+            "installation",
+            "workflow"
+          ],
+          "goal": "Действующие требования области «Принятие, публикация и обновление» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+          "change_sha256": "ec167c38b9fc5c396a9d06f855da74024e609cbff540cda702e9efbcb3d19fb7",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0063",
+                "title": "Переносимый Commit и раздельные состояния доставки"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790312525,
+          "archived": true
+        },
+        {
+          "id": "HG-0012",
+          "title": "Нумерация, прогресс и решение человека",
+          "tags": [
+            "specifications",
+            "workflow"
+          ],
+          "goal": "Действующие требования области «Нумерация, прогресс и решение человека» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+          "change_sha256": "6261bbf1137f779251a5e36f0c4b8bfc264a7a6f753176c14b960f47bd64f8d7",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790312527,
+          "archived": true
+        },
+        {
+          "id": "HG-0013",
+          "title": "Структурированные спецификации",
+          "tags": [
+            "specifications"
+          ],
+          "goal": "Действующие требования области «Структурированные спецификации» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+          "change_sha256": "83d635a72205abf11152ef9f2b61f78c4ef0327428f05d05b4c377992d67af1c",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790312529,
+          "archived": true
+        },
+        {
+          "id": "HG-0014",
+          "title": "Маршрут работы Проекта",
+          "tags": [
+            "workflow"
+          ],
+          "goal": "Действующие требования области «Маршрут работы Проекта» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+          "change_sha256": "103404b6fcb396417ab528db8c1706acd77700d8c40382fd4d5388736aa71e09",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790312531,
+          "archived": true
+        },
+        {
+          "id": "HG-0015",
+          "title": "Диагностика доступности инструментов",
+          "tags": [
+            "diagnostics"
+          ],
+          "goal": "Действующие требования области «Диагностика доступности инструментов» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+          "change_sha256": "116cc29ad28b307273137d589f87e78bdc822c55fa84162de072c966b033b578",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790312532,
+          "archived": true
+        },
+        {
+          "id": "HG-0016",
+          "title": "Вопросы при проработке задачи",
+          "tags": [
+            "workflow"
+          ],
+          "goal": "Действующие требования области «Вопросы при проработке задачи» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+          "change_sha256": "0c4749e3ef766a04a9c1eee7a92e8e2d88d8847f61229137e8da2a690a18d7b7",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790312534,
+          "archived": true
+        },
+        {
+          "id": "HG-0017",
+          "title": "Проверяемый маршрут сценария",
+          "tags": [
+            "verification"
+          ],
+          "goal": "Действующие требования области «Проверяемый маршрут сценария» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+          "change_sha256": "76c33c58e2a56b4d66a7abe31a28830996d0a97738a015103a019b30e5a072b6",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790312536,
+          "archived": true
+        },
+        {
+          "id": "HG-0018",
+          "title": "Имя High Grade и независимое ревью субагентом",
+          "tags": [
+            "verification",
+            "workflow"
+          ],
+          "goal": "Действующая Поставка использует имя High Grade и локальное независимое ревью субагентом.",
+          "change_sha256": "e16e8cd91a1a09b43947c0ea6df8a246c0f146970d24cf2c20c44af1dbaf77a5",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790316631,
+          "archived": true
+        },
+        {
+          "id": "HG-0019",
+          "title": "Жизненный цикл каталога target Проекта",
+          "tags": [
+            "installation"
+          ],
+          "goal": "Каталог сборок и временных файлов Проекта остаётся понятным, воспроизводимым и безопасным для обслуживания.",
+          "change_sha256": "97cc79981c9a2e6afc540c46650f1eb57f402b0b6b746c17c572a5da59cc3288",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "ready",
+          "created_at": 1790337620,
+          "archived": true
+        },
+        {
+          "id": "HG-0020",
+          "title": "Highgrade Planner и поэтапный Goal",
+          "tags": [
+            "workflow"
+          ],
+          "goal": "Поставка включает Highgrade Planner для зависимой работы, создаёт один поэтапно описанный Goal на согласованную цепочку и продолжает её до подтверждённого результата в границах полномочий",
+          "change_sha256": "8140ded8117bdf039f501a4d245e0ed2fa163f9ed7140a7865672cf0d420e854",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0006",
+                "title": "Выбор достаточного маршрута работы и исправление по существующему контракту",
+                "integrated": true,
+                "reason": "Сохраняется выбор прямой работы, технического плана и спеки по контракту"
+              },
+              {
+                "id": "HG-0014",
+                "title": "Маршрут работы Проекта",
+                "integrated": true,
+                "reason": "Маршрут исходного Проекта должен направлять зависимую работу в Planner"
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0063",
+                "title": "Переносимый Commit и раздельные состояния доставки"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790347042,
+          "archived": true
+        },
+        {
+          "id": "HG-0021",
+          "title": "Достаточные проверки и устойчивые доказательства",
+          "tags": [
+            "verification",
+            "workflow"
+          ],
+          "goal": "Агент High Grade выбирает достаточные сценарии и проверки, сохраняет устойчивые доказательства и передаёт полный результат на итоговое ревью без лишних повторных прогонов.",
+          "change_sha256": "19f401574687d048fb537c73f18d88e234b28c00efb62573188d2f006f02144c",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0004",
+                "title": "Привязки проверок и самостоятельный workflow",
+                "integrated": true,
+                "reason": "Сохраняются привязки проверок и достоверность исходных результатов"
+              },
+              {
+                "id": "HG-0006",
+                "title": "Выбор достаточного маршрута работы и исправление по существующему контракту",
+                "integrated": true,
+                "reason": "Проверки выбираются по изменённому поведению независимо от маршрута задачи"
+              },
+              {
+                "id": "HG-0017",
+                "title": "Проверяемый маршрут сценария",
+                "integrated": true,
+                "reason": "Каждый нормативный сценарий сохраняет наблюдаемое доказательство"
+              },
+              {
+                "id": "HG-0018",
+                "title": "Имя High Grade и независимое ревью субагентом",
+                "integrated": true,
+                "reason": "Итоговое независимое ревью относится к точной редакции и полному составу доказательств"
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0026",
+                "title": "Достаточные проверки и единые правила процесса"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790354136,
+          "archived": true
+        },
+        {
+          "id": "HG-0022",
+          "title": "Однопроходное завершение задач High Grade",
+          "tags": [
+            "verification",
+            "workflow"
+          ],
+          "goal": "High Grade передаёт актуальный проверенный результат между этапами без повторной работы и показывает точную причину, если затронутая часть требует перепроверки.",
+          "change_sha256": "82298ee8728cc6e99a9601cef0988496881219c66102c6f60eb2f1bd7b5bbf75",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0063",
+                "title": "Переносимый Commit и раздельные состояния доставки"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790360002,
+          "archived": true
+        },
+        {
+          "id": "HG-0023",
+          "title": "Быстрые проверки и статистика запусков",
+          "tags": [
+            "verification"
+          ],
+          "goal": "Быстро получать надёжный результат проверок без лишних прогонов и видеть измеренную стоимость тестов.",
+          "change_sha256": "8aebb372b6ed94d8f158b2cf781d6f2c74fd20a0f0fd422427e9c35e7646b578",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0026",
+                "title": "Достаточные проверки и единые правила процесса"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790396326,
+          "archived": true
+        },
+        {
+          "id": "HG-0024",
+          "title": "Честный учёт проверок и ресурсов тестов",
+          "tags": [
+            "verification"
+          ],
+          "goal": "Показывать точный охват автоматических проверок и выполнять проектные Rust-тесты без накопления временных файлов и лишних повторов.",
+          "change_sha256": "4840b2b7264ff08c460ed9388d36c6db35ed4811dd84cbc70a14b5bf2077ab29",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790400739,
+          "archived": true
+        },
+        {
+          "id": "HG-0025",
+          "title": "Экономный маршрут проверок и активации",
+          "tags": [
+            "installation",
+            "verification"
+          ],
+          "goal": "Убрать повторные полные проверки, вторую release-сборку и промежуточные активации без ослабления финальных барьеров.",
+          "change_sha256": "14fb761c82362338a0d7e306895933fd927900d6e809830c8063b319825de61a",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0021",
+                "title": "Достаточные проверки и устойчивые доказательства",
+                "integrated": true,
+                "reason": "Уточняется действующий контракт неповторяющихся проверок"
+              },
+              {
+                "id": "HG-0011",
+                "title": "Принятие, публикация и обновление",
+                "integrated": true,
+                "reason": "Сохраняется принятие коммита и отдельная местная активация"
+              }
+            ],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790404117,
+          "archived": true
+        },
+        {
+          "id": "HG-0026",
+          "title": "Достаточные проверки и единые правила процесса",
+          "tags": [
+            "verification",
+            "workflow"
+          ],
+          "goal": "Установить короткие непротиворечивые правила выбора проверок, владения инструкциями и происхождения наблюдений.",
+          "change_sha256": "7163cedeb104433ea5d3183fe9ef0f3c4d5e67f4f5aca333af0386b5ca8551a0",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0021",
+                "title": "Достаточные проверки и устойчивые доказательства",
+                "integrated": true,
+                "reason": "Уточняется достаточность проверок"
+              },
+              {
+                "id": "HG-0023",
+                "title": "Быстрые проверки и статистика запусков",
+                "integrated": true,
+                "reason": "Уточняется происхождение ручных наблюдений"
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0021",
+                "title": "Достаточные проверки и устойчивые доказательства"
+              },
+              {
+                "id": "HG-0023",
+                "title": "Быстрые проверки и статистика запусков"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790409351,
+          "archived": true
+        },
+        {
+          "id": "HG-0027",
+          "title": "Прямые инструкции навыков и безопасное обновление",
+          "tags": [
+            "documentation",
+            "installation"
+          ],
+          "goal": "Доставлять основную инструкцию непосредственно в навыке и безопасно обновлять принадлежащие High Grade файлы.",
+          "change_sha256": "f2cf1ece442b2517080afd31be0e7b368aabe2428021c39b25c1db626d186e9b",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0026",
+                "title": "Достаточные проверки и единые правила процесса",
+                "integrated": true,
+                "reason": "Использует сокращённые правила и матрицу проверок"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0010",
+                "title": "Самостоятельная Поставка и адаптация"
+              },
+              {
+                "id": "HG-0063",
+                "title": "Переносимый Commit и раздельные состояния доставки"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790409780,
+          "archived": true
+        },
+        {
+          "id": "HG-0028",
+          "title": "Подключение без обязательного переноса документов",
+          "tags": [
+            "documentation"
+          ],
+          "goal": "Подключать существующие документы по ролям без обязательного переноса и разделения.",
+          "change_sha256": "8c6a9ec06e33195661b749e217d0ec70aa038203c88f5d67dffab7ce4bda2b53",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0027",
+                "title": "Прямые инструкции навыков и безопасное обновление",
+                "integrated": true,
+                "reason": "Обновлённый способ доставки инструкции init"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0009",
+                "title": "Адаптация и структура проекта"
+              },
+              {
+                "id": "HG-0047",
+                "title": "Последовательная инициализация и адаптация"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790410773,
+          "archived": true
+        },
+        {
+          "id": "HG-0029",
+          "title": "Актуальность контракта, доказательств и решений",
+          "tags": [
+            "specifications",
+            "verification"
+          ],
+          "goal": "Разделить контракт, существенное доказательство и историю повторов при определении актуальности.",
+          "change_sha256": "e9bb49f0f8ce7d043b96361bb6e935591b60b010ba8575d5f5b90dbe9f0305b3",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0028",
+                "title": "Подключение без обязательного переноса документов",
+                "integrated": true,
+                "reason": "Продолжение согласованной цепочки"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790411133,
+          "archived": true
+        },
+        {
+          "id": "HG-0030",
+          "title": "Компактное чтение и редактирование спецификаций",
+          "tags": [
+            "specifications"
+          ],
+          "goal": "Сократить объём чтения и механические действия при работе с нативными спеками.",
+          "change_sha256": "ab09de3cc7cd5592037821c4b9f512b6ad240bfad230ff199a6306a81630bad2",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0029",
+                "title": "Актуальность контракта, доказательств и решений",
+                "integrated": true,
+                "reason": "Использует разделение контракта и результатов"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790411603,
+          "archived": true
+        },
+        {
+          "id": "HG-0031",
+          "title": "Совмещённая приёмка и активация точного результата",
+          "tags": [
+            "installation",
+            "workflow"
+          ],
+          "goal": "Объединить решение принять и разрешение активировать точный готовый результат без повторного вопроса.",
+          "change_sha256": "a48c6520462921e1a020fcf14a92a9b9c6f5ea0b37f2190a5fc174bc3a156a7c",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0030",
+                "title": "Компактное чтение и редактирование спецификаций",
+                "integrated": true,
+                "reason": "Компактная передача точного состояния"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0063",
+                "title": "Переносимый Commit и раздельные состояния доставки"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790411890,
+          "archived": true
+        },
+        {
+          "id": "HG-0032",
+          "title": "Минимальная адаптация проекта и итоговый маршрут выпуска",
+          "tags": [
+            "documentation",
+            "workflow"
+          ],
+          "goal": "Привести местные правила Проекта к обновлённой Поставке и завершить цепочку одним проверенным выпуском.",
+          "change_sha256": "ae70826fe040c574dad1b0521ba6f62912e11f4a42fb521c2820781f239567c1",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0026",
+                "title": "Достаточные проверки и единые правила процесса",
+                "integrated": true,
+                "reason": "Принимает обновлённый контракт Поставки"
+              },
+              {
+                "id": "HG-0027",
+                "title": "Прямые инструкции навыков и безопасное обновление",
+                "integrated": true,
+                "reason": "Принимает обновлённый контракт Поставки"
+              },
+              {
+                "id": "HG-0028",
+                "title": "Подключение без обязательного переноса документов",
+                "integrated": true,
+                "reason": "Принимает обновлённый контракт Поставки"
+              },
+              {
+                "id": "HG-0029",
+                "title": "Актуальность контракта, доказательств и решений",
+                "integrated": true,
+                "reason": "Принимает обновлённый контракт Поставки"
+              },
+              {
+                "id": "HG-0030",
+                "title": "Компактное чтение и редактирование спецификаций",
+                "integrated": true,
+                "reason": "Принимает обновлённый контракт Поставки"
+              },
+              {
+                "id": "HG-0031",
+                "title": "Совмещённая приёмка и активация точного результата",
+                "integrated": true,
+                "reason": "Принимает обновлённый контракт Поставки"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790412038,
+          "archived": true
+        },
+        {
+          "id": "HG-0033",
+          "title": "Компактная история результатов без потери восстановления",
+          "tags": [
+            "specifications"
+          ],
+          "goal": "Сократить повторное хранение доказательств, сохранив историю и транзакционную безопасность.",
+          "change_sha256": "761fe7e8bba391f9763adfff7587433b2b6106bf8074714c9737c096578f3027",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0064",
+                "title": "Общие входы доказательств без потери истории"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790415415,
+          "archived": true
+        },
+        {
+          "id": "HG-0034",
+          "title": "Пакетное оформление и повторное использование отчётов",
+          "tags": [
+            "verification"
+          ],
+          "goal": "Оформлять результаты штатными командами без повторного запуска пригодных тестов и временных скриптов.",
+          "change_sha256": "e87c2afa08b21e8835c433f0c8087ac4d34f08706f9d000d8b460551d87c2355",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790415417,
+          "archived": true
+        },
+        {
+          "id": "HG-0035",
+          "title": "Самодостаточная справка команд CLI",
+          "tags": [
+            "diagnostics",
+            "documentation"
+          ],
+          "goal": "Предоставить синтаксис, схемы и исправление ошибок непосредственно через инструмент.",
+          "change_sha256": "1cdc763ba50e8a20ee7b63af0152b2514fe8ab968d0586ca26094bca0913e434",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790415419,
+          "archived": true
+        },
+        {
+          "id": "HG-0036",
+          "title": "Однозначные статусы и диагностика выбранного действия",
+          "tags": [
+            "diagnostics",
+            "installation"
+          ],
+          "goal": "Отделить техническую проверку от решения и применения, диагностировать необходимые зависимости.",
+          "change_sha256": "e631438e570ce7b5a6fff74d86f53285d3d814feed9a8e19ea424fe9fcf2cb7e",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790415421,
+          "archived": true
+        },
+        {
+          "id": "HG-0037",
+          "title": "Выборочные операции каталога без лишних конфликтов",
+          "tags": [
+            "specifications"
+          ],
+          "goal": "Сократить работу с незатронутыми спеками при сохранении согласованности.",
+          "change_sha256": "c8436bb5b0868b69584c859a95b163cd5bf4a30c0795cbed8b86cfab2af377a8",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790415423,
+          "archived": true
+        },
+        {
+          "id": "HG-0038",
+          "title": "Безопасные теги и разметка интегрированных спецификаций",
+          "tags": [
+            "specifications"
+          ],
+          "goal": "Навигационные метаданные изменяются независимо от контракта, доказательств и решений.",
+          "change_sha256": "6f88d28510372f472458613fdbc96280710196388227d9207c3e9859631d578b",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790418477,
+          "archived": true
+        },
+        {
+          "id": "HG-0039",
+          "title": "Baseline затронутых требований для новых спецификаций",
+          "tags": [
+            "specifications"
+          ],
+          "goal": "Сократить служебный контекст без потери защиты от дрейфа требований.",
+          "change_sha256": "5fd49edb49163ef1e4cf4cb43f6dcea702da5fa8613790390e421d930434651f",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790418479,
+          "archived": true
+        },
+        {
+          "id": "HG-0040",
+          "title": "Содержательное представление спек и тематическая документация Tools",
+          "tags": [
+            "documentation",
+            "specifications",
+            "workflow"
+          ],
+          "goal": "Сократить поиск правил и чтение служебных полей при работе агента.",
+          "change_sha256": "15845c371ef3b2657a81246651309ce4ee73592ca026af2edf77771d459ff4e1",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790418481,
+          "archived": true
+        },
+        {
+          "id": "HG-0041",
+          "title": "Проектный JSON-реестр проблем и CLI",
+          "tags": [
+            "diagnostics"
+          ],
+          "goal": "Повторно использовать проверенные решения препятствий с согласованным хранением.",
+          "change_sha256": "22d03079fcd316563a7d792be0c98c963ad4c8bf69f6d59a5113f5c8adbff69b",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790421836,
+          "archived": true
+        },
+        {
+          "id": "HG-0042",
+          "title": "Процедура Fixer и повторное использование решений",
+          "tags": [
+            "diagnostics",
+            "workflow"
+          ],
+          "goal": "Восстанавливать условия основной задачи и сохранять полезные решения без обязательного учёта всех ошибок.",
+          "change_sha256": "eed7bba18f6abf5e3d445f1bf2787679f5c9d84bdc3f00803640319e284bc25f",
+          "human": "stale",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0041",
+                "title": "Проектный JSON-реестр проблем и CLI",
+                "integrated": true,
+                "reason": "Процедура использует готовые операции issue-*"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790421848,
+          "archived": true
+        },
+        {
+          "id": "HG-0043",
+          "title": "Согласование workflow, доказательств и Fixer к 0.3.0",
+          "tags": [
+            "documentation",
+            "verification",
+            "workflow"
+          ],
+          "goal": "Устранить неоднозначные проверки и дубли владельцев знаний без ложной актуализации истории.",
+          "change_sha256": "bdc872b541027a74c349a5e6e7759b43b74b57b425f972708422e2502b3a029f",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "ready",
+          "created_at": 1790424445,
+          "archived": true
+        },
+        {
+          "id": "HG-0044",
+          "title": "Безопасное обслуживание и воспроизводимый выпуск 0.3.0",
+          "tags": [
+            "installation",
+            "workflow"
+          ],
+          "goal": "Предоставить достаточную очистку и понятное восстановление среды, завершить цепочку проверенным выпуском.",
+          "change_sha256": "3cd29564851713de08cef671147c2601b4448e62f0a1dbe5db4d0e9064625423",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0043",
+                "title": "Согласование workflow, доказательств и Fixer к 0.3.0",
+                "integrated": true,
+                "reason": "Применяет уточнённые правила хранения и подтверждения результата при выпуске 0.3.0"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0065",
+                "title": "Контроль диска повторных Rust-сборок"
+              }
+            ]
+          },
+          "technical": "ready",
+          "created_at": 1790424447,
+          "archived": true
+        },
+        {
+          "id": "HG-0045",
+          "title": "Структурированное обследование проекта",
+          "tags": [
+            "installation",
+            "workflow"
+          ],
+          "goal": "Сохранять проверяемую карту, решения и продолжение до адаптации.",
+          "change_sha256": "487e16f45598d7807c28b9081c5c4edd21c31e07ebcd1e131ffcb18635d8fa29",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0049",
+                "title": "Готовность действий обследования и ясная диагностика"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790430806,
+          "archived": true
+        },
+        {
+          "id": "HG-0046",
+          "title": "Инструменты обследования и безопасные снимки",
+          "tags": [
+            "installation"
+          ],
+          "goal": "Автоматизировать сбор структуры, сохранность JSON и обнаружение значимых изменений.",
+          "change_sha256": "943e080f6b6f13dfed5c638b0a8a637d63f224e3c15be77e647fc3bad4794c17",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0045",
+                "title": "Структурированное обследование проекта",
+                "integrated": true,
+                "reason": "Использует модель и жизненный цикл обследования HG-0045."
+              }
+            ],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790430809,
+          "archived": true
+        },
+        {
+          "id": "HG-0047",
+          "title": "Последовательная инициализация и адаптация",
+          "tags": [
+            "installation",
+            "workflow"
+          ],
+          "goal": "Обеспечить опрос, обследование, адаптацию и проверку сквозного маршрута без лишних согласований.",
+          "change_sha256": "aff88262256e08b11f36ced8f5fde70ae5657824fb3c7bc9fa9d89abf888836c",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0046",
+                "title": "Инструменты обследования и безопасные снимки",
+                "integrated": true,
+                "reason": "Использует CLI обследования HG-0046 в последовательной адаптации."
+              }
+            ],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0009",
+                "title": "Адаптация и структура проекта"
+              },
+              {
+                "id": "HG-0028",
+                "title": "Подключение без обязательного переноса документов"
+              },
+              {
+                "id": "HG-0051",
+                "title": "Два маршрута init до репозитория и начальных спек"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790430812,
+          "archived": true
+        },
+        {
+          "id": "HG-0048",
+          "title": "Переносимость доказательств и адаптация среды",
+          "tags": [
+            "verification",
+            "workflow"
+          ],
+          "goal": "Переносимость доказательств и адаптация среды",
+          "change_sha256": "1235988dd1ca84d66ca042111038f631044da04f61fd779d53d2dc85bdf4289d",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0004",
+                "title": "Привязки проверок и самостоятельный workflow",
+                "integrated": true,
+                "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+              },
+              {
+                "id": "HG-0009",
+                "title": "Адаптация и структура проекта",
+                "integrated": true,
+                "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+              },
+              {
+                "id": "HG-0011",
+                "title": "Принятие, публикация и обновление",
+                "integrated": true,
+                "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+              },
+              {
+                "id": "HG-0043",
+                "title": "Согласование workflow, доказательств и Fixer к 0.3.0",
+                "integrated": true,
+                "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0063",
+                "title": "Переносимый Commit и раздельные состояния доставки"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790438587,
+          "archived": true
+        },
+        {
+          "id": "HG-0049",
+          "title": "Готовность действий обследования и ясная диагностика",
+          "tags": [
+            "installation",
+            "workflow"
+          ],
+          "goal": "Готовность действий обследования и ясная диагностика",
+          "change_sha256": "585fd063d72ed0fd129a6e03618b8170a2b1173ede1f24a2f7f9509eb16128ed",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0045",
+                "title": "Структурированное обследование проекта",
+                "integrated": true,
+                "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+              },
+              {
+                "id": "HG-0046",
+                "title": "Инструменты обследования и безопасные снимки",
+                "integrated": true,
+                "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+              },
+              {
+                "id": "HG-0047",
+                "title": "Последовательная инициализация и адаптация",
+                "integrated": true,
+                "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0045",
+                "title": "Структурированное обследование проекта"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790438590,
+          "archived": true
+        },
+        {
+          "id": "HG-0050",
+          "title": "Устойчивые результаты CLI и разделение селекторов",
+          "tags": [
+            "verification",
+            "workflow"
+          ],
+          "goal": "Устойчивые результаты CLI и разделение селекторов",
+          "change_sha256": "413f94abc272a6414b581bc15b954948f86ea305334f8fdd344f10f94a5713af",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0026",
+                "title": "Достаточные проверки и единые правила процесса",
+                "integrated": true,
+                "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+              },
+              {
+                "id": "HG-0040",
+                "title": "Содержательное представление спек и тематическая документация Tools",
+                "integrated": true,
+                "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+              }
+            ],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790438593,
+          "archived": true
+        },
+        {
+          "id": "HG-0051",
+          "title": "Два маршрута init до репозитория и начальных спек",
+          "tags": [
+            "installation",
+            "workflow"
+          ],
+          "goal": "Подготовить новый либо существующий проект к дальнейшей работе, завершив init репозиторием и начальными требованиями без реализации продукта.",
+          "change_sha256": "af0c661df1aa635d083b7960259a3a0ff29282e5d29a1af219b5810b31030205",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0045",
+                "title": "Структурированное обследование проекта",
+                "integrated": true,
+                "reason": "Сохраняется применимый контракт обследования, решений и готовности"
+              },
+              {
+                "id": "HG-0047",
+                "title": "Последовательная инициализация и адаптация",
+                "integrated": true,
+                "reason": "Сохраняется применимый контракт обследования, решений и готовности"
+              },
+              {
+                "id": "HG-0049",
+                "title": "Готовность действий обследования и ясная диагностика",
+                "integrated": true,
+                "reason": "Сохраняется применимый контракт обследования, решений и готовности"
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0047",
+                "title": "Последовательная инициализация и адаптация"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790487776,
+          "archived": true
+        },
+        {
+          "id": "HG-0052",
+          "title": "Решения человека и очередь внимания для интерфейса спек",
+          "tags": [
+            "specifications",
+            "workflow"
+          ],
+          "goal": "Отделить согласование содержания от приёмки результата и показывать человеку только актуальные обращения, требующие его действия.",
+          "change_sha256": "6a00eb9a60528933c415329a158fbedf274773c8a180d554f8d1315fd3cf53bb",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0012",
+                "title": "Нумерация, прогресс и решение человека",
+                "integrated": true,
+                "reason": "Существующие решения человека"
+              },
+              {
+                "id": "HG-0029",
+                "title": "Актуальность контракта, доказательств и решений",
+                "integrated": true,
+                "reason": "Актуальность редакции и доказательств"
+              },
+              {
+                "id": "HG-0037",
+                "title": "Выборочные операции каталога без лишних конфликтов",
+                "integrated": true,
+                "reason": "Локальный CAS"
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0059",
+                "title": "Достоверная очередь и интегрированная история спецификаций"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790498606,
+          "archived": true
+        },
+        {
+          "id": "HG-0053",
+          "title": "Локальный запуск интерфейса и безопасный доступ к проекту",
+          "tags": [
+            "installation",
+            "user-interface"
+          ],
+          "goal": "Открывать один выбранный проект в браузере через High Grade с безопасным локальным API и без зависимости пользовательского запуска от среды разработки.",
+          "change_sha256": "da1da889f29ed4f39728bec164067658a0a69db5e4b065b0d922c8a5d1719399",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0052",
+                "title": "Решения человека и очередь внимания для интерфейса спек",
+                "integrated": true,
+                "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+              }
+            ],
+            "related_to": [
+              {
+                "id": "HG-0030",
+                "title": "Компактное чтение и редактирование спецификаций",
+                "integrated": true,
+                "reason": "Общие операции чтения и редактирования каталога"
+              }
+            ],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790498624,
+          "archived": true
+        },
+        {
+          "id": "HG-0054",
+          "title": "Визуальная основа HighGrade и оформленный Storybook",
+          "tags": [
+            "user-interface"
+          ],
+          "goal": "Подготовить качественный shadcn-каркас, логотип и развиваемый каталог Storybook, чтобы человек мог оценить реальный интерфейс до подключения рабочих сценариев.",
+          "change_sha256": "28d111d71d5e15c9b729f46f81380484716b984a38d8aec32b0da747409b28bc",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0053",
+                "title": "Локальный запуск интерфейса и безопасный доступ к проекту",
+                "integrated": true,
+                "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0058",
+                "title": "Уточнение компактного интерфейса спецификаций и отзывчивости"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790498627,
+          "archived": true
+        },
+        {
+          "id": "HG-0055",
+          "title": "Просмотр актуальных спецификаций и навигация по решениям",
+          "tags": [
+            "specifications",
+            "user-interface"
+          ],
+          "goal": "Дать человеку полное читаемое представление поддерживаемых спек и понятную навигацию по обращениям без ИИ-пересказов.",
+          "change_sha256": "6bc420f435df2888b11b7f449dd03493ffc035cb57f8c0ccd98a2d602ed3b2cb",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0054",
+                "title": "Визуальная основа HighGrade и оформленный Storybook",
+                "integrated": true,
+                "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0058",
+                "title": "Уточнение компактного интерфейса спецификаций и отзывчивости"
+              },
+              {
+                "id": "HG-0059",
+                "title": "Достоверная очередь и интегрированная история спецификаций"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790498630,
+          "archived": true
+        },
+        {
+          "id": "HG-0056",
+          "title": "Редактирование спецификаций и решения человека в UI",
+          "tags": [
+            "specifications",
+            "user-interface"
+          ],
+          "goal": "Позволить безопасно уточнять существующие требования и записывать решения по конкретной версии, сохраняя ввод при конфликте.",
+          "change_sha256": "72ef946b8836a5fa302119ca105e72d704479c520e95cacb722ed3c403379f18",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0055",
+                "title": "Просмотр актуальных спецификаций и навигация по решениям",
+                "integrated": true,
+                "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": [
+              {
+                "id": "HG-0058",
+                "title": "Уточнение компактного интерфейса спецификаций и отзывчивости"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790498634,
+          "archived": true
+        },
+        {
+          "id": "HG-0057",
+          "title": "Самостоятельная поставка и итоговая проверка интерфейса спек",
+          "tags": [
+            "installation",
+            "user-interface"
+          ],
+          "goal": "Поставлять проверенный локальный интерфейс вместе с High Grade и обеспечивать воспроизводимую установку/обновление без среды разработки у пользователя.",
+          "change_sha256": "42e2858db739574ffde9860be9c90b3b2c1d19f8c5d2e5f8d5600c0babcbd330",
+          "human": "pending",
+          "links": {
+            "depends_on": [
+              {
+                "id": "HG-0056",
+                "title": "Редактирование спецификаций и решения человека в UI",
+                "integrated": true,
+                "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+              }
+            ],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790498637,
+          "archived": true
+        },
+        {
+          "id": "HG-0058",
+          "title": "Уточнение компактного интерфейса спецификаций и отзывчивости",
+          "tags": [
+            "specifications",
+            "user-interface"
+          ],
+          "goal": "Закрепить согласованное компактное представление спеки, оформление элементов и отзывчивое переключение без потери исходных данных и гарантий записи.",
+          "change_sha256": "14c2b4a17d545a680886cf68e9acc47a9bd8923d8a916743fd98a62cfd25865e",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0054",
+                "title": "Визуальная основа HighGrade и оформленный Storybook",
+                "integrated": true,
+                "reason": "Уточняет интегрированные требования по согласованным корректировкам интерфейса; исходная спека остаётся историей."
+              },
+              {
+                "id": "HG-0055",
+                "title": "Просмотр актуальных спецификаций и навигация по решениям",
+                "integrated": true,
+                "reason": "Уточняет интегрированные требования по согласованным корректировкам интерфейса; исходная спека остаётся историей."
+              },
+              {
+                "id": "HG-0056",
+                "title": "Редактирование спецификаций и решения человека в UI",
+                "integrated": true,
+                "reason": "Уточняет интегрированные требования по согласованным корректировкам интерфейса; исходная спека остаётся историей."
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0054",
+                "title": "Визуальная основа HighGrade и оформленный Storybook"
+              },
+              {
+                "id": "HG-0055",
+                "title": "Просмотр актуальных спецификаций и навигация по решениям"
+              },
+              {
+                "id": "HG-0056",
+                "title": "Редактирование спецификаций и решения человека в UI"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790657472,
+          "archived": true
+        },
+        {
+          "id": "HG-0059",
+          "title": "Достоверная очередь и интегрированная история спецификаций",
+          "tags": [
+            "specifications",
+            "user-interface"
+          ],
+          "goal": "Показывать человеку текущие действия и интегрированную историю как разные состояния, сохраняя точный технический статус и человеческие решения.",
+          "change_sha256": "8cb0faf421162d3a538ef75782f9c63c7806dcd37d3834e5704144a884554231",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0052",
+                "title": "Решения человека и очередь внимания для интерфейса спек",
+                "integrated": true,
+                "reason": "Уточняет интегрированную классификацию очереди и счётчики."
+              },
+              {
+                "id": "HG-0055",
+                "title": "Просмотр актуальных спецификаций и навигация по решениям",
+                "integrated": true,
+                "reason": "Уточняет навигацию и чтение истории в интерфейсе."
+              },
+              {
+                "id": "HG-0043",
+                "title": "Согласование workflow, доказательств и Fixer к 0.3.0",
+                "integrated": true,
+                "reason": "Сохраняет различие исторической интеграции и актуальности доказательств."
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0052",
+                "title": "Решения человека и очередь внимания для интерфейса спек"
+              },
+              {
+                "id": "HG-0055",
+                "title": "Просмотр актуальных спецификаций и навигация по решениям"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790696837,
+          "archived": true
+        },
+        {
+          "id": "HG-0060",
+          "title": "Совместимая локальная поставка и UI",
+          "tags": [],
+          "goal": "Собирать, проверять и использовать High Grade в текущем окружении Omarchy, сохраняя совместимость рабочих маршрутов Windows и Linux.",
+          "change_sha256": "89d78ff8fe9f1a491a9edb26e5848d4e74ed708201d7180b78a6d43c4283fb78",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790762700,
+          "archived": true
+        },
+        {
+          "id": "HG-0061",
+          "title": "Устранение разрывов надёжности UI и проверок",
+          "tags": [
+            "installation",
+            "specifications",
+            "user-interface"
+          ],
+          "goal": "Устранить шесть замечаний аудита без изменения границ приёмки, публикации и активной установки.",
+          "change_sha256": "08055d80cd764f2bcabb45f4753110ffa09765d655e580031dc895b14bc01419",
+          "human": "stale",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0052",
+                "title": "Решения человека и очередь внимания для интерфейса спек",
+                "integrated": true,
+                "reason": "Сохраняет гарантии явных обращений и приёмки"
+              },
+              {
+                "id": "HG-0056",
+                "title": "Редактирование спецификаций и решения человека в UI",
+                "integrated": true,
+                "reason": "Уточняет сохранность диалога решения"
+              },
+              {
+                "id": "HG-0057",
+                "title": "Самостоятельная поставка и итоговая проверка интерфейса спек",
+                "integrated": true,
+                "reason": "Уточняет раннюю проверку комплекта и installed-E2E"
+              },
+              {
+                "id": "HG-0035",
+                "title": "Самодостаточная справка команд CLI",
+                "integrated": true,
+                "reason": "Исправляет справку без нового контракта"
+              }
+            ],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790774484,
+          "archived": true
+        },
+        {
+          "id": "HG-0062",
+          "title": "Однозначная инструкция обновления общей Поставки",
+          "tags": [
+            "installation",
+            "workflow"
+          ],
+          "goal": "Устранить пять неоднозначностей инструкции Update, сохранив действующие гарантии установки и границы полномочий.",
+          "change_sha256": "8a600a7f24ec3e6b62dbfcad53f615e01c64505a88e006b8d77e27de0e7f8172",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0011",
+                "title": "Принятие, публикация и обновление",
+                "integrated": true,
+                "reason": "Сохраняет действующий контракт безопасного обновления без постоянного rollback."
+              },
+              {
+                "id": "HG-0027",
+                "title": "Прямые инструкции навыков и безопасное обновление",
+                "integrated": true,
+                "reason": "Уточняет инструкцию уже реализованного восстановления транзакции навыков."
+              },
+              {
+                "id": "HG-0036",
+                "title": "Однозначные статусы и диагностика выбранного действия",
+                "integrated": true,
+                "reason": "Объясняет уже существующее разделение validation, decision и applied."
+              }
+            ],
+            "same_requirements": []
+          },
+          "technical": "in_progress",
+          "created_at": 1790832435,
+          "archived": true
+        },
+        {
+          "id": "HG-0063",
+          "title": "Переносимый Commit и раздельные состояния доставки",
+          "tags": [
+            "installation",
+            "workflow"
+          ],
+          "goal": "Сделать Commit/Push переносимыми на solo Git, PR+remote CI и no-Git проекты, разделив фиксацию кандидата, финальную готовность, человеческую приёмку и активацию; безопасно заменить штатный Approve на Commit.",
+          "change_sha256": "f8ae51e15173545b91f7c7c5e48287dbbeb011356c970491262636a83104e430",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0011",
+                "title": "Принятие, публикация и обновление",
+                "integrated": true,
+                "reason": "Изменяет существующие границы локального завершения, отбора, отправки и статусов, сохраняя IDs и исторический контракт."
+              },
+              {
+                "id": "HG-0031",
+                "title": "Совмещённая приёмка и активация точного результата",
+                "integrated": true,
+                "reason": "Устраняет вывод приёмки из команды «активируй» без изменения защит записи решения."
+              },
+              {
+                "id": "HG-0027",
+                "title": "Прямые инструкции навыков и безопасное обновление",
+                "integrated": true,
+                "reason": "Расширяет существующую гарантию владения навыками на canonical переименование и восстановление."
+              },
+              {
+                "id": "HG-0047",
+                "title": "Последовательная инициализация и адаптация",
+                "integrated": true,
+                "reason": "Конкретизирует источники и сохранение местного маршрута при init без повторных вопросов."
+              },
+              {
+                "id": "HG-0048",
+                "title": "Переносимость доказательств и адаптация среды",
+                "integrated": true,
+                "reason": "Сохраняет независимость передачи доказательств и готовности, включая no-Git bundle."
+              },
+              {
+                "id": "HG-0052",
+                "title": "Решения человека и очередь внимания для интерфейса спек",
+                "integrated": true,
+                "reason": "Сохраняет readiness и fingerprint барьеры result attention и человеческого решения."
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0004",
+                "title": "Привязки проверок и самостоятельный workflow"
+              },
+              {
+                "id": "HG-0010",
+                "title": "Самостоятельная Поставка и адаптация"
+              },
+              {
+                "id": "HG-0011",
+                "title": "Принятие, публикация и обновление"
+              },
+              {
+                "id": "HG-0020",
+                "title": "Highgrade Planner и поэтапный Goal"
+              },
+              {
+                "id": "HG-0022",
+                "title": "Однопроходное завершение задач High Grade"
+              },
+              {
+                "id": "HG-0027",
+                "title": "Прямые инструкции навыков и безопасное обновление"
+              },
+              {
+                "id": "HG-0031",
+                "title": "Совмещённая приёмка и активация точного результата"
+              },
+              {
+                "id": "HG-0048",
+                "title": "Переносимость доказательств и адаптация среды"
+              }
+            ]
+          },
+          "technical": "in_progress",
+          "created_at": 1790833942,
+          "archived": false
+        },
+        {
+          "id": "HG-0064",
+          "title": "Общие входы доказательств без потери истории",
+          "tags": [
+            "specifications"
+          ],
+          "goal": "Уменьшить повторяющиеся данные доказательств системно, сохранив все наблюдения и проверку актуальности.",
+          "change_sha256": "ae472285b5ee8e0231b57ff675d1976227e1915e2139cb98f426d51ff951d6b9",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0033",
+                "title": "Компактная история результатов без потери восстановления",
+                "integrated": true,
+                "reason": "Расширяет существующий контракт компактного хранения"
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0033",
+                "title": "Компактная история результатов без потери восстановления"
+              }
+            ]
+          },
+          "technical": "ready",
+          "created_at": 1790840164,
+          "archived": true
+        },
+        {
+          "id": "HG-0065",
+          "title": "Контроль диска повторных Rust-сборок",
+          "tags": [],
+          "goal": "Снизить повторяемый объём Rust-сборок и заранее обнаруживать известный недостаток свободного места без произвольной очистки.",
+          "change_sha256": "61cf96ff86fb80a67643f9fbe7cfab6eb6a0d4b7e1a3484b439f523b5e5e5e6c",
+          "human": "pending",
+          "links": {
+            "depends_on": [],
+            "related_to": [
+              {
+                "id": "HG-0019",
+                "title": "Жизненный цикл каталога target Проекта",
+                "integrated": true,
+                "reason": "Сохраняет владельцев и срок жизни сборочных выходов"
+              },
+              {
+                "id": "HG-0044",
+                "title": "Безопасное обслуживание и воспроизводимый выпуск 0.3.0",
+                "integrated": true,
+                "reason": "Уточняет инвентаризацию существующего безопасного обслуживания"
+              }
+            ],
+            "same_requirements": [
+              {
+                "id": "HG-0044",
+                "title": "Безопасное обслуживание и воспроизводимый выпуск 0.3.0"
+              }
+            ]
+          },
+          "technical": "ready",
+          "created_at": 1790840670,
+          "archived": true
+        }
+      ],
+      "origins": {},
+      "requirements": [
+        "HG-0002-R1",
+        "HG-0002-R2",
+        "HG-0002-R3",
+        "HG-0003-R1",
+        "HG-0003-R2",
+        "HG-0003-R3",
+        "HG-0004-R1",
+        "HG-0004-R2",
+        "HG-0004-R3",
+        "HG-0006-R1",
+        "HG-0006-R2",
+        "HG-0006-R3",
+        "HG-0008-R1",
+        "HG-0009-R1",
+        "HG-0009-R2",
+        "HG-0009-R3",
+        "HG-0009-R4",
+        "HG-0009-R5",
+        "HG-0009-R6",
+        "HG-0009-R7",
+        "HG-0009-R8",
+        "HG-0010-R1",
+        "HG-0010-R2",
+        "HG-0010-R3",
+        "HG-0010-R4",
+        "HG-0010-R5",
+        "HG-0010-R6",
+        "HG-0010-R7",
+        "HG-0010-R8",
+        "HG-0010-R9",
+        "HG-0011-R1",
+        "HG-0011-R2",
+        "HG-0011-R3",
+        "HG-0011-R4",
+        "HG-0011-R5",
+        "HG-0012-R1",
+        "HG-0012-R2",
+        "HG-0012-R3",
+        "HG-0012-R4",
+        "HG-0012-R5",
+        "HG-0013-R1",
+        "HG-0013-R2",
+        "HG-0013-R3",
+        "HG-0013-R4",
+        "HG-0014-R1",
+        "HG-0015-R1",
+        "HG-0016-R1",
+        "HG-0017-R1",
+        "HG-0018-R1",
+        "HG-0018-R2",
+        "HG-0019-R1",
+        "HG-0019-R2",
+        "HG-0020-R1",
+        "HG-0020-R2",
+        "HG-0020-R3",
+        "HG-0020-R4",
+        "HG-0021-R1",
+        "HG-0021-R2",
+        "HG-0021-R3",
+        "HG-0021-R4",
+        "HG-0022-R1",
+        "HG-0022-R2",
+        "HG-0023-R1",
+        "HG-0023-R2",
+        "HG-0023-R3",
+        "HG-0024-R1",
+        "HG-0024-R2",
+        "HG-0025-R1",
+        "HG-0026-R1",
+        "HG-0029-R1",
+        "HG-0030-R1",
+        "HG-0031-R1",
+        "HG-0032-R1",
+        "HG-0033-R1",
+        "HG-0034-R1",
+        "HG-0035-R1",
+        "HG-0036-R1",
+        "HG-0037-R1",
+        "HG-0038-R1",
+        "HG-0039-R1",
+        "HG-0040-R1",
+        "HG-0041-R1",
+        "HG-0041-R2",
+        "HG-0041-R3",
+        "HG-0042-R1",
+        "HG-0042-R2",
+        "HG-0043-R1",
+        "HG-0043-R2",
+        "HG-0043-R3",
+        "HG-0044-R1",
+        "HG-0044-R2",
+        "HG-0044-R3",
+        "HG-0045-R1",
+        "HG-0045-R2",
+        "HG-0045-R3",
+        "HG-0046-R1",
+        "HG-0046-R2",
+        "HG-0046-R3",
+        "HG-0046-R4",
+        "HG-0047-R1",
+        "HG-0047-R2",
+        "HG-0047-R3",
+        "HG-0048-R1",
+        "HG-0048-R2",
+        "HG-0048-R3",
+        "HG-0049-R1",
+        "HG-0049-R2",
+        "HG-0049-R3",
+        "HG-0050-R1",
+        "HG-0050-R2",
+        "HG-0050-R3",
+        "HG-0051-R1",
+        "HG-0051-R2",
+        "HG-0051-R3",
+        "HG-0051-R4",
+        "HG-0051-R5",
+        "HG-0052-R1",
+        "HG-0052-R2",
+        "HG-0052-R3",
+        "HG-0052-R4",
+        "HG-0052-R5",
+        "HG-0053-R1",
+        "HG-0053-R2",
+        "HG-0053-R3",
+        "HG-0053-R4",
+        "HG-0054-R1",
+        "HG-0054-R2",
+        "HG-0054-R3",
+        "HG-0054-R4",
+        "HG-0054-R5",
+        "HG-0054-R6",
+        "HG-0055-R1",
+        "HG-0055-R2",
+        "HG-0055-R3",
+        "HG-0055-R4",
+        "HG-0056-R1",
+        "HG-0056-R2",
+        "HG-0056-R3",
+        "HG-0056-R4",
+        "HG-0057-R1",
+        "HG-0057-R2",
+        "HG-0057-R3",
+        "HG-0060-R1",
+        "HG-0061-R1",
+        "HG-0061-R2",
+        "HG-0061-R3",
+        "HG-0062-R1",
+        "HG-0065-R1",
+        "HG-0065-R2"
+      ],
+      "selection": {
+        "context_complete": false,
+        "filters": {
+          "--root": "/tmp/highgrade-current-evidence"
+        },
+        "selected": 62,
+        "total": 62
+      },
+      "summary": {
+        "abandoned": 0,
+        "accepted": 0,
+        "in_progress": 57,
+        "needs_changes": 0,
+        "pending": 49,
+        "ready": 5,
+        "stale": 13,
+        "total": 62
+      },
+      "summary_scope": "id/tag selection before technical/human filters"
+    },
+    {
+      "trace_sha256": "7909366df3b491f22b8d68c97b3881d3705fa3c2ef0b312ddc1c95e877ead1c8"
+    },
+    {
+      "schema_version": 3,
+      "store_sha256": "e0c153b73e429f7a5d06f19c9f90b084a01ad848cabc275db9e11cc1ba66bbff"
+    }
+  ],
+  "operation": "spec-list",
+  "result": {
+    "changes": [
+      {
+        "id": "HG-0002",
+        "title": "Проектный каталог спецификаций и миграция",
+        "tags": [
+          "specifications"
+        ],
+        "goal": "Проектный каталог спецификаций и миграция",
+        "change_sha256": "a4f4da56052e867ad5108c3ef21c51b30c78178ad87ef683357fab63115bb321",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790269056,
+        "archived": true
+      },
+      {
+        "id": "HG-0003",
+        "title": "Связи, теги и выборочный контекст",
+        "tags": [
+          "specifications"
+        ],
+        "goal": "Связи, теги и выборочный контекст",
+        "change_sha256": "e68d8bcb863bd9aa39359ecc6edca57fb9407a11972223b7eb46a9aeb36c3404",
+        "human": "stale",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0002",
+              "title": "Проектный каталог спецификаций и миграция",
+              "integrated": true,
+              "reason": "Используется каталог и метаданные предыдущего этапа"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790269056,
+        "archived": true
+      },
+      {
+        "id": "HG-0004",
+        "title": "Привязки проверок и самостоятельный workflow",
+        "tags": [
+          "verification",
+          "workflow"
+        ],
+        "goal": "Привязки проверок и самостоятельный workflow",
+        "change_sha256": "a96fa66cbb93274e4382cacf9794c80d97f74456c922aeb62b02a3cc160a9f41",
+        "human": "stale",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0003",
+              "title": "Связи, теги и выборочный контекст",
+              "integrated": true,
+              "reason": "Используется каталог и метаданные предыдущего этапа"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0063",
+              "title": "Переносимый Commit и раздельные состояния доставки"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790269057,
+        "archived": true
+      },
+      {
+        "id": "HG-0006",
+        "title": "Выбор достаточного маршрута работы и исправление по существующему контракту",
+        "tags": [
+          "specifications",
+          "workflow"
+        ],
+        "goal": "Агент выбирает прямую работу, технический план или изменение спецификации по контракту задачи без потери проверок",
+        "change_sha256": "f386f12095c02147896c1877b9ef024cf1757436184f2da78c64ec6bef97ac82",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790275951,
+        "archived": true
+      },
+      {
+        "id": "HG-0008",
+        "title": "Перенос проверенного контракта без ложного PASS",
+        "tags": [
+          "specifications",
+          "verification"
+        ],
+        "goal": "Перенести ранее действующий контракт из сохранённого источника в нативный каталог без выдуманных доказательств его исполнения",
+        "change_sha256": "08f78b0ff43c7a068d150bd7eb22a425c3562b14347167d55b3b1af5370b00da",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790307705,
+        "archived": true
+      },
+      {
+        "id": "HG-0009",
+        "title": "Адаптация и структура проекта",
+        "tags": [
+          "documentation",
+          "workflow"
+        ],
+        "goal": "Действующие требования области «Адаптация и структура проекта» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "change_sha256": "cd74d0e6af0e27f817c4e21a7ab6daa6c0d2a6222f8a4f1448fb73e485973929",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0028",
+              "title": "Подключение без обязательного переноса документов"
+            },
+            {
+              "id": "HG-0047",
+              "title": "Последовательная инициализация и адаптация"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790312522,
+        "archived": true
+      },
+      {
+        "id": "HG-0010",
+        "title": "Самостоятельная Поставка и адаптация",
+        "tags": [
+          "documentation",
+          "installation"
+        ],
+        "goal": "Действующие требования области «Самостоятельная Поставка и адаптация» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "change_sha256": "7caee28e88d595142a4f53e34468204576ca6b4dd6ec8541d62d0fcff70312c8",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0027",
+              "title": "Прямые инструкции навыков и безопасное обновление"
+            },
+            {
+              "id": "HG-0063",
+              "title": "Переносимый Commit и раздельные состояния доставки"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790312524,
+        "archived": true
+      },
+      {
+        "id": "HG-0011",
+        "title": "Принятие, публикация и обновление",
+        "tags": [
+          "installation",
+          "workflow"
+        ],
+        "goal": "Действующие требования области «Принятие, публикация и обновление» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "change_sha256": "ec167c38b9fc5c396a9d06f855da74024e609cbff540cda702e9efbcb3d19fb7",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0063",
+              "title": "Переносимый Commit и раздельные состояния доставки"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790312525,
+        "archived": true
+      },
+      {
+        "id": "HG-0012",
+        "title": "Нумерация, прогресс и решение человека",
+        "tags": [
+          "specifications",
+          "workflow"
+        ],
+        "goal": "Действующие требования области «Нумерация, прогресс и решение человека» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "change_sha256": "6261bbf1137f779251a5e36f0c4b8bfc264a7a6f753176c14b960f47bd64f8d7",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790312527,
+        "archived": true
+      },
+      {
+        "id": "HG-0013",
+        "title": "Структурированные спецификации",
+        "tags": [
+          "specifications"
+        ],
+        "goal": "Действующие требования области «Структурированные спецификации» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "change_sha256": "83d635a72205abf11152ef9f2b61f78c4ef0327428f05d05b4c377992d67af1c",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790312529,
+        "archived": true
+      },
+      {
+        "id": "HG-0014",
+        "title": "Маршрут работы Проекта",
+        "tags": [
+          "workflow"
+        ],
+        "goal": "Действующие требования области «Маршрут работы Проекта» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "change_sha256": "103404b6fcb396417ab528db8c1706acd77700d8c40382fd4d5388736aa71e09",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790312531,
+        "archived": true
+      },
+      {
+        "id": "HG-0015",
+        "title": "Диагностика доступности инструментов",
+        "tags": [
+          "diagnostics"
+        ],
+        "goal": "Действующие требования области «Диагностика доступности инструментов» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "change_sha256": "116cc29ad28b307273137d589f87e78bdc822c55fa84162de072c966b033b578",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790312532,
+        "archived": true
+      },
+      {
+        "id": "HG-0016",
+        "title": "Вопросы при проработке задачи",
+        "tags": [
+          "workflow"
+        ],
+        "goal": "Действующие требования области «Вопросы при проработке задачи» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "change_sha256": "0c4749e3ef766a04a9c1eee7a92e8e2d88d8847f61229137e8da2a690a18d7b7",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790312534,
+        "archived": true
+      },
+      {
+        "id": "HG-0017",
+        "title": "Проверяемый маршрут сценария",
+        "tags": [
+          "verification"
+        ],
+        "goal": "Действующие требования области «Проверяемый маршрут сценария» доступны в самостоятельном нативном формате с конкретными сценариями и честным статусом проверки",
+        "change_sha256": "76c33c58e2a56b4d66a7abe31a28830996d0a97738a015103a019b30e5a072b6",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790312536,
+        "archived": true
+      },
+      {
+        "id": "HG-0018",
+        "title": "Имя High Grade и независимое ревью субагентом",
+        "tags": [
+          "verification",
+          "workflow"
+        ],
+        "goal": "Действующая Поставка использует имя High Grade и локальное независимое ревью субагентом.",
+        "change_sha256": "e16e8cd91a1a09b43947c0ea6df8a246c0f146970d24cf2c20c44af1dbaf77a5",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790316631,
+        "archived": true
+      },
+      {
+        "id": "HG-0019",
+        "title": "Жизненный цикл каталога target Проекта",
+        "tags": [
+          "installation"
+        ],
+        "goal": "Каталог сборок и временных файлов Проекта остаётся понятным, воспроизводимым и безопасным для обслуживания.",
+        "change_sha256": "97cc79981c9a2e6afc540c46650f1eb57f402b0b6b746c17c572a5da59cc3288",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "ready",
+        "created_at": 1790337620,
+        "archived": true
+      },
+      {
+        "id": "HG-0020",
+        "title": "Highgrade Planner и поэтапный Goal",
+        "tags": [
+          "workflow"
+        ],
+        "goal": "Поставка включает Highgrade Planner для зависимой работы, создаёт один поэтапно описанный Goal на согласованную цепочку и продолжает её до подтверждённого результата в границах полномочий",
+        "change_sha256": "8140ded8117bdf039f501a4d245e0ed2fa163f9ed7140a7865672cf0d420e854",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0006",
+              "title": "Выбор достаточного маршрута работы и исправление по существующему контракту",
+              "integrated": true,
+              "reason": "Сохраняется выбор прямой работы, технического плана и спеки по контракту"
+            },
+            {
+              "id": "HG-0014",
+              "title": "Маршрут работы Проекта",
+              "integrated": true,
+              "reason": "Маршрут исходного Проекта должен направлять зависимую работу в Planner"
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0063",
+              "title": "Переносимый Commit и раздельные состояния доставки"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790347042,
+        "archived": true
+      },
+      {
+        "id": "HG-0021",
+        "title": "Достаточные проверки и устойчивые доказательства",
+        "tags": [
+          "verification",
+          "workflow"
+        ],
+        "goal": "Агент High Grade выбирает достаточные сценарии и проверки, сохраняет устойчивые доказательства и передаёт полный результат на итоговое ревью без лишних повторных прогонов.",
+        "change_sha256": "19f401574687d048fb537c73f18d88e234b28c00efb62573188d2f006f02144c",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0004",
+              "title": "Привязки проверок и самостоятельный workflow",
+              "integrated": true,
+              "reason": "Сохраняются привязки проверок и достоверность исходных результатов"
+            },
+            {
+              "id": "HG-0006",
+              "title": "Выбор достаточного маршрута работы и исправление по существующему контракту",
+              "integrated": true,
+              "reason": "Проверки выбираются по изменённому поведению независимо от маршрута задачи"
+            },
+            {
+              "id": "HG-0017",
+              "title": "Проверяемый маршрут сценария",
+              "integrated": true,
+              "reason": "Каждый нормативный сценарий сохраняет наблюдаемое доказательство"
+            },
+            {
+              "id": "HG-0018",
+              "title": "Имя High Grade и независимое ревью субагентом",
+              "integrated": true,
+              "reason": "Итоговое независимое ревью относится к точной редакции и полному составу доказательств"
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0026",
+              "title": "Достаточные проверки и единые правила процесса"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790354136,
+        "archived": true
+      },
+      {
+        "id": "HG-0022",
+        "title": "Однопроходное завершение задач High Grade",
+        "tags": [
+          "verification",
+          "workflow"
+        ],
+        "goal": "High Grade передаёт актуальный проверенный результат между этапами без повторной работы и показывает точную причину, если затронутая часть требует перепроверки.",
+        "change_sha256": "82298ee8728cc6e99a9601cef0988496881219c66102c6f60eb2f1bd7b5bbf75",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0063",
+              "title": "Переносимый Commit и раздельные состояния доставки"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790360002,
+        "archived": true
+      },
+      {
+        "id": "HG-0023",
+        "title": "Быстрые проверки и статистика запусков",
+        "tags": [
+          "verification"
+        ],
+        "goal": "Быстро получать надёжный результат проверок без лишних прогонов и видеть измеренную стоимость тестов.",
+        "change_sha256": "8aebb372b6ed94d8f158b2cf781d6f2c74fd20a0f0fd422427e9c35e7646b578",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0026",
+              "title": "Достаточные проверки и единые правила процесса"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790396326,
+        "archived": true
+      },
+      {
+        "id": "HG-0024",
+        "title": "Честный учёт проверок и ресурсов тестов",
+        "tags": [
+          "verification"
+        ],
+        "goal": "Показывать точный охват автоматических проверок и выполнять проектные Rust-тесты без накопления временных файлов и лишних повторов.",
+        "change_sha256": "4840b2b7264ff08c460ed9388d36c6db35ed4811dd84cbc70a14b5bf2077ab29",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790400739,
+        "archived": true
+      },
+      {
+        "id": "HG-0025",
+        "title": "Экономный маршрут проверок и активации",
+        "tags": [
+          "installation",
+          "verification"
+        ],
+        "goal": "Убрать повторные полные проверки, вторую release-сборку и промежуточные активации без ослабления финальных барьеров.",
+        "change_sha256": "14fb761c82362338a0d7e306895933fd927900d6e809830c8063b319825de61a",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0021",
+              "title": "Достаточные проверки и устойчивые доказательства",
+              "integrated": true,
+              "reason": "Уточняется действующий контракт неповторяющихся проверок"
+            },
+            {
+              "id": "HG-0011",
+              "title": "Принятие, публикация и обновление",
+              "integrated": true,
+              "reason": "Сохраняется принятие коммита и отдельная местная активация"
+            }
+          ],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790404117,
+        "archived": true
+      },
+      {
+        "id": "HG-0026",
+        "title": "Достаточные проверки и единые правила процесса",
+        "tags": [
+          "verification",
+          "workflow"
+        ],
+        "goal": "Установить короткие непротиворечивые правила выбора проверок, владения инструкциями и происхождения наблюдений.",
+        "change_sha256": "7163cedeb104433ea5d3183fe9ef0f3c4d5e67f4f5aca333af0386b5ca8551a0",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0021",
+              "title": "Достаточные проверки и устойчивые доказательства",
+              "integrated": true,
+              "reason": "Уточняется достаточность проверок"
+            },
+            {
+              "id": "HG-0023",
+              "title": "Быстрые проверки и статистика запусков",
+              "integrated": true,
+              "reason": "Уточняется происхождение ручных наблюдений"
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0021",
+              "title": "Достаточные проверки и устойчивые доказательства"
+            },
+            {
+              "id": "HG-0023",
+              "title": "Быстрые проверки и статистика запусков"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790409351,
+        "archived": true
+      },
+      {
+        "id": "HG-0027",
+        "title": "Прямые инструкции навыков и безопасное обновление",
+        "tags": [
+          "documentation",
+          "installation"
+        ],
+        "goal": "Доставлять основную инструкцию непосредственно в навыке и безопасно обновлять принадлежащие High Grade файлы.",
+        "change_sha256": "f2cf1ece442b2517080afd31be0e7b368aabe2428021c39b25c1db626d186e9b",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0026",
+              "title": "Достаточные проверки и единые правила процесса",
+              "integrated": true,
+              "reason": "Использует сокращённые правила и матрицу проверок"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0010",
+              "title": "Самостоятельная Поставка и адаптация"
+            },
+            {
+              "id": "HG-0063",
+              "title": "Переносимый Commit и раздельные состояния доставки"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790409780,
+        "archived": true
+      },
+      {
+        "id": "HG-0028",
+        "title": "Подключение без обязательного переноса документов",
+        "tags": [
+          "documentation"
+        ],
+        "goal": "Подключать существующие документы по ролям без обязательного переноса и разделения.",
+        "change_sha256": "8c6a9ec06e33195661b749e217d0ec70aa038203c88f5d67dffab7ce4bda2b53",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0027",
+              "title": "Прямые инструкции навыков и безопасное обновление",
+              "integrated": true,
+              "reason": "Обновлённый способ доставки инструкции init"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0009",
+              "title": "Адаптация и структура проекта"
+            },
+            {
+              "id": "HG-0047",
+              "title": "Последовательная инициализация и адаптация"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790410773,
+        "archived": true
+      },
+      {
+        "id": "HG-0029",
+        "title": "Актуальность контракта, доказательств и решений",
+        "tags": [
+          "specifications",
+          "verification"
+        ],
+        "goal": "Разделить контракт, существенное доказательство и историю повторов при определении актуальности.",
+        "change_sha256": "e9bb49f0f8ce7d043b96361bb6e935591b60b010ba8575d5f5b90dbe9f0305b3",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0028",
+              "title": "Подключение без обязательного переноса документов",
+              "integrated": true,
+              "reason": "Продолжение согласованной цепочки"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790411133,
+        "archived": true
+      },
+      {
+        "id": "HG-0030",
+        "title": "Компактное чтение и редактирование спецификаций",
+        "tags": [
+          "specifications"
+        ],
+        "goal": "Сократить объём чтения и механические действия при работе с нативными спеками.",
+        "change_sha256": "ab09de3cc7cd5592037821c4b9f512b6ad240bfad230ff199a6306a81630bad2",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0029",
+              "title": "Актуальность контракта, доказательств и решений",
+              "integrated": true,
+              "reason": "Использует разделение контракта и результатов"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790411603,
+        "archived": true
+      },
+      {
+        "id": "HG-0031",
+        "title": "Совмещённая приёмка и активация точного результата",
+        "tags": [
+          "installation",
+          "workflow"
+        ],
+        "goal": "Объединить решение принять и разрешение активировать точный готовый результат без повторного вопроса.",
+        "change_sha256": "a48c6520462921e1a020fcf14a92a9b9c6f5ea0b37f2190a5fc174bc3a156a7c",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0030",
+              "title": "Компактное чтение и редактирование спецификаций",
+              "integrated": true,
+              "reason": "Компактная передача точного состояния"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0063",
+              "title": "Переносимый Commit и раздельные состояния доставки"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790411890,
+        "archived": true
+      },
+      {
+        "id": "HG-0032",
+        "title": "Минимальная адаптация проекта и итоговый маршрут выпуска",
+        "tags": [
+          "documentation",
+          "workflow"
+        ],
+        "goal": "Привести местные правила Проекта к обновлённой Поставке и завершить цепочку одним проверенным выпуском.",
+        "change_sha256": "ae70826fe040c574dad1b0521ba6f62912e11f4a42fb521c2820781f239567c1",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0026",
+              "title": "Достаточные проверки и единые правила процесса",
+              "integrated": true,
+              "reason": "Принимает обновлённый контракт Поставки"
+            },
+            {
+              "id": "HG-0027",
+              "title": "Прямые инструкции навыков и безопасное обновление",
+              "integrated": true,
+              "reason": "Принимает обновлённый контракт Поставки"
+            },
+            {
+              "id": "HG-0028",
+              "title": "Подключение без обязательного переноса документов",
+              "integrated": true,
+              "reason": "Принимает обновлённый контракт Поставки"
+            },
+            {
+              "id": "HG-0029",
+              "title": "Актуальность контракта, доказательств и решений",
+              "integrated": true,
+              "reason": "Принимает обновлённый контракт Поставки"
+            },
+            {
+              "id": "HG-0030",
+              "title": "Компактное чтение и редактирование спецификаций",
+              "integrated": true,
+              "reason": "Принимает обновлённый контракт Поставки"
+            },
+            {
+              "id": "HG-0031",
+              "title": "Совмещённая приёмка и активация точного результата",
+              "integrated": true,
+              "reason": "Принимает обновлённый контракт Поставки"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790412038,
+        "archived": true
+      },
+      {
+        "id": "HG-0033",
+        "title": "Компактная история результатов без потери восстановления",
+        "tags": [
+          "specifications"
+        ],
+        "goal": "Сократить повторное хранение доказательств, сохранив историю и транзакционную безопасность.",
+        "change_sha256": "761fe7e8bba391f9763adfff7587433b2b6106bf8074714c9737c096578f3027",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0064",
+              "title": "Общие входы доказательств без потери истории"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790415415,
+        "archived": true
+      },
+      {
+        "id": "HG-0034",
+        "title": "Пакетное оформление и повторное использование отчётов",
+        "tags": [
+          "verification"
+        ],
+        "goal": "Оформлять результаты штатными командами без повторного запуска пригодных тестов и временных скриптов.",
+        "change_sha256": "e87c2afa08b21e8835c433f0c8087ac4d34f08706f9d000d8b460551d87c2355",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790415417,
+        "archived": true
+      },
+      {
+        "id": "HG-0035",
+        "title": "Самодостаточная справка команд CLI",
+        "tags": [
+          "diagnostics",
+          "documentation"
+        ],
+        "goal": "Предоставить синтаксис, схемы и исправление ошибок непосредственно через инструмент.",
+        "change_sha256": "1cdc763ba50e8a20ee7b63af0152b2514fe8ab968d0586ca26094bca0913e434",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790415419,
+        "archived": true
+      },
+      {
+        "id": "HG-0036",
+        "title": "Однозначные статусы и диагностика выбранного действия",
+        "tags": [
+          "diagnostics",
+          "installation"
+        ],
+        "goal": "Отделить техническую проверку от решения и применения, диагностировать необходимые зависимости.",
+        "change_sha256": "e631438e570ce7b5a6fff74d86f53285d3d814feed9a8e19ea424fe9fcf2cb7e",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790415421,
+        "archived": true
+      },
+      {
+        "id": "HG-0037",
+        "title": "Выборочные операции каталога без лишних конфликтов",
+        "tags": [
+          "specifications"
+        ],
+        "goal": "Сократить работу с незатронутыми спеками при сохранении согласованности.",
+        "change_sha256": "c8436bb5b0868b69584c859a95b163cd5bf4a30c0795cbed8b86cfab2af377a8",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790415423,
+        "archived": true
+      },
+      {
+        "id": "HG-0038",
+        "title": "Безопасные теги и разметка интегрированных спецификаций",
+        "tags": [
+          "specifications"
+        ],
+        "goal": "Навигационные метаданные изменяются независимо от контракта, доказательств и решений.",
+        "change_sha256": "6f88d28510372f472458613fdbc96280710196388227d9207c3e9859631d578b",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790418477,
+        "archived": true
+      },
+      {
+        "id": "HG-0039",
+        "title": "Baseline затронутых требований для новых спецификаций",
+        "tags": [
+          "specifications"
+        ],
+        "goal": "Сократить служебный контекст без потери защиты от дрейфа требований.",
+        "change_sha256": "5fd49edb49163ef1e4cf4cb43f6dcea702da5fa8613790390e421d930434651f",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790418479,
+        "archived": true
+      },
+      {
+        "id": "HG-0040",
+        "title": "Содержательное представление спек и тематическая документация Tools",
+        "tags": [
+          "documentation",
+          "specifications",
+          "workflow"
+        ],
+        "goal": "Сократить поиск правил и чтение служебных полей при работе агента.",
+        "change_sha256": "15845c371ef3b2657a81246651309ce4ee73592ca026af2edf77771d459ff4e1",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790418481,
+        "archived": true
+      },
+      {
+        "id": "HG-0041",
+        "title": "Проектный JSON-реестр проблем и CLI",
+        "tags": [
+          "diagnostics"
+        ],
+        "goal": "Повторно использовать проверенные решения препятствий с согласованным хранением.",
+        "change_sha256": "22d03079fcd316563a7d792be0c98c963ad4c8bf69f6d59a5113f5c8adbff69b",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790421836,
+        "archived": true
+      },
+      {
+        "id": "HG-0042",
+        "title": "Процедура Fixer и повторное использование решений",
+        "tags": [
+          "diagnostics",
+          "workflow"
+        ],
+        "goal": "Восстанавливать условия основной задачи и сохранять полезные решения без обязательного учёта всех ошибок.",
+        "change_sha256": "eed7bba18f6abf5e3d445f1bf2787679f5c9d84bdc3f00803640319e284bc25f",
+        "human": "stale",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0041",
+              "title": "Проектный JSON-реестр проблем и CLI",
+              "integrated": true,
+              "reason": "Процедура использует готовые операции issue-*"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790421848,
+        "archived": true
+      },
+      {
+        "id": "HG-0043",
+        "title": "Согласование workflow, доказательств и Fixer к 0.3.0",
+        "tags": [
+          "documentation",
+          "verification",
+          "workflow"
+        ],
+        "goal": "Устранить неоднозначные проверки и дубли владельцев знаний без ложной актуализации истории.",
+        "change_sha256": "bdc872b541027a74c349a5e6e7759b43b74b57b425f972708422e2502b3a029f",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "ready",
+        "created_at": 1790424445,
+        "archived": true
+      },
+      {
+        "id": "HG-0044",
+        "title": "Безопасное обслуживание и воспроизводимый выпуск 0.3.0",
+        "tags": [
+          "installation",
+          "workflow"
+        ],
+        "goal": "Предоставить достаточную очистку и понятное восстановление среды, завершить цепочку проверенным выпуском.",
+        "change_sha256": "3cd29564851713de08cef671147c2601b4448e62f0a1dbe5db4d0e9064625423",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0043",
+              "title": "Согласование workflow, доказательств и Fixer к 0.3.0",
+              "integrated": true,
+              "reason": "Применяет уточнённые правила хранения и подтверждения результата при выпуске 0.3.0"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0065",
+              "title": "Контроль диска повторных Rust-сборок"
+            }
+          ]
+        },
+        "technical": "ready",
+        "created_at": 1790424447,
+        "archived": true
+      },
+      {
+        "id": "HG-0045",
+        "title": "Структурированное обследование проекта",
+        "tags": [
+          "installation",
+          "workflow"
+        ],
+        "goal": "Сохранять проверяемую карту, решения и продолжение до адаптации.",
+        "change_sha256": "487e16f45598d7807c28b9081c5c4edd21c31e07ebcd1e131ffcb18635d8fa29",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0049",
+              "title": "Готовность действий обследования и ясная диагностика"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790430806,
+        "archived": true
+      },
+      {
+        "id": "HG-0046",
+        "title": "Инструменты обследования и безопасные снимки",
+        "tags": [
+          "installation"
+        ],
+        "goal": "Автоматизировать сбор структуры, сохранность JSON и обнаружение значимых изменений.",
+        "change_sha256": "943e080f6b6f13dfed5c638b0a8a637d63f224e3c15be77e647fc3bad4794c17",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0045",
+              "title": "Структурированное обследование проекта",
+              "integrated": true,
+              "reason": "Использует модель и жизненный цикл обследования HG-0045."
+            }
+          ],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790430809,
+        "archived": true
+      },
+      {
+        "id": "HG-0047",
+        "title": "Последовательная инициализация и адаптация",
+        "tags": [
+          "installation",
+          "workflow"
+        ],
+        "goal": "Обеспечить опрос, обследование, адаптацию и проверку сквозного маршрута без лишних согласований.",
+        "change_sha256": "aff88262256e08b11f36ced8f5fde70ae5657824fb3c7bc9fa9d89abf888836c",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0046",
+              "title": "Инструменты обследования и безопасные снимки",
+              "integrated": true,
+              "reason": "Использует CLI обследования HG-0046 в последовательной адаптации."
+            }
+          ],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0009",
+              "title": "Адаптация и структура проекта"
+            },
+            {
+              "id": "HG-0028",
+              "title": "Подключение без обязательного переноса документов"
+            },
+            {
+              "id": "HG-0051",
+              "title": "Два маршрута init до репозитория и начальных спек"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790430812,
+        "archived": true
+      },
+      {
+        "id": "HG-0048",
+        "title": "Переносимость доказательств и адаптация среды",
+        "tags": [
+          "verification",
+          "workflow"
+        ],
+        "goal": "Переносимость доказательств и адаптация среды",
+        "change_sha256": "1235988dd1ca84d66ca042111038f631044da04f61fd779d53d2dc85bdf4289d",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0004",
+              "title": "Привязки проверок и самостоятельный workflow",
+              "integrated": true,
+              "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+            },
+            {
+              "id": "HG-0009",
+              "title": "Адаптация и структура проекта",
+              "integrated": true,
+              "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+            },
+            {
+              "id": "HG-0011",
+              "title": "Принятие, публикация и обновление",
+              "integrated": true,
+              "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+            },
+            {
+              "id": "HG-0043",
+              "title": "Согласование workflow, доказательств и Fixer к 0.3.0",
+              "integrated": true,
+              "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0063",
+              "title": "Переносимый Commit и раздельные состояния доставки"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790438587,
+        "archived": true
+      },
+      {
+        "id": "HG-0049",
+        "title": "Готовность действий обследования и ясная диагностика",
+        "tags": [
+          "installation",
+          "workflow"
+        ],
+        "goal": "Готовность действий обследования и ясная диагностика",
+        "change_sha256": "585fd063d72ed0fd129a6e03618b8170a2b1173ede1f24a2f7f9509eb16128ed",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0045",
+              "title": "Структурированное обследование проекта",
+              "integrated": true,
+              "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+            },
+            {
+              "id": "HG-0046",
+              "title": "Инструменты обследования и безопасные снимки",
+              "integrated": true,
+              "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+            },
+            {
+              "id": "HG-0047",
+              "title": "Последовательная инициализация и адаптация",
+              "integrated": true,
+              "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0045",
+              "title": "Структурированное обследование проекта"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790438590,
+        "archived": true
+      },
+      {
+        "id": "HG-0050",
+        "title": "Устойчивые результаты CLI и разделение селекторов",
+        "tags": [
+          "verification",
+          "workflow"
+        ],
+        "goal": "Устойчивые результаты CLI и разделение селекторов",
+        "change_sha256": "413f94abc272a6414b581bc15b954948f86ea305334f8fdd344f10f94a5713af",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0026",
+              "title": "Достаточные проверки и единые правила процесса",
+              "integrated": true,
+              "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+            },
+            {
+              "id": "HG-0040",
+              "title": "Содержательное представление спек и тематическая документация Tools",
+              "integrated": true,
+              "reason": "Дополняет применимый контракт без переноса исторической приёмки"
+            }
+          ],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790438593,
+        "archived": true
+      },
+      {
+        "id": "HG-0051",
+        "title": "Два маршрута init до репозитория и начальных спек",
+        "tags": [
+          "installation",
+          "workflow"
+        ],
+        "goal": "Подготовить новый либо существующий проект к дальнейшей работе, завершив init репозиторием и начальными требованиями без реализации продукта.",
+        "change_sha256": "af0c661df1aa635d083b7960259a3a0ff29282e5d29a1af219b5810b31030205",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0045",
+              "title": "Структурированное обследование проекта",
+              "integrated": true,
+              "reason": "Сохраняется применимый контракт обследования, решений и готовности"
+            },
+            {
+              "id": "HG-0047",
+              "title": "Последовательная инициализация и адаптация",
+              "integrated": true,
+              "reason": "Сохраняется применимый контракт обследования, решений и готовности"
+            },
+            {
+              "id": "HG-0049",
+              "title": "Готовность действий обследования и ясная диагностика",
+              "integrated": true,
+              "reason": "Сохраняется применимый контракт обследования, решений и готовности"
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0047",
+              "title": "Последовательная инициализация и адаптация"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790487776,
+        "archived": true
+      },
+      {
+        "id": "HG-0052",
+        "title": "Решения человека и очередь внимания для интерфейса спек",
+        "tags": [
+          "specifications",
+          "workflow"
+        ],
+        "goal": "Отделить согласование содержания от приёмки результата и показывать человеку только актуальные обращения, требующие его действия.",
+        "change_sha256": "6a00eb9a60528933c415329a158fbedf274773c8a180d554f8d1315fd3cf53bb",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0012",
+              "title": "Нумерация, прогресс и решение человека",
+              "integrated": true,
+              "reason": "Существующие решения человека"
+            },
+            {
+              "id": "HG-0029",
+              "title": "Актуальность контракта, доказательств и решений",
+              "integrated": true,
+              "reason": "Актуальность редакции и доказательств"
+            },
+            {
+              "id": "HG-0037",
+              "title": "Выборочные операции каталога без лишних конфликтов",
+              "integrated": true,
+              "reason": "Локальный CAS"
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0059",
+              "title": "Достоверная очередь и интегрированная история спецификаций"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790498606,
+        "archived": true
+      },
+      {
+        "id": "HG-0053",
+        "title": "Локальный запуск интерфейса и безопасный доступ к проекту",
+        "tags": [
+          "installation",
+          "user-interface"
+        ],
+        "goal": "Открывать один выбранный проект в браузере через High Grade с безопасным локальным API и без зависимости пользовательского запуска от среды разработки.",
+        "change_sha256": "da1da889f29ed4f39728bec164067658a0a69db5e4b065b0d922c8a5d1719399",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0052",
+              "title": "Решения человека и очередь внимания для интерфейса спек",
+              "integrated": true,
+              "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+            }
+          ],
+          "related_to": [
+            {
+              "id": "HG-0030",
+              "title": "Компактное чтение и редактирование спецификаций",
+              "integrated": true,
+              "reason": "Общие операции чтения и редактирования каталога"
+            }
+          ],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790498624,
+        "archived": true
+      },
+      {
+        "id": "HG-0054",
+        "title": "Визуальная основа HighGrade и оформленный Storybook",
+        "tags": [
+          "user-interface"
+        ],
+        "goal": "Подготовить качественный shadcn-каркас, логотип и развиваемый каталог Storybook, чтобы человек мог оценить реальный интерфейс до подключения рабочих сценариев.",
+        "change_sha256": "28d111d71d5e15c9b729f46f81380484716b984a38d8aec32b0da747409b28bc",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0053",
+              "title": "Локальный запуск интерфейса и безопасный доступ к проекту",
+              "integrated": true,
+              "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0058",
+              "title": "Уточнение компактного интерфейса спецификаций и отзывчивости"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790498627,
+        "archived": true
+      },
+      {
+        "id": "HG-0055",
+        "title": "Просмотр актуальных спецификаций и навигация по решениям",
+        "tags": [
+          "specifications",
+          "user-interface"
+        ],
+        "goal": "Дать человеку полное читаемое представление поддерживаемых спек и понятную навигацию по обращениям без ИИ-пересказов.",
+        "change_sha256": "6bc420f435df2888b11b7f449dd03493ffc035cb57f8c0ccd98a2d602ed3b2cb",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0054",
+              "title": "Визуальная основа HighGrade и оформленный Storybook",
+              "integrated": true,
+              "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0058",
+              "title": "Уточнение компактного интерфейса спецификаций и отзывчивости"
+            },
+            {
+              "id": "HG-0059",
+              "title": "Достоверная очередь и интегрированная история спецификаций"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790498630,
+        "archived": true
+      },
+      {
+        "id": "HG-0056",
+        "title": "Редактирование спецификаций и решения человека в UI",
+        "tags": [
+          "specifications",
+          "user-interface"
+        ],
+        "goal": "Позволить безопасно уточнять существующие требования и записывать решения по конкретной версии, сохраняя ввод при конфликте.",
+        "change_sha256": "72ef946b8836a5fa302119ca105e72d704479c520e95cacb722ed3c403379f18",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0055",
+              "title": "Просмотр актуальных спецификаций и навигация по решениям",
+              "integrated": true,
+              "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": [
+            {
+              "id": "HG-0058",
+              "title": "Уточнение компактного интерфейса спецификаций и отзывчивости"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790498634,
+        "archived": true
+      },
+      {
+        "id": "HG-0057",
+        "title": "Самостоятельная поставка и итоговая проверка интерфейса спек",
+        "tags": [
+          "installation",
+          "user-interface"
+        ],
+        "goal": "Поставлять проверенный локальный интерфейс вместе с High Grade и обеспечивать воспроизводимую установку/обновление без среды разработки у пользователя.",
+        "change_sha256": "42e2858db739574ffde9860be9c90b3b2c1d19f8c5d2e5f8d5600c0babcbd330",
+        "human": "pending",
+        "links": {
+          "depends_on": [
+            {
+              "id": "HG-0056",
+              "title": "Редактирование спецификаций и решения человека в UI",
+              "integrated": true,
+              "reason": "Нужен подтверждённый результат предыдущего сегмента и сверка текущей спеки перед работой"
+            }
+          ],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790498637,
+        "archived": true
+      },
+      {
+        "id": "HG-0058",
+        "title": "Уточнение компактного интерфейса спецификаций и отзывчивости",
+        "tags": [
+          "specifications",
+          "user-interface"
+        ],
+        "goal": "Закрепить согласованное компактное представление спеки, оформление элементов и отзывчивое переключение без потери исходных данных и гарантий записи.",
+        "change_sha256": "14c2b4a17d545a680886cf68e9acc47a9bd8923d8a916743fd98a62cfd25865e",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0054",
+              "title": "Визуальная основа HighGrade и оформленный Storybook",
+              "integrated": true,
+              "reason": "Уточняет интегрированные требования по согласованным корректировкам интерфейса; исходная спека остаётся историей."
+            },
+            {
+              "id": "HG-0055",
+              "title": "Просмотр актуальных спецификаций и навигация по решениям",
+              "integrated": true,
+              "reason": "Уточняет интегрированные требования по согласованным корректировкам интерфейса; исходная спека остаётся историей."
+            },
+            {
+              "id": "HG-0056",
+              "title": "Редактирование спецификаций и решения человека в UI",
+              "integrated": true,
+              "reason": "Уточняет интегрированные требования по согласованным корректировкам интерфейса; исходная спека остаётся историей."
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0054",
+              "title": "Визуальная основа HighGrade и оформленный Storybook"
+            },
+            {
+              "id": "HG-0055",
+              "title": "Просмотр актуальных спецификаций и навигация по решениям"
+            },
+            {
+              "id": "HG-0056",
+              "title": "Редактирование спецификаций и решения человека в UI"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790657472,
+        "archived": true
+      },
+      {
+        "id": "HG-0059",
+        "title": "Достоверная очередь и интегрированная история спецификаций",
+        "tags": [
+          "specifications",
+          "user-interface"
+        ],
+        "goal": "Показывать человеку текущие действия и интегрированную историю как разные состояния, сохраняя точный технический статус и человеческие решения.",
+        "change_sha256": "8cb0faf421162d3a538ef75782f9c63c7806dcd37d3834e5704144a884554231",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0052",
+              "title": "Решения человека и очередь внимания для интерфейса спек",
+              "integrated": true,
+              "reason": "Уточняет интегрированную классификацию очереди и счётчики."
+            },
+            {
+              "id": "HG-0055",
+              "title": "Просмотр актуальных спецификаций и навигация по решениям",
+              "integrated": true,
+              "reason": "Уточняет навигацию и чтение истории в интерфейсе."
+            },
+            {
+              "id": "HG-0043",
+              "title": "Согласование workflow, доказательств и Fixer к 0.3.0",
+              "integrated": true,
+              "reason": "Сохраняет различие исторической интеграции и актуальности доказательств."
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0052",
+              "title": "Решения человека и очередь внимания для интерфейса спек"
+            },
+            {
+              "id": "HG-0055",
+              "title": "Просмотр актуальных спецификаций и навигация по решениям"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790696837,
+        "archived": true
+      },
+      {
+        "id": "HG-0060",
+        "title": "Совместимая локальная поставка и UI",
+        "tags": [],
+        "goal": "Собирать, проверять и использовать High Grade в текущем окружении Omarchy, сохраняя совместимость рабочих маршрутов Windows и Linux.",
+        "change_sha256": "89d78ff8fe9f1a491a9edb26e5848d4e74ed708201d7180b78a6d43c4283fb78",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790762700,
+        "archived": true
+      },
+      {
+        "id": "HG-0061",
+        "title": "Устранение разрывов надёжности UI и проверок",
+        "tags": [
+          "installation",
+          "specifications",
+          "user-interface"
+        ],
+        "goal": "Устранить шесть замечаний аудита без изменения границ приёмки, публикации и активной установки.",
+        "change_sha256": "08055d80cd764f2bcabb45f4753110ffa09765d655e580031dc895b14bc01419",
+        "human": "stale",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0052",
+              "title": "Решения человека и очередь внимания для интерфейса спек",
+              "integrated": true,
+              "reason": "Сохраняет гарантии явных обращений и приёмки"
+            },
+            {
+              "id": "HG-0056",
+              "title": "Редактирование спецификаций и решения человека в UI",
+              "integrated": true,
+              "reason": "Уточняет сохранность диалога решения"
+            },
+            {
+              "id": "HG-0057",
+              "title": "Самостоятельная поставка и итоговая проверка интерфейса спек",
+              "integrated": true,
+              "reason": "Уточняет раннюю проверку комплекта и installed-E2E"
+            },
+            {
+              "id": "HG-0035",
+              "title": "Самодостаточная справка команд CLI",
+              "integrated": true,
+              "reason": "Исправляет справку без нового контракта"
+            }
+          ],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790774484,
+        "archived": true
+      },
+      {
+        "id": "HG-0062",
+        "title": "Однозначная инструкция обновления общей Поставки",
+        "tags": [
+          "installation",
+          "workflow"
+        ],
+        "goal": "Устранить пять неоднозначностей инструкции Update, сохранив действующие гарантии установки и границы полномочий.",
+        "change_sha256": "8a600a7f24ec3e6b62dbfcad53f615e01c64505a88e006b8d77e27de0e7f8172",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0011",
+              "title": "Принятие, публикация и обновление",
+              "integrated": true,
+              "reason": "Сохраняет действующий контракт безопасного обновления без постоянного rollback."
+            },
+            {
+              "id": "HG-0027",
+              "title": "Прямые инструкции навыков и безопасное обновление",
+              "integrated": true,
+              "reason": "Уточняет инструкцию уже реализованного восстановления транзакции навыков."
+            },
+            {
+              "id": "HG-0036",
+              "title": "Однозначные статусы и диагностика выбранного действия",
+              "integrated": true,
+              "reason": "Объясняет уже существующее разделение validation, decision и applied."
+            }
+          ],
+          "same_requirements": []
+        },
+        "technical": "in_progress",
+        "created_at": 1790832435,
+        "archived": true
+      },
+      {
+        "id": "HG-0063",
+        "title": "Переносимый Commit и раздельные состояния доставки",
+        "tags": [
+          "installation",
+          "workflow"
+        ],
+        "goal": "Сделать Commit/Push переносимыми на solo Git, PR+remote CI и no-Git проекты, разделив фиксацию кандидата, финальную готовность, человеческую приёмку и активацию; безопасно заменить штатный Approve на Commit.",
+        "change_sha256": "f8ae51e15173545b91f7c7c5e48287dbbeb011356c970491262636a83104e430",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0011",
+              "title": "Принятие, публикация и обновление",
+              "integrated": true,
+              "reason": "Изменяет существующие границы локального завершения, отбора, отправки и статусов, сохраняя IDs и исторический контракт."
+            },
+            {
+              "id": "HG-0031",
+              "title": "Совмещённая приёмка и активация точного результата",
+              "integrated": true,
+              "reason": "Устраняет вывод приёмки из команды «активируй» без изменения защит записи решения."
+            },
+            {
+              "id": "HG-0027",
+              "title": "Прямые инструкции навыков и безопасное обновление",
+              "integrated": true,
+              "reason": "Расширяет существующую гарантию владения навыками на canonical переименование и восстановление."
+            },
+            {
+              "id": "HG-0047",
+              "title": "Последовательная инициализация и адаптация",
+              "integrated": true,
+              "reason": "Конкретизирует источники и сохранение местного маршрута при init без повторных вопросов."
+            },
+            {
+              "id": "HG-0048",
+              "title": "Переносимость доказательств и адаптация среды",
+              "integrated": true,
+              "reason": "Сохраняет независимость передачи доказательств и готовности, включая no-Git bundle."
+            },
+            {
+              "id": "HG-0052",
+              "title": "Решения человека и очередь внимания для интерфейса спек",
+              "integrated": true,
+              "reason": "Сохраняет readiness и fingerprint барьеры result attention и человеческого решения."
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0004",
+              "title": "Привязки проверок и самостоятельный workflow"
+            },
+            {
+              "id": "HG-0010",
+              "title": "Самостоятельная Поставка и адаптация"
+            },
+            {
+              "id": "HG-0011",
+              "title": "Принятие, публикация и обновление"
+            },
+            {
+              "id": "HG-0020",
+              "title": "Highgrade Planner и поэтапный Goal"
+            },
+            {
+              "id": "HG-0022",
+              "title": "Однопроходное завершение задач High Grade"
+            },
+            {
+              "id": "HG-0027",
+              "title": "Прямые инструкции навыков и безопасное обновление"
+            },
+            {
+              "id": "HG-0031",
+              "title": "Совмещённая приёмка и активация точного результата"
+            },
+            {
+              "id": "HG-0048",
+              "title": "Переносимость доказательств и адаптация среды"
+            }
+          ]
+        },
+        "technical": "in_progress",
+        "created_at": 1790833942,
+        "archived": false
+      },
+      {
+        "id": "HG-0064",
+        "title": "Общие входы доказательств без потери истории",
+        "tags": [
+          "specifications"
+        ],
+        "goal": "Уменьшить повторяющиеся данные доказательств системно, сохранив все наблюдения и проверку актуальности.",
+        "change_sha256": "ae472285b5ee8e0231b57ff675d1976227e1915e2139cb98f426d51ff951d6b9",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0033",
+              "title": "Компактная история результатов без потери восстановления",
+              "integrated": true,
+              "reason": "Расширяет существующий контракт компактного хранения"
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0033",
+              "title": "Компактная история результатов без потери восстановления"
+            }
+          ]
+        },
+        "technical": "ready",
+        "created_at": 1790840164,
+        "archived": true
+      },
+      {
+        "id": "HG-0065",
+        "title": "Контроль диска повторных Rust-сборок",
+        "tags": [],
+        "goal": "Снизить повторяемый объём Rust-сборок и заранее обнаруживать известный недостаток свободного места без произвольной очистки.",
+        "change_sha256": "61cf96ff86fb80a67643f9fbe7cfab6eb6a0d4b7e1a3484b439f523b5e5e5e6c",
+        "human": "pending",
+        "links": {
+          "depends_on": [],
+          "related_to": [
+            {
+              "id": "HG-0019",
+              "title": "Жизненный цикл каталога target Проекта",
+              "integrated": true,
+              "reason": "Сохраняет владельцев и срок жизни сборочных выходов"
+            },
+            {
+              "id": "HG-0044",
+              "title": "Безопасное обслуживание и воспроизводимый выпуск 0.3.0",
+              "integrated": true,
+              "reason": "Уточняет инвентаризацию существующего безопасного обслуживания"
+            }
+          ],
+          "same_requirements": [
+            {
+              "id": "HG-0044",
+              "title": "Безопасное обслуживание и воспроизводимый выпуск 0.3.0"
+            }
+          ]
+        },
+        "technical": "ready",
+        "created_at": 1790840670,
+        "archived": true
+      }
+    ],
+    "origins": {},
+    "requirements": [
+      "HG-0002-R1",
+      "HG-0002-R2",
+      "HG-0002-R3",
+      "HG-0003-R1",
+      "HG-0003-R2",
+      "HG-0003-R3",
+      "HG-0004-R1",
+      "HG-0004-R2",
+      "HG-0004-R3",
+      "HG-0006-R1",
+      "HG-0006-R2",
+      "HG-0006-R3",
+      "HG-0008-R1",
+      "HG-0009-R1",
+      "HG-0009-R2",
+      "HG-0009-R3",
+      "HG-0009-R4",
+      "HG-0009-R5",
+      "HG-0009-R6",
+      "HG-0009-R7",
+      "HG-0009-R8",
+      "HG-0010-R1",
+      "HG-0010-R2",
+      "HG-0010-R3",
+      "HG-0010-R4",
+      "HG-0010-R5",
+      "HG-0010-R6",
+      "HG-0010-R7",
+      "HG-0010-R8",
+      "HG-0010-R9",
+      "HG-0011-R1",
+      "HG-0011-R2",
+      "HG-0011-R3",
+      "HG-0011-R4",
+      "HG-0011-R5",
+      "HG-0012-R1",
+      "HG-0012-R2",
+      "HG-0012-R3",
+      "HG-0012-R4",
+      "HG-0012-R5",
+      "HG-0013-R1",
+      "HG-0013-R2",
+      "HG-0013-R3",
+      "HG-0013-R4",
+      "HG-0014-R1",
+      "HG-0015-R1",
+      "HG-0016-R1",
+      "HG-0017-R1",
+      "HG-0018-R1",
+      "HG-0018-R2",
+      "HG-0019-R1",
+      "HG-0019-R2",
+      "HG-0020-R1",
+      "HG-0020-R2",
+      "HG-0020-R3",
+      "HG-0020-R4",
+      "HG-0021-R1",
+      "HG-0021-R2",
+      "HG-0021-R3",
+      "HG-0021-R4",
+      "HG-0022-R1",
+      "HG-0022-R2",
+      "HG-0023-R1",
+      "HG-0023-R2",
+      "HG-0023-R3",
+      "HG-0024-R1",
+      "HG-0024-R2",
+      "HG-0025-R1",
+      "HG-0026-R1",
+      "HG-0029-R1",
+      "HG-0030-R1",
+      "HG-0031-R1",
+      "HG-0032-R1",
+      "HG-0033-R1",
+      "HG-0034-R1",
+      "HG-0035-R1",
+      "HG-0036-R1",
+      "HG-0037-R1",
+      "HG-0038-R1",
+      "HG-0039-R1",
+      "HG-0040-R1",
+      "HG-0041-R1",
+      "HG-0041-R2",
+      "HG-0041-R3",
+      "HG-0042-R1",
+      "HG-0042-R2",
+      "HG-0043-R1",
+      "HG-0043-R2",
+      "HG-0043-R3",
+      "HG-0044-R1",
+      "HG-0044-R2",
+      "HG-0044-R3",
+      "HG-0045-R1",
+      "HG-0045-R2",
+      "HG-0045-R3",
+      "HG-0046-R1",
+      "HG-0046-R2",
+      "HG-0046-R3",
+      "HG-0046-R4",
+      "HG-0047-R1",
+      "HG-0047-R2",
+      "HG-0047-R3",
+      "HG-0048-R1",
+      "HG-0048-R2",
+      "HG-0048-R3",
+      "HG-0049-R1",
+      "HG-0049-R2",
+      "HG-0049-R3",
+      "HG-0050-R1",
+      "HG-0050-R2",
+      "HG-0050-R3",
+      "HG-0051-R1",
+      "HG-0051-R2",
+      "HG-0051-R3",
+      "HG-0051-R4",
+      "HG-0051-R5",
+      "HG-0052-R1",
+      "HG-0052-R2",
+      "HG-0052-R3",
+      "HG-0052-R4",
+      "HG-0052-R5",
+      "HG-0053-R1",
+      "HG-0053-R2",
+      "HG-0053-R3",
+      "HG-0053-R4",
+      "HG-0054-R1",
+      "HG-0054-R2",
+      "HG-0054-R3",
+      "HG-0054-R4",
+      "HG-0054-R5",
+      "HG-0054-R6",
+      "HG-0055-R1",
+      "HG-0055-R2",
+      "HG-0055-R3",
+      "HG-0055-R4",
+      "HG-0056-R1",
+      "HG-0056-R2",
+      "HG-0056-R3",
+      "HG-0056-R4",
+      "HG-0057-R1",
+      "HG-0057-R2",
+      "HG-0057-R3",
+      "HG-0060-R1",
+      "HG-0061-R1",
+      "HG-0061-R2",
+      "HG-0061-R3",
+      "HG-0062-R1",
+      "HG-0065-R1",
+      "HG-0065-R2"
+    ],
+    "schema_version": 3,
+    "selection": {
+      "context_complete": false,
+      "filters": {
+        "--root": "/tmp/highgrade-current-evidence"
+      },
+      "selected": 62,
+      "total": 62
+    },
+    "store_sha256": "e0c153b73e429f7a5d06f19c9f90b084a01ad848cabc275db9e11cc1ba66bbff",
+    "summary": {
+      "abandoned": 0,
+      "accepted": 0,
+      "in_progress": 57,
+      "needs_changes": 0,
+      "pending": 49,
+      "ready": 5,
+      "stale": 13,
+      "total": 62
+    },
+    "summary_scope": "id/tag selection before technical/human filters",
+    "trace_sha256": "7909366df3b491f22b8d68c97b3881d3705fa3c2ef0b312ddc1c95e877ead1c8"
+  },
+  "status": "passed"
+}

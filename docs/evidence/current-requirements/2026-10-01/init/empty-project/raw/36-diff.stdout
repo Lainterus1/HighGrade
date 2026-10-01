@@ -1,0 +1,951 @@
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/10-survey-content.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/10-survey-content.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/10-survey-content.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/10-survey-content.json	2026-10-01 19:22:00.342816256 +0700
+@@ -0,0 +1,192 @@
++{
++  "goal": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
++  "scope": [
++    "."
++  ],
++  "stage": "survey",
++  "next": "Выполнить разрешённую минимальную адаптацию.",
++  "decisions": [
++    {
++      "id": "purpose",
++      "description": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
++      "state": "confirmed",
++      "basis": [
++        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++      ],
++      "sources": [],
++      "blocks": []
++    },
++    {
++      "id": "scope",
++      "description": "Весь пустой каталог.",
++      "state": "confirmed",
++      "basis": [
++        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++      ],
++      "sources": [],
++      "blocks": []
++    },
++    {
++      "id": "preservation",
++      "description": "Не менять соседний файл outside-sentinel.txt.",
++      "state": "confirmed",
++      "basis": [
++        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++      ],
++      "sources": [],
++      "blocks": []
++    },
++    {
++      "id": "changes",
++      "description": "Добавить документы процесса; для нового проекта начальный предметный черновик, без реализации.",
++      "state": "confirmed",
++      "basis": [
++        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++      ],
++      "sources": [],
++      "blocks": []
++    },
++    {
++      "id": "local_rules",
++      "description": "Исходных местных правил нет.",
++      "state": "confirmed",
++      "basis": [
++        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++      ],
++      "sources": [],
++      "blocks": []
++    },
++    {
++      "id": "environment",
++      "description": "Изолированный Linux-каталог, офлайн-подготовка; кандидат CLI 0.3.6; не создавать Git или внешние ресурсы.",
++      "state": "confirmed",
++      "basis": [
++        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++      ],
++      "sources": [],
++      "blocks": []
++    },
++    {
++      "id": "mandate",
++      "description": "Подготовить минимальную основу High Grade и один предметный черновик спеки; не реализовывать приложение.",
++      "state": "confirmed",
++      "basis": [
++        "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++      ],
++      "sources": [],
++      "blocks": []
++    }
++  ],
++  "sections": {
++    "components": [
++      {
++        "id": "component-observed",
++        "description": "Исходный каталог пуст: inventory возвратил entries={}; реализации пока нет.",
++        "state": "confirmed",
++        "basis": [
++          "Actual 01-inventory stdout and read-* outputs."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ],
++    "knowledge": [
++      {
++        "id": "knowledge-owners",
++        "description": "Назначить README владельцем назначения, устройства, правил и команд; AGENTS владельцем маршрута.",
++        "state": "proposed",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ],
++    "processes": [
++      {
++        "id": "process-observed",
++        "description": "В исходном пустом каталоге нет runner, formatter, linter, CI или ignore. Будущая команда тестирования неизвестна; её выбор относится к будущей реализации.",
++        "state": "confirmed",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ],
++    "skills": [
++      {
++        "id": "skills-observed",
++        "description": "Местных навыков в пустом каталоге не обнаружено.",
++        "state": "confirmed",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ],
++    "observations": [
++      {
++        "id": "observation-inventory",
++        "description": "Выполнен inventory --mode structure и прочитаны имеющиеся существенные файлы. Это source-guided упражнение: native dispatch установленного навыка не происходил.",
++        "state": "confirmed",
++        "basis": [
++          "Recorded 01-inventory and read-* raw command results."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ],
++    "findings": [
++      {
++        "id": "finding-budget",
++        "description": "Бюджеты контекста не согласованы; оставить null и считать BudgetNotAgreed неизвестностью, не PASS. Они не мешают разрешённой подготовке.",
++        "state": "unknown",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "sources": [],
++        "blocks": []
++      },
++      {
++        "id": "finding-future",
++        "description": "Выбор стека и runner относится к будущей реализации, которая не поручена.",
++        "state": "confirmed",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ],
++    "adaptation": [
++      {
++        "id": "adaptation-plan",
++        "description": "Создать минимальные README, AGENTS, проектную инструкцию и реестр; через CLI создать предметный черновик каталога книг.",
++        "state": "proposed",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ],
++    "routes": [
++      {
++        "id": "route-next",
++        "description": "После init уточнить интерфейс/хранение/runner в первоначальной спеке каталога книг, затем отдельное поручение work.",
++        "state": "confirmed",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ]
++  },
++  "source_paths": [],
++  "areas": [
++    "."
++  ]
++}
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/14-planned.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/14-planned.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/14-planned.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/14-planned.json	2026-10-01 19:22:00.380193980 +0700
+@@ -0,0 +1,3 @@
++{
++  "stage": "planned"
++}
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/15-adapting.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/15-adapting.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/15-adapting.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/15-adapting.json	2026-10-01 19:22:00.392753690 +0700
+@@ -0,0 +1,3 @@
++{
++  "stage": "adapting"
++}
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/23-spec-content.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/23-spec-content.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/23-spec-content.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/23-spec-content.json	2026-10-01 19:24:02.580123532 +0700
+@@ -0,0 +1,49 @@
++{
++  "tags": [
++    "library"
++  ],
++  "goal": "Один пользователь добавляет название и автора прочитанной книги и видит локальный список.",
++  "rationale": "Synthetic fixture owner задал первый полезный результат; текущий init только подготавливает требования.",
++  "scope": "Первая версия: добавление и просмотр, без сети, аккаунтов и внешних интеграций. Реализация и выбор стека не входят в init; будущие области кода и тестов ещё не назначены.",
++  "questions": [
++    "Какой локальный интерфейс нужен и как запускать его на выбранной среде?",
++    "Должны ли данные сохраняться между запусками и где храниться?",
++    "Какие стек, путь реализации и штатный runner выбрать перед Work?"
++  ],
++  "operations": [
++    {
++      "action": "add",
++      "requirement": {
++        "id": "HG-0001-R1",
++        "title": "Добавление и просмотр книг",
++        "statement": "Первый полезный результат SHALL позволять одному пользователю добавить название и автора прочитанной книги и увидеть их в локальном списке, без сети и аккаунтов.",
++        "scenarios": [
++          {
++            "id": "HG-0001-S1",
++            "given": "Локальный каталог открыт одним пользователем; список пуст. Конкретный интерфейс и хранение уточняются до реализации.",
++            "when": "Пользователь добавляет книгу с названием «Маяк» и автором «Н. Петров».",
++            "then": "В списке видны введённые название и автор; действие не требует сети или аккаунта.",
++            "verification": "До Work выбрать фактический интерфейс и штатный runner; будущая проверка выполняет добавление и наблюдает список и отсутствие сетевой зависимости. В init этот сценарий не исполнялся."
++          }
++        ]
++      }
++    }
++  ],
++  "tasks": [
++    {
++      "id": "HG-0001-T1",
++      "description": "Уточнить локальный интерфейс, хранение и runner в этом же ID до реализации.",
++      "done": false
++    },
++    {
++      "id": "HG-0001-T2",
++      "description": "После отдельного поручения реализовать добавление названия/автора и просмотр локального списка.",
++      "done": false
++    },
++    {
++      "id": "HG-0001-T3",
++      "description": "Проверить добавление и просмотр выбранным штатным способом без сетевой зависимости.",
++      "done": false
++    }
++  ]
++}
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/29-final-content.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/29-final-content.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/29-final-content.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/29-final-content.json	2026-10-01 19:25:18.692378618 +0700
+@@ -0,0 +1,164 @@
++{
++  "sections": {
++    "adaptation": [
++      {
++        "id": "adaptation-written",
++        "description": "Предложение местной инструкции и реестр созданы; прочитаны по смыслу. Новые знания записаны предметно, а не оставлены полями шаблона. Автор не принимал новую инструкцию.",
++        "state": "confirmed",
++        "basis": [
++          "Observed files, source-guided execution raw reports and predeclared fixture intent."
++        ],
++        "sources": [
++          ".highgrade/project/INSTRUCTIONS.md",
++          ".highgrade/project/documents.json"
++        ],
++        "blocks": []
++      }
++    ],
++    "components": [
++      {
++        "id": "component-current",
++        "description": "Созданы README, AGENTS, проектная инструкция, реестр и предметный черновик HG-0001. Продуктового кода нет.",
++        "state": "confirmed",
++        "basis": [
++          "Observed files, source-guided execution raw reports and predeclared fixture intent."
++        ],
++        "sources": [
++          "README.md",
++          "AGENTS.md",
++          ".highgrade/project/INSTRUCTIONS.md",
++          ".highgrade/project/documents.json",
++          "specs/changes/HG-0001/spec.json"
++        ],
++        "blocks": []
++      }
++    ],
++    "findings": [
++      {
++        "id": "finding-budget",
++        "description": "Бюджеты контекста не согласованы; оставить null и считать BudgetNotAgreed неизвестностью, не PASS. Они не мешают разрешённой подготовке.",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "blocks": [],
++        "sources": [],
++        "state": "unknown"
++      },
++      {
++        "id": "finding-future",
++        "description": "Выбор стека и runner относится к будущей реализации, которая не поручена.",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "blocks": [],
++        "sources": [],
++        "state": "confirmed"
++      }
++    ],
++    "knowledge": [
++      {
++        "id": "knowledge-current",
++        "description": "README совмещает четыре роли, AGENTS — агентский маршрут; такое минимальное распределение создано как предложение.",
++        "state": "confirmed",
++        "basis": [
++          "Observed files, source-guided execution raw reports and predeclared fixture intent."
++        ],
++        "sources": [
++          "README.md",
++          "AGENTS.md"
++        ],
++        "blocks": []
++      }
++    ],
++    "observations": [
++      {
++        "id": "observation-execution",
++        "description": "Фактические survey-* команды выполнились через CLI 0.3.6. Первые абсолютные input-пути были отвергнуты UnsafePath; supported root-relative inputs после чтения схемы сохранены успешно. Это source-guided исполнение, не автоматическое обнаружение установленного навыка.",
++        "state": "confirmed",
++        "basis": [
++          "Observed files, source-guided execution raw reports and predeclared fixture intent."
++        ],
++        "sources": [],
++        "blocks": []
++      },
++      {
++        "id": "observation-inspect",
++        "description": "inspect exit 2, только BudgetNotAgreed: 3 находки.",
++        "state": "confirmed",
++        "basis": [
++          "Actual 25-inspect stdout."
++        ],
++        "sources": [],
++        "blocks": []
++      },
++      {
++        "id": "observation-doctor",
++        "description": "doctor exit 0, findings=[]; область schema-only, не смысловая сертификация.",
++        "state": "confirmed",
++        "basis": [
++          "Actual 26-doctor stdout."
++        ],
++        "sources": [],
++        "blocks": []
++      },
++      {
++        "id": "observation-specific",
++        "description": "spec-validate HG-0001 exit 1 OpenQuestions; сценарий книги не выполнялся, черновик не готов к интеграции.",
++        "state": "confirmed",
++        "basis": [
++          "Actual 24-spec-validate stdout."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ],
++    "processes": [
++      {
++        "id": "process-observed",
++        "description": "В исходном пустом каталоге нет runner, formatter, linter, CI или ignore. Будущая команда тестирования неизвестна; её выбор относится к будущей реализации.",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "blocks": [],
++        "sources": [],
++        "state": "confirmed"
++      }
++    ],
++    "routes": [
++      {
++        "id": "route-next",
++        "description": "Первый следующий шаг: task/spec уточняет вопросы существующего HG-0001 об интерфейсе, хранении и runner. Реализация требует отдельного поручения.",
++        "state": "confirmed",
++        "basis": [
++          "Observed files, source-guided execution raw reports and predeclared fixture intent."
++        ],
++        "sources": [],
++        "blocks": []
++      }
++    ],
++    "skills": [
++      {
++        "id": "skills-observed",
++        "description": "Местных навыков в пустом каталоге не обнаружено.",
++        "basis": [
++          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++        ],
++        "blocks": [],
++        "sources": [],
++        "state": "confirmed"
++      }
++    ]
++  },
++  "source_paths": [
++    ".highgrade/project/INSTRUCTIONS.md",
++    ".highgrade/project/documents.json",
++    "AGENTS.md",
++    "README.md",
++    "specs/README.md",
++    "specs/catalog.json",
++    "specs/changes/HG-0001/spec.json",
++    "specs/runners.json",
++    "specs/tags.json"
++  ],
++  "next": "Уточнить вопросы HG-0001 перед отдельным поручением work."
++}
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/33-completed.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/33-completed.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/local/inputs/33-completed.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/local/inputs/33-completed.json	2026-10-01 19:25:18.736661552 +0700
+@@ -0,0 +1,4 @@
++{
++  "stage": "completed",
++  "next": ""
++}
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/project/INSTRUCTIONS.md /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/project/INSTRUCTIONS.md
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/project/INSTRUCTIONS.md	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/project/INSTRUCTIONS.md	2026-10-01 19:24:02.616257048 +0700
+@@ -0,0 +1,23 @@
++---
++highgrade_project_schema: 1
++highgrade_spec_format: native-v1
++---
++# Предложенная местная инструкция
++
++Статус: содержательная адаптация для изолированного упражнения. Это предложение; автор не принимал её как действующие правила и не принимал продукт. Разрешение на подготовку задано synthetic fixture intent до начала упражнения, не выводится из CLI go.
++
++Язык: русский, определён входным поручением фикстуры. Бюджеты: неизвестно, решения автора нет; [реестр](documents.json) хранит null. Это не PASS бюджета и не препятствие независимой подготовке.
++
++## Владельцы и состояние
++
++[README](../../README.md) совмещает назначение, текущее устройство, инженерные правила и команды; [AGENTS](../../AGENTS.md) владеет маршрутом. Обоснование: проект пуст, разделение создало бы заглушки. Обследование: [survey.json](survey.json); завершение относится только к подготовке. Реализации нет.
++
++## Каталог и продолжение
++
++Новые требования в specs/, CLI spec-* владеет записью. Через CLI подготовлен предметный черновик HG-0001 «Локальное добавление и просмотр прочитанных книг». После init первым уточнить этот же HG-0001: интерфейс, хранение и runner; эти вопросы находятся в самой спеке. Затем отдельное поручение реализации. Успех spec-validate не означает готовности продукта. Местных навыков нет по исходному inventory; придуманные обязательные роли не вводятся.
++
++## Проверки и полномочия
++
++Команда тестирования/formatter/linter/CI неизвестна; зависит будущая реализация. Для этой подготовки проверить структуру через inspect, совместимость doctor и предметный черновик через spec-validate; команды реально запускаются, исходы записываются отдельно. Доказательства и неизвестный срок передачи будущего результата принадлежат README. Содержательное независимое ревью результата упражнения выполняет координатор отдельно от survey-review исполнителя.
++
++Git не применим к текущей локальной подготовке: создание не поручено. Commit и push не применимы без Git. Способ неизменяемой идентификации будущего noGit-продукта пока неизвестен; определить до финальной передачи Work, не выдавать список файлов за build ID. Remote, ветки/PR/base, squash/rebase, CI exact-SHA и последствия push неприменимы к текущему поручению; при появлении Git требуется отдельное решение. Локальная активация неприменима: исполняемый продукт не создаётся. Приёмка результата, merge, tag/release, deploy и внешняя публикация требуют самостоятельного основания; ни подготовка, ни команда проверки их не разрешают.
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/project/documents.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/project/documents.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/project/documents.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/project/documents.json	2026-10-01 19:23:21.387947228 +0700
+@@ -0,0 +1,41 @@
++{
++  "schema_version": 1,
++  "documents": [
++    {
++      "id": "readme",
++      "path": "README.md",
++      "roles": [
++        "purpose-navigation",
++        "current-architecture",
++        "engineering-rules",
++        "commands-procedures"
++      ],
++      "loading": "entry",
++      "scope": [
++        "specs"
++      ],
++      "budget": null
++    },
++    {
++      "id": "agents",
++      "path": "AGENTS.md",
++      "role": "agent-rules",
++      "loading": "entry",
++      "scope": [],
++      "budget": null
++    }
++  ],
++  "additional_sources": [
++    {
++      "path": ".highgrade/project/INSTRUCTIONS.md",
++      "role": "project-adaptation",
++      "active": true,
++      "loading": "entry",
++      "scope": [
++        ".highgrade/project/documents.json",
++        ".highgrade/project/survey.json"
++      ]
++    }
++  ],
++  "route_budget": null
++}
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/project/survey.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/project/survey.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/.highgrade/project/survey.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/.highgrade/project/survey.json	2026-10-01 19:25:18.746812474 +0700
+@@ -0,0 +1,299 @@
++{
++  "schema_version": 1,
++  "current": {
++    "number": 1,
++    "content": {
++      "goal": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
++      "scope": [
++        "."
++      ],
++      "stage": "completed",
++      "next": "",
++      "decisions": [
++        {
++          "id": "purpose",
++          "state": "confirmed",
++          "description": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
++          "basis": [
++            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++          ],
++          "sources": [],
++          "blocks": []
++        },
++        {
++          "id": "scope",
++          "state": "confirmed",
++          "description": "Весь пустой каталог.",
++          "basis": [
++            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++          ],
++          "sources": [],
++          "blocks": []
++        },
++        {
++          "id": "preservation",
++          "state": "confirmed",
++          "description": "Не менять соседний файл outside-sentinel.txt.",
++          "basis": [
++            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++          ],
++          "sources": [],
++          "blocks": []
++        },
++        {
++          "id": "changes",
++          "state": "confirmed",
++          "description": "Добавить документы процесса; для нового проекта начальный предметный черновик, без реализации.",
++          "basis": [
++            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++          ],
++          "sources": [],
++          "blocks": []
++        },
++        {
++          "id": "local_rules",
++          "state": "confirmed",
++          "description": "Исходных местных правил нет.",
++          "basis": [
++            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++          ],
++          "sources": [],
++          "blocks": []
++        },
++        {
++          "id": "environment",
++          "state": "confirmed",
++          "description": "Изолированный Linux-каталог, офлайн-подготовка; кандидат CLI 0.3.6; не создавать Git или внешние ресурсы.",
++          "basis": [
++            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++          ],
++          "sources": [],
++          "blocks": []
++        },
++        {
++          "id": "mandate",
++          "state": "confirmed",
++          "description": "Подготовить минимальную основу High Grade и один предметный черновик спеки; не реализовывать приложение.",
++          "basis": [
++            "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++          ],
++          "sources": [],
++          "blocks": []
++        }
++      ],
++      "sections": {
++        "adaptation": [
++          {
++            "id": "adaptation-written",
++            "state": "confirmed",
++            "description": "Предложение местной инструкции и реестр созданы; прочитаны по смыслу. Новые знания записаны предметно, а не оставлены полями шаблона. Автор не принимал новую инструкцию.",
++            "basis": [
++              "Observed files, source-guided execution raw reports and predeclared fixture intent."
++            ],
++            "sources": [
++              ".highgrade/project/INSTRUCTIONS.md",
++              ".highgrade/project/documents.json"
++            ],
++            "blocks": []
++          }
++        ],
++        "components": [
++          {
++            "id": "component-current",
++            "state": "confirmed",
++            "description": "Созданы README, AGENTS, проектная инструкция, реестр и предметный черновик HG-0001. Продуктового кода нет.",
++            "basis": [
++              "Observed files, source-guided execution raw reports and predeclared fixture intent."
++            ],
++            "sources": [
++              ".highgrade/project/INSTRUCTIONS.md",
++              ".highgrade/project/documents.json",
++              "AGENTS.md",
++              "README.md",
++              "specs/changes/HG-0001/spec.json"
++            ],
++            "blocks": []
++          }
++        ],
++        "findings": [
++          {
++            "id": "finding-budget",
++            "state": "unknown",
++            "description": "Бюджеты контекста не согласованы; оставить null и считать BudgetNotAgreed неизвестностью, не PASS. Они не мешают разрешённой подготовке.",
++            "basis": [
++              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++            ],
++            "sources": [],
++            "blocks": []
++          },
++          {
++            "id": "finding-future",
++            "state": "confirmed",
++            "description": "Выбор стека и runner относится к будущей реализации, которая не поручена.",
++            "basis": [
++              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++            ],
++            "sources": [],
++            "blocks": []
++          }
++        ],
++        "knowledge": [
++          {
++            "id": "knowledge-current",
++            "state": "confirmed",
++            "description": "README совмещает четыре роли, AGENTS — агентский маршрут; такое минимальное распределение создано как предложение.",
++            "basis": [
++              "Observed files, source-guided execution raw reports and predeclared fixture intent."
++            ],
++            "sources": [
++              "AGENTS.md",
++              "README.md"
++            ],
++            "blocks": []
++          }
++        ],
++        "observations": [
++          {
++            "id": "observation-execution",
++            "state": "confirmed",
++            "description": "Фактические survey-* команды выполнились через CLI 0.3.6. Первые абсолютные input-пути были отвергнуты UnsafePath; supported root-relative inputs после чтения схемы сохранены успешно. Это source-guided исполнение, не автоматическое обнаружение установленного навыка.",
++            "basis": [
++              "Observed files, source-guided execution raw reports and predeclared fixture intent."
++            ],
++            "sources": [],
++            "blocks": []
++          },
++          {
++            "id": "observation-inspect",
++            "state": "confirmed",
++            "description": "inspect exit 2, только BudgetNotAgreed: 3 находки.",
++            "basis": [
++              "Actual 25-inspect stdout."
++            ],
++            "sources": [],
++            "blocks": []
++          },
++          {
++            "id": "observation-doctor",
++            "state": "confirmed",
++            "description": "doctor exit 0, findings=[]; область schema-only, не смысловая сертификация.",
++            "basis": [
++              "Actual 26-doctor stdout."
++            ],
++            "sources": [],
++            "blocks": []
++          },
++          {
++            "id": "observation-specific",
++            "state": "confirmed",
++            "description": "spec-validate HG-0001 exit 1 OpenQuestions; сценарий книги не выполнялся, черновик не готов к интеграции.",
++            "basis": [
++              "Actual 24-spec-validate stdout."
++            ],
++            "sources": [],
++            "blocks": []
++          }
++        ],
++        "processes": [
++          {
++            "id": "process-observed",
++            "state": "confirmed",
++            "description": "В исходном пустом каталоге нет runner, formatter, linter, CI или ignore. Будущая команда тестирования неизвестна; её выбор относится к будущей реализации.",
++            "basis": [
++              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++            ],
++            "sources": [],
++            "blocks": []
++          }
++        ],
++        "routes": [
++          {
++            "id": "route-next",
++            "state": "confirmed",
++            "description": "Первый следующий шаг: task/spec уточняет вопросы существующего HG-0001 об интерфейсе, хранении и runner. Реализация требует отдельного поручения.",
++            "basis": [
++              "Observed files, source-guided execution raw reports and predeclared fixture intent."
++            ],
++            "sources": [],
++            "blocks": []
++          }
++        ],
++        "skills": [
++          {
++            "id": "skills-observed",
++            "state": "confirmed",
++            "description": "Местных навыков в пустом каталоге не обнаружено.",
++            "basis": [
++              "Synthetic fixture intent recorded before execution; actual inventory and file reads."
++            ],
++            "sources": [],
++            "blocks": []
++          }
++        ]
++      },
++      "source_paths": [
++        ".highgrade/project/INSTRUCTIONS.md",
++        ".highgrade/project/documents.json",
++        "AGENTS.md",
++        "README.md",
++        "specs/README.md",
++        "specs/catalog.json",
++        "specs/changes/HG-0001/spec.json",
++        "specs/runners.json",
++        "specs/tags.json"
++      ],
++      "areas": [
++        "."
++      ]
++    },
++    "snapshot": {
++      "files": {
++        ".highgrade/project/INSTRUCTIONS.md": "6553d06d6ebee476ecec1a793ff5020931066affb15c4b05516d8ce71c0b1e64",
++        ".highgrade/project/documents.json": "3585af33b6b4232443387a435b9c11254a9044da65ae524fd67966b6848e2140",
++        "AGENTS.md": "6392522ac8534d2b3201c22a45b22d7b507c840f857acc8ae02cf3dc4f6356d5",
++        "README.md": "6091cb05cb070d882325d303d37e3bccac51f010e46f50f845871b0b7b7fa7da",
++        "specs/README.md": "ae55f0aaa36a03568d7f4ae83b9161d03a80f0508d5a45babb2cea04eb63af59",
++        "specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
++        "specs/changes/HG-0001/spec.json": "24f973a55abfa3ac5a2958fe2d918a79c41d11757e56adc1dd42e0b711c2f5b0",
++        "specs/runners.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
++        "specs/tags.json": "45134f0413efb27f9c474b0d12e3888f53ccde49624ebf2d577b85851741b10c"
++      },
++      "areas": {
++        ".": {
++          "entries": {
++            ".highgrade": "directory",
++            ".highgrade/project": "directory",
++            ".highgrade/project/INSTRUCTIONS.md": "file",
++            ".highgrade/project/documents.json": "file",
++            "AGENTS.md": "file",
++            "README.md": "file",
++            "specs": "directory",
++            "specs/README.md": "file",
++            "specs/catalog.json": "file",
++            "specs/changes": "directory",
++            "specs/changes/HG-0001": "directory",
++            "specs/changes/HG-0001/spec.json": "file",
++            "specs/runners.json": "file",
++            "specs/tags.json": "file"
++          },
++          "omitted": {
++            ".highgrade/local": "excluded",
++            ".highgrade/project/survey.json": "excluded",
++            ".highgrade/specs": "excluded"
++          },
++          "complete": true,
++          "exclusions_sha256": null
++        }
++      },
++      "exclusions_sha256": null
++    },
++    "review": {
++      "reviewer": "source-guided-init-executor",
++      "verdict": "go",
++      "conclusion": "Сверены созданные файлы и реальные отчёты. Подготовка по поручению выполнена; неизвестные бюджеты и будущие вопросы не названы PASS. Инструкция остаётся предложением, продукт не реализован/не принят. Это сверка исполнителя; независимое ревью доказательства выполняется отдельно.",
++      "content_sha256": "27a92d24be88c39ab0b55d8172f92a1818ac9f01434f541cb0af153b81571e23",
++      "snapshot_sha256": "b26490afe705b931ce022c1eb6b30848f4617c0bbfdd40073189d5e9803a9f2d"
++    }
++  },
++  "history": []
++}
+\ No newline at end of file
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/AGENTS.md /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/AGENTS.md
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/AGENTS.md	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/AGENTS.md	2026-10-01 19:23:21.387483986 +0700
+@@ -0,0 +1,3 @@
++# Маршрут каталога книг
++
++Читай [README](README.md) и [предложенную проектную инструкцию](.highgrade/project/INSTRUCTIONS.md). Новые требования идут в spec, реализация определённого контракта — в work. Сейчас разрешён только init с предметным черновиком; приложение не реализовывать. Не создавать Goal, Git, remote, commit, push, release или deploy без отдельного поручения. Сохраняй посторонние файлы. Местных предметных навыков пока нет.
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/README.md /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/README.md
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/README.md	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/README.md	2026-10-01 19:23:21.387093580 +0700
+@@ -0,0 +1,19 @@
++# Локальный каталог книг
++
++Статус: подготовка нового проекта, приложение ещё не реализовано. Исходная цель synthetic fixture owner: один человек добавляет название и автора прочитанной книги и видит список; первая версия без сети и аккаунтов.
++
++## Устройство
++
++Сейчас существуют только документы процесса и первоначальная спека. Стек, интерфейс и постоянное хранение пока неизвестны; они будут уточнены до реализации. Отсутствие кода не означает неприменимость будущих компонентов.
++
++## Правила
++
++Первая версия локальная, один пользователь, без внешних интеграций. Предметные требования и задачи принадлежат specs/. Новые продуктовые решения не выводятся из шаблона High Grade.
++
++## Команды и доказательства
++
++Штатная команда приложения и тестов неизвестна: выбрать стек и runner в первой спеке до work. Команды formatter/linter/CI также неизвестны; для текущей документации нет таких gates. Не создавать fake check или приложение ради подключения. Markdown принадлежит автору документов, JSON каталога/survey — CLI High Grade. Обязательные отчёты будущей работы хранить с исходниками проверенной редакции в локальном пакете с SHA-256; точный срок передачи будущего продукта уточнить перед такой передачей.
++
++## Навигация
++
++[Агентский маршрут](AGENTS.md), [устройство](README.md#устройство), [правила](README.md#правила), [команды](README.md#команды-и-доказательства), [предложенная адаптация](.highgrade/project/INSTRUCTIONS.md).
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/README.md /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/README.md
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/README.md	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/README.md	2026-10-01 19:23:21.394594978 +0700
+@@ -0,0 +1,7 @@
++# Спецификации проекта
++
++Данные принадлежат проекту и сохраняются при удалении High Grade.
++`catalog.json` — версия и счётчик; `requirements/` — действующие требования;
++`changes/<ID>/spec.json` — изменение, `results.json` — проверки и решения.
++Записывайте через инструмент с проверкой ожидаемого хеша. При наличии
++`transaction.json` чтение заблокировано до явного `spec-recover`.
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/catalog.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/catalog.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/catalog.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/catalog.json	2026-10-01 19:23:21.409734323 +0700
+@@ -0,0 +1,7 @@
++{
++  "schema_version": 3,
++  "next_number": 2,
++  "retired_ids": [],
++  "origins": {},
++  "legacy_sha256": null
++}
+\ No newline at end of file
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/changes/HG-0001/spec.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/changes/HG-0001/spec.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/changes/HG-0001/spec.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/changes/HG-0001/spec.json	2026-10-01 19:24:02.591851234 +0700
+@@ -0,0 +1,61 @@
++{
++  "id": "HG-0001",
++  "title": "Локальное добавление и просмотр прочитанных книг",
++  "tags": [
++    "library"
++  ],
++  "goal": "Один пользователь добавляет название и автора прочитанной книги и видит локальный список.",
++  "rationale": "Synthetic fixture owner задал первый полезный результат; текущий init только подготавливает требования.",
++  "scope": "Первая версия: добавление и просмотр, без сети, аккаунтов и внешних интеграций. Реализация и выбор стека не входят в init; будущие области кода и тестов ещё не назначены.",
++  "questions": [
++    "Какой локальный интерфейс нужен и как запускать его на выбранной среде?",
++    "Должны ли данные сохраняться между запусками и где храниться?",
++    "Какие стек, путь реализации и штатный runner выбрать перед Work?"
++  ],
++  "depends_on": [],
++  "related_to": [],
++  "operations": [
++    {
++      "action": "add",
++      "requirement": {
++        "id": "HG-0001-R1",
++        "title": "Добавление и просмотр книг",
++        "statement": "Первый полезный результат SHALL позволять одному пользователю добавить название и автора прочитанной книги и увидеть их в локальном списке, без сети и аккаунтов.",
++        "scenarios": [
++          {
++            "id": "HG-0001-S1",
++            "given": "Локальный каталог открыт одним пользователем; список пуст. Конкретный интерфейс и хранение уточняются до реализации.",
++            "when": "Пользователь добавляет книгу с названием «Маяк» и автором «Н. Петров».",
++            "then": "В списке видны введённые название и автор; действие не требует сети или аккаунта.",
++            "verification": "До Work выбрать фактический интерфейс и штатный runner; будущая проверка выполняет добавление и наблюдает список и отсутствие сетевой зависимости. В init этот сценарий не исполнялся."
++          }
++        ]
++      }
++    }
++  ],
++  "tasks": [
++    {
++      "id": "HG-0001-T1",
++      "description": "Уточнить локальный интерфейс, хранение и runner в этом же ID до реализации.",
++      "done": false
++    },
++    {
++      "id": "HG-0001-T2",
++      "description": "После отдельного поручения реализовать добавление названия/автора и просмотр локального списка.",
++      "done": false
++    },
++    {
++      "id": "HG-0001-T3",
++      "description": "Проверить добавление и просмотр выбранным штатным способом без сетевой зависимости.",
++      "done": false
++    }
++  ],
++  "checks": [],
++  "imports": {},
++  "baseline": {},
++  "scoped_baseline": true,
++  "revision_tags": [],
++  "created_at": 1790857401,
++  "archived": false,
++  "abandoned_reason": null
++}
+\ No newline at end of file
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/runners.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/runners.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/runners.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/runners.json	2026-10-01 19:23:21.393928906 +0700
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff -ruN /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/tags.json /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/tags.json
+--- /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/before/specs/tags.json	1970-01-01 08:00:00.000000000 +0800
++++ /tmp/highgrade-current-evidence/docs/evidence/current-requirements/2026-10-01/init/empty-project/after/specs/tags.json	2026-10-01 19:24:02.556547404 +0700
+@@ -0,0 +1,6 @@
++{
++  "library": {
++    "title": "Каталог книг",
++    "description": "Предметные возможности личного каталога книг"
++  }
++}
+\ No newline at end of file

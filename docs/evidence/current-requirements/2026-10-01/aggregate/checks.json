@@ -1,0 +1,55 @@
+{
+  "captured_at": "2026-10-01T12:39:27.881524+00:00",
+  "platform": "Linux x86_64",
+  "source_base": "8e9bbdd2ad0966781a64c34dfb67885081ba4441",
+  "scope": "Working candidate tests/catalog_contracts.rs and final code; catalog result/review updates do not change executable trace. No release/activation.",
+  "results": {
+    "nextest": {
+      "passed": 212,
+      "failed": 0,
+      "skipped": 0
+    },
+    "python": {
+      "passed": 53,
+      "failed": 0,
+      "skipped": 0
+    },
+    "catalog_validation": {
+      "changes": 62,
+      "passed": 62
+    },
+    "trace": {
+      "automatic_scenarios": 126,
+      "linked_test_cases": 136,
+      "outside_automatic_trace": 147,
+      "total_scenarios": 273
+    },
+    "format": "passed",
+    "generated_skills": "passed",
+    "structure": "passed",
+    "inspect": "passed with external-link warnings",
+    "scale_100_200": "passed",
+    "scenario_reuse": "passed"
+  },
+  "raw_files_sha256": {
+    "inspect.json": "8438a3ca66f6cfc30c39050de66bb482ec3ccc38926ac14c750271fdd4b833fa",
+    "repository.json": "70646d12755b151b561727167666f45ce6b808bcc2c89e7425ea2ada020bde8b",
+    "reuse.log": "0aee136e54b5e62c8123685207dbbd753eb43b06d3a3e1c9331d9f8355d150e7",
+    "scale.log": "c849c8f68736bce48d7ddf9cd73a79ababc992e4bc52e88b31f47f3f521d1bfe",
+    "scenarios-final.log": "5a199ad2ce833d66c83d8ff8ce92910a7a8ea7bb3cdd4cc4e26818d427fe5e4d",
+    "full-nextest.log": "ee895eaa91f79cb9045c3c4427dde2d20f87fb246c88f7d5e2c78de79167fc33",
+    "python-all.log": "f4886f1b2583d051eb59ded6b11e3405abe24abef8b6bdbae1569618586f0a21",
+    "trace.json": "139a46ac8006add865a84b39ed394817138eecdb379ab9676c12946d10f3c1db",
+    "run.json": "5b8640cda3374a901360990582ef5de1cc2bef97cb8b77a40638355efa8b1b06",
+    "list.json": "abaadd5054a4c62ebf09836d71f8ab61a144cd3b9aaa12ecd3fb9794182a21ad",
+    "junit.xml": "6fe32cb259f69b82233a2370c68cc6a8e577d4adf49de49500c88f79d53cfdbb",
+    "completion.json": "2f9afd4384cc5692cea6683159afa4f397ab408837ea19900032ca0d46ab7937",
+    "attempt.json": "c2dc29b90915999e37fbf0cff63a40a07f74a5b8a3a1cd380bdd83768126b9cd"
+  },
+  "original_paths": "Nextest JSON/XML originated in target/nextest/highgrade; remaining reports in target/highgrade/reports. Bytes were copied unchanged. This aggregate snapshot is not copied into each scenario input list.",
+  "limitations": [
+    "Windows and Ubuntu CI for the final published SHA must still complete",
+    "Plain git diff --check reports untouched raw log trailing blank lines; all other whitespace checks pass with blank-at-eof exempted only for the check invocation",
+    "No human acceptance, activation, merge or deployment"
+  ]
+}

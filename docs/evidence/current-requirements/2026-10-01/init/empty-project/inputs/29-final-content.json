@@ -1,0 +1,164 @@
+{
+  "sections": {
+    "adaptation": [
+      {
+        "id": "adaptation-written",
+        "description": "Предложение местной инструкции и реестр созданы; прочитаны по смыслу. Новые знания записаны предметно, а не оставлены полями шаблона. Автор не принимал новую инструкцию.",
+        "state": "confirmed",
+        "basis": [
+          "Observed files, source-guided execution raw reports and predeclared fixture intent."
+        ],
+        "sources": [
+          ".highgrade/project/INSTRUCTIONS.md",
+          ".highgrade/project/documents.json"
+        ],
+        "blocks": []
+      }
+    ],
+    "components": [
+      {
+        "id": "component-current",
+        "description": "Созданы README, AGENTS, проектная инструкция, реестр и предметный черновик HG-0001. Продуктового кода нет.",
+        "state": "confirmed",
+        "basis": [
+          "Observed files, source-guided execution raw reports and predeclared fixture intent."
+        ],
+        "sources": [
+          "README.md",
+          "AGENTS.md",
+          ".highgrade/project/INSTRUCTIONS.md",
+          ".highgrade/project/documents.json",
+          "specs/changes/HG-0001/spec.json"
+        ],
+        "blocks": []
+      }
+    ],
+    "findings": [
+      {
+        "id": "finding-budget",
+        "description": "Бюджеты контекста не согласованы; оставить null и считать BudgetNotAgreed неизвестностью, не PASS. Они не мешают разрешённой подготовке.",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "blocks": [],
+        "sources": [],
+        "state": "unknown"
+      },
+      {
+        "id": "finding-future",
+        "description": "Выбор стека и runner относится к будущей реализации, которая не поручена.",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "blocks": [],
+        "sources": [],
+        "state": "confirmed"
+      }
+    ],
+    "knowledge": [
+      {
+        "id": "knowledge-current",
+        "description": "README совмещает четыре роли, AGENTS — агентский маршрут; такое минимальное распределение создано как предложение.",
+        "state": "confirmed",
+        "basis": [
+          "Observed files, source-guided execution raw reports and predeclared fixture intent."
+        ],
+        "sources": [
+          "README.md",
+          "AGENTS.md"
+        ],
+        "blocks": []
+      }
+    ],
+    "observations": [
+      {
+        "id": "observation-execution",
+        "description": "Фактические survey-* команды выполнились через CLI 0.3.6. Первые абсолютные input-пути были отвергнуты UnsafePath; supported root-relative inputs после чтения схемы сохранены успешно. Это source-guided исполнение, не автоматическое обнаружение установленного навыка.",
+        "state": "confirmed",
+        "basis": [
+          "Observed files, source-guided execution raw reports and predeclared fixture intent."
+        ],
+        "sources": [],
+        "blocks": []
+      },
+      {
+        "id": "observation-inspect",
+        "description": "inspect exit 2, только BudgetNotAgreed: 3 находки.",
+        "state": "confirmed",
+        "basis": [
+          "Actual 25-inspect stdout."
+        ],
+        "sources": [],
+        "blocks": []
+      },
+      {
+        "id": "observation-doctor",
+        "description": "doctor exit 0, findings=[]; область schema-only, не смысловая сертификация.",
+        "state": "confirmed",
+        "basis": [
+          "Actual 26-doctor stdout."
+        ],
+        "sources": [],
+        "blocks": []
+      },
+      {
+        "id": "observation-specific",
+        "description": "spec-validate HG-0001 exit 1 OpenQuestions; сценарий книги не выполнялся, черновик не готов к интеграции.",
+        "state": "confirmed",
+        "basis": [
+          "Actual 24-spec-validate stdout."
+        ],
+        "sources": [],
+        "blocks": []
+      }
+    ],
+    "processes": [
+      {
+        "id": "process-observed",
+        "description": "В исходном пустом каталоге нет runner, formatter, linter, CI или ignore. Будущая команда тестирования неизвестна; её выбор относится к будущей реализации.",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "blocks": [],
+        "sources": [],
+        "state": "confirmed"
+      }
+    ],
+    "routes": [
+      {
+        "id": "route-next",
+        "description": "Первый следующий шаг: task/spec уточняет вопросы существующего HG-0001 об интерфейсе, хранении и runner. Реализация требует отдельного поручения.",
+        "state": "confirmed",
+        "basis": [
+          "Observed files, source-guided execution raw reports and predeclared fixture intent."
+        ],
+        "sources": [],
+        "blocks": []
+      }
+    ],
+    "skills": [
+      {
+        "id": "skills-observed",
+        "description": "Местных навыков в пустом каталоге не обнаружено.",
+        "basis": [
+          "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+        ],
+        "blocks": [],
+        "sources": [],
+        "state": "confirmed"
+      }
+    ]
+  },
+  "source_paths": [
+    ".highgrade/project/INSTRUCTIONS.md",
+    ".highgrade/project/documents.json",
+    "AGENTS.md",
+    "README.md",
+    "specs/README.md",
+    "specs/catalog.json",
+    "specs/changes/HG-0001/spec.json",
+    "specs/runners.json",
+    "specs/tags.json"
+  ],
+  "next": "Уточнить вопросы HG-0001 перед отдельным поручением work."
+}

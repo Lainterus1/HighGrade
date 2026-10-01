@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "documents": [
+    {
+      "id": "readme",
+      "path": "README.md",
+      "roles": [
+        "purpose-navigation"
+      ],
+      "loading": "entry",
+      "scope": [],
+      "budget": null
+    },
+    {
+      "id": "agents",
+      "path": "AGENTS.md",
+      "role": "agent-rules",
+      "loading": "entry",
+      "scope": [],
+      "budget": null
+    },
+    {
+      "id": "guide",
+      "path": "GUIDE.md",
+      "roles": [
+        "current-architecture",
+        "engineering-rules",
+        "commands-procedures"
+      ],
+      "loading": "task",
+      "scope": [
+        "code.py",
+        "test_code.py"
+      ],
+      "budget": null
+    }
+  ],
+  "additional_sources": [
+    {
+      "path": ".highgrade/project/INSTRUCTIONS.md",
+      "role": "project-adaptation",
+      "active": true,
+      "loading": "entry",
+      "scope": [
+        ".highgrade/project/documents.json",
+        ".highgrade/project/survey.json"
+      ]
+    },
+    {
+      "path": ".agents/skills/code-review/SKILL.md",
+      "role": "local-domain-review",
+      "active": true,
+      "loading": "task",
+      "scope": []
+    }
+  ],
+  "route_budget": null
+}

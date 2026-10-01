@@ -2,35 +2,35 @@
   "acceptance": [],
   "evidence": {
     "HG-0043-S1": {
-      "captured_at": "2026-09-26T12:24:27.384583+00:00",
-      "command": "Нормативная сверка текущих владельцев правил и таблица решений",
-      "input_manifest_sha256": "a9fa192e152e7d4bb44728bc8189f313b53a546c5cdcaae02de21697f373f7de",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "command": "Смысловая сверка текущих Spec/Work/verification/QUALITY/DEVELOPMENT по таблице результатов",
+      "input_manifest_sha256": "bafcf1dcc013238a8262e24904a4892bac637e1712558535733e9ff3e4547b42",
       "method": "manual",
-      "observation": "Spec/Work/verification согласованы с матрицей: нормативная сверка допустима, фактическое исполнение требует наблюдения; обязательных агентных пилотов для редакторских изменений нет.",
+      "observation": "Нормативное содержание подтверждается смысловой сверкой; реальное исполнение требует наблюдения; проект использует единую матрицу без обязательного пилота редакторской правки.",
       "outcome": "passed",
-      "report": "docs/evidence/v0-3/normative.md",
+      "report": "docs/evidence/current-requirements/2026-10-01/verification.md",
       "scenario": "HG-0043-S1",
       "scenario_sha256": "9b502f959742541f26e6c31367469c5d5df1d43b296235e336d85ddcca5dec92"
     },
     "HG-0043-S2": {
-      "captured_at": "2026-09-26T12:24:27.384583+00:00",
-      "command": "Нормативная сверка текущих владельцев правил и таблица решений",
-      "input_manifest_sha256": "a9fa192e152e7d4bb44728bc8189f313b53a546c5cdcaae02de21697f373f7de",
+      "captured_at": "2026-10-01T12:44:53.620923+00:00",
+      "command": "Смысловая сверка причинных областей; cargo test --locked --test evidence_scope_contracts causal_runner_scopes_preserve_siblings_but_invalidate_real_dependencies -- --exact",
+      "input_manifest_sha256": "1ac12654411470ef33603185117fd2ce512c7a8fd0a3b5dd7af65629a76e3225",
       "method": "manual",
-      "observation": "Общий снимок отделён от полных входов сценария; свежие доказательства HG38–42 опираются на выполненный прогон, зависимости объяснены, история и неизвестные старые результаты не переписаны.",
+      "observation": "Реальная регрессия вынесена в отдельный test target, поэтому прежний catalog_contracts.rs и доказательства HG64 не меняются. Два unittest через spec-run подтверждают независимость соседних областей и инвалидирование общих зависимостей с сохранением runs. Предыдущие 14 maintenance/9 lifecycle наблюдений и смысловая сверка областей сохраняются; эта запись получена новым фактическим запуском, предыдущая остаётся в истории.",
       "outcome": "passed",
-      "report": "docs/evidence/v0-3/normative.md",
+      "report": "docs/evidence/current-requirements/2026-10-01/verification-isolated-scope.md",
       "scenario": "HG-0043-S2",
       "scenario_sha256": "f48771e3ccf8ef1a66ec3819eea68d4634eec738d86bcaa894ea820abb02fb9e"
     },
     "HG-0043-S3": {
-      "captured_at": "2026-09-26T12:24:27.384583+00:00",
-      "command": "Нормативная сверка текущих владельцев правил и таблица решений",
-      "input_manifest_sha256": "6e6af2c411977429b61265b78c5fc923a836f3fa9d4c3e9efa97b0dab2fde568",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "command": "Смысловая сверка fix/clear/audit/CONTEXT и навигации",
+      "input_manifest_sha256": "e6ae3bdd29206263befff9a89457d3efb3951da74fb5da28cb6e25cafdfe76ed",
       "method": "manual",
-      "observation": "Fixer/clear/audit/CONTEXT согласуют владение карточкой и задачей; реестр необязателен, v0.2.17 архивирован и отмечен историческим.",
+      "observation": "Fixer/карточка владеет повторяемым решением, задача — ссылкой/последствиями; Clear не создаёт отсутствующий реестр; действующие владельцы и архив разведены. Исполнение будущего агента не заявлено.",
       "outcome": "passed",
-      "report": "docs/evidence/v0-3/normative.md",
+      "report": "docs/evidence/current-requirements/2026-10-01/verification.md",
       "scenario": "HG-0043-S3",
       "scenario_sha256": "d06946bfc623e2d249a924d8c6b09dff3c5543a0a8cbb5a9e76eaba0c2396f12"
     }
@@ -50,9 +50,62 @@
         },
         "recorded_at": 1790425586,
         "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0043-S1": "26a6071ef25d3f99ceeba0e84f2e58f2c3b4905224f27f70571dcd9eb682a2f6",
+          "HG-0043-S2": "a61a1270fc403b58d0a0fa5b43847b574b88df0a5da23585b3a3a6f763adc200",
+          "HG-0043-S3": "48b9c7eb5c40c5c009526eafcfea929d35651db7e1cda2072312b1acaf775065"
+        },
+        "recorded_at": 1790857870,
+        "review": "105ab9057a64567d52fd49708db2eb97d4e41237889de96e7ced8374f6017f39"
+      },
+      {
+        "evidence": {
+          "HG-0043-S1": "0ff266d14313c5bf79902b70c505d90f9db7b8c9818cc2ef51c80e77201ecefc",
+          "HG-0043-S2": "9061f7ba894d545014c348e9fea61551b5b5bb02cb098007b16af838cae05785",
+          "HG-0043-S3": "433569010236a41167f6a226e243e720026ba12cef2f2bda42348b1005b6d3a4"
+        },
+        "recorded_at": 1790858351,
+        "review": "105ab9057a64567d52fd49708db2eb97d4e41237889de96e7ced8374f6017f39"
+      },
+      {
+        "evidence": {
+          "HG-0043-S1": "0ff266d14313c5bf79902b70c505d90f9db7b8c9818cc2ef51c80e77201ecefc",
+          "HG-0043-S2": "9061f7ba894d545014c348e9fea61551b5b5bb02cb098007b16af838cae05785",
+          "HG-0043-S3": "433569010236a41167f6a226e243e720026ba12cef2f2bda42348b1005b6d3a4"
+        },
+        "recorded_at": 1790858699,
+        "review": "8ffeac233803750728a6de348a89456a0a36f20d6f52e728ba89832ea0b8384e"
+      },
+      {
+        "evidence": {
+          "HG-0043-S1": "0ff266d14313c5bf79902b70c505d90f9db7b8c9818cc2ef51c80e77201ecefc",
+          "HG-0043-S2": "b073c91b1ea37db74e89c6cd9dddd59a2b922483fcd8271ba2ed55ab7e8ebeb8",
+          "HG-0043-S3": "433569010236a41167f6a226e243e720026ba12cef2f2bda42348b1005b6d3a4"
+        },
+        "recorded_at": 1790858997,
+        "review": "8ffeac233803750728a6de348a89456a0a36f20d6f52e728ba89832ea0b8384e"
       }
     ],
     "objects": {
+      "0ff266d14313c5bf79902b70c505d90f9db7b8c9818cc2ef51c80e77201ecefc": {
+        "captured_at": "2026-10-01T12:27:49.176096+00:00",
+        "command": "Смысловая сверка текущих Spec/Work/verification/QUALITY/DEVELOPMENT по таблице результатов",
+        "input_manifest_sha256": "bafcf1dcc013238a8262e24904a4892bac637e1712558535733e9ff3e4547b42",
+        "method": "manual",
+        "observation": "Нормативное содержание подтверждается смысловой сверкой; реальное исполнение требует наблюдения; проект использует единую матрицу без обязательного пилота редакторской правки.",
+        "outcome": "passed",
+        "report": "docs/evidence/current-requirements/2026-10-01/verification.md",
+        "scenario": "HG-0043-S1",
+        "scenario_sha256": "9b502f959742541f26e6c31367469c5d5df1d43b296235e336d85ddcca5dec92"
+      },
+      "105ab9057a64567d52fd49708db2eb97d4e41237889de96e7ced8374f6017f39": {
+        "change_sha256": "5742bc2ad7c10bc64bedf8c315c3a78edc8f35fd324868637d817822751b8191",
+        "conclusion": "REVIEW_GO: docs/evidence/v0-3/normative.md, JUnit158, Python15, trace81, scale100/200, reuse; scopes reviewed including native-v1 fixture. Cache-file preflight fixed; runtime Cargo failure remains nontransactional. See docs/reviews/v0-3.md.",
+        "reviewer": "independent subagent /root/docs_specs_review",
+        "verdict": "go"
+      },
       "26a6071ef25d3f99ceeba0e84f2e58f2c3b4905224f27f70571dcd9eb682a2f6": {
         "captured_at": "2026-09-26T12:24:27.384583+00:00",
         "command": "Нормативная сверка текущих владельцев правил и таблица решений",
@@ -63,6 +116,17 @@
         "report": "docs/evidence/v0-3/normative.md",
         "scenario": "HG-0043-S1",
         "scenario_sha256": "9b502f959742541f26e6c31367469c5d5df1d43b296235e336d85ddcca5dec92"
+      },
+      "433569010236a41167f6a226e243e720026ba12cef2f2bda42348b1005b6d3a4": {
+        "captured_at": "2026-10-01T12:27:49.176096+00:00",
+        "command": "Смысловая сверка fix/clear/audit/CONTEXT и навигации",
+        "input_manifest_sha256": "e6ae3bdd29206263befff9a89457d3efb3951da74fb5da28cb6e25cafdfe76ed",
+        "method": "manual",
+        "observation": "Fixer/карточка владеет повторяемым решением, задача — ссылкой/последствиями; Clear не создаёт отсутствующий реестр; действующие владельцы и архив разведены. Исполнение будущего агента не заявлено.",
+        "outcome": "passed",
+        "report": "docs/evidence/current-requirements/2026-10-01/verification.md",
+        "scenario": "HG-0043-S3",
+        "scenario_sha256": "d06946bfc623e2d249a924d8c6b09dff3c5543a0a8cbb5a9e76eaba0c2396f12"
       },
       "48b9c7eb5c40c5c009526eafcfea929d35651db7e1cda2072312b1acaf775065": {
         "captured_at": "2026-09-26T12:24:27.384583+00:00",
@@ -76,6 +140,23 @@
         "scenario_sha256": "d06946bfc623e2d249a924d8c6b09dff3c5543a0a8cbb5a9e76eaba0c2396f12"
       },
       "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "8ffeac233803750728a6de348a89456a0a36f20d6f52e728ba89832ea0b8384e": {
+        "change_sha256": "2135e4482b28791244f2394082aee72a031a0caa50a3aacb3069b9902620088d",
+        "conclusion": "GO: independent verify_init_adaptation_cases review of requirements, nine fresh observations, causal inputs, actual reruns and append-only history; docs/evidence/current-requirements/2026-10-01/review-non-init.md. No human acceptance, activation or publication implied.",
+        "reviewer": "verify_init_adaptation_cases (independent non-Init reviewer)",
+        "verdict": "go"
+      },
+      "9061f7ba894d545014c348e9fea61551b5b5bb02cb098007b16af838cae05785": {
+        "captured_at": "2026-10-01T12:30:48.551256+00:00",
+        "command": "Смысловая сверка областей + 14 maintenance + 9 lifecycle + cargo test --locked --test catalog_contracts causal_runner_scopes_preserve_siblings_but_invalidate_real_dependencies -- --exact",
+        "input_manifest_sha256": "791b0896f7ea9f21222e73e2278ad846861e9cf6dad7fca4bb0c7aa1dd76429b",
+        "method": "manual",
+        "observation": "Новые фактические результаты записаны с объяснёнными зависимостями. Реальный spec-run двух независимых областей сохраняет результат при нерелевантном изменении; собственный тест/данные затрагивает одну область, общий модуль/runner/config обе. Старые runs и широкие UI-результаты сохранены. Общий прогон не скопирован в каждую область.",
+        "outcome": "passed",
+        "report": "docs/evidence/current-requirements/2026-10-01/verification.md",
+        "scenario": "HG-0043-S2",
+        "scenario_sha256": "f48771e3ccf8ef1a66ec3819eea68d4634eec738d86bcaa894ea820abb02fb9e"
+      },
       "a61a1270fc403b58d0a0fa5b43847b574b88df0a5da23585b3a3a6f763adc200": {
         "captured_at": "2026-09-26T12:24:27.384583+00:00",
         "command": "Нормативная сверка текущих владельцев правил и таблица решений",
@@ -86,10 +167,120 @@
         "report": "docs/evidence/v0-3/normative.md",
         "scenario": "HG-0043-S2",
         "scenario_sha256": "f48771e3ccf8ef1a66ec3819eea68d4634eec738d86bcaa894ea820abb02fb9e"
+      },
+      "b073c91b1ea37db74e89c6cd9dddd59a2b922483fcd8271ba2ed55ab7e8ebeb8": {
+        "captured_at": "2026-10-01T12:44:53.620923+00:00",
+        "command": "Смысловая сверка причинных областей; cargo test --locked --test evidence_scope_contracts causal_runner_scopes_preserve_siblings_but_invalidate_real_dependencies -- --exact",
+        "input_manifest_sha256": "1ac12654411470ef33603185117fd2ce512c7a8fd0a3b5dd7af65629a76e3225",
+        "method": "manual",
+        "observation": "Реальная регрессия вынесена в отдельный test target, поэтому прежний catalog_contracts.rs и доказательства HG64 не меняются. Два unittest через spec-run подтверждают независимость соседних областей и инвалидирование общих зависимостей с сохранением runs. Предыдущие 14 maintenance/9 lifecycle наблюдений и смысловая сверка областей сохраняются; эта запись получена новым фактическим запуском, предыдущая остаётся в истории.",
+        "outcome": "passed",
+        "report": "docs/evidence/current-requirements/2026-10-01/verification-isolated-scope.md",
+        "scenario": "HG-0043-S2",
+        "scenario_sha256": "f48771e3ccf8ef1a66ec3819eea68d4634eec738d86bcaa894ea820abb02fb9e"
       }
     }
   },
   "input_manifests": {
+    "1ac12654411470ef33603185117fd2ce512c7a8fd0a3b5dd7af65629a76e3225": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "e53cc073c064902c5c666b554f76f5f95d6a7a5c185ed41814fa98b0ed5b678e",
+        "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+        "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+        "build.rs": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+        "docs/DEVELOPMENT.md": "346c97f3cb311baf874c1ca35497bb8c4553152334d33a670599f3b77c64d56d",
+        "docs/evidence/current-requirements/2026-10-01/isolated-scope.log": "2c36bb1db8e97788e74bc2b022d0e60af16cfe13b74291b35cb1360fc95544e7",
+        "docs/evidence/current-requirements/2026-10-01/maintenance.log": "729fd3c08f08d88680aead217ae35b97368a1506eaec869f0dceb6caa33dd7d7",
+        "docs/evidence/current-requirements/2026-10-01/release-lifecycle.log": "11bbdae3ce223bf7375cb3fab876042d5c518a3aefb8133d277222e8aa94f62e",
+        "docs/evidence/current-requirements/2026-10-01/verification-isolated-scope.md": "617cee0ea01c6377037997a3337e64b9d147f19150190d4c51cd9a870d6912f8",
+        "docs/evidence/current-requirements/2026-10-01/verification.md": "fdc5fe1d7255a9170ea466e2e23a6a9f3336e5fbfdce5663d2a89d1e03ab888f",
+        "docs/workflow/QUALITY.md": "71fc1a8294fd3d2e651aec276f8910b0c7d380c5f3a8d0b40f273f6a4a369895",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/task.md": "3e8655874d7d65a95add6fb595a15c0e9c4f9a14349fea71c7d7c42bbcc73249",
+        "kit/procedures/work.md": "2c0a41643f1f3e392e811ddafcd698f16b49742ceae0dcd997e880f96c9b480a",
+        "kit/references/tools/specifications.md": "22fed5ffcb8aaf77530968f5d6d756cba492caf2feabe184a26dbe3edb6c4212",
+        "kit/references/tools/verification.md": "33dae664e5ba13b47f0cc51ef84faa5e3def6dea8403b300448ba008bbfeb2a9",
+        "kit/rules.md": "e0f80dab572769bc8924f297dd243c738e99ac9b153c6c8354027ce3d31209a4",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "scripts/build-release.py": "5aefbed904a490ceec1f01ba79fb6b99acb42eab98025d0af30a4c3db3c96e0b",
+        "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+        "scripts/tests/test_build_release.py": "fd09113b6100bf142976e2f4be763a205b2007b0cec50f7a78eff6b1ba94077b",
+        "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+        "src/bootstrap.rs": "4f8bcc7361edae1785c64fe47477ef7206a07f47aab7be9df570f407c0b0751f",
+        "src/discovery.rs": "58b0b53971a3e7612f6e762784c6eaf1dff7d9a4c35a3d75043f384f20141350",
+        "src/global.rs": "13e04e1eaf79d9c52cb23e9f274e071d98da85a42a079762fb52bba9ca2d2786",
+        "src/inspect.rs": "78f3d435c2a34ee57fe61a78fa0eb2fc0225f8cbade53c6d11f93011aefb07bd",
+        "src/install.rs": "c428d9e11258e0f35da2b3c1b9b2be790d7b36b1b2f34166e038e68286662c7a",
+        "src/issues.rs": "77baaf9dbf1299d100882fc8e3dfe7cf0d8c45303f9177cd709ea62ddc24f347",
+        "src/lib.rs": "b494be17707029ecd15b8decf37f10a044780b9b3297fe893309ce27917b4302",
+        "src/main.rs": "0f2000d05764f272673b4e52dd3cde14c122f84d3b58f34b09c029072b64832b",
+        "src/package.rs": "b0c0d36d3fb9e18f6572fd9ccba4a72794f9068d9b64759c238e74899deae002",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "2a2c578c6aef3fadcd4c5aed1f66fa6ca9b4f7dbfb42de92009edf8da81347ef",
+        "src/specs/attention.rs": "ec651d48f057373dd8e73f5b8e3ad1ea05e8538a2958b588aaf00a2ac72a682e",
+        "src/specs/checks.rs": "377d8ab634d99905bfaadc456cb147b61681152fe8f1de7e54977de129fb4df7",
+        "src/specs/delivery.rs": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+        "src/specs/presentation.rs": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+        "src/specs/progress.rs": "1f9dce8498e06c7a8a9ffa14a9fc72c0eb16effb20968ac509b7a68420cc8a05",
+        "src/specs/relations.rs": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+        "src/specs/storage.rs": "f97716a69af8a2ffb01afbfee71a48a482503762ac286b5322601b75e05d40cb",
+        "src/specs/storage/shared_inputs.rs": "1a705e8ba1f6630c37979e8d04b8296d6fdca2d530bc187c40039bd6dcca6f31",
+        "src/survey.rs": "81708002551dd5627c9729cdd2223a7bbabe3c7358ffbcc0630c0ff6148d41ad",
+        "src/trace.rs": "1c32e0ea96c6f5ff1f1aa31545d7badd2e6a8a77da63fadbfbca267f7e998597",
+        "src/ui.rs": "6860dce8cfbc24d3ef57fed26d59e8bcf0b84978a28958c8e25c390f828dbdcb",
+        "src/ui/bundle.rs": "5e67b3eb6bff96f7e1f769e8e112c859fe97a7730b2a2d82b7f59f5b8594774b",
+        "tests/evidence_scope_contracts.rs": "3da41176f363223bdcc0c0e8b270cd32d16b0cfa1d12e5c1a14bf3887ba683a1",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "build.rs",
+        "docs/DEVELOPMENT.md",
+        "docs/evidence/current-requirements/2026-10-01/isolated-scope.log",
+        "docs/evidence/current-requirements/2026-10-01/maintenance.log",
+        "docs/evidence/current-requirements/2026-10-01/release-lifecycle.log",
+        "docs/evidence/current-requirements/2026-10-01/verification.md",
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/task.md",
+        "kit/procedures/work.md",
+        "kit/references/tools/specifications.md",
+        "kit/references/tools/verification.md",
+        "kit/rules.md",
+        "rust-toolchain.toml",
+        "scripts/build-release.py",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_build_release.py",
+        "scripts/tests/test_target_maintenance.py",
+        "src/bootstrap.rs",
+        "src/discovery.rs",
+        "src/global.rs",
+        "src/inspect.rs",
+        "src/install.rs",
+        "src/issues.rs",
+        "src/lib.rs",
+        "src/main.rs",
+        "src/package.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/checks.rs",
+        "src/specs/delivery.rs",
+        "src/specs/presentation.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "src/survey.rs",
+        "src/trace.rs",
+        "src/ui.rs",
+        "src/ui/bundle.rs",
+        "tests/evidence_scope_contracts.rs",
+        "tests/support/mod.rs"
+      ]
+    },
     "6e6af2c411977429b61265b78c5fc923a836f3fa9d4c3e9efa97b0dab2fde568": {
       "files": {
         ".highgrade/project/documents.json": "ea3509b27809497172cff97556755c9767e68c082dd070dcedc7e0d2df30746f",
@@ -125,6 +316,105 @@
         "kit/references/tools/verification.md"
       ]
     },
+    "791b0896f7ea9f21222e73e2278ad846861e9cf6dad7fca4bb0c7aa1dd76429b": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "e53cc073c064902c5c666b554f76f5f95d6a7a5c185ed41814fa98b0ed5b678e",
+        "Cargo.lock": "c9d26e0feb8c8ea3288644833ebd872f5e291c037031d032e704321818399a93",
+        "Cargo.toml": "45d6c1af280fa409120b944ecb1cf5d7bad1057a4df0c412882715855771bfee",
+        "build.rs": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+        "docs/DEVELOPMENT.md": "346c97f3cb311baf874c1ca35497bb8c4553152334d33a670599f3b77c64d56d",
+        "docs/evidence/current-requirements/2026-10-01/maintenance.log": "729fd3c08f08d88680aead217ae35b97368a1506eaec869f0dceb6caa33dd7d7",
+        "docs/evidence/current-requirements/2026-10-01/release-lifecycle.log": "11bbdae3ce223bf7375cb3fab876042d5c518a3aefb8133d277222e8aa94f62e",
+        "docs/evidence/current-requirements/2026-10-01/scope-regression-final.log": "a2aa5564c603532a66f2021ad40458bdba6d31942dcf4decbd96c14754d32e5d",
+        "docs/evidence/current-requirements/2026-10-01/verification.md": "fdc5fe1d7255a9170ea466e2e23a6a9f3336e5fbfdce5663d2a89d1e03ab888f",
+        "docs/workflow/QUALITY.md": "71fc1a8294fd3d2e651aec276f8910b0c7d380c5f3a8d0b40f273f6a4a369895",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/task.md": "3e8655874d7d65a95add6fb595a15c0e9c4f9a14349fea71c7d7c42bbcc73249",
+        "kit/procedures/work.md": "2c0a41643f1f3e392e811ddafcd698f16b49742ceae0dcd997e880f96c9b480a",
+        "kit/references/tools/specifications.md": "22fed5ffcb8aaf77530968f5d6d756cba492caf2feabe184a26dbe3edb6c4212",
+        "kit/references/tools/verification.md": "33dae664e5ba13b47f0cc51ef84faa5e3def6dea8403b300448ba008bbfeb2a9",
+        "kit/rules.md": "e0f80dab572769bc8924f297dd243c738e99ac9b153c6c8354027ce3d31209a4",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "scripts/build-release.py": "5aefbed904a490ceec1f01ba79fb6b99acb42eab98025d0af30a4c3db3c96e0b",
+        "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+        "scripts/tests/test_build_release.py": "fd09113b6100bf142976e2f4be763a205b2007b0cec50f7a78eff6b1ba94077b",
+        "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+        "src/bootstrap.rs": "4f8bcc7361edae1785c64fe47477ef7206a07f47aab7be9df570f407c0b0751f",
+        "src/discovery.rs": "58b0b53971a3e7612f6e762784c6eaf1dff7d9a4c35a3d75043f384f20141350",
+        "src/global.rs": "13e04e1eaf79d9c52cb23e9f274e071d98da85a42a079762fb52bba9ca2d2786",
+        "src/inspect.rs": "78f3d435c2a34ee57fe61a78fa0eb2fc0225f8cbade53c6d11f93011aefb07bd",
+        "src/install.rs": "c428d9e11258e0f35da2b3c1b9b2be790d7b36b1b2f34166e038e68286662c7a",
+        "src/issues.rs": "77baaf9dbf1299d100882fc8e3dfe7cf0d8c45303f9177cd709ea62ddc24f347",
+        "src/lib.rs": "b494be17707029ecd15b8decf37f10a044780b9b3297fe893309ce27917b4302",
+        "src/main.rs": "0f2000d05764f272673b4e52dd3cde14c122f84d3b58f34b09c029072b64832b",
+        "src/package.rs": "b0c0d36d3fb9e18f6572fd9ccba4a72794f9068d9b64759c238e74899deae002",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "2a2c578c6aef3fadcd4c5aed1f66fa6ca9b4f7dbfb42de92009edf8da81347ef",
+        "src/specs/attention.rs": "ec651d48f057373dd8e73f5b8e3ad1ea05e8538a2958b588aaf00a2ac72a682e",
+        "src/specs/checks.rs": "377d8ab634d99905bfaadc456cb147b61681152fe8f1de7e54977de129fb4df7",
+        "src/specs/delivery.rs": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+        "src/specs/presentation.rs": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+        "src/specs/progress.rs": "1f9dce8498e06c7a8a9ffa14a9fc72c0eb16effb20968ac509b7a68420cc8a05",
+        "src/specs/relations.rs": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+        "src/specs/storage.rs": "f97716a69af8a2ffb01afbfee71a48a482503762ac286b5322601b75e05d40cb",
+        "src/specs/storage/shared_inputs.rs": "1a705e8ba1f6630c37979e8d04b8296d6fdca2d530bc187c40039bd6dcca6f31",
+        "src/survey.rs": "81708002551dd5627c9729cdd2223a7bbabe3c7358ffbcc0630c0ff6148d41ad",
+        "src/trace.rs": "1c32e0ea96c6f5ff1f1aa31545d7badd2e6a8a77da63fadbfbca267f7e998597",
+        "src/ui.rs": "6860dce8cfbc24d3ef57fed26d59e8bcf0b84978a28958c8e25c390f828dbdcb",
+        "src/ui/bundle.rs": "5e67b3eb6bff96f7e1f769e8e112c859fe97a7730b2a2d82b7f59f5b8594774b",
+        "tests/catalog_contracts.rs": "3f404748e5d6a33c419c3258856098c5c78731b919d546d1c2226b77d4392ff9",
+        "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "Cargo.lock",
+        "Cargo.toml",
+        "build.rs",
+        "docs/DEVELOPMENT.md",
+        "docs/evidence/current-requirements/2026-10-01/maintenance.log",
+        "docs/evidence/current-requirements/2026-10-01/release-lifecycle.log",
+        "docs/evidence/current-requirements/2026-10-01/scope-regression-final.log",
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/task.md",
+        "kit/procedures/work.md",
+        "kit/references/tools/specifications.md",
+        "kit/references/tools/verification.md",
+        "kit/rules.md",
+        "rust-toolchain.toml",
+        "scripts/build-release.py",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_build_release.py",
+        "scripts/tests/test_target_maintenance.py",
+        "src/bootstrap.rs",
+        "src/discovery.rs",
+        "src/global.rs",
+        "src/inspect.rs",
+        "src/install.rs",
+        "src/issues.rs",
+        "src/lib.rs",
+        "src/main.rs",
+        "src/package.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/checks.rs",
+        "src/specs/delivery.rs",
+        "src/specs/presentation.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "src/survey.rs",
+        "src/trace.rs",
+        "src/ui.rs",
+        "src/ui/bundle.rs",
+        "tests/catalog_contracts.rs",
+        "tests/fixtures/native-v1/store.json",
+        "tests/support/mod.rs"
+      ]
+    },
     "a9fa192e152e7d4bb44728bc8189f313b53a546c5cdcaae02de21697f373f7de": {
       "files": {
         "docs/DEVELOPMENT.md": "e863eb5daaa69797336917f73394f3e2bd549b8101b2e99023c167df929764d7",
@@ -139,12 +429,58 @@
         "kit/procedures/work.md",
         "kit/references/tools/verification.md"
       ]
+    },
+    "bafcf1dcc013238a8262e24904a4892bac637e1712558535733e9ff3e4547b42": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "e53cc073c064902c5c666b554f76f5f95d6a7a5c185ed41814fa98b0ed5b678e",
+        "docs/DEVELOPMENT.md": "346c97f3cb311baf874c1ca35497bb8c4553152334d33a670599f3b77c64d56d",
+        "docs/evidence/current-requirements/2026-10-01/verification.md": "fdc5fe1d7255a9170ea466e2e23a6a9f3336e5fbfdce5663d2a89d1e03ab888f",
+        "docs/workflow/QUALITY.md": "71fc1a8294fd3d2e651aec276f8910b0c7d380c5f3a8d0b40f273f6a4a369895",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/task.md": "3e8655874d7d65a95add6fb595a15c0e9c4f9a14349fea71c7d7c42bbcc73249",
+        "kit/procedures/work.md": "2c0a41643f1f3e392e811ddafcd698f16b49742ceae0dcd997e880f96c9b480a",
+        "kit/references/tools/specifications.md": "22fed5ffcb8aaf77530968f5d6d756cba492caf2feabe184a26dbe3edb6c4212",
+        "kit/references/tools/verification.md": "33dae664e5ba13b47f0cc51ef84faa5e3def6dea8403b300448ba008bbfeb2a9",
+        "kit/rules.md": "e0f80dab572769bc8924f297dd243c738e99ac9b153c6c8354027ce3d31209a4"
+      },
+      "input_paths": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "docs/DEVELOPMENT.md",
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/task.md",
+        "kit/procedures/work.md",
+        "kit/references/tools/specifications.md",
+        "kit/references/tools/verification.md",
+        "kit/rules.md"
+      ]
+    },
+    "e6ae3bdd29206263befff9a89457d3efb3951da74fb5da28cb6e25cafdfe76ed": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "e53cc073c064902c5c666b554f76f5f95d6a7a5c185ed41814fa98b0ed5b678e",
+        "docs/README.md": "79d2b300db382f2daaf41350758962d3b7cc14454794ec972aebfeba02ad9f2a",
+        "docs/evidence/current-requirements/2026-10-01/verification.md": "fdc5fe1d7255a9170ea466e2e23a6a9f3336e5fbfdce5663d2a89d1e03ab888f",
+        "docs/workflow/CONTEXT.md": "09d20ef91b07e78779a160c31e06bb9b0d8ceae561f7fed9feb47e830a802de9",
+        "kit/procedures/clear.md": "b098ee666568462e251ca17dd63c4e4ca7f881e8eb95c832e54a2b79afe79ff6",
+        "kit/procedures/fix.md": "7b68074fce1e0eec03fac78973392b3ee5d5e1097f6c98aeba988e77e5687152",
+        "kit/references/audit.md": "57b54accc5d917a42c180eebee5b2f5540fa496ef0a7c41dfcaea304bf1cccb1",
+        "kit/rules.md": "e0f80dab572769bc8924f297dd243c738e99ac9b153c6c8354027ce3d31209a4"
+      },
+      "input_paths": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "docs/README.md",
+        "docs/workflow/CONTEXT.md",
+        "kit/procedures/clear.md",
+        "kit/procedures/fix.md",
+        "kit/references/audit.md",
+        "kit/rules.md"
+      ]
     }
   },
   "review": {
-    "change_sha256": "5742bc2ad7c10bc64bedf8c315c3a78edc8f35fd324868637d817822751b8191",
-    "conclusion": "REVIEW_GO: docs/evidence/v0-3/normative.md, JUnit158, Python15, trace81, scale100/200, reuse; scopes reviewed including native-v1 fixture. Cache-file preflight fixed; runtime Cargo failure remains nontransactional. See docs/reviews/v0-3.md.",
-    "reviewer": "independent subagent /root/docs_specs_review",
+    "change_sha256": "bdc872b541027a74c349a5e6e7759b43b74b57b425f972708422e2502b3a029f",
+    "conclusion": "GO: review-isolated-scope.md подтверждает новый отдельный target и свежее S2; review-non-init.md сохраняет GO для неизменённых S1/S3. Реальный повтор, причинные входы и сохранение истории проверены; HG64 не затронут. Приёмка, активация и публикация не следуют из ревью.",
+    "reviewer": "verify_init_adaptation_cases — независимый проверяющий",
     "verdict": "go"
   },
   "runs": []

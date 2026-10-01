@@ -2,35 +2,35 @@
   "acceptance": [],
   "evidence": {
     "HG-0019-S1": {
-      "captured_at": "2026-09-25T13:13:00.3999002Z",
-      "command": "python -m unittest discover -s scripts/tests -v",
-      "input_manifest_sha256": "4ba723545936186c9d2437309ddfd33d2edbde71dd3c78e49283f4a799d5f332",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "command": "python -m unittest discover -s scripts/tests -p test_build_release.py -v",
+      "input_manifest_sha256": "54ccaaf66ac38b959e25bd077a8d85b4de872683e50283a3fe8019ccf3c62660",
       "method": "native_report",
-      "observation": "12/12 Python тестов прошли; test_exact_revision_repeat_and_failed_build_preserve_candidate построил бинарник из зафиксированного Git SHA при грязном дереве, проверил каталог build-cache, пустой work и сохранность кандидата после неудачной сборки.",
+      "observation": "9/9 Git/Cargo/UI lifecycle-фикстур. Точный SHA вместо грязного дерева, repeat/build-cache/candidate/reports, очистка временных исходников, сохранение кандидата при неудачной сборке и дополнительные safety-проверки. Это механизм сборки в изолированной фикстуре; не активация. Фикстурные Cargo/kit/UI создаются самим тестом.",
       "outcome": "passed",
-      "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+      "report": "docs/evidence/current-requirements/2026-10-01/release-lifecycle.log",
       "scenario": "HG-0019-S1",
       "scenario_sha256": "b08cb0bfc0672daa8009811fe2fdb254450db388f5c52e67ff3490cc0902ae64"
     },
     "HG-0019-S2": {
-      "captured_at": "2026-09-25T13:13:00.3999002Z",
-      "command": "python -m unittest discover -s scripts/tests -v",
-      "input_manifest_sha256": "c904ed6d58f6880dce94089273d0a2980fc66ba61b4e418364b9d3ace905757c",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "command": "python -m unittest discover -s scripts/tests -p test_target_maintenance.py -v",
+      "input_manifest_sha256": "7db2dc4c90ba1b131bfebf383d9a4b0aaa402e6fa0a1c680dfee86213b8c21e8",
       "method": "native_report",
-      "observation": "12/12 Python тестов прошли; test_preview_is_read_only_and_apply_preserves_candidate_and_unknown и test_cache_cleanup_requires_explicit_selection проверили просмотр, явно выбранную очистку и сохранность чужого файла внутри tmp и неизвестного файла в корне.",
+      "observation": "14/14 реальных Python-тестов: read-only preview, выбранная очистка Cargo/scratch/report, сохранение кандидата/неизвестных файлов; отказы active build/recovery, ссылок/выхода пути и неверной смешанной выборки до удаления. Linux; Windows проверяется CI отдельно. Причинная область обоснована в verification.md.",
       "outcome": "passed",
-      "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+      "report": "docs/evidence/current-requirements/2026-10-01/maintenance.log",
       "scenario": "HG-0019-S2",
       "scenario_sha256": "410534d93918501395011a6a2644b4247569e0f4b28f5d5636376aebd9924e4e"
     },
     "HG-0019-S3": {
-      "captured_at": "2026-09-25T13:13:00.3999002Z",
-      "command": "python -m unittest discover -s scripts/tests -v",
-      "input_manifest_sha256": "c904ed6d58f6880dce94089273d0a2980fc66ba61b4e418364b9d3ace905757c",
+      "captured_at": "2026-10-01T12:27:49.176096+00:00",
+      "command": "python -m unittest discover -s scripts/tests -p test_target_maintenance.py -v",
+      "input_manifest_sha256": "7db2dc4c90ba1b131bfebf383d9a4b0aaa402e6fa0a1c680dfee86213b8c21e8",
       "method": "native_report",
-      "observation": "12/12 Python тестов прошли; test_active_build_and_recovery_state_refuse_without_changes, test_link_outside_root_refuses_and_preserves_sentinel и test_scratch_path_escape_is_refused проверили отказ до удаления и сохранность внешнего sentinel и кандидата.",
+      "observation": "14/14 реальных Python-тестов: read-only preview, выбранная очистка Cargo/scratch/report, сохранение кандидата/неизвестных файлов; отказы active build/recovery, ссылок/выхода пути и неверной смешанной выборки до удаления. Linux; Windows проверяется CI отдельно. Причинная область обоснована в verification.md.",
       "outcome": "passed",
-      "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+      "report": "docs/evidence/current-requirements/2026-10-01/maintenance.log",
       "scenario": "HG-0019-S3",
       "scenario_sha256": "882f4e2bd6628c9df58bc742cf2590bf330b6dbae9bd266e0965dc0479e68b1b"
     }
@@ -200,6 +200,24 @@
         },
         "recorded_at": 1790342051,
         "review": "88f978604093cbe356273ae788d19cf90509fe245e53de28fa4dc78d3f9bf566"
+      },
+      {
+        "evidence": {
+          "HG-0019-S1": "51667e986af4234b4c6dd1eddcb1615babf972c12e5a2167eb03346ff809ef41",
+          "HG-0019-S2": "9d83cc87ac4515e77fd978aad90a19a88d90ea973a2c882d44e9c07b3f9fb1c7",
+          "HG-0019-S3": "cf95190b5729675664857a874236e6e964c96427112db5b71992e8c76cb35d1b"
+        },
+        "recorded_at": 1790857870,
+        "review": "dee16cbd5cfbacce237b81d0f867954a7ea63b5ea237430848806391ffc49ec1"
+      },
+      {
+        "evidence": {
+          "HG-0019-S1": "ff9ff35b71351a031e7d23c62572ff905e037f924960553b5a8064c4b42c3d2a",
+          "HG-0019-S2": "9bb0d21fca9401a5f7accab971d3c0749dab471b21099d73e8fe6b14fd36a581",
+          "HG-0019-S3": "3d84eae1c9fad7d0fe61d3ac69e187df91a70e7bf6c2a40fecff41ebfdd60ebe"
+        },
+        "recorded_at": 1790858328,
+        "review": "dee16cbd5cfbacce237b81d0f867954a7ea63b5ea237430848806391ffc49ec1"
       }
     ],
     "objects": {
@@ -225,6 +243,17 @@
         "conclusion": "REVIEW_GO для финальной редакции A1-A4: сохранность неизвестного файла в tmp и запрет traversal подтверждены 12/12 тестами; LF-отчёт и S1-S3 имеют актуальные хеши, staged diff --check проходит. T5 проверяется после коммита.",
         "reviewer": "target_layout_review",
         "verdict": "go"
+      },
+      "3d84eae1c9fad7d0fe61d3ac69e187df91a70e7bf6c2a40fecff41ebfdd60ebe": {
+        "captured_at": "2026-10-01T12:27:49.176096+00:00",
+        "command": "python -m unittest discover -s scripts/tests -p test_target_maintenance.py -v",
+        "input_manifest_sha256": "7db2dc4c90ba1b131bfebf383d9a4b0aaa402e6fa0a1c680dfee86213b8c21e8",
+        "method": "native_report",
+        "observation": "14/14 реальных Python-тестов: read-only preview, выбранная очистка Cargo/scratch/report, сохранение кандидата/неизвестных файлов; отказы active build/recovery, ссылок/выхода пути и неверной смешанной выборки до удаления. Linux; Windows проверяется CI отдельно. Причинная область обоснована в verification.md.",
+        "outcome": "passed",
+        "report": "docs/evidence/current-requirements/2026-10-01/maintenance.log",
+        "scenario": "HG-0019-S3",
+        "scenario_sha256": "882f4e2bd6628c9df58bc742cf2590bf330b6dbae9bd266e0965dc0479e68b1b"
       },
       "4d019d8025e829e83ca18f58fa8d64fbb3a2429737cf900b9d769eec38e6a9b0": {
         "captured_at": "2026-09-25T13:06:38.0155908Z",
@@ -310,6 +339,17 @@
         "scenario": "HG-0019-S2",
         "scenario_sha256": "410534d93918501395011a6a2644b4247569e0f4b28f5d5636376aebd9924e4e"
       },
+      "9bb0d21fca9401a5f7accab971d3c0749dab471b21099d73e8fe6b14fd36a581": {
+        "captured_at": "2026-10-01T12:27:49.176096+00:00",
+        "command": "python -m unittest discover -s scripts/tests -p test_target_maintenance.py -v",
+        "input_manifest_sha256": "7db2dc4c90ba1b131bfebf383d9a4b0aaa402e6fa0a1c680dfee86213b8c21e8",
+        "method": "native_report",
+        "observation": "14/14 реальных Python-тестов: read-only preview, выбранная очистка Cargo/scratch/report, сохранение кандидата/неизвестных файлов; отказы active build/recovery, ссылок/выхода пути и неверной смешанной выборки до удаления. Linux; Windows проверяется CI отдельно. Причинная область обоснована в verification.md.",
+        "outcome": "passed",
+        "report": "docs/evidence/current-requirements/2026-10-01/maintenance.log",
+        "scenario": "HG-0019-S2",
+        "scenario_sha256": "410534d93918501395011a6a2644b4247569e0f4b28f5d5636376aebd9924e4e"
+      },
       "9d83cc87ac4515e77fd978aad90a19a88d90ea973a2c882d44e9c07b3f9fb1c7": {
         "captured_at": "2026-09-25T13:13:00.3999002Z",
         "command": "python -m unittest discover -s scripts/tests -v",
@@ -376,6 +416,12 @@
         "scenario": "HG-0019-S1",
         "scenario_sha256": "b08cb0bfc0672daa8009811fe2fdb254450db388f5c52e67ff3490cc0902ae64"
       },
+      "dee16cbd5cfbacce237b81d0f867954a7ea63b5ea237430848806391ffc49ec1": {
+        "change_sha256": "839fa25900f8d31f78616ba78369ec0b951f7abc081c213ec2d3dbe4c1eed5f0",
+        "conclusion": "Независимое REVIEW_GO: тест сравнивает канонический путь, передаваемый maintain в cwd и --target-dir; команды и сохранность кандидата проверяются. Повторный локальный Python-прогон 12/12, все входы S1-S3 актуальны. Требуется новый GitHub Actions run для подтверждения Windows CI.",
+        "reviewer": "target_layout_review",
+        "verdict": "go"
+      },
       "f7887c08d2a6e93505e79a49fa5dd9ea36a8bf25c6fda64f641b4be7bc969aa6": {
         "captured_at": "2026-09-25T12:34:40.1616212Z",
         "command": "python -m unittest discover -s scripts/tests -v",
@@ -384,6 +430,17 @@
         "observation": "12/12 Python тестов прошли; test_exact_revision_repeat_and_failed_build_preserve_candidate построил бинарник из зафиксированного Git SHA при грязном дереве, проверил каталог build-cache, пустой work и сохранность кандидата после неудачной сборки.",
         "outcome": "passed",
         "report": "specs/changes/HG-0019/evidence/python-unittest.txt",
+        "scenario": "HG-0019-S1",
+        "scenario_sha256": "b08cb0bfc0672daa8009811fe2fdb254450db388f5c52e67ff3490cc0902ae64"
+      },
+      "ff9ff35b71351a031e7d23c62572ff905e037f924960553b5a8064c4b42c3d2a": {
+        "captured_at": "2026-10-01T12:27:49.176096+00:00",
+        "command": "python -m unittest discover -s scripts/tests -p test_build_release.py -v",
+        "input_manifest_sha256": "54ccaaf66ac38b959e25bd077a8d85b4de872683e50283a3fe8019ccf3c62660",
+        "method": "native_report",
+        "observation": "9/9 Git/Cargo/UI lifecycle-фикстур. Точный SHA вместо грязного дерева, repeat/build-cache/candidate/reports, очистка временных исходников, сохранение кандидата при неудачной сборке и дополнительные safety-проверки. Это механизм сборки в изолированной фикстуре; не активация. Фикстурные Cargo/kit/UI создаются самим тестом.",
+        "outcome": "passed",
+        "report": "docs/evidence/current-requirements/2026-10-01/release-lifecycle.log",
         "scenario": "HG-0019-S1",
         "scenario_sha256": "b08cb0bfc0672daa8009811fe2fdb254450db388f5c52e67ff3490cc0902ae64"
       }
@@ -397,6 +454,19 @@
         "scripts/tests/test_build_release.py": "4d36a534be98c9507fc5c1b47377b3ac6586e9fcde05d9292dcc023904c511eb",
         "specs/changes/HG-0019/evidence/python-unittest.txt": "9b59bd126f9ea92ebe3a2661b828d24c8cfe81cb1a6c852990f56a51e5d49291"
       }
+    },
+    "54ccaaf66ac38b959e25bd077a8d85b4de872683e50283a3fe8019ccf3c62660": {
+      "files": {
+        "docs/evidence/current-requirements/2026-10-01/release-lifecycle.log": "11bbdae3ce223bf7375cb3fab876042d5c518a3aefb8133d277222e8aa94f62e",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "scripts/build-release.py": "5aefbed904a490ceec1f01ba79fb6b99acb42eab98025d0af30a4c3db3c96e0b",
+        "scripts/tests/test_build_release.py": "fd09113b6100bf142976e2f4be763a205b2007b0cec50f7a78eff6b1ba94077b"
+      },
+      "input_paths": [
+        "rust-toolchain.toml",
+        "scripts/build-release.py",
+        "scripts/tests/test_build_release.py"
+      ]
     },
     "69b32fdda88f6fa5064e412e1b052d161f326729e50a59f7bab7c347209c9b9e": {
       "files": {
@@ -413,6 +483,19 @@
         "scripts/tests/test_target_maintenance.py": "47309db3d6a981b1ac7f6468b59d533773bdc26447db9a1a725d8d25cf93aa4b",
         "specs/changes/HG-0019/evidence/python-unittest.txt": "37dbf91a8534479243dd16245ce67694cc52881abdf48abf24114b0169fd9355"
       }
+    },
+    "7db2dc4c90ba1b131bfebf383d9a4b0aaa402e6fa0a1c680dfee86213b8c21e8": {
+      "files": {
+        "docs/evidence/current-requirements/2026-10-01/maintenance.log": "729fd3c08f08d88680aead217ae35b97368a1506eaec869f0dceb6caa33dd7d7",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "scripts/target-maintenance.py": "d3448879f85897016190db57a78b65e9cd4d5cd1734aba4b995861cdb8a388b0",
+        "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1"
+      },
+      "input_paths": [
+        "rust-toolchain.toml",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_target_maintenance.py"
+      ]
     },
     "82123bcf83616cd2c75f48acd07d7e1449507de986d24d06196c2568336d646f": {
       "files": {
@@ -472,9 +555,9 @@
     }
   },
   "review": {
-    "change_sha256": "839fa25900f8d31f78616ba78369ec0b951f7abc081c213ec2d3dbe4c1eed5f0",
-    "conclusion": "Независимое REVIEW_GO: тест сравнивает канонический путь, передаваемый maintain в cwd и --target-dir; команды и сохранность кандидата проверяются. Повторный локальный Python-прогон 12/12, все входы S1-S3 актуальны. Требуется новый GitHub Actions run для подтверждения Windows CI.",
-    "reviewer": "target_layout_review",
+    "change_sha256": "97cc79981c9a2e6afc540c46650f1eb57f402b0b6b746c17c572a5da59cc3288",
+    "conclusion": "GO: independent verify_init_adaptation_cases review of requirements, nine fresh observations, causal inputs, actual reruns and append-only history; docs/evidence/current-requirements/2026-10-01/review-non-init.md. No human acceptance, activation or publication implied.",
+    "reviewer": "verify_init_adaptation_cases (independent non-Init reviewer)",
     "verdict": "go"
   },
   "runs": []

@@ -1,0 +1,34 @@
+test_active_build_and_recovery_state_refuse_without_changes (test_target_maintenance.TargetMaintenanceTests.test_active_build_and_recovery_state_refuse_without_changes) ... ok
+test_budget_check_counts_hardlinked_payload_once (test_target_maintenance.TargetMaintenanceTests.test_budget_check_counts_hardlinked_payload_once) ... ok
+test_cache_cleanup_requires_explicit_selection (test_target_maintenance.TargetMaintenanceTests.test_cache_cleanup_requires_explicit_selection) ... ok
+test_cache_file_refuses_before_removing_selected_scratch (test_target_maintenance.TargetMaintenanceTests.test_cache_file_refuses_before_removing_selected_scratch) ... ok
+test_invalid_mixed_selection_refuses_before_deleting_scratch (test_target_maintenance.TargetMaintenanceTests.test_invalid_mixed_selection_refuses_before_deleting_scratch) ... ok
+test_inventory_deduplicates_hardlinks_and_reports_each_area (test_target_maintenance.TargetMaintenanceTests.test_inventory_deduplicates_hardlinks_and_reports_each_area) ... ok
+test_inventory_does_not_deduplicate_unavailable_inode_ids (test_target_maintenance.TargetMaintenanceTests.test_inventory_does_not_deduplicate_unavailable_inode_ids) ... ok
+test_inventory_without_allocated_size_reports_unknown_not_estimate (test_target_maintenance.TargetMaintenanceTests.test_inventory_without_allocated_size_reports_unknown_not_estimate) ... ok
+test_link_outside_root_refuses_and_preserves_sentinel (test_target_maintenance.TargetMaintenanceTests.test_link_outside_root_refuses_and_preserves_sentinel) ... ok
+test_missing_target_has_empty_measurements (test_target_maintenance.TargetMaintenanceTests.test_missing_target_has_empty_measurements) ... ok
+test_preview_is_read_only_and_apply_preserves_candidate_and_unknown (test_target_maintenance.TargetMaintenanceTests.test_preview_is_read_only_and_apply_preserves_candidate_and_unknown) ... ok
+test_scratch_path_escape_is_refused (test_target_maintenance.TargetMaintenanceTests.test_scratch_path_escape_is_refused) ... ok
+test_selected_preview_and_real_build_cache_cleanup (test_target_maintenance.TargetMaintenanceTests.test_selected_preview_and_real_build_cache_cleanup) ... ERROR
+test_windows_direntry_zero_identity_uses_real_path_stat (test_target_maintenance.TargetMaintenanceTests.test_windows_direntry_zero_identity_uses_real_path_stat) ... ok
+
+======================================================================
+ERROR: test_selected_preview_and_real_build_cache_cleanup (test_target_maintenance.TargetMaintenanceTests.test_selected_preview_and_real_build_cache_cleanup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/highgrade-current-evidence/scripts/tests/test_target_maintenance.py", line 232, in test_selected_preview_and_real_build_cache_cleanup
+    subprocess.run(['cargo', 'build', '--offline', '--release', '--target-dir', str(cache)],
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'cargo'
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.028s
+
+FAILED (errors=1)

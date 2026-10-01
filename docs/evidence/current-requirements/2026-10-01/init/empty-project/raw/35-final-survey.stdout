@@ -1,0 +1,615 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [],
+  "limitations": [
+    "Recorded statements are data, not proof of semantic correctness, user acceptance or permission. No project commands are executed."
+  ],
+  "measurements": [
+    {
+      "survey_sha256": "dffb25dd30b90929114b92b08915a40211b76b725b4e0a3effdeb048345a4018",
+      "value": {
+        "current": {
+          "content": {
+            "goal": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
+            "scope": [
+              "."
+            ],
+            "areas": [
+              "."
+            ],
+            "decisions": [
+              {
+                "id": "purpose",
+                "description": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              },
+              {
+                "id": "scope",
+                "description": "Весь пустой каталог.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              },
+              {
+                "id": "preservation",
+                "description": "Не менять соседний файл outside-sentinel.txt.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              },
+              {
+                "id": "changes",
+                "description": "Добавить документы процесса; для нового проекта начальный предметный черновик, без реализации.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              },
+              {
+                "id": "local_rules",
+                "description": "Исходных местных правил нет.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              },
+              {
+                "id": "environment",
+                "description": "Изолированный Linux-каталог, офлайн-подготовка; кандидат CLI 0.3.6; не создавать Git или внешние ресурсы.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              },
+              {
+                "id": "mandate",
+                "description": "Подготовить минимальную основу High Grade и один предметный черновик спеки; не реализовывать приложение.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "next": "",
+            "sections": {
+              "adaptation": [
+                {
+                  "id": "adaptation-written",
+                  "description": "Предложение местной инструкции и реестр созданы; прочитаны по смыслу. Новые знания записаны предметно, а не оставлены полями шаблона. Автор не принимал новую инструкцию.",
+                  "basis": [
+                    "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                  ],
+                  "blocks": [],
+                  "sources": [
+                    ".highgrade/project/INSTRUCTIONS.md",
+                    ".highgrade/project/documents.json"
+                  ],
+                  "state": "confirmed"
+                }
+              ],
+              "components": [
+                {
+                  "id": "component-current",
+                  "description": "Созданы README, AGENTS, проектная инструкция, реестр и предметный черновик HG-0001. Продуктового кода нет.",
+                  "basis": [
+                    "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                  ],
+                  "blocks": [],
+                  "sources": [
+                    ".highgrade/project/INSTRUCTIONS.md",
+                    ".highgrade/project/documents.json",
+                    "AGENTS.md",
+                    "README.md",
+                    "specs/changes/HG-0001/spec.json"
+                  ],
+                  "state": "confirmed"
+                }
+              ],
+              "findings": [
+                {
+                  "id": "finding-budget",
+                  "description": "Бюджеты контекста не согласованы; оставить null и считать BudgetNotAgreed неизвестностью, не PASS. Они не мешают разрешённой подготовке.",
+                  "basis": [
+                    "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                  ],
+                  "blocks": [],
+                  "sources": [],
+                  "state": "unknown"
+                },
+                {
+                  "id": "finding-future",
+                  "description": "Выбор стека и runner относится к будущей реализации, которая не поручена.",
+                  "basis": [
+                    "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                  ],
+                  "blocks": [],
+                  "sources": [],
+                  "state": "confirmed"
+                }
+              ],
+              "knowledge": [
+                {
+                  "id": "knowledge-current",
+                  "description": "README совмещает четыре роли, AGENTS — агентский маршрут; такое минимальное распределение создано как предложение.",
+                  "basis": [
+                    "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                  ],
+                  "blocks": [],
+                  "sources": [
+                    "AGENTS.md",
+                    "README.md"
+                  ],
+                  "state": "confirmed"
+                }
+              ],
+              "observations": [
+                {
+                  "id": "observation-execution",
+                  "description": "Фактические survey-* команды выполнились через CLI 0.3.6. Первые абсолютные input-пути были отвергнуты UnsafePath; supported root-relative inputs после чтения схемы сохранены успешно. Это source-guided исполнение, не автоматическое обнаружение установленного навыка.",
+                  "basis": [
+                    "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                  ],
+                  "blocks": [],
+                  "sources": [],
+                  "state": "confirmed"
+                },
+                {
+                  "id": "observation-inspect",
+                  "description": "inspect exit 2, только BudgetNotAgreed: 3 находки.",
+                  "basis": [
+                    "Actual 25-inspect stdout."
+                  ],
+                  "blocks": [],
+                  "sources": [],
+                  "state": "confirmed"
+                },
+                {
+                  "id": "observation-doctor",
+                  "description": "doctor exit 0, findings=[]; область schema-only, не смысловая сертификация.",
+                  "basis": [
+                    "Actual 26-doctor stdout."
+                  ],
+                  "blocks": [],
+                  "sources": [],
+                  "state": "confirmed"
+                },
+                {
+                  "id": "observation-specific",
+                  "description": "spec-validate HG-0001 exit 1 OpenQuestions; сценарий книги не выполнялся, черновик не готов к интеграции.",
+                  "basis": [
+                    "Actual 24-spec-validate stdout."
+                  ],
+                  "blocks": [],
+                  "sources": [],
+                  "state": "confirmed"
+                }
+              ],
+              "processes": [
+                {
+                  "id": "process-observed",
+                  "description": "В исходном пустом каталоге нет runner, formatter, linter, CI или ignore. Будущая команда тестирования неизвестна; её выбор относится к будущей реализации.",
+                  "basis": [
+                    "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                  ],
+                  "blocks": [],
+                  "sources": [],
+                  "state": "confirmed"
+                }
+              ],
+              "routes": [
+                {
+                  "id": "route-next",
+                  "description": "Первый следующий шаг: task/spec уточняет вопросы существующего HG-0001 об интерфейсе, хранении и runner. Реализация требует отдельного поручения.",
+                  "basis": [
+                    "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                  ],
+                  "blocks": [],
+                  "sources": [],
+                  "state": "confirmed"
+                }
+              ],
+              "skills": [
+                {
+                  "id": "skills-observed",
+                  "description": "Местных навыков в пустом каталоге не обнаружено.",
+                  "basis": [
+                    "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                  ],
+                  "blocks": [],
+                  "sources": [],
+                  "state": "confirmed"
+                }
+              ]
+            },
+            "source_paths": [
+              ".highgrade/project/INSTRUCTIONS.md",
+              ".highgrade/project/documents.json",
+              "AGENTS.md",
+              "README.md",
+              "specs/README.md",
+              "specs/catalog.json",
+              "specs/changes/HG-0001/spec.json",
+              "specs/runners.json",
+              "specs/tags.json"
+            ],
+            "stage": "completed"
+          },
+          "number": 1,
+          "snapshot": {
+            "areas": {
+              ".": {
+                "complete": true,
+                "entries": {
+                  ".highgrade": "directory",
+                  ".highgrade/project": "directory",
+                  ".highgrade/project/INSTRUCTIONS.md": "file",
+                  ".highgrade/project/documents.json": "file",
+                  "AGENTS.md": "file",
+                  "README.md": "file",
+                  "specs": "directory",
+                  "specs/README.md": "file",
+                  "specs/catalog.json": "file",
+                  "specs/changes": "directory",
+                  "specs/changes/HG-0001": "directory",
+                  "specs/changes/HG-0001/spec.json": "file",
+                  "specs/runners.json": "file",
+                  "specs/tags.json": "file"
+                },
+                "exclusions_sha256": null,
+                "omitted": {
+                  ".highgrade/local": "excluded",
+                  ".highgrade/project/survey.json": "excluded",
+                  ".highgrade/specs": "excluded"
+                }
+              }
+            },
+            "exclusions_sha256": null,
+            "files": {
+              ".highgrade/project/INSTRUCTIONS.md": "6553d06d6ebee476ecec1a793ff5020931066affb15c4b05516d8ce71c0b1e64",
+              ".highgrade/project/documents.json": "3585af33b6b4232443387a435b9c11254a9044da65ae524fd67966b6848e2140",
+              "AGENTS.md": "6392522ac8534d2b3201c22a45b22d7b507c840f857acc8ae02cf3dc4f6356d5",
+              "README.md": "6091cb05cb070d882325d303d37e3bccac51f010e46f50f845871b0b7b7fa7da",
+              "specs/README.md": "ae55f0aaa36a03568d7f4ae83b9161d03a80f0508d5a45babb2cea04eb63af59",
+              "specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
+              "specs/changes/HG-0001/spec.json": "24f973a55abfa3ac5a2958fe2d918a79c41d11757e56adc1dd42e0b711c2f5b0",
+              "specs/runners.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "specs/tags.json": "45134f0413efb27f9c474b0d12e3888f53ccde49624ebf2d577b85851741b10c"
+            }
+          },
+          "review": {
+            "conclusion": "Сверены созданные файлы и реальные отчёты. Подготовка по поручению выполнена; неизвестные бюджеты и будущие вопросы не названы PASS. Инструкция остаётся предложением, продукт не реализован/не принят. Это сверка исполнителя; независимое ревью доказательства выполняется отдельно.",
+            "content_sha256": "27a92d24be88c39ab0b55d8172f92a1818ac9f01434f541cb0af153b81571e23",
+            "reviewer": "source-guided-init-executor",
+            "snapshot_sha256": "b26490afe705b931ce022c1eb6b30848f4617c0bbfdd40073189d5e9803a9f2d",
+            "verdict": "go"
+          }
+        },
+        "schema_version": 1,
+        "history": []
+      }
+    }
+  ],
+  "operation": "survey-read",
+  "result": {
+    "survey_sha256": "dffb25dd30b90929114b92b08915a40211b76b725b4e0a3effdeb048345a4018",
+    "value": {
+      "current": {
+        "content": {
+          "goal": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
+          "scope": [
+            "."
+          ],
+          "areas": [
+            "."
+          ],
+          "decisions": [
+            {
+              "id": "purpose",
+              "description": "Создать новый локальный каталог прочитанных книг для одного человека. Первый полезный результат: добавлять название и автора и видеть список, без сети и аккаунтов.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "scope",
+              "description": "Весь пустой каталог.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "preservation",
+              "description": "Не менять соседний файл outside-sentinel.txt.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "changes",
+              "description": "Добавить документы процесса; для нового проекта начальный предметный черновик, без реализации.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "local_rules",
+              "description": "Исходных местных правил нет.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "environment",
+              "description": "Изолированный Linux-каталог, офлайн-подготовка; кандидат CLI 0.3.6; не создавать Git или внешние ресурсы.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            },
+            {
+              "id": "mandate",
+              "description": "Подготовить минимальную основу High Grade и один предметный черновик спеки; не реализовывать приложение.",
+              "basis": [
+                "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+              ],
+              "blocks": [],
+              "sources": [],
+              "state": "confirmed"
+            }
+          ],
+          "next": "",
+          "sections": {
+            "adaptation": [
+              {
+                "id": "adaptation-written",
+                "description": "Предложение местной инструкции и реестр созданы; прочитаны по смыслу. Новые знания записаны предметно, а не оставлены полями шаблона. Автор не принимал новую инструкцию.",
+                "basis": [
+                  "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                ],
+                "blocks": [],
+                "sources": [
+                  ".highgrade/project/INSTRUCTIONS.md",
+                  ".highgrade/project/documents.json"
+                ],
+                "state": "confirmed"
+              }
+            ],
+            "components": [
+              {
+                "id": "component-current",
+                "description": "Созданы README, AGENTS, проектная инструкция, реестр и предметный черновик HG-0001. Продуктового кода нет.",
+                "basis": [
+                  "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                ],
+                "blocks": [],
+                "sources": [
+                  ".highgrade/project/INSTRUCTIONS.md",
+                  ".highgrade/project/documents.json",
+                  "AGENTS.md",
+                  "README.md",
+                  "specs/changes/HG-0001/spec.json"
+                ],
+                "state": "confirmed"
+              }
+            ],
+            "findings": [
+              {
+                "id": "finding-budget",
+                "description": "Бюджеты контекста не согласованы; оставить null и считать BudgetNotAgreed неизвестностью, не PASS. Они не мешают разрешённой подготовке.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "unknown"
+              },
+              {
+                "id": "finding-future",
+                "description": "Выбор стека и runner относится к будущей реализации, которая не поручена.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "knowledge": [
+              {
+                "id": "knowledge-current",
+                "description": "README совмещает четыре роли, AGENTS — агентский маршрут; такое минимальное распределение создано как предложение.",
+                "basis": [
+                  "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                ],
+                "blocks": [],
+                "sources": [
+                  "AGENTS.md",
+                  "README.md"
+                ],
+                "state": "confirmed"
+              }
+            ],
+            "observations": [
+              {
+                "id": "observation-execution",
+                "description": "Фактические survey-* команды выполнились через CLI 0.3.6. Первые абсолютные input-пути были отвергнуты UnsafePath; supported root-relative inputs после чтения схемы сохранены успешно. Это source-guided исполнение, не автоматическое обнаружение установленного навыка.",
+                "basis": [
+                  "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              },
+              {
+                "id": "observation-inspect",
+                "description": "inspect exit 2, только BudgetNotAgreed: 3 находки.",
+                "basis": [
+                  "Actual 25-inspect stdout."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              },
+              {
+                "id": "observation-doctor",
+                "description": "doctor exit 0, findings=[]; область schema-only, не смысловая сертификация.",
+                "basis": [
+                  "Actual 26-doctor stdout."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              },
+              {
+                "id": "observation-specific",
+                "description": "spec-validate HG-0001 exit 1 OpenQuestions; сценарий книги не выполнялся, черновик не готов к интеграции.",
+                "basis": [
+                  "Actual 24-spec-validate stdout."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "processes": [
+              {
+                "id": "process-observed",
+                "description": "В исходном пустом каталоге нет runner, formatter, linter, CI или ignore. Будущая команда тестирования неизвестна; её выбор относится к будущей реализации.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "routes": [
+              {
+                "id": "route-next",
+                "description": "Первый следующий шаг: task/spec уточняет вопросы существующего HG-0001 об интерфейсе, хранении и runner. Реализация требует отдельного поручения.",
+                "basis": [
+                  "Observed files, source-guided execution raw reports and predeclared fixture intent."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ],
+            "skills": [
+              {
+                "id": "skills-observed",
+                "description": "Местных навыков в пустом каталоге не обнаружено.",
+                "basis": [
+                  "Synthetic fixture intent recorded before execution; actual inventory and file reads."
+                ],
+                "blocks": [],
+                "sources": [],
+                "state": "confirmed"
+              }
+            ]
+          },
+          "source_paths": [
+            ".highgrade/project/INSTRUCTIONS.md",
+            ".highgrade/project/documents.json",
+            "AGENTS.md",
+            "README.md",
+            "specs/README.md",
+            "specs/catalog.json",
+            "specs/changes/HG-0001/spec.json",
+            "specs/runners.json",
+            "specs/tags.json"
+          ],
+          "stage": "completed"
+        },
+        "number": 1,
+        "snapshot": {
+          "areas": {
+            ".": {
+              "complete": true,
+              "entries": {
+                ".highgrade": "directory",
+                ".highgrade/project": "directory",
+                ".highgrade/project/INSTRUCTIONS.md": "file",
+                ".highgrade/project/documents.json": "file",
+                "AGENTS.md": "file",
+                "README.md": "file",
+                "specs": "directory",
+                "specs/README.md": "file",
+                "specs/catalog.json": "file",
+                "specs/changes": "directory",
+                "specs/changes/HG-0001": "directory",
+                "specs/changes/HG-0001/spec.json": "file",
+                "specs/runners.json": "file",
+                "specs/tags.json": "file"
+              },
+              "exclusions_sha256": null,
+              "omitted": {
+                ".highgrade/local": "excluded",
+                ".highgrade/project/survey.json": "excluded",
+                ".highgrade/specs": "excluded"
+              }
+            }
+          },
+          "exclusions_sha256": null,
+          "files": {
+            ".highgrade/project/INSTRUCTIONS.md": "6553d06d6ebee476ecec1a793ff5020931066affb15c4b05516d8ce71c0b1e64",
+            ".highgrade/project/documents.json": "3585af33b6b4232443387a435b9c11254a9044da65ae524fd67966b6848e2140",
+            "AGENTS.md": "6392522ac8534d2b3201c22a45b22d7b507c840f857acc8ae02cf3dc4f6356d5",
+            "README.md": "6091cb05cb070d882325d303d37e3bccac51f010e46f50f845871b0b7b7fa7da",
+            "specs/README.md": "ae55f0aaa36a03568d7f4ae83b9161d03a80f0508d5a45babb2cea04eb63af59",
+            "specs/catalog.json": "c0250f64f4f8873a3f69e2c969da6c29b992b8cb11482edbc8c2d59247966fe8",
+            "specs/changes/HG-0001/spec.json": "24f973a55abfa3ac5a2958fe2d918a79c41d11757e56adc1dd42e0b711c2f5b0",
+            "specs/runners.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "specs/tags.json": "45134f0413efb27f9c474b0d12e3888f53ccde49624ebf2d577b85851741b10c"
+          }
+        },
+        "review": {
+          "conclusion": "Сверены созданные файлы и реальные отчёты. Подготовка по поручению выполнена; неизвестные бюджеты и будущие вопросы не названы PASS. Инструкция остаётся предложением, продукт не реализован/не принят. Это сверка исполнителя; независимое ревью доказательства выполняется отдельно.",
+          "content_sha256": "27a92d24be88c39ab0b55d8172f92a1818ac9f01434f541cb0af153b81571e23",
+          "reviewer": "source-guided-init-executor",
+          "snapshot_sha256": "b26490afe705b931ce022c1eb6b30848f4617c0bbfdd40073189d5e9803a9f2d",
+          "verdict": "go"
+        }
+      },
+      "schema_version": 1,
+      "history": []
+    }
+  },
+  "status": "passed"
+}
