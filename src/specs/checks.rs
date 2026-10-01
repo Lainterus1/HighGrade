@@ -285,10 +285,17 @@ fn parse(format: &str, text: &str, selector: &str) -> Outcome {
         return Outcome::Unknown;
     }
     let node = selected[0];
-    if node
-        .children()
-        .any(|n| n.has_tag_name("failure") || n.has_tag_name("error"))
-    {
+    if node.children().any(|n| {
+        [
+            "failure",
+            "error",
+            "rerunFailure",
+            "flakyFailure",
+            "rerunError",
+            "flakyError",
+        ]
+        .contains(&n.tag_name().name())
+    }) {
         Outcome::Failed
     } else if node.children().any(|n| n.has_tag_name("skipped")) {
         Outcome::Skipped

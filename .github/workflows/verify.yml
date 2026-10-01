@@ -153,6 +153,8 @@ jobs:
             target/highgrade/ui-playwright
             target/nextest/highgrade/junit.xml
             target/nextest/highgrade/list.json
+            target/nextest/highgrade/attempt.json
+            target/nextest/highgrade/completion.json
           if-no-files-found: warn
       - name: Check repository structure
         run: node scripts/check-repository.mjs
