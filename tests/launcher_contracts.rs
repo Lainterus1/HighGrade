@@ -97,9 +97,17 @@ fn launch(project: &std::path::Path, profile: &std::path::Path) {
         .spawn()
         .unwrap();
     let mut line = String::new();
-    BufReader::new(child.stdout.as_mut().unwrap())
-        .read_line(&mut line)
-        .unwrap();
+    let mut reader = BufReader::new(child.stdout.as_mut().unwrap());
+    loop {
+        if reader.read_line(&mut line).unwrap() == 0 || line.len() > 1024 * 1024 {
+            break;
+        }
+        match serde_json::from_str::<serde_json::Value>(&line) {
+            Ok(_) => break,
+            Err(error) if error.is_eof() => continue,
+            Err(_) => break,
+        }
+    }
     if line.is_empty() {
         let output = child.wait_with_output().unwrap();
         panic!(
@@ -107,7 +115,16 @@ fn launch(project: &std::path::Path, profile: &std::path::Path) {
             String::from_utf8_lossy(&output.stderr)
         )
     }
-    let startup: serde_json::Value = serde_json::from_str(&line).unwrap();
+    let startup: serde_json::Value = serde_json::from_str(&line)
+        .unwrap_or_else(|error| panic!("launcher output is not JSON: {error}: {line}"));
+    if startup["ui_url"].as_str().is_none() {
+        let _ = child.kill();
+        let output = child.wait_with_output().unwrap();
+        panic!(
+            "launcher did not start UI: {startup}; {}",
+            String::from_utf8_lossy(&output.stderr)
+        );
+    }
     let host = startup["ui_url"]
         .as_str()
         .unwrap()
