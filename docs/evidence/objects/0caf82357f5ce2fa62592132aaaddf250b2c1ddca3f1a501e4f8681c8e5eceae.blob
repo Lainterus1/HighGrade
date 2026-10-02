@@ -1,0 +1,1300 @@
+﻿2026-10-02T05:38:42.1506082Z Current runner version: '2.337.0'
+2026-10-02T05:38:42.1559745Z ##[group]Runner Image Provisioner
+2026-10-02T05:38:42.1560912Z Hosted Compute Agent
+2026-10-02T05:38:42.1561726Z Version: 20260901.588
+2026-10-02T05:38:42.1562518Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-02T05:38:42.1563481Z Build Date: 2026-09-01T19:56:44Z
+2026-10-02T05:38:42.1564353Z Worker ID: {db136bef-3077-49bc-becf-8e90baff7aa3}
+2026-10-02T05:38:42.1565295Z Azure Region: westus3
+2026-10-02T05:38:42.1566117Z ##[endgroup]
+2026-10-02T05:38:42.1567961Z ##[group]Operating System
+2026-10-02T05:38:42.1569272Z Microsoft Windows Server 2025
+2026-10-02T05:38:42.1570074Z 10.0.26100
+2026-10-02T05:38:42.1570735Z Datacenter
+2026-10-02T05:38:42.1571396Z ##[endgroup]
+2026-10-02T05:38:42.1572062Z ##[group]Runner Image
+2026-10-02T05:38:42.1572804Z Image: windows-2025-vs2026
+2026-10-02T05:38:42.1573658Z Version: 20260925.250.1
+2026-10-02T05:38:42.1575845Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260925.250/images/windows/Windows2025-VS2026-Readme.md
+2026-10-02T05:38:42.1578110Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260925.250
+2026-10-02T05:38:42.1579391Z ##[endgroup]
+2026-10-02T05:38:42.1580971Z ##[group]GITHUB_TOKEN Permissions
+2026-10-02T05:38:42.1583402Z Contents: read
+2026-10-02T05:38:42.1584175Z Metadata: read
+2026-10-02T05:38:42.1584864Z ##[endgroup]
+2026-10-02T05:38:42.1587446Z Secret source: Actions
+2026-10-02T05:38:42.1589045Z Cache mode: write
+2026-10-02T05:38:42.1590042Z Prepare workflow directory
+2026-10-02T05:38:42.2543806Z Prepare all required actions
+2026-10-02T05:38:42.2671940Z Getting action download info
+2026-10-02T05:38:42.5947681Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-02T05:38:42.7170882Z Download action repository 'actions/setup-python@v6' (SHA:ece7cb06caefa5fff74198d8649806c4678c61a1)
+2026-10-02T05:38:42.8427489Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-02T05:38:43.1090067Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-10-02T05:38:43.2400008Z Download action repository 'taiki-e/install-action@v2' (SHA:83ac0ad63c0167e6f06796fab0fce28db1bf3db0)
+2026-10-02T05:38:43.9948848Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-02T05:38:44.4308434Z Complete job name: verify (windows-2025, e60b6d4d4c3631c7140b037581f0bcdb2573befd)
+2026-10-02T05:38:44.6338071Z ##[group]Run actions/checkout@v7
+2026-10-02T05:38:44.6339629Z with:
+2026-10-02T05:38:44.6340732Z   ref: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:38:44.6341753Z   persist-credentials: false
+2026-10-02T05:38:44.6342655Z   repository: Lainterus1/HighGrade
+2026-10-02T05:38:44.6348331Z   token: ***
+2026-10-02T05:38:44.6349060Z   ssh-strict: true
+2026-10-02T05:38:44.6349840Z   ssh-user: git
+2026-10-02T05:38:44.6350667Z   clean: true
+2026-10-02T05:38:44.6351428Z   sparse-checkout-cone-mode: true
+2026-10-02T05:38:44.6352307Z   fetch-depth: 1
+2026-10-02T05:38:44.6353015Z   fetch-tags: false
+2026-10-02T05:38:44.6353728Z   show-progress: true
+2026-10-02T05:38:44.6354519Z   lfs: false
+2026-10-02T05:38:44.6355365Z   submodules: false
+2026-10-02T05:38:44.6356186Z   set-safe-directory: true
+2026-10-02T05:38:44.6357051Z   allow-unsafe-pr-checkout: false
+2026-10-02T05:38:44.6358224Z env:
+2026-10-02T05:38:44.6359298Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:38:44.6360814Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:38:44.6361956Z ##[endgroup]
+2026-10-02T05:38:44.9389806Z Syncing repository: Lainterus1/HighGrade
+2026-10-02T05:38:44.9393820Z ##[group]Getting Git version info
+2026-10-02T05:38:44.9395329Z Working directory is 'D:\a\HighGrade\HighGrade'
+2026-10-02T05:38:45.0219977Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-02T05:38:45.5878341Z git version 2.55.0.windows.5
+2026-10-02T05:38:45.5927810Z ##[endgroup]
+2026-10-02T05:38:45.5946353Z Temporarily overriding HOME='D:\a\_temp\394eb1a0-9de7-4e9f-aa12-260c17e1128b' before making global git config changes
+2026-10-02T05:38:45.5947687Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-02T05:38:45.5958962Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\HighGrade\HighGrade
+2026-10-02T05:38:45.6656747Z Deleting the contents of 'D:\a\HighGrade\HighGrade'
+2026-10-02T05:38:45.6662002Z ##[group]Determining repository object format
+2026-10-02T05:38:45.6665048Z ##[endgroup]
+2026-10-02T05:38:45.6666848Z ##[group]Initializing the repository
+2026-10-02T05:38:45.6674673Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\HighGrade\HighGrade
+2026-10-02T05:38:45.7748996Z Initialized empty Git repository in D:/a/HighGrade/HighGrade/.git/
+2026-10-02T05:38:45.7816788Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/Lainterus1/HighGrade
+2026-10-02T05:38:45.8754915Z ##[endgroup]
+2026-10-02T05:38:45.8755912Z ##[group]Disabling automatic garbage collection
+2026-10-02T05:38:45.8769254Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-02T05:38:45.9108065Z ##[endgroup]
+2026-10-02T05:38:45.9108835Z ##[group]Setting up auth
+2026-10-02T05:38:45.9109519Z Removing SSH command configuration
+2026-10-02T05:38:45.9121081Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-02T05:38:45.9532568Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-02T05:38:47.5036834Z Removing HTTP extra header
+2026-10-02T05:38:47.5055068Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-02T05:38:47.5351507Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-02T05:38:48.0672924Z Removing includeIf entries pointing to credentials config files
+2026-10-02T05:38:48.0685607Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-02T05:38:48.0975331Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-02T05:38:48.6285752Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-02T05:38:48.6592798Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/HighGrade/HighGrade/.git.path D:\a\_temp\git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config
+2026-10-02T05:38:48.6887185Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/HighGrade/HighGrade/.git/worktrees/*.path D:\a\_temp\git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config
+2026-10-02T05:38:48.7236393Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config
+2026-10-02T05:38:48.7525995Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config
+2026-10-02T05:38:48.7829791Z ##[endgroup]
+2026-10-02T05:38:48.7831169Z ##[group]Fetching the repository
+2026-10-02T05:38:48.7844623Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:38:51.2060428Z From https://github.com/Lainterus1/HighGrade
+2026-10-02T05:38:51.2061391Z  * branch            e021c3e9cd21e76d4207560307a1c8f59f8e3899 -> FETCH_HEAD
+2026-10-02T05:38:51.2121233Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse --verify --quiet e021c3e9cd21e76d4207560307a1c8f59f8e3899^{object}
+2026-10-02T05:38:51.2380867Z e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:38:51.2417179Z ##[endgroup]
+2026-10-02T05:38:51.2418469Z ##[group]Determining the checkout info
+2026-10-02T05:38:51.2419537Z ##[endgroup]
+2026-10-02T05:38:51.2425068Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-02T05:38:51.2848080Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-02T05:38:51.3132375Z ##[group]Checking out the ref
+2026-10-02T05:38:51.3141315Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:38:52.1537510Z Note: switching to 'e021c3e9cd21e76d4207560307a1c8f59f8e3899'.
+2026-10-02T05:38:52.1538669Z 
+2026-10-02T05:38:52.1539115Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-02T05:38:52.1539887Z changes and commit them, and you can discard any commits you make in this
+2026-10-02T05:38:52.1540926Z state without impacting any branches by switching back to a branch.
+2026-10-02T05:38:52.1541365Z 
+2026-10-02T05:38:52.1541710Z If you want to create a new branch to retain commits you create, you may
+2026-10-02T05:38:52.1542383Z do so (now or later) by using -c with the switch command. Example:
+2026-10-02T05:38:52.1542793Z 
+2026-10-02T05:38:52.1542970Z   git switch -c <new-branch-name>
+2026-10-02T05:38:52.1543270Z 
+2026-10-02T05:38:52.1543419Z Or undo this operation with:
+2026-10-02T05:38:52.1543703Z 
+2026-10-02T05:38:52.1543898Z   git switch -
+2026-10-02T05:38:52.1544087Z 
+2026-10-02T05:38:52.1544416Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-02T05:38:52.1544823Z 
+2026-10-02T05:38:52.1545711Z HEAD is now at e021c3e HG-0067–HG-0069: UI, переносимый запуск и хранение доказательств, 0.3.10
+2026-10-02T05:38:52.1687356Z ##[endgroup]
+2026-10-02T05:38:52.2097623Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-02T05:38:52.2361593Z e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:38:52.2406722Z ##[group]Removing auth
+2026-10-02T05:38:52.2407125Z Removing SSH command configuration
+2026-10-02T05:38:52.2417266Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-02T05:38:52.2707436Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-02T05:38:52.8921573Z Removing HTTP extra header
+2026-10-02T05:38:52.8932799Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-02T05:38:52.9285491Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-02T05:38:53.5375591Z Removing includeIf entries pointing to credentials config files
+2026-10-02T05:38:53.5383332Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-02T05:38:53.5631378Z includeif.gitdir:D:/a/HighGrade/HighGrade/.git.path
+2026-10-02T05:38:53.5632285Z includeif.gitdir:D:/a/HighGrade/HighGrade/.git/worktrees/*.path
+2026-10-02T05:38:53.5632798Z includeif.gitdir:/github/workspace/.git.path
+2026-10-02T05:38:53.5633305Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-02T05:38:53.5689927Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/HighGrade/HighGrade/.git.path
+2026-10-02T05:38:53.5984458Z D:\a\_temp\git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config
+2026-10-02T05:38:53.6039644Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/HighGrade/HighGrade/.git.path D\:\\a\\_temp\\git\-credentials\-45e5252a\-0f1c\-483c\-82a5\-d544d7a1d0bd\.config
+2026-10-02T05:38:53.6319801Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/HighGrade/HighGrade/.git/worktrees/*.path
+2026-10-02T05:38:53.6624207Z D:\a\_temp\git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config
+2026-10-02T05:38:53.6677422Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/HighGrade/HighGrade/.git/worktrees/*.path D\:\\a\\_temp\\git\-credentials\-45e5252a\-0f1c\-483c\-82a5\-d544d7a1d0bd\.config
+2026-10-02T05:38:53.7059729Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-02T05:38:53.7323841Z /github/runner_temp/git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config
+2026-10-02T05:38:53.7369006Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-45e5252a\-0f1c\-483c\-82a5\-d544d7a1d0bd\.config
+2026-10-02T05:38:53.7673460Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-02T05:38:53.7927535Z /github/runner_temp/git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config
+2026-10-02T05:38:53.7976972Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-45e5252a\-0f1c\-483c\-82a5\-d544d7a1d0bd\.config
+2026-10-02T05:38:53.8276396Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-02T05:38:54.3634911Z Removing credentials config 'D:\a\_temp\git-credentials-45e5252a-0f1c-483c-82a5-d544d7a1d0bd.config'
+2026-10-02T05:38:54.3646672Z ##[endgroup]
+2026-10-02T05:38:54.4061654Z ##[group]Run actions/checkout@v7
+2026-10-02T05:38:54.4062064Z with:
+2026-10-02T05:38:54.4062377Z   ref: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:38:54.4062776Z   path: target/highgrade/tmp/installed-previous
+2026-10-02T05:38:54.4063264Z   persist-credentials: false
+2026-10-02T05:38:54.4063717Z   repository: Lainterus1/HighGrade
+2026-10-02T05:38:54.4066887Z   token: ***
+2026-10-02T05:38:54.4067174Z   ssh-strict: true
+2026-10-02T05:38:54.4067469Z   ssh-user: git
+2026-10-02T05:38:54.4067790Z   clean: true
+2026-10-02T05:38:54.4068073Z   sparse-checkout-cone-mode: true
+2026-10-02T05:38:54.4068410Z   fetch-depth: 1
+2026-10-02T05:38:54.4068683Z   fetch-tags: false
+2026-10-02T05:38:54.4068974Z   show-progress: true
+2026-10-02T05:38:54.4069270Z   lfs: false
+2026-10-02T05:38:54.4069517Z   submodules: false
+2026-10-02T05:38:54.4069817Z   set-safe-directory: true
+2026-10-02T05:38:54.4070134Z   allow-unsafe-pr-checkout: false
+2026-10-02T05:38:54.4070441Z env:
+2026-10-02T05:38:54.4071018Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:38:54.4071479Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:38:54.4071923Z ##[endgroup]
+2026-10-02T05:38:54.5202800Z Syncing repository: Lainterus1/HighGrade
+2026-10-02T05:38:54.5214291Z ##[group]Getting Git version info
+2026-10-02T05:38:54.5215111Z Working directory is 'D:\a\HighGrade\HighGrade\target\highgrade\tmp\installed-previous'
+2026-10-02T05:38:54.5850320Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-02T05:38:54.6109693Z git version 2.55.0.windows.5
+2026-10-02T05:38:54.6152727Z ##[endgroup]
+2026-10-02T05:38:54.6167114Z Temporarily overriding HOME='D:\a\_temp\dd413653-0dbd-4566-8be2-9692b1710cd0' before making global git config changes
+2026-10-02T05:38:54.6168270Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-02T05:38:54.6176805Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\HighGrade\HighGrade\target\highgrade\tmp\installed-previous
+2026-10-02T05:38:54.6469610Z ##[group]Determining repository object format
+2026-10-02T05:38:54.6471887Z ##[endgroup]
+2026-10-02T05:38:54.6472967Z ##[group]Initializing the repository
+2026-10-02T05:38:54.6481840Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\HighGrade\HighGrade\target\highgrade\tmp\installed-previous
+2026-10-02T05:38:54.6793207Z Initialized empty Git repository in D:/a/HighGrade/HighGrade/target/highgrade/tmp/installed-previous/.git/
+2026-10-02T05:38:54.6838426Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/Lainterus1/HighGrade
+2026-10-02T05:38:54.7138279Z ##[endgroup]
+2026-10-02T05:38:54.7139060Z ##[group]Disabling automatic garbage collection
+2026-10-02T05:38:54.7149058Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-02T05:38:54.7423853Z ##[endgroup]
+2026-10-02T05:38:54.7424701Z ##[group]Setting up auth
+2026-10-02T05:38:54.7425292Z Removing SSH command configuration
+2026-10-02T05:38:54.7435913Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-02T05:38:54.7725116Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-02T05:38:55.3468369Z Removing HTTP extra header
+2026-10-02T05:38:55.3485212Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-02T05:38:55.3795687Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-02T05:38:55.9181616Z Removing includeIf entries pointing to credentials config files
+2026-10-02T05:38:55.9194256Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-02T05:38:55.9478913Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-02T05:38:56.4759764Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-02T05:38:56.5056813Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/HighGrade/HighGrade/target/highgrade/tmp/installed-previous/.git.path D:\a\_temp\git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config
+2026-10-02T05:38:56.5346638Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/HighGrade/HighGrade/target/highgrade/tmp/installed-previous/.git/worktrees/*.path D:\a\_temp\git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config
+2026-10-02T05:38:56.5633018Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/target/highgrade/tmp/installed-previous/.git.path /github/runner_temp/git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config
+2026-10-02T05:38:56.5962603Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/target/highgrade/tmp/installed-previous/.git/worktrees/*.path /github/runner_temp/git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config
+2026-10-02T05:38:56.6251536Z ##[endgroup]
+2026-10-02T05:38:56.6252260Z ##[group]Fetching the repository
+2026-10-02T05:38:56.6267449Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:38:57.9560569Z From https://github.com/Lainterus1/HighGrade
+2026-10-02T05:38:57.9561113Z  * branch            e60b6d4d4c3631c7140b037581f0bcdb2573befd -> FETCH_HEAD
+2026-10-02T05:38:57.9617858Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse --verify --quiet e60b6d4d4c3631c7140b037581f0bcdb2573befd^{object}
+2026-10-02T05:38:57.9881290Z e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:38:57.9919770Z ##[endgroup]
+2026-10-02T05:38:57.9920512Z ##[group]Determining the checkout info
+2026-10-02T05:38:57.9921296Z ##[endgroup]
+2026-10-02T05:38:57.9930173Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-02T05:38:58.0257749Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-02T05:38:58.0551687Z ##[group]Checking out the ref
+2026-10-02T05:38:58.0560803Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:38:58.6830606Z Note: switching to 'e60b6d4d4c3631c7140b037581f0bcdb2573befd'.
+2026-10-02T05:38:58.6831137Z 
+2026-10-02T05:38:58.6831489Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-02T05:38:58.6832470Z changes and commit them, and you can discard any commits you make in this
+2026-10-02T05:38:58.6833254Z state without impacting any branches by switching back to a branch.
+2026-10-02T05:38:58.6833665Z 
+2026-10-02T05:38:58.6833997Z If you want to create a new branch to retain commits you create, you may
+2026-10-02T05:38:58.6834716Z do so (now or later) by using -c with the switch command. Example:
+2026-10-02T05:38:58.6835139Z 
+2026-10-02T05:38:58.6835312Z   git switch -c <new-branch-name>
+2026-10-02T05:38:58.6835610Z 
+2026-10-02T05:38:58.6835776Z Or undo this operation with:
+2026-10-02T05:38:58.6836084Z 
+2026-10-02T05:38:58.6836262Z   git switch -
+2026-10-02T05:38:58.6836491Z 
+2026-10-02T05:38:58.6836851Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-02T05:38:58.6837332Z 
+2026-10-02T05:38:58.6837729Z HEAD is now at e60b6d4 HG-0059: merge specification UI and Work workflow for v0-3-5
+2026-10-02T05:38:58.6923609Z ##[endgroup]
+2026-10-02T05:38:58.7239070Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-02T05:38:58.7499689Z e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:38:58.7544835Z ##[group]Removing auth
+2026-10-02T05:38:58.7545264Z Removing SSH command configuration
+2026-10-02T05:38:58.7554549Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-02T05:38:58.7851170Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-02T05:38:59.2870128Z Removing HTTP extra header
+2026-10-02T05:38:59.2880161Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-02T05:38:59.3174857Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-02T05:38:59.8634022Z Removing includeIf entries pointing to credentials config files
+2026-10-02T05:38:59.8641708Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-02T05:38:59.8894915Z includeif.gitdir:D:/a/HighGrade/HighGrade/target/highgrade/tmp/installed-previous/.git.path
+2026-10-02T05:38:59.8895987Z includeif.gitdir:D:/a/HighGrade/HighGrade/target/highgrade/tmp/installed-previous/.git/worktrees/*.path
+2026-10-02T05:38:59.8897574Z includeif.gitdir:/github/workspace/target/highgrade/tmp/installed-previous/.git.path
+2026-10-02T05:38:59.8898613Z includeif.gitdir:/github/workspace/target/highgrade/tmp/installed-previous/.git/worktrees/*.path
+2026-10-02T05:38:59.8941658Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/HighGrade/HighGrade/target/highgrade/tmp/installed-previous/.git.path
+2026-10-02T05:38:59.9194436Z D:\a\_temp\git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config
+2026-10-02T05:38:59.9245400Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/HighGrade/HighGrade/target/highgrade/tmp/installed-previous/.git.path D\:\\a\\_temp\\git\-credentials\-a24dfd23\-d8a1\-42c1\-924f\-58d2c3bf2012\.config
+2026-10-02T05:38:59.9562686Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/HighGrade/HighGrade/target/highgrade/tmp/installed-previous/.git/worktrees/*.path
+2026-10-02T05:38:59.9816378Z D:\a\_temp\git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config
+2026-10-02T05:38:59.9876658Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/HighGrade/HighGrade/target/highgrade/tmp/installed-previous/.git/worktrees/*.path D\:\\a\\_temp\\git\-credentials\-a24dfd23\-d8a1\-42c1\-924f\-58d2c3bf2012\.config
+2026-10-02T05:39:00.0174967Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/target/highgrade/tmp/installed-previous/.git.path
+2026-10-02T05:39:00.0442220Z /github/runner_temp/git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config
+2026-10-02T05:39:00.0487327Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/target/highgrade/tmp/installed-previous/.git.path \/github\/runner_temp\/git\-credentials\-a24dfd23\-d8a1\-42c1\-924f\-58d2c3bf2012\.config
+2026-10-02T05:39:00.0789685Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/target/highgrade/tmp/installed-previous/.git/worktrees/*.path
+2026-10-02T05:39:00.1025427Z /github/runner_temp/git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config
+2026-10-02T05:39:00.1066354Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/target/highgrade/tmp/installed-previous/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-a24dfd23\-d8a1\-42c1\-924f\-58d2c3bf2012\.config
+2026-10-02T05:39:00.1356250Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-02T05:39:00.6820424Z Removing credentials config 'D:\a\_temp\git-credentials-a24dfd23-d8a1-42c1-924f-58d2c3bf2012.config'
+2026-10-02T05:39:00.6832787Z ##[endgroup]
+2026-10-02T05:39:00.7175439Z ##[group]Run actions/setup-python@v6
+2026-10-02T05:39:00.7175859Z with:
+2026-10-02T05:39:00.7176161Z   python-version: 3.12
+2026-10-02T05:39:00.7176455Z   check-latest: false
+2026-10-02T05:39:00.7178693Z   token: ***
+2026-10-02T05:39:00.7178994Z   update-environment: true
+2026-10-02T05:39:00.7179311Z   allow-prereleases: false
+2026-10-02T05:39:00.7179636Z   freethreaded: false
+2026-10-02T05:39:00.7179915Z env:
+2026-10-02T05:39:00.7180227Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:39:00.7180720Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:39:00.7181103Z ##[endgroup]
+2026-10-02T05:39:00.8776772Z ##[group]Installed versions
+2026-10-02T05:39:00.8976608Z Successfully set up CPython (3.12.10)
+2026-10-02T05:39:00.8978160Z ##[endgroup]
+2026-10-02T05:39:00.9313630Z ##[group]Run actions/setup-node@v4
+2026-10-02T05:39:00.9314144Z with:
+2026-10-02T05:39:00.9314410Z   node-version: 24
+2026-10-02T05:39:00.9314730Z   cache: npm
+2026-10-02T05:39:00.9315048Z   cache-dependency-path: ui/package-lock.json
+2026-10-02T05:39:00.9315397Z   always-auth: false
+2026-10-02T05:39:00.9315706Z   check-latest: false
+2026-10-02T05:39:00.9317896Z   token: ***
+2026-10-02T05:39:00.9318180Z env:
+2026-10-02T05:39:00.9318529Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:39:00.9319235Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:39:00.9319732Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:00.9320517Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:39:00.9321007Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:00.9321790Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:00.9322226Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:00.9322641Z ##[endgroup]
+2026-10-02T05:39:01.1063645Z Found in cache @ C:\hostedtoolcache\windows\node\24.21.0\x64
+2026-10-02T05:39:01.1070185Z (node:8236) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-02T05:39:01.1070966Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-02T05:39:01.1073258Z ##[group]Environment details
+2026-10-02T05:39:05.9808953Z node: v24.21.0
+2026-10-02T05:39:05.9809411Z npm: 11.19.0
+2026-10-02T05:39:05.9809691Z yarn: 1.22.22
+2026-10-02T05:39:05.9810325Z ##[endgroup]
+2026-10-02T05:39:06.0388914Z [command]C:\Windows\system32\cmd.exe /D /S /C "C:\hostedtoolcache\windows\node\24.21.0\x64\npm.cmd config get cache"
+2026-10-02T05:39:06.5205295Z C:\npm\cache
+2026-10-02T05:39:06.8933198Z Cache hit for: node-cache-Windows-x64-npm-79522392f994312569a940f7f45b0c893ab72ff14d6a9cbe33da1ce4a7d6868b
+2026-10-02T05:39:06.9051727Z (node:8236) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-02T05:39:08.1651399Z Received 60442772 of 60442772 (100.0%), 55.0 MBs/sec
+2026-10-02T05:39:08.1654696Z Cache Size: ~58 MB (60442772 B)
+2026-10-02T05:39:08.1739185Z [command]"C:\Program Files\Git\usr\bin\tar.exe" -xf D:/a/_temp/a3ab7d6f-6db4-462c-84a1-deb34dd6dd36/cache.tzst -P -C D:/a/HighGrade/HighGrade --force-local --use-compress-program "zstd -d"
+2026-10-02T05:39:09.4740008Z Cache restored successfully
+2026-10-02T05:39:09.4819797Z Cache restored from key: node-cache-Windows-x64-npm-79522392f994312569a940f7f45b0c893ab72ff14d6a9cbe33da1ce4a7d6868b
+2026-10-02T05:39:09.5187262Z ##[group]Run npm ci --no-audit --no-fund
+2026-10-02T05:39:09.5187900Z [36;1mnpm ci --no-audit --no-fund[0m
+2026-10-02T05:39:09.5780057Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:39:09.5780589Z env:
+2026-10-02T05:39:09.5781073Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:39:09.5781566Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:39:09.5782088Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:09.5782598Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:39:09.5783108Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:09.5783609Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:09.5784057Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:09.5784426Z ##[endgroup]
+2026-10-02T05:39:22.4603584Z 
+2026-10-02T05:39:22.4610960Z added 301 packages in 12s
+2026-10-02T05:39:22.4623187Z npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+2026-10-02T05:39:22.4624114Z npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+2026-10-02T05:39:22.4624570Z npm warn install-scripts
+2026-10-02T05:39:22.4625153Z npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+2026-10-02T05:39:23.7088576Z ##[group]Run npm run build
+2026-10-02T05:39:23.7089150Z [36;1mnpm run build[0m
+2026-10-02T05:39:23.7154809Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:39:23.7155463Z env:
+2026-10-02T05:39:23.7155876Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:39:23.7156361Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:39:23.7156909Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:23.7157450Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:39:23.7157951Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:23.7158406Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:23.7158837Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:23.7159283Z ##[endgroup]
+2026-10-02T05:39:24.3748363Z 
+2026-10-02T05:39:24.3749169Z > highgrade-ui@0.1.0 build
+2026-10-02T05:39:24.3750269Z > node scripts/bundle.mjs prepare && tsc --noEmit && vite build && node scripts/bundle.mjs manifest
+2026-10-02T05:39:24.3750762Z 
+2026-10-02T05:39:25.4778237Z [36mvite v8.3.1 [32mbuilding client environment for production...[36m[39m
+2026-10-02T05:39:25.4890549Z transforming...
+2026-10-02T05:39:25.8157297Z ✓ 2003 modules transformed.
+2026-10-02T05:39:25.8941450Z rendering chunks...
+2026-10-02T05:39:25.9547680Z computing gzip size...
+2026-10-02T05:39:25.9607184Z dist/index.html                      0.44 kB │ gzip:   0.33 kB
+2026-10-02T05:39:25.9608351Z dist/assets/mark-iVh24ir5.svg       10.18 kB │ gzip:   2.76 kB
+2026-10-02T05:39:25.9609477Z dist/assets/wordmark-DaoQrXCV.svg   12.90 kB │ gzip:   4.40 kB
+2026-10-02T05:39:25.9610247Z dist/assets/Manrope-DIRNzeTG.ttf   164.70 kB
+2026-10-02T05:39:25.9610944Z dist/assets/Lora-C1B0tkav.ttf      212.19 kB
+2026-10-02T05:39:25.9611881Z dist/assets/index-CPmO5ezT.css      36.40 kB │ gzip:   8.19 kB
+2026-10-02T05:39:25.9612725Z dist/assets/index-DH7-chES.js      346.30 kB │ gzip: 108.61 kB
+2026-10-02T05:39:25.9613156Z 
+2026-10-02T05:39:25.9677736Z [32m✓ built in 488ms[39m
+2026-10-02T05:39:26.7449025Z ##[group]Run npm run build-storybook
+2026-10-02T05:39:26.7449980Z [36;1mnpm run build-storybook[0m
+2026-10-02T05:39:26.7518027Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:39:26.7518498Z env:
+2026-10-02T05:39:26.7518875Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:39:26.7519430Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:39:26.7519933Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:26.7520598Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:39:26.7521214Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:26.7521664Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:26.7522145Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:26.7522529Z ##[endgroup]
+2026-10-02T05:39:27.3900587Z 
+2026-10-02T05:39:27.3901583Z > highgrade-ui@0.1.0 build-storybook
+2026-10-02T05:39:27.3902308Z > node scripts/bundle.mjs prepare && storybook build --disable-telemetry
+2026-10-02T05:39:27.3903034Z 
+2026-10-02T05:39:28.0820472Z 
+2026-10-02T05:39:28.0840666Z [90m┌[39m  Building storybook v10.6.0
+2026-10-02T05:39:28.0854742Z [90m│[39m
+2026-10-02T05:39:28.0855485Z [32m◇[39m  Cleaning outputDir: [36mstorybook-static[39m
+2026-10-02T05:39:28.1829737Z [90m│[39m
+2026-10-02T05:39:28.1830424Z [32m◇[39m  Loading presets
+2026-10-02T05:39:28.7435165Z [90m│[39m
+2026-10-02T05:39:28.7435636Z [32m◇[39m  Building manager..
+2026-10-02T05:39:28.9121350Z [90m│[39m
+2026-10-02T05:39:28.9121845Z [34m●[39m  Building open services..
+2026-10-02T05:39:28.9127948Z [90m│[39m
+2026-10-02T05:39:28.9128648Z [34m●[39m  Building preview..
+2026-10-02T05:39:29.2058288Z [90m│[39m  [43mVite[49m [36mvite v8.3.1 [32mbuilding client environment for production...[36m[39m
+2026-10-02T05:39:29.2803316Z transforming...
+2026-10-02T05:39:29.3541238Z [90m│[39m
+2026-10-02T05:39:29.3542591Z [34m●[39m  Copying static files: [36mpublic[39m at [36mstorybook-static[39m
+2026-10-02T05:39:32.9566275Z ✓ 2160 modules transformed.
+2026-10-02T05:39:33.1454284Z rendering chunks...
+2026-10-02T05:39:33.4258071Z computing gzip size...
+2026-10-02T05:39:33.4545962Z [90m│[39m  [43mVite[49m storybook-static/assets/mark-iVh24ir5.svg
+2026-10-02T05:39:33.4546792Z [90m│[39m  10.18 kB │ gzip:   2.76 kB
+2026-10-02T05:39:33.4547269Z [90m│[39m  storybook-static/assets/wordmark-DaoQrXCV.svg
+2026-10-02T05:39:33.4547838Z [90m│[39m  12.90 kB │ gzip:   4.40 kB
+2026-10-02T05:39:33.4548586Z [90m│[39m  storybook-static/iframe.html
+2026-10-02T05:39:33.4549087Z [90m│[39m  18.88 kB │ gzip:   5.34 kB
+2026-10-02T05:39:33.4549742Z [90m│[39m  storybook-static/assets/Manrope-DIRNzeTG.ttf
+2026-10-02T05:39:33.4550325Z [90m│[39m  164.70 kB
+2026-10-02T05:39:33.4550956Z [90m│[39m  storybook-static/assets/Lora-C1B0tkav.ttf
+2026-10-02T05:39:33.4551689Z [90m│[39m  212.19 kB
+2026-10-02T05:39:33.4552455Z [90m│[39m  storybook-static/assets/iframe-B9wkqp7Y.css
+2026-10-02T05:39:33.4553161Z [90m│[39m  36.39 kB │ gzip:   8.19 kB
+2026-10-02T05:39:33.4553808Z [90m│[39m  storybook-static/assets/iframe-Hm2p43os.js
+2026-10-02T05:39:33.4554551Z [90m│[39m  0.04 kB │ gzip:   0.06 kB
+2026-10-02T05:39:33.4555186Z [90m│[39m  storybook-static/assets/mark-BAKic_zQ.js
+2026-10-02T05:39:33.4555885Z [90m│[39m  0.16 kB │ gzip:   0.16 kB
+2026-10-02T05:39:33.4556539Z [90m│[39m  storybook-static/assets/components-Dsx3goj-.js
+2026-10-02T05:39:33.4557165Z [90m│[39m  0.21 kB │ gzip:   0.18 kB
+2026-10-02T05:39:33.4557930Z [90m│[39m  storybook-static/assets/chunk-242VQQM5-bHL6qIJq.js
+2026-10-02T05:39:33.4558590Z [90m│[39m  0.24 kB │ gzip:   0.20 kB
+2026-10-02T05:39:33.4559306Z [90m│[39m  storybook-static/assets/formatter-L2YTDE3Q-RkjpF8cC.js
+2026-10-02T05:39:33.4560425Z [90m│[39m  0.30 kB │ gzip:   0.24 kB
+2026-10-02T05:39:33.4564807Z [90m│[39m  storybook-static/assets/chunk-QQBDHPVZ-DC5n6Pix.js
+2026-10-02T05:39:33.4566015Z [90m│[39m  0.32 kB │ gzip:   0.20 kB
+2026-10-02T05:39:33.4566889Z [90m│[39m  storybook-static/assets/jsx-runtime-DeHZSEgm.js
+2026-10-02T05:39:33.4567581Z [90m│[39m  0.43 kB │ gzip:   0.30 kB
+2026-10-02T05:39:33.4568228Z [90m│[39m  storybook-static/assets/react-CBZbWadf.js
+2026-10-02T05:39:33.4568865Z [90m│[39m  0.58 kB │ gzip:   0.34 kB
+2026-10-02T05:39:33.4569607Z [90m│[39m  storybook-static/assets/textarea-DRaP4yeW.js
+2026-10-02T05:39:33.4570246Z [90m│[39m  0.88 kB │ gzip:   0.52 kB
+2026-10-02T05:39:33.4571037Z [90m│[39m  storybook-static/assets/rolldown-runtime-DkW27tQK.js
+2026-10-02T05:39:33.4571754Z [90m│[39m  1.19 kB │ gzip:   0.67 kB
+2026-10-02T05:39:33.4572550Z [90m│[39m  storybook-static/assets/preload-helper-VEOc_cSF.js
+2026-10-02T05:39:33.4573307Z [90m│[39m  1.33 kB │ gzip:   0.75 kB
+2026-10-02T05:39:33.4574782Z [90m│[39m  storybook-static/assets/chunk-IMSF75WX-CGYlPTyG.js
+2026-10-02T05:39:33.4575452Z [90m│[39m  1.67 kB │ gzip:   0.91 kB
+2026-10-02T05:39:33.4576228Z [90m│[39m  storybook-static/assets/Button.stories-DEmUVFA1.js
+2026-10-02T05:39:33.4576968Z [90m│[39m  1.69 kB │ gzip:   0.81 kB
+2026-10-02T05:39:33.4577787Z [90m│[39m  storybook-static/assets/NativeDocument.stories-CsbL-9b_.js
+2026-10-02T05:39:33.4578560Z [90m│[39m  2.18 kB │ gzip:   1.23 kB
+2026-10-02T05:39:33.4579211Z [90m│[39m  storybook-static/assets/wordmark-Bmzs-a2z.js
+2026-10-02T05:39:33.4580316Z [90m│[39m  2.55 kB │ gzip:   1.31 kB
+2026-10-02T05:39:33.4581169Z [90m│[39m  storybook-static/assets/SpecWorkspace.stories-DMWvaGUK.js
+2026-10-02T05:39:33.4581859Z [90m│[39m  2.69 kB │ gzip:   0.90 kB
+2026-10-02T05:39:33.4582585Z [90m│[39m  storybook-static/assets/States.stories-BAwMROSO.js
+2026-10-02T05:39:33.4583245Z [90m│[39m  2.97 kB │ gzip:   0.98 kB
+2026-10-02T05:39:33.4583981Z [90m│[39m  storybook-static/assets/Welcome.stories-CpPw6m95.js
+2026-10-02T05:39:33.4585158Z [90m│[39m  3.13 kB │ gzip:   1.46 kB
+2026-10-02T05:39:33.4586011Z [90m│[39m  storybook-static/assets/StatusBadge.stories-bSWUj1uW.js
+2026-10-02T05:39:33.4586734Z [90m│[39m  3.21 kB │ gzip:   0.93 kB
+2026-10-02T05:39:33.4587432Z [90m│[39m  storybook-static/assets/chunk-DRQKCCAG-DtXejAOb.js
+2026-10-02T05:39:33.4588242Z [90m│[39m  3.38 kB │ gzip:   1.41 kB
+2026-10-02T05:39:33.4588932Z [90m│[39m  storybook-static/assets/react-dom-BzYJmH6j.js
+2026-10-02T05:39:33.4589601Z [90m│[39m  3.90 kB │ gzip:   1.42 kB
+2026-10-02T05:39:33.4590329Z [90m│[39m  storybook-static/assets/chunk-7PIQR4A3-BGgO7bU4.js
+2026-10-02T05:39:33.4591040Z [90m│[39m  5.14 kB │ gzip:   1.93 kB
+2026-10-02T05:39:33.4591807Z [90m│[39m  storybook-static/assets/StatusBadge-iceWfHer.js
+2026-10-02T05:39:33.4592564Z [90m│[39m  6.14 kB │ gzip:   2.79 kB
+2026-10-02T05:39:33.4593415Z [90m│[39m  storybook-static/assets/Foundations.stories-DSwP-G2O.js
+2026-10-02T05:39:33.4594269Z [90m│[39m  8.13 kB │ gzip:   3.00 kB
+2026-10-02T05:39:33.4596764Z [90m│[39m  storybook-static/assets/SpecEditor.stories-CUUem4iX.js
+2026-10-02T05:39:33.4598106Z [90m│[39m  11.21 kB │ gzip:   4.58 kB
+2026-10-02T05:39:33.4598867Z [90m│[39m  storybook-static/assets/chunk-W22LQPXL-Dy3uoMFt.js
+2026-10-02T05:39:33.4599598Z [90m│[39m  22.75 kB │ gzip:   7.61 kB
+2026-10-02T05:39:33.4600045Z [90m│[39m  storybook-static/vite-inject-mocker-entry.js
+2026-10-02T05:39:33.4600750Z [90m│[39m  27.84 kB │ gzip:   9.66 kB
+2026-10-02T05:39:33.4602184Z [90m│[39m  storybook-static/assets/matchers-JIUQ3HVY-C789_MAK.js
+2026-10-02T05:39:33.4602933Z [90m│[39m  28.79 kB │ gzip:   9.68 kB
+2026-10-02T05:39:33.4604116Z [90m│[39m  storybook-static/assets/Color-6AOWCN3U-C1tKGy27.js
+2026-10-02T05:39:33.4605433Z [90m│[39m  30.39 kB │ gzip:  11.49 kB
+2026-10-02T05:39:33.4606260Z [90m│[39m  storybook-static/assets/WithTooltip-CDUNV5IS-C1vDOno1.js
+2026-10-02T05:39:33.4606975Z [90m│[39m  32.75 kB │ gzip:  11.49 kB
+2026-10-02T05:39:33.4608791Z [90m│[39m  storybook-static/assets/button-BxUoCJ3B.js
+2026-10-02T05:39:33.4609539Z [90m│[39m  33.88 kB │ gzip:  11.28 kB
+2026-10-02T05:39:33.4610257Z [90m│[39m  storybook-static/assets/fixtures-Bf5g4Kvw.js
+2026-10-02T05:39:33.4610943Z [90m│[39m  35.06 kB │ gzip:  11.97 kB
+2026-10-02T05:39:33.4611616Z [90m│[39m  storybook-static/assets/SpecWorkspace-CjdJ2yGZ.js
+2026-10-02T05:39:33.4612309Z [90m│[39m  53.87 kB │ gzip:  18.19 kB
+2026-10-02T05:39:33.4612944Z [90m│[39m  storybook-static/assets/theming-hjq7h8i_.js
+2026-10-02T05:39:33.4613341Z [90m│[39m  55.40 kB │ gzip:  21.34 kB
+2026-10-02T05:39:33.4613898Z [90m│[39m  storybook-static/assets/syntaxhighlighter-4REYKNEV-ByJeavJs.js
+2026-10-02T05:39:33.4614398Z [90m│[39m  75.89 kB │ gzip:  27.26 kB
+2026-10-02T05:39:33.4615078Z [90m│[39m  storybook-static/assets/react-18-BURu8MDU.js
+2026-10-02T05:39:33.4615698Z [90m│[39m  207.66 kB │ gzip:  65.17 kB
+2026-10-02T05:39:33.4616825Z [90m│[39m  storybook-static/assets/axe-pQGJbW0T.js
+2026-10-02T05:39:33.4617487Z [90m│[39m  586.90 kB │ gzip: 160.19 kB
+2026-10-02T05:39:33.4618467Z [90m│[39m  storybook-static/assets/DocsRenderer-JROSPFPF-CO6cC4Fd.js
+2026-10-02T05:39:33.4619086Z [90m│[39m  753.42 kB │ gzip: 239.17 kB
+2026-10-02T05:39:33.4619747Z [90m│[39m  storybook-static/assets/iframe-Cm9cccGs.js
+2026-10-02T05:39:33.4620506Z [90m│[39m  1,136.49 kB │ gzip: 324.10 kB
+2026-10-02T05:39:33.4620910Z 
+2026-10-02T05:39:33.4621177Z [90m│[39m
+2026-10-02T05:39:33.4621786Z [33m▲[39m  [43mVite[49m [33m[plugin builtin:vite-reporter]
+2026-10-02T05:39:33.4622793Z [90m│[39m  (!) Some chunks are larger than 500 kB after minification. Consider:
+2026-10-02T05:39:33.4623913Z [90m│[39m  - Using dynamic import() to code-split the application
+2026-10-02T05:39:33.4625042Z [90m│[39m  - Use build.rolldownOptions.output.codeSplitting to improve chunking:
+2026-10-02T05:39:33.4626928Z [90m│[39m  ]8;;https://rolldown.rs/reference/OutputOptions.codeSplittinghttps://rolldown.rs/reference/OutputOptions.codeSplitting]8;;
+2026-10-02T05:39:33.4630234Z [90m│[39m  - Adjust chunk size limit for this warning via
+2026-10-02T05:39:33.4631012Z [90m│[39m  build.chunkSizeWarningLimit.[39m
+2026-10-02T05:39:33.4646232Z [90m│[39m  [43mVite[49m [32m✓ built in 4.26s[39m
+2026-10-02T05:39:33.4670637Z [90m│[39m
+2026-10-02T05:39:33.4671236Z [33m▲[39m  [43mVite[49m [33m[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 3.5s of this 4.2s
+2026-10-02T05:39:33.4671848Z [90m│[39m  build (83%).
+2026-10-02T05:39:33.4672345Z [90m│[39m  The slowest callbacks, timed inside each callback (the wait before a
+2026-10-02T05:39:33.4672949Z [90m│[39m  callback starts is excluded, the time it awaits is included):
+2026-10-02T05:39:33.4673605Z [90m│[39m  - plugin storybook:react-docgen-plugin transform (55%, 2.3s, 2160
+2026-10-02T05:39:33.4674082Z [90m│[39m  calls)
+2026-10-02T05:39:33.4674567Z [90m│[39m  Additional callback time came from the callbacks below and from
+2026-10-02T05:39:33.4675101Z [90m│[39m  callbacks under 1s.
+2026-10-02T05:39:33.4675635Z [90m│[39m  3 callbacks are listed without a time. Their calls overlapped, so the
+2026-10-02T05:39:33.4676254Z [90m│[39m  time inside one call includes work from other calls. To find their
+2026-10-02T05:39:33.4676850Z [90m│[39m  cost, profile the build with `node --cpu-prof`:
+2026-10-02T05:39:33.4677349Z [90m│[39m  - plugin plugin-csf transform (2160 calls)
+2026-10-02T05:39:33.4677811Z [90m│[39m  - plugin vite:asset load (6 calls)
+2026-10-02T05:39:33.4678806Z [90m│[39m  - plugin vite:css transform (2 calls)
+2026-10-02T05:39:33.4679769Z [90m│[39m  See ]8;;https://rolldown.rs/reference/InputOptions.checks#bundlertimingshttps://rolldown.rs/reference/InputOptions.checks#bundlertimings]8;;
+2026-10-02T05:39:33.4680524Z [90m│[39m  for more details.
+2026-10-02T05:39:33.4680855Z [90m│[39m  [39m
+2026-10-02T05:39:33.4685605Z [90m│[39m
+2026-10-02T05:39:33.4686414Z [32m◇[39m  Output directory: D:/a/HighGrade/HighGrade/ui/storybook-static
+2026-10-02T05:39:33.4687927Z [90m│[39m
+2026-10-02T05:39:33.4688627Z [90m└[39m  Storybook build completed successfully
+2026-10-02T05:39:33.4688948Z 
+2026-10-02T05:39:35.5028022Z ##[group]Run rustup show active-toolchain
+2026-10-02T05:39:35.5028805Z [36;1mrustup show active-toolchain[0m
+2026-10-02T05:39:35.5094036Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:39:35.5244944Z env:
+2026-10-02T05:39:35.5245582Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:39:35.5246132Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:39:35.5246626Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:35.5247171Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:39:35.5247696Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:35.5248167Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:35.5248711Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:35.5249108Z ##[endgroup]
+2026-10-02T05:39:36.5523529Z info: syncing channel updates for 1.89.0-x86_64-pc-windows-msvc
+2026-10-02T05:39:37.1376785Z info: latest update on 2025-08-07 for version 1.89.0 (29483883e 2025-08-04)
+2026-10-02T05:39:37.1431798Z info: downloading 4 components
+2026-10-02T05:39:47.2239125Z warn: the missing active toolchain `1.89.0-x86_64-pc-windows-msvc` has been auto-installed
+2026-10-02T05:39:47.2240696Z warn: auto-installation is deprecated for most `rustup` commands
+2026-10-02T05:39:47.2242812Z warn: scripts relying on this behavior in `rustup` may stop working in the future
+2026-10-02T05:39:47.2243501Z warn: to install the active toolchain, use `rustup install` instead
+2026-10-02T05:39:47.2244139Z warn: see <https://github.com/rust-lang/rustup/issues/4836> for more info
+2026-10-02T05:39:47.2245003Z 1.89.0-x86_64-pc-windows-msvc (overridden by 'D:\a\HighGrade\HighGrade\rust-toolchain.toml')
+2026-10-02T05:39:47.4534114Z ##[group]Run actions/cache@v4
+2026-10-02T05:39:47.4534457Z with:
+2026-10-02T05:39:47.4534823Z   path: ~/.cargo/registry
+~/.cargo/git
+target/debug
+target/release
+target/highgrade/build-cache
+
+2026-10-02T05:39:47.4535363Z   key: Windows-rust-v1-451e0241a31f78fed4846bd4cf59269078e85cfd080d8c40741d8d25e03c45b9
+2026-10-02T05:39:47.4535764Z   enableCrossOsArchive: false
+2026-10-02T05:39:47.4535989Z   fail-on-cache-miss: false
+2026-10-02T05:39:47.4536211Z   lookup-only: false
+2026-10-02T05:39:47.4536402Z   save-always: false
+2026-10-02T05:39:47.4536571Z env:
+2026-10-02T05:39:47.4536829Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:39:47.4537193Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:39:47.4537561Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:47.4537958Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:39:47.4538440Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:47.4538801Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:47.4539218Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:47.4539505Z ##[endgroup]
+2026-10-02T05:39:47.5897305Z (node:8316) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-02T05:39:47.5897977Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-02T05:39:47.8961548Z Cache not found for input keys: Windows-rust-v1-451e0241a31f78fed4846bd4cf59269078e85cfd080d8c40741d8d25e03c45b9
+2026-10-02T05:39:47.9223718Z ##[group]Run cargo fetch --locked
+2026-10-02T05:39:47.9224032Z [36;1mcargo fetch --locked[0m
+2026-10-02T05:39:47.9286544Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:39:47.9286876Z env:
+2026-10-02T05:39:47.9287165Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:39:47.9287559Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:39:47.9287948Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:47.9288358Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:39:47.9288770Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:47.9289134Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:47.9289496Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:47.9289777Z ##[endgroup]
+2026-10-02T05:39:48.9253164Z     Updating crates.io index
+2026-10-02T05:39:50.4454998Z  Downloading crates ...
+2026-10-02T05:39:50.6030666Z   Downloaded windows-link v0.2.1
+2026-10-02T05:39:50.6307276Z   Downloaded mime v0.3.17
+2026-10-02T05:39:50.7026034Z   Downloaded atomic-waker v1.1.2
+2026-10-02T05:39:50.7992822Z   Downloaded axum-core v0.5.6
+2026-10-02T05:39:50.9283279Z   Downloaded http-body-util v0.1.5
+2026-10-02T05:39:50.9960861Z   Downloaded bytes v1.12.1
+2026-10-02T05:39:51.1196789Z   Downloaded roxmltree v0.20.0
+2026-10-02T05:39:51.9313625Z   Downloaded tower v0.5.3
+2026-10-02T05:39:52.4878150Z   Downloaded http v1.5.0
+2026-10-02T05:39:52.5175541Z   Downloaded mio v1.2.3
+2026-10-02T05:39:52.5741505Z   Downloaded hyper-util v0.1.21
+2026-10-02T05:39:52.6629621Z   Downloaded hyper v1.11.1
+2026-10-02T05:39:52.7292870Z   Downloaded axum v0.8.9
+2026-10-02T05:39:52.8034786Z   Downloaded futures-util v0.3.34
+2026-10-02T05:39:52.9357932Z   Downloaded pulldown-cmark v0.13.0
+2026-10-02T05:39:53.7173396Z   Downloaded serde_json v1.0.151
+2026-10-02T05:39:53.7882258Z   Downloaded syn v2.0.119
+2026-10-02T05:39:53.9002722Z   Downloaded schemars v1.2.2
+2026-10-02T05:39:54.0722716Z   Downloaded syn v3.0.6
+2026-10-02T05:39:54.1566658Z   Downloaded typenum v1.20.1
+2026-10-02T05:39:54.1764987Z   Downloaded memchr v2.8.3
+2026-10-02T05:39:54.2221241Z   Downloaded serde_derive v1.0.229
+2026-10-02T05:39:54.2532024Z   Downloaded r-efi v6.0.0
+2026-10-02T05:39:54.3043079Z   Downloaded getrandom v0.4.3
+2026-10-02T05:39:54.3408130Z   Downloaded bitflags v2.13.2
+2026-10-02T05:39:54.3861049Z   Downloaded serde v1.0.229
+2026-10-02T05:39:54.4233682Z   Downloaded serde_core v1.0.229
+2026-10-02T05:39:54.8302828Z   Downloaded socket2 v0.6.5
+2026-10-02T05:39:54.8444498Z   Downloaded proc-macro2 v1.0.107
+2026-10-02T05:39:54.8687140Z   Downloaded futures-channel v0.3.34
+2026-10-02T05:39:54.8819464Z   Downloaded httparse v1.10.1
+2026-10-02T05:39:54.8956526Z   Downloaded smallvec v1.16.2
+2026-10-02T05:39:54.9035016Z   Downloaded matchit v0.8.4
+2026-10-02T05:39:54.9163143Z   Downloaded unicase v2.9.0
+2026-10-02T05:39:54.9265022Z   Downloaded serde_derive_internals v0.30.0
+2026-10-02T05:39:54.9378094Z   Downloaded schemars_derive v1.2.2
+2026-10-02T05:39:54.9556060Z   Downloaded zmij v1.0.23
+2026-10-02T05:39:54.9662961Z   Downloaded signal-hook-registry v1.4.8
+2026-10-02T05:39:54.9764873Z   Downloaded quote v1.0.47
+2026-10-02T05:39:54.9968536Z   Downloaded unicode-ident v1.0.26
+2026-10-02T05:39:55.0160105Z   Downloaded httpdate v1.0.3
+2026-10-02T05:39:55.0238935Z   Downloaded serde_path_to_error v0.1.20
+2026-10-02T05:39:55.0345969Z   Downloaded slab v0.4.12
+2026-10-02T05:39:55.0432705Z   Downloaded dyn-clone v1.0.20
+2026-10-02T05:39:55.0538311Z   Downloaded ref-cast-impl v1.0.27
+2026-10-02T05:39:55.0596739Z   Downloaded itoa v1.0.18
+2026-10-02T05:39:55.0688802Z   Downloaded tokio v1.48.0
+2026-10-02T05:39:55.3733174Z   Downloaded libc v0.2.189
+2026-10-02T05:39:55.6355874Z   Downloaded generic-array v0.14.7
+2026-10-02T05:39:55.6469992Z   Downloaded digest v0.10.7
+2026-10-02T05:39:55.6605194Z   Downloaded wasi v0.11.1+wasi-snapshot-preview1
+2026-10-02T05:39:55.6708133Z   Downloaded pin-project-lite v0.2.17
+2026-10-02T05:39:55.7335984Z   Downloaded http-body v1.1.0
+2026-10-02T05:39:55.7425704Z   Downloaded futures-core v0.3.34
+2026-10-02T05:39:55.7521379Z   Downloaded sync_wrapper v1.0.2
+2026-10-02T05:39:55.7584909Z   Downloaded tower-service v0.3.3
+2026-10-02T05:39:55.7678123Z   Downloaded ref-cast v1.0.27
+2026-10-02T05:39:55.7924544Z   Downloaded cfg-if v1.0.5
+2026-10-02T05:39:55.8014931Z   Downloaded crypto-common v0.1.7
+2026-10-02T05:39:55.8080024Z   Downloaded errno v0.3.14
+2026-10-02T05:39:55.8179929Z   Downloaded percent-encoding v2.3.2
+2026-10-02T05:39:55.8995327Z   Downloaded futures-task v0.3.34
+2026-10-02T05:39:56.3698856Z   Downloaded tower-layer v0.3.3
+2026-10-02T05:39:56.3781980Z   Downloaded cpufeatures v0.2.17
+2026-10-02T05:39:56.3911111Z   Downloaded block-buffer v0.10.4
+2026-10-02T05:39:56.3988298Z   Downloaded version_check v0.9.5
+2026-10-02T05:39:56.4077876Z   Downloaded sha2 v0.10.9
+2026-10-02T05:39:56.4330801Z   Downloaded tokio-macros v2.6.1
+2026-10-02T05:39:56.4514118Z   Downloaded windows-sys v0.61.2
+2026-10-02T05:39:56.8843739Z ##[group]Run python -m unittest discover -s scripts/tests -v
+2026-10-02T05:39:56.8844229Z [36;1mpython -m unittest discover -s scripts/tests -v[0m
+2026-10-02T05:39:56.8907802Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:39:56.8908142Z env:
+2026-10-02T05:39:56.8908504Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:39:56.8908940Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:39:56.8909354Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:56.8909790Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:39:56.8910214Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:56.8910617Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:56.8910997Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:39:56.8911379Z ##[endgroup]
+2026-10-02T05:40:17.5107098Z test_developer_release_does_not_replace_candidate_artifact (test_build_release.ReleaseBuildTests.test_developer_release_does_not_replace_candidate_artifact) ... ok
+2026-10-02T05:40:20.7648463Z test_double_rename_failure_keeps_recovery_candidate (test_build_release.ReleaseBuildTests.test_double_rename_failure_keeps_recovery_candidate) ... ok
+2026-10-02T05:40:25.2913948Z test_exact_revision_repeat_and_failed_build_preserve_candidate (test_build_release.ReleaseBuildTests.test_exact_revision_repeat_and_failed_build_preserve_candidate) ... ok
+2026-10-02T05:40:27.0858614Z test_foreign_candidate_data_is_preserved (test_build_release.ReleaseBuildTests.test_foreign_candidate_data_is_preserved) ... ok
+2026-10-02T05:40:29.4612246Z test_linked_target_is_refused (test_build_release.ReleaseBuildTests.test_linked_target_is_refused) ... ok
+2026-10-02T05:40:32.7554686Z test_missing_ui_sources_and_failed_probe_preserve_candidate (test_build_release.ReleaseBuildTests.test_missing_ui_sources_and_failed_probe_preserve_candidate) ... ok
+2026-10-02T05:40:33.3410398Z test_nested_cache_junction_is_refused_before_cargo_writes (test_build_release.ReleaseBuildTests.test_nested_cache_junction_is_refused_before_cargo_writes) ... ok
+2026-10-02T05:40:37.2368178Z test_target_override_uses_artifact_from_current_build (test_build_release.ReleaseBuildTests.test_target_override_uses_artifact_from_current_build) ... ok
+2026-10-02T05:40:40.4253209Z test_wrong_embedded_source_is_not_promoted (test_build_release.ReleaseBuildTests.test_wrong_embedded_source_is_not_promoted) ... ok
+2026-10-02T05:40:40.6425492Z test_development_budget_survives_git_checkout_line_endings (test_document_budget.DocumentBudgetTests.test_development_budget_survives_git_checkout_line_endings) ... ok
+2026-10-02T05:40:41.4913677Z test_background_descendant_is_not_marked_ready_for_collection (test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok
+2026-10-02T05:40:41.5176051Z test_catalog_reference_blocks_deleting_exported_source (test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok
+2026-10-02T05:40:41.5322189Z test_damaged_export_blocks_collection_and_links_never_export (test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok
+2026-10-02T05:40:41.5444677Z test_explicit_discard_keeps_referenced_run_but_exports_nothing (test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok
+2026-10-02T05:40:41.5563711Z test_export_is_selected_idempotent_and_detects_corruption (test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok
+2026-10-02T05:40:41.5706270Z test_interruption_after_export_before_inventory_preserves_scratch (test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok
+2026-10-02T05:40:41.6412301Z test_manifest_corruption_and_live_owner_refuse_finish (test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok
+2026-10-02T05:40:42.1764823Z test_real_wrapper_preserves_exit_code_and_finishes_selected_report (test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok
+2026-10-02T05:40:42.4792967Z test_sweep_preserves_active_unknown_changed_and_unexported (test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok
+2026-10-02T05:40:42.4886977Z test_other_skills_keep_their_project_entry (test_render_skills.RenderSkillsTests.test_other_skills_keep_their_project_entry) ... ok
+2026-10-02T05:40:42.4904434Z test_update_body_and_metadata_come_from_their_editable_sources (test_render_skills.RenderSkillsTests.test_update_body_and_metadata_come_from_their_editable_sources) ... ok
+2026-10-02T05:40:42.4908333Z test_update_entry_does_not_require_a_project (test_render_skills.RenderSkillsTests.test_update_entry_does_not_require_a_project) ... ok
+2026-10-02T05:40:42.8121282Z test_capture_between_complete_read_and_write_cannot_inherit_success (test_source_scenarios.SourceFreshnessTests.test_capture_between_complete_read_and_write_cannot_inherit_success) ... ok
+2026-10-02T05:40:43.2144714Z test_capture_parse_error_invalidates_prior_success (test_source_scenarios.SourceFreshnessTests.test_capture_parse_error_invalidates_prior_success) ... ok
+2026-10-02T05:40:44.5260201Z test_changed_inputs_and_deleted_files_rejected_without_timestamp_drift (test_source_scenarios.SourceFreshnessTests.test_changed_inputs_and_deleted_files_rejected_without_timestamp_drift) ... ok
+2026-10-02T05:40:45.3938028Z test_failed_partial_and_interrupted_attempts_cannot_inherit_success (test_source_scenarios.SourceFreshnessTests.test_failed_partial_and_interrupted_attempts_cannot_inherit_success) ... ok
+2026-10-02T05:40:46.1202820Z test_final_gate_rejects_capture_and_source_drift_while_reading_trace (test_source_scenarios.SourceFreshnessTests.test_final_gate_rejects_capture_and_source_drift_while_reading_trace) ... ok
+2026-10-02T05:40:46.8594683Z test_final_gate_rejects_unbound_record_and_mismatched_trace_provenance (test_source_scenarios.SourceFreshnessTests.test_final_gate_rejects_unbound_record_and_mismatched_trace_provenance) ... ok
+2026-10-02T05:40:47.2759309Z test_final_identity_check_rejects_capture_after_source_freshness_reads (test_source_scenarios.SourceFreshnessTests.test_final_identity_check_rejects_capture_after_source_freshness_reads) ... ok
+2026-10-02T05:40:47.7551067Z test_first_run_drift_rejected_and_new_successful_run_is_accepted (test_source_scenarios.SourceFreshnessTests.test_first_run_drift_rejected_and_new_successful_run_is_accepted) ... ok
+2026-10-02T05:40:48.0747231Z test_older_attempt_cannot_complete_a_newer_capture (test_source_scenarios.SourceFreshnessTests.test_older_attempt_cannot_complete_a_newer_capture) ... ok
+2026-10-02T05:40:49.8248113Z test_real_failed_and_interrupted_processes_leave_attempt_incomplete (test_source_scenarios.SourceFreshnessTests.test_real_failed_and_interrupted_processes_leave_attempt_incomplete) ... ok
+2026-10-02T05:40:50.5855600Z test_relocated_completed_attempt_keeps_original_capture_and_rejects_drift (test_source_scenarios.SourceFreshnessTests.test_relocated_completed_attempt_keeps_original_capture_and_rejects_drift) ... ok
+2026-10-02T05:40:51.0639524Z test_report_inventory_and_missing_snapshot_are_rejected (test_source_scenarios.SourceFreshnessTests.test_report_inventory_and_missing_snapshot_are_rejected) ... ok
+2026-10-02T05:40:51.2984249Z test_running_attempt_cannot_complete_after_relocation (test_source_scenarios.SourceFreshnessTests.test_running_attempt_cannot_complete_after_relocation) ... ok
+2026-10-02T05:40:51.8007978Z test_same_report_and_equivalent_spec_metadata_are_reusable (test_source_scenarios.SourceFreshnessTests.test_same_report_and_equivalent_spec_metadata_are_reusable) ... ok
+2026-10-02T05:40:52.1390248Z test_semantic_change_rejected_even_with_restored_timestamp (test_source_scenarios.SourceFreshnessTests.test_semantic_change_rejected_even_with_restored_timestamp) ... ok
+2026-10-02T05:40:52.6278348Z test_superseded_prepare_cannot_publish_current_evidence (test_source_scenarios.SourceFreshnessTests.test_superseded_prepare_cannot_publish_current_evidence) ... ok
+2026-10-02T05:40:52.6482647Z test_verify_orchestration_completes_only_after_success (test_source_scenarios.SourceFreshnessTests.test_verify_orchestration_completes_only_after_success) ... ok
+2026-10-02T05:40:52.6565975Z test_active_build_and_recovery_state_refuse_without_changes (test_target_maintenance.TargetMaintenanceTests.test_active_build_and_recovery_state_refuse_without_changes) ... ok
+2026-10-02T05:40:52.6639500Z test_budget_check_counts_hardlinked_payload_once (test_target_maintenance.TargetMaintenanceTests.test_budget_check_counts_hardlinked_payload_once) ... ok
+2026-10-02T05:40:52.6710721Z test_cache_cleanup_requires_explicit_selection (test_target_maintenance.TargetMaintenanceTests.test_cache_cleanup_requires_explicit_selection) ... ok
+2026-10-02T05:40:52.6802835Z test_cache_file_refuses_before_removing_selected_scratch (test_target_maintenance.TargetMaintenanceTests.test_cache_file_refuses_before_removing_selected_scratch) ... ok
+2026-10-02T05:40:52.7035816Z test_invalid_mixed_selection_refuses_before_deleting_scratch (test_target_maintenance.TargetMaintenanceTests.test_invalid_mixed_selection_refuses_before_deleting_scratch) ... ok
+2026-10-02T05:40:52.7162799Z test_inventory_deduplicates_hardlinks_and_reports_each_area (test_target_maintenance.TargetMaintenanceTests.test_inventory_deduplicates_hardlinks_and_reports_each_area) ... ok
+2026-10-02T05:40:52.7265842Z test_inventory_does_not_deduplicate_unavailable_inode_ids (test_target_maintenance.TargetMaintenanceTests.test_inventory_does_not_deduplicate_unavailable_inode_ids) ... ok
+2026-10-02T05:40:52.7318178Z test_inventory_without_allocated_size_reports_unknown_not_estimate (test_target_maintenance.TargetMaintenanceTests.test_inventory_without_allocated_size_reports_unknown_not_estimate) ... ok
+2026-10-02T05:40:52.9510689Z test_link_outside_root_refuses_and_preserves_sentinel (test_target_maintenance.TargetMaintenanceTests.test_link_outside_root_refuses_and_preserves_sentinel) ... ok
+2026-10-02T05:40:52.9549491Z test_missing_target_has_empty_measurements (test_target_maintenance.TargetMaintenanceTests.test_missing_target_has_empty_measurements) ... ok
+2026-10-02T05:40:52.9633078Z test_preview_is_read_only_and_apply_preserves_candidate_and_unknown (test_target_maintenance.TargetMaintenanceTests.test_preview_is_read_only_and_apply_preserves_candidate_and_unknown) ... ok
+2026-10-02T05:40:52.9683934Z test_scratch_path_escape_is_refused (test_target_maintenance.TargetMaintenanceTests.test_scratch_path_escape_is_refused) ... ok
+2026-10-02T05:40:53.3246543Z test_selected_preview_and_real_build_cache_cleanup (test_target_maintenance.TargetMaintenanceTests.test_selected_preview_and_real_build_cache_cleanup) ...      Removed 12 files, 9.0KiB total
+2026-10-02T05:40:53.3353274Z ok
+2026-10-02T05:40:53.3435695Z test_windows_direntry_zero_identity_uses_real_path_stat (test_target_maintenance.TargetMaintenanceTests.test_windows_direntry_zero_identity_uses_real_path_stat) ... ok
+2026-10-02T05:41:13.4899501Z test_release_requires_complete_bundle_but_debug_allows_absent_dist (test_ui_build.UiBuildTests.test_release_requires_complete_bundle_but_debug_allows_absent_dist) ... ok
+2026-10-02T05:41:13.4906941Z test_headroom_uses_cargo_target_and_accepts_exact_boundary (test_verify.VerifyOutputTests.test_headroom_uses_cargo_target_and_accepts_exact_boundary) ... ok
+2026-10-02T05:41:13.4912482Z test_inspect_report_round_trips_on_windows_legacy_console (test_verify.VerifyOutputTests.test_inspect_report_round_trips_on_windows_legacy_console) ... ok
+2026-10-02T05:41:13.4919104Z test_low_configured_target_refuses_even_when_project_has_space (test_verify.VerifyOutputTests.test_low_configured_target_refuses_even_when_project_has_space) ... ok
+2026-10-02T05:41:13.4927754Z test_low_space_refuses_before_capture_or_report_replacement (test_verify.VerifyOutputTests.test_low_space_refuses_before_capture_or_report_replacement) ... ok
+2026-10-02T05:41:13.5036787Z test_all_current_kit_markdown_links_resolve_after_the_rename (test_workflow_contract.WorkflowContractTests.test_all_current_kit_markdown_links_resolve_after_the_rename) ... ok
+2026-10-02T05:41:13.5074747Z test_canonical_commit_skill_is_rendered_without_a_second_approve_route (test_workflow_contract.WorkflowContractTests.test_canonical_commit_skill_is_rendered_without_a_second_approve_route) ... ok
+2026-10-02T05:41:13.5080046Z test_init_links_the_adaptation_that_commit_and_push_consume (test_workflow_contract.WorkflowContractTests.test_init_links_the_adaptation_that_commit_and_push_consume) ... ok
+2026-10-02T05:41:13.5083923Z test_planner_route_does_not_grant_goal_or_plan_only_execution (test_workflow_contract.WorkflowContractTests.test_planner_route_does_not_grant_goal_or_plan_only_execution) ... ok
+2026-10-02T05:41:13.5084514Z 
+2026-10-02T05:41:13.5084732Z ----------------------------------------------------------------------
+2026-10-02T05:41:13.5085946Z Ran 62 tests in 74.067s
+2026-10-02T05:41:13.5086096Z 
+2026-10-02T05:41:13.5086177Z OK
+2026-10-02T05:41:13.6370869Z ##[group]Run python scripts/render-skills.py --check
+2026-10-02T05:41:13.6371299Z [36;1mpython scripts/render-skills.py --check[0m
+2026-10-02T05:41:13.6437246Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:41:13.6437569Z env:
+2026-10-02T05:41:13.6437856Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:41:13.6438248Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:41:13.6438629Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:13.6439039Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:41:13.6439457Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:13.6439821Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:13.6440201Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:13.6440490Z ##[endgroup]
+2026-10-02T05:41:13.9482676Z Skills and manifest are current
+2026-10-02T05:41:14.0791018Z ##[group]Run cargo fmt --all -- --check
+2026-10-02T05:41:14.0791444Z [36;1mcargo fmt --all -- --check[0m
+2026-10-02T05:41:14.0854080Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:41:14.0854427Z env:
+2026-10-02T05:41:14.0854728Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:41:14.0855139Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:41:14.0855536Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:14.0855952Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:41:14.0856379Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:14.0856770Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:14.0857143Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:14.0857442Z ##[endgroup]
+2026-10-02T05:41:15.5017092Z ##[group]Run taiki-e/install-action@v2
+2026-10-02T05:41:15.5017433Z with:
+2026-10-02T05:41:15.5017636Z   tool: nextest@0.9.146
+2026-10-02T05:41:15.5017866Z   fallback: none
+2026-10-02T05:41:15.5018062Z   checksum: true
+2026-10-02T05:41:15.5018237Z env:
+2026-10-02T05:41:15.5018498Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:41:15.5018909Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:41:15.5019298Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:15.5019710Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:41:15.5020129Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:15.5020535Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:15.5020907Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:15.5021205Z ##[endgroup]
+2026-10-02T05:41:15.5084815Z ##[start-action display=Run bail() {;id=__taiki-e_install-action.__run]
+2026-10-02T05:41:15.5091908Z ##[end-action id=__taiki-e_install-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-10-02T05:41:15.5096235Z ##[start-action display=Run Set-StrictMode -Version Latest;id=__taiki-e_install-action.__run_2]
+2026-10-02T05:41:15.5234037Z ##[group]Run Set-StrictMode -Version Latest
+2026-10-02T05:41:15.5234403Z [36;1mSet-StrictMode -Version Latest[0m
+2026-10-02T05:41:15.5234793Z [36;1m$remove_env = @('ENV','BASH_ENV','CDPATH','SHELLOPTS','BASHOPTS','BASH_FUNC_*')[0m
+2026-10-02T05:41:15.5235181Z [36;1mforeach ($name in $remove_env) {[0m
+2026-10-02T05:41:15.5235517Z [36;1m  if (Test-Path "Env:$name") { Remove-Item "Env:\$name" }[0m
+2026-10-02T05:41:15.5235968Z [36;1m}[0m
+2026-10-02T05:41:15.5236221Z [36;1mfor ($i=1; $i -le 10; $i++) {[0m
+2026-10-02T05:41:15.5236517Z [36;1m  $prev_err_action = $ErrorActionPreference[0m
+2026-10-02T05:41:15.5236866Z [36;1m  $ErrorActionPreference = "Continue"[0m
+2026-10-02T05:41:15.5237221Z [36;1m  & bash --noprofile --norc "$env:GITHUB_ACTION_PATH\main.sh"[0m
+2026-10-02T05:41:15.5237993Z [36;1m  $code = $LASTEXITCODE[0m
+2026-10-02T05:41:15.5238334Z [36;1m  $ErrorActionPreference = "$prev_err_action"[0m
+2026-10-02T05:41:15.5238696Z [36;1m  if (Test-Path "$env:USERPROFILE\.install-action\init") {[0m
+2026-10-02T05:41:15.5239085Z [36;1m    # If bash started successfully, main.sh creates init file.[0m
+2026-10-02T05:41:15.5239478Z [36;1m    Remove-Item "$env:USERPROFILE\.install-action\init" -Force[0m
+2026-10-02T05:41:15.5239819Z [36;1m    exit $code[0m
+2026-10-02T05:41:15.5240029Z [36;1m  }[0m
+2026-10-02T05:41:15.5240227Z [36;1m  if ($i -lt 10) {[0m
+2026-10-02T05:41:15.5240858Z [36;1m    Write-Output "::warning::install-action: installation failed due to bash startup failure (<https://github.com/actions/partner-runner-images/issues/169>); retrying..."[0m
+2026-10-02T05:41:15.5241508Z [36;1m  }[0m
+2026-10-02T05:41:15.5241695Z [36;1m}[0m
+2026-10-02T05:41:15.5242309Z [36;1mWrite-Output "::error::install-action: installation failed due to bash startup failure (<https://github.com/actions/partner-runner-images/issues/169>); this maybe resolved by re-running job"[0m
+2026-10-02T05:41:15.5242993Z [36;1mexit 1[0m
+2026-10-02T05:41:15.5308257Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:41:15.5308587Z env:
+2026-10-02T05:41:15.5308859Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:41:15.5309255Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:41:15.5309648Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:15.5310054Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:41:15.5310467Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:15.5312577Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:15.5312985Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:15.5313298Z   INPUT_TOOL: nextest@0.9.146
+2026-10-02T05:41:15.5313534Z   INPUT_CHECKSUM: true
+2026-10-02T05:41:15.5313760Z   INPUT_FALLBACK: none
+2026-10-02T05:41:15.5313988Z   DEFAULT_GITHUB_TOKEN: 
+2026-10-02T05:41:15.5314242Z   ACTION_USER_AGENT: taiki-e/install-action (v2)
+2026-10-02T05:41:15.5314506Z   RUNNER_OS: Windows
+2026-10-02T05:41:15.5314700Z   RUNNER_ARCH: X64
+2026-10-02T05:41:15.5314903Z ##[endgroup]
+2026-10-02T05:41:16.0599250Z info: host platform: x86_64_windows
+2026-10-02T05:41:16.1093446Z info: cargo is located at /c/Users/runneradmin/.cargo/bin/cargo
+2026-10-02T05:41:16.7756727Z info: installing cargo-nextest@0.9.146
+2026-10-02T05:41:17.1638150Z info: downloading https://github.com/nextest-rs/nextest/releases/download/cargo-nextest-0.9.146/cargo-nextest-0.9.146-x86_64-pc-windows-msvc.tar.gz
+2026-10-02T05:41:17.6647134Z info: verifying sha256 checksum for cargo-nextest-0.9.146-x86_64-pc-windows-msvc.tar.gz
+2026-10-02T05:41:18.3401452Z info: cargo-nextest installed at /c/Users/runneradmin/.cargo/bin/cargo-nextest.exe
+2026-10-02T05:41:18.3515349Z + cargo-nextest nextest --version
+2026-10-02T05:41:18.3751526Z cargo-nextest 0.9.146 (8af696ddc 2026-09-21)
+2026-10-02T05:41:18.3751886Z release: 0.9.146
+2026-10-02T05:41:18.3752209Z commit-hash: 8af696ddcce8fff2962d6a5168b6d138b8616a35
+2026-10-02T05:41:18.3752536Z commit-date: 2026-09-21
+2026-10-02T05:41:18.3752801Z host: x86_64-pc-windows-msvc
+2026-10-02T05:41:18.3780129Z 
+2026-10-02T05:41:18.4311172Z ##[end-action id=__taiki-e_install-action.__run_2;outcome=success;conclusion=success;duration_ms=2921]
+2026-10-02T05:41:18.4456739Z ##[group]Run python scripts/verify.py tests
+2026-10-02T05:41:18.4457342Z [36;1mpython scripts/verify.py tests[0m
+2026-10-02T05:41:18.4523066Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-02T05:41:18.4523408Z env:
+2026-10-02T05:41:18.4523702Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:41:18.4524113Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:41:18.4524510Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:18.4524929Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:41:18.4525361Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:18.4525747Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:18.4526118Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:41:18.4526420Z ##[endgroup]
+2026-10-02T05:41:19.6624301Z {"status": "applied", "before_mib": 47.75, "after_mib": 47.75, "removed_count": 0, "eligible_count": 0, "retained_count": 0, "removed": [], "eligible": [], "retained": [], "detail": "first 10 per group; plain invocation shows inventory"}
+2026-10-02T05:41:19.8327624Z {
+2026-10-02T05:41:19.8327920Z   "status": "passed",
+2026-10-02T05:41:19.8328183Z   "requirements": 157,
+2026-10-02T05:41:19.8328387Z   "scenarios": 288,
+2026-10-02T05:41:19.8328585Z   "automatic": 131,
+2026-10-02T05:41:19.8328822Z   "manual_check_scenarios": 63,
+2026-10-02T05:41:19.8329087Z   "no_declared_check_scenarios": 94,
+2026-10-02T05:41:19.8329354Z   "no_declared_check_ids": [
+2026-10-02T05:41:19.8329579Z     "HG-0004-S3",
+2026-10-02T05:41:19.8329785Z     "HG-0006-S1",
+2026-10-02T05:41:19.8329966Z     "HG-0006-S2",
+2026-10-02T05:41:19.8330151Z     "HG-0006-S3",
+2026-10-02T05:41:19.8330346Z     "HG-0006-S4",
+2026-10-02T05:41:19.8330524Z     "HG-0006-S5",
+2026-10-02T05:41:19.8330708Z     "HG-0006-S6",
+2026-10-02T05:41:19.8330932Z     "HG-0006-S7",
+2026-10-02T05:41:19.8331113Z     "HG-0008-S1",
+2026-10-02T05:41:19.8331312Z     "HG-0008-S2",
+2026-10-02T05:41:19.8331492Z     "HG-0026-S1",
+2026-10-02T05:41:19.8331682Z     "HG-0026-S2",
+2026-10-02T05:41:19.8331867Z     "HG-0026-S3",
+2026-10-02T05:41:19.8332055Z     "HG-0026-S4",
+2026-10-02T05:41:19.8332253Z     "HG-0028-S3",
+2026-10-02T05:41:19.8332432Z     "HG-0032-S1",
+2026-10-02T05:41:19.8332615Z     "HG-0042-S1",
+2026-10-02T05:41:19.8332806Z     "HG-0043-S1",
+2026-10-02T05:41:19.8332984Z     "HG-0043-S2",
+2026-10-02T05:41:19.8333165Z     "HG-0043-S3",
+2026-10-02T05:41:19.8333345Z     "HG-0044-S1",
+2026-10-02T05:41:19.8333543Z     "HG-0044-S2",
+2026-10-02T05:41:19.8333723Z     "HG-0044-S3",
+2026-10-02T05:41:19.8333901Z     "HG-0047-S1",
+2026-10-02T05:41:19.8334097Z     "HG-0047-S2",
+2026-10-02T05:41:19.8334279Z     "HG-0048-S2",
+2026-10-02T05:41:19.8334458Z     "HG-0048-S3",
+2026-10-02T05:41:19.8334656Z     "HG-0051-S1",
+2026-10-02T05:41:19.8334844Z     "HG-0051-S2",
+2026-10-02T05:41:19.8335030Z     "HG-0051-S3",
+2026-10-02T05:41:19.8335218Z     "HG-0051-S4",
+2026-10-02T05:41:19.8335420Z     "HG-0051-S5",
+2026-10-02T05:41:19.8335606Z     "HG-0054-S1",
+2026-10-02T05:41:19.8335789Z     "HG-0054-S2",
+2026-10-02T05:41:19.8335988Z     "HG-0054-S3",
+2026-10-02T05:41:19.8336171Z     "HG-0054-S4",
+2026-10-02T05:41:19.8336350Z     "HG-0054-S5",
+2026-10-02T05:41:19.8336547Z     "HG-0054-S6",
+2026-10-02T05:41:19.8336732Z     "HG-0054-S7",
+2026-10-02T05:41:19.8336914Z     "HG-0054-S8",
+2026-10-02T05:41:19.8337095Z     "HG-0055-S1",
+2026-10-02T05:41:19.8337291Z     "HG-0055-S2",
+2026-10-02T05:41:19.8337472Z     "HG-0055-S3",
+2026-10-02T05:41:19.8337729Z     "HG-0055-S4",
+2026-10-02T05:41:19.8338009Z     "HG-0055-S5",
+2026-10-02T05:41:19.8338198Z     "HG-0055-S7",
+2026-10-02T05:41:19.8338752Z     "HG-0056-S1",
+2026-10-02T05:41:19.8339083Z     "HG-0056-S10",
+2026-10-02T05:41:19.8339332Z     "HG-0056-S2",
+2026-10-02T05:41:19.8341714Z     "HG-0056-S3",
+2026-10-02T05:41:19.8341961Z     "HG-0056-S4",
+2026-10-02T05:41:19.8342170Z     "HG-0056-S5",
+2026-10-02T05:41:19.8342529Z     "HG-0056-S6",
+2026-10-02T05:41:19.8342710Z     "HG-0056-S7",
+2026-10-02T05:41:19.8342904Z     "HG-0056-S8",
+2026-10-02T05:41:19.8343091Z     "HG-0056-S9",
+2026-10-02T05:41:19.8343269Z     "HG-0057-S1",
+2026-10-02T05:41:19.8343467Z     "HG-0057-S2",
+2026-10-02T05:41:19.8343647Z     "HG-0057-S3",
+2026-10-02T05:41:19.8343832Z     "HG-0057-S4",
+2026-10-02T05:41:19.8344016Z     "HG-0057-S5",
+2026-10-02T05:41:19.8344207Z     "HG-0057-S6",
+2026-10-02T05:41:19.8344388Z     "HG-0057-S7",
+2026-10-02T05:41:19.8344568Z     "HG-0058-S1",
+2026-10-02T05:41:19.8344768Z     "HG-0058-S2",
+2026-10-02T05:41:19.8344950Z     "HG-0058-S3",
+2026-10-02T05:41:19.8345138Z     "HG-0058-S4",
+2026-10-02T05:41:19.8345339Z     "HG-0059-S3",
+2026-10-02T05:41:19.8345518Z     "HG-0059-S4",
+2026-10-02T05:41:19.8345710Z     "HG-0060-S1",
+2026-10-02T05:41:19.8345888Z     "HG-0060-S2",
+2026-10-02T05:41:19.8346085Z     "HG-0061-S1",
+2026-10-02T05:41:19.8346263Z     "HG-0061-S2",
+2026-10-02T05:41:19.8346450Z     "HG-0061-S4",
+2026-10-02T05:41:19.8346644Z     "HG-0062-S1",
+2026-10-02T05:41:19.8346826Z     "HG-0062-S2",
+2026-10-02T05:41:19.8347008Z     "HG-0062-S3",
+2026-10-02T05:41:19.8347212Z     "HG-0062-S4",
+2026-10-02T05:41:19.8347393Z     "HG-0062-S5",
+2026-10-02T05:41:19.8347574Z     "HG-0065-S1",
+2026-10-02T05:41:19.8347749Z     "HG-0065-S2",
+2026-10-02T05:41:19.8347947Z     "HG-0065-S3",
+2026-10-02T05:41:19.8348128Z     "HG-0065-S4",
+2026-10-02T05:41:19.8348311Z     "HG-0066-S1",
+2026-10-02T05:41:19.8348511Z     "HG-0066-S2",
+2026-10-02T05:41:19.8348692Z     "HG-0066-S3",
+2026-10-02T05:41:19.8348871Z     "HG-0066-S4",
+2026-10-02T05:41:19.8349068Z     "HG-0066-S5",
+2026-10-02T05:41:19.8349241Z     "HG-0066-S6",
+2026-10-02T05:41:19.8349420Z     "HG-0066-S7",
+2026-10-02T05:41:19.8349599Z     "HG-0066-S8",
+2026-10-02T05:41:19.8349796Z     "HG-0069-S2",
+2026-10-02T05:41:19.8349979Z     "HG-0069-S3",
+2026-10-02T05:41:19.8350160Z     "HG-0069-S4"
+2026-10-02T05:41:19.8350372Z   ],
+2026-10-02T05:41:19.8350646Z   "attempt": "target/nextest/highgrade/attempt.json",
+2026-10-02T05:41:19.8350952Z   "state": "running"
+2026-10-02T05:41:19.8351169Z }
+2026-10-02T05:41:20.3484117Z    Compiling proc-macro2 v1.0.107
+2026-10-02T05:41:20.3484653Z    Compiling unicode-ident v1.0.26
+2026-10-02T05:41:20.3485226Z    Compiling quote v1.0.47
+2026-10-02T05:41:20.3485578Z    Compiling itoa v1.0.18
+2026-10-02T05:41:20.4704149Z    Compiling version_check v0.9.5
+2026-10-02T05:41:20.5783128Z    Compiling zmij v1.0.23
+2026-10-02T05:41:20.7078247Z    Compiling futures-core v0.3.34
+2026-10-02T05:41:20.8580805Z    Compiling pin-project-lite v0.2.17
+2026-10-02T05:41:20.8708147Z    Compiling windows-link v0.2.1
+2026-10-02T05:41:20.9022657Z    Compiling generic-array v0.14.7
+2026-10-02T05:41:20.9202905Z    Compiling windows-sys v0.61.2
+2026-10-02T05:41:20.9777128Z    Compiling bytes v1.12.1
+2026-10-02T05:41:21.1857013Z    Compiling typenum v1.20.1
+2026-10-02T05:41:21.8566917Z    Compiling serde_core v1.0.229
+2026-10-02T05:41:22.0772450Z    Compiling syn v3.0.6
+2026-10-02T05:41:22.2824242Z    Compiling syn v2.0.119
+2026-10-02T05:41:22.9043941Z    Compiling http v1.5.0
+2026-10-02T05:41:25.0062319Z    Compiling socket2 v0.6.5
+2026-10-02T05:41:25.0253929Z    Compiling mio v1.2.3
+2026-10-02T05:41:25.5789090Z    Compiling http-body v1.1.0
+2026-10-02T05:41:25.6268721Z    Compiling serde_derive v1.0.229
+2026-10-02T05:41:25.9493789Z    Compiling httparse v1.10.1
+2026-10-02T05:41:27.8098897Z    Compiling tokio-macros v2.6.1
+2026-10-02T05:41:28.7090285Z    Compiling tokio v1.48.0
+2026-10-02T05:41:28.7803371Z    Compiling crypto-common v0.1.7
+2026-10-02T05:41:28.9279675Z    Compiling block-buffer v0.10.4
+2026-10-02T05:41:29.0580594Z    Compiling memchr v2.8.3
+2026-10-02T05:41:29.5966627Z    Compiling serde_json v1.0.151
+2026-10-02T05:41:29.8090189Z    Compiling tower-service v0.3.3
+2026-10-02T05:41:29.8824221Z    Compiling serde v1.0.229
+2026-10-02T05:41:29.9867719Z    Compiling cfg-if v1.0.5
+2026-10-02T05:41:30.0886675Z    Compiling digest v0.10.7
+2026-10-02T05:41:30.3328751Z    Compiling futures-channel v0.3.34
+2026-10-02T05:41:30.3500496Z    Compiling smallvec v1.16.2
+2026-10-02T05:41:30.5732626Z    Compiling httpdate v1.0.3
+2026-10-02T05:41:30.6358573Z    Compiling atomic-waker v1.1.2
+2026-10-02T05:41:30.6960512Z    Compiling futures-task v0.3.34
+2026-10-02T05:41:30.7429932Z    Compiling tower-layer v0.3.3
+2026-10-02T05:41:30.8029633Z    Compiling cpufeatures v0.2.17
+2026-10-02T05:41:30.8618890Z    Compiling slab v0.4.12
+2026-10-02T05:41:30.9269049Z    Compiling sync_wrapper v1.0.2
+2026-10-02T05:41:31.0615596Z    Compiling ref-cast v1.0.27
+2026-10-02T05:41:31.4094906Z    Compiling futures-util v0.3.34
+2026-10-02T05:41:31.4442977Z    Compiling sha2 v0.10.9
+2026-10-02T05:41:32.6945758Z    Compiling hyper v1.11.1
+2026-10-02T05:41:33.8882363Z    Compiling http-body-util v0.1.5
+2026-10-02T05:41:33.9910929Z    Compiling ref-cast-impl v1.0.27
+2026-10-02T05:41:34.2129720Z    Compiling serde_derive_internals v0.30.0
+2026-10-02T05:41:34.3008835Z    Compiling getrandom v0.4.3
+2026-10-02T05:41:34.5969612Z    Compiling mime v0.3.17
+2026-10-02T05:41:34.5970599Z    Compiling pulldown-cmark v0.13.0
+2026-10-02T05:41:34.8109593Z    Compiling axum-core v0.5.6
+2026-10-02T05:41:35.0167096Z    Compiling tower v0.5.3
+2026-10-02T05:41:35.1545140Z    Compiling hyper-util v0.1.21
+2026-10-02T05:41:35.5443040Z    Compiling highgrade v0.3.10 (D:\a\HighGrade\HighGrade)
+2026-10-02T05:41:35.5752157Z    Compiling schemars_derive v1.2.2
+2026-10-02T05:41:36.3171874Z    Compiling serde_path_to_error v0.1.20
+2026-10-02T05:41:36.3569047Z    Compiling percent-encoding v2.3.2
+2026-10-02T05:41:36.5834892Z    Compiling bitflags v2.13.2
+2026-10-02T05:41:36.8076657Z    Compiling matchit v0.8.4
+2026-10-02T05:41:36.8114738Z    Compiling dyn-clone v1.0.20
+2026-10-02T05:41:36.8997621Z    Compiling unicase v2.9.0
+2026-10-02T05:41:37.1208642Z    Compiling axum v0.8.9
+2026-10-02T05:41:37.2178881Z    Compiling roxmltree v0.20.0
+2026-10-02T05:41:37.8949506Z    Compiling schemars v1.2.2
+2026-10-02T05:41:41.1487897Z warning: unused import: `fs`
+2026-10-02T05:41:41.1488392Z  --> src\launcher.rs:4:11
+2026-10-02T05:41:41.1488760Z   |
+2026-10-02T05:41:41.1489124Z 4 | use std::{fs, path::Path};
+2026-10-02T05:41:41.1489465Z   |           ^^
+2026-10-02T05:41:41.1489754Z   |
+2026-10-02T05:41:41.1490096Z   = note: `#[warn(unused_imports)]` on by default
+2026-10-02T05:41:41.1490413Z 
+2026-10-02T05:41:45.9085441Z warning: `highgrade` (lib test) generated 1 warning (1 duplicate)
+2026-10-02T05:41:49.4163170Z warning: `highgrade` (lib) generated 1 warning (run `cargo fix --lib -p highgrade` to apply 1 suggestion)
+2026-10-02T05:41:55.2969351Z     Finished `test` profile [unoptimized] target(s) in 35.17s
+2026-10-02T05:41:55.8386956Z warning: unused import: `fs`
+2026-10-02T05:41:55.8387413Z  --> src\launcher.rs:4:11
+2026-10-02T05:41:55.8387783Z   |
+2026-10-02T05:41:55.8389643Z 4 | use std::{fs, path::Path};
+2026-10-02T05:41:55.8390549Z   |           ^^
+2026-10-02T05:41:55.8390951Z   |
+2026-10-02T05:41:55.8391381Z   = note: `#[warn(unused_imports)]` on by default
+2026-10-02T05:41:55.8391754Z 
+2026-10-02T05:41:55.8392400Z warning: `highgrade` (lib) generated 1 warning (run `cargo fix --lib -p highgrade` to apply 1 suggestion)
+2026-10-02T05:41:55.8393426Z warning: `highgrade` (lib test) generated 1 warning (1 duplicate)
+2026-10-02T05:41:55.8403275Z     Finished `test` profile [unoptimized] target(s) in 0.10s
+2026-10-02T05:41:55.9517885Z ────────────
+2026-10-02T05:41:55.9518425Z  Nextest run ID d33bc452-4b0f-48fa-a9ef-d93c1a0d4158 with nextest profile: highgrade
+2026-10-02T05:41:55.9518866Z     Starting 219 tests across 18 binaries
+2026-10-02T05:41:55.9662229Z         PASS [   0.013s] (  1/219) highgrade trace::id_tests::accepts_project_ids_and_rejects_malformed_ids
+2026-10-02T05:41:55.9680474Z         PASS [   0.015s] (  2/219) highgrade specs::progress::metadata_compatibility::old_tagged_revision_survives_metadata_but_not_material_drift
+2026-10-02T05:41:55.9770474Z         PASS [   0.024s] (  3/219) highgrade ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes
+2026-10-02T05:41:56.0331266Z         PASS [   0.081s] (  4/219) highgrade ui::bundle::tests::embedded_bundle_rejects_missing_changed_and_incompatible_resources
+2026-10-02T05:41:57.3064568Z         PASS [   1.337s] (  5/219) highgrade::attention_contracts answers_in_reverse_request_order_use_recorded_sequence
+2026-10-02T05:41:57.5608697Z         PASS [   1.593s] (  6/219) highgrade::attention_contracts content_snapshots_metadata_and_stale_writes_are_distinct
+2026-10-02T05:41:58.1311424Z         PASS [   2.151s] (  7/219) highgrade::attention_contracts explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_request
+2026-10-02T05:41:58.4382788Z         PASS [   0.877s] (  8/219) highgrade::attention_contracts projection_preserves_bytes_excludes_legacy_and_reports_corruption
+2026-10-02T05:41:58.4384083Z         PASS [   1.135s] (  9/219) highgrade::attention_contracts legacy_result_responses_require_unambiguous_acceptance_revision
+2026-10-02T05:41:59.2530396Z         PASS [   1.122s] ( 10/219) highgrade::attention_contracts queue_priority_categories_and_counts_are_deterministic
+2026-10-02T05:41:59.3751738Z         PASS [   0.937s] ( 11/219) highgrade::attention_contracts repeated_result_requests_recheck_inputs_revision_and_readiness
+2026-10-02T05:41:59.7724627Z         PASS [   1.334s] ( 12/219) highgrade::attention_contracts repeated_requests_recheck_readiness_and_preserve_unrelated_questions
+2026-10-02T05:42:00.2060750Z         PASS [   4.173s] ( 13/219) highgrade::attention_contracts integrated_history_is_not_current_work_or_current_acceptance
+2026-10-02T05:42:00.2386359Z         PASS [   0.031s] ( 14/219) highgrade::bootstrap_contracts alternative_name_is_candidate_but_never_accepted_as_role
+2026-10-02T05:42:00.2567585Z         PASS [   0.019s] ( 15/219) highgrade::bootstrap_contracts bootstrap_distinguishes_adaptation_from_technical_failure
+2026-10-02T05:42:00.2906394Z         PASS [   0.031s] ( 16/219) highgrade::bootstrap_contracts bootstrap_does_not_read_excluded_sources_or_offer_excluded_link_targets
+2026-10-02T05:42:00.3104128Z         PASS [   0.019s] ( 17/219) highgrade::bootstrap_contracts bootstrap_reports_all_slots_before_registry_exists
+2026-10-02T05:42:00.3707743Z         PASS [   1.121s] ( 18/219) highgrade::attention_contracts repeated_result_responses_preserve_exact_revision_and_recheck_gates
+2026-10-02T05:42:00.4000369Z         PASS [   0.026s] ( 19/219) highgrade::bootstrap_contracts bootstrap_skips_generated_skill_outputs
+2026-10-02T05:42:00.5118138Z         PASS [   0.199s] ( 20/219) highgrade::bootstrap_contracts bootstrap_reports_multiple_unvisited_locations_with_a_count
+2026-10-02T05:42:00.5658711Z         PASS [   0.056s] ( 21/219) highgrade::bootstrap_contracts bundled_templates_match_the_canonical_bootstrap_contract
+2026-10-02T05:42:00.6360187Z         PASS [   0.073s] ( 22/219) highgrade::bootstrap_contracts candidate_and_input_limits_keep_partial_evidence
+2026-10-02T05:42:00.6717600Z         PASS [   0.033s] ( 23/219) highgrade::bootstrap_contracts canonical_project_has_separate_path_and_link_evidence
+2026-10-02T05:42:00.7324761Z         PASS [   0.063s] ( 24/219) highgrade::bootstrap_contracts cli_accepts_bootstrap_without_registry_and_rejects_map_and_conflicts
+2026-10-02T05:42:00.7713929Z         PASS [   0.036s] ( 25/219) highgrade::bootstrap_contracts combined_roles_are_counted_once_and_invalid_assignments_fail
+2026-10-02T05:42:00.7984627Z         PASS [   0.398s] ( 26/219) highgrade::bootstrap_contracts bootstrap_skips_junction_and_matches_exclusion_case
+2026-10-02T05:42:00.8115111Z         PASS [   0.043s] ( 27/219) highgrade::bootstrap_contracts complete_project_still_checks_exclusion_input_without_walking_tree
+2026-10-02T05:42:00.8358957Z         PASS [   0.037s] ( 28/219) highgrade::bootstrap_contracts complete_project_still_reports_missing_navigation_without_candidate_walk
+2026-10-02T05:42:00.8500073Z         PASS [   0.036s] ( 29/219) highgrade::bootstrap_contracts connected_project_uses_registered_existing_path
+2026-10-02T05:42:00.8579255Z         PASS [   0.025s] ( 30/219) highgrade::bootstrap_contracts exclusions_are_safe_and_bad_registry_does_not_hide_candidates
+2026-10-02T05:42:00.8823825Z         PASS [   0.032s] ( 31/219) highgrade::bootstrap_contracts migrated_architecture_with_old_readme_link_is_reported
+2026-10-02T05:42:00.8959749Z         PASS [   0.038s] ( 32/219) highgrade::bootstrap_contracts missing_link_is_distinct_from_missing_file_and_registry_path_mismatch
+2026-10-02T05:42:00.9819267Z         PASS [   1.209s] ( 33/219) highgrade::attention_contracts result_responses_keep_their_revision_when_later_decisions_share_snapshot
+2026-10-02T05:42:01.4562027Z         PASS [   0.577s] ( 34/219) highgrade::catalog_contracts action_diagnostics_check_runner_without_execution
+2026-10-02T05:42:01.6385047Z         PASS [   2.263s] ( 35/219) highgrade::attention_contracts result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement
+2026-10-02T05:42:01.9157251Z         PASS [   0.459s] ( 36/219) highgrade::catalog_contracts compact_catalog_accepts_empty_changes_and_new_changes
+2026-10-02T05:42:02.4031253Z         PASS [   1.506s] ( 37/219) highgrade::catalog_contracts batch_failure_keeps_prior_results_and_each_scenario_owns_its_report
+2026-10-02T05:42:02.6786601Z         PASS [   0.276s] ( 38/219) highgrade::catalog_contracts compact_views_and_atomic_edit_protect_results_and_cas
+2026-10-02T05:42:02.8020276Z         PASS [   1.820s] ( 39/219) highgrade::catalog_contracts cargo_runner_requires_a_real_exact_test
+2026-10-02T05:42:02.9128385Z         PASS [   0.997s] ( 40/219) highgrade::catalog_contracts compact_transaction_limit_and_recovery_preserve_catalog
+2026-10-02T05:42:03.6372158Z         PASS [   1.999s] ( 41/219) highgrade::catalog_contracts compact_history_preserves_observations_and_rejects_corruption
+2026-10-02T05:42:03.6955329Z         PASS [   0.782s] ( 42/219) highgrade::catalog_contracts equivalent_native_runs_keep_material_revision_and_append_history
+2026-10-02T05:42:03.9222240Z         PASS [   0.284s] ( 43/219) highgrade::catalog_contracts evidence_batch_is_atomic_and_exact_repeat_is_noop
+2026-10-02T05:42:04.2434688Z         PASS [   0.548s] ( 44/219) highgrade::catalog_contracts explicit_links_reject_missing_cycles_and_do_not_inherit_content
+2026-10-02T05:42:04.3033367Z         PASS [   0.381s] ( 45/219) highgrade::catalog_contracts explicit_migration_preserves_all_data_and_detects_legacy_writer
+2026-10-02T05:42:04.8688700Z         PASS [   0.565s] ( 46/219) highgrade::catalog_contracts first_baseline_capture_rejects_local_cas_after_target_changed
+2026-10-02T05:42:04.8900217Z         PASS [   0.018s] ( 47/219) highgrade::catalog_contracts foreign_directory_and_unknown_fields_are_not_adopted
+2026-10-02T05:42:04.9044704Z         PASS [   0.017s] ( 48/219) highgrade::catalog_contracts foreign_structured_files_are_not_deleted
+2026-10-02T05:42:05.4403892Z         PASS [   0.535s] ( 49/219) highgrade::catalog_contracts integrated_recheck_retains_history_and_invalidates_old_acceptance
+2026-10-02T05:42:05.5755301Z         PASS [   0.136s] ( 50/219) highgrade::catalog_contracts interrupted_transaction_refuses_reads_and_recovers_only_observed_targets
+2026-10-02T05:42:05.8354198Z         PASS [   3.157s] ( 51/219) highgrade::catalog_contracts delivery_audits_bundle_and_git_index_without_changing_readiness
+2026-10-02T05:42:06.0641176Z         PASS [   3.262s] ( 52/219) highgrade::catalog_contracts delivery_reads_index_bytes_without_filters_or_index_flag_shortcuts
+2026-10-02T05:42:06.4746726Z         PASS [   0.639s] ( 53/219) highgrade::catalog_contracts launch_selector_is_literal_and_distinct_from_strict_report_identity
+2026-10-02T05:42:06.4881171Z         PASS [   0.424s] ( 54/219) highgrade::catalog_contracts local_edit_rejects_dependency_runner_drift
+2026-10-02T05:42:06.6537543Z         PASS [   0.179s] ( 55/219) highgrade::catalog_contracts malformed_recovery_never_unblocks_catalog
+2026-10-02T05:42:06.9062593Z         PASS [   1.331s] ( 56/219) highgrade::catalog_contracts junit_failure_attempts_cannot_pass_even_when_runner_exits_zero
+2026-10-02T05:42:07.3952121Z         PASS [   0.904s] ( 57/219) highgrade::catalog_contracts metadata_batch_preserves_integrated_history_and_rejects_invalid_batches
+2026-10-02T05:42:07.6141278Z         PASS [   0.705s] ( 58/219) highgrade::catalog_contracts native_report_import_reuses_suite_and_rejects_stale_or_missing_results
+2026-10-02T05:42:07.7785290Z         PASS [   1.125s] ( 59/219) highgrade::catalog_contracts multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit
+2026-10-02T05:42:07.7941064Z         PASS [   0.181s] ( 60/219) highgrade::catalog_contracts readable_presentation_preserves_values_and_puts_service_fields_last
+2026-10-02T05:42:07.8363382Z         PASS [   0.444s] ( 61/219) highgrade::catalog_contracts project_catalog_survives_service_removal_and_preserves_siblings
+2026-10-02T05:42:08.0559000Z         PASS [   0.277s] ( 62/219) highgrade::catalog_contracts recovery_cannot_delete_a_required_specification
+2026-10-02T05:42:08.1380875Z         PASS [   0.345s] ( 63/219) highgrade::catalog_contracts recovery_reconstructs_partial_staging_and_missing_first_document
+2026-10-02T05:42:08.3950982Z         PASS [   0.257s] ( 64/219) highgrade::catalog_contracts selected_directory_is_project_owned_and_self_contained
+2026-10-02T05:42:08.7761747Z         PASS [   0.381s] ( 65/219) highgrade::catalog_contracts selected_list_and_local_edit_preserve_independent_work
+2026-10-02T05:42:09.1593782Z         PASS [   1.103s] ( 66/219) highgrade::catalog_contracts scoped_baseline_captures_only_selected_requirements_and_never_refreshes
+2026-10-02T05:42:09.3309432Z         PASS [   0.555s] ( 67/219) highgrade::catalog_contracts shared_inputs_track_content_and_membership
+2026-10-02T05:42:09.3576632Z         PASS [   5.114s] ( 68/219) highgrade::catalog_contracts explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift
+2026-10-02T05:42:09.5924411Z         PASS [   0.433s] ( 69/219) highgrade::catalog_contracts spec_check_brief_reports_affected_inputs
+2026-10-02T05:42:09.8876078Z         PASS [   0.526s] ( 70/219) highgrade::catalog_contracts spec_check_brief_returns_stable_handoff
+2026-10-02T05:42:09.9030156Z         PASS [   0.572s] ( 71/219) highgrade::catalog_contracts spec_check_brief_reports_stale_run
+2026-10-02T05:42:09.9934017Z         PASS [   0.090s] ( 72/219) highgrade::contracts broken_links_and_anchors_are_failures
+2026-10-02T05:42:10.0685603Z         PASS [   0.075s] ( 73/219) highgrade::contracts budget_history_cannot_skip_or_exceed_ceiling
+2026-10-02T05:42:10.1694322Z         PASS [   2.331s] ( 74/219) highgrade::catalog_contracts run_statistics_track_attempts_without_execution
+2026-10-02T05:42:10.1867138Z         PASS [   0.301s] ( 75/219) highgrade::catalog_contracts two_catalog_writers_cannot_allocate_the_same_number
+2026-10-02T05:42:10.2087836Z         PASS [   0.040s] ( 76/219) highgrade::contracts cli_errors_keep_the_report_contract
+2026-10-02T05:42:10.2162036Z         PASS [   0.030s] ( 77/219) highgrade::contracts colocated_document_does_not_cover_its_parent
+2026-10-02T05:42:10.3285940Z         PASS [   0.113s] ( 78/219) highgrade::contracts conflicting_skill_is_not_adopted_even_if_equal
+2026-10-02T05:42:10.3715012Z         PASS [   0.040s] ( 79/219) highgrade::contracts default_inspect_uses_only_highgrade_registry
+2026-10-02T05:42:10.4056983Z         PASS [   0.034s] ( 80/219) highgrade::contracts diagnostic_summary_keeps_unknown_and_errors_separate
+2026-10-02T05:42:10.4596758Z         PASS [   0.056s] ( 81/219) highgrade::contracts entry_does_not_hide_unmapped_sibling
+2026-10-02T05:42:10.4892497Z         PASS [   0.027s] ( 82/219) highgrade::contracts exceeding_agreed_budget_warns_without_raising_it
+2026-10-02T05:42:10.6978356Z         PASS [   0.486s] ( 83/219) highgrade::contracts complete_temp_can_resume_publication
+2026-10-02T05:42:10.7401089Z         PASS [   1.147s] ( 84/219) highgrade::catalog_contracts tags_merge_atomically_and_filters_keep_dependencies_discoverable
+2026-10-02T05:42:10.7704055Z         PASS [   0.030s] ( 85/219) highgrade::contracts install_rejects_stale_audit
+2026-10-02T05:42:10.7816977Z         PASS [   0.295s] ( 86/219) highgrade::contracts incomplete_temp_is_preserved_and_not_activated
+2026-10-02T05:42:10.7989710Z         PASS [   0.029s] ( 87/219) highgrade::contracts install_requires_audit_before_writes
+2026-10-02T05:42:10.8234305Z         PASS [   0.024s] ( 88/219) highgrade::contracts junction_is_not_followed
+2026-10-02T05:42:10.8690751Z         PASS [   0.045s] ( 89/219) highgrade::contracts links_support_reference_unicode_parent_and_code_exclusion
+2026-10-02T05:42:10.9460125Z         PASS [   0.075s] ( 90/219) highgrade::contracts measures_utf8_crlf_and_does_not_modify_inputs
+2026-10-02T05:42:10.9490389Z         PASS [   0.879s] ( 91/219) highgrade::contracts cli_command_help_is_available_without_a_project
+2026-10-02T05:42:10.9730756Z         PASS [   0.028s] ( 92/219) highgrade::contracts missing_budget_is_unknown_not_success
+2026-10-02T05:42:10.9750327Z         PASS [   0.026s] ( 93/219) highgrade::contracts missing_roles_duplicates_and_files_are_reported
+2026-10-02T05:42:10.9936921Z         PASS [   0.018s] ( 94/219) highgrade::contracts named_results_preserve_legacy_and_do_not_pick_ambiguous_values
+2026-10-02T05:42:11.0200597Z         PASS [   0.024s] ( 95/219) highgrade::contracts new_area_is_unknown
+2026-10-02T05:42:11.0632679Z         PASS [   0.046s] ( 96/219) highgrade::contracts package_hash_failure_writes_nothing
+2026-10-02T05:42:11.1143499Z         PASS [   0.051s] ( 97/219) highgrade::contracts parent_scope_reads_child_documents
+2026-10-02T05:42:11.2636156Z         PASS [   0.567s] ( 98/219) highgrade::contracts install_preserves_agents_and_repeats_without_duplicates
+2026-10-02T05:42:11.2941788Z         PASS [   0.030s] ( 99/219) highgrade::contracts scenario_ids_in_headings_are_not_broken_markdown_links
+2026-10-02T05:42:11.3208903Z         PASS [   0.028s] (100/219) highgrade::contracts scoped_inspection_selects_sources_and_reports_unmapped_scope
+2026-10-02T05:42:11.3332136Z         PASS [   0.011s] (101/219) highgrade::contracts source_inventory_is_case_sensitive_and_stable
+2026-10-02T05:42:11.3413418Z         PASS [   0.369s] (102/219) highgrade::contracts modified_installed_file_is_detected
+2026-10-02T05:42:11.3518098Z         PASS [   0.235s] (103/219) highgrade::contracts recovery_does_not_overwrite_foreign_edit
+2026-10-02T05:42:11.3541895Z         PASS [   0.013s] (104/219) highgrade::contracts traversal_and_ads_are_rejected
+2026-10-02T05:42:11.3564743Z         PASS [   0.025s] (105/219) highgrade::contracts task_checkboxes_and_inline_code_are_not_references
+2026-10-02T05:42:11.3880771Z         PASS [   0.039s] (106/219) highgrade::contracts unresolved_reference_is_not_silent
+2026-10-02T05:42:11.4045146Z         PASS [   0.050s] (107/219) highgrade::contracts valid_budget_history_passes
+2026-10-02T05:42:11.4245579Z         PASS [   0.020s] (108/219) highgrade::global_contracts doctor_reports_unavailable_tool_without_claiming_version
+2026-10-02T05:42:12.6082567Z         PASS [   1.824s] (109/219) highgrade::contracts interruption_at_each_publication_boundary_resumes
+2026-10-02T05:42:12.7146593Z         PASS [   1.359s] (110/219) highgrade::evidence_scope_contracts causal_runner_scopes_preserve_siblings_but_invalidate_real_dependencies
+2026-10-02T05:42:17.4115432Z         PASS [   6.021s] (111/219) highgrade::global_contracts approve_migration_preserves_modified_managed_and_foreign_paths
+2026-10-02T05:42:19.1942638Z         PASS [   6.478s] (112/219) highgrade::global_contracts failed_forward_pointer_change_allows_a_different_candidate
+2026-10-02T05:42:19.4158486Z         PASS [   6.808s] (113/219) highgrade::global_contracts failed_candidate_stage_restores_changed_skill
+2026-10-02T05:42:22.8310256Z         PASS [   3.638s] (114/219) highgrade::global_contracts failed_stage_preserves_foreign_candidate_journal
+2026-10-02T05:42:23.3611068Z         PASS [   3.945s] (115/219) highgrade::global_contracts global_install_does_not_touch_project_and_checks_adapter
+2026-10-02T05:42:23.9354527Z         PASS [   1.103s] (116/219) highgrade::global_contracts global_install_rejects_hash_and_foreign_router_without_activation
+2026-10-02T05:42:23.9548242Z         PASS [  12.531s] (117/219) highgrade::global_contracts failed_approve_migration_preserves_old_route_and_can_retry
+2026-10-02T05:42:23.9735095Z         PASS [   0.018s] (118/219) highgrade::global_contracts global_update_rejects_manual_rollback_option
+2026-10-02T05:42:25.7969871Z         PASS [   8.388s] (119/219) highgrade::global_contracts failed_stage_does_not_leave_new_routers
+2026-10-02T05:42:26.7704544Z         PASS [   2.797s] (120/219) highgrade::global_contracts installed_runtime_references_survive_removal_of_source_copy
+2026-10-02T05:42:26.9800929Z         PASS [   1.181s] (121/219) highgrade::global_contracts interrupted_approve_era_transaction_remains_recoverable
+2026-10-02T05:42:27.9947505Z         PASS [   1.224s] (122/219) highgrade::global_contracts interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route
+2026-10-02T05:42:28.0318548Z         PASS [   0.037s] (123/219) highgrade::global_contracts kit_manifest_uses_stable_lf_bytes
+2026-10-02T05:42:29.9516865Z         PASS [   2.972s] (124/219) highgrade::global_contracts interrupted_skill_update_recovers_without_overwriting_user_edit
+2026-10-02T05:42:30.3266801Z         PASS [   6.967s] (125/219) highgrade::global_contracts global_update_preserves_project_adaptation_in_profile
+2026-10-02T05:42:33.7435210Z         PASS [   9.808s] (126/219) highgrade::global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files
+2026-10-02T05:42:35.6586543Z         PASS [   5.708s] (127/219) highgrade::global_contracts locked_approve_retirement_requires_explicit_recovery
+2026-10-02T05:42:35.7688034Z         PASS [   5.443s] (128/219) highgrade::global_contracts locked_v026_router_is_inactive_after_switch
+2026-10-02T05:42:36.9207351Z         PASS [   8.889s] (129/219) highgrade::global_contracts legacy_deploy_migrates_to_commit_push_and_cleans_old_release
+2026-10-02T05:42:38.4421256Z         PASS [   2.671s] (130/219) highgrade::global_contracts planner_router_is_portable
+2026-10-02T05:42:39.5554986Z         PASS [   5.812s] (131/219) highgrade::global_contracts managed_approve_migrates_to_commit_without_aliases
+2026-10-02T05:42:41.3735725Z         PASS [   5.714s] (132/219) highgrade::global_contracts nine_skill_release_upgrades_to_thematic_tool_references
+2026-10-02T05:42:41.4532634Z         PASS [   0.081s] (133/219) highgrade::global_contracts shipped_tool_references_resolve_without_repository_files
+2026-10-02T05:42:41.9701365Z         PASS [   2.406s] (134/219) highgrade::global_contracts shipped_registry_example_is_accepted_without_inventing_budgets
+2026-10-02T05:42:43.0707496Z         PASS [   6.146s] (135/219) highgrade::global_contracts planner_update_accepts_prior_eight_skill_release
+2026-10-02T05:42:43.1105765Z         PASS [   0.041s] (136/219) highgrade::global_contracts supported_adapter_does_not_claim_semantic_readiness
+2026-10-02T05:42:44.8068276Z         PASS [   6.365s] (137/219) highgrade::global_contracts post_switch_commit_recovery_retires_only_unchanged_owned_approve
+2026-10-02T05:42:44.8392598Z         PASS [   0.032s] (138/219) highgrade::global_contracts unsupported_project_adapter_is_a_failure
+2026-10-02T05:42:47.5260931Z         PASS [   6.072s] (139/219) highgrade::global_contracts six_skill_release_preserves_owned_crlf_routers
+2026-10-02T05:42:48.5725365Z         PASS [   6.612s] (140/219) highgrade::global_contracts six_skill_release_updates_to_commit_push_and_cleans_old_release
+2026-10-02T05:42:49.0316189Z         PASS [   5.921s] (141/219) highgrade::global_contracts thematic_tools_release_upgrades_to_fixer_materials
+2026-10-02T05:42:49.0920783Z         PASS [   0.061s] (142/219) highgrade::issue_contracts foreign_catalog_versions_and_unsafe_recovery_are_rejected
+2026-10-02T05:42:49.2126402Z         PASS [   0.120s] (143/219) highgrade::issue_contracts interrupted_issue_transaction_requires_explicit_safe_recovery
+2026-10-02T05:42:49.3724723Z         PASS [   0.161s] (144/219) highgrade::issue_contracts invalid_edits_and_concurrent_writers_leave_whole_catalog
+2026-10-02T05:42:49.5006086Z         PASS [   0.127s] (145/219) highgrade::issue_contracts issue_catalog_search_and_read_never_execute_recipes
+2026-10-02T05:42:49.5706184Z         PASS [   0.070s] (146/219) highgrade::issue_contracts issue_evidence_rejects_case_variants_of_owned_paths
+2026-10-02T05:42:50.3864366Z         PASS [   0.815s] (147/219) highgrade::issue_contracts occurrence_receipts_are_idempotent_and_verification_is_material
+2026-10-02T05:42:50.4718804Z         PASS [   0.085s] (148/219) highgrade::launcher_contracts launcher_preparation_is_explicit_idempotent_and_preserves_foreign_files
+2026-10-02T05:42:52.7955415Z         FAIL [   2.324s] (149/219) highgrade::launcher_contracts same_project_launchers_survive_move_and_global_update
+2026-10-02T05:42:52.7961373Z   stdout ───
+2026-10-02T05:42:52.7961671Z 
+2026-10-02T05:42:52.7962095Z     running 1 test
+2026-10-02T05:42:52.7962686Z     test same_project_launchers_survive_move_and_global_update ... FAILED
+2026-10-02T05:42:52.7963191Z 
+2026-10-02T05:42:52.7963386Z     failures:
+2026-10-02T05:42:52.7963569Z 
+2026-10-02T05:42:52.7963760Z     failures:
+2026-10-02T05:42:52.7964241Z         same_project_launchers_survive_move_and_global_update
+2026-10-02T05:42:52.7964639Z 
+2026-10-02T05:42:52.7965136Z     test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 2.31s
+2026-10-02T05:42:52.7965728Z 
+2026-10-02T05:42:52.7965905Z   stderr ───
+2026-10-02T05:42:52.7966190Z 
+2026-10-02T05:42:52.7966779Z     thread 'same_project_launchers_survive_move_and_global_update' panicked at tests\launcher_contracts.rs:97:9:
+2026-10-02T05:42:52.7968139Z     launcher failed: 'C:\Users\RUNNER~1\AppData\Local\Temp\hg-launch-update-3256-1790919770477198200-0\Проект' is not recognized as an internal or external command,
+2026-10-02T05:42:52.7969326Z     operable program or batch file.
+2026-10-02T05:42:52.7969929Z     '!' is not recognized as an internal or external command,
+2026-10-02T05:42:52.7970462Z     operable program or batch file.
+2026-10-02T05:42:52.7970763Z 
+2026-10-02T05:42:52.7971122Z     note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-10-02T05:42:52.7971408Z 
+2026-10-02T05:42:52.7971612Z   Cancelling due to test failure: 3 tests still running
+2026-10-02T05:42:53.8800031Z         PASS [   5.310s] (150/219) highgrade::global_contracts v026_deploy_migrates_to_two_routes_and_removes_old_release
+2026-10-02T05:42:54.6650387Z         PASS [   7.142s] (151/219) highgrade::global_contracts update_replaces_owned_skill_and_preserves_user_edit
+2026-10-02T05:42:55.7034499Z         PASS [  10.867s] (152/219) highgrade::global_contracts update_preserves_foreign_file_in_old_release
+2026-10-02T05:42:55.7035422Z ────────────
+2026-10-02T05:42:55.7035787Z      Summary [  59.754s] 152/219 tests run: 151 passed, 1 failed, 0 skipped
+2026-10-02T05:42:55.7036463Z         FAIL [   2.324s] (149/219) highgrade::launcher_contracts same_project_launchers_survive_move_and_global_update
+2026-10-02T05:42:55.7037280Z warning: 67/219 tests were not run due to test failure (run with --no-fail-fast to run all tests, or run with --max-fail)
+2026-10-02T05:42:55.7073848Z error: test run failed
+2026-10-02T05:42:55.7167146Z {"storage_preflight": [{"destination": "D:\\a\\HighGrade\\HighGrade", "free_bytes": 235633717248, "minimum_free_bytes": 1073741824}, {"destination": "D:\\a\\HighGrade\\HighGrade\\target", "free_bytes": 235633717248, "minimum_free_bytes": 1073741824}]}
+2026-10-02T05:42:55.8121170Z ##[error]Process completed with exit code 1.
+2026-10-02T05:42:55.8345602Z ##[group]Run actions/upload-artifact@v4
+2026-10-02T05:42:55.8345971Z with:
+2026-10-02T05:42:55.8346397Z   name: installed-ui-windows-2025
+2026-10-02T05:42:55.8347819Z   path: target/highgrade/reports/installed-playwright.json
+target/highgrade/reports/native-playwright.json
+target/highgrade/reports/release-build.log
+target/highgrade/tmp/installed-previous/target/highgrade/reports/release-build.log
+target/highgrade/ui-playwright
+target/nextest/highgrade/junit.xml
+target/nextest/highgrade/list.json
+target/nextest/highgrade/attempt.json
+target/nextest/highgrade/completion.json
+
+2026-10-02T05:42:55.8349224Z   if-no-files-found: warn
+2026-10-02T05:42:55.8349485Z   compression-level: 6
+2026-10-02T05:42:55.8349767Z   overwrite: false
+2026-10-02T05:42:55.8350021Z   include-hidden-files: false
+2026-10-02T05:42:55.8350285Z env:
+2026-10-02T05:42:55.8350594Z   HIGHGRADE_UI_SOURCE_SHA: e021c3e9cd21e76d4207560307a1c8f59f8e3899
+2026-10-02T05:42:55.8351126Z   HIGHGRADE_OLD_SOURCE_SHA: e60b6d4d4c3631c7140b037581f0bcdb2573befd
+2026-10-02T05:42:55.8351566Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:42:55.8352021Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-10-02T05:42:55.8352503Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:42:55.8352913Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:42:55.8353324Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-10-02T05:42:55.8353669Z ##[endgroup]
+2026-10-02T05:42:56.0308086Z (node:6820) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-02T05:42:56.0309885Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-02T05:42:56.0412620Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-02T05:42:56.0417180Z The least common ancestor is D:\a\HighGrade\HighGrade\target. This will be the root directory of the artifact
+2026-10-02T05:42:56.0418078Z With the provided path, there will be 3 files uploaded
+2026-10-02T05:42:56.0423104Z Artifact name is valid!
+2026-10-02T05:42:56.0425013Z Root directory input is valid!
+2026-10-02T05:42:56.4044644Z Beginning upload of artifact content to blob storage
+2026-10-02T05:42:56.4308333Z (node:6820) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-02T05:42:56.7037570Z Uploaded bytes 29105
+2026-10-02T05:42:56.7666120Z Finished uploading artifact content to blob storage!
+2026-10-02T05:42:56.7667399Z SHA256 digest of uploaded artifact zip is b72dd2ca5aef6318f428f02e809f26c1e90dc2db8bef53c107714d6249c260bb
+2026-10-02T05:42:56.7669640Z Finalizing artifact upload
+2026-10-02T05:42:57.0351949Z Artifact installed-ui-windows-2025.zip successfully finalized. Artifact ID 11211735797
+2026-10-02T05:42:57.0353343Z Artifact installed-ui-windows-2025 has been successfully uploaded! Final size is 29105 bytes. Artifact ID is 11211735797
+2026-10-02T05:42:57.0363766Z Artifact download URL: https://github.com/Lainterus1/HighGrade/actions/runs/36969851656/artifacts/11211735797
+2026-10-02T05:42:57.0732030Z Post job cleanup.
+2026-10-02T05:42:57.2504375Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-02T05:42:57.2774068Z git version 2.55.0.windows.5
+2026-10-02T05:42:57.2837617Z Temporarily overriding HOME='D:\a\_temp\9545fca9-18bb-4162-b7d3-846e7296425e' before making global git config changes
+2026-10-02T05:42:57.2838414Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-02T05:42:57.2847853Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\HighGrade\HighGrade\target\highgrade\tmp\installed-previous
+2026-10-02T05:42:57.3139121Z Removing SSH command configuration
+2026-10-02T05:42:57.3139943Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-02T05:42:57.3465094Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-02T05:42:57.9037652Z Removing HTTP extra header
+2026-10-02T05:42:57.9051103Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-02T05:42:57.9423166Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-02T05:42:58.5024967Z Removing includeIf entries pointing to credentials config files
+2026-10-02T05:42:58.5037058Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-02T05:42:58.5352657Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-02T05:42:59.1054888Z Post job cleanup.
+2026-10-02T05:42:59.2945146Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-02T05:42:59.3218449Z git version 2.55.0.windows.5
+2026-10-02T05:42:59.3285824Z Temporarily overriding HOME='D:\a\_temp\d4ca1f8b-604e-4b63-b590-b9148281e164' before making global git config changes
+2026-10-02T05:42:59.3287191Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-02T05:42:59.3296991Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\HighGrade\HighGrade
+2026-10-02T05:42:59.3602021Z Removing SSH command configuration
+2026-10-02T05:42:59.3613368Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-02T05:42:59.3915355Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-02T05:42:59.9494867Z Removing HTTP extra header
+2026-10-02T05:42:59.9508713Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-02T05:42:59.9823996Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-02T05:43:00.5065950Z Removing includeIf entries pointing to credentials config files
+2026-10-02T05:43:00.5077500Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-02T05:43:00.5366287Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-02T05:43:01.0931691Z Cleaning up orphan processes
+2026-10-02T05:43:01.1687442Z Terminate orphan process: pid (7392) (vctip)
+2026-10-02T05:43:01.1702059Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

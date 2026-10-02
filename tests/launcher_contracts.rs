@@ -72,15 +72,23 @@ fn launch(project: &std::path::Path, profile: &std::path::Path) {
     use std::io::{BufRead, BufReader, Read, Write};
     use std::process::Stdio;
     #[cfg(unix)]
-    let mut cmd = Command::new(project.join("HighGrade UI.sh"));
+    let mut cmd = {
+        let mut c = Command::new(project.join("HighGrade UI.sh"));
+        c.arg("--no-open");
+        c
+    };
     #[cfg(windows)]
     let mut cmd = {
+        use std::os::windows::process::CommandExt;
         let mut c = Command::new("cmd.exe");
-        c.args(["/D", "/C"]).arg(project.join("HighGrade UI.cmd"));
+        // cmd /S /C strips the outer pair; the inner pair keeps spaces and & literal.
+        c.args(["/D", "/V:OFF", "/S", "/C"]).raw_arg(format!(
+            "\"\"{}\" --no-open\"",
+            project.join("HighGrade UI.cmd").display()
+        ));
         c
     };
     let mut child = cmd
-        .arg("--no-open")
         .env("HOME", profile)
         .env("USERPROFILE", profile)
         .current_dir(profile)
