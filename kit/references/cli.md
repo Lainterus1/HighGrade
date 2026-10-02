@@ -59,3 +59,5 @@ $hgNext = $hgWrite | ConvertFrom-Json
 ```
 
 Для Markdown: проверив успешный survey-read --view markdown тем же способом, выведите `$hgState.result.value`. JSON — источник, сохранение производного файла необязательно; перенаправление в файл требует выбранного пути и обычных правил сохранности.
+
+`ui-launcher --root PATH [--apply true]` готовит переносимые файлы запуска UI; без apply — только проверка. Описание — [установка](tools/installation.md#запуск-ui-из-проекта).

@@ -136,18 +136,10 @@ async fn session(State(app): State<App>) -> Json<Value> {
     )
 }
 async fn list(State(app): State<App>) -> Response {
-    blocking(move || {
-        catalog(&app.root)?;
-        specs::command(&app.root, "spec-ui", &BTreeMap::new())
-    })
-    .await
+    blocking(move || specs::ui_list(&app.root)).await
 }
 async fn read(State(app): State<App>, RoutePath(id): RoutePath<String>) -> Response {
-    blocking(move || {
-        catalog(&app.root)?;
-        specs::ui_read(&app.root, &id)
-    })
-    .await
+    blocking(move || specs::ui_read(&app.root, &id)).await
 }
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -257,6 +249,7 @@ pub fn check() -> Result<Report> {
         "api_version": manifest.api_version,
         "source_sha": manifest.source_sha,
         "files": manifest.files.len(),
+        "launcher_protocol": crate::launcher::PROTOCOL,
     }));
     Ok(report)
 }

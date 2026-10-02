@@ -2,13 +2,13 @@
   "acceptance": [],
   "evidence": {
     "HG-0026-S1": {
-      "captured_at": "2026-10-01T16:45:33.821589+00:00",
-      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0026-S1",
-      "input_manifest_sha256": "08e69265bcdccbc3bb132ec7fe7f522e0dce1c81a782b1c98cd79b5b7ace3329",
+      "captured_at": "2026-10-02T02:56:04.657975+00:00",
+      "command": "Нормативная сверка после актуализации платформенной границы QUALITY: HG-0026-S1",
+      "input_manifest_sha256": "3c5fc1390d5864f5d76b69b7d938b8a736e235928f1ee5f62c78d7167a874f3e",
       "method": "manual",
-      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Матрица отличает редактуру, нормативный workflow и CLI; сохранены применимые проектные барьеры. Исполнение будущими агентами не наблюдалось.",
+      "observation": "Повторная сверка после актуализации документации; исправление платформенной границы не изменяет проверяемый нормативный порядок. Нормативная проверка содержания: Матрица отличает редактуру, нормативный workflow и CLI; сохранены применимые проектные барьеры. Исполнение будущими агентами не наблюдалось.",
       "outcome": "passed",
-      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "report": "docs/evidence/test-before-implementation/docs-refresh-verification.md",
       "scenario": "HG-0026-S1",
       "scenario_sha256": "b217aea3d4fe7a48e8a020499175bccbcb14642dbd89eb0f49a8f36c2506551f"
     },
@@ -90,13 +90,13 @@
       "scenario_sha256": "a934afeb3b5bc6d4fbcb2c655c2014faedd2ae10134b5f68fcbf33f0ba09f39f"
     },
     "HG-0066-S7": {
-      "captured_at": "2026-10-01T16:45:33.821589+00:00",
-      "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S7",
-      "input_manifest_sha256": "fbe309db72f718559d2abc04bf855de159e3f46a523360bdfe4ea9699a233de1",
+      "captured_at": "2026-10-02T02:56:04.657984+00:00",
+      "command": "Нормативная сверка после актуализации платформенной границы QUALITY: HG-0066-S7",
+      "input_manifest_sha256": "86ea6dcb8d49b3b1f097171148d87f741ac2d3261e2a23121af51ea996070eaa",
       "method": "manual",
-      "observation": "Новая сверка перед передачей v0-3-9. Нормативная проверка содержания: Соразмерные исключения обосновываются в разрешённой области; после ограниченной пробы проверки уточняются до основной реализации; смысловая сверка не выдается за наблюдение агента. Исполнение будущими агентами не наблюдалось.",
+      "observation": "Повторная сверка после актуализации документации; исправление платформенной границы не изменяет проверяемый нормативный порядок. Нормативная проверка содержания: Соразмерные исключения обосновываются в разрешённой области; после ограниченной пробы проверки уточняются до основной реализации; смысловая сверка не выдается за наблюдение агента. Исполнение будущими агентами не наблюдалось.",
       "outcome": "passed",
-      "report": "docs/evidence/test-before-implementation/publication-verification.md",
+      "report": "docs/evidence/test-before-implementation/docs-refresh-verification.md",
       "scenario": "HG-0066-S7",
       "scenario_sha256": "5079af97c4db1ab015ac652753739884b1099325834a0c7ec670a02e270a4b8b"
     },
@@ -166,6 +166,38 @@
         },
         "recorded_at": 1790874178,
         "review": "17c6211aed84eccf0e265a4290787b399c44997a9d349a90d41ba00e7cf2e6d3"
+      },
+      {
+        "evidence": {
+          "HG-0026-S1": "d0078276d1f4d30ef37b440271050d50b8bfd9ba91f0bf311ebbd049e359f9bd",
+          "HG-0026-S2": "c8fd94bb75ccd7513158ab9600a868dc99cf755f4ad661867c2bf969fe00f4c4",
+          "HG-0066-S1": "d645dc5964bae1bdb90d83185178b883368c54c63943c2216ab886f55f0482dd",
+          "HG-0066-S2": "708eb8e93f58cdaf26c10857ea3b30d1bc394d3151bce385a196788162134beb",
+          "HG-0066-S3": "ade0dfea76468e13de24df6360384eae067d570bc3c9137af096e3ed4ebf655a",
+          "HG-0066-S4": "9626d0277d1c3be2fb3081ebd60a1b1173147bad481749daa700871c3f2b5915",
+          "HG-0066-S5": "032b9c004d22369d76fc18eaa0eb69dce27d7d95b7a066cef724ad8e10cfe583",
+          "HG-0066-S6": "09097df30dcc2e98c337a3394c475bc0869434b4ddb57099aa7b06dd1e420c8d",
+          "HG-0066-S7": "04cbe7ea5ed6e22f0220b56eb34d548c873d1dbfcec6762a0255a72709d75928",
+          "HG-0066-S8": "9eea1abe7e8807479a8cfe44baa2a420d3a85877591c7a95ff51382068543a75"
+        },
+        "recorded_at": 1790909786,
+        "review": "8fe5d71304449d0466b27b094ff35af60395140e4c3505afee764e7b7262aee1"
+      },
+      {
+        "evidence": {
+          "HG-0026-S1": "c3b5ee7bc1df8f7eb7fd02db35a64314843e921bfb7f54f717d13c493c971f66",
+          "HG-0026-S2": "c8fd94bb75ccd7513158ab9600a868dc99cf755f4ad661867c2bf969fe00f4c4",
+          "HG-0066-S1": "d645dc5964bae1bdb90d83185178b883368c54c63943c2216ab886f55f0482dd",
+          "HG-0066-S2": "708eb8e93f58cdaf26c10857ea3b30d1bc394d3151bce385a196788162134beb",
+          "HG-0066-S3": "ade0dfea76468e13de24df6360384eae067d570bc3c9137af096e3ed4ebf655a",
+          "HG-0066-S4": "9626d0277d1c3be2fb3081ebd60a1b1173147bad481749daa700871c3f2b5915",
+          "HG-0066-S5": "032b9c004d22369d76fc18eaa0eb69dce27d7d95b7a066cef724ad8e10cfe583",
+          "HG-0066-S6": "09097df30dcc2e98c337a3394c475bc0869434b4ddb57099aa7b06dd1e420c8d",
+          "HG-0066-S7": "c32e8f510002f07f20d4ea51ee8e5b3f452e538a2f98a949063c15f7339dedd8",
+          "HG-0066-S8": "9eea1abe7e8807479a8cfe44baa2a420d3a85877591c7a95ff51382068543a75"
+        },
+        "recorded_at": 1790909885,
+        "review": "8fe5d71304449d0466b27b094ff35af60395140e4c3505afee764e7b7262aee1"
       }
     ],
     "objects": {
@@ -264,6 +296,12 @@
         "scenario": "HG-0066-S4",
         "scenario_sha256": "3f8cb478ad441ababbaf59e520eb5c43743d3d93065790c3228a76a5e7d6e8a0"
       },
+      "8fe5d71304449d0466b27b094ff35af60395140e4c3505afee764e7b7262aee1": {
+        "change_sha256": "4fec806bd35eedc35aeecfbc6db005b4f22b76ce0a4afbbe27f0ab81b9d9d28b",
+        "conclusion": "GO: нормативные десять сценариев, перенос исходных байтов, постоянные inputs и Windows checkout filters подтверждены; финальные 212/212 Nextest,126/126 trace после attrs. Исходный независимый итог docs/reviews/test-before-implementation-publication.md. Это местный pre-submit; будущие build/apply/exact-SHA CI и приёмка ещё не подтверждены.",
+        "reviewer": "независимый субагент /root/review_hg0066",
+        "verdict": "go"
+      },
       "9626d0277d1c3be2fb3081ebd60a1b1173147bad481749daa700871c3f2b5915": {
         "captured_at": "2026-10-01T16:45:33.821589+00:00",
         "command": "Повторная нормативная сверка таблицы и текущих причинных входов перед публикацией v0-3-9: HG-0066-S4",
@@ -329,6 +367,28 @@
         "report": "docs/evidence/test-before-implementation/publication-verification.md",
         "scenario": "HG-0066-S3",
         "scenario_sha256": "ef0101f615827a9e389036da6960f35d34a54975bb1d8c43a1582c1919acbd3b"
+      },
+      "c32e8f510002f07f20d4ea51ee8e5b3f452e538a2f98a949063c15f7339dedd8": {
+        "captured_at": "2026-10-02T02:56:04.657984+00:00",
+        "command": "Нормативная сверка после актуализации платформенной границы QUALITY: HG-0066-S7",
+        "input_manifest_sha256": "86ea6dcb8d49b3b1f097171148d87f741ac2d3261e2a23121af51ea996070eaa",
+        "method": "manual",
+        "observation": "Повторная сверка после актуализации документации; исправление платформенной границы не изменяет проверяемый нормативный порядок. Нормативная проверка содержания: Соразмерные исключения обосновываются в разрешённой области; после ограниченной пробы проверки уточняются до основной реализации; смысловая сверка не выдается за наблюдение агента. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/docs-refresh-verification.md",
+        "scenario": "HG-0066-S7",
+        "scenario_sha256": "5079af97c4db1ab015ac652753739884b1099325834a0c7ec670a02e270a4b8b"
+      },
+      "c3b5ee7bc1df8f7eb7fd02db35a64314843e921bfb7f54f717d13c493c971f66": {
+        "captured_at": "2026-10-02T02:56:04.657975+00:00",
+        "command": "Нормативная сверка после актуализации платформенной границы QUALITY: HG-0026-S1",
+        "input_manifest_sha256": "3c5fc1390d5864f5d76b69b7d938b8a736e235928f1ee5f62c78d7167a874f3e",
+        "method": "manual",
+        "observation": "Повторная сверка после актуализации документации; исправление платформенной границы не изменяет проверяемый нормативный порядок. Нормативная проверка содержания: Матрица отличает редактуру, нормативный workflow и CLI; сохранены применимые проектные барьеры. Исполнение будущими агентами не наблюдалось.",
+        "outcome": "passed",
+        "report": "docs/evidence/test-before-implementation/docs-refresh-verification.md",
+        "scenario": "HG-0026-S1",
+        "scenario_sha256": "b217aea3d4fe7a48e8a020499175bccbcb14642dbd89eb0f49a8f36c2506551f"
       },
       "c8fd94bb75ccd7513158ab9600a868dc99cf755f4ad661867c2bf969fe00f4c4": {
         "captured_at": "2026-10-01T16:45:33.821589+00:00",
@@ -459,6 +519,19 @@
         "scripts/render-skills.py"
       ]
     },
+    "3c5fc1390d5864f5d76b69b7d938b8a736e235928f1ee5f62c78d7167a874f3e": {
+      "files": {
+        "docs/DEVELOPMENT.md": "4517140d49e74286a6a0e706f65b2490821a864729ae2b02da36c1b235280fb9",
+        "docs/evidence/test-before-implementation/docs-refresh-verification.md": "7818d824f7037a17968c30431d69ded185dadd2599a4d2a53ffe51360935c987",
+        "docs/workflow/QUALITY.md": "862bfa754dd2e9b86d943a358cf4ddc1e74a61dfb81f30be3c5cf1c8b4213ade",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893"
+      },
+      "input_paths": [
+        "docs/DEVELOPMENT.md",
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/work.md"
+      ]
+    },
     "44fc5cb177b50989a0c78a9932d7a69af4c14e595826facb7d1da7583ab70205": {
       "files": {
         "docs/evidence/test-before-implementation/verification.md": "2d99911ef28d750c65bdf0c96b3f504ac8a6783f5a97077828cc2bf0801370e3",
@@ -498,6 +571,21 @@
         "kit/procedures/spec.md",
         "kit/procedures/work.md",
         "kit/references/review.md"
+      ]
+    },
+    "86ea6dcb8d49b3b1f097171148d87f741ac2d3261e2a23121af51ea996070eaa": {
+      "files": {
+        "docs/evidence/test-before-implementation/docs-refresh-verification.md": "7818d824f7037a17968c30431d69ded185dadd2599a4d2a53ffe51360935c987",
+        "docs/workflow/QUALITY.md": "862bfa754dd2e9b86d943a358cf4ddc1e74a61dfb81f30be3c5cf1c8b4213ade",
+        "kit/procedures/spec.md": "496acd74a2201cd43fe390e7aea18c43041df5a162eb28b4fdbad0a26d193b45",
+        "kit/procedures/work.md": "d7e9d7a2e390989dc7ed2281294c6435e15e2688dabad3c498ded81b0b9f6893",
+        "kit/rules.md": "e0f80dab572769bc8924f297dd243c738e99ac9b153c6c8354027ce3d31209a4"
+      },
+      "input_paths": [
+        "docs/workflow/QUALITY.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/work.md",
+        "kit/rules.md"
       ]
     },
     "8708e5ad0c7ae657457797702d45976748c9400a5ead37f6650b7a1d5e9d929f": {
@@ -595,9 +683,9 @@
     }
   },
   "review": {
-    "change_sha256": "4fec806bd35eedc35aeecfbc6db005b4f22b76ce0a4afbbe27f0ab81b9d9d28b",
-    "conclusion": "GO: нормативные десять сценариев, перенос исходных байтов, постоянные inputs и Windows checkout filters подтверждены; финальные 212/212 Nextest,126/126 trace после attrs. Исходный независимый итог docs/reviews/test-before-implementation-publication.md. Это местный pre-submit; будущие build/apply/exact-SHA CI и приёмка ещё не подтверждены.",
-    "reviewer": "независимый субагент /root/review_hg0066",
+    "change_sha256": "518fc353a427b96cce0939f6d26c13151334778b371adaaf742eb29b8034e295",
+    "conclusion": "GO независимого review_docs_refresh: GLOBAL/QUALITY соответствуют README, BUILD и HG-0061-R2; четыре исходных отчёта выпуска перенесены побайтно. Повторно сверены HG-0026-S1 и HG-0066-S7 по docs-refresh-verification.md; остальные восемь evidence имеют неизменённые причинные входы и отчёты. Все десять актуальны. Структура, генерация навыков, ссылки и бюджеты проверены; маршрут 90448/96000. Нового поведения или человеческой приёмки не заявлено. Предел: нормативная сверка, без нового CI или агентного пилота.",
+    "reviewer": "independent:review_docs_refresh",
     "verdict": "go"
   },
   "runs": []

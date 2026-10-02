@@ -1,0 +1,150 @@
+{
+  "config": {
+    "argv": [
+      "/home/lainterus/.local/share/mise/installs/node/26.8.2/bin/node",
+      "/home/lainterus/Projects/High Grade/ui/node_modules/.bin/playwright",
+      "test",
+      "editorial.spec.ts"
+    ],
+    "configFile": "/home/lainterus/Projects/High Grade/ui/playwright.config.ts",
+    "rootDir": "/home/lainterus/Projects/High Grade/ui/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/lainterus/Projects/High Grade/target/highgrade/ui-playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/lainterus/Projects/High Grade/ui/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../docs/evidence/editorial/before-fonts.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "editorial.spec.ts",
+      "file": "editorial.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Editorial local fonts render in Storybook and the real UI without external requests",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 75,
+                  "error": {
+                    "message": "SyntaxError: \"undefined\" is not valid JSON",
+                    "stack": "SyntaxError: \"undefined\" is not valid JSON\n    at cli (/home/lainterus/Projects/High Grade/ui/tests/native-fixture.ts:9:201)\n    at fixture (/home/lainterus/Projects/High Grade/ui/tests/native-fixture.ts:25:3)\n    at /home/lainterus/Projects/High Grade/ui/tests/editorial.spec.ts:5:10",
+                    "location": {
+                      "file": "/home/lainterus/Projects/High Grade/ui/tests/native-fixture.ts",
+                      "column": 201,
+                      "line": 9
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mnative-fixture.ts:9\n\n   7 | export function fixture(executable=exe){\n   8 |  const parent=path.join(repository,'target/highgrade/tmp');mkdirSync(parent,{recursive:true});const root=mkdtempSync(path.join(parent,'native-ui-'));\n>  9 |  function cli(operation:string,...args:string[]):any{for(let attempt=0;;attempt++){const p=spawnSync(executable,[operation,'--root',root,...args],{encoding:'utf8',windowsHide:true});const report=JSON.parse(p.stdout);if(!p.status)return report.result;if(attempt<10&&report.findings?.[0]?.message.startsWith('StoreBusy:')){Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,30);continue}throw Error(p.stdout)}}\n     |                                                                                                                                                                                                         ^\n  10 |  const sha=()=>cli('spec-list').store_sha256 as string;\n  11 |  const input=(value:unknown)=>{writeFileSync(path.join(root,'input.json'),JSON.stringify(value));return 'input.json'};\n  12 |  const edit=(id:string,value:unknown)=>cli('spec-edit','--id',id,'--expected',sha(),'--input',input(value));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/lainterus/Projects/High Grade/ui/tests/native-fixture.ts",
+                        "column": 201,
+                        "line": 9
+                      },
+                      "message": "SyntaxError: \"undefined\" is not valid JSON\n\n   at native-fixture.ts:9\n\n   7 | export function fixture(executable=exe){\n   8 |  const parent=path.join(repository,'target/highgrade/tmp');mkdirSync(parent,{recursive:true});const root=mkdtempSync(path.join(parent,'native-ui-'));\n>  9 |  function cli(operation:string,...args:string[]):any{for(let attempt=0;;attempt++){const p=spawnSync(executable,[operation,'--root',root,...args],{encoding:'utf8',windowsHide:true});const report=JSON.parse(p.stdout);if(!p.status)return report.result;if(attempt<10&&report.findings?.[0]?.message.startsWith('StoreBusy:')){Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,30);continue}throw Error(p.stdout)}}\n     |                                                                                                                                                                                                         ^\n  10 |  const sha=()=>cli('spec-list').store_sha256 as string;\n  11 |  const input=(value:unknown)=>{writeFileSync(path.join(root,'input.json'),JSON.stringify(value));return 'input.json'};\n  12 |  const edit=(id:string,value:unknown)=>cli('spec-edit','--id',id,'--expected',sha(),'--input',input(value));\n    at cli (/home/lainterus/Projects/High Grade/ui/tests/native-fixture.ts:9:201)\n    at fixture (/home/lainterus/Projects/High Grade/ui/tests/native-fixture.ts:25:3)\n    at /home/lainterus/Projects/High Grade/ui/tests/editorial.spec.ts:5:10"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T03:11:10.451Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/lainterus/Projects/High Grade/target/highgrade/ui-playwright/editorial-Editorial-local--24013-I-without-external-requests/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/lainterus/Projects/High Grade/ui/tests/native-fixture.ts",
+                    "column": 201,
+                    "line": 9
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "ec079a02c0facf936b0d-d52c24172777feb233bc",
+          "file": "editorial.spec.ts",
+          "line": 4,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T03:11:10.130Z",
+    "duration": 581.827,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

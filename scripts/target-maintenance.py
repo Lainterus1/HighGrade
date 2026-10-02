@@ -11,7 +11,7 @@ import subprocess
 
 BUDGET_MIB = 600
 ROOT_ENTRIES = {'debug', 'release', 'nextest', 'tmp', 'highgrade', 'CACHEDIR.TAG', '.rustc_info.json'}
-PROJECT_ENTRIES = {'build-cache', 'candidate', 'candidate.previous', 'reports', 'tools', 'work', 'tmp'}
+PROJECT_ENTRIES = {'build-cache', 'candidate', 'candidate.previous', 'reports', 'tools', 'work', 'tmp', 'runs', 'ui-playwright'}
 
 
 def linked(path):
@@ -113,13 +113,13 @@ def active_builds():
     if os.name == 'nt':
         command = ['powershell', '-NoProfile', '-Command',
                    "$ErrorActionPreference='Stop'; Get-Process | "
-                   "Where-Object { $_.ProcessName -in @('cargo','rustc','cargo-nextest') } | "
+                   "Where-Object { $_.ProcessName -in @('cargo','rustc','cargo-nextest','highgrade','node') } | "
                    'Select-Object -ExpandProperty ProcessName']
     else:
         command = ['ps', '-eo', 'comm=']
     result = subprocess.run(command, capture_output=True, text=True, check=True)
     names = {line.strip().lower().removesuffix('.exe') for line in result.stdout.splitlines()}
-    return sorted(names & {'cargo', 'rustc', 'cargo-nextest'})
+    return sorted(names & {'cargo', 'rustc', 'cargo-nextest', 'highgrade', 'node'})
 
 
 def maintain(root, apply=False, caches=(), scratch=(), reports=()):
@@ -196,13 +196,33 @@ def main():
     parser.add_argument('--cache', choices=('debug', 'release', 'build-cache'), action='append', default=[])
     parser.add_argument('--report', action='append', default=[], metavar='NAME',
                         help='select one direct file of target/highgrade/reports')
+    parser.add_argument('--sweep', action='store_true', help='collect only sealed managed runs; preserve active or unexported runs')
     parser.add_argument('--check', action='store_true', help='exit 2 on unknown paths or budget excess')
     args = parser.parse_args()
     try:
-        report = maintain(args.root, args.apply, tuple(args.cache), tuple(args.scratch), tuple(args.report))
+        if args.sweep:
+            if args.cache or args.scratch or args.report:
+                raise ValueError('Sweep cannot be mixed with explicit selections')
+            from evidence_store import sweep
+            root = args.root.resolve(strict=True)
+            before = inventory(root)
+            running = active_builds() if args.apply else []
+            recovery = (root / 'target/highgrade/candidate.previous').exists() or (root / 'target/highgrade/work').is_dir() and any((root / 'target/highgrade/work').iterdir())
+            blocked = 'active build/UI processes: ' + ','.join(running) if running else 'candidate recovery/work exists' if recovery else 'linked paths exist' if before['links'] else None
+            report = {'before': before, 'collection': sweep(root, args.apply, blocked), 'after': inventory(root), 'status': 'applied' if args.apply else 'preview'}
+        else:
+            report = maintain(args.root, args.apply, tuple(args.cache), tuple(args.scratch), tuple(args.report))
     except (OSError, ValueError, subprocess.CalledProcessError) as error:
         parser.exit(1, f'Target maintenance refused: {error}\n')
-    print(json.dumps(report, ensure_ascii=False, indent=2))
+    if args.sweep:
+        collection = report['collection']
+        print(json.dumps({'status': report['status'], 'before_mib': report['before']['mib'],
+                          'after_mib': report['after']['mib'],
+                          **{key + '_count': len(value) for key, value in collection.items()},
+                          **{key: value[:10] for key, value in collection.items()},
+                          'detail': 'first 10 per group; plain invocation shows inventory'}, ensure_ascii=True))
+    else:
+        print(json.dumps(report, ensure_ascii=False, indent=2))
     state = report.get('after', report['before'])
     if args.check and (state['unknown_root'] or state['unknown_highgrade'] or state['links'] or state['scratch']
                        or state['mib'] > BUDGET_MIB):

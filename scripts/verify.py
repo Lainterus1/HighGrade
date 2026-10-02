@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -68,6 +69,7 @@ def main():
     step = parser.parse_args().step
     if step == 'tests':
         storage_preflight()
+        run([sys.executable, ROOT / 'scripts/target-maintenance.py', '--sweep', '--apply'])
         attempt_id = uuid.uuid4().hex
         run(['node', 'scripts/source-scenarios.mjs', 'capture', ROOT, attempt_id])
         run(['cargo', 'nextest', 'list', '--locked', '--message-format', 'json'], REPORTS / 'list.json')

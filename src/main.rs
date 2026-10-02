@@ -4,6 +4,7 @@ use std::{collections::BTreeMap, path::Path};
 
 fn allowed_options(op: &str) -> Result<Vec<&'static str>> {
     Ok(match op {
+        "ui-launcher" => vec!["--root", "--apply"],
         "ui" => vec!["--root", "--no-open", "--check"],
         "survey-new" | "survey-schema" | "survey-check" => vec!["--root"],
         "survey-read" => vec!["--root", "--view"],
@@ -198,7 +199,7 @@ fn run() -> Result<Report> {
         }
         let mut r = Report::new("help");
         r.measurements.push(json!({
-            "project_commands":"ui spec-ui spec-attention survey-new survey-read survey-edit survey-snapshot survey-review survey-check survey-reopen survey-schema doctor inspect inventory trace spec-list spec-new spec-read spec-edit spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-run-inputs spec-run-import spec-evidence-batch spec-stats spec-metadata",
+            "project_commands":"ui ui-launcher spec-ui spec-attention survey-new survey-read survey-edit survey-snapshot survey-review survey-check survey-reopen survey-schema doctor inspect inventory trace spec-list spec-new spec-read spec-edit spec-save spec-diff spec-validate spec-evidence spec-review spec-check spec-integrate spec-import spec-transfer spec-abandon spec-schema spec-migrate spec-decide spec-init spec-recover spec-tags spec-tag-set spec-tag-remove spec-tag-merge spec-runner-set spec-run spec-run-inputs spec-run-import spec-evidence-batch spec-stats spec-metadata",
             "issue_commands":"issue-list issue-read issue-new issue-edit issue-record issue-validate issue-schema issue-recover",
             "installation_commands":"global-install global-update global-status global-recover",
             "compatibility_commands":"legacy-install legacy-update",
@@ -293,6 +294,9 @@ fn run() -> Result<Report> {
         Path::new(get("--root")?)
     };
     match op.as_str() {
+        "ui-launcher" => {
+            highgrade::launcher::prepare(root, options.get("--apply").is_some_and(|v| v == "true"))
+        }
         "ui" if options.contains_key("--check") => highgrade::ui::check(),
         "ui" => highgrade::ui::run(root, options.get("--no-open").is_some_and(|v| v == "true")),
         _ if op.starts_with("survey-") => highgrade::survey::command(root, &op, &options),

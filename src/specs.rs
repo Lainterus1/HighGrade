@@ -9,6 +9,7 @@ use std::{
     io::Write,
     path::{Path, PathBuf},
 };
+mod cards;
 mod checks;
 mod delivery;
 pub use delivery::diagnose as diagnose_delivery;
@@ -474,6 +475,9 @@ fn change_mut<'a>(s: &'a mut Store, id: &str) -> Result<&'a mut Change> {
 pub fn command(root: &Path, op: &str, options: &BTreeMap<String, String>) -> Result<Report> {
     command_inner(root, op, options, None, false)
 }
+pub fn ui_list(root: &Path) -> Result<Report> {
+    command_inner(root, "spec-ui", &BTreeMap::new(), None, true)
+}
 pub fn ui_read(root: &Path, id: &str) -> Result<Report> {
     command_inner(
         root,
@@ -594,9 +598,21 @@ fn command_inner(
         )
     };
     if ui_only {
-        let c = store.changes.get(get("--id")?).ok_or("ChangeMissing")?;
-        if !attention::supported(&store, c) {
-            return Err("UiProfileUnsupported".into());
+        // HTTP reads validate the same locked snapshot used to build the response.
+        // Writes retain their existing HTTP preflight and CAS path.
+        if !mutation {
+            if sha == "absent" {
+                return Err("CatalogMissing: каталог спецификаций отсутствует".into());
+            }
+            if store.schema_version < 3 {
+                return Err("CatalogUnsupported: требуется каталог v3/v4".into());
+            }
+        }
+        if op != "spec-ui" {
+            let c = store.changes.get(get("--id")?).ok_or("ChangeMissing")?;
+            if !attention::supported(&store, c) {
+                return Err("UiProfileUnsupported".into());
+            }
         }
     }
     if mutation && options.contains_key("--expected-local") {
@@ -627,11 +643,13 @@ fn command_inner(
     if change_id.is_some() && options.contains_key("--requirement") {
         return Err("Usage: choose --id or --requirement".into());
     }
-    if options
-        .get("--view")
-        .is_some_and(|v| !matches!(v.as_str(), "full" | "summary" | "editable" | "requirements"))
-    {
-        return Err("Usage: --view full|summary|editable|requirements".into());
+    if options.get("--view").is_some_and(|v| {
+        !matches!(
+            v.as_str(),
+            "full" | "summary" | "editable" | "requirements" | "evidence"
+        )
+    }) {
+        return Err("Usage: --view full|summary|editable|requirements|evidence".into());
     }
     if options.contains_key("--tag")
         && op == "spec-read"
@@ -1124,7 +1142,12 @@ fn command_inner(
                         json!({"id":c.id,"title":c.title,"tags":c.tags,"goal":c.goal,"rationale":c.rationale,"scope":c.scope,"tasks":c.tasks,"questions":c.questions,"links":relations::metadata(&store,c),"contract_sha256":progress::contract_revision(c)})
                     }
                     "requirements" => json!({"id":c.id,"operations":c.operations}),
-                    _ => return Err("Usage: --view full|summary|editable|requirements".into()),
+                    "evidence" => cards::view(&root, c),
+                    _ => {
+                        return Err(
+                            "Usage: --view full|summary|editable|requirements|evidence".into()
+                        );
+                    }
                 };
                 report
                     .measurements

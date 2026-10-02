@@ -411,3 +411,74 @@ fn server_shutdown_during_write_request_never_reports_false_success() {
         "drained"
     );
 }
+
+// highgrade: HG-0053-S5, HG-0055-S6
+#[test]
+fn read_endpoints_recheck_catalog_state_and_external_edits() {
+    let p = TestDir::new("hg-http-fresh-catalog-");
+    let mut s = Server::start(&p, true);
+    let endpoints = ["/api/specs", "/api/specs/HG-0001"];
+    let assert_error = |status, code: &str| {
+        for endpoint in endpoints {
+            let (actual, body) = s.http("GET", endpoint, None, &[]);
+            assert_eq!(actual, status, "{endpoint}: {body}");
+            assert_eq!(
+                serde_json::from_str::<Value>(&body).unwrap()["error"]["code"],
+                code
+            );
+        }
+    };
+    assert_error(404, "CatalogMissing");
+    assert!(!p.join("specs").exists());
+    fs::create_dir_all(p.join(".highgrade/specs")).unwrap();
+    fs::write(
+        p.join(specs::STORE),
+        include_bytes!("fixtures/native-v1/store.json"),
+    )
+    .unwrap();
+    let legacy = fs::read(p.join(specs::STORE)).unwrap();
+    assert_error(422, "CatalogUnsupported");
+    assert_eq!(fs::read(p.join(specs::STORE)).unwrap(), legacy);
+    fs::remove_dir_all(p.join(".highgrade")).unwrap();
+    create(&p);
+    for title in ["Первая редакция", "Внешняя редакция"] {
+        fs::write(
+            p.join("update.json"),
+            serde_json::to_vec(&json!({"title":title})).unwrap(),
+        )
+        .unwrap();
+        call(
+            &p,
+            "spec-edit",
+            &[
+                ("--id", "HG-0001"),
+                ("--expected", &sha(&p)),
+                ("--input", "update.json"),
+            ],
+        );
+        let expected = sha(&p);
+        for endpoint in endpoints {
+            let (status, body) = s.http("GET", endpoint, None, &[]);
+            assert_eq!(status, 200, "{body}");
+            let v: Value = serde_json::from_str(&body).unwrap();
+            assert_eq!(v["result"]["store_sha256"], expected);
+            let actual = if endpoint == "/api/specs" {
+                &v["result"]["changes"][0]["title"]
+            } else {
+                &v["result"]["change"]["title"]
+            };
+            assert_eq!(actual, title);
+        }
+        assert_eq!(sha(&p), expected);
+    }
+    fs::write(p.join("specs/transaction.json"), "{}").unwrap();
+    assert_error(422, "CatalogRecoveryRequired");
+    fs::remove_file(p.join("specs/transaction.json")).unwrap();
+    fs::write(p.join("specs/catalog.json"), "bad json").unwrap();
+    assert_error(422, "InvalidFormat");
+    assert_eq!(
+        fs::read_to_string(p.join("specs/catalog.json")).unwrap(),
+        "bad json"
+    );
+    s.stop();
+}

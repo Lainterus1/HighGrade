@@ -1,0 +1,46 @@
+   Compiling highgrade v0.3.9 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 0.19s
+     Running tests/launcher_contracts.rs (target/debug/deps/launcher_contracts-7676071d11797355)
+
+running 1 test
+test launcher_preparation_is_explicit_idempotent_and_preserves_foreign_files ... FAILED
+
+failures:
+
+---- launcher_preparation_is_explicit_idempotent_and_preserves_foreign_files stdout ----
+
+thread 'launcher_preparation_is_explicit_idempotent_and_preserves_foreign_files' panicked at tests/launcher_contracts.rs:10:25:
+{
+  "ambiguous_result_keys": [],
+  "findings": [
+    {
+      "code": "OperationFailed",
+      "location": "arguments-or-input",
+      "message": "Usage: highgrade doctor|inspect|inventory|trace --root PATH; --version",
+      "status": "failed"
+    }
+  ],
+  "limitations": [],
+  "measurements": [
+    {
+      "input_schema": "highgrade spec-schema --root PATH",
+      "next": "highgrade <command> --help"
+    }
+  ],
+  "operation": "error",
+  "result": {
+    "input_schema": "highgrade spec-schema --root PATH",
+    "next": "highgrade <command> --help"
+  },
+  "status": "failed"
+}
+
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    launcher_preparation_is_explicit_idempotent_and_preserves_foreign_files
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test launcher_contracts`

@@ -708,6 +708,7 @@ fn read_payload_and_cas_always_describe_the_same_snapshot() {
 #[test]
 fn native_doctor_does_not_require_openspec_or_execute_external_tools() {
     let root = root();
+    highgrade::launcher::prepare(&root, true).unwrap();
     fs::create_dir_all(root.join(".highgrade/project")).unwrap();
     fs::write(
         root.join(".highgrade/project/INSTRUCTIONS.md"),
@@ -1254,4 +1255,58 @@ fn returned_integrated_spec_is_corrected_by_a_new_change_without_rewriting_histo
         change(&root, "HG-A")["acceptance"][0]["decision"],
         "needs_changes"
     );
+}
+
+// highgrade: HG-0069-S1
+#[test]
+fn evidence_cards_are_compact_preserve_outcome_and_detect_changed_report() {
+    let root = root();
+    complete(&root, "HG-CARD");
+    evidence(&root, "HG-CARD", "failed");
+    let read = || {
+        call(
+            &root,
+            "spec-read",
+            &[("--id", "HG-CARD"), ("--view", "evidence")],
+        )
+        .unwrap()
+    };
+    let report = read();
+    let value = report
+        .measurements
+        .iter()
+        .find_map(|m| m.get("value"))
+        .unwrap();
+    assert_eq!(value["cards"][0]["outcome"], "failed");
+    assert_eq!(value["cards"][0]["integrity"], "current");
+    assert!(value["cards"][0].get("files").is_none());
+    fs::write(root.join("result.txt"), "changed report".repeat(10000)).unwrap();
+    let report = read();
+    let value = report
+        .measurements
+        .iter()
+        .find_map(|m| m.get("value"))
+        .unwrap();
+    assert_eq!(value["cards"][0]["integrity"], "stale");
+    assert!(serde_json::to_vec(value).unwrap().len() < 2500);
+    assert_eq!(value["cards"][0]["outcome"], "failed");
+    let mut store = specs::load(&root).unwrap().0;
+    store
+        .changes
+        .get_mut("HG-CARD")
+        .unwrap()
+        .evidence
+        .get_mut("HG-CARD-S1")
+        .unwrap()
+        .report
+        .clear();
+    fs::write(root.join(specs::STORE), serde_json::to_vec(&store).unwrap()).unwrap();
+    let report = read();
+    let value = report
+        .measurements
+        .iter()
+        .find_map(|m| m.get("value"))
+        .unwrap();
+    assert_eq!(value["cards"][0]["integrity"], "stale");
+    assert_eq!(value["cards"][0]["issues"][0]["reason"], "report_missing");
 }

@@ -4,6 +4,7 @@ pub mod global;
 pub mod inspect;
 pub mod install;
 pub mod issues;
+pub mod launcher;
 pub mod package;
 pub mod paths;
 pub mod specs;
@@ -150,6 +151,7 @@ pub fn doctor(root: &Path) -> Result<Report> {
             );
         }
     }
+    launcher::diagnose(&root, &mut r)?;
     if global::project_check(&root, &mut r)? {
         return Ok(r);
     }

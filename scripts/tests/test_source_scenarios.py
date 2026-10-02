@@ -38,7 +38,7 @@ class SourceFreshnessTests(unittest.TestCase):
                      'tests/fixtures/p0p2-bundle/input.txt', 'build.rs', 'Cargo.toml',
                      'Cargo.lock', 'rust-toolchain.toml', '.config/nextest.toml', '.gitattributes']:
             self.write(name, 'initial\n')
-        for name in ['scripts/source-scenarios.mjs', 'scripts/verify.py']:
+        for name in ['scripts/source-scenarios.mjs', 'scripts/verify.py', 'scripts/target-maintenance.py', 'scripts/evidence_store.py']:
             self.write(name, (ROOT / name).read_text(encoding='utf-8'))
         # Only the CLI semantic digest is stubbed; source discovery, lifecycle,
         # hashing, report validation and all filesystem operations are real.
@@ -394,14 +394,14 @@ else:
         with patch('sys.argv', ['verify.py', 'tests']), patch.object(verify, 'storage_preflight'), \
                 patch.object(verify, 'run') as run:
             verify.main()
-        self.assertEqual([call.args[0][2] for call in run.call_args_list], ['capture', 'list', 'run', 'complete'])
+        self.assertEqual([call.args[0][2] for call in run.call_args_list], ['--sweep', 'capture', 'list', 'run', 'complete'])
         for error in [SystemExit(1), KeyboardInterrupt(), subprocess.TimeoutExpired('cargo', 1)]:
             with self.subTest(error=type(error).__name__), patch('sys.argv', ['verify.py', 'tests']), \
                     patch.object(verify, 'storage_preflight'), \
-                    patch.object(verify, 'run', side_effect=[None, None, error]) as run:
+                    patch.object(verify, 'run', side_effect=[None, None, None, error]) as run:
                 with self.assertRaises(type(error)):
                     verify.main()
-                self.assertEqual(len(run.call_args_list), 3)
+                self.assertEqual(len(run.call_args_list), 4)
 
 
 if __name__ == '__main__':

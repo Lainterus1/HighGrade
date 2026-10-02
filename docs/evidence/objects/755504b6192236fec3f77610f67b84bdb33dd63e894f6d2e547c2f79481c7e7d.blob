@@ -1,0 +1,22 @@
+   Compiling highgrade v0.3.9 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 1.09s
+     Running tests/spec_contracts.rs (target/debug/deps/spec_contracts-123a4414efede843)
+
+running 1 test
+test evidence_cards_are_compact_preserve_outcome_and_detect_changed_report ... FAILED
+
+failures:
+
+---- evidence_cards_are_compact_preserve_outcome_and_detect_changed_report stdout ----
+
+thread 'evidence_cards_are_compact_preserve_outcome_and_detect_changed_report' panicked at tests/spec_contracts.rs:1266:92:
+called `Result::unwrap()` on an `Err` value: "Usage: --view full|summary|editable|requirements"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    evidence_cards_are_compact_preserve_outcome_and_detect_changed_report
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 18 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--test spec_contracts`

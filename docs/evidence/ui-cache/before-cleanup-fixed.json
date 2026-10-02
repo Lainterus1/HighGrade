@@ -1,0 +1,151 @@
+{
+  "config": {
+    "argv": [
+      "/home/lainterus/.local/share/mise/installs/node/26.8.2/bin/node",
+      "/home/lainterus/Projects/High Grade/ui/node_modules/.bin/playwright",
+      "test",
+      "--grep",
+      "document cache evicts"
+    ],
+    "configFile": "/home/lainterus/Projects/High Grade/ui/playwright.config.ts",
+    "rootDir": "/home/lainterus/Projects/High Grade/ui/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/lainterus/Projects/High Grade/target/highgrade/ui-playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/lainterus/Projects/High Grade/ui/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../docs/evidence/ui-cache/before-cleanup-fixed.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "native.spec.ts",
+      "file": "native.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "document cache evicts least recently used snapshots without losing drafts or list search",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8258,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.document h1')\nExpected: \u001b[32m\"Спецификация \u001b[7m8\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"Спецификация \u001b[7m9\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.document h1') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.document h1')\u001b[22m\n\u001b[2m    14 × locator resolved to <h1>Спецификация 9</h1>\u001b[22m\n\u001b[2m       - unexpected value \"Спецификация 9\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.document h1')\nExpected: \u001b[32m\"Спецификация \u001b[7m8\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"Спецификация \u001b[7m9\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.document h1') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.document h1')\u001b[22m\n\u001b[2m    14 × locator resolved to <h1>Спецификация 9</h1>\u001b[22m\n\u001b[2m       - unexpected value \"Спецификация 9\"\u001b[22m\n\n    at /home/lainterus/Projects/High Grade/ui/tests/native.spec.ts:154:47",
+                    "location": {
+                      "file": "/home/lainterus/Projects/High Grade/ui/tests/native.spec.ts",
+                      "column": 47,
+                      "line": 154
+                    },
+                    "snippet": "  152 |   try{\n  153 |    await page.locator('.spec-row').filter({hasText:`HG-${String(n).padStart(4,'0')}`}).click();await started;\n> 154 |    await expect(page.locator('.document h1')).toHaveText(`Спецификация ${visible}`);\n      |                                               ^\n  155 |   }finally{release();\n  156 |   await expect(page.locator('.document h1')).toHaveText(`Спецификация ${n}`);\n  157 |   await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeEnabled();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/lainterus/Projects/High Grade/ui/tests/native.spec.ts",
+                        "column": 47,
+                        "line": 154
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.document h1')\nExpected: \u001b[32m\"Спецификация \u001b[7m8\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"Спецификация \u001b[7m9\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.document h1') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.document h1')\u001b[22m\n\u001b[2m    14 × locator resolved to <h1>Спецификация 9</h1>\u001b[22m\n\u001b[2m       - unexpected value \"Спецификация 9\"\u001b[22m\n\n\n  152 |   try{\n  153 |    await page.locator('.spec-row').filter({hasText:`HG-${String(n).padStart(4,'0')}`}).click();await started;\n> 154 |    await expect(page.locator('.document h1')).toHaveText(`Спецификация ${visible}`);\n      |                                               ^\n  155 |   }finally{release();\n  156 |   await expect(page.locator('.document h1')).toHaveText(`Спецификация ${n}`);\n  157 |   await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeEnabled();\n    at /home/lainterus/Projects/High Grade/ui/tests/native.spec.ts:154:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T03:58:18.766Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/lainterus/Projects/High Grade/target/highgrade/ui-playwright/native-document-cache-evic-0b0b8-osing-drafts-or-list-search/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/lainterus/Projects/High Grade/ui/tests/native.spec.ts",
+                    "column": 47,
+                    "line": 154
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "dadda6b3ddfdf57c4974-57d53fb9dc32fc1870e0",
+          "file": "native.spec.ts",
+          "line": 130,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T03:58:18.317Z",
+    "duration": 8814.818,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,24 @@
+   Compiling highgrade v0.3.9 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 0.73s
+     Running tests/launcher_contracts.rs (target/debug/deps/launcher_contracts-7676071d11797355)
+
+running 3 tests
+test launcher_rejects_links_and_reports_missing_installation ... ok
+test launcher_preparation_is_explicit_idempotent_and_preserves_foreign_files ... ok
+test same_project_launchers_survive_move_and_global_update ... FAILED
+
+failures:
+
+---- same_project_launchers_survive_move_and_global_update stdout ----
+
+thread 'same_project_launchers_survive_move_and_global_update' panicked at tests/launcher_contracts.rs:191:9:
+CandidateUiBundleInvalid: CandidateCommandFailed: exit=Some(1); report=
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    same_project_launchers_survive_move_and_global_update
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 9.43s
+
+error: test failed, to rerun pass `--test launcher_contracts`

@@ -14,6 +14,7 @@ import wordmark from '@/assets/brand/wordmark.svg';
 
 type Category='all'|'needs_decision'|'in_work'|'completed';
 interface Snapshot {read:ReadResult;row:Row}
+const DOCUMENT_CACHE_LIMIT=10;
 const sameDocument=(a:Snapshot,b:Snapshot)=>JSON.stringify([a.read.change,a.read.links,a.read.inputs_sha256,a.row])===JSON.stringify([b.read.change,b.read.links,b.read.inputs_sha256,b.row]);
 const categories=[['all','Все спецификации','all'],['needs_decision','Нужно решение','decision'],['in_work','В работе','work'],['completed','Завершены','completed']] as const;
 const visibleRows=(list:Projection|undefined,category:Category,cancelled:boolean,tag:string,search:string)=>{
@@ -35,7 +36,7 @@ export function NativeWorkspace({client=nativeClient}:{client?:typeof nativeClie
  const [expanded,setExpanded]=useState<string[]>([]);const cache=useRef(new Map<string,Snapshot>());const places=useRef(new Map<string,{scroll:number;expanded:string[]}>());
  const snapshotRef=useRef(snapshot);snapshotRef.current=snapshot;const expandedRef=useRef(expanded);expandedRef.current=expanded;const searchRef=useRef<HTMLInputElement>(null);const request=useRef(0);const alive=useRef(true);const polling=useRef(false);
  const remember=()=>{if(snapshotRef.current&&selectedRef.current===snapshotRef.current.read.change.id)places.current.set(snapshotRef.current.read.change.id,{scroll:window.scrollY,expanded:expandedRef.current})};
- const show=useCallback((value:Snapshot)=>{setSnapshot(value);snapshotRef.current=value;setExpanded(places.current.get(value.read.change.id)?.expanded??[]);setStale(false);setMenu(false);setDiffReviewed(false);requestAnimationFrame(()=>window.scrollTo(0,places.current.get(value.read.change.id)?.scroll??0))},[]);
+ const show=useCallback((value:Snapshot)=>{const id=value.read.change.id;cache.current.delete(id);cache.current.set(id,value);if(cache.current.size>DOCUMENT_CACHE_LIMIT)cache.current.delete(cache.current.keys().next().value!);setSnapshot(value);snapshotRef.current=value;setExpanded(places.current.get(value.read.change.id)?.expanded??[]);setStale(false);setMenu(false);setDiffReviewed(false);requestAnimationFrame(()=>window.scrollTo(0,places.current.get(value.read.change.id)?.scroll??0))},[]);
  const loadingRef=useRef(loading);const projectionRef=useRef(projection);projectionRef.current=projection;
  const selectionRead=useRef<AbortController|null>(null);
  const [selectedId,setSelectedId]=useState('');const selectedRef=useRef('');
@@ -59,7 +60,7 @@ export function NativeWorkspace({client=nativeClient}:{client?:typeof nativeClie
    const row=list.changes.find(r=>r.id===id);if(!row)throw Error('Эта спецификация больше не входит в поддерживаемый список.');
    if(!alive.current||serial!==request.current)return;
    setProjection(list);const value={read,row};
-   if(!fresh&&snapshotRef.current?.read.change.id===id){setStale(!sameDocument(snapshotRef.current,value))}else{cache.current.set(id,value);show(value)}
+   if(!fresh&&snapshotRef.current?.read.change.id===id){setStale(!sameDocument(snapshotRef.current,value))}else{show(value)}
   }catch(e){if(alive.current&&serial===request.current)setError(errorText(e))}finally{if(alive.current&&serial===request.current){loadingRef.current=false;setLoading(false)}}
  },[client,show]);
  useEffect(()=>{let cancelled=false;alive.current=true;(async()=>{try{const current=await client.session();if(current.api_version!==API_VERSION)throw Error('Версии страницы и сервера различаются.');const list=await client.list();if(cancelled)return;setSession(current);setProjection(list);const initial:Category=list.counts.needs_decision?'needs_decision':list.counts.in_work?'in_work':'all';setCategory(initial);const first=visibleRows(list,initial,false,'','')[0];if(first)await load(first.id,false,list);else setLoading(false)}catch(e){if(!cancelled){setError(errorText(e));setLoading(false)}}})();return()=>{cancelled=true;alive.current=false;selectionRead.current?.abort();request.current++}},[client,load]);

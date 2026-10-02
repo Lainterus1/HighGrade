@@ -1,0 +1,641 @@
+{
+  "acceptance": [],
+  "evidence": {
+    "HG-0069-S1": {
+      "captured_at": "2026-10-02T05:33:45.566469+00:00",
+      "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+      "input_manifest_sha256": "80c676eedb01c56f4b52988388617576d07ac41062544d1049e441449f6bfbe8",
+      "method": "native_report",
+      "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+      "outcome": "passed",
+      "report": "docs/releases/v0-3-10.md",
+      "scenario": "HG-0069-S1",
+      "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
+    },
+    "HG-0069-S2": {
+      "captured_at": "2026-10-02T05:33:45.566469+00:00",
+      "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+      "input_manifest_sha256": "3dd31649ec3efa170aada7e555bedc223c048537e547deb7607451d18021375e",
+      "method": "native_report",
+      "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+      "outcome": "passed",
+      "report": "docs/releases/v0-3-10.md",
+      "scenario": "HG-0069-S2",
+      "scenario_sha256": "820d6913d877d041746ce12375534a3072c65276ef6a9aa6d2e199b4ca296451"
+    },
+    "HG-0069-S3": {
+      "captured_at": "2026-10-02T05:33:45.566469+00:00",
+      "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+      "input_manifest_sha256": "a54f3b01af011d4f5a6eae9a9663cb699046da0680c80e80341c9aa9a5b352c3",
+      "method": "native_report",
+      "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+      "outcome": "passed",
+      "report": "docs/releases/v0-3-10.md",
+      "scenario": "HG-0069-S3",
+      "scenario_sha256": "61c8076675882e8ba11f7cb01ea70b8511843eafcdfb93b0ce636792de73c567"
+    },
+    "HG-0069-S4": {
+      "captured_at": "2026-10-02T05:33:45.566469+00:00",
+      "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+      "input_manifest_sha256": "160e77026d320d1f64cfd43baf8dab53e04aefb43b05a3ff6fab70bb891b79f5",
+      "method": "manual",
+      "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+      "outcome": "passed",
+      "report": "docs/releases/v0-3-10.md",
+      "scenario": "HG-0069-S4",
+      "scenario_sha256": "8d55747e96f5610e7ce2b3c488d399bf0dd91853cb669b5f19633530ce8f51b6"
+    }
+  },
+  "history": {
+    "entries": [
+      {
+        "evidence": {},
+        "recorded_at": 1790918000,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "7759cf4d58ac8893660ba7f41d04ed421f4ba747366344a3c9ac5d55ba26fdf3",
+          "HG-0069-S2": "649af6b979d3cad9330754c8d06a1dc1dec1140e76849c8893d1e399a73e0598",
+          "HG-0069-S3": "f66c27f543925b954673145eebb33f043d304f938465bda464d8cb778fffb294",
+          "HG-0069-S4": "b29f556ab409df03ad1334ce9bb037e549f57c5edf7634103c695722312845e2"
+        },
+        "recorded_at": 1790918016,
+        "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "7759cf4d58ac8893660ba7f41d04ed421f4ba747366344a3c9ac5d55ba26fdf3",
+          "HG-0069-S2": "649af6b979d3cad9330754c8d06a1dc1dec1140e76849c8893d1e399a73e0598",
+          "HG-0069-S3": "f66c27f543925b954673145eebb33f043d304f938465bda464d8cb778fffb294",
+          "HG-0069-S4": "b29f556ab409df03ad1334ce9bb037e549f57c5edf7634103c695722312845e2"
+        },
+        "recorded_at": 1790918353,
+        "review": "f025354374135eae42f222f26dd2d10258bf8d9b66589f45e3e8bbc6489bfdc4"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "01853bbd28bbddc4150d1c3fa7cd44c0f37cc476d7becb9bf56d3907dd22a8f7",
+          "HG-0069-S2": "593c2705d46d5abd181a75297f0a56139bea4b65566939bad904ef2a5365a7cd",
+          "HG-0069-S3": "3ab7abc35b2c5fb51aad5fcf19cbe248c4a0bd594e04e4b3e2f2a562374e5c07",
+          "HG-0069-S4": "384d1e4d0074042fe5f1ac09b153824d1ab30b65adb139ecec0599d1b78f32be"
+        },
+        "recorded_at": 1790918369,
+        "review": "f025354374135eae42f222f26dd2d10258bf8d9b66589f45e3e8bbc6489bfdc4"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "01853bbd28bbddc4150d1c3fa7cd44c0f37cc476d7becb9bf56d3907dd22a8f7",
+          "HG-0069-S2": "593c2705d46d5abd181a75297f0a56139bea4b65566939bad904ef2a5365a7cd",
+          "HG-0069-S3": "3ab7abc35b2c5fb51aad5fcf19cbe248c4a0bd594e04e4b3e2f2a562374e5c07",
+          "HG-0069-S4": "384d1e4d0074042fe5f1ac09b153824d1ab30b65adb139ecec0599d1b78f32be"
+        },
+        "recorded_at": 1790919234,
+        "review": "47540e5eb875416e70523563292f50bde5fdadd92b1c564c4d8902c1381a17a2"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "1e39632b887ec4a32a6381b72e28c1cdaf551b9a969fefd4f3678f6f83ce8962",
+          "HG-0069-S2": "30fd4e5d240fcb57f37925538a27c06e5ec17350d4fd6df740de893191ed0abe",
+          "HG-0069-S3": "dbc2282acae3e1da04a91b9a4f61d246027c0c5abc6698e69ce425c73a5c6e62",
+          "HG-0069-S4": "2aba865e956c513521d3b3a86fd6e50686a44c306a877362fb82a052adb21bb1"
+        },
+        "recorded_at": 1790919433,
+        "review": "47540e5eb875416e70523563292f50bde5fdadd92b1c564c4d8902c1381a17a2"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "e30f6b1dbb9113e3086df4dfea4993d9677c6ab32b1ef0e8fe131cd6bbee34f5",
+          "HG-0069-S2": "ab13d6cc26712d8d5d9ae9abb0c61d3febc8104758b149b479ea454dc3da7250",
+          "HG-0069-S3": "f8914060355bfa593c0b4be3854e59f5955e905f6398442a2e38e06090a04415",
+          "HG-0069-S4": "b92ba81ac978f2ca2f12f9022d35df3beeabf5329d2ddca1e3ebf3afce29c376"
+        },
+        "recorded_at": 1790919477,
+        "review": "47540e5eb875416e70523563292f50bde5fdadd92b1c564c4d8902c1381a17a2"
+      }
+    ],
+    "objects": {
+      "01853bbd28bbddc4150d1c3fa7cd44c0f37cc476d7becb9bf56d3907dd22a8f7": {
+        "captured_at": "2026-10-02T05:19:08.262981+00:00",
+        "command": "PATH=\"$PWD/target/highgrade/tools/bin:$PATH\" python scripts/verify.py tests; python scripts/verify.py scenarios",
+        "input_manifest_sha256": "ac991b4c0a0fbfbb8de9f47511febcca3404f40fdf9c14a5e99efa98c75785c9",
+        "method": "native_report",
+        "observation": "217 Rust passed: компактное чтение сохраняет исход и обнаруживает изменённый/отсутствующий источник; Windows не исполнен.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob",
+        "scenario": "HG-0069-S1",
+        "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
+      },
+      "1e39632b887ec4a32a6381b72e28c1cdaf551b9a969fefd4f3678f6f83ce8962": {
+        "captured_at": "2026-10-02T05:33:45.566469+00:00",
+        "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+        "input_manifest_sha256": "1b85d1881f8e41fd7665b6f669cbf7f7afc4934f414e33ddb0c9d6c723feea67",
+        "method": "native_report",
+        "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+        "outcome": "passed",
+        "report": "docs/releases/v0-3-10.md",
+        "scenario": "HG-0069-S1",
+        "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
+      },
+      "2aba865e956c513521d3b3a86fd6e50686a44c306a877362fb82a052adb21bb1": {
+        "captured_at": "2026-10-02T05:33:45.566469+00:00",
+        "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+        "input_manifest_sha256": "23a6ed4e13951c808f9b813fa94bc21b9f5042893bc597e5641335e332cc163a",
+        "method": "manual",
+        "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+        "outcome": "passed",
+        "report": "docs/releases/v0-3-10.md",
+        "scenario": "HG-0069-S4",
+        "scenario_sha256": "8d55747e96f5610e7ce2b3c488d399bf0dd91853cb669b5f19633530ce8f51b6"
+      },
+      "30fd4e5d240fcb57f37925538a27c06e5ec17350d4fd6df740de893191ed0abe": {
+        "captured_at": "2026-10-02T05:33:45.566469+00:00",
+        "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+        "input_manifest_sha256": "ca6b289abbb57a635a361fa71d39ca39f6139641bb917504b3144545fafa4d74",
+        "method": "native_report",
+        "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+        "outcome": "passed",
+        "report": "docs/releases/v0-3-10.md",
+        "scenario": "HG-0069-S2",
+        "scenario_sha256": "820d6913d877d041746ce12375534a3072c65276ef6a9aa6d2e199b4ca296451"
+      },
+      "384d1e4d0074042fe5f1ac09b153824d1ab30b65adb139ecec0599d1b78f32be": {
+        "captured_at": "2026-10-02T05:19:08.262999+00:00",
+        "command": "Наблюдение фактических run/finish, выборочной очистки и нормативная сверка; точные команды и исходные результаты в связанных комплектах",
+        "input_manifest_sha256": "cc229b47900ef5f227f8a41cc829ea89979b98976cd17e9d3cd58f16fb57c3f2",
+        "method": "manual",
+        "observation": "Реальный run экспортирован и удалён; три прежних scratch и 14 неиспользуемых отчётов удалены. Контекст -93.6% на HG0068; UI default reporter: 1 passed. Правила сверены нормативно; пределы в verification.md. Финальные 62 теста экспортированы, managed run удалён; ненужные попытки явно discarded без экспорта.",
+        "outcome": "passed",
+        "report": "docs/evidence/evidence-storage/verification-final.md",
+        "scenario": "HG-0069-S4",
+        "scenario_sha256": "8d55747e96f5610e7ce2b3c488d399bf0dd91853cb669b5f19633530ce8f51b6"
+      },
+      "3ab7abc35b2c5fb51aad5fcf19cbe248c4a0bd594e04e4b3e2f2a562374e5c07": {
+        "captured_at": "2026-10-02T05:19:08.262996+00:00",
+        "command": "python scripts/evidence_store.py run --name hg0069-verified -- python -m unittest discover -s scripts/tests -v",
+        "input_manifest_sha256": "85e7072e918f50a69ccc668f24b88a7c2ff8bdf0af6f198c5bb1101706f4d5e2",
+        "method": "native_report",
+        "observation": "62 Python passed: активный, неизвестный и изменённый run сохраняются; завершённый удаляется; прерывание сохраняет исходники. Windows Job проверен только кодом. Финальная редакция включает защиту ссылок, custom/legacy, директорий, явный discard; Linux.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob",
+        "scenario": "HG-0069-S3",
+        "scenario_sha256": "61c8076675882e8ba11f7cb01ea70b8511843eafcdfb93b0ce636792de73c567"
+      },
+      "47540e5eb875416e70523563292f50bde5fdadd92b1c564c4d8902c1381a17a2": {
+        "change_sha256": "ce6a64a835892f38ac884004117c402e3fa064544bb0d32b33db5ec52cc62ee6",
+        "conclusion": "GO итоговой Linux-редакции:217 Rust,62 Python,identity совпадает; реальные export/cleanup/discard, живые ссылки защищены. NO_GO полного выпуска:Windows,exact-SHA CI,installed-release не исполнены. docs/evidence/evidence-storage/verification-final.md",
+        "reviewer": "catalog_read_review",
+        "verdict": "no_go"
+      },
+      "593c2705d46d5abd181a75297f0a56139bea4b65566939bad904ef2a5365a7cd": {
+        "captured_at": "2026-10-02T05:19:08.262992+00:00",
+        "command": "python scripts/evidence_store.py run --name hg0069-verified -- python -m unittest discover -s scripts/tests -v",
+        "input_manifest_sha256": "1b313295c40b5ac3c0d14abbc9a5f8dc63bd4de29c36d1d0d729d6ed250dbac4",
+        "method": "native_report",
+        "observation": "62 Python passed: выбранный экспорт повторяем, исходники сохранены, повреждение и небезопасные пути отвергаются; Windows не исполнен. Финальная редакция включает защиту ссылок, custom/legacy, директорий, явный discard; Linux.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob",
+        "scenario": "HG-0069-S2",
+        "scenario_sha256": "820d6913d877d041746ce12375534a3072c65276ef6a9aa6d2e199b4ca296451"
+      },
+      "649af6b979d3cad9330754c8d06a1dc1dec1140e76849c8893d1e399a73e0598": {
+        "captured_at": "2026-10-02T05:13:15.046334+00:00",
+        "command": "python scripts/evidence_store.py run --name hg0069-python -- python -m unittest discover -s scripts/tests -v",
+        "input_manifest_sha256": "86a857f11e8388ce5bfee0cbf9bfc01b2d2d59dce97c9e27054e351ae8518bd2",
+        "method": "native_report",
+        "observation": "60 Python passed: выбранный экспорт повторяем, исходники сохранены, повреждение и небезопасные пути отвергаются; Windows не исполнен.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/d71680dfcfacc6dac9a9d254c765bdc7ec53d352ddd6f620e20e2760528cf653.blob",
+        "scenario": "HG-0069-S2",
+        "scenario_sha256": "820d6913d877d041746ce12375534a3072c65276ef6a9aa6d2e199b4ca296451"
+      },
+      "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "7759cf4d58ac8893660ba7f41d04ed421f4ba747366344a3c9ac5d55ba26fdf3": {
+        "captured_at": "2026-10-02T05:13:15.046313+00:00",
+        "command": "PATH=\"$PWD/target/highgrade/tools/bin:$PATH\" python scripts/verify.py tests; python scripts/verify.py scenarios",
+        "input_manifest_sha256": "ac991b4c0a0fbfbb8de9f47511febcca3404f40fdf9c14a5e99efa98c75785c9",
+        "method": "native_report",
+        "observation": "217 Rust passed: компактное чтение сохраняет исход и обнаруживает изменённый/отсутствующий источник; Windows не исполнен.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob",
+        "scenario": "HG-0069-S1",
+        "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
+      },
+      "ab13d6cc26712d8d5d9ae9abb0c61d3febc8104758b149b479ea454dc3da7250": {
+        "captured_at": "2026-10-02T05:33:45.566469+00:00",
+        "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+        "input_manifest_sha256": "3dd31649ec3efa170aada7e555bedc223c048537e547deb7607451d18021375e",
+        "method": "native_report",
+        "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+        "outcome": "passed",
+        "report": "docs/releases/v0-3-10.md",
+        "scenario": "HG-0069-S2",
+        "scenario_sha256": "820d6913d877d041746ce12375534a3072c65276ef6a9aa6d2e199b4ca296451"
+      },
+      "b29f556ab409df03ad1334ce9bb037e549f57c5edf7634103c695722312845e2": {
+        "captured_at": "2026-10-02T05:13:15.046390+00:00",
+        "command": "Наблюдение фактических run/finish, выборочной очистки и нормативная сверка; точные команды и исходные результаты в связанных комплектах",
+        "input_manifest_sha256": "e6a747b1866fc4daaae08e19c56b994a8364c8c3d7ca2d337cf29beb65629fed",
+        "method": "manual",
+        "observation": "Реальный run экспортирован и удалён; три прежних scratch и 14 неиспользуемых отчётов удалены. Контекст -93.6% на HG0068; UI default reporter: 1 passed. Правила сверены нормативно; пределы в verification.md.",
+        "outcome": "passed",
+        "report": "docs/evidence/evidence-storage/verification.md",
+        "scenario": "HG-0069-S4",
+        "scenario_sha256": "8d55747e96f5610e7ce2b3c488d399bf0dd91853cb669b5f19633530ce8f51b6"
+      },
+      "b92ba81ac978f2ca2f12f9022d35df3beeabf5329d2ddca1e3ebf3afce29c376": {
+        "captured_at": "2026-10-02T05:33:45.566469+00:00",
+        "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+        "input_manifest_sha256": "160e77026d320d1f64cfd43baf8dab53e04aefb43b05a3ff6fab70bb891b79f5",
+        "method": "manual",
+        "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+        "outcome": "passed",
+        "report": "docs/releases/v0-3-10.md",
+        "scenario": "HG-0069-S4",
+        "scenario_sha256": "8d55747e96f5610e7ce2b3c488d399bf0dd91853cb669b5f19633530ce8f51b6"
+      },
+      "dbc2282acae3e1da04a91b9a4f61d246027c0c5abc6698e69ce425c73a5c6e62": {
+        "captured_at": "2026-10-02T05:33:45.566469+00:00",
+        "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+        "input_manifest_sha256": "d9d4f9b7c66c3a6143a296eca21dc3f65c2c802454ad34442a3a19eeb23f993c",
+        "method": "native_report",
+        "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+        "outcome": "passed",
+        "report": "docs/releases/v0-3-10.md",
+        "scenario": "HG-0069-S3",
+        "scenario_sha256": "61c8076675882e8ba11f7cb01ea70b8511843eafcdfb93b0ce636792de73c567"
+      },
+      "e30f6b1dbb9113e3086df4dfea4993d9677c6ab32b1ef0e8fe131cd6bbee34f5": {
+        "captured_at": "2026-10-02T05:33:45.566469+00:00",
+        "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+        "input_manifest_sha256": "80c676eedb01c56f4b52988388617576d07ac41062544d1049e441449f6bfbe8",
+        "method": "native_report",
+        "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+        "outcome": "passed",
+        "report": "docs/releases/v0-3-10.md",
+        "scenario": "HG-0069-S1",
+        "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
+      },
+      "f025354374135eae42f222f26dd2d10258bf8d9b66589f45e3e8bbc6489bfdc4": {
+        "change_sha256": "a29993c1f1eb6f4d1f59ce8409fb3d2116f4909c260398e7409b970c609cac8f",
+        "conclusion": "GO локальной Linux-реализации и проверенного завершения:217 Rust,60 Python,реальные export/cleanup,identity совпадает; замечания устранены. NO_GO полного выпуска: Windows/точный удалённый CI/installed-release не исполнены. Коммит,активация,публикация не поручены.",
+        "reviewer": "catalog_read_review",
+        "verdict": "no_go"
+      },
+      "f66c27f543925b954673145eebb33f043d304f938465bda464d8cb778fffb294": {
+        "captured_at": "2026-10-02T05:13:15.046355+00:00",
+        "command": "python scripts/evidence_store.py run --name hg0069-python -- python -m unittest discover -s scripts/tests -v",
+        "input_manifest_sha256": "968824a7d56e6c025a93deec395ffd350716875ac69698e4231e80522d9a1ed9",
+        "method": "native_report",
+        "observation": "60 Python passed: активный, неизвестный и изменённый run сохраняются; завершённый удаляется; прерывание сохраняет исходники. Windows Job проверен только кодом.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/d71680dfcfacc6dac9a9d254c765bdc7ec53d352ddd6f620e20e2760528cf653.blob",
+        "scenario": "HG-0069-S3",
+        "scenario_sha256": "61c8076675882e8ba11f7cb01ea70b8511843eafcdfb93b0ce636792de73c567"
+      },
+      "f8914060355bfa593c0b4be3854e59f5955e905f6398442a2e38e06090a04415": {
+        "captured_at": "2026-10-02T05:33:45.566469+00:00",
+        "command": "python scripts/verify.py tests; python -m unittest discover -s scripts/tests -v; npm run build; npm run build-storybook; npx playwright test; review",
+        "input_manifest_sha256": "a54f3b01af011d4f5a6eae9a9663cb699046da0680c80e80341c9aa9a5b352c3",
+        "method": "native_report",
+        "observation": "Linux: 217 Rust, 62 Python, 37 UI passed; исходные результаты в манифесте выпуска. Прежние наблюдения очистки сохранены в исходном отчёте; изменён только документ о представлении diff, независимое ревью GO. Windows/exact-SHA/installed требуют отдельного наблюдения.",
+        "outcome": "passed",
+        "report": "docs/releases/v0-3-10.md",
+        "scenario": "HG-0069-S3",
+        "scenario_sha256": "61c8076675882e8ba11f7cb01ea70b8511843eafcdfb93b0ce636792de73c567"
+      }
+    }
+  },
+  "input_manifests": {
+    "160e77026d320d1f64cfd43baf8dab53e04aefb43b05a3ff6fab70bb891b79f5": {
+      "files": {
+        "docs/BUILD.md": "f91b2b50828ac6a471d9413690811b7ed375ae12df9c0d1c08cbc97af73daf34",
+        "docs/EVIDENCE-STORAGE.md": "329b29f036f89d8ebaf5886f4711abf51fbbdc119c409a6a058e3a5157bf03d3",
+        "docs/evidence/evidence-storage/verification-final.md": "8f2d593f2256913a6169c6094c9d447bea389b31a9ee15943ecc97308cd070d6",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json": "452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json": "e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9",
+        "docs/releases/v0-3-10.md": "f7e099914d2282e35232bec6fcc6600577189073890b031ab6085af20ae7d638",
+        "kit/procedures/work.md": "685c28a8bc924d5b730290fa5cc5d5ae851664152de4f58c9631a564a9a12bd6",
+        "kit/references/tools/verification.md": "b0db83165bf12550bcac43f8d8fefea33efb9bcc763c37d8119c8f1f4255f94e",
+        "scripts/evidence_store.py": "4c7ceec7e5fd1f8f12098dcd82ad7d0d0c52a09e82bb5e734a9bc562ff5ed8c4",
+        "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+        "scripts/verify.py": "7324a223d5cb83bcd8af4485984420d6fa90f93f90bfff1cba5f8188c43b5046",
+        "ui/playwright.config.ts": "5a3d8398db78ab2f8be25c6faf97ef6dc14b36cba7c5a2e50e5d02d2cd2504c8"
+      },
+      "input_paths": [
+        "docs/BUILD.md",
+        "docs/EVIDENCE-STORAGE.md",
+        "docs/evidence/evidence-storage/verification-final.md",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json",
+        "kit/procedures/work.md",
+        "kit/references/tools/verification.md",
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/verify.py",
+        "ui/playwright.config.ts"
+      ]
+    },
+    "1b313295c40b5ac3c0d14abbc9a5f8dc63bd4de29c36d1d0d729d6ed250dbac4": {
+      "files": {
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob": "27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127",
+        "scripts/evidence_store.py": "4c7ceec7e5fd1f8f12098dcd82ad7d0d0c52a09e82bb5e734a9bc562ff5ed8c4",
+        "scripts/tests/test_evidence_store.py": "37861556ff9479ffd3725fe224daa6c2c7865becab289e66142b1cb5610945a5"
+      },
+      "input_paths": [
+        "scripts/evidence_store.py",
+        "scripts/tests/test_evidence_store.py"
+      ]
+    },
+    "1b85d1881f8e41fd7665b6f669cbf7f7afc4934f414e33ddb0c9d6c723feea67": {
+      "files": {
+        "Cargo.lock": "72cb25800d8a81e8060b6ff5b386da31c142305824d2ad43ee50bdc2c076283f",
+        "Cargo.toml": "869c89c8290b5e0146cda46a58549a3174b02af67ad632d4023e8d6d1ff59ba3",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json": "452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46",
+        "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob": "867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138",
+        "docs/releases/v0-3-10.md": "0886b1ea1eabae806378c2e913eb4294a60ba317e9dd680fae62cbe0143f08a9",
+        "src/lib.rs": "553f2ccdd88d80248e128950a0b472d9369b274d24906fd1674f60e66d70ac37",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "a19eb04615534cbb171d4ecf9fd56075f7b21f6e99c7498b2e746a74213bd824",
+        "src/specs/cards.rs": "1689cee70580b79710ecd312f12ba064bec39a8c0c69b476860126139e9ae80d",
+        "src/specs/checks.rs": "377d8ab634d99905bfaadc456cb147b61681152fe8f1de7e54977de129fb4df7",
+        "src/specs/progress.rs": "1f9dce8498e06c7a8a9ffa14a9fc72c0eb16effb20968ac509b7a68420cc8a05",
+        "src/specs/storage.rs": "f97716a69af8a2ffb01afbfee71a48a482503762ac286b5322601b75e05d40cb",
+        "src/specs/storage/shared_inputs.rs": "1a705e8ba1f6630c37979e8d04b8296d6fdca2d530bc187c40039bd6dcca6f31",
+        "tests/spec_contracts.rs": "6764101e0f87ae31fb6dc09baecc9f69fd2c1b05878897f607ea95b26e7443e4"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
+        "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/spec_contracts.rs"
+      ]
+    },
+    "23a6ed4e13951c808f9b813fa94bc21b9f5042893bc597e5641335e332cc163a": {
+      "files": {
+        "docs/BUILD.md": "f91b2b50828ac6a471d9413690811b7ed375ae12df9c0d1c08cbc97af73daf34",
+        "docs/EVIDENCE-STORAGE.md": "329b29f036f89d8ebaf5886f4711abf51fbbdc119c409a6a058e3a5157bf03d3",
+        "docs/evidence/evidence-storage/verification-final.md": "8f2d593f2256913a6169c6094c9d447bea389b31a9ee15943ecc97308cd070d6",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json": "452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46",
+        "docs/releases/v0-3-10.md": "0886b1ea1eabae806378c2e913eb4294a60ba317e9dd680fae62cbe0143f08a9",
+        "kit/procedures/work.md": "685c28a8bc924d5b730290fa5cc5d5ae851664152de4f58c9631a564a9a12bd6",
+        "kit/references/tools/verification.md": "b0db83165bf12550bcac43f8d8fefea33efb9bcc763c37d8119c8f1f4255f94e",
+        "scripts/evidence_store.py": "4c7ceec7e5fd1f8f12098dcd82ad7d0d0c52a09e82bb5e734a9bc562ff5ed8c4",
+        "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+        "scripts/verify.py": "7324a223d5cb83bcd8af4485984420d6fa90f93f90bfff1cba5f8188c43b5046",
+        "ui/playwright.config.ts": "5a3d8398db78ab2f8be25c6faf97ef6dc14b36cba7c5a2e50e5d02d2cd2504c8"
+      },
+      "input_paths": [
+        "docs/BUILD.md",
+        "docs/EVIDENCE-STORAGE.md",
+        "docs/evidence/evidence-storage/verification-final.md",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
+        "kit/procedures/work.md",
+        "kit/references/tools/verification.md",
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/verify.py",
+        "ui/playwright.config.ts"
+      ]
+    },
+    "3dd31649ec3efa170aada7e555bedc223c048537e547deb7607451d18021375e": {
+      "files": {
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob": "27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json": "452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json": "e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9",
+        "docs/releases/v0-3-10.md": "f7e099914d2282e35232bec6fcc6600577189073890b031ab6085af20ae7d638",
+        "scripts/evidence_store.py": "4c7ceec7e5fd1f8f12098dcd82ad7d0d0c52a09e82bb5e734a9bc562ff5ed8c4",
+        "scripts/tests/test_evidence_store.py": "37861556ff9479ffd3725fe224daa6c2c7865becab289e66142b1cb5610945a5"
+      },
+      "input_paths": [
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json",
+        "scripts/evidence_store.py",
+        "scripts/tests/test_evidence_store.py"
+      ]
+    },
+    "80c676eedb01c56f4b52988388617576d07ac41062544d1049e441449f6bfbe8": {
+      "files": {
+        "Cargo.lock": "72cb25800d8a81e8060b6ff5b386da31c142305824d2ad43ee50bdc2c076283f",
+        "Cargo.toml": "869c89c8290b5e0146cda46a58549a3174b02af67ad632d4023e8d6d1ff59ba3",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json": "452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46",
+        "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob": "867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json": "e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9",
+        "docs/releases/v0-3-10.md": "f7e099914d2282e35232bec6fcc6600577189073890b031ab6085af20ae7d638",
+        "src/lib.rs": "553f2ccdd88d80248e128950a0b472d9369b274d24906fd1674f60e66d70ac37",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "a19eb04615534cbb171d4ecf9fd56075f7b21f6e99c7498b2e746a74213bd824",
+        "src/specs/cards.rs": "1689cee70580b79710ecd312f12ba064bec39a8c0c69b476860126139e9ae80d",
+        "src/specs/checks.rs": "377d8ab634d99905bfaadc456cb147b61681152fe8f1de7e54977de129fb4df7",
+        "src/specs/progress.rs": "1f9dce8498e06c7a8a9ffa14a9fc72c0eb16effb20968ac509b7a68420cc8a05",
+        "src/specs/storage.rs": "f97716a69af8a2ffb01afbfee71a48a482503762ac286b5322601b75e05d40cb",
+        "src/specs/storage/shared_inputs.rs": "1a705e8ba1f6630c37979e8d04b8296d6fdca2d530bc187c40039bd6dcca6f31",
+        "tests/spec_contracts.rs": "6764101e0f87ae31fb6dc09baecc9f69fd2c1b05878897f607ea95b26e7443e4"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
+        "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/spec_contracts.rs"
+      ]
+    },
+    "85e7072e918f50a69ccc668f24b88a7c2ff8bdf0af6f198c5bb1101706f4d5e2": {
+      "files": {
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob": "27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127",
+        "scripts/evidence_store.py": "4c7ceec7e5fd1f8f12098dcd82ad7d0d0c52a09e82bb5e734a9bc562ff5ed8c4",
+        "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+        "scripts/tests/test_evidence_store.py": "37861556ff9479ffd3725fe224daa6c2c7865becab289e66142b1cb5610945a5",
+        "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1"
+      },
+      "input_paths": [
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_evidence_store.py",
+        "scripts/tests/test_target_maintenance.py"
+      ]
+    },
+    "86a857f11e8388ce5bfee0cbf9bfc01b2d2d59dce97c9e27054e351ae8518bd2": {
+      "files": {
+        "docs/evidence/objects/d71680dfcfacc6dac9a9d254c765bdc7ec53d352ddd6f620e20e2760528cf653.blob": "d71680dfcfacc6dac9a9d254c765bdc7ec53d352ddd6f620e20e2760528cf653",
+        "scripts/evidence_store.py": "5a7d4ac4a01fe0d1cef7bef1ed9b3226c1125956e8f7f4e7259d861f58a79268",
+        "scripts/tests/test_evidence_store.py": "7aad5cb00684b75c0870b3f7630f06a8083135887c38e2eca25993d1cf9d838d"
+      },
+      "input_paths": [
+        "scripts/evidence_store.py",
+        "scripts/tests/test_evidence_store.py"
+      ]
+    },
+    "968824a7d56e6c025a93deec395ffd350716875ac69698e4231e80522d9a1ed9": {
+      "files": {
+        "docs/evidence/objects/d71680dfcfacc6dac9a9d254c765bdc7ec53d352ddd6f620e20e2760528cf653.blob": "d71680dfcfacc6dac9a9d254c765bdc7ec53d352ddd6f620e20e2760528cf653",
+        "scripts/evidence_store.py": "5a7d4ac4a01fe0d1cef7bef1ed9b3226c1125956e8f7f4e7259d861f58a79268",
+        "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+        "scripts/tests/test_evidence_store.py": "7aad5cb00684b75c0870b3f7630f06a8083135887c38e2eca25993d1cf9d838d",
+        "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1"
+      },
+      "input_paths": [
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_evidence_store.py",
+        "scripts/tests/test_target_maintenance.py"
+      ]
+    },
+    "a54f3b01af011d4f5a6eae9a9663cb699046da0680c80e80341c9aa9a5b352c3": {
+      "files": {
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob": "27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json": "452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json": "e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9",
+        "docs/releases/v0-3-10.md": "f7e099914d2282e35232bec6fcc6600577189073890b031ab6085af20ae7d638",
+        "scripts/evidence_store.py": "4c7ceec7e5fd1f8f12098dcd82ad7d0d0c52a09e82bb5e734a9bc562ff5ed8c4",
+        "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+        "scripts/tests/test_evidence_store.py": "37861556ff9479ffd3725fe224daa6c2c7865becab289e66142b1cb5610945a5",
+        "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1"
+      },
+      "input_paths": [
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json",
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_evidence_store.py",
+        "scripts/tests/test_target_maintenance.py"
+      ]
+    },
+    "ac991b4c0a0fbfbb8de9f47511febcca3404f40fdf9c14a5e99efa98c75785c9": {
+      "files": {
+        "Cargo.lock": "b99448d9988dc26e62599a7246db78489cba7dc7e8bdd92790ce4cee1d26fe4d",
+        "Cargo.toml": "654091bc6c1c70ec51b9713f978f62b1476b37c493f44a7885e4b5e38d7949f4",
+        "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob": "867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138",
+        "src/lib.rs": "553f2ccdd88d80248e128950a0b472d9369b274d24906fd1674f60e66d70ac37",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "a19eb04615534cbb171d4ecf9fd56075f7b21f6e99c7498b2e746a74213bd824",
+        "src/specs/cards.rs": "1689cee70580b79710ecd312f12ba064bec39a8c0c69b476860126139e9ae80d",
+        "src/specs/checks.rs": "377d8ab634d99905bfaadc456cb147b61681152fe8f1de7e54977de129fb4df7",
+        "src/specs/progress.rs": "1f9dce8498e06c7a8a9ffa14a9fc72c0eb16effb20968ac509b7a68420cc8a05",
+        "src/specs/storage.rs": "f97716a69af8a2ffb01afbfee71a48a482503762ac286b5322601b75e05d40cb",
+        "src/specs/storage/shared_inputs.rs": "1a705e8ba1f6630c37979e8d04b8296d6fdca2d530bc187c40039bd6dcca6f31",
+        "tests/spec_contracts.rs": "6764101e0f87ae31fb6dc09baecc9f69fd2c1b05878897f607ea95b26e7443e4"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/spec_contracts.rs"
+      ]
+    },
+    "ca6b289abbb57a635a361fa71d39ca39f6139641bb917504b3144545fafa4d74": {
+      "files": {
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob": "27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json": "452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46",
+        "docs/releases/v0-3-10.md": "0886b1ea1eabae806378c2e913eb4294a60ba317e9dd680fae62cbe0143f08a9",
+        "scripts/evidence_store.py": "4c7ceec7e5fd1f8f12098dcd82ad7d0d0c52a09e82bb5e734a9bc562ff5ed8c4",
+        "scripts/tests/test_evidence_store.py": "37861556ff9479ffd3725fe224daa6c2c7865becab289e66142b1cb5610945a5"
+      },
+      "input_paths": [
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
+        "scripts/evidence_store.py",
+        "scripts/tests/test_evidence_store.py"
+      ]
+    },
+    "cc229b47900ef5f227f8a41cc829ea89979b98976cd17e9d3cd58f16fb57c3f2": {
+      "files": {
+        "docs/BUILD.md": "f91b2b50828ac6a471d9413690811b7ed375ae12df9c0d1c08cbc97af73daf34",
+        "docs/EVIDENCE-STORAGE.md": "16d1ab5692e5373b92d3933ac0bb0b57a6e90f0bfb77cfa561ab554fa6d63ed0",
+        "docs/evidence/evidence-storage/verification-final.md": "8f2d593f2256913a6169c6094c9d447bea389b31a9ee15943ecc97308cd070d6",
+        "kit/procedures/work.md": "685c28a8bc924d5b730290fa5cc5d5ae851664152de4f58c9631a564a9a12bd6",
+        "kit/references/tools/verification.md": "b0db83165bf12550bcac43f8d8fefea33efb9bcc763c37d8119c8f1f4255f94e",
+        "scripts/evidence_store.py": "4c7ceec7e5fd1f8f12098dcd82ad7d0d0c52a09e82bb5e734a9bc562ff5ed8c4",
+        "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+        "scripts/verify.py": "7324a223d5cb83bcd8af4485984420d6fa90f93f90bfff1cba5f8188c43b5046",
+        "ui/playwright.config.ts": "5a3d8398db78ab2f8be25c6faf97ef6dc14b36cba7c5a2e50e5d02d2cd2504c8"
+      },
+      "input_paths": [
+        "docs/BUILD.md",
+        "docs/EVIDENCE-STORAGE.md",
+        "kit/procedures/work.md",
+        "kit/references/tools/verification.md",
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/verify.py",
+        "ui/playwright.config.ts"
+      ]
+    },
+    "d9d4f9b7c66c3a6143a296eca21dc3f65c2c802454ad34442a3a19eeb23f993c": {
+      "files": {
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob": "27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json": "452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46",
+        "docs/releases/v0-3-10.md": "0886b1ea1eabae806378c2e913eb4294a60ba317e9dd680fae62cbe0143f08a9",
+        "scripts/evidence_store.py": "4c7ceec7e5fd1f8f12098dcd82ad7d0d0c52a09e82bb5e734a9bc562ff5ed8c4",
+        "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+        "scripts/tests/test_evidence_store.py": "37861556ff9479ffd3725fe224daa6c2c7865becab289e66142b1cb5610945a5",
+        "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1"
+      },
+      "input_paths": [
+        "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_evidence_store.py",
+        "scripts/tests/test_target_maintenance.py"
+      ]
+    },
+    "e6a747b1866fc4daaae08e19c56b994a8364c8c3d7ca2d337cf29beb65629fed": {
+      "files": {
+        "docs/BUILD.md": "f91b2b50828ac6a471d9413690811b7ed375ae12df9c0d1c08cbc97af73daf34",
+        "docs/EVIDENCE-STORAGE.md": "6a6908e396f1a2b557242ca12ccfa5b82388533317011f966223c39290b2f640",
+        "docs/evidence/evidence-storage/verification.md": "b9c0a51580d5260442c09c094efb8ded19b8e4ff5b4218157bce20d7711e3998",
+        "kit/procedures/work.md": "685c28a8bc924d5b730290fa5cc5d5ae851664152de4f58c9631a564a9a12bd6",
+        "kit/references/tools/verification.md": "b0db83165bf12550bcac43f8d8fefea33efb9bcc763c37d8119c8f1f4255f94e",
+        "scripts/evidence_store.py": "5a7d4ac4a01fe0d1cef7bef1ed9b3226c1125956e8f7f4e7259d861f58a79268",
+        "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+        "scripts/verify.py": "7324a223d5cb83bcd8af4485984420d6fa90f93f90bfff1cba5f8188c43b5046",
+        "ui/playwright.config.ts": "5a3d8398db78ab2f8be25c6faf97ef6dc14b36cba7c5a2e50e5d02d2cd2504c8"
+      },
+      "input_paths": [
+        "docs/BUILD.md",
+        "docs/EVIDENCE-STORAGE.md",
+        "kit/procedures/work.md",
+        "kit/references/tools/verification.md",
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/verify.py",
+        "ui/playwright.config.ts"
+      ]
+    }
+  },
+  "review": {
+    "change_sha256": "946401f9c27a79adcbe5bf3b68dd404eb62d8eb0da627a54d4a7240250abfeab",
+    "conclusion": "GO кандидатного коммита/публикации: независимое ревью кода и переносимого recovery теста, 217 Rust/62 Python/37 UI passed. Полная готовность NO_GO до exact-SHA Windows/Ubuntu CI и активации. Приёмка pending.",
+    "reviewer": "catalog_read_review",
+    "verdict": "no_go"
+  },
+  "runs": []
+}

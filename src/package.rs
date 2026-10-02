@@ -264,6 +264,7 @@ pub(crate) fn verify_ui(executable: &Path, expected_version: &str) -> Result<()>
             .as_str()
             .is_none_or(str::is_empty)
         || report["measurements"][0]["files"].as_u64().unwrap_or(0) == 0
+        || report["measurements"][0]["launcher_protocol"] != crate::launcher::PROTOCOL
     {
         return Err("CandidateUiBundleInvalid: complete matching UI report required".into());
     }

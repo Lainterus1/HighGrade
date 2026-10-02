@@ -1,0 +1,29 @@
+test_background_descendant_is_not_marked_ready_for_collection (test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok
+test_catalog_reference_blocks_deleting_exported_source (test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... FAIL
+test_damaged_export_blocks_collection_and_links_never_export (test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok
+test_export_is_selected_idempotent_and_detects_corruption (test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok
+test_interruption_after_export_before_inventory_preserves_scratch (test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok
+test_manifest_corruption_and_live_owner_refuse_finish (test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok
+test_real_wrapper_preserves_exit_code_and_finishes_selected_report (test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok
+test_sweep_preserves_active_unknown_changed_and_unexported (test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok
+
+======================================================================
+FAIL: test_catalog_reference_blocks_deleting_exported_source (test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_evidence_store.py", line 71, in test_catalog_reference_blocks_deleting_exported_source
+    self.assertEqual([],m.sweep(self.root,True)['removed'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['target/highgrade/runs/test-6f37acafb6b34e9e9c5647dae7f6f38a']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'target/highgrade/runs/test-6f37acafb6b34e9e9c5647dae7f6f38a'
+
+- []
++ ['target/highgrade/runs/test-6f37acafb6b34e9e9c5647dae7f6f38a']
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.248s
+
+FAILED (failures=1)

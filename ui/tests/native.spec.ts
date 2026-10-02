@@ -126,3 +126,47 @@ test('Latest selection does not wait for an obsolete read',async({page})=>{
   await expect(page.getByRole('alert')).toHaveCount(0);
  }finally{release()}
 });
+
+test('document cache evicts least recently used snapshots without losing drafts or list search',async({page})=>{
+ for(let n=8;n<=18;n++){
+  const id=`HG-${String(n).padStart(4,'0')}`;
+  f.cli('spec-new','--title',`Спецификация ${n}`,'--expected',f.sha());
+  f.edit(id,{goal:`Цель ${n}`,scope:'Тест ограниченного кеша'});
+ }
+ const before=f.hash();
+ await page.goto(url);await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeEnabled();
+ await page.getByRole('button',{name:'Все спецификации'}).click();
+ const select=async(n:number)=>{
+  await page.locator('.spec-row').filter({hasText:`HG-${String(n).padStart(4,'0')}`}).click();
+  await expect(page.locator('.document h1')).toHaveText(`Спецификация ${n}`);
+  await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeEnabled();
+ };
+ for(let n=8;n<=17;n++)await select(n);
+ await select(8);await select(18);
+ // 8 was touched, so 9 must be evicted when the eleventh document is opened.
+ for(const n of [8,9]){
+  let release!:()=>void,reached!:()=>void;
+  const gate=new Promise<void>(r=>release=r),started=new Promise<void>(r=>reached=r);
+  const endpoint=`**/api/specs/HG-${String(n).padStart(4,'0')}`;
+  await page.route(endpoint,async route=>{reached();await gate;await route.fulfill({response:await route.fetch()})});
+  try{
+   await page.locator('.spec-row').filter({hasText:`HG-${String(n).padStart(4,'0')}`}).click();await started;
+   if(n===8)await expect(page.locator('.document h1')).toHaveText('Спецификация 8');
+   else{await expect(page.locator('.document')).toHaveCount(0);await expect(page.getByRole('status')).toContainText('Открываем HG-0009');}
+  }finally{release();
+  await expect(page.locator('.document h1')).toHaveText(`Спецификация ${n}`);
+  await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeEnabled();
+  await page.unroute(endpoint);
+  }
+ }
+ await page.getByRole('button',{name:'Редактировать',exact:true}).click();
+ await page.getByLabel('Цель',{exact:true}).fill('Мой черновик после повторной загрузки');
+ await page.locator('.spec-row').filter({hasText:'HG-0018'}).click();
+ await page.getByRole('button',{name:'Продолжить редактирование'}).click();
+ await expect(page.getByLabel('Цель',{exact:true})).toHaveValue('Мой черновик после повторной загрузки');
+ await page.getByRole('button',{name:'Отмена',exact:true}).click();await page.getByRole('button',{name:'Отменить правки',exact:true}).click();
+ await page.getByLabel('Поиск по спецификациям').fill('HG-0001');
+ await expect(page.locator('.spec-row')).toHaveCount(1);
+ await expect(page.locator('.spec-row')).toContainText('HG-0001');
+ expect(f.hash()).toEqual(before);
+});

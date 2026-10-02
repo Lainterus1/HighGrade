@@ -1,4 +1,7 @@
 kit/** text eol=lf
+src/launcher/** text eol=lf
+"HighGrade UI.sh" text eol=lf
+"HighGrade UI.cmd" text eol=crlf
 bundle/** text eol=lf
 tests/fixtures/p0p2-bundle/** text eol=lf
 docs/evidence/executable-scenarios/** text eol=lf
@@ -68,3 +71,20 @@ docs/reviews/test-before-implementation-original.txt -text -whitespace
 docs/reviews/test-before-implementation-publication.md -text -whitespace
 docs/workflow/QUALITY.md text eol=lf
 scripts/render-skills.py text eol=lf
+
+# Content-addressed evidence objects must retain their exact bytes.
+docs/evidence/objects/** -text -whitespace
+
+# Raw machine evidence is reviewable on demand, not as source-line changes.
+[attr]highgrade-evidence -text -diff -whitespace
+docs/evidence/objects/*.blob highgrade-evidence
+docs/evidence/editorial/** highgrade-evidence
+docs/evidence/ui-cache/** highgrade-evidence
+docs/evidence/ui-performance/** highgrade-evidence
+docs/evidence/ui-catalog-read/** highgrade-evidence
+docs/evidence/ui-launcher/** highgrade-evidence
+docs/evidence/editorial/*.md diff
+docs/evidence/ui-cache/*.md diff
+docs/evidence/ui-performance/*.md diff
+docs/evidence/ui-catalog-read/*.md diff
+docs/evidence/ui-launcher/*.md diff

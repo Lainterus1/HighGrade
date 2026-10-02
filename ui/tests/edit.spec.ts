@@ -17,7 +17,7 @@ test('HG56 S3: integrated and protected content cannot be edited through UI or A
  for(const [id,input] of [['HG-0005',{evidence:{}}],['HG-0003',{goal:'Переписать контракт'}]] as const){const r=await request.post(`${url}/api/specs/${id}/edit`,{headers:{Origin:url,'X-HighGrade-Token':session.token,'X-HighGrade-Api':'2'},data:{expected:read.store_sha256,input}});expect(r.ok()).toBeFalsy()}expect(f.hash()).toEqual(before);
 });
 test('HG56 S1: delayed write locks fields and navigation until confirmation',async({page})=>{
- await select(page);await page.getByRole('button',{name:'Редактировать',exact:true}).click();await page.getByLabel('Цель',{exact:true}).fill('Текст A');let release!:()=>void;let reached!:()=>void;const waiting=new Promise<void>(resolve=>release=resolve);const received=new Promise<void>(resolve=>reached=resolve);await page.route('**/api/specs/HG-0005/edit',async route=>{reached();await waiting;await route.fulfill({response:await route.fetch()})});await page.getByRole('button',{name:'Сохранить изменения'}).click();await received;await expect(page.getByLabel('Цель',{exact:true})).toBeDisabled();await expect(page.locator('.spec-row').filter({hasText:'HG-0002'})).toBeDisabled();await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeDisabled();release();await expect(page.getByRole('status')).toContainText('Состояние сохранено');expect(f.cli('spec-read','--id','HG-0005').change.goal).toBe('Текст A');
+ await select(page);await page.getByRole('button',{name:'Редактировать',exact:true}).click();await page.getByLabel('Цель',{exact:true}).fill('Текст A');let release!:()=>void;let reached!:()=>void;const waiting=new Promise<void>(resolve=>release=resolve);const received=new Promise<void>(resolve=>reached=resolve);await page.route('**/api/specs/HG-0005/edit',async route=>{reached();await waiting;await route.fulfill({response:await route.fetch()})});await page.getByRole('button',{name:'Сохранить изменения'}).click();await received;await expect(page.getByLabel('Цель',{exact:true})).toBeDisabled();await expect(page.locator('#edit-requirement-0-statement')).toBeDisabled();await expect(page.locator('.spec-row').filter({hasText:'HG-0002'})).toBeDisabled();await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeDisabled();release();await expect(page.getByRole('status')).toContainText('Состояние сохранено');expect(f.cli('spec-read','--id','HG-0005').change.goal).toBe('Текст A');
 });
 test('HG56 S4 S5: local CAS, conflict comparison and lost response never blindly retry writes',async({page})=>{
  await select(page);await page.getByRole('button',{name:'Редактировать',exact:true}).click();await page.getByLabel('Цель',{exact:true}).fill('Независимая правка A');f.edit('HG-0002',{goal:'Другая спека'});await page.getByRole('button',{name:'Сохранить изменения'}).click();await expect(page.getByRole('status')).toContainText('Состояние сохранено');
@@ -38,4 +38,23 @@ test('HG56 S8 S10: accepted result stays visible and only answered question clos
  f.handoff('HG-0001','question','question-2');await select(page,'HG-0001');await page.locator('.decision').getByRole('button').click();await author(page);await page.getByLabel('Ответ',{exact:true}).fill('Сохраняем введённый текст');await page.getByRole('button',{name:'Сохранить ответ',exact:true}).click();await expect(page.getByRole('status')).toContainText('Состояние сохранено');expect(f.row('HG-0001').requests).toHaveLength(1);
  await page.locator('.spec-row').filter({hasText:'HG-0003'}).click();await page.getByRole('button',{name:'Принять результат',exact:true}).click();await author(page);await page.getByRole('button',{name:'Подтвердить',exact:true}).click();await expect(page.getByRole('status')).toContainText('Состояние сохранено');await expect(page.locator('.document h1')).toHaveText('Спецификация 3');expect(f.row('HG-0003').category).toBe('completed');expect(f.cli('spec-read','--id','HG-0003').change.acceptance.at(-1).verified_revision).toBe('fixture-build-v1');
  f.handoff('HG-0003','result','result-return');await page.getByRole('button',{name:'Обновить',exact:true}).click();await page.getByRole('button',{name:'Принять результат',exact:true}).click();await author(page);await page.getByLabel('Комментарий',{exact:true}).fill('Нужно уточнить результат');await page.getByRole('button',{name:'Вернуть на доработку'}).click();await expect(page.getByRole('status')).toContainText('Состояние сохранено');expect(f.row('HG-0003').human).toBe('needs_changes');
+});
+
+test('memoized requirement fields retain validation, edits across groups and clean reversion',async({page})=>{
+ const initial=f.cli('spec-read','--id','HG-0005').change;
+ const first=initial.operations[0];
+ const second=JSON.parse(JSON.stringify(first).replaceAll('HG-0005-R1','HG-0005-R2').replaceAll('HG-0005-S1','HG-0005-S2'));
+ f.edit('HG-0005',{operations:[first,second]});
+ await select(page);await page.getByRole('button',{name:'Редактировать',exact:true}).click();
+ const a=page.locator('#edit-requirement-0-statement'),b=page.locator('#edit-requirement-1-statement');
+ const save=page.getByRole('button',{name:'Сохранить изменения'});
+ await a.fill('Временный текст');await a.fill(first.requirement.statement);await expect(save).toBeDisabled();
+ await a.fill('');await save.click();await expect(a).toHaveAttribute('aria-invalid','true');
+ await b.fill('Второе изменённое требование');await expect(a).toHaveAttribute('aria-invalid','false');
+ await save.click();await expect(a).toHaveAttribute('aria-invalid','true');
+ await a.fill('Первое изменённое требование');await expect(b).toHaveValue('Второе изменённое требование');
+ await save.click();await expect(page.getByRole('status')).toContainText('Состояние сохранено');
+ const actual=f.cli('spec-read','--id','HG-0005').change;
+ const expected=structuredClone([first,second]);expected[0].requirement.statement='Первое изменённое требование';expected[1].requirement.statement='Второе изменённое требование';
+ expect(actual.operations).toEqual(expected);
 });
