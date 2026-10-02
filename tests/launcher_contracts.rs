@@ -68,9 +68,7 @@ fn candidate_at(path: &std::path::Path, release: &str) {
     v["release"] = release.into();
     fs::write(p, serde_json::to_vec_pretty(&v).unwrap()).unwrap();
 }
-fn launch(project: &std::path::Path, profile: &std::path::Path) {
-    use std::io::{BufRead, BufReader, Read, Write};
-    use std::process::Stdio;
+fn launcher_command(project: &std::path::Path, profile: &std::path::Path) -> Command {
     #[cfg(unix)]
     let mut cmd = {
         let mut c = Command::new(project.join("HighGrade UI.sh"));
@@ -88,10 +86,15 @@ fn launch(project: &std::path::Path, profile: &std::path::Path) {
         ));
         c
     };
-    let mut child = cmd
-        .env("HOME", profile)
+    cmd.env("HOME", profile)
         .env("USERPROFILE", profile)
-        .current_dir(profile)
+        .current_dir(profile);
+    cmd
+}
+fn launch(project: &std::path::Path, profile: &std::path::Path) {
+    use std::io::{BufRead, BufReader, Read, Write};
+    use std::process::Stdio;
+    let mut child = launcher_command(project, profile)
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
         .spawn()
@@ -278,32 +281,62 @@ fn same_project_launchers_survive_move_and_global_update() {
     }
 }
 
-#[cfg(unix)]
 // highgrade: HG-0068-S2
 #[test]
 fn launcher_rejects_links_and_reports_missing_installation() {
-    use std::os::unix::fs::{PermissionsExt, symlink};
     let root = TestDir::new("hg-launch-safe-");
     let profile = TestDir::new("hg-launch-empty-profile-");
     fs::write(root.join("foreign"), b"keep").unwrap();
-    symlink("foreign", root.join("HighGrade UI.sh")).unwrap();
-    assert!(highgrade::launcher::prepare(&root, true).is_err());
-    assert!(!root.join("HighGrade UI.cmd").exists());
-    assert_eq!(fs::read(root.join("foreign")).unwrap(), b"keep");
-    fs::remove_file(root.join("HighGrade UI.sh")).unwrap();
-    highgrade::launcher::prepare(&root, true).unwrap();
-    let shell = root.join("HighGrade UI.sh");
-    fs::set_permissions(&shell, fs::Permissions::from_mode(0o600)).unwrap();
-    highgrade::launcher::prepare(&root, true).unwrap();
-    assert_ne!(
-        fs::metadata(&shell).unwrap().permissions().mode() & 0o100,
-        0
-    );
-    let output = Command::new(shell)
-        .env("HOME", &*profile)
-        .arg("--no-open")
-        .output()
-        .unwrap();
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::{PermissionsExt, symlink};
+        symlink("foreign", root.join("HighGrade UI.sh")).unwrap();
+        assert!(highgrade::launcher::prepare(&root, true).is_err());
+        assert!(!root.join("HighGrade UI.cmd").exists());
+        assert_eq!(fs::read(root.join("foreign")).unwrap(), b"keep");
+        fs::remove_file(root.join("HighGrade UI.sh")).unwrap();
+        highgrade::launcher::prepare(&root, true).unwrap();
+        let shell = root.join("HighGrade UI.sh");
+        fs::set_permissions(&shell, fs::Permissions::from_mode(0o600)).unwrap();
+        highgrade::launcher::prepare(&root, true).unwrap();
+        assert_ne!(
+            fs::metadata(&shell).unwrap().permissions().mode() & 0o100,
+            0
+        );
+    }
+    #[cfg(windows)]
+    {
+        let outside = root.join("foreign-dir");
+        fs::create_dir(&outside).unwrap();
+        fs::write(outside.join("keep"), b"keep").unwrap();
+        let link = root.join("HighGrade UI.cmd");
+        let output = Command::new("cmd.exe")
+            .args(["/D", "/C", "mklink", "/J"])
+            .arg(&link)
+            .arg(&outside)
+            .output()
+            .unwrap();
+        assert!(
+            output.status.success(),
+            "{}",
+            String::from_utf8_lossy(&output.stderr)
+        );
+        assert!(highgrade::launcher::prepare(&root, true).is_err());
+        assert!(!root.join("HighGrade UI.sh").exists());
+        assert_eq!(fs::read(outside.join("keep")).unwrap(), b"keep");
+        fs::remove_dir(&link).unwrap();
+        highgrade::launcher::prepare(&root, true).unwrap();
+    }
+    let output = launcher_command(&root, &profile).output().unwrap();
     assert!(!output.status.success());
-    assert!(String::from_utf8_lossy(&output.stderr).contains("not installed"));
+    let error = String::from_utf8_lossy(&output.stderr);
+    #[cfg(unix)]
+    assert!(error.contains("not installed"), "{error}");
+    #[cfg(windows)]
+    assert!(
+        error.contains("HighGrade UI:") && error.contains("active.json"),
+        "{error}"
+    );
+    assert!(!profile.join(".highgrade").exists());
+    assert_eq!(fs::read(root.join("foreign")).unwrap(), b"keep");
 }
