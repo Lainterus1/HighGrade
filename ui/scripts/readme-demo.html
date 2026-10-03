@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<title>High Grade — демонстрация для README</title>
+<link rel="stylesheet" href="/demo-tokens.css">
+<style>
+@font-face{font-family:Manrope;src:url('/assets/fonts/Manrope.ttf');font-weight:200 800}
+@font-face{font-family:Lora;src:url('/assets/fonts/Lora.ttf');font-weight:400 700}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--foreground);font-family:Manrope,sans-serif;line-height:1.3}
+.stage{position:relative;width:1200px;height:675px;overflow:hidden}
+.brand{position:absolute;left:56px;top:38px;width:218px;z-index:5}
+.corner{position:absolute;right:56px;top:42px;font-size:21px;color:var(--reading-muted);z-index:5}
+.scene{display:none;position:absolute;inset:0;padding:126px 56px 70px;background:var(--canvas)}
+h1,h2,p{margin:0}h1,h2{font-family:Lora,serif;font-weight:600;letter-spacing:-1.5px;line-height:1.16}
+h1{font-size:60px}h2{font-size:54px;max-width:1060px}.eyebrow{font-size:24px;font-weight:700;color:var(--primary);margin-bottom:19px}
+.intro h1{width:650px;position:relative;z-index:2}.intro .eyebrow{margin-top:30px}.intro p{font-size:30px;line-height:1.5;margin-top:26px;max-width:640px}
+.intro .preview{position:absolute;left:714px;top:206px;width:534px;height:337px;border:1px solid var(--border);box-shadow:0 18px 50px #294d3c14;border-radius:12px;overflow:hidden;background:var(--background);transform:rotate(-3deg)}
+.intro .preview img{width:850px;height:auto;object-fit:cover;object-position:left top}.intro .stamp{position:absolute;left:718px;top:574px;color:var(--primary);font-size:23px;font-weight:650}
+.ui h2{font-size:49px}.ui .caption{font-size:23px;margin-top:14px;color:var(--reading-muted)}
+.window{position:absolute;left:56px;top:231px;width:1088px;height:360px;border:1px solid var(--border);border-radius:8px;background:var(--background);overflow:hidden;box-shadow:0 12px 25px #294d3c0c}
+.window img{position:absolute;inset:0;width:1088px;height:360px;object-fit:cover;object-position:top left}.window .ui-label{position:absolute;right:16px;bottom:14px;font-size:20px;padding:6px 12px;background:var(--primary);color:var(--background);border-radius:4px}
+.scheme-note{font-size:24px;color:var(--reading-muted);margin-top:16px}
+.flow{display:flex;align-items:stretch;gap:16px;margin-top:46px}.step{width:328px;min-height:214px;padding:22px 22px 25px;border-top:3px solid var(--border);background:var(--background);transition:none}
+.step.active{border-color:var(--primary);background:var(--secondary)}.step .number{font-size:24px;color:var(--primary);font-weight:700}.step h3{font-family:Lora,serif;font-size:40px;line-height:1.2;font-weight:600;margin:15px 0}.step p{font-size:26px;line-height:1.4}
+.arrow{align-self:center;color:var(--primary);font-size:34px;flex:none;width:20px;text-align:center}
+.bdd h2{max-width:970px}.rows{margin-top:30px;border-top:1px solid var(--border)}.row{display:flex;gap:26px;align-items:center;height:92px;border-bottom:1px solid var(--border)}
+.row .label{font-size:31px;font-weight:750;color:var(--primary);width:176px}.row .value{font-size:36px;letter-spacing:-.6px}.row.active{background:var(--secondary)}
+.tdd .flow{margin-top:20px}.tdd .step{min-height:180px;padding:18px 22px}.tdd .step h3{margin:10px 0}.tdd .status{font-size:24px;font-weight:650;margin-top:12px;color:var(--primary)}
+.planner h2{max-width:1090px}.route{display:flex;align-items:center;gap:22px;margin-top:37px}.route .node{font-size:36px;font-weight:650;padding:15px 0;border-bottom:3px solid var(--border)}.route .node.active{border-color:var(--primary)}
+.trace{margin-top:27px;padding-top:20px;border-top:1px solid var(--border)}.trace p{font-size:32px;color:var(--primary);font-weight:650}.trace span{display:block;font-size:25px;margin-top:12px;color:var(--reading-muted)}
+.outro{background:var(--secondary)}.outro h2{font-size:66px;max-width:1040px;margin-top:20px}.outro .platforms{font-size:36px;margin-top:28px;font-weight:650;color:var(--primary)}
+.outro .stack{font-size:28px;line-height:1.6;margin-top:16px}.outro .cta{display:inline-block;margin-top:22px;font-size:32px;font-weight:700;color:var(--background);background:var(--primary);padding:15px 24px}
+.footer{position:absolute;bottom:22px;left:56px;right:56px;display:flex;justify-content:space-between;font-size:20px;color:var(--reading-muted);z-index:6}
+.segments{display:flex;gap:6px;position:absolute;bottom:0;left:0;right:0;height:4px;z-index:6}.segments span{flex:1;background:var(--border)}.segments span.active{background:var(--primary)}
+</style>
+<div class="stage">
+ <img class="brand" src="/assets/brand/wordmark.svg" alt="High Grade">
+ <div class="corner">Навыки · CLI · локальный UI</div>
+ <section class="scene intro" id="intro">
+  <div class="eyebrow">РАЗРАБОТКА С CODEX</div>
+  <h1>От задачи<br>до проверяемого<br>результата.</h1>
+  <p>Требования. Шаги. Проверки.<br>Всё связано с вашей задачей.</p>
+  <div class="preview"><img src="/capture/overview.png" alt="Демонстрация текущего интерфейса"></div>
+  <div class="stamp">High Grade · один проект за раз</div>
+ </section>
+ <section class="scene ui" id="ui">
+  <h2>Найдите. Прочитайте. Уточните.</h2>
+  <p class="caption">Текущий UI · демонстрационные данные · без записи в проект</p>
+  <div class="window"><img id="ui-image" src="/capture/search.png" alt="Действие в Storybook"><span class="ui-label" id="ui-label"></span></div>
+ </section>
+ <section class="scene sdd" id="sdd">
+  <div class="eyebrow">SDD · РАЗРАБОТКА ОТ СПЕЦИФИКАЦИИ</div>
+  <h2>Договорённости<br>остаются в проекте.</h2>
+  <div class="flow">
+   <div class="step"><span class="number">01</span><h3>Цель</h3><p>Зачем нужна задача</p></div><span class="arrow">→</span>
+   <div class="step"><span class="number">02</span><h3>Требования</h3><p>Что должно работать</p></div><span class="arrow">→</span>
+   <div class="step"><span class="number">03</span><h3>Готово, когда</h3><p>Как проверить результат</p></div>
+  </div>
+ </section>
+ <section class="scene bdd" id="bdd">
+  <div class="eyebrow">BDD · СЦЕНАРИЙ ПОВЕДЕНИЯ</div>
+  <h2>Понятно, что считать готовым.</h2>
+  <div class="rows">
+   <div class="row"><span class="label">Дано</span><span class="value">В проекте есть спецификации</span></div>
+   <div class="row"><span class="label">Когда</span><span class="value">Открываю UI проекта</span></div>
+   <div class="row"><span class="label">Тогда</span><span class="value">Вижу его спецификации</span></div>
+  </div>
+  <p class="scheme-note">Схема: условия → действие → ожидаемый результат</p>
+ </section>
+ <section class="scene tdd" id="tdd">
+  <div class="eyebrow">TEST-FIRST / TDD · СХЕМА РАБОТЫ</div>
+  <h2>Проверка начинается<br>до изменения кода.</h2>
+  <div class="flow">
+   <div class="step"><span class="number">01</span><h3>Проверка</h3><p>Воспроизвести проблему</p></div><span class="arrow">→</span>
+   <div class="step"><span class="number">02</span><h3>Изменение</h3><p>Исправить поведение</p></div><span class="arrow">→</span>
+   <div class="step"><span class="number">03</span><h3>Повтор</h3><p>Проверить результат</p></div>
+  </div>
+  <p class="status">Для устойчивого автоматического поведения</p>
+ </section>
+ <section class="scene planner" id="planner">
+  <div class="eyebrow">PLANNER · ЗАВИСИМЫЕ ЗАДАЧИ И ДОКАЗАТЕЛЬСТВА</div>
+  <h2>Сложная работа<br>движется по шагам.</h2>
+  <div class="route"><span class="node">Подготовка</span><span class="arrow">→</span><span class="node">Изменение</span><span class="arrow">→</span><span class="node">Проверка</span></div>
+  <div class="trace"><p>Сценарий → проверка → исходный отчёт</p><span>Ревью и решение человека — отдельные шаги.</span></div>
+ </section>
+ <section class="scene outro" id="outro">
+  <h2>Начните<br>со своего проекта.</h2>
+  <p class="platforms">Одна общая установка · Windows / Linux</p>
+  <p class="stack">Rust CLI · React / TypeScript<br>Проверки: Playwright / Nextest</p>
+  <span class="cta">Быстрый старт — в README ↓</span>
+ </section>
+ <div class="footer"><span id="footer-label">High Grade</span><span id="footer-index">01 / 07</span></div>
+ <div class="segments"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+</div>
+<script>
+const timeline=[{id:'intro',start:0,end:3.5,label:'От задачи до результата'},
+ {id:'ui',start:3.5,end:9.5,label:'Интерфейс спецификаций'},
+ {id:'sdd',start:9.5,end:13,label:'SDD · требования в проекте'},
+ {id:'bdd',start:13,end:17,label:'BDD · ожидаемое поведение'},
+ {id:'tdd',start:17,end:21,label:'TDD · затем улучшение структуры'},
+ {id:'planner',start:21,end:25,label:'Planner · последовательная работа'},
+ {id:'outro',start:25,end:29,label:'Начните со своего проекта'}];
+const clamp=v=>Math.max(0,Math.min(1,v));
+function prepare(scene,progress){
+ const el=document.getElementById(scene.id);
+ el.style.display='block';el.style.opacity=1;
+ el.querySelectorAll('.step,.row,.node').forEach((node,i)=>node.classList.toggle('active',progress>(i/3)));
+ if(scene.id==='intro')el.querySelector('.preview').style.transform=`rotate(-3deg) translateX(${-12*progress}px)`;
+ if(scene.id==='ui'){
+  const index=progress<.29?0:progress<.64?1:2;
+  document.getElementById('ui-image').src='/capture/'+['search','expanded','editor'][index]+'.png';
+  document.getElementById('ui-label').textContent=['Поиск по названию','Раскрытие требования','Редактор полей'][index];
+ }
+}
+window.demoTimeline=timeline;
+window.setFrame=time=>{
+ let t=((time%29)+29)%29;
+ document.querySelectorAll('.scene').forEach(el=>el.style.display='none');
+ let index=timeline.findIndex(s=>t>=s.start&&t<s.end);
+ const current=timeline[index],progress=(t-current.start)/(current.end-current.start);
+ prepare(current,progress);
+ if(index>0&&t-current.start<.2){
+  const alpha=clamp((t-current.start)/.2);prepare(timeline[index-1],1);
+  document.getElementById(timeline[index-1].id).style.opacity=1-alpha;
+  document.getElementById(current.id).style.opacity=alpha;
+ }
+ if(t>=28.3){
+  const alpha=clamp((t-28.3)/.5);prepare(timeline[0],0);
+  document.getElementById('intro').style.opacity=alpha;
+  document.getElementById('outro').style.opacity=1-alpha;
+  if(alpha===1)index=0;
+ }
+ document.getElementById('footer-label').textContent=timeline[index].label;
+ document.getElementById('footer-index').textContent=String(index+1).padStart(2,'0')+' / 07';
+ document.querySelectorAll('.segments span').forEach((el,i)=>el.classList.toggle('active',i===index));
+};
+setFrame(0);
+</script>
+</html>
