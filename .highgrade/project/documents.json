@@ -10,7 +10,7 @@
         "agreed": true,
         "min": 4550,
         "baseline": 6500,
-        "current": 7600,
+        "current": 8900,
         "ceiling": 9000,
         "history": [
           {
@@ -19,6 +19,13 @@
             "reason": "Добавлен проверяемый Linux quick start рядом с Windows, README 7207 bytes.",
             "reduction_considered": "Подробности установки остаются в справочнике; вход содержит только сборку и global-install/status.",
             "next_review": "После следующего изменения quick start."
+          },
+          {
+            "from": 7600,
+            "to": 8900,
+            "reason": "README обновлён по поручению автора: добавлены польза, примеры задач и отдельный вход в UI; 8770 bytes, потолок 9000 сохранён.",
+            "reduction_considered": "Первый вариант 11039 bytes сокращён до 8770: убраны повторы, подробности UI оставлены в docs/UI.md, навигация разработчика — ссылками.",
+            "next_review": "После следующих изменений quick start или раздела UI."
           }
         ],
         "review_trigger": "after two real tasks using the High Grade workflow"
@@ -1097,7 +1104,7 @@
     "agreed": true,
     "min": 50400,
     "baseline": 72000,
-    "current": 94000,
+    "current": 95600,
     "ceiling": 96000,
     "history": [
       {
@@ -1169,6 +1176,13 @@
         "reason": "After merging highgrade-deploy consent and migration scenarios, measured active route 93130 bytes. Explicit remote authority, CI consequence and rollback states are durable release rules; 94000 remains below the agreed 96000 ceiling.",
         "reduction_considered": "Archived delta and tasks are outside the active route. The merged release contract covers distinct behavior not held by entry documents; removing it would hide applicable requirements.",
         "next_review": "After two real highgrade-deploy tasks or the next workflow consolidation."
+      },
+      {
+        "from": 94000,
+        "to": 95600,
+        "reason": "Порученная редактура README добавила пользу, примеры задач и отдельный вход в UI; измеренный маршрут 95459 bytes. Рабочий бюджет остаётся в согласованном диапазоне с потолком 96000.",
+        "reduction_considered": "README сокращён с первого варианта 11039 до 8770 bytes; подробности UI и CLI оставлены у прежних владельцев. Новые примеры и навигация нужны для понятного входа в проект.",
+        "next_review": "После следующих изменений входных документов или двух реальных задач с High Grade."
       }
     ],
     "review_trigger": "after two real tasks using the High Grade workflow"
