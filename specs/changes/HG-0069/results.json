@@ -1,5 +1,15 @@
 {
-  "acceptance": [],
+  "acceptance": [
+    {
+      "change_sha256": "9db581a8e6ccad848b936cceea0aa04d56bf0fb45aec23bd51ca9e2e8e4371dc",
+      "comment": "",
+      "decided_at": 1791540582,
+      "decided_by": "Автор проекта: сообщение 2026-10-09 «Выполняй активацию и всё остальное; принимаю»",
+      "decision": "accepted",
+      "inputs_sha256": "1d27c15dd766153f276ee0fed5e9feada02e13e3693bbc6699330d6fe33ad62a",
+      "verified_revision": "3fa48e947bb1b606266114ce285457a30ddac4e5"
+    }
+  ],
   "evidence": {
     "HG-0069-S1": {
       "captured_at": "2026-10-09T09:29:48.472684+00:00",
@@ -172,6 +182,16 @@
         },
         "recorded_at": 1791538835,
         "review": "88ae810217ae07b10033d8a03f9445c51e95b2e8a40f7b132314ccefbe5be667"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "518361d76f58f8a39ee51ae4bdcf8f9236dbb56f4ffbc5f83213b03025d52c07",
+          "HG-0069-S2": "a7fa19b2d1cdb1b0977a83bb3ca7b5d722906e897e3903e5275a39c3b78c6e8e",
+          "HG-0069-S3": "6ee0d6e9e060929fc2dce3a40ac3e33fb38f5648a617649117044456198bdd12",
+          "HG-0069-S4": "c53c1fa76fd705d90caf2542739e2cd2f1769533f77ac14b08e67c8e20560cc8"
+        },
+        "recorded_at": 1791540433,
+        "review": "ee07bb3bd7e99a49ce139e85e2e72dd2c9ad07ff270deddc39122652bdb6db7c"
       }
     ],
     "objects": {
@@ -468,6 +488,12 @@
         "report": "docs/releases/v0-3-10.md",
         "scenario": "HG-0069-S1",
         "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
+      },
+      "ee07bb3bd7e99a49ce139e85e2e72dd2c9ad07ff270deddc39122652bdb6db7c": {
+        "change_sha256": "9db581a8e6ccad848b936cceea0aa04d56bf0fb45aec23bd51ca9e2e8e4371dc",
+        "conclusion": "GO для локального кандидата0.3.11: реализация равна показанному3376598, Rust222/UI39 и прежние неизменённые Python67/Node10. Финальное ревью ожидает CI точного SHA Windows/Ubuntu и installed E2E.",
+        "reviewer": "acceptance_review",
+        "verdict": "no_go"
       },
       "f025354374135eae42f222f26dd2d10258bf8d9b66589f45e3e8bbc6489bfdc4": {
         "change_sha256": "a29993c1f1eb6f4d1f59ce8409fb3d2116f4909c260398e7409b970c609cac8f",
@@ -1345,9 +1371,9 @@
   },
   "review": {
     "change_sha256": "9db581a8e6ccad848b936cceea0aa04d56bf0fb45aec23bd51ca9e2e8e4371dc",
-    "conclusion": "GO для локального кандидата0.3.11: реализация равна показанному3376598, Rust222/UI39 и прежние неизменённые Python67/Node10. Финальное ревью ожидает CI точного SHA Windows/Ubuntu и installed E2E.",
+    "conclusion": "GO: реализация эквивалентна показанному3376598; CI37913102915 точного3fa48e9 successful Windows/Ubuntu. Native UI29/installed1 на каждой ОС,0skip/flaky/errors; Nextest Ubuntu222/Windows225. CAS/source inputs current, T6true, история и сохранность проверены. Будущие metadata/mainSHA проверяются отдельно; локальная активация ещё не выполнена.",
     "reviewer": "acceptance_review",
-    "verdict": "no_go"
+    "verdict": "go"
   },
   "runs": []
 }
