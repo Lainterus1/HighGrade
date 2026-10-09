@@ -35,9 +35,11 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 
 Пример [проверки до реализации](../kit/procedures/work.md#проверка-до-изменения-реализации): перед исправлением записи тест вызывает реальную CLI с некорректными данными и проверяет отказ и сохранность каталога. После начального провала и исправления повтори узкий тест; итоговые барьеры — по матрице ниже.
 
-Установите бинарник Nextest 0.9.146 в `target/highgrade/tools/bin` и добавьте каталог в PATH. Исходники могут требовать нового Rust.
+Установите Nextest 0.9.146 в `target/highgrade/tools/bin` и добавьте каталог в PATH. Исходники могут требовать нового Rust.
 
 `verify.py tests` сверяет входы до/после Nextest. `prepare` сверяет хеши, состав входов и отчёты завершённой попытки; после сбоя/прерывания повтори `tests`. mtime не доказывает актуальность, снимок — подлинность. После `spec-integrate` повтори `prepare`/`trace`/`verify`: эквивалентный каталог допускает reuse, иначе повтори `tests`; причина — `native_report_reason`.
+
+Отчёты tests/UI: [запуск, экспорт и очистка](EVIDENCE-STORAGE.md).
 
 ## Выбор проверок
 
@@ -48,7 +50,7 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 | Только результаты/метаданные каталога | spec-validate/check; prepare/trace/verify при изменении трассировки | Nextest лишь при изменении его значимых входов |
 | Сборка/активация | build-release.py из SHA, preview/apply одного кандидата, global-status | Ошибка — адресная диагностика и восстановление |
 
-Нормативный смысл — ревью, исполнение — наблюдение; внешний пилот требует поручения. Дополнительные обязательные роли не вводятся.
+Ревью проверяет смысл, наблюдение — исполнение. Внешний пилот требует поручения.
 
 Контракт — spec-list/read; причинные входы — [work](../kit/procedures/work.md#область-входов-доказательства), [примеры](evidence/current-requirements/2026-10-01/verification.md). Общий снимок их не заменяет.
 
@@ -92,6 +94,7 @@ Rust закреплён в `rust-toolchain.toml`. Для повторяемог�
 ```bash
 cargo fmt --all -- --check
 python -m unittest discover -s scripts/tests -v
+node --test ui/scripts/tests/*.test.mjs
 python scripts/render-skills.py --check
 python scripts/verify.py tests
 python scripts/verify.py specs

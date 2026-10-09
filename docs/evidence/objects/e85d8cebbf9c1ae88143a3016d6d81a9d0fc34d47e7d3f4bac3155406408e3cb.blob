@@ -1,0 +1,151 @@
+{
+  "config": {
+    "argv": [
+      "/home/lainterus/.local/share/mise/installs/node/26.8.2/bin/node",
+      "/home/lainterus/Projects/High Grade/ui/node_modules/.bin/playwright",
+      "test",
+      "--grep",
+      "HG70"
+    ],
+    "configFile": "/home/lainterus/Projects/High Grade/ui/playwright.config.ts",
+    "rootDir": "/home/lainterus/Projects/High Grade/ui/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/lainterus/Projects/High Grade/target/highgrade/ui-playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/lainterus/Projects/High Grade/ui/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../docs/evidence/result-acceptance/red-ui-host.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "edit.spec.ts",
+      "file": "edit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HG70 S1 S2 S4: result status needs no manual fields or new explanation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6892,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.decision .source-text').first()\nExpected substring: not \u001b[32m\"6ce324\"\u001b[39m\nReceived string: \u001b[31m\"Среда объединена: 45→3 контейнера. Проверенная редакция toth-local-\u001b[7m6ce324\u001b[27md2b9ad07c93a41b2356c0cad9074adb4545bbe50e34d98c4fd847055d8. Итог/проверки: docs/reports/container-consolidation/README.md; открыть https://localhost:18443 и файлы. Вход через Google не проверен; качество ИИ остаётся открытым.\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toContainText\" locator('.decision .source-text').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.decision .source-text').first()\u001b[22m\n\u001b[2m    14 × locator resolved to <p class=\"source-text\">Среда объединена: 45→3 контейнера. Проверенная ре…</p>\u001b[22m\n\u001b[2m       - unexpected value \"Среда объединена: 45→3 контейнера. Проверенная редакция toth-local-6ce324d2b9ad07c93a41b2356c0cad9074adb4545bbe50e34d98c4fd847055d8. Итог/проверки: docs/reports/container-consolidation/README.md; открыть https://localhost:18443 и файлы. Вход через Google не проверен; качество ИИ остаётся открытым.\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.decision .source-text').first()\nExpected substring: not \u001b[32m\"6ce324\"\u001b[39m\nReceived string: \u001b[31m\"Среда объединена: 45→3 контейнера. Проверенная редакция toth-local-\u001b[7m6ce324\u001b[27md2b9ad07c93a41b2356c0cad9074adb4545bbe50e34d98c4fd847055d8. Итог/проверки: docs/reports/container-consolidation/README.md; открыть https://localhost:18443 и файлы. Вход через Google не проверен; качество ИИ остаётся открытым.\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toContainText\" locator('.decision .source-text').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.decision .source-text').first()\u001b[22m\n\u001b[2m    14 × locator resolved to <p class=\"source-text\">Среда объединена: 45→3 контейнера. Проверенная ре…</p>\u001b[22m\n\u001b[2m       - unexpected value \"Среда объединена: 45→3 контейнера. Проверенная редакция toth-local-6ce324d2b9ad07c93a41b2356c0cad9074adb4545bbe50e34d98c4fd847055d8. Итог/проверки: docs/reports/container-consolidation/README.md; открыть https://localhost:18443 и файлы. Вход через Google не проверен; качество ИИ остаётся открытым.\"\u001b[22m\n\n    at /home/lainterus/Projects/High Grade/ui/tests/edit.spec.ts:70:193",
+                    "location": {
+                      "file": "/home/lainterus/Projects/High Grade/ui/tests/edit.spec.ts",
+                      "column": 193,
+                      "line": 70
+                    },
+                    "snippet": "  68 |  await select(page,'HG-0003');\n  69 |  const summary=page.locator('.decision .source-text').first();\n> 70 |  await expect(summary).toContainText('45→3');await expect(summary).toContainText('Google не проверен');await expect(summary).toContainText('https://localhost:18443');await expect(summary).not.toContainText('6ce324');await expect(summary).not.toContainText('docs/reports');\n     |                                                                                                                                                                                                 ^\n  71 |  await page.getByRole('button',{name:'Принять результат',exact:true}).click();\n  72 |  await expect(page.getByLabel('Ваше имя',{exact:true})).toHaveCount(0);await expect(page.getByLabel('Версия проверенного результата',{exact:true})).toHaveCount(0);\n  73 |  await page.getByLabel('Статус результата',{exact:true}).selectOption('accepted');await page.getByRole('button',{name:'Сохранить статус',exact:true}).click();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/lainterus/Projects/High Grade/ui/tests/edit.spec.ts",
+                        "column": 193,
+                        "line": 70
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.decision .source-text').first()\nExpected substring: not \u001b[32m\"6ce324\"\u001b[39m\nReceived string: \u001b[31m\"Среда объединена: 45→3 контейнера. Проверенная редакция toth-local-\u001b[7m6ce324\u001b[27md2b9ad07c93a41b2356c0cad9074adb4545bbe50e34d98c4fd847055d8. Итог/проверки: docs/reports/container-consolidation/README.md; открыть https://localhost:18443 и файлы. Вход через Google не проверен; качество ИИ остаётся открытым.\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toContainText\" locator('.decision .source-text').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.decision .source-text').first()\u001b[22m\n\u001b[2m    14 × locator resolved to <p class=\"source-text\">Среда объединена: 45→3 контейнера. Проверенная ре…</p>\u001b[22m\n\u001b[2m       - unexpected value \"Среда объединена: 45→3 контейнера. Проверенная редакция toth-local-6ce324d2b9ad07c93a41b2356c0cad9074adb4545bbe50e34d98c4fd847055d8. Итог/проверки: docs/reports/container-consolidation/README.md; открыть https://localhost:18443 и файлы. Вход через Google не проверен; качество ИИ остаётся открытым.\"\u001b[22m\n\n\n  68 |  await select(page,'HG-0003');\n  69 |  const summary=page.locator('.decision .source-text').first();\n> 70 |  await expect(summary).toContainText('45→3');await expect(summary).toContainText('Google не проверен');await expect(summary).toContainText('https://localhost:18443');await expect(summary).not.toContainText('6ce324');await expect(summary).not.toContainText('docs/reports');\n     |                                                                                                                                                                                                 ^\n  71 |  await page.getByRole('button',{name:'Принять результат',exact:true}).click();\n  72 |  await expect(page.getByLabel('Ваше имя',{exact:true})).toHaveCount(0);await expect(page.getByLabel('Версия проверенного результата',{exact:true})).toHaveCount(0);\n  73 |  await page.getByLabel('Статус результата',{exact:true}).selectOption('accepted');await page.getByRole('button',{name:'Сохранить статус',exact:true}).click();\n    at /home/lainterus/Projects/High Grade/ui/tests/edit.spec.ts:70:193"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T06:33:44.433Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/lainterus/Projects/High Grade/target/highgrade/ui-playwright/edit-HG70-S1-S2-S4-result--caa75-l-fields-or-new-explanation/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/lainterus/Projects/High Grade/ui/tests/edit.spec.ts",
+                    "column": 193,
+                    "line": 70
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "9ed70afab1bbfad1daab-31ba90cd135bc7a211e2",
+          "file": "edit.spec.ts",
+          "line": 62,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-09T06:33:44.020Z",
+    "duration": 7566.317,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

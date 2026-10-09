@@ -868,7 +868,7 @@ fn human_history_is_atomic_protected_and_bound_to_spec_and_implementation() {
     let a = item(&root, "HG-A", "accepted");
     let mut b = item(&root, "HG-B", "needs_changes");
     let before = fs::read(root.join(specs::STORE)).unwrap();
-    b["comment"] = json!("");
+    b["decided_by"] = json!("");
     assert!(
         decide(&root, vec![a.clone(), b])
             .unwrap_err()
@@ -880,7 +880,9 @@ fn human_history_is_atomic_protected_and_bound_to_spec_and_implementation() {
             .unwrap_err()
             .contains("DuplicateDecision")
     );
-    let b = item(&root, "HG-B", "needs_changes");
+    let mut b = item(&root, "HG-B", "needs_changes");
+    b.as_object_mut().unwrap().remove("comment");
+    b.as_object_mut().unwrap().remove("verified_revision");
     decide(&root, vec![a.clone(), b]).unwrap();
     assert_eq!(listing(&root)["summary"]["accepted"], 1);
     assert_eq!(listing(&root)["summary"]["needs_changes"], 1);

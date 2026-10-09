@@ -1,0 +1,22 @@
+   Compiling highgrade v0.3.10 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 1.32s
+     Running tests/attention_contracts.rs (target/debug/deps/attention_contracts-9e4f6635f81b19e7)
+
+running 1 test
+test result_status_without_build_id_keeps_snapshot_history_and_replay_gates ... FAILED
+
+failures:
+
+---- result_status_without_build_id_keeps_snapshot_history_and_replay_gates stdout ----
+
+thread 'result_status_without_build_id_keeps_snapshot_history_and_replay_gates' panicked at tests/attention_contracts.rs:605:36:
+called `Result::unwrap()` on an `Err` value: "DecisionIncomplete: author, verified revision or rejection comment"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    result_status_without_build_id_keeps_snapshot_history_and_replay_gates
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 13 filtered out; finished in 0.09s
+
+error: test failed, to rerun pass `--test attention_contracts`

@@ -448,7 +448,6 @@ fn result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement() 
     assert_eq!(sha(&p), before);
     assert_eq!(view["changes"].as_array().unwrap().len(), 3);
     request(&p, id, "return", "result");
-    response(&p, id, "return", "needs_changes", "").unwrap_err();
     mutate(&p,id,json!({"action":"respond","request_id":"return","content_sha256":row(&p,id)["content_sha256"],"decision":"needs_changes","author":"Автор","comment":"Исправить","verified_revision":"fixture-v1"})).unwrap();
     assert_eq!(row(&p, id)["category"], "in_work");
     request(&p, id, "stale", "result");
@@ -593,6 +592,185 @@ fn decide_result(p: &Path, id: &str, revision: &str) {
     .unwrap();
 }
 
+// highgrade: HG-0070-S1, HG-0070-S3
+#[test]
+fn result_status_without_build_id_keeps_snapshot_history_and_replay_gates() {
+    let p = setup();
+    let id = integrated_fixture(&p, 4);
+    request(&p, &id, "result", "result");
+    let value = json!({"action":"respond","request_id":"result",
+        "content_sha256":row(&p,&id)["content_sha256"],"decision":"accepted",
+        "author":"Локальный интерфейс","comment":""});
+    mutate(&p, &id, value.clone()).unwrap();
+    let store = specs::load(&p).unwrap().0;
+    let decision = store.changes[&id].acceptance.last().unwrap();
+    assert!(decision.verified_revision.is_empty());
+    assert!(!decision.change_sha256.is_empty() && !decision.inputs_sha256.is_empty());
+    assert_eq!(row(&p, &id)["category"], "completed");
+    let before = catalog_bytes(&p);
+    mutate(&p, &id, value.clone()).unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+    let mut different = value.clone();
+    different["verified_revision"] = json!("unrelated-build");
+    rejects_without_writes(&p, &id, different, "AttentionAlreadyAnswered");
+    request(&p, &id, "return", "result");
+    response(&p, &id, "return", "needs_changes", "").unwrap();
+    assert_eq!(row(&p, &id)["human"], "needs_changes");
+    assert_eq!(specs::load(&p).unwrap().0.changes[&id].acceptance.len(), 2);
+    fs::write(p.join(format!("{id}-logic.txt")), "changed input").unwrap();
+    rejects_without_writes(&p, &id, value, "DecisionStale");
+}
+
+// highgrade: HG-0070-S2
+#[test]
+fn saved_result_build_id_is_optional_and_reused_without_user_input() {
+    let p = setup();
+    let id = integrated_fixture(&p, 4);
+    let request = json!({"action":"request","request_id":"known","kind":"result",
+        "reason":"Уже проверенный результат","content_sha256":row(&p,&id)["content_sha256"],
+        "verified_revision":"fixture-build-known"});
+    mutate(&p, &id, request.clone()).unwrap();
+    let before = catalog_bytes(&p);
+    mutate(&p, &id, request.clone()).unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+    let mut changed = request;
+    changed["verified_revision"] = json!("other-build");
+    rejects_without_writes(&p, &id, changed, "AttentionRequestConflict");
+    response(&p, &id, "known", "accepted", "").unwrap();
+    let store = specs::load(&p).unwrap().0;
+    assert_eq!(
+        store.changes[&id]
+            .acceptance
+            .last()
+            .unwrap()
+            .verified_revision,
+        "fixture-build-known"
+    );
+    let before = catalog_bytes(&p);
+    response(&p, &id, "known", "accepted", "").unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+}
+
+fn direct_decision(p: &Path, id: &str) -> Value {
+    let loaded = call(p, "spec-read", &[("--id", id)]).unwrap();
+    let snapshot = loaded
+        .measurements
+        .iter()
+        .find(|v| v.get("change_sha256").is_some())
+        .unwrap();
+    json!({"id":id,"decision":"accepted","decided_by":"Автор",
+        "change_sha256":snapshot["change_sha256"],"inputs_sha256":snapshot["inputs_sha256"]})
+}
+
+fn known_result(p: &Path, id: &str, key: &str, version: &str) {
+    mutate(
+        p,
+        id,
+        json!({"action":"request","request_id":key,"kind":"result",
+        "reason":"Готовый результат","content_sha256":row(p,id)["content_sha256"],
+        "verified_revision":version}),
+    )
+    .unwrap();
+}
+
+// highgrade: HG-0070-S2, HG-0070-S3
+#[test]
+fn unknown_result_reuses_unique_saved_metadata_and_closes_the_same_snapshot() {
+    let p = setup();
+    let id = integrated_fixture(&p, 4);
+    request(&p, &id, "unknown", "result");
+    known_result(&p, &id, "known", "saved-v1");
+    response(&p, &id, "unknown", "accepted", "").unwrap();
+    let store = specs::load(&p).unwrap().0;
+    let c = &store.changes[&id];
+    assert_eq!(c.acceptance.last().unwrap().verified_revision, "saved-v1");
+    assert!(
+        c.attention
+            .as_ref()
+            .unwrap()
+            .requests
+            .iter()
+            .all(|r| r.response.is_some())
+    );
+    assert_eq!(row(&p, &id)["category"], "completed");
+    let before = catalog_bytes(&p);
+    response(&p, &id, "unknown", "accepted", "").unwrap();
+    response(&p, &id, "known", "accepted", "").unwrap();
+    assert_eq!(catalog_bytes(&p), before);
+    let mut different = result_response(&p, &id, "unknown", "other-build");
+    different["comment"] = json!("different");
+    rejects_without_writes(&p, &id, different, "AttentionAlreadyAnswered");
+}
+
+// highgrade: HG-0070-S2
+#[test]
+fn direct_decision_reuses_the_saved_build_and_closes_the_result_request() {
+    let p = setup();
+    let id = integrated_fixture(&p, 4);
+    known_result(&p, &id, "known", "saved-v1");
+    put(&p, json!({"decisions":[direct_decision(&p,&id)]}));
+    call(
+        &p,
+        "spec-decide",
+        &[("--expected", &sha(&p)), ("--input", "input.json")],
+    )
+    .unwrap();
+    let store = specs::load(&p).unwrap().0;
+    let c = &store.changes[&id];
+    assert_eq!(c.acceptance.last().unwrap().verified_revision, "saved-v1");
+    assert_eq!(
+        c.attention.as_ref().unwrap().requests[0]
+            .response
+            .as_ref()
+            .unwrap()
+            .verified_revision
+            .as_deref(),
+        Some("saved-v1")
+    );
+    assert_eq!(row(&p, &id)["category"], "completed");
+    known_result(&p, &id, "next", "saved-v2");
+    let mut decision = direct_decision(&p, &id);
+    decision["verified_revision"] = json!("different-build");
+    put(&p, json!({"decisions":[decision]}));
+    let before = catalog_bytes(&p);
+    let error = call(
+        &p,
+        "spec-decide",
+        &[("--expected", &sha(&p)), ("--input", "input.json")],
+    )
+    .unwrap_err();
+    assert!(error.contains("DecisionRevisionConflict"), "{error}");
+    assert_eq!(catalog_bytes(&p), before);
+}
+
+// highgrade: HG-0070-S2, HG-0070-S3
+#[test]
+fn ambiguous_saved_build_rejects_the_whole_direct_decision_batch() {
+    let p = setup();
+    let first = integrated_fixture(&p, 4);
+    let second = integrated_fixture(&p, 5);
+    known_result(&p, &first, "first", "saved-v1");
+    known_result(&p, &second, "second", "saved-v2");
+    known_result(&p, &second, "alternative", "saved-v3");
+    put(
+        &p,
+        json!({"decisions":[direct_decision(&p,&first),direct_decision(&p,&second)]}),
+    );
+    let before = catalog_bytes(&p);
+    let error = call(
+        &p,
+        "spec-decide",
+        &[("--expected", &sha(&p)), ("--input", "input.json")],
+    )
+    .unwrap_err();
+    assert!(error.contains("DecisionRevisionConflict"), "{error}");
+    assert_eq!(catalog_bytes(&p), before);
+    for id in [&first, &second] {
+        assert!(specs::load(&p).unwrap().0.changes[id].acceptance.is_empty());
+        assert_eq!(row(&p, id)["category"], "needs_decision");
+    }
+}
+
 // highgrade: HG-0052-S4, HG-0052-S6, HG-0052-S9, HG-0061-S5
 #[test]
 fn repeated_result_responses_preserve_exact_revision_and_recheck_gates() {
@@ -607,16 +785,7 @@ fn repeated_result_responses_preserve_exact_revision_and_recheck_gates() {
     for revision in ["", " ", "fixture-v2"] {
         let mut different = response.clone();
         different["verified_revision"] = json!(revision);
-        rejects_without_writes(
-            &p,
-            &id,
-            different,
-            if revision.trim().is_empty() {
-                "DecisionIncomplete"
-            } else {
-                "AttentionAlreadyAnswered"
-            },
-        );
+        rejects_without_writes(&p, &id, different, "AttentionAlreadyAnswered");
     }
     for (field, value) in [
         ("author", "Другой автор"),

@@ -129,7 +129,8 @@ def begin(root, name, owner=None):
         raise ValueError('Invalid run name')
     path = safe(root, f'{RUNS}/{name}-{uuid.uuid4().hex}')
     path.mkdir(parents=True)
-    state_write(path / 'run.json', {'schema': 1, 'state': 'active', 'owner_pid': owner or os.getpid()})
+    state_write(path / 'run.json', {'schema': 1, 'state': 'active', 'owner_pid': owner or os.getpid(),
+                                  'run_token': uuid.uuid4().hex})
     return path.relative_to(root).as_posix()
 
 
@@ -147,7 +148,7 @@ def finish(root, run, files):
     for name in files:
         source = safe(root, run + '/' + name)
         source.relative_to(path)
-        if source.name == 'run.json':
+        if source == path / 'run.json':
             raise ValueError('Run state is not evidence')
         selected.append(source.relative_to(root).as_posix())
     manifest = export(root, selected, state['result'])
@@ -293,12 +294,18 @@ def main():
         subprocess.run([sys.executable, str(Path(__file__).with_name('target-maintenance.py')), '--root', str(root), '--sweep', '--apply'], check=True)
         run = begin(root, args.name)
         state_path = safe(root, run + '/run.json')
+        token = json.loads(state_path.read_bytes())['run_token']
         with safe(root, run + '/run.log').open('wb') as log:
             job = windows_job() if os.name == 'nt' else None
-            process = subprocess.Popen(command, cwd=root, env={**os.environ, 'HIGHGRADE_RUN_DIR': str(root / run)}, stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name != 'nt')
+            process = subprocess.Popen(command, cwd=root, env={**os.environ, 'HIGHGRADE_RUN_DIR': str(root / run), 'HIGHGRADE_RUN_TOKEN': token}, stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name != 'nt')
             process.wait()
             descendants = job() > 1 if job else group_alive(process.pid)
         state = json.loads(state_path.read_bytes())
+        if not descendants:
+            # The command and its log are closed. The wrapper has no further
+            # scratch writes after publishing this state; its PID may be reused
+            # or belong to another PID namespace by the time finish is called.
+            state['owner_pid'] = None
         state.update(state='interrupted_descendants' if descendants else 'awaiting_export', result={'command': command, 'platform': platform.platform(), 'captured_at': datetime.now(timezone.utc).isoformat(), 'exit_code': process.returncode, 'outcome': 'unknown', 'observation': 'Process exit only; inspect selected source for scenario results'})
         state_write(state_path, state)
         value = {'run': run, 'exit_code': process.returncode, 'next': 'descendant processes remain; preserve scratch' if descendants else 'review outputs, then finish with explicitly selected files'}

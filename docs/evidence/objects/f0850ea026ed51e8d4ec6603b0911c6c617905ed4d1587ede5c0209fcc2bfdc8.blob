@@ -1,0 +1,26 @@
+.FF......
+======================================================================
+FAIL: test_foreign_active_context_cannot_replace_another_runs_reports (test_verify.VerifyOutputTests.test_foreign_active_context_cannot_replace_another_runs_reports) (token='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_verify.py", line 82, in test_foreign_active_context_cannot_replace_another_runs_reports
+    with self.assertRaisesRegex(ValueError, 'context'): verify.main()
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_foreign_active_context_cannot_replace_another_runs_reports (test_verify.VerifyOutputTests.test_foreign_active_context_cannot_replace_another_runs_reports)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_verify.py", line 84, in test_foreign_active_context_cannot_replace_another_runs_reports
+    self.assertEqual('preserve active report', report.read_text())
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'preserve active report' != 'unrelated report'
+- preserve active report
++ unrelated report
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.013s
+
+FAILED (failures=2)

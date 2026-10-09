@@ -1,4 +1,5 @@
 import {NativeDocument} from './NativeDocument';
+import {ResultStatusSelect} from './ResultStatusSelect';
 import type {ReadResult,Row} from '@/api/client';
 import {StatusBadge} from '@/components/StatusBadge';
 import {useEffect,useRef,useState} from 'react';
@@ -14,11 +15,11 @@ import wordmark from '@/assets/brand/wordmark.svg';
 
 export interface WorkspaceProps {state?:ScreenState; document?:SpecDocument;project?:{name:string;root:string}}
 const nav:{id:Category;label:string}[]=[{id:'all',label:'Все спецификации'},{id:'decision',label:'Нужно решение'},{id:'work',label:'В работе'},{id:'completed',label:'Завершены'}];
-const names={approval:'Согласовать требования',question:'Ответить на вопрос',acceptance:'Принять результат'};
+const names={approval:'Согласовать требования',question:'Ответить на вопрос',acceptance:'Изменить статус'};
 export function SpecWorkspace({state:initialState='approval',document:source=demoSpec,project={name:'MyCodex',root:'Projects/MyCodex'}}:WorkspaceProps) {
  const [state,setState]=useState(initialState);
  if(state==='long')source={...source,requirements:Array.from({length:9},(_,i)=>({...source.requirements[i%3],id:`HG-DEMO-LONG-R${i+1}`,scenarios:source.requirements[i%3].scenarios.map((s,j)=>({...s,id:`HG-DEMO-LONG-S${i+1}-${j+1}`}))}))};
- const [doc,setDoc]=useState(source);const [draft,setDraft]=useState(source);const [category,setCategory]=useState<Category>('decision');const [search,setSearch]=useState(state==='search-empty'?'ничего не найдено':'');const [editing,setEditing]=useState(['editing','conflict','validation'].includes(state));const [dirty,setDirty]=useState(false);const [menu,setMenu]=useState(false);const [width,setWidth]=useState(288);const [dialog,setDialog]=useState<'decision'|'discard'|null>(null);const [answer,setAnswer]=useState('');const [message,setMessage]=useState('');const [error,setError]=useState(state==='validation'?'Поле «Цель» не может быть пустым.':'');const [conflict,setConflict]=useState(state==='conflict');
+ const [doc,setDoc]=useState(source);const [draft,setDraft]=useState(source);const [category,setCategory]=useState<Category>('decision');const [search,setSearch]=useState(state==='search-empty'?'ничего не найдено':'');const [editing,setEditing]=useState(['editing','conflict','validation'].includes(state));const [dirty,setDirty]=useState(false);const [menu,setMenu]=useState(false);const [width,setWidth]=useState(288);const [dialog,setDialog]=useState<'decision'|'discard'|null>(null);const [answer,setAnswer]=useState('');const [message,setMessage]=useState('');const [resultStatus,setResultStatus]=useState<'accepted'|'needs_changes'>('accepted');const [resultComment,setResultComment]=useState('');const [error,setError]=useState(state==='validation'?'Поле «Цель» не может быть пустым.':'');const [conflict,setConflict]=useState(state==='conflict');
  const searchRef=useRef<HTMLInputElement>(null);const editRef=useRef<HTMLButtonElement>(null);
  useEffect(()=>{if(editing)document.getElementById('field-goal')?.focus()},[editing]);
  useEffect(()=>{const listener=(e:KeyboardEvent)=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();setMenu(true);searchRef.current?.focus()}};window.addEventListener('keydown',listener);return()=>window.removeEventListener('keydown',listener)},[]);
@@ -63,6 +64,12 @@ export function SpecWorkspace({state:initialState='approval',document:source=dem
     </>}
    </article>}
   </main>
-  <Dialog open={dialog!==null} onOpenChange={open=>{if(!open)setDialog(null)}}><DialogContent><DialogHeader><DialogTitle>{dialog==='discard'?'Отменить несохранённые правки?':names[decisionKind]}</DialogTitle><DialogDescription>{dialog==='discard'?'Восстановится текст до редактирования.':decisionKind==='approval'?'Вы соглашаетесь с содержанием требований. Это не разрешение выполнять работу и не запуск агента.':decisionKind==='acceptance'?'Приёмка относится к проверенной редакции результата. Здесь показана демонстрация этого решения.':'Ответ сохранится только для выбранного вопроса.'}</DialogDescription></DialogHeader>{dialog==='decision'&&decisionKind==='question'&&<div className="dialog-field"><label htmlFor="answer">Ваш ответ</label><Textarea id="answer" value={answer} onChange={e=>setAnswer(e.target.value)}/></div>}<p className="dialog-copy">Демонстрационные данные. Файлы проекта не изменяются.</p><DialogFooter><Button variant="outline" onClick={()=>setDialog(null)}>{dialog==='discard'?'Продолжить редактирование':'Отмена'}</Button><Button disabled={dialog==='decision'&&decisionKind==='question'&&!answer.trim()} onClick={()=>{if(dialog==='discard'){discard();return}setMessage('Решение записано в демонстрации. Реальная спецификация не изменена.');setDialog(null)}}>{dialog==='discard'?'Отменить правки':decisionKind==='question'?'Сохранить ответ':'Подтвердить'}</Button></DialogFooter></DialogContent></Dialog>
+  <Dialog open={dialog!==null} onOpenChange={open=>{if(!open)setDialog(null)}}><DialogContent>
+   <DialogHeader><DialogTitle>{dialog==='discard'?'Отменить несохранённые правки?':decisionKind==='acceptance'?'Изменить статус результата':names[decisionKind]}</DialogTitle><DialogDescription>{dialog==='discard'?'Восстановится текст до редактирования.':decisionKind==='approval'?'Вы соглашаетесь с содержанием требований. Это не разрешение выполнять работу и не запуск агента.':decisionKind==='acceptance'?'Выберите статус показанного результата. Комментарий можно оставить пустым.':'Ответ сохранится только для выбранного вопроса.'}</DialogDescription></DialogHeader>
+   {dialog==='decision'&&decisionKind==='acceptance'&&<><ResultStatusSelect value={resultStatus} onChange={setResultStatus}/><label htmlFor="result-comment">Комментарий</label><Textarea id="result-comment" value={resultComment} onChange={event=>setResultComment(event.target.value)}/></>}
+   {dialog==='decision'&&decisionKind==='question'&&<div className="dialog-field"><label htmlFor="answer">Ваш ответ</label><Textarea id="answer" value={answer} onChange={e=>setAnswer(e.target.value)}/></div>}
+   <p className="dialog-copy">Демонстрационные данные. Файлы проекта не изменяются.</p>
+   <DialogFooter><Button variant="outline" onClick={()=>setDialog(null)}>{dialog==='discard'?'Продолжить редактирование':'Отмена'}</Button><Button disabled={dialog==='decision'&&decisionKind==='question'&&!answer.trim()} onClick={()=>{if(dialog==='discard'){discard();return}setMessage('Решение записано в демонстрации. Реальная спецификация не изменена.');setDialog(null)}}>{dialog==='discard'?'Отменить правки':decisionKind==='question'?'Сохранить ответ':decisionKind==='acceptance'?'Сохранить статус':'Подтвердить'}</Button></DialogFooter>
+  </DialogContent></Dialog>
  </div>;
 }

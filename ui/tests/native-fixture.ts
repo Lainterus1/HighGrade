@@ -12,7 +12,7 @@ export function fixture(executable=exe){
  const edit=(id:string,value:unknown)=>cli('spec-edit','--id',id,'--expected',sha(),'--input',input(value));
  const row=(id:string)=>cli('spec-ui').changes.find((r:any)=>r.id===id);
  const attention=(id:string,value:unknown)=>cli('spec-attention','--id',id,'--expected',sha(),'--input',input(value));
- const handoff=(id:string,kind:string,key=kind)=>attention(id,{action:'request',request_id:key,kind,reason:kind==='question'?'Как сохранить правки?':kind==='requirements'?'Проверьте требования':'Проверьте результат',content_sha256:row(id).content_sha256});
+ const handoff=(id:string,kind:string,key=kind,verified_revision?:string)=>attention(id,{action:'request',request_id:key,kind,verified_revision,reason:kind==='question'?'Как сохранить правки?':kind==='requirements'?'Проверьте требования':'Проверьте результат',content_sha256:row(id).content_sha256});
  function ready(id:string){
   const c=cli('spec-read','--id',id).change;edit(id,{tasks:c.tasks.map((t:any)=>({...t,done:true}))});
   writeFileSync(path.join(root,'proof.txt'),'Actual isolated fixture for interface contract');
@@ -26,7 +26,7 @@ export function fixture(executable=exe){
   edit(id,{goal:`Цель ${i}`,rationale:`Причина ${i}`,scope:'Только текущий проект',tasks:[{id:`${id}-T1`,description:'Выполнить условие',done:false}],operations:[{action:'add',requirement:{id:`${id}-R1`,title:`Требование ${i}`,statement:`Условие ${i}`,scenarios:[{id:`${id}-S1`,given:'Текст документа',when:'Пользователь читает',then:'Все поля видны',verification:'Сверка с источником'}]}}]});
  }
  cli('spec-tag-set','--id','interface','--title','Интерфейс','--description','Тема','--expected',sha());edit('HG-0002',{tags:['interface']});
- handoff('HG-0001','question');handoff('HG-0002','requirements');ready('HG-0003');handoff('HG-0003','result');ready('HG-0004');handoff('HG-0004','result');
+ handoff('HG-0001','question');handoff('HG-0002','requirements');ready('HG-0003');handoff('HG-0003','result','result','fixture-build-v1');ready('HG-0004');handoff('HG-0004','result');
  const r=row('HG-0004');
  attention('HG-0004',{action:'respond',request_id:'result',content_sha256:r.content_sha256,decision:'accepted',author:'Fixture user',comment:'Test acceptance',verified_revision:'fixture-build-v1'});
  cli('spec-abandon','--id','HG-0007','--expected',sha(),'--reason','Отменённый пример');

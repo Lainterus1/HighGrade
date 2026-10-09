@@ -2,8 +2,8 @@ import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import {readFileSync} from 'node:fs';
 const screen=(name:string)=>`/iframe.html?id=${encodeURIComponent('спецификации-рабочее-пространство--'+name)}&viewMode=story`;
-test('reading, font and real visual reference',async({page})=>{
- const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));const external:string[]=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:6006')&&!r.url().startsWith('data:'))external.push(r.url())});
+test('reading, font and real visual reference',async({page,baseURL})=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));const external:string[]=[];page.on('request',r=>{if(new URL(r.url()).origin!==new URL(baseURL!).origin&&!r.url().startsWith('data:'))external.push(r.url())});
  await page.goto(screen('approval'));await expect(page.getByRole('heading',{name:'Интерфейс спецификаций',exact:true})).toBeVisible();await page.evaluate(()=>document.fonts.ready);expect(await page.locator('.document').evaluate(e=>!!(e.querySelector('.eyebrow')!.compareDocumentPosition(e.querySelector('h1')!) & Node.DOCUMENT_POSITION_FOLLOWING))).toBeTruthy();
  expect(await page.evaluate(()=>document.fonts.check('16px Manrope','Требования HighGrade'))).toBeTruthy();
  expect(await page.evaluate(()=>[...document.fonts].some(f=>f.family==='Manrope'&&f.status==='loaded'))).toBeTruthy();
@@ -31,7 +31,7 @@ test('narrow and 200 percent layout preserve controls and focus',async({page})=>
 test('selecting a specification changes its content and required action',async({page})=>{
  await page.goto(screen('approval'));
  await page.locator('.spec-row').filter({hasText:'HG-DEMO-02'}).click();
- await expect(page.getByRole('button',{name:'Принять результат',exact:true})).toBeVisible();
+ await expect(page.getByRole('button',{name:'Изменить статус',exact:true})).toBeVisible();
  await expect(page.getByRole('heading',{name:'Готово, когда',exact:true})).toBeVisible();
  const secondGoal=await page.locator('.section').first().textContent();
  await page.locator('.spec-row').filter({hasText:'HG-DEMO-03'}).click();

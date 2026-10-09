@@ -106,16 +106,30 @@ class EvidenceStorageTests(unittest.TestCase):
         self.assertEqual([],m.sweep(self.root,True)['removed'])
         self.assertTrue((self.root/run/'result.log').exists())
 
+    def test_nested_native_run_record_is_evidence_but_wrapper_state_is_not(self):
+        run = self.completed()
+        folder = self.root / run / 'nextest'; folder.mkdir()
+        (folder / 'run.json').write_text('{"tool":"rust-nextest"}')
+        with self.assertRaisesRegex(ValueError, 'state is not evidence'):
+            m.seal(self.root, run, ['run.json'])
+        manifest = m.seal(self.root, run, ['nextest/run.json'])
+        self.assertEqual(1, len(m.verify(self.root, manifest)['files']))
+        self.assertEqual([run], m.sweep(self.root, True)['removed'])
+
     def test_real_wrapper_preserves_exit_code_and_finishes_selected_report(self):
         script=Path(m.__file__)
-        command=[sys.executable,str(script),'--root',str(self.root),'run','--name','real','--',sys.executable,'-c','print("observation"); raise SystemExit(3)']
+        code='import os,json,pathlib; state=json.loads((pathlib.Path(os.environ["HIGHGRADE_RUN_DIR"])/"run.json").read_text()); print("bound",os.environ["HIGHGRADE_RUN_TOKEN"]==state["run_token"]); raise SystemExit(3)'
+        command=[sys.executable,str(script),'--root',str(self.root),'run','--name','real','--',sys.executable,'-c',code]
         result=subprocess.run(command,capture_output=True,text=True)
         self.assertEqual(3,result.returncode,result.stderr)
         value=json.loads(result.stdout.splitlines()[-1]); run=value['run']
         state=json.loads((self.root/run/'run.json').read_bytes())
         self.assertEqual('awaiting_export',state['state'])
+        self.assertIsNone(state['owner_pid'])
+        self.assertEqual('bound True', (self.root/run/'run.log').read_text().strip())
         name=m.seal(self.root,run,['run.log'])
         self.assertEqual(3,m.verify(self.root,name)['metadata']['exit_code'])
+        self.assertNotIn('run_token',m.verify(self.root,name)['metadata'])
         self.assertEqual([run],m.sweep(self.root,True)['removed'])
 
     def test_background_descendant_is_not_marked_ready_for_collection(self):
