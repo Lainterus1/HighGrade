@@ -1,0 +1,27 @@
+test_background_descendant_is_not_marked_ready_for_collection (test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok
+test_catalog_reference_blocks_deleting_exported_source (test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok
+test_damaged_export_blocks_collection_and_links_never_export (test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok
+test_explicit_discard_keeps_referenced_run_but_exports_nothing (test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok
+test_export_is_selected_idempotent_and_detects_corruption (test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok
+test_interruption_after_export_before_inventory_preserves_scratch (test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok
+test_manifest_corruption_and_live_owner_refuse_finish (test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok
+test_nested_native_run_record_is_evidence_but_wrapper_state_is_not (test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ERROR
+test_real_wrapper_preserves_exit_code_and_finishes_selected_report (test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok
+test_sweep_preserves_active_unknown_changed_and_unexported (test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok
+
+======================================================================
+ERROR: test_nested_native_run_record_is_evidence_but_wrapper_state_is_not (test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_evidence_store.py", line 115, in test_nested_native_run_record_is_evidence_but_wrapper_state_is_not
+    manifest = m.seal(self.root, run, ['nextest/run.json'])
+  File "/home/lainterus/Projects/High Grade/scripts/evidence_store.py", line 247, in seal
+    manifest = finish(root, run, files)
+  File "/home/lainterus/Projects/High Grade/scripts/evidence_store.py", line 151, in finish
+    raise ValueError('Run state is not evidence')
+ValueError: Run state is not evidence
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.267s
+
+FAILED (errors=1)

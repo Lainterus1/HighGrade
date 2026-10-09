@@ -94,8 +94,8 @@ jobs:
         env:
           HIGHGRADE_UI_REPORT: ${{ github.workspace }}/target/highgrade/reports/native-playwright.json
         run: npx playwright test native.spec.ts decision.spec.ts edit.spec.ts --fail-on-flaky-tests --output ../target/highgrade/ui-playwright/native
-      - name: Check required installed fixture guard
-        run: node --test ui/scripts/tests/installed-config.test.mjs
+      - name: Check UI report routing and fixture guards
+        run: node --test ui/scripts/tests/*.test.mjs
 
       - name: Validate active specifications
         run: python scripts/verify.py specs

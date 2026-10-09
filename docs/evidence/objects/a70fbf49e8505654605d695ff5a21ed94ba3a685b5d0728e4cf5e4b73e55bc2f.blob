@@ -1,0 +1,35 @@
+test_default_test_command_enters_the_owned_run_wrapper (test_verify.VerifyOutputTests.test_default_test_command_enters_the_owned_run_wrapper) ... FAIL
+test_headroom_uses_cargo_target_and_accepts_exact_boundary (test_verify.VerifyOutputTests.test_headroom_uses_cargo_target_and_accepts_exact_boundary) ... ok
+test_inspect_report_round_trips_on_windows_legacy_console (test_verify.VerifyOutputTests.test_inspect_report_round_trips_on_windows_legacy_console) ... ok
+test_low_configured_target_refuses_even_when_project_has_space (test_verify.VerifyOutputTests.test_low_configured_target_refuses_even_when_project_has_space) ... ok
+test_low_space_refuses_before_capture_or_report_replacement (test_verify.VerifyOutputTests.test_low_space_refuses_before_capture_or_report_replacement) ... ok
+test_managed_test_attempt_keeps_native_outputs_even_on_failure (test_verify.VerifyOutputTests.test_managed_test_attempt_keeps_native_outputs_even_on_failure) ... ERROR
+
+======================================================================
+ERROR: test_managed_test_attempt_keeps_native_outputs_even_on_failure (test_verify.VerifyOutputTests.test_managed_test_attempt_keeps_native_outputs_even_on_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_verify.py", line 51, in test_managed_test_attempt_keeps_native_outputs_even_on_failure
+    self.assertEqual((reports/name).read_bytes(),(owned/'nextest'/name).read_bytes())
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 777, in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpf3rxdntb/target/highgrade/runs/rust-fixture/nextest/attempt.json'
+
+======================================================================
+FAIL: test_default_test_command_enters_the_owned_run_wrapper (test_verify.VerifyOutputTests.test_default_test_command_enters_the_owned_run_wrapper)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_verify.py", line 26, in test_default_test_command_enters_the_owned_run_wrapper
+    self.assertIn('evidence_store.py', str(command[1]))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'evidence_store.py' not found in 'scripts/source-scenarios.mjs'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.008s
+
+FAILED (failures=1, errors=1)

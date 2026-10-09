@@ -1,0 +1,24 @@
+   Compiling highgrade v0.3.10 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 1.15s
+     Running tests/attention_contracts.rs (target/debug/deps/attention_contracts-9e4f6635f81b19e7)
+
+running 1 test
+test unknown_result_reuses_unique_saved_metadata_and_closes_the_same_snapshot ... FAILED
+
+failures:
+
+---- unknown_result_reuses_unique_saved_metadata_and_closes_the_same_snapshot stdout ----
+
+thread 'unknown_result_reuses_unique_saved_metadata_and_closes_the_same_snapshot' panicked at tests/attention_contracts.rs:686:5:
+assertion `left == right` failed
+  left: ""
+ right: "saved-v1"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    unknown_result_reuses_unique_saved_metadata_and_closes_the_same_snapshot
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 16 filtered out; finished in 0.11s
+
+error: test failed, to rerun pass `--test attention_contracts`

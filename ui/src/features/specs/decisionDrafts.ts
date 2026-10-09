@@ -4,7 +4,7 @@ export interface DecisionDraft {
  revision:string;
  author:string;
  comment:string;
- verifiedRevision:string;
+ status:'accepted'|'needs_changes';
  uncertain:boolean;
  error:string;
 }
@@ -17,13 +17,13 @@ const warnBeforeUnload=(event:BeforeUnloadEvent)=>{event.preventDefault();event.
 export const decisionDraftKey=(session:Session,read:ReadResult,request:Handoff)=>
  JSON.stringify([session.project.root,read.change.id,request.id,request.kind]);
 export const decisionRevision=(read:ReadResult,request:Handoff)=>
- JSON.stringify([request.kind,request.reason,request.at,request.content_sha256,request.change_sha256,request.inputs_sha256,read.change_sha256,read.inputs_sha256]);
+ JSON.stringify([request.kind,request.reason,request.at,request.content_sha256,request.change_sha256,request.inputs_sha256,request.verified_revision,read.change_sha256,read.inputs_sha256]);
 
 export function readDecisionDraft(key:string,revision:string):DecisionDraft {
  const saved=drafts.get(key);
- if(!saved)return {revision,author:'',comment:'',verifiedRevision:'',uncertain:false,error:''};
+ if(!saved)return {revision,author:'',comment:'',status:'accepted',uncertain:false,error:''};
  if(saved.revision===revision)return saved;
- return {...saved,revision,verifiedRevision:'',error:saved.verifiedRevision?'Редакция изменилась. Укажите проверенную версию заново.':saved.error};
+ return {...saved,revision,error:'Редакция изменилась. Проверьте актуальный результат перед сохранением.'};
 }
 
 function updateWarning(){
@@ -32,7 +32,7 @@ function updateWarning(){
  else if(!drafts.size&&warningInstalled){window.removeEventListener('beforeunload',warnBeforeUnload);warningInstalled=false}
 }
 export function writeDecisionDraft(key:string,draft:DecisionDraft){
- if(draft.author||draft.comment||draft.verifiedRevision||draft.uncertain)drafts.set(key,draft);
+ if(draft.author||draft.comment||draft.status==='needs_changes'||draft.uncertain)drafts.set(key,draft);
  else drafts.delete(key);
  updateWarning();
 }

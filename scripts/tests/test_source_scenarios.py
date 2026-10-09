@@ -337,12 +337,16 @@ syncBuiltinESMExports();
         self.assertIn('changed or superseded', self.run_step('verify', False)['message'])
 
     def test_real_failed_and_interrupted_processes_leave_attempt_incomplete(self):
-        wrapper = self.write('wrapper.py', f"""import importlib.util, pathlib, sys
+        wrapper = self.write('wrapper.py', f"""import importlib.util, pathlib, sys, os, json
 spec=importlib.util.spec_from_file_location('verify', {str(ROOT / 'scripts/verify.py')!r})
 verify=importlib.util.module_from_spec(spec); spec.loader.exec_module(verify)
 verify.ROOT=pathlib.Path({str(self.root)!r}); verify.REPORTS=verify.ROOT/'target/nextest/highgrade'
 # Disk preflight has its own tests; this fixture deliberately has no Cargo project.
 verify.storage_preflight=lambda: None
+owned=verify.ROOT/'target/highgrade/runs/fixture-process'; owned.mkdir(parents=True,exist_ok=True)
+(owned/'run.json').write_text(json.dumps({{'schema':1,'state':'active','owner_pid':os.getpid(),'run_token':'fixture'}}))
+os.environ['HIGHGRADE_RUN_DIR']=str(owned)
+os.environ['HIGHGRADE_RUN_TOKEN']='fixture'
 original=verify.run
 def run(args, output=None, codes=(0,)):
     if args[0]=='node': args[1]={str(CHECKER)!r}
@@ -392,11 +396,15 @@ else:
 
     def test_verify_orchestration_completes_only_after_success(self):
         with patch('sys.argv', ['verify.py', 'tests']), patch.object(verify, 'storage_preflight'), \
+                patch.dict(os.environ, {'HIGHGRADE_RUN_DIR':'fixture'}), \
+                patch.object(verify, 'managed_run', return_value=None), \
                 patch.object(verify, 'run') as run:
             verify.main()
         self.assertEqual([call.args[0][2] for call in run.call_args_list], ['--sweep', 'capture', 'list', 'run', 'complete'])
         for error in [SystemExit(1), KeyboardInterrupt(), subprocess.TimeoutExpired('cargo', 1)]:
             with self.subTest(error=type(error).__name__), patch('sys.argv', ['verify.py', 'tests']), \
+                    patch.dict(os.environ, {'HIGHGRADE_RUN_DIR':'fixture'}), \
+                    patch.object(verify, 'managed_run', return_value=None), \
                     patch.object(verify, 'storage_preflight'), \
                     patch.object(verify, 'run', side_effect=[None, None, None, error]) as run:
                 with self.assertRaises(type(error)):

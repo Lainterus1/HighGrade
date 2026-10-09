@@ -29,6 +29,8 @@ pub struct Request {
     pub content_sha256: String,
     pub change_sha256: String,
     pub inputs_sha256: String,
+    #[serde(default, skip_serializing_if = "String::is_empty")]
+    pub verified_revision: String,
     pub at: u64,
     pub response: Option<Response>,
 }
@@ -46,6 +48,8 @@ pub(super) enum Input {
         kind: Kind,
         reason: String,
         content_sha256: String,
+        #[serde(default)]
+        verified_revision: String,
     },
     Respond {
         request_id: String,
@@ -89,6 +93,7 @@ pub(super) fn validate(s: &Store) -> Result<()> {
                     || r.reason.trim().is_empty()
                     || !ids.insert(&r.id)
                     || !a.snapshots.contains_key(&r.content_sha256)
+                    || (!r.verified_revision.is_empty() && r.kind != Kind::Result)
                 {
                     return Err("AttentionCorrupt: invalid request".into());
                 }
@@ -104,7 +109,7 @@ pub(super) fn validate(s: &Store) -> Result<()> {
                     )?;
                     if let Some(revision) = &response.verified_revision {
                         if r.kind != Kind::Result
-                            || revision.trim().is_empty()
+                            || (!r.verified_revision.is_empty() && r.verified_revision != *revision)
                             || !result_response_matches(c, r, response, revision)
                         {
                             return Err("AttentionCorrupt: response verified revision".into());
@@ -118,7 +123,8 @@ pub(super) fn validate(s: &Store) -> Result<()> {
 }
 fn valid_response(kind: &Kind, decision: &str, author: &str, comment: &str) -> Result<()> {
     if author.trim().is_empty()
-        || (matches!(decision, "answer" | "needs_changes") && comment.trim().is_empty())
+        || ((decision == "answer" || (decision == "needs_changes" && *kind != Kind::Result))
+            && comment.trim().is_empty())
         || !match kind {
             Kind::Question => decision == "answer",
             _ => matches!(decision, "accepted" | "needs_changes"),
@@ -156,6 +162,37 @@ fn result_response_matches(
             && decisions.all(|d| d.verified_revision == first.verified_revision)
     })
 }
+pub(super) fn saved_result_revision(
+    c: &Change,
+    revision: &str,
+    inputs: &str,
+    supplied: &str,
+) -> Result<String> {
+    let versions: BTreeSet<&str> = c
+        .attention
+        .iter()
+        .flat_map(|a| &a.requests)
+        .filter(|r| {
+            r.kind == Kind::Result
+                && r.response.is_none()
+                && r.change_sha256 == revision
+                && r.inputs_sha256 == inputs
+                && !r.verified_revision.is_empty()
+        })
+        .map(|r| r.verified_revision.as_str())
+        .collect();
+    let supplied = supplied.trim();
+    if supplied.is_empty() {
+        if versions.len() > 1 {
+            return Err("DecisionRevisionConflict: ambiguous saved result versions".into());
+        }
+        Ok(versions.first().copied().unwrap_or("").into())
+    } else if !versions.is_empty() && !versions.contains(supplied) {
+        Err("DecisionRevisionConflict: saved result version".into())
+    } else {
+        Ok(supplied.into())
+    }
+}
 pub(super) fn record_result(
     c: &mut Change,
     revision: &str,
@@ -178,6 +215,7 @@ pub(super) fn record_result(
                 && r.response.is_none()
                 && r.change_sha256 == revision
                 && r.inputs_sha256 == inputs
+                && (r.verified_revision.is_empty() || r.verified_revision == verified_revision)
             {
                 sequence = sequence
                     .checked_add(1)
@@ -214,7 +252,12 @@ pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -
             kind,
             reason,
             content_sha256,
+            verified_revision,
         } => {
+            let verified_revision = verified_revision.trim().to_string();
+            if kind != Kind::Result && !verified_revision.is_empty() {
+                return Err("AttentionRequestInvalid: build ID is result-only".into());
+            }
             if content_sha256 != sha {
                 return Err("DecisionStale: content".into());
             }
@@ -226,7 +269,10 @@ pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -
                 .as_ref()
                 .and_then(|a| a.requests.iter().find(|r| r.id == request_id));
             if previous.is_some_and(|old| {
-                old.kind != kind || old.reason != reason || old.content_sha256 != sha
+                old.kind != kind
+                    || old.reason != reason
+                    || old.content_sha256 != sha
+                    || old.verified_revision != verified_revision
             }) {
                 return Err("AttentionRequestConflict".into());
             }
@@ -262,6 +308,7 @@ pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -
                 content_sha256: sha.clone(),
                 change_sha256: revision,
                 inputs_sha256: inputs,
+                verified_revision,
                 at,
                 response: None,
             };
@@ -292,11 +339,48 @@ pub(super) fn mutate_value(root: &Path, s: &mut Store, id: &str, value: Value) -
                 return Err("DecisionStale: content".into());
             }
             valid_response(&r.kind, &decision, &author, &comment)?;
+            let verified_revision = if r.kind == Kind::Result && verified_revision.trim().is_empty()
+            {
+                if !r.verified_revision.is_empty() {
+                    r.verified_revision.clone()
+                } else if let Some(previous) = &r.response {
+                    // Reuse metadata from a known handoff answered together with
+                    // this unknown handoff. Do not infer a manually supplied ID
+                    // from the decision alone or from a newer open request.
+                    c.attention
+                        .iter()
+                        .flat_map(|a| &a.requests)
+                        .find(|known| {
+                            known.kind == Kind::Result
+                                && !known.verified_revision.is_empty()
+                                && known.change_sha256 == r.change_sha256
+                                && known.inputs_sha256 == r.inputs_sha256
+                                && known.response.as_ref().is_some_and(|answer| {
+                                    answer.at == previous.at
+                                        && answer.author == previous.author
+                                        && answer.comment == previous.comment
+                                        && answer.decision == previous.decision
+                                        && answer.verified_revision == previous.verified_revision
+                                        && answer.verified_revision.as_deref()
+                                            == Some(known.verified_revision.as_str())
+                                })
+                        })
+                        .map(|known| known.verified_revision.clone())
+                        .unwrap_or_default()
+                } else {
+                    saved_result_revision(c, &r.change_sha256, &r.inputs_sha256, "")?
+                }
+            } else {
+                verified_revision.trim().to_string()
+            };
+            if r.kind == Kind::Result
+                && !r.verified_revision.is_empty()
+                && r.verified_revision != verified_revision
+            {
+                return Err("DecisionRevisionConflict: saved result version".into());
+            }
             if let Some(previous) = &r.response {
                 if r.kind == Kind::Result {
-                    if verified_revision.trim().is_empty() {
-                        return Err("DecisionIncomplete: verified revision".into());
-                    }
                     if r.change_sha256 != progress::revision(c)
                         || r.inputs_sha256 != progress::inputs_hash(root, c)?
                     {

@@ -2,7 +2,7 @@ import type {Requirement} from './types';
 
 export const API_VERSION='2';
 export type QueueCategory='needs_decision'|'in_work'|'completed'|'historical'|'cancelled'|'unknown';
-export interface Handoff {id:string;kind:'question'|'requirements'|'result';reason:string;content_sha256:string;change_sha256:string;inputs_sha256:string;at:number;response:null|{decision:string;author:string;comment:string;at:number;sequence:number}}
+export interface Handoff {id:string;kind:'question'|'requirements'|'result';reason:string;content_sha256:string;change_sha256:string;inputs_sha256:string;verified_revision?:string;at:number;response:null|{decision:string;author:string;comment:string;at:number;sequence:number}}
 export interface Row {id:string;title:string;tags:string[];created_at:number;category:QueueCategory;content_sha256:string;editable:boolean;integrated:boolean;technical_ready:boolean;human:string;requirements_agreement:string;primary_action:Handoff|null;requests:Handoff[];history:Handoff[];diagnostic:string|null;changes_since_agreement:null|{field:string;before:unknown;after:unknown}[]}
 export interface Projection {store_sha256:string;changes:Row[];counts:Record<QueueCategory,number>;excluded_count:number;excluded:{id:string;reason:string}[]}
 export type Operation={action:'add'|'modify';requirement:Requirement}|{action:'remove';id:string;reason:string};

@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
-test('HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 percent',async({page})=>{
- const external:string[]=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:6006')&&!r.url().startsWith('data:'))external.push(r.url())});
+test('HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 percent',async({page,baseURL})=>{
+ const external:string[]=[];page.on('request',r=>{if(new URL(r.url()).origin!==new URL(baseURL!).origin&&!r.url().startsWith('data:'))external.push(r.url())});
  await page.goto('/iframe.html?id='+encodeURIComponent('спецификации-рабочее-пространство--approval')+'&viewMode=story');
  const nav=page.locator('.nav button');await expect(nav).toHaveCount(4);
  for(let i=0;i<4;i++){

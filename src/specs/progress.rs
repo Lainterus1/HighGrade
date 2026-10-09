@@ -235,7 +235,9 @@ struct DecisionItem {
     decided_by: String,
     change_sha256: String,
     inputs_sha256: String,
+    #[serde(default)]
     verified_revision: String,
+    #[serde(default)]
     comment: String,
 }
 pub(super) fn inputs_hash(root: &Path, c: &Change) -> Result<String> {
@@ -278,7 +280,18 @@ pub(super) fn human_state(root: &Path, c: &Change, technical_ready: bool) -> &'s
     }
 }
 pub(super) fn decide(root: &Path, s: &mut Store, input: &Path) -> Result<()> {
-    let v: DecisionInput = decode(&paths::read_limited(input, LIMIT)?, "/decisions")?;
+    let mut v: DecisionInput = decode(&paths::read_limited(input, LIMIT)?, "/decisions")?;
+    // A batch selects a specification, not an individual handoff. Reuse only
+    // unambiguous metadata for that exact snapshot before mutating any item.
+    for item in &mut v.decisions {
+        let c = s.changes.get(&item.id).ok_or("ChangeMissing: decision")?;
+        item.verified_revision = attention::saved_result_revision(
+            c,
+            &item.change_sha256,
+            &item.inputs_sha256,
+            &item.verified_revision,
+        )?;
+    }
     decide_input(root, s, v)
 }
 pub(super) fn decide_value(root: &Path, s: &mut Store, value: Value) -> Result<()> {
@@ -303,13 +316,8 @@ fn decide_input(root: &Path, s: &mut Store, v: DecisionInput) -> Result<()> {
         if c.abandoned_reason.is_some() {
             return Err("AbandonedChange: decision".into());
         }
-        if item.decided_by.trim().is_empty()
-            || item.verified_revision.trim().is_empty()
-            || (item.decision == HumanVerdict::NeedsChanges && item.comment.trim().is_empty())
-        {
-            return Err(
-                "DecisionIncomplete: author, verified revision or rejection comment".into(),
-            );
+        if item.decided_by.trim().is_empty() {
+            return Err("DecisionIncomplete: author or source".into());
         }
         if item.change_sha256 != revision(c) || item.inputs_sha256 != inputs_hash(root, c)? {
             return Err("DecisionStale: reviewed specification or inputs changed".into());
