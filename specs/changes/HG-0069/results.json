@@ -2,13 +2,13 @@
   "acceptance": [],
   "evidence": {
     "HG-0069-S1": {
-      "captured_at": "2026-10-09T09:14:57.498352+00:00",
+      "captured_at": "2026-10-09T09:29:48.472684+00:00",
       "command": "PATH=target/highgrade/tools/bin:$PATH python3 scripts/verify.py tests",
-      "input_manifest_sha256": "8763ba608c998d8f5ef10d74ee36847812239e52242609de6aee2815a3a7d862",
+      "input_manifest_sha256": "1d81a12dee7bbc03adba78c39285f4e06d9017cc05ce7cebe551fdb5a000ba47",
       "method": "native_report",
       "observation": "evidence_cards_are_compact_preserve_outcome_and_detect_changed_report прошёл в полном Nextest; 222 passed.",
       "outcome": "passed",
-      "report": "docs/evidence/objects/0b7093ac9abbf57752c1d2a0488b9ffe01d6672e15687269eb7da73b3f024d94.blob",
+      "report": "docs/evidence/objects/85a00250048e659533510b0098b3e3b44439d2452a544f3bcc183c1bde25d9be.blob",
       "scenario": "HG-0069-S1",
       "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
     },
@@ -152,6 +152,26 @@
         },
         "recorded_at": 1791537602,
         "review": "824783976d01639d42d04665983605478100bbe04d8f32e1d365e063e05263c9"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "35a76aa3de9d45933688d11cc9f1f14c23444bc984ba3d16eb0412b4e7d43c6b",
+          "HG-0069-S2": "a7fa19b2d1cdb1b0977a83bb3ca7b5d722906e897e3903e5275a39c3b78c6e8e",
+          "HG-0069-S3": "6ee0d6e9e060929fc2dce3a40ac3e33fb38f5648a617649117044456198bdd12",
+          "HG-0069-S4": "c53c1fa76fd705d90caf2542739e2cd2f1769533f77ac14b08e67c8e20560cc8"
+        },
+        "recorded_at": 1791538819,
+        "review": "88ae810217ae07b10033d8a03f9445c51e95b2e8a40f7b132314ccefbe5be667"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "518361d76f58f8a39ee51ae4bdcf8f9236dbb56f4ffbc5f83213b03025d52c07",
+          "HG-0069-S2": "a7fa19b2d1cdb1b0977a83bb3ca7b5d722906e897e3903e5275a39c3b78c6e8e",
+          "HG-0069-S3": "6ee0d6e9e060929fc2dce3a40ac3e33fb38f5648a617649117044456198bdd12",
+          "HG-0069-S4": "c53c1fa76fd705d90caf2542739e2cd2f1769533f77ac14b08e67c8e20560cc8"
+        },
+        "recorded_at": 1791538835,
+        "review": "88ae810217ae07b10033d8a03f9445c51e95b2e8a40f7b132314ccefbe5be667"
       }
     ],
     "objects": {
@@ -249,6 +269,17 @@
         "reviewer": "catalog_read_review",
         "verdict": "no_go"
       },
+      "518361d76f58f8a39ee51ae4bdcf8f9236dbb56f4ffbc5f83213b03025d52c07": {
+        "captured_at": "2026-10-09T09:29:48.472684+00:00",
+        "command": "PATH=target/highgrade/tools/bin:$PATH python3 scripts/verify.py tests",
+        "input_manifest_sha256": "1d81a12dee7bbc03adba78c39285f4e06d9017cc05ce7cebe551fdb5a000ba47",
+        "method": "native_report",
+        "observation": "evidence_cards_are_compact_preserve_outcome_and_detect_changed_report прошёл в полном Nextest; 222 passed.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/85a00250048e659533510b0098b3e3b44439d2452a544f3bcc183c1bde25d9be.blob",
+        "scenario": "HG-0069-S1",
+        "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
+      },
       "564b7266dab6cfe498c4c0ab077ea7615aaa091560a63ecc3889e69a54642013": {
         "captured_at": "2026-10-09T08:46:55.131708+00:00",
         "command": "Штатные run/finish/export/verify, отбор текущих отчётов и сверка сохранности",
@@ -309,6 +340,12 @@
         "change_sha256": "946401f9c27a79adcbe5bf3b68dd404eb62d8eb0da627a54d4a7240250abfeab",
         "conclusion": "GO кандидатного коммита/публикации: независимое ревью кода и переносимого recovery теста, 217 Rust/62 Python/37 UI passed. Полная готовность NO_GO до exact-SHA Windows/Ubuntu CI и активации. Приёмка pending.",
         "reviewer": "catalog_read_review",
+        "verdict": "no_go"
+      },
+      "88ae810217ae07b10033d8a03f9445c51e95b2e8a40f7b132314ccefbe5be667": {
+        "change_sha256": "784d71515d48642f00d4aa9df33022fc371fe8d0eefcae5a40dce882c43019ea",
+        "conclusion": "Независимое ревью acceptance_review: GO для локального кандидатного коммита. Rust 222, trace 134 automatic, UI 39 passed/1 installed skip, Python 67, Node 10; текущие CAS/inputs проверены. Чужой active run отвергнут без перезаписи; mixed version и строгий replay сохранены. 73 лишние копии имеют резервные байты, 5 исторических оригиналов и presentation сохранены. Финальная готовность NO_GO: exact-SHA Windows/Ubuntu CI и installed E2E не выполнены; HG-0070-T6 открыт. Без push, активации и человеческой приёмки.",
+        "reviewer": "acceptance_review",
         "verdict": "no_go"
       },
       "96a4c073912b16dc4be48a35a8fd2eafa4c9e9b07a7d3d2c181f8389eadbeb89": {
@@ -560,6 +597,41 @@
         "Cargo.toml",
         "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
         "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/spec_contracts.rs"
+      ]
+    },
+    "1d81a12dee7bbc03adba78c39285f4e06d9017cc05ce7cebe551fdb5a000ba47": {
+      "files": {
+        "Cargo.lock": "f9e23678d78f3d9d29f981adf2003dd13cde89d7de6dda23b46916bef4f538f8",
+        "Cargo.toml": "1529a4318fc1bb83489ec12db24a786767329ecd9e32a4406ca6653a97f74937",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json": "452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46",
+        "docs/evidence/objects/85a00250048e659533510b0098b3e3b44439d2452a544f3bcc183c1bde25d9be.blob": "85a00250048e659533510b0098b3e3b44439d2452a544f3bcc183c1bde25d9be",
+        "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob": "867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json": "e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9",
+        "src/lib.rs": "553f2ccdd88d80248e128950a0b472d9369b274d24906fd1674f60e66d70ac37",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "a19eb04615534cbb171d4ecf9fd56075f7b21f6e99c7498b2e746a74213bd824",
+        "src/specs/cards.rs": "1689cee70580b79710ecd312f12ba064bec39a8c0c69b476860126139e9ae80d",
+        "src/specs/checks.rs": "377d8ab634d99905bfaadc456cb147b61681152fe8f1de7e54977de129fb4df7",
+        "src/specs/progress.rs": "bd76ef681653b51a10126bf1705171853d0fdfb0f63f06a0f0b15f265b9ad449",
+        "src/specs/storage.rs": "f97716a69af8a2ffb01afbfee71a48a482503762ac286b5322601b75e05d40cb",
+        "src/specs/storage/shared_inputs.rs": "1a705e8ba1f6630c37979e8d04b8296d6fdca2d530bc187c40039bd6dcca6f31",
+        "tests/spec_contracts.rs": "3f5530ee599ce35028f0790e4de98b1c9288f593095420e51bf606f9fc2ad80b"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "docs/evidence/objects/452e5f3d7a62d1e62937a0442969f241f593066ed14df11cd79123628d9ead46.json",
+        "docs/evidence/objects/867e79fd7021ce9f24ddd3989a68393e8d50447a65fe2f6fc1f30454682f5138.blob",
+        "docs/evidence/objects/e50116fb6309a7d6a760f2f9dba08b529f55b2965f4a22b4449bab48a16f7cc9.json",
         "src/lib.rs",
         "src/paths.rs",
         "src/specs.rs",
@@ -1272,8 +1344,8 @@
     }
   },
   "review": {
-    "change_sha256": "784d71515d48642f00d4aa9df33022fc371fe8d0eefcae5a40dce882c43019ea",
-    "conclusion": "Независимое ревью acceptance_review: GO для локального кандидатного коммита. Rust 222, trace 134 automatic, UI 39 passed/1 installed skip, Python 67, Node 10; текущие CAS/inputs проверены. Чужой active run отвергнут без перезаписи; mixed version и строгий replay сохранены. 73 лишние копии имеют резервные байты, 5 исторических оригиналов и presentation сохранены. Финальная готовность NO_GO: exact-SHA Windows/Ubuntu CI и installed E2E не выполнены; HG-0070-T6 открыт. Без push, активации и человеческой приёмки.",
+    "change_sha256": "9db581a8e6ccad848b936cceea0aa04d56bf0fb45aec23bd51ca9e2e8e4371dc",
+    "conclusion": "GO для локального кандидата0.3.11: реализация равна показанному3376598, Rust222/UI39 и прежние неизменённые Python67/Node10. Финальное ревью ожидает CI точного SHA Windows/Ubuntu и installed E2E.",
     "reviewer": "acceptance_review",
     "verdict": "no_go"
   },
