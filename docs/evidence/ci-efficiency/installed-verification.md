@@ -1,0 +1,11 @@
+# Installed E2E HG-0072
+
+Linux (Omarchy), Node 26.8.2, Playwright project config из ui/, системный Chromium. Required-mode включён. Точный текущий кандидат: 5a315fff7a45beb3fe70155d3d4d46e16a56a207, версия 0.3.12. Настоящий прежний кандидат: 72eaf51669d66d0495860b5c8969dfe255bf2d88, версия 0.3.11. Кандидаты имеют разные SHA/версии; предыдущему бинарнику не подменяли версию.
+
+[Исходный Playwright отчёт](../objects/e0ee5f450b86793eff4ceb68b3bc988fb76a7cbb25eccf5efb429b67a719c065.blob): 1 expected/passed, 0 skipped/unexpected/flaky. [Манифест запуска](../objects/9fc7cf9f3cd88be0492ed87b9e2c8f64c09338c2171890fd9deea85daeecf92a.json) содержит команду/время/среду; [снимки candidate.json](../objects/93d4443322663a997c8c65cc1470f01503576987aa0c9e5d6953ab762b7c07b2.json) закрепляют состав и все хеши.
+
+Тест verifyArtifact проверил обоих кандидатов и исполнимые версии. Реально выполнены install старого выпуска, восстановление повреждённого навыка/указателя, update на текущий, status, UI двух изолированных проектов, API/CAS, workflow, локальные ресурсы/лицензии и их хеши. ui --check true подтвердил exact SHA/версию. Несовместимый встроенный UI отвергнут до открытия порта; каталог сохранён. Проверки compile/install bundle guards дополнены [Python suite](../objects/bde6765fddf59046b8dd253876db3075991d9fc2dfee5445adb9c76c63cdc34c.json).
+
+Это текущий Linux installed результат. Он не подтверждает новый Windows CI, cache-hit сервиса GitHub, активацию домашнего профиля или человеческую приёмку проекта. Source-level изменение HG-0061-R2 — название Linux; installed-контракт сохранён. Финальная metadata-фиксация и активация используют тот же код/kit, но новый SHA и новый отпечаток конкретной сборки; UI source SHA проверяется отдельно её сборщиком/CLI.
+
+Поправка среды: в прежнем verification.md строка «Node 24: 10 passed» не подтверждала версию процесса: команда node разрешалась через mise. Число 10 passed верно. Отдельный [повтор точным бинарником Node 24.18.0](../objects/fa04d7168caf6fe520e4f1962ae0119737dedf1904d2f062889749577ba02398.json) подтвердил 10 passed, 0 skipped/fail. Это проверка guards; installed Playwright выше выполнен на Node 26.8.2. CI явно выбирает Node 24 через setup-node. Исходные отчёты сохранены.

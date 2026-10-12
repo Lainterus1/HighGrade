@@ -1,0 +1,14 @@
+{
+  "id": "HG-0072-R3",
+  "title": "Достаточный CI без повторной работы",
+  "statement": "Две существующие платформенные задачи сохраняют Python release lifecycle, полный Nextest с inventory/trace, guards UI, точную release-сборку и required installed upgrade/recovery. Общие статические проверки, Storybook и полный native UI выполняются один раз на Linux. Cargo cache переиспользуется по платформе и toolchain; исторический кандидат кэшируется по ОС/архитектуре и закреплённому SHA и проходит проверку состава, байтов, версии и исполняемого файла. Cache miss запускает собственный исторический builder. Новый push отменяет устаревший запуск своей ветки. Отчёты inventory/completion/trace сохраняются.",
+  "scenarios": [
+    {
+      "id": "HG-0072-S3",
+      "given": "Запуск CI для exact head на Linux/Windows; предыдущий кэш найден либо отсутствует.",
+      "when": "Сверить workflow с владельцем матрицы и выполнить доступные соответствующие entry points; проверить installed fixture guards.",
+      "then": "Общие проверки не дублируются на Windows, платформа и сохранность покрыты обеими задачами. Storybook строится один раз. Кэш не заменяет проверку; нет фиктивного skip installed или полного trace PASS. Тонкие native UI отказы отдельно проверены только на Linux.",
+      "verification": "Смысловое ревью workflow, YAML/actionlint и реальные штатные guards/lifecycle/Nextest; новый remote run и экономия времени сообщаются только по наблюдению."
+    }
+  ]
+}

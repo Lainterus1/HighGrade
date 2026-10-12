@@ -11,3 +11,5 @@ Pre-submit: GO. Проверены исходники пакетной вали�
 Финальную готовность Work это ревью ещё не подтверждает: остаётся installed E2E точного нового кандидата. Новый remote CI, активация, приёмка и завершение остального HG-0063 не подтверждены. Нормативная таблица не доказывает будущие действия агента. .gitignore остаётся вне изменения.
 
 Исходные результаты и ограничения — в [verification](../evidence/ci-efficiency/verification.md).
+
+Final: GO для интеграции HG-0072 и завершения локального Work. Проверяющий повторно сверил настоящий installed E2E (1 passed, 0 skipped/flaky), два неизменённых кандидата и свежие input manifests. Среда installed исправлена на Linux/Omarchy, Node 26.8.2; отдельный точный Node 24.18.0 запуск подтвердил 10 guards, 0 failed/skipped. Код/kit/UI/Cargo/scripts/workflow относительно 5a315fff не изменились. Подробности и поправка прежнего отчёта — в [installed-verification](../evidence/ci-efficiency/installed-verification.md). Новый remote CI/cache-hit и домашняя активация остаются отдельными фактами; HG-0063 и человеческая приёмка не закрываются.
