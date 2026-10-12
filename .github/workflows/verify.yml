@@ -7,20 +7,23 @@ on:
 
 concurrency:
   group: verify-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
   verify:
+    name: Verify (${{ matrix.platform }})
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: windows-2025
+          - platform: Windows
+            os: windows-2025
             previous_sha: e60b6d4d4c3631c7140b037581f0bcdb2573befd
-          - os: ubuntu-24.04
+          - platform: Linux
+            os: ubuntu-24.04
             previous_sha: fda4117312ca4c5af4388c960081dac94c10ea8f
     runs-on: ${{ matrix.os }}
     timeout-minutes: 40
@@ -32,12 +35,6 @@ jobs:
         with:
           ref: ${{ env.HIGHGRADE_UI_SOURCE_SHA }}
           persist-credentials: false
-      - name: Check out pinned platform predecessor
-        uses: actions/checkout@v7
-        with:
-          ref: ${{ env.HIGHGRADE_OLD_SOURCE_SHA }}
-          path: target/highgrade/tmp/installed-previous
-          persist-credentials: false
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
@@ -46,6 +43,17 @@ jobs:
           node-version: '24'
           cache: npm
           cache-dependency-path: ui/package-lock.json
+      - name: Check generated skills
+        if: runner.os == 'Linux'
+        run: python scripts/render-skills.py --check
+      - name: Check repository structure
+        if: runner.os == 'Linux'
+        run: node scripts/check-repository.mjs
+      - name: Install pinned Rust
+        run: rustup show active-toolchain
+      - name: Check format
+        if: runner.os == 'Linux'
+        run: cargo fmt --all -- --check
       - name: Install UI dependencies
         working-directory: ui
         run: npm ci --no-audit --no-fund
@@ -53,27 +61,24 @@ jobs:
         working-directory: ui
         run: npm run build
       - name: Build Storybook
+        if: runner.os == 'Linux'
         working-directory: ui
         run: npm run build-storybook
-      - name: Install pinned Rust
-        run: rustup show active-toolchain
       - uses: actions/cache@v4
         with:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
             target/debug
-            target/release
             target/highgrade/build-cache
-          key: ${{ runner.os }}-rust-v1-${{ hashFiles('Cargo.lock', 'Cargo.toml', 'rust-toolchain.toml') }}
+          key: ${{ runner.os }}-${{ runner.arch }}-rust-v2-${{ hashFiles('rust-toolchain.toml') }}-${{ hashFiles('Cargo.lock') }}-${{ env.HIGHGRADE_UI_SOURCE_SHA }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-rust-v2-${{ hashFiles('rust-toolchain.toml') }}-${{ hashFiles('Cargo.lock') }}-
+            ${{ runner.os }}-${{ runner.arch }}-rust-v2-${{ hashFiles('rust-toolchain.toml') }}-
       - name: Fetch locked Rust dependencies for offline lifecycle fixtures
         run: cargo fetch --locked
       - name: Check release build lifecycle
         run: python -m unittest discover -s scripts/tests -v
-      - name: Check generated skills
-        run: python scripts/render-skills.py --check
-      - name: Check format
-        run: cargo fmt --all -- --check
       - name: Install native Rust test reporter
         uses: taiki-e/install-action@v2
         with:
@@ -81,7 +86,23 @@ jobs:
           fallback: none
       - name: Test and verify kit hashes
         run: python scripts/verify.py tests
-      - name: Install Playwright Chromium and libraries on Ubuntu
+      - name: Validate active specifications
+        if: runner.os == 'Linux'
+        run: python scripts/verify.py specs
+      - name: Inspect registered project context
+        if: runner.os == 'Linux'
+        run: python scripts/verify.py inspect
+      - name: Verify executable scenario links
+        run: python scripts/verify.py scenarios
+      - name: Check selective context with 100 and 200 specs
+        if: runner.os == 'Linux'
+        run: node scripts/check-scenario-scale.mjs
+      - name: Check scenario report reuse guard
+        if: runner.os == 'Linux'
+        run: node scripts/check-scenario-reuse.mjs
+      - name: Check UI report routing and fixture guards
+        run: node --test ui/scripts/tests/*.test.mjs
+      - name: Install Playwright Chromium and libraries on Linux
         if: runner.os == 'Linux'
         working-directory: ui
         run: npx playwright install --with-deps chromium
@@ -90,26 +111,27 @@ jobs:
         working-directory: ui
         run: npx playwright install chromium
       - name: Check native interface
+        if: runner.os == 'Linux'
         working-directory: ui
         env:
           HIGHGRADE_UI_REPORT: ${{ github.workspace }}/target/highgrade/reports/native-playwright.json
         run: npx playwright test native.spec.ts decision.spec.ts edit.spec.ts --fail-on-flaky-tests --output ../target/highgrade/ui-playwright/native
-      - name: Check UI report routing and fixture guards
-        run: node --test ui/scripts/tests/*.test.mjs
-
-      - name: Validate active specifications
-        run: python scripts/verify.py specs
-
-      - name: Verify executable scenario links
-        run: python scripts/verify.py scenarios
-
-      - name: Check selective context with 100 and 200 specs
-        run: node scripts/check-scenario-scale.mjs
-      - name: Check scenario report reuse guard
-        run: node scripts/check-scenario-reuse.mjs
       - name: Build exact current candidate
         run: python scripts/build-release.py ${{ env.HIGHGRADE_UI_SOURCE_SHA }}
+      - name: Check out pinned platform predecessor
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ env.HIGHGRADE_OLD_SOURCE_SHA }}
+          path: target/highgrade/tmp/installed-previous
+          persist-credentials: false
+      - name: Restore authentic predecessor candidate
+        id: predecessor
+        uses: actions/cache@v4
+        with:
+          path: target/highgrade/tmp/installed-previous/target/highgrade/candidate
+          key: ${{ runner.os }}-${{ runner.arch }}-predecessor-v1-${{ env.HIGHGRADE_OLD_SOURCE_SHA }}
       - name: Build authentic previous release with its own builder
+        if: steps.predecessor.outputs.cache-hit != 'true'
         working-directory: target/highgrade/tmp/installed-previous
         run: python scripts/build-release.py ${{ env.HIGHGRADE_OLD_SOURCE_SHA }}
       - name: Configure mandatory exact-version installed fixtures
@@ -144,7 +166,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: installed-ui-${{ matrix.os }}
+          name: verification-${{ matrix.platform }}
           path: |
             target/highgrade/reports/installed-playwright.json
             target/highgrade/reports/native-playwright.json
@@ -155,8 +177,6 @@ jobs:
             target/nextest/highgrade/list.json
             target/nextest/highgrade/attempt.json
             target/nextest/highgrade/completion.json
+            target/nextest/highgrade/run.json
+            target/nextest/highgrade/trace.json
           if-no-files-found: warn
-      - name: Check repository structure
-        run: node scripts/check-repository.mjs
-      - name: Inspect registered project context
-        run: python scripts/verify.py inspect

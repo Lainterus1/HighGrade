@@ -16,6 +16,18 @@ spec.loader.exec_module(verify)
 
 
 class VerifyOutputTests(unittest.TestCase):
+    def test_spec_validation_propagates_batch_failure_without_reloading_ids(self):
+        for status in ('passed', 'failed', 'unknown'):
+            result = {'status': status, 'findings': [], 'measurements': []}
+            with self.subTest(status=status), patch('sys.argv', ['verify.py', 'specs']), \
+                    patch.object(verify, 'report', return_value=result) as command:
+                if status == 'passed':
+                    verify.main()
+                else:
+                    with self.assertRaises(RuntimeError):
+                        verify.main()
+                command.assert_called_once_with('spec-validate')
+
     def test_default_test_command_enters_the_owned_run_wrapper(self):
         with patch('sys.argv', ['verify.py', 'tests']), \
                 patch.dict(os.environ, {}, clear=True), \

@@ -637,8 +637,11 @@ fn command_inner(
         .get("--id")
         .map(String::as_str)
         .or(allocated.as_deref());
-    if matches!(op, "spec-diff" | "spec-check" | "spec-validate") {
+    if matches!(op, "spec-diff" | "spec-check") {
         get("--id")?;
+    }
+    if op == "spec-validate" && options.contains_key("--requirement") {
+        return Err("Usage: spec-validate [--id ID]".into());
     }
     if change_id.is_some() && options.contains_key("--requirement") {
         return Err("Usage: choose --id or --requirement".into());
@@ -828,7 +831,32 @@ fn command_inner(
             *c = incoming;
         }
         "spec-read" | "spec-diff" | "spec-check" | "spec-validate" => {
-            if op == "spec-read"
+            if op == "spec-validate" && change_id.is_none() {
+                if let Err(e) = catalog(&store) {
+                    report.finding("unknown", "ActiveSpecConflict", "/changes", &e);
+                }
+                let mut validated = Vec::new();
+                for c in store
+                    .changes
+                    .values()
+                    .filter(|c| c.abandoned_reason.is_none())
+                {
+                    let mut validation = Report::new("spec-validate");
+                    readiness(&root, &store, c, &mut validation, false);
+                    for finding in validation.findings {
+                        report.finding(
+                            finding["status"].as_str().unwrap(),
+                            finding["code"].as_str().unwrap(),
+                            &format!("/changes/{}{}", c.id, finding["location"].as_str().unwrap()),
+                            finding["message"].as_str().unwrap(),
+                        );
+                    }
+                    validated.push(c.id.as_str());
+                }
+                report
+                    .measurements
+                    .push(json!({"validated_changes":validated}));
+            } else if op == "spec-read"
                 && options.get("--view").is_some_and(|v| v == "requirements")
                 && change_id.is_none()
                 && !options.contains_key("--requirement")

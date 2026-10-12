@@ -119,14 +119,9 @@ def main():
         finally:
             collect_reports(managed)
     elif step == 'specs':
-        catalog = report('spec-list')
-        if catalog['status'] != 'passed':
-            raise RuntimeError(catalog)
-        for change in catalog['measurements'][0]['changes']:
-            if change['technical'] != 'abandoned':
-                validation = report('spec-validate', '--id', change['id'])
-                if validation['status'] != 'passed':
-                    raise RuntimeError(validation)
+        validation = report('spec-validate')
+        if validation['status'] != 'passed':
+            raise RuntimeError(validation)
     elif step == 'scenarios':
         managed = managed_run()
         try:

@@ -21,7 +21,7 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 "$hgExe" spec-schema --root "$PWD"
 ```
 
-Статус: `spec-check --id HG-CHANGE --brief true`; контекст: `spec-read --view summary|editable`, история — full.
+Статус: `spec-check --id HG-CHANGE --brief true`; контекст: `spec-read --view summary|editable|full`.
 
 Каталог изменяй совместимой CLI: `spec-new` с хешем → `spec-read --view editable` → `spec-edit --input patch.json --expected HASH --validate true`. Активную версию определяет global-status, target/debug — кандидат. Полный spec-save и параметры — в [справочнике](../kit/references/tools/specifications.md#структурированные-спецификации).
 
@@ -31,11 +31,7 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 
 Метка `// highgrade: HG-...` связывает сценарий с Rust-тестом; trace требует фактический результат. Checks для spec-run необязательны, но объявленная связь должна совпадать. Требования к доказательствам — в [QUALITY](workflow/QUALITY.md).
 
-Каталог/автосценарии — trace; готовность — spec-check.
-
-Пример [проверки до реализации](../kit/procedures/work.md#проверка-до-изменения-реализации): перед исправлением записи тест вызывает реальную CLI с некорректными данными и проверяет отказ и сохранность каталога. После начального провала и исправления повтори узкий тест; итоговые барьеры — по матрице ниже.
-
-Установите Nextest 0.9.146 в `target/highgrade/tools/bin` и добавьте каталог в PATH. Исходники могут требовать нового Rust.
+Установите Nextest 0.9.146 в `target/highgrade/tools/bin` и добавьте каталог в PATH.
 
 `verify.py tests` сверяет входы до/после Nextest. `prepare` сверяет хеши, состав входов и отчёты завершённой попытки; после сбоя/прерывания повтори `tests`. mtime не доказывает актуальность, снимок — подлинность. После `spec-integrate` повтори `prepare`/`trace`/`verify`: эквивалентный каталог допускает reuse, иначе повтори `tests`; причина — `native_report_reason`.
 
@@ -50,7 +46,7 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 | Только результаты/метаданные каталога | spec-validate/check; prepare/trace/verify при изменении трассировки | Nextest лишь при изменении его значимых входов |
 | Сборка/активация | build-release.py из SHA, preview/apply одного кандидата, global-status | Ошибка — адресная диагностика и восстановление |
 
-Ревью проверяет смысл, наблюдение — исполнение. Внешний пилот требует поручения.
+Внешний пилот требует поручения.
 
 Контракт — spec-list/read; причинные входы — [work](../kit/procedures/work.md#область-входов-доказательства), [примеры](evidence/current-requirements/2026-10-01/verification.md). Общий снимок их не заменяет.
 
@@ -58,22 +54,11 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 
 ## Rust CLI и глобальная поставка
 
-Для JUnit доступен spec-run-inputs до запуска и spec-run-import после; формат — в справочнике CLI. Снимок задним числом не подтверждает актуальность.
+JUnit: spec-run-inputs до запуска, spec-run-import после. Снимок задним числом не подтверждает актуальность; формат — в справочнике CLI.
 
-Активация: build-release.py из SHA по [BUILD](BUILD.md).
-
-Диагностика: CLI активного выпуска `doctor --root <проект>` и `inspect --root <проект>`. Установку/обновление проверяют global_contracts; дополнительные профили нужны только для непокрытого риска. Код unknown не является PASS.
+Диагностика активной CLI: `doctor` и `inspect --root <проект>`. Установку проверяют global_contracts; дополнительные профили нужны при непокрытом риске. unknown не является PASS.
 
 Временные пробы — только в `target/highgrade/tmp/<запуск>`; после задачи убирай их. Структура и обслуживание — в [BUILD](BUILD.md); контроль размера: `python scripts/target-maintenance.py --check`.
-
-## Структура и документы
-
-```text
-node scripts/check-repository.mjs
-python scripts/render-skills.py --check
-```
-
-Структура и импорт проверяются скриптом; бюджеты — inspect. Реестр: `.highgrade/project/documents.json`.
 
 ## Интерфейс и Storybook
 
@@ -89,7 +74,7 @@ SVG Vectorizer — [README](../plugins/svg-vectorizer/README.md); Code Health Au
 
 ## Общие проверки и CI
 
-Rust закреплён в `rust-toolchain.toml`. Для повторяемого общего барьера после установки Nextest 0.9.146 в PATH:
+Штатные команды по матрице выше:
 
 ```bash
 cargo fmt --all -- --check
@@ -105,4 +90,15 @@ node scripts/check-repository.mjs
 python scripts/verify.py inspect
 ```
 
-Те же Python entry points выполняются в Windows и Ubuntu CI. Локальный прогон подтверждает только текущую ОС; Windows CI объединённого коммита возможен после публикации. Проверка технической установки не является пользовательским пилотом навыков.
+CI асинхронен: ожидание не блокирует Work, интеграцию и порученные коммит, активацию или push. Статус точного SHA сообщается отдельно; известный отказ разбирается по местной инструкции.
+
+| Проверка | Linux | Windows |
+|---|---|---|
+| render-skills, fmt, структура, inspect, specs | Да | — |
+| Python lifecycle, Nextest inventory/run/trace, Node guards | Да | Да |
+| Scale/reuse, Storybook, native/decision/edit Playwright | Да | — |
+| Embedded UI, exact release build, required installed upgrade/recovery | Да | Да |
+
+`ubuntu-24.04` — [образ GitHub Linux runner](https://docs.github.com/en/actions/reference/runners/github-hosted-runners), не требование к пользователю. Тонкие native UI отказы отдельно проверены только на Linux; при Windows UI дефекте повтори затронутый selector на Windows.
+
+`verify.py specs` читает каталог один раз. Cargo cache имеет ключ SHA и fallback по платформе/toolchain/dependencies. Проверка исторического кэша — [BUILD](BUILD.md#обязательный-installed-e2e); область кэшей — [GitHub](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching). Новый запуск отменяет прежний запуск той же ветки. Кэш и локальный PASS не доказывают результат другой ОС или приёмку. Экономия времени требует измерения нового run.

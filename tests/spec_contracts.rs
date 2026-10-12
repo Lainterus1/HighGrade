@@ -70,6 +70,95 @@ fn fill(root: &Path, id: &str) {
     r["scenarios"][0]["verification"] = json!("Run calculator test and inspect output");
     save(root, id, &c);
 }
+
+// highgrade: HG-0072-S4
+#[test]
+fn batch_validation_matches_addressed_findings_without_writes() {
+    let p = root();
+    new(&p, "HG-0001");
+    fill(&p, "HG-0001");
+    new(&p, "HG-0002");
+    new(&p, "HG-0003");
+    call(
+        &p,
+        "spec-abandon",
+        &[
+            ("--id", "HG-0003"),
+            ("--expected", &sha(&p)),
+            ("--reason", "Replaced draft"),
+        ],
+    )
+    .unwrap();
+    let before = sha(&p);
+    let batch = call(&p, "spec-validate", &[]).unwrap();
+    let addressed = call(&p, "spec-validate", &[("--id", "HG-0002")]).unwrap();
+    assert_eq!(batch.status, "failed");
+    assert_eq!(batch.findings.len(), addressed.findings.len());
+    for (actual, expected) in batch.findings.iter().zip(addressed.findings.iter()) {
+        let mut expected = expected.clone();
+        expected["location"] = json!(format!(
+            "/changes/HG-0002{}",
+            expected["location"].as_str().unwrap()
+        ));
+        assert_eq!(actual, &expected);
+    }
+    assert_eq!(
+        batch
+            .measurements
+            .iter()
+            .find_map(|m| m.get("validated_changes")),
+        Some(&json!(["HG-0001", "HG-0002"]))
+    );
+    assert_eq!(sha(&p), before);
+    fill(&p, "HG-0002");
+    let mut unfinished = change(&p, "HG-0002");
+    unfinished["tasks"][0]["done"] = json!(false);
+    save(&p, "HG-0002", &unfinished);
+    let before = sha(&p);
+    let output = Command::new(env!("CARGO_BIN_EXE_highgrade"))
+        .args(["spec-validate", "--root", p.to_str().unwrap()])
+        .output()
+        .unwrap();
+    assert!(
+        output.status.success(),
+        "{}",
+        String::from_utf8_lossy(&output.stdout)
+    );
+    let report: Value = serde_json::from_slice(&output.stdout).unwrap();
+    assert_eq!(report["status"], "passed");
+    assert_eq!(
+        report["result"]["validated_changes"],
+        json!(["HG-0001", "HG-0002"])
+    );
+    assert_eq!(sha(&p), before);
+    assert_eq!(
+        call(&p, "spec-check", &[("--id", "HG-0002")])
+            .unwrap()
+            .status,
+        "failed"
+    );
+    new(&p, "HG-0004");
+    fill(&p, "HG-0004");
+    let mut conflicting = change(&p, "HG-0004");
+    conflicting["operations"][0]["requirement"]["id"] = json!("HG-0001-R1");
+    save(&p, "HG-0004", &conflicting);
+    let before = sha(&p);
+    assert_eq!(
+        call(&p, "spec-validate", &[("--id", "HG-0004")])
+            .unwrap()
+            .status,
+        "passed"
+    );
+    let batch = call(&p, "spec-validate", &[]).unwrap();
+    assert_eq!(batch.status, "unknown");
+    assert!(
+        batch
+            .findings
+            .iter()
+            .any(|f| f["code"] == "ActiveSpecConflict")
+    );
+    assert_eq!(sha(&p), before);
+}
 fn evidence(root: &Path, id: &str, outcome: &str) {
     write(
         root,
