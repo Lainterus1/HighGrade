@@ -1,0 +1,22 @@
+   Compiling highgrade v0.3.11 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 5.45s
+     Running tests/global_contracts.rs (target/debug/deps/global_contracts-8ec386864036e389)
+
+running 1 test
+test installed_runtime_references_survive_removal_of_source_copy ... FAILED
+
+failures:
+
+---- installed_runtime_references_survive_removal_of_source_copy stdout ----
+
+thread 'installed_runtime_references_survive_removal_of_source_copy' panicked at tests/global_contracts.rs:214:52:
+called `Result::unwrap()` on an `Err` value: "GlobalManifestFilesInvalid"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    installed_runtime_references_survive_removal_of_source_copy
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 32 filtered out; finished in 0.08s
+
+error: test failed, to rerun pass `--test global_contracts`

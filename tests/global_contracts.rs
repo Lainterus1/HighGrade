@@ -202,7 +202,55 @@ fn candidate() -> TestDir {
     );
     dst
 }
-// highgrade: HG-0010-S1
+// highgrade: HG-0071-S5
+#[test]
+fn release_without_documentation_reference_can_update() {
+    let profile = temp();
+    global::install(&profile, &source(), &exe()).unwrap();
+    let rel = format!(
+        ".highgrade/global/releases/{}/references/documentation.md",
+        current_release()
+    );
+    let journal_path = profile.join(format!(
+        ".highgrade/global/releases/{}/journal.json",
+        current_release()
+    ));
+    let mut journal: Value = serde_json::from_slice(&fs::read(&journal_path).unwrap()).unwrap();
+    assert!(
+        journal["files"]
+            .as_object_mut()
+            .unwrap()
+            .remove(&rel)
+            .is_some()
+    );
+    fs::remove_file(profile.join(&rel)).unwrap();
+    let bytes = serde_json::to_vec_pretty(&journal).unwrap();
+    write(&journal_path, &bytes);
+    let active_path = profile.join(".highgrade/global/active.json");
+    let mut active: Value = serde_json::from_slice(&fs::read(&active_path).unwrap()).unwrap();
+    active["journal_sha256"] = json!(hash(&bytes));
+    write(&active_path, &serde_json::to_vec_pretty(&active).unwrap());
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    let next = candidate();
+    let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
+    let fingerprint = preview.measurements[0]["candidate_sha256"]
+        .as_str()
+        .unwrap();
+    let applied =
+        global::update(&profile, Some(&next), Some(&exe()), true, Some(fingerprint)).unwrap();
+    assert_eq!(applied.status, "passed");
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    assert_eq!(
+        fs::read(profile.join(format!(
+            ".highgrade/global/releases/{}/references/documentation.md",
+            next_release()
+        )))
+        .unwrap(),
+        fs::read(source().join("references/documentation.md")).unwrap()
+    );
+}
+
+// highgrade: HG-0010-S1, HG-0071-S4
 #[test]
 fn installed_runtime_references_survive_removal_of_source_copy() {
     let copied = temp();
@@ -1140,7 +1188,8 @@ fn approve_release_profile(planner: bool, tools: bool, complete: bool) -> TestDi
         serde_json::from_slice(&fs::read(source().join("manifest.json")).unwrap()).unwrap();
     let mut checksums = BTreeMap::new();
     for (rel, _) in manifest["files"].as_object().unwrap() {
-        if (!tools && rel.starts_with("references/tools/"))
+        if rel == "references/documentation.md"
+            || (!tools && rel.starts_with("references/tools/"))
             || (!complete
                 && (rel == "procedures/fix.md"
                     || rel == "references/tools/issues.md"
@@ -1228,7 +1277,8 @@ fn six_skill_profile() -> TestDir {
             .as_object()
             .unwrap()
     {
-        if rel.starts_with("references/tools/")
+        if rel == "references/documentation.md"
+            || rel.starts_with("references/tools/")
             || rel == "procedures/fix.md"
             || rel == "references/review.md"
             || is_survey_material(rel)
@@ -1301,7 +1351,8 @@ fn old_deploy_profile(release: &str, skill_name: &str) -> TestDir {
     let manifest_bytes = fs::read(source().join("manifest.json")).unwrap();
     let manifest: Value = serde_json::from_slice(&manifest_bytes).unwrap();
     for (rel, _) in manifest["files"].as_object().unwrap() {
-        if rel.starts_with("references/tools/")
+        if rel == "references/documentation.md"
+            || rel.starts_with("references/tools/")
             || rel == "procedures/fix.md"
             || rel == "references/review.md"
             || is_survey_material(rel)

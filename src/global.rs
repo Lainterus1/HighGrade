@@ -81,7 +81,7 @@ const PREVIOUS_SKILLS: [&str; 6] = [
     "highgrade-clear",
     "highgrade-update",
 ];
-const MATERIALS: [&str; 19] = [
+const MATERIALS: [&str; 20] = [
     "rules.md",
     "procedures/init.md",
     "procedures/task.md",
@@ -101,6 +101,7 @@ const MATERIALS: [&str; 19] = [
     "templates/DEVELOPMENT.md",
     "templates/INSTRUCTIONS.md",
     "procedures/planner.md",
+    "references/documentation.md",
 ];
 const APPROVE_MATERIALS: [&str; 19] = [
     "rules.md",
@@ -400,6 +401,8 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
             .chain([COMMIT_SKILL, PUSH_SKILL].iter())
             .map(|rel| release_file(release, rel)),
     );
+    let mut before_documentation = commit.clone();
+    before_documentation.remove(&release_file(release, "references/documentation.md"));
     let mut prior = expected(&PRIOR_SKILLS, &PRIOR_MATERIALS);
     for rel in [APPROVE_SKILL, PUSH_SKILL] {
         prior.insert(release_file(release, rel));
@@ -410,6 +413,7 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     legacy.insert(release_file(release, LEGACY_DEPLOY_SKILL));
     let previous = expected(&PREVIOUS_SKILLS, &PREVIOUS_MATERIALS);
     if actual != commit.iter().map(String::as_str).collect()
+        && actual != before_documentation.iter().map(String::as_str).collect()
         && actual != current.iter().map(String::as_str).collect()
         && actual != with_tools.iter().map(String::as_str).collect()
         && actual != with_fixer.iter().map(String::as_str).collect()

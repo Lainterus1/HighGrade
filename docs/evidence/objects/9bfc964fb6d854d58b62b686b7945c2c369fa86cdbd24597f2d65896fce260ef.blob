@@ -1,0 +1,155 @@
+   Compiling highgrade v0.3.11 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 4.90s
+     Running tests/global_contracts.rs (target/debug/deps/global_contracts-8ec386864036e389)
+
+running 34 tests
+test doctor_reports_unavailable_tool_without_claiming_version ... ok
+test global_update_rejects_manual_rollback_option ... ok
+test kit_manifest_uses_stable_lf_bytes ... ok
+test failed_approve_migration_preserves_old_route_and_can_retry ... FAILED
+test managed_approve_migrates_to_commit_without_aliases ... FAILED
+test failed_stage_preserves_foreign_candidate_journal ... FAILED
+test nine_skill_release_upgrades_to_thematic_tool_references ... FAILED
+test failed_stage_does_not_leave_new_routers ... FAILED
+test interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route ... FAILED
+test approve_migration_preserves_modified_managed_and_foreign_paths ... FAILED
+test interrupted_approve_era_transaction_remains_recoverable ... FAILED
+test shipped_tool_references_resolve_without_repository_files ... ok
+test supported_adapter_does_not_claim_semantic_readiness ... ok
+test legacy_deploy_migrates_to_commit_push_and_cleans_old_release ... FAILED
+test planner_update_accepts_prior_eight_skill_release ... FAILED
+test unsupported_project_adapter_is_a_failure ... ok
+test post_switch_commit_recovery_retires_only_unchanged_owned_approve ... FAILED
+test six_skill_release_updates_to_commit_push_and_cleans_old_release ... FAILED
+test thematic_tools_release_upgrades_to_fixer_materials ... FAILED
+test six_skill_release_preserves_owned_crlf_routers ... FAILED
+test global_install_rejects_hash_and_foreign_router_without_activation ... ok
+test v026_deploy_migrates_to_two_routes_and_removes_old_release ... FAILED
+test installed_runtime_references_survive_removal_of_source_copy ... ok
+test shipped_registry_example_is_accepted_without_inventing_budgets ... ok
+{
+  "ambiguous_result_keys": [],
+  "findings": [],
+  "limitations": [],
+  "measurements": [
+    {
+      "version": "0.3.11"
+    }
+  ],
+  "operation": "version",
+  "result": {
+    "version": "0.3.11"
+  },
+  "status": "passed"
+}
+test planner_router_is_portable ... ok
+test unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills ... ok
+test interrupted_skill_update_recovers_without_overwriting_user_edit ... ok
+test global_install_does_not_touch_project_and_checks_adapter ... ok
+test failed_candidate_stage_restores_changed_skill ... ok
+test global_update_preserves_project_adaptation_in_profile ... ok
+test release_without_documentation_reference_can_update ... ok
+test update_replaces_owned_skill_and_preserves_user_edit ... ok
+test global_update_preview_switch_and_cleanup_keep_unrelated_files ... ok
+test update_preserves_foreign_file_in_old_release ... ok
+
+failures:
+
+---- failed_approve_migration_preserves_old_route_and_can_retry stdout ----
+
+thread 'failed_approve_migration_preserves_old_route_and_can_retry' panicked at tests/global_contracts.rs:807:88:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- managed_approve_migrates_to_commit_without_aliases stdout ----
+
+thread 'managed_approve_migrates_to_commit_without_aliases' panicked at tests/global_contracts.rs:699:88:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- failed_stage_preserves_foreign_candidate_journal stdout ----
+
+thread 'failed_stage_preserves_foreign_candidate_journal' panicked at tests/global_contracts.rs:1581:88:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- nine_skill_release_upgrades_to_thematic_tool_references stdout ----
+
+thread 'nine_skill_release_upgrades_to_thematic_tool_references' panicked at tests/global_contracts.rs:1822:41:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- failed_stage_does_not_leave_new_routers stdout ----
+
+thread 'failed_stage_does_not_leave_new_routers' panicked at tests/global_contracts.rs:1526:88:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route stdout ----
+
+thread 'interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route' panicked at tests/global_contracts.rs:934:42:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- approve_migration_preserves_modified_managed_and_foreign_paths stdout ----
+
+thread 'approve_migration_preserves_modified_managed_and_foreign_paths' panicked at tests/global_contracts.rs:732:88:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- interrupted_approve_era_transaction_remains_recoverable stdout ----
+
+thread 'interrupted_approve_era_transaction_remains_recoverable' panicked at tests/global_contracts.rs:899:42:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- legacy_deploy_migrates_to_commit_push_and_cleans_old_release stdout ----
+
+thread 'legacy_deploy_migrates_to_commit_push_and_cleans_old_release' panicked at tests/global_contracts.rs:998:88:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- planner_update_accepts_prior_eight_skill_release stdout ----
+
+thread 'planner_update_accepts_prior_eight_skill_release' panicked at tests/global_contracts.rs:350:41:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- post_switch_commit_recovery_retires_only_unchanged_owned_approve stdout ----
+
+thread 'post_switch_commit_recovery_retires_only_unchanged_owned_approve' panicked at tests/global_contracts.rs:953:88:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- six_skill_release_updates_to_commit_push_and_cleans_old_release stdout ----
+
+thread 'six_skill_release_updates_to_commit_push_and_cleans_old_release' panicked at tests/global_contracts.rs:1490:5:
+assertion failed: global::update(&profile, Some(&source()), Some(&exe()), false,
+            None).unwrap_err().contains("GlobalRouterIncompatible: highgrade-commit")
+
+---- thematic_tools_release_upgrades_to_fixer_materials stdout ----
+
+thread 'thematic_tools_release_upgrades_to_fixer_materials' panicked at tests/global_contracts.rs:1857:41:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- six_skill_release_preserves_owned_crlf_routers stdout ----
+
+thread 'six_skill_release_preserves_owned_crlf_routers' panicked at tests/global_contracts.rs:1462:88:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+---- v026_deploy_migrates_to_two_routes_and_removes_old_release stdout ----
+
+thread 'v026_deploy_migrates_to_two_routes_and_removes_old_release' panicked at tests/global_contracts.rs:1053:88:
+called `Result::unwrap()` on an `Err` value: "GlobalJournalInvalid: files"
+
+
+failures:
+    approve_migration_preserves_modified_managed_and_foreign_paths
+    failed_approve_migration_preserves_old_route_and_can_retry
+    failed_stage_does_not_leave_new_routers
+    failed_stage_preserves_foreign_candidate_journal
+    interrupted_approve_era_transaction_remains_recoverable
+    interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route
+    legacy_deploy_migrates_to_commit_push_and_cleans_old_release
+    managed_approve_migrates_to_commit_without_aliases
+    nine_skill_release_upgrades_to_thematic_tool_references
+    planner_update_accepts_prior_eight_skill_release
+    post_switch_commit_recovery_retires_only_unchanged_owned_approve
+    six_skill_release_preserves_owned_crlf_routers
+    six_skill_release_updates_to_commit_push_and_cleans_old_release
+    thematic_tools_release_upgrades_to_fixer_materials
+    v026_deploy_migrates_to_two_routes_and_removes_old_release
+
+test result: FAILED. 19 passed; 15 failed; 0 ignored; 0 measured; 0 filtered out; finished in 12.94s
+
+error: test failed, to rerun pass `--test global_contracts`
