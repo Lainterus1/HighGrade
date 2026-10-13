@@ -1,0 +1,78 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [
+    {
+      "code": "SemanticReviewRequired",
+      "location": "global-update",
+      "message": "Сравните смысл общих правил перед применением.",
+      "status": "unknown"
+    }
+  ],
+  "limitations": [],
+  "measurements": [
+    {
+      "apply": false,
+      "candidate": "v0-3-13",
+      "candidate_sha256": "cabf769b12cf450cc20335752d38dae68880ceffb784df49b754a601f25a3a4b",
+      "from": "v0-3-12",
+      "manifest_sha256": "1bf9c534fbd584e99b2ef546ad5413aa43aa5b21992fd0211e7c7e178afa2dba",
+      "release_summary": {
+        "actions": [],
+        "breaking": [],
+        "changes": [
+          "Инструкции Поставки и Проекта переведены на английский; язык ответов и пользовательских документов определяется проектом.",
+          "Update показывает краткую сводку перехода с явной полнотой истории и всеми обязательными действиями.",
+          "Подготовка выпуска включает сопровождение README по значимым возможностям."
+        ],
+        "coverage": "complete",
+        "from": "v0-3-12",
+        "missing_release": null,
+        "no_user_changes": false,
+        "reason": null,
+        "releases": [
+          "v0-3-13"
+        ],
+        "to": "v0-3-13",
+        "total_changes": 3
+      }
+    },
+    {
+      "applied": false,
+      "decision": "required",
+      "next": "review candidate, then apply its candidate_sha256",
+      "validation": "passed"
+    }
+  ],
+  "operation": "global-update",
+  "result": {
+    "applied": false,
+    "apply": false,
+    "candidate": "v0-3-13",
+    "candidate_sha256": "cabf769b12cf450cc20335752d38dae68880ceffb784df49b754a601f25a3a4b",
+    "decision": "required",
+    "from": "v0-3-12",
+    "manifest_sha256": "1bf9c534fbd584e99b2ef546ad5413aa43aa5b21992fd0211e7c7e178afa2dba",
+    "next": "review candidate, then apply its candidate_sha256",
+    "release_summary": {
+      "actions": [],
+      "breaking": [],
+      "changes": [
+        "Инструкции Поставки и Проекта переведены на английский; язык ответов и пользовательских документов определяется проектом.",
+        "Update показывает краткую сводку перехода с явной полнотой истории и всеми обязательными действиями.",
+        "Подготовка выпуска включает сопровождение README по значимым возможностям."
+      ],
+      "coverage": "complete",
+      "from": "v0-3-12",
+      "missing_release": null,
+      "no_user_changes": false,
+      "reason": null,
+      "releases": [
+        "v0-3-13"
+      ],
+      "to": "v0-3-13",
+      "total_changes": 3
+    },
+    "validation": "passed"
+  },
+  "status": "unknown"
+}
