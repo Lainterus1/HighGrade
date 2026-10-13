@@ -1,33 +1,39 @@
-# Установка и обновление
+<a id="установка-и-обновление"></a>
 
-Собери интерфейс (`npm ci` и `npm run build` из `ui/`), затем CLI командой `cargo build --release --locked` из корня. Передавай абсолютные пути. `--profile` обозначает домашний каталог пользователя, а не целевой проект. Команды установки и обновления не сканируют соседние проекты или весь домашний каталог.
+# Installation and update
 
-```powershell
-& '<исходник>/target/release/highgrade.exe' global-install --profile '<домашний-каталог>' --source '<исходник>/kit' --candidate-exe '<исходник>/target/release/highgrade.exe'
-& '<домашний-каталог>/.highgrade/global/releases/<active>/highgrade.exe' global-status --profile '<домашний-каталог>'
-& '<домашний-каталог>/.highgrade/global/releases/<active>/highgrade.exe' doctor --root '<проект>'
-& '<исходник>/target/release/highgrade.exe' inspect --bootstrap --root '<проект>'
-& '<домашний-каталог>/.highgrade/global/releases/<active>/highgrade.exe' inspect --root '<проект>' --registry '.highgrade/project/documents.json'
-```
-
-Установка создаёт общие маршрутизирующие файлы в `<домашний-каталог>/.agents/skills/highgrade-*/SKILL.md`, а неизменяемую поставку — в `<домашний-каталог>/.highgrade/global/releases/<release>/`. Один активный указатель переключается после проверки хешей и версии. Чужой навык с тем же именем — конфликт. Общие навыки и CLI в проект не копируются. Init после аудита и в разрешённой области готовит `.highgrade/project/INSTRUCTIONS.md` и короткую ссылку из AGENTS.
-
-Обновление всей пользовательской поставки выполняется явно. Сначала preview, затем смысловое сравнение правил, затем применение с тем же `candidate_sha256`. CLI проверяет рабочую команду `doctor` до переключения и после установки. Отпечаток связывает манифест со всеми материалами и байтами исполняемого файла. Принадлежащие активному журналу SKILL.md обновляются вместе с выпуском; пользовательские изменения отвергают переключение. Основная инструкция включена в SKILL.md, процедуры служат единственным редактируемым источником. Незавершённое обновление навыков обозначается GlobalSkillRecoveryRequired; явный `global-recover --profile PATH` через ту же проверенную CLI кандидата проверяет журнал и восстанавливает прежние байты при старом указателе либо подтверждает новый активный выпуск. Сторонние изменения останавливают восстановление. Текущий локальный маршрут — `highgrade-commit`, внешний — `highgrade-push`. При обновлении прежние журналируемые `highgrade-approve` либо `highgrade-deploy` заменяются без постоянных алиасов: новые навыки готовятся до переключения, старый собственный маршрут убирается после проверки. Изменённый/чужой Approve останавливает миграцию; восстановление сверяет принадлежность и байты. Прежняя CLI может отвергнуть новые поля introduced/retired и Commit-состав: её отказ по формату не доказывает повреждение; проверяйте status/recover совместимой CLI кандидата, не удаляя журнал вручную. Содержимое принятых проектных инструкций автоматически не переписывается: на следующем входе агент сверяет старое имя и недостающие поля маршрута, сохраняет местные правила и согласует нужное дополнение. При ошибке postcheck CLI пытается восстановить прежний активный выпуск; после сбоя фактическое состояние проверяют по [процедуре Update](../../procedures/update.md#повтор-и-ошибки). После успеха собственные файлы старых выпусков удаляются, чужие сохраняются с предупреждением. После прерванного переключения установи фактическое состояние через global-status; ошибка диагностики не подтверждает исправность активной поставки. Неактивный остаток не даёт полномочий. Проектные инструкции проверяются при следующей работе с конкретным проектом.
+Build UI with npm ci/npm run build in ui/, then CLI with cargo build --release --locked at root. Pass absolute paths. --profile is the user's home directory, not a project. Installation/update do not scan adjacent projects or the whole home directory.
 
 ```powershell
-& '<кандидат>/target/release/highgrade.exe' global-update --profile '<домашний-каталог>' --source '<кандидат>/kit' --candidate-exe '<кандидат>/target/release/highgrade.exe'
-& '<кандидат>/target/release/highgrade.exe' global-update --profile '<домашний-каталог>' --source '<кандидат>/kit' --candidate-exe '<кандидат>/target/release/highgrade.exe' --apply true --candidate-sha256 '<отпечаток-из-preview>'
+& '<source>/target/release/highgrade.exe' global-install --profile '<home>' --source '<source>/kit' --candidate-exe '<source>/target/release/highgrade.exe'
+& '<home>/.highgrade/global/releases/<active>/highgrade.exe' global-status --profile '<home>'
+& '<home>/.highgrade/global/releases/<active>/highgrade.exe' doctor --root '<project>'
+& '<source>/target/release/highgrade.exe' inspect --bootstrap --root '<project>'
+& '<home>/.highgrade/global/releases/<active>/highgrade.exe' inspect --root '<project>' --registry '.highgrade/project/documents.json'
 ```
 
-`doctor`, `inspect`, `inventory` и `trace` работают на чтение с `--root <проект>`. `doctor` обнаруживает путь CLI, но не запускает его и не сверяет версию; закреплённую версию проверяют командой проекта. Штатные тесты запускаются командами проекта. Отсутствующая инструкция или неизвестный инструмент остаются состоянием unknown, а не успешной проверкой. Старые проектные `install`/`update` сохранены только для исторического кандидата как библиотечный контракт и явно названные команды `legacy-install`/`legacy-update`; новые проекты используют глобальный маршрут.
+Install creates shared skill entry files in `<home>`/.agents/skills/highgrade-*/SKILL.md and immutable materials in `<home>`/.highgrade/global/releases/`<release>`/. One active pointer switches after hash/version checks. A foreign same-name skill is a conflict. Do not copy common skills/CLI into projects. After audit, authorized Init prepares .highgrade/project/INSTRUCTIONS.md and a short AGENTS link.
 
+Global update is explicit: preview → semantic rule comparison → apply with the same candidate_sha256. CLI checks doctor before/after switching. The fingerprint binds manifest, materials and executable bytes. Journal-owned SKILL.md updates with the release; user edits reject switching. Skills contain their main instructions; procedures are their single editable source. GlobalSkillRecoveryRequired signals an unfinished skill transaction. global-recover --profile PATH with the verified candidate checks the journal and restores former bytes under the old pointer or confirms a new active release. Foreign changes stop recovery.
 
+The local route is highgrade-commit; the external route is highgrade-push. Journal-owned highgrade-approve/highgrade-deploy are replaced without permanent aliases. New skills are prepared before switching; old owned routes are removed after checks. Edited/foreign Approve stops migration; recovery checks ownership/bytes. Former CLI may reject introduced/retired fields or Commit file sets. Format rejection alone does not prove damage. Use compatible candidate status/recover; never remove the journal manually. Accepted project instructions are not rewritten automatically. At next project entry, compare old names/missing route fields, preserve local rules and agree needed additions.
 
-Preview global-update дополнительно возвращает `validation=passed`, `decision=required`, `applied=false`.
+On postcheck failure, CLI attempts to restore the former active release. Check actual state under [Update](../../procedures/update.md#retry-and-failures). After success, old owned release files are removed; foreign files remain with warnings. After interruption, use global-status; diagnostic failure does not confirm a healthy active installation. Inactive remnants grant no authority. Project instructions are checked at next project work.
+
+```powershell
+& '<candidate>/target/release/highgrade.exe' global-update --profile '<home>' --source '<candidate>/kit' --candidate-exe '<candidate>/target/release/highgrade.exe'
+& '<candidate>/target/release/highgrade.exe' global-update --profile '<home>' --source '<candidate>/kit' --candidate-exe '<candidate>/target/release/highgrade.exe' --apply true --candidate-sha256 '<preview-fingerprint>'
+```
+
+doctor, inspect, inventory and trace are read-only with --root `<project>`. doctor detects a CLI path but neither executes it nor checks version; project commands verify pinned versions. Standard tests use project commands. Missing instructions/unknown tools stay unknown. Earlier project install/update exist only for historical library compatibility and explicit legacy-install/legacy-update commands. New projects use the global route.
+
+Preview also returns validation=passed, decision=required, applied=false.
+
+<a id="linux-bash"></a>
 
 ## Linux (Bash)
 
-Соберите CLI штатным Cargo с закреплённым toolchain. Профиль — домашний каталог пользователя; команды получают абсолютный путь кандидата. Для готового кандидата:
+Build CLI with standard Cargo and the pinned toolchain. Profile is the user's home directory. Pass absolute candidate paths. For a prepared candidate:
 
 ```bash
 hgCandidate="$PWD/target/highgrade/candidate"
@@ -37,16 +43,18 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 "$hgExe" global-status --profile "$HOME"
 "$hgExe" doctor --root "$PWD"
 "$hgCandidate/highgrade" global-update --profile "$HOME" --source "$hgCandidate/kit" --candidate-exe "$hgCandidate/highgrade"
-# После сверки preview повторите ту же команду с:
-# --apply true --candidate-sha256 '<отпечаток-из-preview>'
+# After preview review, repeat with:
+# --apply true --candidate-sha256 '<preview-fingerprint>'
 ```
 
-CLI устанавливается с правами 0700. `InstalledExecutableNotExecutable` означает потерю права исполнения; status не исправляет файлы. Перед восстановлением прав сверяйте принадлежность и хеш бинарника с журналом. Ограничение noexec или отказ доступа не обходите: используйте разрешённый исполняемый профиль. Соседние навыки и их ссылки не изменяются. Recovery восстанавливает прерванную транзакцию; произвольный откат выпуска этой командой не предоставляется.
+CLI installs with mode 0700. InstalledExecutableNotExecutable means execute permission was lost; status does not repair files. Before permission restoration, verify ownership/binary hash against the journal. Do not bypass noexec/access refusal. Use an authorized executable profile. Adjacent skills/links remain untouched. Recovery repairs interrupted transactions; it offers no arbitrary release rollback.
 
-## Запуск UI из проекта
+<a id="запуск-ui-из-проекта"></a>
 
-`ui-launcher --root <проект>` — preview без записи; `--apply true` создаёт отсутствующие `HighGrade UI.sh` и `HighGrade UI.cmd` и восстанавливает executable-бит неизменённого .sh. Конфликт содержимого/ссылка останавливает подготовку до записи. doctor диагностирует отсутствие, изменение и недоступность исполнения. Изменённые файлы сохраняются для явного разбора.
+## Launch UI from a project
 
-Запуск: Linux — `./HighGrade\ UI.sh` (либо `sh "HighGrade UI.sh"`), Windows — `HighGrade UI.cmd`. Оба выбирают корень по расположению файла и текущую установку из HOME/USERPROFILE; Python, Node и highgrade в PATH не нужны. Shell требует стандартные sh/sed/dirname, Windows — Windows PowerShell. `--no-open` запускает сервер без браузера; по умолчанию браузер открывается. Остановка — Ctrl+C в терминале; закрытие вкладки не завершает сервер. Двойной клик .sh зависит от файлового менеджера; .desktop и доверие рабочего стола не настраиваются.
+ui-launcher --root `<project>` previews without writing. --apply true creates missing HighGrade UI.sh/HighGrade UI.cmd and restores an unchanged .sh executable bit. A content conflict/link stops preparation before writes. doctor detects absence, edits and execute unavailability. Preserve changed files for explicit diagnosis.
 
-Стабильный протокол 1: .highgrade/global/active.json schema 3 → releases/<release>/highgrade[.exe]; global-status проверяет установку до UI. При отсутствии/повреждении установки запускатель сообщает ошибку без автоматического ремонта. Переименование/перенос папки проекта не требует изменения файлов. Update проверяет launcher_protocol=1 через ui --check до/после переключения; после восстановления при сбое используется прежняя активная версия. Новый формат должен сохранять этот контракт либо предоставлять явную миграцию.
+Linux: ./HighGrade\ UI.sh or sh "HighGrade UI.sh". Windows: HighGrade UI.cmd. Both derive root from file location and current installation from HOME/USERPROFILE. Python, Node and highgrade in PATH are unnecessary. Shell needs standard sh/sed/dirname; Windows needs Windows PowerShell. --no-open starts without a browser; default opens it. Ctrl+C stops the server. Closing a tab does not. Double-click .sh depends on the file manager. No .desktop/trust setup is performed.
+
+Stable protocol 1: .highgrade/global/active.json schema 3 → releases/`<release>`/highgrade[.exe]. global-status checks installation before UI. Missing/corrupt installation yields an error without automatic repair. Project folder renames/moves need no launcher edits. Update checks launcher_protocol=1 through ui --check before/after switching. Failure recovery selects the former active version. A new format must preserve this contract or offer an explicit migration.

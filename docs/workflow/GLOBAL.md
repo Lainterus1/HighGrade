@@ -1,27 +1,39 @@
-# Глобальный workflow High Grade
+<a id="глобальный-workflow-high-grade"></a>
 
-Назначение: границы продукта и навигация Проекта. Записи выпусков находятся в [docs/releases](../releases/); [план самостоятельности](../archive/plans/2026-09-24/2026-09-24-portable-delivery.md) завершён. Установленный выпуск показывает `global-status`.
+# High Grade global workflow
 
-## Область документа
+Purpose: product boundaries and Project navigation. [Release records](../releases/) retain history; the [self-contained Delivery plan](../archive/plans/2026-09-24/2026-09-24-portable-delivery.md) is complete. global-status shows installed release.
 
-**Поставка** — переносимый набор навыков, процедур, шаблонов и CLI. **Проект** — этот репозиторий её разработки. **Подключаемый проект** — внешний проект, который она адаптирует. Поставка должна работать без доступа к Проекту; её общие правила принадлежат `kit/`, местные решения — подключаемому проекту. История решений — в [SPECIFICATION](../archive/workflow/SPECIFICATION.md).
+<a id="область-документа"></a>
 
-## Владение и границы
+## Document scope
 
-Девять общих навыков и CLI устанавливаются в профиль пользователя. Подключаемый проект хранит свою `.highgrade/project/INSTRUCTIONS.md`, документы, JSON-спецификации High Grade, тесты и доказательства; прежние спеки сохраняются по проектной инструкции. Центрального списка проектов нет. SVG Vectorizer и Code Health Audit — отдельные пакеты.
+**Delivery** is portable skills, procedures, templates and CLI. **Project** is this development repository. **Connected project** is an external adapted project. Delivery works without Project access. kit/ owns common rules; connected projects own local decisions. [SPECIFICATION](../archive/workflow/SPECIFICATION.md) is history.
 
-## Пользовательский маршрут
+<a id="владение-и-границы"></a>
 
-[Общие правила](../../kit/rules.md) определяют маршрут. [Init](../../kit/procedures/init.md) адаптирует проект; [task](../../kit/procedures/task.md) уточняет задачу; [spec](../../kit/procedures/spec.md) оформляет изменения требований; [work](../../kit/procedures/work.md) выполняет и проверяет. [Planner](../../kit/procedures/planner.md) ведёт зависимые задачи или спеки при принятом проектом маршруте; полномочия на Goal определяются запросом пользователя по его процедуре. Технические задачи и багфиксы по неизменному контракту выполняются без новой спеки.
+## Ownership and boundaries
 
-[Commit](../../kit/procedures/commit.md) фиксирует точный состав локально; [push](../../kit/procedures/push.md) отдельно публикует выбранный диапазон. [Clear](../../kit/procedures/clear.md) — обзор по запросу; [update](../../kit/procedures/update.md) — отдельное обновление установки. Процедуры владеют подробными правилами и полномочиями, этот документ их не дублирует.
+Nine common skills/CLI install into the user profile. Connected projects keep their .highgrade/project/INSTRUCTIONS.md, docs, native High Grade JSON, tests/evidence and earlier specs under local rules. No central project list exists. SVG Vectorizer/Code Health Audit are separate packages.
 
-## Инструмент и доказательства
+<a id="пользовательский-маршрут"></a>
 
-[Справочник CLI](../../kit/references/cli.md) описывает спецификации, доказательства, реестр проблем, установку и диагностику. Штатные тесты запускаются средствами проекта; `trace` читает поддерживаемые отчёты и не оценивает смысл сценария. Неподдерживаемый формат не отменяет действительное штатное доказательство.
+## User route
 
-Поставка распространяется исходниками через GitHub; сборка, установка и обновление поддерживают Windows и Linux, CI проверяет Windows и Linux; образ GitHub Linux runner не задаёт дистрибутив пользователя. Маршрут — в [BUILD](../BUILD.md). Стек подключаемого проекта определяется при init. Хуки, Covers, бинарные пакеты и остальные платформы отложены.
+[Common rules](../../kit/rules.md) define routing. [Init](../../kit/procedures/init.md) adapts; [task](../../kit/procedures/task.md) refines; [spec](../../kit/procedures/spec.md) defines requirement changes; [work](../../kit/procedures/work.md) implements/checks. [Planner](../../kit/procedures/planner.md) coordinates dependent tasks/specs when project routing accepts it; user request/Planner determine Goal authority. Technical tasks/fixes under unchanged contracts need no new spec.
 
-## Условия готовности
+[Commit](../../kit/procedures/commit.md) records exact local scope. [Push](../../kit/procedures/push.md) separately publishes selected ranges. [Clear](../../kit/procedures/clear.md) reviews on request. [Update](../../kit/procedures/update.md) separately updates installation. Procedures own details/authority, not this document.
 
-[QUALITY](QUALITY.md) задаёт проверки самой Поставки, [CONTEXT](CONTEXT.md) — местный контекст. Установка, поведение навыков, публикация, активация и пользовательская приёмка подтверждаются отдельно. Ограниченный пилот завершён; новая работа в подключаемых проектах требует отдельного поручения.
+<a id="инструмент-и-доказательства"></a>
+
+## Tools and evidence
+
+[CLI reference](../../kit/references/cli.md) owns specifications, evidence, issues, installation and diagnostics. Standard project tools run tests. trace reads supported reports, not scenario meaning. Unsupported format does not invalidate real standard evidence.
+
+Delivery distributes source through GitHub. Build/install/update support Windows/Linux; CI checks both. GitHub Linux runner image does not define user distribution. [BUILD](../BUILD.md) owns route. Init chooses connected-project stack. Hooks, Covers, binary packages and other platforms are deferred.
+
+<a id="условия-готовности"></a>
+
+## Readiness conditions
+
+[QUALITY](QUALITY.md) defines Delivery checks; [CONTEXT](CONTEXT.md) local context. Confirm installation, skill behavior, publication, activation and human acceptance separately. The bounded pilot is complete; new connected-project work needs a separate request.

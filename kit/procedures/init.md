@@ -1,81 +1,97 @@
-# Инициализация проекта
+<a id="инициализация-проекта"></a>
 
-Init заканчивается подготовленным репозиторием и начальными спецификациями согласованной области, с понятным следующим шагом. Продуктовую функциональность и прототип он не реализует. Запрос только обследования или плана сохраняет эту границу. Отдельное поручение реализации выполняется после init по task/spec/work; известные полномочия не спрашиваются повторно.
+# Initialize a project
 
-## Решения до глубокого обследования
+Init ends with a prepared repository and initial specifications for the agreed scope, plus a clear next action. It does not implement product features or a prototype. Survey/plan-only requests retain that boundary. A separate implementation request follows task/spec/work after init; do not repeat known permissions.
 
-Прочитай действующие инструкции и входные документы. Первый смысловой выбор:
+<a id="решения-до-глубокого-обследования"></a>
 
-> С чего начинаем: продолжаем существующий проект или создаём новый?
+## Decisions before deep survey
 
-Спроси только если намерение неизвестно. Пустота каталога, шаблон и число файлов не заменяют ответ автора: пустая папка может предназначаться для переноса существующего проекта. При существенном расхождении уточни его. Отдельно установи состояние подключения High Grade; повторный init переиспользует решения и обследование. Переписывание продукта — самостоятельная задача.
+Read current instructions and entry documents. The first meaningful choice is:
 
-Язык — из поручения/местной инструкции, иначе язык запроса с обозначенным допущением. Недоступный корень останавливает зависимую работу. Фиксированные решения сохраняй с источником; опрос веди короткими раундами по [task](task.md):
+> Do we continue an existing project or create a new one?
 
-| Решение | Содержание |
+Ask only when intent is unknown. Empty directories, templates and file counts cannot replace the answer; an empty folder may receive an existing project. Clarify material contradictions. Separately establish High Grade connection state. Repeated init reuses decisions/survey. Rewriting the product is a separate task.
+
+Use request/local language, otherwise the request language with a stated assumption. English templates/instructions do not require English product documents. An unavailable root stops dependent work. Save fixed decisions with their source; ask short rounds through [task](task.md):
+
+| Decision | Content |
 |---|---|
-| purpose | Новый продукт либо продолжение/адаптация существующего процесса |
-| scope | Весь проект либо названная область |
-| preservation | Сохраняемые файлы, поведение, интерфейсы, данные и совместимость |
-| changes | Допустимые изменения основы, документов и автоматизации |
-| local_rules | Обязательные местные правила/навыки и разрешение конфликтов |
-| environment | Среда, доступы, внешние сервисы и ограничения затрат |
-| mandate | Только обследование/план либо подготовка репозитория и начальных спек |
+| purpose | New product or continued/adapted process |
+| scope | Whole project or named area |
+| preservation | Files, behavior, interfaces, data and compatibility to preserve |
+| changes | Allowed foundation, document and automation changes |
+| local_rules | Required local rules/skills and conflict resolution |
+| environment | Environment, access, services and cost limits |
+| mandate | Survey/plan only or repository and initial-spec preparation |
 
-## Новый проект: первичные требования
+<a id="новый-проект-первичные-требования"></a>
 
-Через task установи проблему и пользователей, первый полезный результат и способ его проверки, обязательное/исключённое в первой версии, данные/интеграции и среду запуска. Вопросы об интерфейсе, доступах и эксплуатации добавляй по применимости. Известные ответы переиспользуй. Обычные технические решения предложи с кратким основанием; существенные уточни до зависимого действия. Не требуй выбрать все библиотеки заранее.
+## New project: initial requirements
 
-Достаточно понимать цель, границы и конкретные ближайшие задачи, чтобы сохранить осмысленные начальные спеки. Неизвестные детали будущей реализации остаются явными вопросами. Неопределённость самой цели или предела подготовки требует уточнения. README может владеть исходным описанием продукта; отдельный PRODUCT.md нужен по объёму или ответственности. Требования и задачи принадлежат спекам, survey хранит решения и ссылки.
+Through task, establish the problem/users, first useful outcome and verification, included/excluded first-version features, data/integrations and runtime. Ask about interface, access and operations when applicable. Reuse known answers. Propose ordinary technical choices with short reasons; clarify material choices before dependent action. Do not require every library choice in advance.
 
-## Обследование
+Goal, scope and concrete nearest tasks are enough for meaningful initial specifications. Unknown future implementation details remain explicit questions. Clarify uncertain goals/preparation limits. README may own the original product description. Add PRODUCT.md only for size/responsibility. Specifications own requirements/tasks; survey owns decisions/links.
 
-Собери структуру через inventory --mode structure и прочитай значимые источники по [audit](../references/audit.md). Для пустого каталога достаточно одного осмотра исходного состояния; не повторяй диагностику отсутствующих файлов без изменения входов. Для существующего проекта глубину определяют сохранность и адаптация, полного продуктового аудита по умолчанию нет.
+<a id="обследование"></a>
 
-Результат — проектный JSON [обследования](../references/tools/survey.md). При разрешённой записи создай survey-new; read-only запрос оставляет результат в ответе. Specs и documents.json для обследования не требуются. Заполни карту, владельцев знаний, процессы, навыки, наблюдения, находки, адаптацию и маршруты.
+## Survey
 
-Различай обследованное отсутствие, принятое решение о будущем устройстве, предложение и неизвестное. Confirmed подтверждает конкретное утверждение с basis: «кода пока нет» или «решено создать компонент» не означает, что компонент реализован. Ещё не созданное не помечай not_applicable; неприменимость требует причины. Предложения храни в adaptation, фактическое устройство — в components. Пустой раздел означает, что область не обследована; не заполняй его выдуманными фактами ради готовности.
+Collect structure through inventory --mode structure and read material sources under [audit](../references/audit.md). An empty directory needs one initial inspection, not repeated missing-file diagnostics without changed inputs. For existing projects, preservation/adaptation determine depth; no default full product audit.
 
-В processes/findings опиши охват создаваемых файлов formatter/linter/ignore/CI, владельца сериализации, доступную среду и штатный запуск инструментов. Сверь назначение и стоимость местных проверок, дубли и условия повторного использования результата. Используй действующую среду до предложения новой. Точные исключения возможны для CLI-данных; не исключай все JSON/.highgrade и не ослабляй gates без поручения. Установи владельца, место, срок хранения и способ передачи обязательных доказательств в существующем подходящем документе.
+Produce project [survey JSON](../references/tools/survey.md). With write authority, call survey-new. Read-only requests keep results in the response. Survey needs neither specs nor documents.json. Fill map, knowledge owners, processes, skills, observations, findings, adaptation and routes.
 
-Выбери существующие source_paths/areas и запиши snapshot; будущие файлы не выдавай за источники. Пустой снимок не доказывает прочтение кода. Неизвестное связывай с зависимым действием: вопросы будущей продуктовой спеки не блокируют завершение уже определённой подготовки. Существенные пробелы самой подготовки сохраняй. После смысловой сверки запиши review; check проверяет предпосылки, не полномочия или истинность. План, адаптация и завершение различаются; новую находку сохраняй на фактическом этапе без перемотки и удаления блокера.
+Distinguish observed absence, accepted future design, proposal and unknown. Confirmed verifies one specific claim with basis: no code yet or a decision to create a component does not mean implementation. Do not mark not-yet-created as not_applicable; inapplicability needs a reason. Put proposals in adaptation, actual structure in components. An empty section means unexamined scope; never invent facts for readiness.
 
-## Подготовка репозитория
+In processes/findings, describe formatter/linter/ignore/CI coverage for created files, serialization owner, available environment and standard tool invocation. Compare check purpose/cost, duplicates and reuse conditions. Use the current environment before proposing another. Exact exclusions may apply to CLI data; do not exclude all JSON/.highgrade or weaken gates without a request. Identify mandatory evidence owner, location, retention and delivery in an existing suitable document.
 
-Для существующего проекта переиспользуй владельцев пяти ролей из audit, проверяя содержание. Перенос/разделение обоснуй пользой, ответственностью или размером; сохрани согласованные гарантии и обнови ссылки. Для нового назначь минимальный набор владельцев; один документ может совмещать роли. Не создавай пустые документы-заглушки.
+Select existing source_paths/areas and save a snapshot. Future files are not sources. An empty snapshot does not prove code reading. Link unknowns to dependent actions: future product-spec questions do not block defined preparation. Keep material preparation gaps. After semantic review, record review. check verifies prerequisites, not authority/truth. Plan, adaptation and completion differ; record a new finding at its actual stage without rewinding or deleting the blocker.
 
-Пример ориентиров, а не обязательное дерево: README.md и AGENTS.md в корне; .highgrade/project/ для настроек процесса; docs/ для знаний; specs/ либо выбранный каталог требований; реализация и тесты — по соглашениям стека. Каталоги scripts/assets/deploy нужны лишь при наличии соответствующей ответственности. Тесты могут соседствовать с кодом. Корень сохраняет требуемую инструментами конфигурацию. Группируй код по функциональности, где это помогает локальным изменениям; общие слои и apps/packages не создавай заранее. Раздели кэши, временные материалы и обязательные доказательства.
+<a id="подготовка-репозитория"></a>
 
-Подготовь местную инструкцию, навигацию, известные команды и бюджеты по [audit](../references/audit.md#контекст-и-адаптация). Неизвестные команды/бюджеты обозначь честно; рабочее приложение для завершения init не требуется. Если runner ещё не нужен, его настройка остаётся непроверенной до первой задачи; fake check или демонстрационная функциональность не создаются ради gate.
+## Prepare the repository
 
-Заполни раздел сопровождения [шаблона инструкции](../templates/INSTRUCTIONS.md) из действующих документов, конфигурации CI и решений автора: применимость Git/неизменяемого noGit-результата, ветки отправки и PR/base, pre-submit и обязательные критерии готовности, отдельный статус CI и только явно назначенный барьер ожидания, последствия push (включая автодеплой), активацию и отдельные полномочия приёмки/merge/release/deploy. Для squash/rebase укажи способ связи проверенного состава с новым SHA. Известные сведения переиспользуй с источником, не задавай вопросы повторно и не превращай найденную команду в разрешение её выполнить. Для каждого применимого неизвестного назови зависимое действие; отсутствие будущего remote не блокирует независимую локальную работу.
+For an existing project, reuse owners of audit's five roles and check content. Explain moves/splits by usefulness, responsibility or size. Preserve agreed guarantees and fix links. For a new project, assign minimum owners; one document may cover several roles. Do not create empty placeholders.
 
-При повторном init или обновлении Поставки не переписывай принятые местные правила молча: покажи конкретный пробел адаптации и предложи минимальное согласованное дополнение. Совместимая схема сама по себе не доказывает заполнения новых полей. Уточняй только существенное неизвестное перед зависимым действием; не навязывай High Grade release ID, global-update или Git проекту, которому они не нужны.
+Example guidance, not a mandatory tree: README.md/AGENTS.md in root; .highgrade/project/ for process configuration; docs/ for knowledge; specs/ or a chosen requirement directory; implementation/tests under stack conventions. Create scripts/assets/deploy only for real responsibility. Tests may sit beside code. Keep tool-required root configuration. Group code by feature when it helps local changes. Do not precreate shared layers or apps/packages. Separate caches, temporary material and mandatory evidence.
 
-Сохрани полезные местные навыки и исключения; у пересекающихся маршрутов определи повод, вход, выход и владельца. Поставка не копируется в проект. Технический каркас ограничен подготовкой: генератор приложения, создающий продуктовую функциональность, запускается в последующей реализации по требованиям.
+Prepare local instruction, navigation, known commands and budgets under [audit](../references/audit.md#context-and-adaptation). State unknown commands/budgets honestly. Init does not need a working app. If no runner is needed yet, leave setup unverified until the first real task; never add fake checks or demo functionality for a gate.
 
-Различай каталог файлов, локальный Git и удалённый репозиторий. Поручение оформить новый Git-репозиторий позволяет git init; существующий .git сохраняется. Remote, публичность, лицензия, коммит, push и развёртывание определяются поручением и известными решениями. Отсутствие Git само по себе не дефект локального проекта.
+Fill the [instruction template](../templates/INSTRUCTIONS.md) delivery section from current documents, CI configuration and user decisions: Git/immutable noGit applicability, target branches and PR/base, pre-submit/readiness criteria, separate CI status and only an explicitly assigned waiting barrier, push effects including automatic deployment, activation and separate acceptance/merge/release/deploy authority. For squash/rebase, define linkage of checked content to the new SHA. Reuse known sourced facts; do not repeat questions or treat a found command as permission. For each applicable unknown, name the dependent action. Missing future remote does not block independent local work.
 
-## Запуск интерфейса проекта
+On repeated init/Delivery update, do not silently overwrite accepted local rules. Show the specific adaptation gap and propose a minimal agreed addition. Compatible schema does not prove new fields are filled. Clarify only a material unknown before its dependent action. Do not impose High Grade release IDs, global-update or Git where unnecessary.
 
-При разрешённой подготовке проекта выполни `ui-launcher --root <проект>` для проверки состава, затем `ui-launcher --root <проект> --apply true`. Команда создаёт в корне `HighGrade UI.sh` и `HighGrade UI.cmd`; они находят текущую общую установку без закрепления выпуска и сохраняют работу после переноса проекта. Повторный Init восстанавливает отсутствующие файлы и executable-бит своего shell-файла. Одноимённые чужие/изменённые файлы и ссылки не перезаписывай; конфликт покажи автору. Проверь результат через doctor. Запрос только обследования не разрешает создание запускателей. Подробности запуска и совместимости — в [справочнике установки](../references/tools/installation.md#запуск-ui-из-проекта).
+Preserve useful local skills/exceptions. For overlapping routes, define trigger, input, output and owner. Do not copy the Delivery into a project. The technical scaffold is preparation only; an application generator that creates product functionality belongs to later requirement-based implementation.
 
-## Начальные спецификации
+Distinguish a file directory, local Git and remote repository. A request to set up a new Git repository authorizes git init. Preserve an existing .git. Remote, visibility, license, commit, push and deployment follow the request/known decisions. Git absence alone is not a local-project defect.
 
-При разрешённой подготовке нового проекта выбери specs/ либо подходящий пустой каталог, выполни spec-init и закрепи путь. Чужое не перезаписывай. Для существующего сохраняй действующие спеки/формат; миграция и массовая формализация требуют поручения. Если новых требований нет, не создавай фиктивную спеку ради отчёта init.
+<a id="запуск-интерфейса-проекта"></a>
 
-По [spec](spec.md#начальная-проработка-при-init) сохрани известные требования, цель, границы и конкретные задачи ближайших результатов. Порядок tasks отражает логичную реализацию. Рекомендуемую первую спеку назови в итоговой передаче или существующем Next; depends_on задавай только по реальной зависимости результата, не ради сортировки. Отдельная дорожная карта с копиями задач не нужна.
+## Project interface launch
 
-Ближайшую спеку проработай глубже по имеющимся данным; последующие могут содержать явные вопросы и незавершённые детали. Пустой шаблон не считается начальным набором требований. Далёким неопределённым идеям не требуются собственные спеки. Теги обозначают реальные широкие области проекта.
+With preparation authority, run ui-launcher --root `<project>` to preview, then ui-launcher --root `<project>` --apply true. It creates HighGrade UI.sh/HighGrade UI.cmd at root. They locate the current global installation without pinning a release and work after project moves. Repeated Init restores missing files and its shell executable bit. Do not overwrite foreign/edited files or links; report conflicts. Check through doctor. Survey-only requests do not authorize launchers. Details belong to [installation](../references/tools/installation.md#launch-ui-from-a-project).
 
-Черновики не объявляй готовыми к выполнению: укажи недостающее и действие проработки. Завершение init не требует реализации/интеграции продуктовых спек, зелёного spec-check или человеческой приёмки будущего продукта. Позже task/spec уточняют тот же ID, затем work выполняет достаточно определённый контракт.
+<a id="начальные-спецификации"></a>
 
-## Проверка и продолжение
+## Initial specifications
 
-Без реестра inspect --bootstrap помогает различать техническую проверку и задачи адаптации. Его legacy status/exit могут быть failed из-за ожидаемых отсутствий: читай validation/adaptation и конкретные findings, не объявляй общий PASS. Отсутствие пути до подготовки — задача; после обещанного создания — незакрытый результат. Недоступность/повреждение не скрываются. После подготовки используй обычный inspect по реестру и применимый doctor; не требуй установки инструментов, не нужных ближайшему действию.
+For authorized new-project preparation, choose specs/ or a suitable empty directory, call spec-init and record the path. Do not overwrite foreign content. Existing projects retain current specs/format. Migration/mass formalization needs a request. Without new requirements, do not invent a specification for an init report.
 
-Проверь изменённое по местной матрице, ссылки и цепочку «запрос → спека → задачи → предполагаемая область → способ проверки». Для ещё не созданного кода область явно предполагаемая. Нормативную правку проверяй по work; утверждение о выполнении команды требует запуска. Не запускай импровизированное приложение ради проверки инструкции.
+Under [spec](spec.md#initial-preparation-during-init), save known requirements, goal, scope and concrete nearest tasks. Task order reflects logical implementation. Name the first recommended specification in handoff or existing Next. Use depends_on only for actual result dependencies, not sorting. Do not create a duplicate-task roadmap.
 
-Перед завершением обнови обследование по факту, снимок и ревью. Передай: что подготовлено, какие спеки созданы/переиспользованы, рекомендуемый порядок, открытые вопросы, первую спеку и действие дальнейшей проработки, фактические проверки и ограничения. Готовность подключения отделена от полноты продуктовых спек и реализации. Текущие знания остаются у владельцев; история survey не становится backlog.
+Develop the nearest specification more deeply from available facts. Later ones may retain explicit questions/incomplete details. An empty template is not initial requirements. Distant unclear ideas need no specifications. Tags represent real broad domains.
 
-Повторный init проверяет затронутые изменения и прежние решения; completed редактируется через reopen с сохранением истории. Новый Git SHA сам по себе не сбрасывает согласие. При прерывании сохраняй фактическое состояние и конкретный Next. После полного init реализация начинается по отдельному поручению стандартным workflow.
+Do not present drafts as executable-ready. State missing information and refinement action. Init completion needs neither product implementation/integration, green spec-check nor acceptance of a future product. Later task/spec refines the same ID, then work executes a sufficiently defined contract.
+
+<a id="проверка-и-продолжение"></a>
+
+## Verification and continuation
+
+Before a registry exists, inspect --bootstrap separates technical validation from adaptation work. Legacy status/exit may fail for expected absences; read validation/adaptation and actual findings, without claiming overall PASS. Before preparation, a missing path is a task. After promised creation, it is an unfinished result. Do not hide unavailability/corruption. After preparation, use registry-based inspect and applicable doctor. Do not require tools unnecessary for the nearest action.
+
+Check changes under the local matrix, links and request → specification → tasks → intended scope → verification chain. For absent code, state that scope is intended. Check normative edits through work. Command execution claims require a real run. Do not launch an improvised app to check instructions.
+
+Before finishing, update actual survey state, snapshot and review. Pass prepared content, new/reused specifications, recommended order, open questions, first specification/refinement action, actual checks and limits. Connection readiness differs from product-spec completeness and implementation. Owners retain current knowledge; survey history is not a backlog.
+
+Repeated init checks affected changes and previous decisions. Edit completed through reopen with history retained. A new Git SHA alone does not reset agreement. On interruption, preserve actual state and concrete Next. After full init, implementation begins under a separate request through the standard workflow.

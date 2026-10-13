@@ -1,42 +1,50 @@
-# Сборки и временные файлы Проекта
+<a id="сборки-и-временные-файлы-проекта"></a>
 
-`target/` — игнорируемый Git рабочий каталог, не место постоянных доказательств. Структура принадлежит этому документу; после `cargo clean` её восстанавливают инструменты. В корне допустимы только нативные выходы Cargo (`debug/`, `release/`, `tmp/`, `CACHEDIR.TAG`, `.rustc_info.json`), `nextest/` и один проектный каталог `highgrade/`. Проектные пробы, JSON и скрипты прямо в корень не клади.
+# Project builds and temporary files
+
+target/ is an ignored work directory, not permanent evidence storage. This document owns structure; tools restore it after cargo clean. Root permits only native Cargo outputs debug/, release/, tmp/, CACHEDIR.TAG, .rustc_info.json, plus nextest/ and highgrade/. Never put project probes, JSON or scripts directly at root.
 
 ```text
 target/
-  debug/                         Cargo: разработка и тесты
-  release/                       Cargo: обычная release-сборка
-  tmp/                           Cargo: временный каталог тестов
-  nextest/                       штатный тестовый раннер
+  debug/                         Cargo development/tests
+  release/                       Ordinary release build
+  tmp/                           Cargo test temporary directory
+  nextest/                       Standard test runner
   highgrade/
-    build-cache/                 Cargo-кэш кандидатов из точного SHA
-    candidate/                   последний кандидат: CLI, kit, candidate.json
-    candidate.previous/          только аварийное восстановление
-    reports/                     журнал последней сборки кандидата
-    tools/                       локальные инструменты
-    work/                        lock и временные исходники; после сборки пуст
-    tmp/<запуск>/                кратковременные пробы; убираются после задачи
+    build-cache/                 Exact-SHA candidate Cargo cache
+    candidate/                   Last candidate: CLI, kit, candidate.json
+    candidate.previous/          Emergency recovery only
+    reports/                     Last candidate-build log
+    tools/                       Local tools
+    work/                        Lock/temp sources; empty after build
+    tmp/<run>/                   Short-lived probes; clean after task
 ```
 
-Кандидат активации готовит `python scripts/build-release.py <точный-SHA-коммита>`. Это единственная обязательная release-сборка кандидата; предварительную `cargo build --release --locked` не выполняй без отдельного риска. Скрипт экспортирует именно этот Git SHA, собирает с `--release --locked` и использует общий `target/highgrade/build-cache` отдельно от обычного `target/release`: параллельная разработческая сборка не может подменить кандидат. Бинарник берётся из `compiler-artifact` текущего запуска Cargo, в том числе при `CARGO_BUILD_TARGET`. Временные исходники удаляются после штатного успеха и ошибки. Сбой сохраняет прежний кандидат. Скрипт не активирует Поставку и не публикует Git. На Windows до сборки проверь, что контекст применения сможет прочитать будущий `target/highgrade/candidate`; если песочница и активация работают от разных пользователей, собирай и применяй в одном разрешённом контексте вместо ручного расширения ACL готового кандидата.
+python scripts/build-release.py `<exact-commit-SHA>` prepares activation candidates. It is the only mandatory release build; do not prebuild cargo build --release --locked without a separate risk. The script exports that SHA, builds --release --locked and uses shared target/highgrade/build-cache independently of target/release. A parallel dev build cannot substitute the candidate. Binary comes from current Cargo compiler-artifact, including CARGO_BUILD_TARGET. Temporary sources are removed after ordinary success/failure; failure keeps the old candidate. The script activates/publishes nothing. On Windows, check that application context can read future candidate output. If sandbox/application users differ, build/apply in one authorized context instead of broadening ready-candidate ACL manually.
 
-Если меняется исполняемая CLI или Поставка `kit/` либо автор явно просит активацию, проверь активный ID через `global-status` и **перед коммитом, который будет активирован**, назначь явно запрошенную автором версию, иначе повысь patch-версию в `Cargo.toml`, `Cargo.lock` и полях `release`/`cli_version` манифеста `kit/manifest.json`. Согласуй ожидаемые ID в тестах и проверь манифест. Затем создай коммит и собирай кандидат из его SHA. В зависимой цепочке промежуточные коммиты без нужды в активной CLI не получают нового release ID; подробное условие — в [проектной инструкции](../.highgrade/project/INSTRUCTIONS.md). ID выпуска нельзя использовать повторно: одинаковый ID с другим бинарником остановит обновление. Для остальных проектных правок без запроса на активацию сборка и новая версия не нужны.
+For executable CLI/kit changes or explicit activation requests, check active ID with global-status. **Before the commit to be activated**, use the requested version or increment patch in Cargo.toml, Cargo.lock and manifest release/cli_version. Update expected test IDs/check manifest. Commit, then build its SHA. Intermediate chain commits need no new release ID unless active new CLI is needed; the [local instruction](../.highgrade/project/INSTRUCTIONS.md) owns details. Never reuse release IDs: another binary under the same ID rejects update. Other project edits without activation authority need no candidate/new version.
 
-`candidate.previous` появляется только при двойной ошибке замены и отката. При его наличии новый выпуск отказывается работать до ручной проверки. Изменённые или чужие файлы кандидата и ссылки/junction скрипт не удаляет. Одновременный запуск отвергается блокировкой; после аварийного выключения сначала проверь, что сборка не идёт, затем разбирай остаток в `work/`.
+candidate.previous exists only after both replacement and rollback fail. A new build refuses until manual diagnosis. Scripts do not delete edited/foreign candidate files or links/junctions. Concurrent builds reject through lock. After a crash, confirm no build before handling work/ remnants.
 
-## Экономичная обычная сборка
+<a id="экономичная-обычная-сборка"></a>
 
-`Cargo.toml` задаёт один dev-профиль `debug = 0`, `incremental = false`; test наследует его. Nextest собирает также `target/debug/highgrade`, поэтому перед `verify.py tests` отдельный `cargo build` не нужен. Отдельный test-профиль с иным debug создавал бы второй набор зависимостей после dev-сборки. Если нужна исходная отладочная информация, временно задайте `CARGO_PROFILE_DEV_DEBUG=line-tables-only` для соответствующего запуска; обычные проверки возвращайте к проектному профилю. Debug assertions сохраняются; по умолчанию DWARF/подробные строки отладчика не включены. После смены параметров варианты кэша могут сосуществовать; старый debug-кэш удаляется только явным `--cache debug --apply` после проверки использования.
+## Economical ordinary builds
 
-`verify.py tests` до capture и Cargo проверяет не менее 1 ГиБ свободного места для проекта и эффективного Cargo target, который читает через `cargo metadata --locked --offline --no-deps`. При недостатке прежние отчёты сохраняются, сборка не начинается, автоматической очистки нет. Это консервативный минимум, а не гарантированный пик: другие процессы, дополнительные профили, UI и размер проекта могут потребовать больше. Проверяйте отчёт до дорогой работы и после завершения задачи; отдельные Git worktree имеют собственные target, их кэши не становятся общими автоматически. Не очищайте соседнее дерево, пока не проверены его владелец, активность и необходимость артефактов.
+Cargo.toml defines one dev profile: debug=0, incremental=false; test inherits it. Nextest also builds target/debug/highgrade, so no separate cargo build is needed before verify.py tests. A different test debug profile would duplicate dependencies. For source debugging, temporarily set CARGO_PROFILE_DEV_DEBUG=line-tables-only for the relevant run; return ordinary checks to project settings. Debug assertions remain; detailed DWARF is off by default. Cache variants may coexist after setting changes. Remove old debug caches only by explicit --cache debug --apply after usage checks.
 
-## Обслуживание
+Before capture/Cargo, verify.py tests requires at least 1 GiB free for project/effective Cargo target, resolved through cargo metadata --locked --offline --no-deps. Low space preserves old reports and starts no build/automatic cleanup. This is conservative headroom, not a peak guarantee. Other processes/profiles/UI/project size may need more. Check before expensive work and after task completion. Worktrees have separate targets, not automatically shared caches. Never clean another tree before checking owner/activity/artifact need.
 
-### Ресурсы интерфейса
+<a id="обслуживание"></a>
 
-Перед Cargo сборщик выполняет `npm ci --no-audit --no-fund` и `npm run build` в `ui/` экспортированного SHA. Node 24/npm нужны разработчику сборки; установленному пользователю достаточно CLI и браузера. Lockfile закрепляет зависимости. `ui/scripts/bundle.mjs` синхронизирует локальные ресурсы/лицензии и формирует манифест с версиями CLI/API, SHA исходников, отпечатками каждого ресурса и происхождением шрифта/иконок. `build.rs` проверяет хеши, версии и обязательные ресурсы, затем встраивает комплект в бинарник. Release без полного UI отвергается; сборщик дополнительно вызывает `ui --check true` у готового бинарника и сверяет SHA/версию до замены кандидата. Установщик проверяет UI кандидата до записи профиля. До открытия порта CLI также проверяет комплект; отсутствие/порча/несовместимость дают `UiBundleInvalid`. Внешнего резервного скачивания нет. Лицензии доступны в `/licenses/`, перечень — `/highgrade-ui.json` этого локального сеанса. Storybook в пользовательский выпуск не входит.
+## Maintenance
 
-Обычная разработка: `npm ci` и `npm run build` из ui, затем `cargo build --locked` из корня. Debug-сборка без каталога dist допустима для не-UI команд; запуск UI и установка такого кандидата запрещены. Существующий, но неполный dist отвергается и в debug. Изменение фронтенда требует повторить обе сборки.
+<a id="ресурсы-интерфейса"></a>
+
+### Interface assets
+
+Before Cargo, the builder runs npm ci --no-audit --no-fund and npm run build in exported ui/. Build developers need Node 24/npm; installed users need only CLI/browser. Lockfile pins dependencies. bundle.mjs synchronizes assets/licenses and records CLI/API versions, source SHA, asset hashes and font/icon origins. build.rs checks hashes/versions/required assets and embeds them. Incomplete release UI rejects. Builder calls ui --check true and checks SHA/version before replacing candidates. Installer checks UI before profile writes. CLI checks before listening; absent/corrupt/incompatible assets yield UiBundleInvalid, with no remote fallback. Local /licenses/ exposes licenses; /highgrade-ui.json lists assets. Storybook is not shipped.
+
+Ordinary development: npm ci/npm run build in ui/, then cargo build --locked at root. Debug without dist is allowed for non-UI commands, but not UI/installation. An existing incomplete dist rejects even debug. Frontend edits need both builds.
 
 ```text
 python scripts/target-maintenance.py
@@ -46,39 +54,45 @@ python scripts/target-maintenance.py --apply --cache release
 python scripts/target-maintenance.py --check
 ```
 
-Без `--apply` выводится план с путями и `cargo_commands`; после сверки примени ту же выборку. `--scratch NAME` выбирает одного ребёнка `highgrade/tmp/`, `--report NAME` — один существующий файл `highgrade/reports/`; остальные сохраняются. `--cache release` вызывает `cargo clean --release`, debug — `cargo clean --profile test`; build-cache — `cargo clean --release --target-dir target/highgrade/build-cache`. Выбранный Cargo-профиль удаляется целиком: его каталоги предназначены только для воспроизводимых сборочных выходов. Неизвестные пути, candidate и tools сохраняются.
+Without --apply, review paths/cargo_commands; apply the same selection. --scratch NAME selects one highgrade/tmp/ child; --report NAME selects one existing reports file. Other content remains. --cache release calls cargo clean --release; debug calls cargo clean --profile test; build-cache calls cargo clean --release --target-dir target/highgrade/build-cache. Selected Cargo profiles are entirely reproducible build output. Unknown paths, candidate/tools remain.
 
-Инвентаризация сообщает `mib` (уникальные байты файлов без повторного учёта hardlink), `logical_mib` (сумма по именам), `physical_mib` (выделенные блоки файлов/каталогов либо null при недоступности ОС), `hardlink_duplicates_mib` и `areas`. Существующий бюджет сравнивается с уникальными байтами. Области измеряются независимо: межобластная hardlink входит в обе области, но в общий объём только один раз. Это read-only измерение, не обещание свободного места после очистки.
+Inventory reports mib (unique bytes, hardlinks once), logical_mib (sum by names), physical_mib (allocated file/directory blocks or null), hardlink_duplicates_mib and areas. Budget compares unique bytes. Areas count independently: a cross-area hardlink enters both area counts but total once. This is read-only measurement, not guaranteed freed space.
 
-До первого удаления проверяются все параметры и пути. Работающий Cargo/rustc/nextest, непустой work, candidate.previous, ссылка или junction внутри target останавливают применение. Отказ Cargo во время исполнения сообщается как ошибка; уже удалённые временные файлы не восстанавливаются, общей транзакции очистки нет. `--check` сообщает неизвестные пути, остатки проб и превышение **600 МиБ после обслуживания**; принудительного удаления для достижения бюджета нет. Полный `cargo clean` корня target не является обычным обслуживанием: он удалит кандидат и инструменты.
+Validate all parameters/paths before deletion. Running Cargo/rustc/Nextest, nonempty work, candidate.previous or a target link/junction stops apply. Cargo refusal is an error; already removed temporary files are not restored. Cleanup is not one transaction. --check reports unknown paths, probes and **600 MiB after-maintenance** overruns. No forced cleanup to meet budget. Full cargo clean removes candidates/tools and is not routine maintenance.
 
-### Срок жизни данных
+<a id="срок-жизни-данных"></a>
 
-| Данные | Место и условие удаления |
+### Data lifetime
+
+| Data | Location/removal condition |
 |---|---|
-| Воспроизводимая сборка | debug/release/build-cache; удаляется явной выборкой, следующая сборка восстановит её |
-| Проба и промежуточный лог | highgrade/tmp или reports; после завершения задачи и переноса нужного доказательства |
-| Подготовка задачи | `.highgrade/local/`; входные JSON, скрипты и копии diff удаляются после использования, если на них не опирается продолжение или доказательство |
-| Состояние продолжения | `.highgrade/local/`; сохраняется до конца цепочки, затем достаточно краткого итога с SHA и ссылками |
-| Доказательства | specs/changes/<ID>/evidence или docs/evidence; сохраняются, пока нужны для проверки/истории. Единственный исходный отчёт не удаляется |
-| Кандидат и tools | сохраняются обслуживанием; резервная CLI нужна до подтверждения обновления или окончания восстановления |
+| Reproducible builds | debug/release/build-cache; explicit selection, rebuilt later |
+| Probe/intermediate log | highgrade/tmp or reports; after task/evidence preservation |
+| Task preparation | .highgrade/local/; input JSON/scripts/diff copies after use unless continuation/evidence needs them |
+| Continuation | .highgrade/local/ until chain completion; then short result with SHA/links |
+| Evidence | specs/changes/`<ID>`/evidence or docs/evidence while needed for checks/history; keep the only original report |
+| Candidate/tools | Preserved by maintenance; backup CLI until update confirmation/recovery end |
 
-`highgrade/work` принадлежит только сборщику: lock и временные исходники, без черновиков спек. Перед удалением проверь владельца, использование, ссылки и необходимость истории. Ссылка сама по себе не делает весь архив обязательным: нужное доказательство можно сохранить отдельно, обновив действующие ссылки и проверив перенос. Не архивируй воспроизводимые кэши и дубли ради очистки. Приватная необходимая история остаётся в `.highgrade/local/archive`. Произвольную очистку local инструмент не выполняет. Каталоги specs/ и issues/ — данные проекта, очистка сборок их не затрагивает.
+Only the builder owns highgrade/work, for locks/temp sources, never draft specs. Before deletion, check owner, usage, links and history need. A link does not make the whole archive mandatory; preserve needed evidence separately, update links and verify transfer. Never archive reproducible caches/duplicates just to clean. Required private history stays in .highgrade/local/archive. Tools do not arbitrarily clean local. specs/ and issues/ are project data, outside build cleanup.
 
-Маршрут preview → apply с одним `candidate_sha256` — в [проектной инструкции](../.highgrade/project/INSTRUCTIONS.md). Используй CLI и kit одного кандидата. Сам SHA не гарантирует одинаковые байты бинарника разных сборок; для apply сохраняется отпечаток конкретного кандидата. Перед проверкой сборочного маршрута выполни `cargo fetch --locked`: изолированный тест build.rs использует offline-зависимости, поэтому пустой кэш должен быть подготовлен явно. Затем `python -m unittest discover -s scripts/tests -v` (реальные Git/Cargo, отказ компиляции, чужие файлы и junction). Python 3.12, Node/npm и Cargo обязательны; дополнительных Python-пакетов нет.
+The [local instruction](../.highgrade/project/INSTRUCTIONS.md) owns preview/apply with one candidate_sha256. Use CLI/kit from one candidate. Source SHA does not guarantee identical binaries across builds; apply retains this particular candidate fingerprint. Before build-route tests, run cargo fetch --locked: isolated build.rs tests use offline dependencies, so prepare an empty cache explicitly. Then python -m unittest discover -s scripts/tests -v checks real Git/Cargo, compilation failure, foreign files/junctions. Requires Python 3.12, Node/npm, Cargo; no extra Python packages.
+
+<a id="linux"></a>
 
 ## Linux
 
-Сборка из SHA: `python scripts/build-release.py <SHA>`. Кандидат содержит `highgrade` без `.exe`; сборщик сохраняет право исполнения. Установка и обновление — по Linux-разделу [справочника установки](../kit/references/tools/installation.md#linux-bash). Обслуживание использует `ps`; PowerShell на Linux не нужен.
+Build from SHA: python scripts/build-release.py `<SHA>`. Candidate highgrade has no .exe; builder preserves execute permission. [Installation](../kit/references/tools/installation.md#linux-bash) owns Linux install/update. Maintenance uses ps, not PowerShell.
 
-## Обязательный installed-E2E
+<a id="обязательный-installed-e2e"></a>
 
-Playwright использует свой Chromium либо исполняемый файл `HIGHGRADE_CHROME`.
+## Required installed-E2E
 
-Windows/Linux CI собирает точный head-коммит PR (при push — `github.sha`) штатным сборщиком. Предыдущие платформенные выпуски берутся из закреплённых ниже SHA: на cache miss их собирают собственные исторические сборщики, на cache hit используют готовый кандидат для той же ОС/архитектуры/SHA. Оба режима проходят одинаковую проверку candidate.json, состава, всех хешей, версии и запуска CLI. Кэш не является доказательством успешной установки. Установка выполняется только во временный профиль. Подмена версии текущего бинарника предыдущей запрещена.
+Playwright uses its Chromium or HIGHGRADE_CHROME executable.
 
-Для локального `npx playwright test installed.spec.ts` из ui задайте `HIGHGRADE_UI_REQUIRED=true`, `HIGHGRADE_UI_CANDIDATE`, `HIGHGRADE_UI_SOURCE_SHA`, `HIGHGRADE_UI_VERSION`, `HIGHGRADE_OLD_SOURCE`, `HIGHGRADE_OLD_EXE`, `HIGHGRADE_OLD_SOURCE_SHA`, `HIGHGRADE_OLD_VERSION`. Пути ведут к двум кандидатам/kit/CLI; SHA и версии берутся из их исходных коммитов. Проверяются candidate.json, хеши файлов и версии обоих исполняемых файлов, затем установка/обновление, восстановление и UI двух проектов. В CI required включён всегда; отсутствующие, частичные или несовпадающие входы дают ошибку. Лишь локальный запуск без настроенных входов и без required может быть skipped. `node --test ui/scripts/tests/installed-config.test.mjs` проверяет этот барьер без выпусков.
+Windows/Linux CI builds exact PR head, or github.sha on push, through the standard builder. Platform-specific old releases use pinned SHAs below. Cache miss builds through their historical builders; hit reuses the same OS/architecture/SHA candidate. Both verify candidate.json, file set/hashes, version and CLI execution identically. Cache is not installation evidence. Install only in temporary profiles. Never relabel current binaries as older versions.
 
-Предыдущие installed-фикстуры закреплены по платформе: Windows — `e60b6d4d4c3631c7140b037581f0bcdb2573befd` (0.3.5), Linux — `fda4117312ca4c5af4388c960081dac94c10ea8f` (0.3.4). Это исходные ветки до объединения в 0.3.6: установщик Windows-ветки 0.3.5 теряет Unix execute-bit. Исторические исходники/бинарники не исправляются для теста.
+For local npx playwright test installed.spec.ts in ui/, set HIGHGRADE_UI_REQUIRED=true, HIGHGRADE_UI_CANDIDATE, HIGHGRADE_UI_SOURCE_SHA, HIGHGRADE_UI_VERSION, HIGHGRADE_OLD_SOURCE, HIGHGRADE_OLD_EXE, HIGHGRADE_OLD_SOURCE_SHA and HIGHGRADE_OLD_VERSION. Paths identify two candidates/kit/CLI; SHAs/versions come from their source commits. Verify candidate.json, hashes and both binary versions, then installation/update/recovery and two-project UI. CI always requires inputs; absent/partial/mismatched values fail. Only local nonrequired runs without configured inputs may skip. node --test ui/scripts/tests/installed-config.test.mjs checks this barrier without releases.
 
-Матрица CI и политика ожидания — в [DEVELOPMENT](DEVELOPMENT.md#общие-проверки-и-ci). Отчёты и автоочистка — [хранение результатов](EVIDENCE-STORAGE.md).
+Previous platform fixtures: Windows e60b6d4d4c3631c7140b037581f0bcdb2573befd (0.3.5); Linux fda4117312ca4c5af4388c960081dac94c10ea8f (0.3.4). These pre-0.3.6 source branches differ: Windows 0.3.5 installer loses Unix execute-bit. Never fix historical sources/binaries for a test.
+
+[DEVELOPMENT](DEVELOPMENT.md#common-checks-and-ci) owns CI/waiting matrix. [Evidence storage](EVIDENCE-STORAGE.md) owns reports/cleanup.

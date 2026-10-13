@@ -1,0 +1,13 @@
+<a id="актуализация-состояния-проекта"></a>
+
+# Review project state
+
+Clear reviews state; it is not a deletion command. A request to check or analyze authorizes reading only. For an uninitialized project, `inspect --bootstrap` shows document structure. Find the code review scope through targeted reading and audit. Use common audit, `doctor`/`inspect` and applicable standard checks. Compare actual code, current requirements, document ownership, links, context budgets, workarounds, archive and skill responsibilities. Check OpenSpec only where the project explicitly retains that route. Check project instruction schema and compatibility with the global Delivery. Name conflicts and affected tasks.
+
+If fixes are requested, change only the agreed scope, check the result and preserve history. Budget increases and functionality removal need a separate material decision. Routine document and archive maintenance does not wait for Clear.
+
+Apply the [compatibility contract](../references/tools/diagnostics.md#совместимость-проекта): schema and meaning are separate, accepted exceptions remain, and project instructions are not rewritten automatically.
+
+Check specs (or specs-location.json), current requirements, orphan links, evidence freshness and broad tags. spec-list/spec-read do not run checks. Repeat spec-run only within authorized scope. Do not move files by status or delete the project catalog with .highgrade. Assess context before merging tag synonyms. An agreed merge uses spec-tag-merge in one transaction.
+
+If issues/ exists within review scope, use issue-list/read and selective issue-validate. Check solution applicability, verification_current, evidence links and material open workarounds. A faulty or stale record is a finding, not authority to rerun its recipe. Do not create a missing registry. [Fixer](fix.md) owns reusable solutions.

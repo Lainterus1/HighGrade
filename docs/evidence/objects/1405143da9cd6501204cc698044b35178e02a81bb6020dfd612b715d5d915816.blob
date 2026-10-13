@@ -1,0 +1,40 @@
+   Compiling highgrade v0.3.12 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 5.31s
+     Running tests/release_notes_contracts.rs (target/debug/deps/release_notes_contracts-abfe3d175bb9798f)
+
+running 3 tests
+test malformed_history_is_rejected_instead_of_invented ... FAILED
+test summary_states_gaps_unknown_reverse_and_empty_changes ... FAILED
+test summary_covers_skipped_releases_and_keeps_all_actions ... FAILED
+
+failures:
+
+---- malformed_history_is_rejected_instead_of_invented stdout ----
+
+thread 'malformed_history_is_rejected_instead_of_invented' panicked at tests/release_notes_contracts.rs:40:5:
+assertion failed: release_notes::summary(&notes(json!([x])), "v0-3-1", "v0-3-3").is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- summary_states_gaps_unknown_reverse_and_empty_changes stdout ----
+
+thread 'summary_states_gaps_unknown_reverse_and_empty_changes' panicked at tests/release_notes_contracts.rs:30:5:
+assertion `left == right` failed
+  left: String("unavailable")
+ right: "partial"
+
+---- summary_covers_skipped_releases_and_keeps_all_actions stdout ----
+
+thread 'summary_covers_skipped_releases_and_keeps_all_actions' panicked at tests/release_notes_contracts.rs:18:5:
+assertion `left == right` failed
+  left: String("unavailable")
+ right: "complete"
+
+
+failures:
+    malformed_history_is_rejected_instead_of_invented
+    summary_covers_skipped_releases_and_keeps_all_actions
+    summary_states_gaps_unknown_reverse_and_empty_changes
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test release_notes_contracts`

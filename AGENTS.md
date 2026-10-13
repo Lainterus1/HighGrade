@@ -1,24 +1,32 @@
-# Работа агента в High Grade
+<a id="работа-агента-в-high-grade"></a>
 
-Это репозиторий разработки переносимой **Поставки**; термины — в [README](README.md#термины-и-границы). Начни с README и [местной инструкции](.highgrade/project/INSTRUCTIONS.md), затем читай только затронутую область.
+# Agent work in High Grade
 
-При выборе между допустимыми решениями руководствуйся [целью проекта](README.md#цель-проекта) и [принципами принятия решений](README.md#принципы-принятия-решений).
+This repository develops the portable **Delivery**; terms are in [README](README.md#термины-и-границы). Start with README and the [local instruction](.highgrade/project/INSTRUCTIONS.md), then read only affected scope.
 
-## Владельцы
+Choose among valid solutions through the [project goal](README.md#цель-проекта) and [decision principles](README.md#принципы-принятия-решений).
 
-- [ARCHITECTURE](docs/ARCHITECTURE.md) — устройство, [ENGINEERING](docs/ENGINEERING.md) — инженерные правила.
-- [DEVELOPMENT](docs/DEVELOPMENT.md) — команды и единственная проектная матрица проверок.
-- [GLOBAL](docs/workflow/GLOBAL.md) — границы продукта, [QUALITY](docs/workflow/QUALITY.md) — смысл доказательств, [CONTEXT](docs/workflow/CONTEXT.md) — организация контекста.
-- `kit/` — общие правила и процедуры; `specs/` — требования и задачи. Архив хранит историю и читается по конкретной причине.
+<a id="владельцы"></a>
 
-## Местный маршрут
+## Owners
 
-Используй общие маршруты High Grade по [task](kit/procedures/task.md#выбор-достаточного-маршрута). Проект принимает автоматический маршрут Planner для зависимой цепочки; разрешение на Goal определяется запросом пользователя по процедуре Planner. Основные задачи хранятся в спеках; состояние продолжения — в `.highgrade/local/`. Значимые изменения проверяет независимый субагент по местной инструкции; дополнительное разрешение не нужно.
+- [ARCHITECTURE](docs/ARCHITECTURE.md): structure; [ENGINEERING](docs/ENGINEERING.md): engineering rules.
+- [DEVELOPMENT](docs/DEVELOPMENT.md): commands and the single project check matrix.
+- [GLOBAL](docs/workflow/GLOBAL.md): product boundaries; [QUALITY](docs/workflow/QUALITY.md): evidence meaning; [CONTEXT](docs/workflow/CONTEXT.md): context organization.
+- kit/ owns common rules/procedures; specs/ owns requirements/tasks. Read history for a specific reason.
 
-Commit создаёт точный локальный коммит, в том числе кандидата для удалённого CI; незакрытые финальные критерии остаются в Work. Активация назначается при изменении CLI/Поставки или по поручению; зависимая цепочка активируется в конце. Push требует отдельного поручения. Подробный маршрут выпуска и исключения — в местной инструкции.
+<a id="местный-маршрут"></a>
 
-## Границы
+## Local route
 
-Сохраняй посторонние изменения. Работа с исходниками SVG/Code Health Audit не запускает их навыки; установленные плагины, marketplace и другие проекты не входят в изменение High Grade. Сопровождай затронутые документы и ссылки; бюджеты определяет [реестр](.highgrade/project/documents.json). Общие правила сохранности, полномочий и доказательств не дублируй здесь.
+Use common [task routes](kit/procedures/task.md#choose-a-sufficient-route). The project accepts automatic Planner for dependent chains. Goal authority follows the user request and Planner procedure. Specifications own tasks; .highgrade/local/ owns continuation. Significant changes need an independent subagent review under the local instruction; no extra permission is needed.
 
-В итоге сообщай результат, фактические проверки и существенный остаток; отдельно показывай коммит, активацию, публикацию и приёмку. Наличие документации не доказывает исполнение будущего workflow.
+Commit records an exact local commit, including remote-CI candidates. Open final criteria remain in Work. Activation is assigned for CLI/Delivery changes or on request, at the end of a dependent chain. Push needs a separate request. The local instruction owns delivery details/exceptions.
+
+<a id="границы"></a>
+
+## Boundaries
+
+Preserve unrelated changes. Editing SVG/Code Health Audit sources does not invoke their skills. Installed plugins, marketplaces and other projects are outside High Grade scope. Maintain affected docs/links. [Registry](.highgrade/project/documents.json) defines budgets. Do not duplicate common preservation, authority or evidence rules here.
+
+Report result, actual checks and material remainder. Show commit, activation, publication and acceptance separately. Documentation does not prove future workflow execution.

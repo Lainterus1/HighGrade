@@ -224,6 +224,17 @@ fn release_without_documentation_reference_can_update() {
             .is_some()
     );
     fs::remove_file(profile.join(&rel)).unwrap();
+    let notes = format!(
+        ".highgrade/global/releases/{}/{}",
+        current_release(),
+        highgrade::release_notes::PATH
+    );
+    journal["files"]
+        .as_object_mut()
+        .unwrap()
+        .remove(&notes)
+        .unwrap();
+    fs::remove_file(profile.join(notes)).unwrap();
     let bytes = serde_json::to_vec_pretty(&journal).unwrap();
     write(&journal_path, &bytes);
     let active_path = profile.join(".highgrade/global/active.json");
@@ -250,7 +261,7 @@ fn release_without_documentation_reference_can_update() {
     );
 }
 
-// highgrade: HG-0010-S1, HG-0071-S4
+// highgrade: HG-0010-S1, HG-0071-S4, HG-0073-S5
 #[test]
 fn installed_runtime_references_survive_removal_of_source_copy() {
     let copied = temp();
@@ -339,7 +350,7 @@ fn planner_router_is_portable() {
     assert!(
         fs::read_to_string(&router)
             .unwrap()
-            .contains("## План и продолжение")
+            .contains("## Plan and continuation")
     );
     assert_eq!(global::status(&profile).unwrap().status, "passed");
 }
@@ -1189,6 +1200,7 @@ fn approve_release_profile(planner: bool, tools: bool, complete: bool) -> TestDi
     let mut checksums = BTreeMap::new();
     for (rel, _) in manifest["files"].as_object().unwrap() {
         if rel == "references/documentation.md"
+            || rel == highgrade::release_notes::PATH
             || (!tools && rel.starts_with("references/tools/"))
             || (!complete
                 && (rel == "procedures/fix.md"
@@ -1278,6 +1290,7 @@ fn six_skill_profile() -> TestDir {
             .unwrap()
     {
         if rel == "references/documentation.md"
+            || rel == highgrade::release_notes::PATH
             || rel.starts_with("references/tools/")
             || rel == "procedures/fix.md"
             || rel == "references/review.md"
@@ -1352,6 +1365,7 @@ fn old_deploy_profile(release: &str, skill_name: &str) -> TestDir {
     let manifest: Value = serde_json::from_slice(&manifest_bytes).unwrap();
     for (rel, _) in manifest["files"].as_object().unwrap() {
         if rel == "references/documentation.md"
+            || rel == highgrade::release_notes::PATH
             || rel.starts_with("references/tools/")
             || rel == "procedures/fix.md"
             || rel == "references/review.md"
@@ -1936,4 +1950,113 @@ fn unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills() {
         fs::read(profile.join(".highgrade/global/active.json")).unwrap(),
         active
     );
+}
+
+fn write_candidate_notes(candidate: &Path, notes: Value) {
+    let bytes = serde_json::to_vec_pretty(&notes).unwrap();
+    write(&candidate.join(highgrade::release_notes::PATH), &bytes);
+    let path = candidate.join("manifest.json");
+    let mut manifest: Value = serde_json::from_slice(&fs::read(&path).unwrap()).unwrap();
+    manifest["files"][highgrade::release_notes::PATH] = json!(hash(&bytes));
+    write(&path, &serde_json::to_vec_pretty(&manifest).unwrap());
+}
+
+// highgrade: HG-0074-S1, HG-0074-S5, HG-0074-S6
+#[test]
+fn update_reports_notes_without_switching_and_keeps_them_offline() {
+    let profile = temp();
+    global::install(&profile, &source(), &exe()).unwrap();
+    // Represent the exact previously supported current journal, without release notes.
+    let release_dir = profile.join(format!(".highgrade/global/releases/{}", current_release()));
+    let journal_path = release_dir.join("journal.json");
+    let mut journal: Value = serde_json::from_slice(&fs::read(&journal_path).unwrap()).unwrap();
+    let rel = format!(
+        ".highgrade/global/releases/{}/{}",
+        current_release(),
+        highgrade::release_notes::PATH
+    );
+    journal["files"]
+        .as_object_mut()
+        .unwrap()
+        .remove(&rel)
+        .unwrap();
+    fs::remove_file(profile.join(rel)).unwrap();
+    let bytes = serde_json::to_vec_pretty(&journal).unwrap();
+    write(&journal_path, &bytes);
+    let active_path = profile.join(".highgrade/global/active.json");
+    let mut active: Value = serde_json::from_slice(&fs::read(&active_path).unwrap()).unwrap();
+    active["journal_sha256"] = json!(hash(&bytes));
+    write(&active_path, &serde_json::to_vec_pretty(&active).unwrap());
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    let next = candidate();
+    write_candidate_notes(
+        &next,
+        json!({"schema_version":1,"releases":[{
+        "release":next_release(),"previous":current_release(),"changes":["New user capability"],
+        "breaking":["Changed field"],"actions":["Use compatible CLI"]}]}),
+    );
+    let before = fs::read(&active_path).unwrap();
+    let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
+    assert_eq!(preview.status, "unknown");
+    assert_eq!(
+        preview.measurements[0]["release_summary"]["coverage"],
+        "complete"
+    );
+    assert_eq!(
+        preview.measurements[0]["release_summary"]["changes"],
+        json!(["New user capability"])
+    );
+    assert_eq!(
+        preview.measurements[0]["release_summary"]["actions"],
+        json!(["Use compatible CLI"])
+    );
+    assert_eq!(fs::read(&active_path).unwrap(), before);
+    let applied = global::update(
+        &profile,
+        Some(&next),
+        Some(&exe()),
+        true,
+        preview.measurements[0]["candidate_sha256"].as_str(),
+    )
+    .unwrap();
+    assert_eq!(applied.status, "passed");
+    assert_eq!(
+        applied.measurements.last().unwrap()["active_release"],
+        next_release()
+    );
+    assert_eq!(applied.measurements.last().unwrap()["postcheck"], "passed");
+    let expected = fs::read(next.join(highgrade::release_notes::PATH)).unwrap();
+    fs::remove_dir_all(&next).unwrap();
+    let installed = profile.join(format!(
+        ".highgrade/global/releases/{}/{}",
+        next_release(),
+        highgrade::release_notes::PATH
+    ));
+    assert_eq!(fs::read(&installed).unwrap(), expected);
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+    write(&installed, b"changed notes");
+    assert!(
+        global::status(&profile)
+            .unwrap_err()
+            .contains("GlobalInstalledFileChanged")
+    );
+}
+
+#[test]
+fn invalid_candidate_notes_preserve_active_profile() {
+    let profile = temp();
+    global::install(&profile, &source(), &exe()).unwrap();
+    let before = fs::read(profile.join(".highgrade/global/active.json")).unwrap();
+    let next = candidate();
+    write_candidate_notes(&next, json!({"schema_version":2,"releases":[]}));
+    assert!(
+        global::update(&profile, Some(&next), Some(&exe()), false, None)
+            .unwrap_err()
+            .contains("ReleaseNotesInvalid")
+    );
+    assert_eq!(
+        fs::read(profile.join(".highgrade/global/active.json")).unwrap(),
+        before
+    );
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
 }

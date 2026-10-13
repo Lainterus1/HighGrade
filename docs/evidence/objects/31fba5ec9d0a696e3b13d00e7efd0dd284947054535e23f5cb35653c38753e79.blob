@@ -1,0 +1,60 @@
+<a id="установка-и-обновление"></a>
+
+# Installation and update
+
+Build UI with npm ci/npm run build in ui/, then CLI with cargo build --release --locked at root. Pass absolute paths. --profile is the user's home directory, not a project. Installation/update do not scan adjacent projects or the whole home directory.
+
+```powershell
+& '<source>/target/release/highgrade.exe' global-install --profile '<home>' --source '<source>/kit' --candidate-exe '<source>/target/release/highgrade.exe'
+& '<home>/.highgrade/global/releases/<active>/highgrade.exe' global-status --profile '<home>'
+& '<home>/.highgrade/global/releases/<active>/highgrade.exe' doctor --root '<project>'
+& '<source>/target/release/highgrade.exe' inspect --bootstrap --root '<project>'
+& '<home>/.highgrade/global/releases/<active>/highgrade.exe' inspect --root '<project>' --registry '.highgrade/project/documents.json'
+```
+
+Install creates shared skill entry files in `<home>`/.agents/skills/highgrade-*/SKILL.md and immutable materials in `<home>`/.highgrade/global/releases/`<release>`/. One active pointer switches after hash/version checks. A foreign same-name skill is a conflict. Do not copy common skills/CLI into projects. After audit, authorized Init prepares .highgrade/project/INSTRUCTIONS.md and a short AGENTS link.
+
+Global update is explicit: preview → semantic rule comparison → apply with the same candidate_sha256. CLI checks doctor before/after switching. The fingerprint binds manifest, materials and executable bytes. Journal-owned SKILL.md updates with the release; user edits reject switching. Skills contain their main instructions; procedures are their single editable source. GlobalSkillRecoveryRequired signals an unfinished skill transaction. global-recover --profile PATH with the verified candidate checks the journal and restores former bytes under the old pointer or confirms a new active release. Foreign changes stop recovery.
+
+The local route is highgrade-commit; the external route is highgrade-push. Journal-owned highgrade-approve/highgrade-deploy are replaced without permanent aliases. New skills are prepared before switching; old owned routes are removed after checks. Edited/foreign Approve stops migration; recovery checks ownership/bytes. Former CLI may reject introduced/retired fields or Commit file sets. Format rejection alone does not prove damage. Use compatible candidate status/recover; never remove the journal manually. Accepted project instructions are not rewritten automatically. At next project entry, compare old names/missing route fields, preserve local rules and agree needed additions.
+
+On postcheck failure, CLI attempts to restore the former active release. Check actual state under [Update](../../procedures/update.md#retry-and-failures). After success, old owned release files are removed; foreign files remain with warnings. After interruption, use global-status; diagnostic failure does not confirm a healthy active installation. Inactive remnants grant no authority. Project instructions are checked at next project work.
+
+```powershell
+& '<candidate>/target/release/highgrade.exe' global-update --profile '<home>' --source '<candidate>/kit' --candidate-exe '<candidate>/target/release/highgrade.exe'
+& '<candidate>/target/release/highgrade.exe' global-update --profile '<home>' --source '<candidate>/kit' --candidate-exe '<candidate>/target/release/highgrade.exe' --apply true --candidate-sha256 '<preview-fingerprint>'
+```
+
+doctor, inspect, inventory and trace are read-only with --root `<project>`. doctor detects a CLI path but neither executes it nor checks version; project commands verify pinned versions. Standard tests use project commands. Missing instructions/unknown tools stay unknown. Earlier project install/update exist only for historical library compatibility and explicit legacy-install/legacy-update commands. New projects use the global route.
+
+Preview also returns validation=passed, decision=required, applied=false.
+
+<a id="linux-bash"></a>
+
+## Linux (Bash)
+
+Build CLI with standard Cargo and the pinned toolchain. Profile is the user's home directory. Pass absolute candidate paths. For a prepared candidate:
+
+```bash
+hgCandidate="$PWD/target/highgrade/candidate"
+"$hgCandidate/highgrade" global-install --profile "$HOME" --source "$hgCandidate/kit" --candidate-exe "$hgCandidate/highgrade"
+hgRelease=$(python -c 'import json,pathlib; print(json.loads((pathlib.Path.home()/".highgrade/global/active.json").read_text())["release"])')
+hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
+"$hgExe" global-status --profile "$HOME"
+"$hgExe" doctor --root "$PWD"
+"$hgCandidate/highgrade" global-update --profile "$HOME" --source "$hgCandidate/kit" --candidate-exe "$hgCandidate/highgrade"
+# After preview review, repeat with:
+# --apply true --candidate-sha256 '<preview-fingerprint>'
+```
+
+CLI installs with mode 0700. InstalledExecutableNotExecutable means execute permission was lost; status does not repair files. Before permission restoration, verify ownership/binary hash against the journal. Do not bypass noexec/access refusal. Use an authorized executable profile. Adjacent skills/links remain untouched. Recovery repairs interrupted transactions; it offers no arbitrary release rollback.
+
+<a id="запуск-ui-из-проекта"></a>
+
+## Launch UI from a project
+
+ui-launcher --root `<project>` previews without writing. --apply true creates missing HighGrade UI.sh/HighGrade UI.cmd and restores an unchanged .sh executable bit. A content conflict/link stops preparation before writes. doctor detects absence, edits and execute unavailability. Preserve changed files for explicit diagnosis.
+
+Linux: ./HighGrade\ UI.sh or sh "HighGrade UI.sh". Windows: HighGrade UI.cmd. Both derive root from file location and current installation from HOME/USERPROFILE. Python, Node and highgrade in PATH are unnecessary. Shell needs standard sh/sed/dirname; Windows needs Windows PowerShell. --no-open starts without a browser; default opens it. Ctrl+C stops the server. Closing a tab does not. Double-click .sh depends on the file manager. No .desktop/trust setup is performed.
+
+Stable protocol 1: .highgrade/global/active.json schema 3 → releases/`<release>`/highgrade[.exe]. global-status checks installation before UI. Missing/corrupt installation yields an error without automatic repair. Project folder renames/moves need no launcher edits. Update checks launcher_protocol=1 through ui --check before/after switching. Failure recovery selects the former active version. A new format must preserve this contract or offer an explicit migration.

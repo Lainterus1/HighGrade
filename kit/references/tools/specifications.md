@@ -1,114 +1,126 @@
-# Спецификации и каталог
+<a id="спецификации-и-каталог"></a>
 
-## Структурированные спецификации
+# Specifications and catalog
 
-Нативный формат каталогов v3/v4/v5 — проектный каталог `specs/`: `catalog.json` хранит версию и счётчик, `requirements/<ID>.json` — действующие требования, `changes/<ID>/spec.json` — изменение, `results.json` — доказательства, историю проверок и решения человека. Пустые результаты не создаются. Каталог принадлежит проекту и сохраняется при удалении High Grade. Не перемещай принятые спеки: статус хранится в данных. Для новых проектов OpenSpec не требуется; в инструкции укажи `highgrade_spec_format: native-v1` (маркер семейства workflow, версия store задаётся отдельно). Исторические проекты могут явно сохранять прежний маршрут. CLI работает без Node/Rust/OpenSpec у потребителя; штатные тесты требуют собственную среду проекта.
+<a id="структурированные-спецификации"></a>
 
-Все команды возвращают JSON Report: `findings` с кодом и расположением проблемы, `measurements` с результатом, `limitations` с пределами проверки. `spec-read --view editable` возвращает рабочие поля в measurements[].value; spec-edit принимает только изменяемые поля. Full/spec-save остаются совместимым полным маршрутом. `spec-schema` возвращает JSON Schema directory_format (catalog/spec/results/tags/runners), legacy store, change/evidence_input/decision_input, сгенерированную из типов CLI. Неизвестная версия или поле отвергаются. Структура не доказывает качество смысла.
+## Structured specifications
 
-| Команда (общий параметр `--root PATH`) | Параметры и результат |
+Native directory formats v3/v4/v5 use project specs/: catalog.json has version/counter, requirements/`<ID>`.json current requirements, changes/`<ID>`/spec.json changes, results.json evidence, check history and human decisions. Empty results are not created. The catalog belongs to the project and survives High Grade removal. Do not move accepted specifications; status is data. New projects need no OpenSpec. Set highgrade_spec_format: native-v1 in the instruction; this marks the workflow family, not store version. Historical projects may explicitly retain earlier routes. Consumer CLI works without Node/Rust/OpenSpec; project tests need their own environment.
+
+All commands return JSON Report: findings with code/location, measurements with results, limitations with check limits. spec-read --view editable exposes working fields in measurements[].value. spec-edit takes editable fields only. Full/spec-save retain compatibility. spec-schema returns directory_format (catalog/spec/results/tags/runners), legacy store, change/evidence_input/decision_input JSON schemas from CLI types. Unknown versions/fields reject. Structure does not prove semantic quality.
+
+| Command, all with --root PATH | Parameters/result |
 |---|---|
-| `spec-schema` | Схемы и обязательные поля для клиента |
-| `spec-list` | JSON-сводка; необязательные `--tag ID --technical STATUS --human STATUS`; selected/total и краткие зависимости |
-| `spec-new` | `--title TITLE --expected HASH`; следующий HG-номер и одинаковый шаблон |
-| `spec-read` | `--id HG-CHANGE` либо `--requirement HG-REQ`; выбранный объект |
-| `spec-save` | `--id HG-CHANGE --expected HASH --input edit.json`; сохранение редакции change |
-| `spec-diff` | `--id HG-CHANGE`; операции и текущие требования для сравнения |
-| `spec-validate` | `--id HG-CHANGE`; наполненность требований, сценариев и задач, вопросы и база |
-| `spec-integrate` | `--id HG-CHANGE --expected HASH`; проверить готовность, включить требования и архивировать change |
-| `spec-transfer` | `--id HG-CHANGE --expected HASH`; перенести проверенный импорт прежнего контракта без объявления сценариев пройденными |
-| `spec-abandon` | `--id HG-CHANGE --expected HASH --reason TEXT`; сохранить отвергнутый черновик в истории без изменения требований |
-| `spec-migrate` | `--expected HASH --to directory`: v1/v2 → каталог; без --to сохраняется прежний переход v1 → v2 |
-| `spec-decide` | `--expected HASH --input decisions.json`; атомарная запись решений человека по выбранным версиям |
-| `spec-import` | `--id HG-IMPORT --expected HASH --input requirement.json --source legacy.md`; черновик выборочного переноса |
+| spec-schema | Schemas/required fields |
+| spec-list | JSON summary; optional --tag ID --technical STATUS --human STATUS; selected/total and short dependencies |
+| spec-new | --title TITLE --expected HASH; next HG number/common template |
+| spec-read | --id HG-CHANGE or --requirement HG-REQ; selected object |
+| spec-save | --id HG-CHANGE --expected HASH --input edit.json; save change revision |
+| spec-diff | --id HG-CHANGE; operations/current requirements |
+| spec-validate | --id HG-CHANGE; requirements/scenarios/tasks completeness, questions/base |
+| spec-integrate | --id HG-CHANGE --expected HASH; readiness check, requirement integration/change archive |
+| spec-transfer | --id HG-CHANGE --expected HASH; checked prior-contract import without passed behavior claims |
+| spec-abandon | --id HG-CHANGE --expected HASH --reason TEXT; rejected draft history, unchanged requirements |
+| spec-migrate | --expected HASH --to directory: v1/v2 to directory; without --to, prior v1 to v2 |
+| spec-decide | --expected HASH --input decisions.json; atomic human decisions for selected revisions |
+| spec-import | --id HG-IMPORT --expected HASH --input requirement.json --source legacy.md; selective-transfer draft |
 
-Первый `spec-list` возвращает `store_sha256: absent`. Передавай его в spec-new. Для следующих записей используй `store_sha256` из чтения именно редактируемого снимка. Любая конкурентная запись вызывает StoreConflict: перечитай, сопоставь изменения и повтори только свою правку. `id`, `baseline`, `scoped_baseline`, `revision_tags`, `imports`, `evidence`, `review`, `archived`, `abandoned_reason`, `created_at`, `acceptance`, `history`, `runs` — защищённые поля spec-save. Для операции add/modify передай requirement; для remove — id и непустую reason. ID требований и сценариев используют заглавный префикс проекта и сегменты через дефис, например HG-CART-R1 и HG-CART-S1. ID не переиспользуются после удаления.
+First spec-list returns store_sha256: absent. Pass it to spec-new. Later writes use store_sha256 from the actual edited snapshot. Concurrent writes yield StoreConflict: reread, compare and repeat only your edit. Protected spec-save fields: id, baseline, scoped_baseline, revision_tags, imports, evidence, review, archived, abandoned_reason, created_at, acceptance, history, runs. add/modify takes requirement; remove takes id/nonempty reason. Requirement/scenario IDs use uppercase project prefix and hyphen segments, such as HG-CART-R1/S1. Removed IDs are never reused.
 
-Импорт принимает Requirement по схеме, исходный Markdown с заголовками `### Requirement: [ID]` / `#### Scenario: [ID]`. Инструмент сверяет полный набор сценарных ID и сохраняет оригинальный блок в imports. Это черновик, а не автоматическое подтверждение перевода: смысл, полнота переноса и доказательства проверяются до integrate. Старые файлы не удаляются; после integrate JSON становится владельцем выбранных ID. Неподдержанный Markdown оставь историческим источником до отдельного решения.
+Import takes a schema Requirement and Markdown with ### Requirement: [ID] / #### Scenario: [ID]. CLI checks the complete scenario-ID set and preserves the original block in imports. This is a draft, not automatic translation confirmation. Check meaning, transfer completeness and evidence before integrate. Preserve old files; after integration, JSON owns selected IDs. Unsupported Markdown remains a historical source pending a separate decision.
 
-Legacy store продолжает читаться; запись v1 требует миграции. Для нового каталога правила записи и восстановления приведены ниже. Прямое редактирование файлов обходит проверки инструмента.
+Legacy stores remain readable. v1 writes need migration. Directory writing/recovery rules follow. Direct file edits bypass tool checks.
 
-### Номера, версии и приёмка
+<a id="номера-версии-и-приёмка"></a>
 
-Обычный spec-new сам назначает `HG-0001`, `HG-0002` и т.д.; заголовок пишет агент. `next_number` и изменение сохраняются одной транзакцией; отмена не освобождает номер. `--id` оставлен для совместимости прежних клиентов и выборочного импорта; для новых задач его не задавай. Зависимые ID получают суффиксы R1/S1/T1. `title` можно менять, `id` и дату создания — нельзя. `created_at` и `decided_at` — секунды UTC от Unix epoch; даты решений выставляет инструмент. Нумерация относится к одному каталогу: независимые Git-ветки не имеют общего счётчика. Создавай задачи в согласованном основном каталоге до разветвления; конфликт одинаковых ID при объединении требует явного разрешения, не автоматического выбора одной версии.
+### IDs, versions and acceptance
 
-CLI читает v1 без изменения байтов, но запись требует spec-migrate. Он сохраняет точную копию `.highgrade/specs/backups/v1-<sha>.json` перед атомарной заменой; повтор безопасен. ID, доказательства и старые ревью сохраняются. Неизвестные title/created_at остаются пустыми/null, приёмка — пустой историей; не выдумывай даты. Backup принадлежит миграции JSON, прежние OpenSpec-файлы не меняются. Новая версия сама не мигрирует чужие проекты.
+Normal spec-new allocates HG-0001, HG-0002, etc.; the agent writes title. next_number/change are one transaction; abandonment does not free numbers. --id remains for old clients/selective import, not new tasks. Dependent IDs use R1/S1/T1 suffixes. title is editable; id/creation date are not. created_at/decided_at are Unix UTC seconds, set by CLI. Numbering belongs to one catalog; independent Git branches have no shared counter. Create changes in an agreed primary catalog before branching. Same-ID merge conflicts need explicit resolution, never automatic version choice.
 
-`spec-list` вычисляет `technical`: in_progress, ready, abandoned; `human`: pending, accepted, needs_changes, stale. summary содержит количества по каждому признаку; эти два набора не складываются между собой. Завершённые задачи без актуальных доказательств и положительного ревью не дают ready. Включённые изменения тоже проверяются по своим входам и отчётам; потеря файла оставляет пробел. Прежние решения остаются в `change.acceptance`, даже когда их версия устарела.
+CLI reads v1 without byte changes, but writes need spec-migrate. It saves exact .highgrade/specs/backups/v1-`<sha>`.json before atomic replacement; repeat is safe. IDs/evidence/old reviews remain. Unknown title/created_at stay empty/null; acceptance starts empty. Never invent dates. JSON migration owns the backup; OpenSpec files remain untouched. A new release does not migrate other projects automatically.
 
-`spec-transfer` применим только к выборочному `spec-import` с одними `add`-операциями: число импортов равно числу операций, путь и SHA источника совпадают, ID сценариев сохранены, задачи сверки завершены, независимый GO относится к текущей редакции. Команда атомарно переносит требования и происхождение, архивирует change и возвращает `BehaviorUnconfirmed`. Она не подменяет `spec-integrate`: без действующих доказательств сценариев `spec-check` остаётся failed, `technical` — in_progress, `human` — pending. Новые или изменённые требования проходят обычный маршрут с проверками до интеграции.
+spec-list computes technical in_progress|ready|abandoned and human pending|accepted|needs_changes|stale. summary counts these separately; do not add the two sets together. Completed tasks without current evidence/positive review are not ready. Integrated changes are checked against their own inputs/reports; lost files remain gaps. Previous decisions stay in change.acceptance even when stale.
 
-Хеши для решения возвращает spec-check --brief true или полный spec-read: `change_sha256` закрепляет редакцию спецификации и доказательств, `inputs_sha256` — фактическое состояние заявленных проверенных входов. Система использует их для записи решения по снимку. Точный Git SHA или неизменяемый build ID — необязательное дополнение `verified_revision`; его отсутствие обозначает неизвестную внешнюю версию, а не неподтверждённую приёмку. Хеш снимка не называется Git SHA. Текущий HEAD при незакоммиченных изменениях не идентифицирует проверенную реализацию. После явного решения подготовь:
+spec-transfer applies only to selective spec-import with add-only operations: equal import/operation counts, matching source path/SHA, retained scenario IDs, completed comparison tasks and current independent GO. It atomically transfers requirements/origin, archives the change and returns BehaviorUnconfirmed. It does not replace integration: without current scenario evidence, spec-check stays failed, technical in_progress, human pending. New/changed requirements need ordinary verification before integration.
+
+spec-check --brief true/full spec-read returns decision hashes: change_sha256 binds specification/evidence revision; inputs_sha256 binds actual declared checked inputs. The system records a decision for this snapshot. An exact Git SHA/immutable build ID is optional verified_revision. Its absence means unknown external version, not unconfirmed acceptance. A snapshot hash is not Git SHA. Dirty-tree HEAD does not identify checked implementation. After explicit human decision, prepare:
 
 ```json
 {
   "decisions": [{
     "id": "HG-0001",
     "decision": "accepted",
-    "decided_by": "владелец проекта или источник решения",
-    "change_sha256": "хеш переданной человеку редакции",
-    "inputs_sha256": "хеш её проверенных входов",
+    "decided_by": "project owner or decision source",
+    "change_sha256": "snapshot shown to the human",
+    "inputs_sha256": "checked input snapshot",
     "comment": ""
   }]
 }
 ```
 
-Комментарий и verified_revision необязательны для обоих решений результата. Без версии spec-decide берёт однозначную версию открытых result-обращений того же снимка; неоднозначность или явное несовпадение отклоняет пакет. Один неверный или устаревший элемент отклоняет весь пакет; accepted требует текущего spec-check. Запись не меняет техническое ревью. Решение связано с переданными хешами; история сохраняется. CLI не удостоверяет личность человека, build ID и полноту inputs. Полномочия и момент записи — в [work](../../procedures/work.md#передача-человеку-и-фиксация-решения).
+Comment/verified_revision are optional for both result decisions. Without a version, spec-decide uses the unambiguous version of open result requests for the same snapshot. Ambiguity/explicit mismatch rejects the batch. One invalid/stale item rejects all. accepted needs current spec-check. Recording does not change technical review. Decisions bind supplied hashes and preserve history. CLI certifies neither human identity/build ID nor input completeness. [work](../../procedures/work.md#handoff-to-a-human-and-decision-recording) owns authority/timing.
 
-### Каталог, миграция и восстановление
+<a id="каталог-миграция-и-восстановление"></a>
 
-При разрешённой инициализации вызови `spec-init --root PATH`, либо `--directory docs/specs`. Каталог должен быть пустым или отсутствовать; чужие документы не присваиваются. Нестандартный путь записывается в проектном `specs-location.json`, независимо от `.highgrade`. Без init первый spec-new создаёт каталог по умолчанию. `spec-read` возвращает объединённый редактируемый объект change, физически spec и results разделены.
+### Catalog, migration and recovery
 
-Для существующего v1/v2 нужен явный `spec-migrate --root PATH --expected HASH --to directory`. Точные исходные байты сохраняются в `specs-backup-<SHA>.json` в корне проекта. Старый store остаётся историческим; изменение его старой CLI вызывает LegacyStoreConflict, а не молчаливый выбор данных. Сохраняются ID, требования, происхождение, наблюдения, ревью и решения. Никакой массовой конвертации OpenSpec. Общая установка и миграция проекта — разные операции.
+With initialization authority, call spec-init --root PATH, optionally --directory docs/specs. The directory must be absent/empty; do not claim foreign documents. A nonstandard path goes in project specs-location.json, independently of .highgrade. Without init, first spec-new creates the default catalog. spec-read joins the editable change; physical spec/results remain separate.
 
-Каждая запись меняет только затронутые файлы под одним lock. Незавершённый `transaction.json` блокирует чтение; `spec-recover --root PATH --expected HASH` с хешем из ошибки проверяет все старые/новые байты и явно завершает запись. Не удаляй журнал вручную. После аварии сначала проверь владельца write.lock; только подтверждённо осиротевший lock можно убрать. Staging восстанавливается из журнала. Лимит документа и одной транзакции — 8 МиБ; достижение лимита возвращает ошибку, не обрезает историю. Это восстановление прерванной операции, не гарантия против повреждения диска.
+Existing v1/v2 needs explicit spec-migrate --expected HASH --to directory. Preserve exact bytes in root specs-backup-`<SHA>`.json. The former store stays historical. Editing it with old CLI yields LegacyStoreConflict, not silent data selection. Preserve IDs, requirements, origin, observations, reviews and decisions. No mass OpenSpec conversion. Global installation and project migration are distinct.
 
-### Связи и теги
+Each write changes only affected files under one lock. Pending transaction.json blocks reading. spec-recover --expected HASH from the error verifies all old/new bytes and explicitly completes writes. Never remove journals manually. After crash, check write.lock owner first; remove only a confirmed orphan. Staging recovers from the journal. Document/transaction limit is 8 MiB; exceeding rejects, not truncates history. Recovery repairs interruption, not disk corruption.
 
-В change доступны `depends_on` и `related_to`: массивы `{ "id": "HG-0001", "reason": "Нужен реализованный контракт" }`. Ссылка должна существовать; циклы зависимостей запрещены. depends_on требует интегрированной, не отменённой зависимости перед готовностью; related_to служит навигацией. Содержание не наследуется. `links` в ответе содержит только краткий контекст, включая изменения тех же требований; тексты читаются отдельно.
+<a id="связи-и-теги"></a>
 
-`tags` — массив ID из плоского `tags.json`. Команды: `spec-tags`; `spec-tag-set --id ID --title TITLE --description TEXT --expected HASH`; `spec-tag-remove --id ID --expected HASH`; `spec-tag-merge --from OLD --into NEW --expected HASH`. Используемый тег не удаляется, merge одной транзакцией меняет ссылки и реестр. Выбирай несколько широких предметных областей; не дублируй статусы и даты. Теги — навигационные данные: их редактура не меняет техническую редакцию. Фильтр не гарантирует полноту контекста. Область summary задаёт summary_scope; selection.total — размер каталога, selection.selected — число возвращённых изменений.
+### Links and tags
 
+Change depends_on/related_to arrays use {"id":"HG-0001","reason":"Required result"}. Targets must exist. Dependency cycles reject. Readiness needs integrated, nonabandoned depends_on targets; related_to aids navigation. Links inherit no content. Returned links give short context, including changes of the same requirements. Read their text separately.
 
+tags is an ID array from flat tags.json. Commands: spec-tags; spec-tag-set --id ID --title TITLE --description TEXT --expected HASH; spec-tag-remove --id ID --expected HASH; spec-tag-merge --from OLD --into NEW --expected HASH. Used tags cannot be removed; merge updates links/registry in one transaction. Use broad domains, not dates/statuses. Navigation metadata changes do not change technical revisions. Filters do not guarantee complete context. summary_scope defines counters; selection.total is catalog count and selection.selected returned changes.
 
-`spec-migrate --root PATH --expected HASH --to compact` явно переводит каталог в формат директории 4: история ссылается на общие объекты доказательств по SHA-256. Чтение восстанавливает прежние наблюдения, порядок и даты. Переход защищён журналом; при прерывании используйте spec-recover. Каталоги 3 продолжают читаться и записываться без неявной миграции. Старая CLI отвергает формат 4; после перехода используйте совместимую CLI. Внутренняя модель store остаётся версии 3, версия файлов указана в catalog.json. Миграция не подтверждает исторические проверки.
+spec-migrate --to compact explicitly produces directory format 4 with SHA-256 shared history objects. Reading restores observations/order/dates. Transition is journal-protected; interruption needs spec-recover. Format 3 remains writable without implicit migration. Old CLI rejects format 4; use compatible CLI afterwards. Internal store model stays 3; catalog.json gives file-format version. Migration does not certify historical checks.
 
-`spec-migrate --root PATH --expected HASH --to shared-inputs` явно переводит каталог v3/v4 в формат 5. В каждом results.json общая таблица `input_manifests` хранит набор `files` и необязательный `input_paths` один раз по SHA-256; текущие и исторические доказательства ссылаются на него через `input_manifest_sha256`. CLI восстанавливает исходную модель до проверки отпечатков истории и актуальности. Отсутствующая/повреждённая ссылка, неверный хеш и смешение ссылки со встроенными входами отклоняются. История, ревью, решения, даты и область входов не сокращаются. Новые записи сохраняют формат 5 и повторно используют одинаковые наборы; каталоги 3/4 без явной миграции остаются прежними. Старая CLI отвергает версию 5; обратный `--to compact` запрещён. Миграция использует тот же журнал и лимит 8 МиБ, не удаляет историю при превышении и не выполняется при установке Поставки. Сначала проверь совместимую CLI и возможность полного перехода на изолированной копии; после перехода редактируй только совместимой CLI.
+spec-migrate --to shared-inputs explicitly changes v3/v4 to format 5. Each results.json input_manifests table stores files/optional input_paths once per SHA-256. Current/historical evidence uses input_manifest_sha256. CLI restores the original model before history/freshness checks. Missing/corrupt references, bad hashes or mixed references/embedded inputs reject. Preserve history, reviews, decisions, dates and input scope. New writes retain format 5/reuse equal sets; v3/v4 stay unchanged without explicit migration. Old CLI rejects 5; reverse --to compact is forbidden. Same journal/8 MiB limit applies. Do not remove history for overflow or migrate during installation. Check compatible CLI/full transition on an isolated copy first. Afterwards edit only through compatible CLI.
 
-### Метаданные и исходная база
+<a id="метаданные-и-исходная-база"></a>
 
-`spec-metadata --root PATH --expected HASH --input metadata.json` показывает изменения без записи. Вход — массив `[{"id":"HG-0001","tags":["specifications"]}]`. После сверки примените тот же пакет с `--apply true` и тем же хешем. При дрейфе перечитайте и сопоставьте изменения. Неизвестный ID/тег, повтор ID или неверная схема отклоняют весь пакет. Доступны черновики и интегрированные спеки; точный повтор ничего не пишет. Команда меняет только tags и служебную опору совместимости, не контракт, evidence или историю решений.
+### Metadata and base revision
 
-Теги исключены из содержательной редакции. `revision_tags` хранит прежний набор только для проверки исторических отпечатков; пользователь его не редактирует. Действующее старое ревью/решение сохраняет актуальность, а устаревшее из-за контракта, наблюдения или входов не восстанавливается. Обычная правка tags и spec-tag-merge используют тот же механизм.
+spec-metadata --expected HASH --input metadata.json previews without writing. Input: [{"id":"HG-0001","tags":["specifications"]}]. After review, apply the same batch/hash with --apply true. On drift, reread/compare. Unknown IDs/tags, duplicate IDs and invalid schemas reject all. Drafts/integrated changes are supported. Exact repeat writes nothing. Only tags and administrative compatibility support change, not contract/evidence/decision history.
 
-Новые спеки имеют `scoped_baseline: true` и пустой baseline. Первое добавление modify/remove требует общего --expected из чтения каталога с требованием; локального CAS недостаточно для ещё не выбранной цели. CLI фиксирует хеш текущего требования из снимка CAS. Несуществующая цель отклоняется. Сохранённая база не обновляется при повторной правке либо удалении/возвращении операции; дрейф даёт BaseDrift. После конфликта требуется осмысленное новое изменение на актуальной базе, а не ручная правка защищённого хеша. Старые полные baseline остаются без преобразования.
+Tags are excluded from semantic revision. Protected revision_tags retains previous tags only for historical fingerprint checks. Do not edit it. Current old review/decision stays current; semantic/evidence/input-stale records are not restored. Ordinary tag edits/merge use the same mechanism.
 
-Порядок JSON для чтения: id/title/tags → намерение и связи → операции и сценарии → задачи/проверки → служебные поля. Это представление, а не новый вложенный формат; канонические хеши не зависят от порядка полей вывода.
+New changes have scoped_baseline:true and empty baseline. First modify/remove needs global --expected from a catalog read containing the requirement; local CAS cannot select an unseen target. CLI captures its current hash from CAS. Missing targets reject. Captured bases do not refresh on later edits or removed/readded operations; drift yields BaseDrift. Resolve through a deliberate new change, never manual protected hashes. Old full baselines stay unchanged.
 
+JSON presentation order: id/title/tags → intent/links → operations/scenarios → tasks/checks → administrative fields. This is presentation, not a new nested format; canonical hashes ignore output field order.
 
-`spec-validate --id HG-ID` проверяет структуру одного изменения. Без `--id` команда проверяет все неотменённые изменения из одного снимка каталога; `validated_changes` перечисляет ID, findings содержат путь `/changes/<ID>/…`. Оба режима используют одинаковые правила без записи. Успех не подтверждает выполнение задач, evidence, ревью или приёмку.
+spec-validate --id HG-ID checks one change. Without ID, it checks all nonabandoned changes from one snapshot. validated_changes lists IDs; findings use /changes/`<ID>`/… paths. Both modes use the same rules without writes. Success proves neither tasks/evidence/review nor acceptance.
 
-## Короткий цикл редактирования
+<a id="короткий-цикл-редактирования"></a>
 
-`spec-read --id HG-0001 --view summary` показывает цель, область, вопросы, задачи и связи. `--view editable` возвращает только редактируемые поля; `--view requirements` с ID — операции изменения, без ID — действующие требования, опционально `--tag TAG` по явным тегам изменений. Полноту предметной области тег не доказывает. `full` сохраняет прежний полный вывод.
+## Short editing cycle
 
-`spec-edit --id HG-0001 --input patch.json --expected HASH` принимает JSON-объект только нужных редактируемых полей (массив заменяется целиком). Историю, ID, baseline, результаты, ревью и решения задавать нельзя. `--validate true` проверяет полноту до записи; при ошибке каталог не меняется. Без этого флага допустим последовательный черновик с проверкой схемы. Чтение и редактирование тесты не запускают. После ревью `spec-integrate --id HG-0001 --expected HASH --brief true` проверяет готовность, включает требования и возвращает краткое состояние; отдельный предварительный spec-check нужен только если надо рассмотреть причины.
+spec-read --id HG-0001 --view summary shows goal/scope/questions/tasks/links. editable gives only editable fields. requirements with ID gives change operations; without ID gives current requirements, optionally --tag TAG by explicit tags. Tags do not prove domain completeness. full retains earlier full output.
 
-`shared_inputs` изменения — общий список относительных файлов для всех его автоматических checks в дополнение к их inputs. Добавление, удаление или изменение общего входа требует адресной проверки. Не включай историю результатов и весь репозиторий без причины. Новые поля shared_inputs и evidence.input_paths требуют CLI этого выпуска; старый каталог читается без преобразования, старой CLI новые записи не редактируются.
+spec-edit --id HG-0001 --input patch.json --expected HASH takes only needed editable fields; arrays replace entirely. History, ID, baseline, results, review and decisions cannot be supplied. --validate true checks completeness before writing and leaves catalog unchanged on failure. Without it, successive drafts get schema validation. Reading/editing runs no tests. After review, spec-integrate --id HG-0001 --expected HASH --brief true checks readiness/integrates/returns brief. Preliminary spec-check is needed only to inspect reasons.
 
+shared_inputs is a common relative-file list added to each automatic check's inputs. Changed shared inputs need affected rechecks. Do not include result history/the whole repo without reason. shared_inputs/evidence.input_paths need compatible CLI. Old catalogs read unchanged; old CLI must not edit new fields.
 
-`spec-list --id HG-ID` и `--tag TAG` ограничивают вычисление готовности до фильтрации по technical/human. `summary_scope` указывает область счётчиков, `selection.total` — размер каталога. Файлы пока читаются общим согласованным снимком. `spec-read` возвращает `local_sha256`; `spec-edit --expected-local HASH` допускает независимые изменения каталога, но обнаруживает изменения выбранной спеки, зависимостей, затронутых требований и runner. Передавайте либо expected, либо expected-local; общий CAS совместим.
+spec-list --id/--tag limits readiness computation before technical/human filtering. summary_scope defines counters; selection.total is catalog size. Files are still read as one consistent snapshot. spec-read gives local_sha256. spec-edit --expected-local HASH allows unrelated catalog changes but detects selected specification, dependency, requirement and runner changes. Pass either expected or expected-local. Global CAS remains compatible.
 
-Доказательства, check/review и исполнение тестов — в [проверках](verification.md).
+[Verification](verification.md) owns evidence/checks/review/execution.
 
-## Явные обращения к человеку
+<a id="явные-обращения-к-человеку"></a>
 
-`spec-ui --root PATH` возвращает единую проекцию без записи: категории, счётчики, первичное действие, историю и точные изменения полей после согласования. Профиль `directory-scoped-v1`: каталог v3/v4/v5, scoped_baseline=true, дата создания, непустой заголовок и операции. Прежние профили исключаются с причиной; повреждение возвращает ошибку, не пустой список. Никакой миграции при чтении нет.
+## Explicit human requests
 
-`spec-attention --id ID --expected HASH --input request.json` принимает `attention_input` из spec-schema. Передача: action=request, request_id (уникальный ключ повтора), kind=question|requirements|result, reason, content_sha256 из spec-ui. Повтор той же передачи не создаёт дубликат. Requirements требует подготовленного контракта, result — актуальных доказательств и ревью. Для result допустим необязательный verified_revision из уже известных данных; пустое поле означает неизвестную версию. Форма не запрашивает его у человека. Вопрос не зависит от доступности технических входов.
+spec-ui returns one read-only projection: categories/counters, primary action, history and exact post-agreement field changes. directory-scoped-v1 means v3/v4/v5 catalog, scoped_baseline=true, creation date, nonempty title/operations. Older profiles are excluded with reasons. Corruption yields an error, not an empty list. Reading never migrates.
 
-Ответ: action=respond, request_id, content_sha256, decision=answer|accepted|needs_changes, author, comment; для result verified_revision необязателен: при его отсутствии используется версия из обращения, если она есть. Другая версия при заданной версии обращения отклоняется. answer применяется только к question; ответ на вопрос и возврат требований требуют текста. Возврат результата допускает пустой комментарий. Ответ записывается только по явному решению человека. Согласование требований означает согласие с содержанием, не разрешение реализации. Приёмка result использует существующие spec-decide, хеши входов и технические барьеры. Конкурентная/устаревшая запись отклоняется целиком.
+spec-attention --id ID --expected HASH --input request.json takes attention_input from spec-schema. Request: action=request, unique retry request_id, kind=question|requirements|result, reason and content_sha256 from spec-ui. Exact retries create no duplicate. requirements needs a prepared contract; result needs current evidence/review. Optional known verified_revision is allowed for result; empty means unknown, and the form does not ask the human for it. Questions do not depend on technical-input availability.
 
-Защищённое необязательное поле attention в spec.json хранит обращения, ответы с порядковым номером и точные снимки содержания. Новые result-обращения сохраняют необязательный verified_revision, а ответы — verified_revision с известной версией либо пустой строкой: повтор должен совпасть с первоначальной версией и пройти актуальные проверки редакции, входов и готовности. Старые ответы без поля читаются без миграции; повтор допустим только при однозначной версии соответствующей acceptance. Неоднозначность или несовпадение отклоняются без записи. После появления verified_revision в обращении или ответе не редактируй каталог прежней CLI, не знающей этого поля. Отсутствие attention означает отсутствие решений. Теги, отметки выполнения и повторные проверки не меняют согласованное содержание; его изменение делает согласие stale. Нужна новая явная передача. Не редактируй такие записи прежней CLI, не знающей поля attention.
+Response: action=respond, request_id, content_sha256, decision=answer|accepted|needs_changes, author, comment. Optional result verified_revision defaults to the request version if present. A different explicit version rejects. answer applies only to question. Question answers/returned requirements need text; returned results may have no comment. Record responses only on explicit human decisions. Requirements agreement is content approval, not implementation authority. Result acceptance uses spec-decide, input hashes and technical barriers. Concurrent/stale writes reject all.
 
-Очередь: вопрос → требования → результат, затем время передачи и ID. Одна строка спеки содержит все актуальные обращения. Техническая неизвестность показывается отдельно и не скрывает вопрос. «В работе» содержит неинтегрированные записи без открытого обращения и не означает запущенного агента. Интегрированные записи без актуальной готовности и приёмки получают отдельную категорию `historical` и признак `integrated`; в UI они доступны через «Все» без новой вкладки. Отменённые выделяются отдельно и не считаются интегрированным результатом; завершены только технически готовые принятые результаты. AI-пересказа нет.
+Protected optional attention in spec.json stores requests, numbered responses and exact content snapshots. New result requests may store verified_revision; responses store a known version or empty string. A retry must match the original version and pass revision/input/readiness checks. Old responses without the field read without migration; retries need an unambiguous acceptance version. Mismatch/ambiguity rejects without writes. Once verified_revision is present, old CLI unaware of it must not edit. Absent attention means no decisions. Tags, completion flags and equivalent checks do not change agreed content; changed content makes agreement stale and needs a new explicit handoff. Old CLI unaware of attention must not edit it.
+
+Queue order: question → requirements → result, then request time/ID. One row has all current requests. Technical unknowns appear separately and do not hide questions. Work-in-progress holds unintegrated records without open requests; it does not mean an agent is running. Integrated records without current readiness/acceptance use historical with integrated flag, visible through All without a new tab. Abandoned records are separate, not integrated results. Only technically ready accepted results count as completed. No AI summary.

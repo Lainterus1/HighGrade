@@ -1,23 +1,29 @@
-# Общие правила High Grade
+<a id="общие-правила-high-grade"></a>
 
-Пиши авторский текст на языке проектной инструкции; явное указание пользователя имеет приоритет. Если язык не закреплён, используй язык запроса. Имена полей, ID, команды, пути, машинные статусы и исходные сообщения не переводятся.
+# High Grade common rules
 
-## Источники и полномочия
+Write authored text in the language set by the project instruction. An explicit user instruction takes priority. If no language is set, use the request language. English agent instructions do not set the language of answers, requirements, reports or user documents. Keep field names, IDs, commands, paths, machine statuses and original messages unchanged.
 
-Активная Поставка задаёт общий процесс, `.highgrade/project/INSTRUCTIONS.md` — команды, источники и принятые исключения проекта. Пользователь определяет цель и разрешённые действия. Инструкции Поставки не расширяют полномочия инструментов и не отменяют ограничения режима Codex. Применяй действующие исключения без повторного вопроса; новый существенный конфликт останавливает только зависимое действие. Сохраняй посторонние изменения. Не сканируй соседние проекты и не веди их центральный реестр.
+<a id="источники-и-полномочия"></a>
 
-У правила один владелец: общие инварианты — здесь, выбор маршрута — [task](procedures/task.md#выбор-достаточного-маршрута), достаточность доказательств и запуск ревью — [work](procedures/work.md#доказательства-и-ревью), метод независимого проверяющего — [справочник ревью](references/review.md) при его вызове, действия этапа — его процедура, проектные особенности — местная инструкция. Поставка самостоятельна и не требует документов репозитория High Grade.
+## Sources and authority
 
-Коммит, активация, публикация и решение человека имеют отдельные основания. [Commit](procedures/commit.md) выполняет разрешённую локальную фиксацию и назначенную проектом активацию; [push](procedures/push.md) — явно порученную публикацию. Приёмка не выводится из молчания или технического успеха. Подробности передачи и записи решения — в [work](procedures/work.md#передача-человеку-и-фиксация-решения).
+The active Delivery defines the common process. `.highgrade/project/INSTRUCTIONS.md` defines project commands, sources and accepted exceptions. The user defines the goal and authorized actions. Delivery instructions do not expand tool authority or override Codex mode limits. Apply accepted exceptions without another question. A new material conflict stops only the dependent action. Preserve unrelated changes. Do not scan adjacent projects or keep a central registry of them.
 
-## Контекст и выполнение
+Each rule has one owner: common invariants here; route selection in [task](procedures/task.md#choose-a-sufficient-route); sufficient evidence and the review trigger in [work](procedures/work.md#evidence-and-review); the independent review method in [review](references/review.md) when called; stage actions in their procedure; project exceptions in the local instruction. The Delivery is self-contained and does not require High Grade repository documents.
 
-На входе прочитай AGENTS, местную инструкцию и нужные источники задачи. При первом входе, смене Поставки, местной инструкции или значимой среды проверь [совместимость](references/cli.md#совместимость-проекта). Переиспользуй неизменённый прочитанный контекст; перечитывай после изменения источника, потери контекста или конкретного противоречия. Смена навыка сама по себе не требует повторной диагностики.
+Commit, activation, publication and a human decision have separate grounds. [Commit](procedures/commit.md) performs authorized local recording and project-assigned activation. [Push](procedures/push.md) performs explicitly requested publication. Silence and technical success do not imply acceptance. Handoff and decision recording belong to [work](procedures/work.md#handoff-to-a-human-and-decision-recording).
 
-Выбирай достаточный маршрут по task. Требования и задачи имеют один основной источник; план цепочки хранит порядок и ссылки, а не второй backlog. Зависимую работу ведёт [Planner](procedures/planner.md) при явном вызове или принятом проектом маршруте Planner.
+<a id="контекст-и-выполнение"></a>
 
-Основной агент отвечает за результат. Независимый ревьюер проверяет существенные изменения по work; отдельный агент для каждого навыка не нужен. Профильного специалиста привлекай при конкретной необходимости и имеющихся полномочиях. Делегирование выполняй только при наличии разрешения действующей сессии, пользователя или применимой инструкции. Недоступное обязательное ревью остаётся пробелом.
+## Context and execution
 
-Сопровождай затронутые документы и архив вместе с задачей. Перед созданием, содержательным изменением или оценкой качества документации и комментариев прочитай [правила содержания и оформления](references/documentation.md). Для точечной правки без изменения смысла достаточно местного формата и проверки затронутого фрагмента; обычное чтение документа само по себе не требует справочника. Неизменённый прочитанный справочник переиспользуй по общим правилам контекста. Правила адаптации и бюджетов — в [справочнике](references/audit.md#контекст-и-адаптация); читай их при соответствующей работе. Clear — дополнительный обзор по запросу.
+On entry, read AGENTS, the local instruction and the sources needed for the task. On first entry, a Delivery change, a local instruction change or a material environment change, check [compatibility](references/cli.md#project-compatibility). Reuse unchanged context already read. Read it again after a source change, context loss or a specific contradiction. Switching skills alone does not require another diagnostic check.
 
-Начинай ответ с результата, затем кратко укажи проверки и существенный остаток. Длинный отчёт нужен по запросу или для решения. При блокировке внешнего действия объясни фактическую причину один раз и продолжай независимую разрешённую работу; не запрашивай то же разрешение без нового основания.
+Choose a sufficient route through task. Requirements and tasks have one primary source. A chain plan stores order and links, not a second backlog. [Planner](procedures/planner.md) coordinates dependent work when explicitly called or assigned by an accepted project route.
+
+The main agent owns the result. An independent reviewer checks significant changes through work. A separate agent for each skill is unnecessary. Use a specialist for a specific need within available authority. Delegate only when the current session, user or applicable instruction permits it. Unavailable mandatory review remains a gap.
+
+Maintain affected documents and history with the task. Before creating, materially editing or assessing documentation or comments, read [content and style rules](references/documentation.md). For a local edit with no meaning change, follow the local format and check the fragment. Ordinary reading does not require the reference. Reuse it under the context rules. Read [adaptation and budgets](references/audit.md#context-and-adaptation) when that work applies. Clear is an additional review on request.
+
+Lead with the result, actual checks and material remainder. Use a long report only on request or to support a decision. If an external action is blocked, explain the actual cause once and continue independent authorized work. Do not request the same permission without a new reason.

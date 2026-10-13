@@ -1,0 +1,185 @@
+{"status": "applied", "before_mib": 1073.25, "after_mib": 1073.25, "removed_count": 0, "eligible_count": 0, "retained_count": 7, "removed": [], "eligible": [], "retained": [{"path": "target/highgrade/runs/node-9779e7abee2b410ebcbda5f8b1a2d011", "reason": "unexported or interrupted run"}, {"path": "target/highgrade/runs/python-5c13146add2440e19622c4fcfa1cdb89", "reason": "unexported or interrupted run"}, {"path": "target/highgrade/runs/python-c1416fc6460842a88bd5efd65e83db69", "reason": "unexported or interrupted run"}, {"path": "target/highgrade/runs/python-c9374f5b8ecc4711b5caee66d1dd160d", "reason": "unexported or interrupted run"}, {"path": "target/highgrade/runs/rust-51cefeccd6b548a998a23a46a4eb4f31", "reason": "unexported or interrupted run"}, {"path": "target/highgrade/runs/rust-52f8fc6caa404969be61ec79fe9d7664", "reason": "active owner"}, {"path": "target/highgrade/runs/scenarios-7a25d7a71f364abdb249fd503470e43a", "reason": "unexported or interrupted run"}], "detail": "first 10 per group; plain invocation shows inventory"}
+{
+  "status": "passed",
+  "requirements": 165,
+  "scenarios": 313,
+  "automatic": 143,
+  "manual_check_scenarios": 63,
+  "no_declared_check_scenarios": 107,
+  "no_declared_check_ids": [
+    "HG-0004-S3",
+    "HG-0006-S1",
+    "HG-0006-S2",
+    "HG-0006-S3",
+    "HG-0006-S4",
+    "HG-0006-S5",
+    "HG-0006-S6",
+    "HG-0006-S7",
+    "HG-0008-S1",
+    "HG-0008-S2",
+    "HG-0026-S1",
+    "HG-0026-S2",
+    "HG-0026-S3",
+    "HG-0026-S4",
+    "HG-0028-S3",
+    "HG-0032-S1",
+    "HG-0042-S1",
+    "HG-0043-S1",
+    "HG-0043-S2",
+    "HG-0043-S3",
+    "HG-0044-S1",
+    "HG-0044-S2",
+    "HG-0044-S3",
+    "HG-0047-S1",
+    "HG-0047-S2",
+    "HG-0048-S2",
+    "HG-0048-S3",
+    "HG-0051-S1",
+    "HG-0051-S2",
+    "HG-0051-S3",
+    "HG-0051-S4",
+    "HG-0051-S5",
+    "HG-0054-S1",
+    "HG-0054-S2",
+    "HG-0054-S3",
+    "HG-0054-S4",
+    "HG-0054-S5",
+    "HG-0054-S6",
+    "HG-0054-S7",
+    "HG-0054-S8",
+    "HG-0055-S1",
+    "HG-0055-S2",
+    "HG-0055-S3",
+    "HG-0055-S4",
+    "HG-0055-S5",
+    "HG-0055-S7",
+    "HG-0056-S1",
+    "HG-0056-S10",
+    "HG-0056-S2",
+    "HG-0056-S3",
+    "HG-0056-S4",
+    "HG-0056-S5",
+    "HG-0056-S6",
+    "HG-0056-S7",
+    "HG-0056-S8",
+    "HG-0056-S9",
+    "HG-0057-S1",
+    "HG-0057-S2",
+    "HG-0057-S3",
+    "HG-0057-S4",
+    "HG-0057-S5",
+    "HG-0057-S6",
+    "HG-0057-S7",
+    "HG-0058-S1",
+    "HG-0058-S2",
+    "HG-0058-S3",
+    "HG-0058-S4",
+    "HG-0059-S3",
+    "HG-0059-S4",
+    "HG-0060-S1",
+    "HG-0060-S2",
+    "HG-0061-S1",
+    "HG-0061-S2",
+    "HG-0061-S4",
+    "HG-0062-S1",
+    "HG-0062-S2",
+    "HG-0062-S3",
+    "HG-0062-S4",
+    "HG-0062-S5",
+    "HG-0065-S1",
+    "HG-0065-S2",
+    "HG-0065-S3",
+    "HG-0065-S4",
+    "HG-0066-S1",
+    "HG-0066-S2",
+    "HG-0066-S3",
+    "HG-0066-S4",
+    "HG-0066-S5",
+    "HG-0066-S6",
+    "HG-0066-S7",
+    "HG-0066-S8",
+    "HG-0069-S2",
+    "HG-0069-S3",
+    "HG-0069-S4",
+    "HG-0070-S4",
+    "HG-0071-S1",
+    "HG-0071-S2",
+    "HG-0071-S3",
+    "HG-0072-S1",
+    "HG-0072-S2",
+    "HG-0072-S3",
+    "HG-0073-S1",
+    "HG-0073-S2",
+    "HG-0073-S3",
+    "HG-0073-S4",
+    "HG-0073-S5",
+    "HG-0074-S7"
+  ],
+  "attempt": "target/nextest/highgrade/attempt.json",
+  "state": "running"
+}
+   Compiling highgrade v0.3.12 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 4.35s
+    Finished `test` profile [unoptimized] target(s) in 0.03s
+────────────
+ Nextest run ID 22a807d7-ce6f-445f-bbff-7f5c672c84e0 with nextest profile: highgrade
+    Starting 229 tests across 19 binaries
+        PASS [   0.006s] (  1/229) highgrade trace::id_tests::accepts_project_ids_and_rejects_malformed_ids
+        PASS [   0.010s] (  2/229) highgrade specs::progress::metadata_compatibility::old_tagged_revision_survives_metadata_but_not_material_drift
+        PASS [   0.012s] (  3/229) highgrade ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes
+        PASS [   0.058s] (  4/229) highgrade::attention_contracts projection_preserves_bytes_excludes_legacy_and_reports_corruption
+        PASS [   0.109s] (  5/229) highgrade ui::bundle::tests::embedded_bundle_rejects_missing_changed_and_incompatible_resources
+        PASS [   0.113s] (  6/229) highgrade::attention_contracts repeated_result_requests_recheck_inputs_revision_and_readiness
+        PASS [   0.114s] (  7/229) highgrade::attention_contracts queue_priority_categories_and_counts_are_deterministic
+        PASS [   0.116s] (  8/229) highgrade::attention_contracts repeated_result_responses_preserve_exact_revision_and_recheck_gates
+        PASS [   0.007s] (  9/229) highgrade::bootstrap_contracts bootstrap_distinguishes_adaptation_from_technical_failure
+        PASS [   0.122s] ( 10/229) highgrade::attention_contracts legacy_result_responses_require_unambiguous_acceptance_revision
+        PASS [   0.123s] ( 11/229) highgrade::attention_contracts answers_in_reverse_request_order_use_recorded_sequence
+        PASS [   0.010s] ( 12/229) highgrade::bootstrap_contracts bootstrap_does_not_read_excluded_sources_or_offer_excluded_link_targets
+        PASS [   0.006s] ( 13/229) highgrade::bootstrap_contracts bootstrap_reports_all_slots_before_registry_exists
+        PASS [   0.006s] ( 14/229) highgrade::bootstrap_contracts bootstrap_skips_generated_skill_outputs
+        PASS [   0.011s] ( 15/229) highgrade::bootstrap_contracts bootstrap_reports_multiple_unvisited_locations_with_a_count
+        PASS [   0.007s] ( 16/229) highgrade::bootstrap_contracts candidate_and_input_limits_keep_partial_evidence
+        FAIL [   0.009s] ( 17/229) highgrade::bootstrap_contracts bundled_templates_match_the_canonical_bootstrap_contract
+  stdout ───
+
+    running 1 test
+    test bundled_templates_match_the_canonical_bootstrap_contract ... FAILED
+
+    failures:
+
+    failures:
+        bundled_templates_match_the_canonical_bootstrap_contract
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 16 filtered out; finished in 0.00s
+
+  stderr ───
+
+    thread 'bundled_templates_match_the_canonical_bootstrap_contract' panicked at tests/bootstrap_contracts.rs:238:5:
+    assertion `left == right` failed
+      left: "failed"
+     right: "passed"
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+  Cancelling due to test failure: 15 tests still running
+        PASS [   0.023s] ( 18/229) highgrade::bootstrap_contracts alternative_name_is_candidate_but_never_accepted_as_role
+        PASS [   0.010s] ( 19/229) highgrade::bootstrap_contracts canonical_project_has_separate_path_and_link_evidence
+        PASS [   0.009s] ( 20/229) highgrade::bootstrap_contracts combined_roles_are_counted_once_and_invalid_assignments_fail
+        PASS [   0.016s] ( 21/229) highgrade::bootstrap_contracts cli_accepts_bootstrap_without_registry_and_rejects_map_and_conflicts
+        PASS [   0.154s] ( 22/229) highgrade::attention_contracts repeated_requests_recheck_readiness_and_preserve_unrelated_questions
+        PASS [   0.160s] ( 23/229) highgrade::attention_contracts content_snapshots_metadata_and_stale_writes_are_distinct
+        PASS [   0.177s] ( 24/229) highgrade::attention_contracts direct_decision_reuses_the_saved_build_and_closes_the_result_request
+        PASS [   0.193s] ( 25/229) highgrade::attention_contracts result_responses_keep_their_revision_when_later_decisions_share_snapshot
+        PASS [   0.210s] ( 26/229) highgrade::attention_contracts explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_request
+        PASS [   0.171s] ( 27/229) highgrade::attention_contracts saved_result_build_id_is_optional_and_reused_without_user_input
+        PASS [   0.219s] ( 28/229) highgrade::attention_contracts result_status_without_build_id_keeps_snapshot_history_and_replay_gates
+        PASS [   0.260s] ( 29/229) highgrade::attention_contracts result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement
+        PASS [   0.285s] ( 30/229) highgrade::attention_contracts ambiguous_saved_build_rejects_the_whole_direct_decision_batch
+        PASS [   0.185s] ( 31/229) highgrade::attention_contracts unknown_result_reuses_unique_saved_metadata_and_closes_the_same_snapshot
+        PASS [   0.469s] ( 32/229) highgrade::attention_contracts integrated_history_is_not_current_work_or_current_acceptance
+────────────
+     Summary [   0.470s] 32/229 tests run: 31 passed, 1 failed, 0 skipped
+        FAIL [   0.009s] ( 17/229) highgrade::bootstrap_contracts bundled_templates_match_the_canonical_bootstrap_contract
+warning: 197/229 tests were not run due to test failure (run with --no-fail-fast to run all tests, or run with --max-fail)
+error: test run failed
+{"storage_preflight": [{"destination": "/home/lainterus/Projects/High Grade", "free_bytes": 873548984320, "minimum_free_bytes": 1073741824}, {"destination": "/home/lainterus/Projects/High Grade/target", "free_bytes": 873548984320, "minimum_free_bytes": 1073741824}]}

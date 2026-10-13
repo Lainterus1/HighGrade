@@ -1,0 +1,24 @@
+{
+  "scope": "Нормативная сверка подготовки выпуска HG-0074-S7; фактическая активация и публикация ещё не выполнены.",
+  "captured_at": "2026-10-13T09:33:36.509523+00:00",
+  "outcome": "passed",
+  "observations": [
+    "Номер 0.3.13 назначен по правилу patch перед коммитом; Cargo и manifest согласованы.",
+    "unreleased перенесён в v0-3-13 с previous v0-3-12; опубликованные записи v0-3-10/11/12 сохранены.",
+    "Три пользовательских факта соответствуют проверенной реализации HG-0073/HG-0074; обязательные breaking/actions не скрыты.",
+    "README содержит значимую возможность Update; внутренняя подготовка версии не превращает его в журнал.",
+    "Workflow origin/main запускает Linux/Windows CI без deployment; приёмка человеком не подразумевается."
+  ],
+  "inputs": {
+    "Cargo.toml": "4656a70e28a419dc6140a2efa9b21ff932baf6845f5d1f8d601476506a9ef2c8",
+    "Cargo.lock": "a49ff3b02e27b42a13cadbc1ee86d5ecb8a2acd7c80e79b3b57b0e4ffafa6a81",
+    "kit/manifest.json": "1bf9c534fbd584e99b2ef546ad5413aa43aa5b21992fd0211e7c7e178afa2dba",
+    "kit/references/release-notes.json": "bbf45efa0d04118d874317e53b7c65fd8c0c993758a433b3d24517c321469ba4",
+    "kit/procedures/commit.md": "333555909b94c1ecebc7db01cc4397cb2c01c31eb2ccaa4b83fe021a8a88711b",
+    "kit/procedures/update.md": "257c2d4eb1c1725060d017dc109282d57a204382b9c1be9b4f5a113642235f3e",
+    "README.md": "3b9f62e8bcb8bc8b4e62d3cd73db1dca1be5f1626a3f4c1ccf9be106d7ee3486",
+    ".highgrade/project/INSTRUCTIONS.md": "eb41e50c4edee3c2c4c8e5ef0868d835d201588eba0ab786c0c8a660e3e2113f",
+    ".github/workflows/verify.yml": "70b054d8e63fdbca195d7c4286893c6a0ed81b3ef668b1259c1c2e9a0c3b6c69",
+    "docs/releases/v0-3-13.md": "29dc6f44166636dc43804d96908b4833fdfbe6dc8f50c56ee799ea55f679dc49"
+  }
+}

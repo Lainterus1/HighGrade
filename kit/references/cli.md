@@ -1,52 +1,74 @@
-# Инструменты Поставки High Grade
+<a id="инструменты-поставки-high-grade"></a>
 
-`highgrade <команда> --help` показывает параметры, пример и входную схему без чтения проекта. Все операции возвращают JSON Report. Используйте CLI активного выпуска; при разработке нового формата — явно обозначенный совместимый кандидат.
+# High Grade Delivery tools
 
-| Задача | Справочник |
+highgrade `<command>` --help shows options, example and input schema without reading a project. All operations return JSON Report. Use active-release CLI; for a new format under development, use an explicitly identified compatible candidate.
+
+| Task | Reference |
 |---|---|
-| Обследовать проект, сохранить решения, карту и продолжение | [Обследование](tools/survey.md) |
-| Создать, прочитать, изменить спеку; теги, CAS, миграция | [Спецификации](tools/specifications.md) |
-| Запустить проверку, импортировать результат, записать evidence/review | [Проверки](tools/verification.md) |
-| Установить, обновить и восстановить общую установку | [Установка](tools/installation.md) |
-| Найти проблему, сохранить решение и повторное наблюдение | [Реестр проблем](tools/issues.md) |
-| Проверить проект, документы, реестр и исключения inventory | [Диагностика](tools/diagnostics.md) |
+| Survey a project; save decisions, map and continuation | [Survey](tools/survey.md) |
+| Create/read/edit specifications; tags, CAS, migration | [Specifications](tools/specifications.md) |
+| Run checks, import results, record evidence/review | [Verification](tools/verification.md) |
+| Install/update/recover global installation | [Installation](tools/installation.md) |
+| Find problems; save solutions/repeated observations | [Issues](tools/issues.md) |
+| Check project, documents, registry and inventory exclusions | [Diagnostics](tools/diagnostics.md) |
 
-Правила и полномочия определяет [rules](../rules.md), последовательность работы — [процедуры](../procedures/task.md), методику обследования — [audit](audit.md). Эти справочники владеют командами и форматами, шаблоны задают только местную адаптацию. Отдельный Tools-документ в каждом целевом проекте не требуется: команды проекта остаются в DEVELOPMENT.
+[rules](../rules.md) owns authority, [procedures](../procedures/task.md) sequence, and [audit](audit.md) survey method. References own commands/formats. Templates only guide local adaptation. A separate Tools document per project is unnecessary; project commands belong to DEVELOPMENT.
 
-Прежние ссылки сохранены для совместимости:
+Previous links remain compatible:
 
-## Структурированные спецификации
-[Формат и операции](tools/specifications.md#структурированные-спецификации).
+<a id="структурированные-спецификации"></a>
 
-### Номера, версии и приёмка
-[Идентификаторы и решения](tools/specifications.md#номера-версии-и-приёмка).
+## Structured specifications
+[Format and operations](tools/specifications.md#structured-specifications).
 
-### Каталог, миграция и восстановление
-[Хранение и восстановление](tools/specifications.md#каталог-миграция-и-восстановление).
+<a id="номера-версии-и-приёмка"></a>
 
-### Связи и теги
-[Навигация](tools/specifications.md#связи-и-теги).
+### IDs, versions and acceptance
+[Identifiers and decisions](tools/specifications.md#ids-versions-and-acceptance).
 
-### Привязки и явный запуск
-[Раннеры](tools/verification.md#привязки-и-явный-запуск).
+<a id="каталог-миграция-и-восстановление"></a>
 
-## Короткий цикл редактирования
-[Рабочие представления](tools/specifications.md#короткий-цикл-редактирования).
+### Catalog, migration and recovery
+[Storage and recovery](tools/specifications.md#catalog-migration-and-recovery).
 
-## Предварительная проверка документов (v0-2-5)
-[Bootstrap](tools/diagnostics.md#предварительная-проверка-документов-v0-2-5).
+<a id="связи-и-теги"></a>
 
-## Начальный реестр документов
-[Реестр](tools/diagnostics.md#начальный-реестр-документов).
+### Links and tags
+[Navigation](tools/specifications.md#links-and-tags).
 
-## Совместимость проекта
-[Границы диагностики](tools/diagnostics.md#совместимость-проекта).
+<a id="привязки-и-явный-запуск"></a>
 
-## Именованные результаты и последовательная запись
+### Check bindings and explicit execution
+[Runners](tools/verification.md#check-bindings-and-explicit-execution).
 
-Report сохраняет `measurements`, status и коды завершения. `result` содержит ключи, встречающиеся ровно в одном объекте measurements: `result.store_sha256`, `result.survey_sha256`, `result.value`, `result.change`, `result.catalog_path`. Повторяющиеся ключи перечислены в `ambiguous_result_keys` и отсутствуют в result; их строки выбирают из measurements по предметному ID. Не использовать номер строки как контракт. Store/local/survey SHA относятся к разным объектам; подмена одного другим не допускается. Spec-init также возвращает directory и pointer_path относительно root.
+<a id="короткий-цикл-редактирования"></a>
 
-Пример PowerShell для уже подготовленного patch.json:
+## Short editing cycle
+[Working views](tools/specifications.md#short-editing-cycle).
+
+<a id="предварительная-проверка-документов-v0-2-5"></a>
+
+## Document preflight (v0-2-5)
+[Bootstrap](tools/diagnostics.md#document-preflight-v0-2-5).
+
+<a id="начальный-реестр-документов"></a>
+
+## Initial document registry
+[Registry](tools/diagnostics.md#initial-document-registry).
+
+<a id="совместимость-проекта"></a>
+
+## Project compatibility
+[Diagnostic limits](tools/diagnostics.md#project-compatibility).
+
+<a id="именованные-результаты-и-последовательная-запись"></a>
+
+## Named results and sequential writes
+
+Report retains measurements, status and exit codes. result contains keys occurring in exactly one measurements object: result.store_sha256, result.survey_sha256, result.value, result.change, result.catalog_path. Repeated keys appear in ambiguous_result_keys and are absent from result. Select their measurements by domain ID, not row number. Store/local/survey SHA refer to different objects and cannot substitute for each other. spec-init also returns root-relative directory/pointer_path.
+
+PowerShell example for a prepared patch.json:
 
 ```powershell
 $hgRead = & $hgExe survey-read --root "$PWD" --view editable
@@ -58,6 +80,6 @@ if ($LASTEXITCODE -ne 0) { throw 'survey-edit failed; reread before retry' }
 $hgNext = $hgWrite | ConvertFrom-Json
 ```
 
-Для Markdown: проверив успешный survey-read --view markdown тем же способом, выведите `$hgState.result.value`. JSON — источник, сохранение производного файла необязательно; перенаправление в файл требует выбранного пути и обычных правил сохранности.
+For Markdown, check successful survey-read --view markdown the same way and print $hgState.result.value. JSON is the source. Saving a derived file is optional; redirection needs a selected path and normal preservation rules.
 
-`ui-launcher --root PATH [--apply true]` готовит переносимые файлы запуска UI; без apply — только проверка. Описание — [установка](tools/installation.md#запуск-ui-из-проекта).
+ui-launcher --root PATH [--apply true] prepares portable UI launchers. Without apply, it only checks. See [installation](tools/installation.md#launch-ui-from-a-project).

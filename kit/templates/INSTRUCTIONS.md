@@ -2,43 +2,48 @@
 highgrade_project_schema: 1
 highgrade_spec_format: native-v1
 ---
-# Проектная инструкция High Grade
+<a id="проектная-инструкция-high-grade"></a>
 
-Статус: предложение при инициализации; принятие отмечается только после решения автора.
+# High Grade project instruction
 
-Заполнять по обследованию и решениям автора. Для существенных настроек указывать «определено» с источником, «неприменимо» с причиной либо «неизвестно» с зависимым действием. Не оставлять шаблонные поля как принятые значения.
+Status: initialization proposal. Mark acceptance only after the user's decision.
 
-## Проект и владельцы
+Fill from survey and user decisions. For material settings, use defined with source, inapplicable with reason, or unknown with dependent action. Never present template fields as accepted values. Instruction language does not set the language of generated project/user documents.
 
-- Результат init и продолжение: <подготовленная основа, ID начальных/переиспользованных спек, рекомендуемая первая и действие проработки; вопросы и задачи остаются в спеках. Полнота реализации не выводится из завершения init>.
+<a id="проект-и-владельцы"></a>
 
-- Основание подключения: <survey.json, завершённая редакция и существенные ограничения; текущие знания находятся у владельцев ниже>.
+## Project and owners
 
-- Язык авторских документов и спецификаций: <язык и источник выбора; действует также для сохраняемых планов, состояния, отчётов и передачи человеку>. Технические идентификаторы и исходные машинные сообщения не переводятся.
-- Назначение и границы: <ссылки на README и согласованный источник продукта>.
-- Существенные риски и ограничения: <ссылка на владельца или конкретное неизвестное>.
-- Действующие документы: <ссылки на AGENTS, ARCHITECTURE, ENGINEERING, DEVELOPMENT и обоснованные дополнительные>.
-- Принятые исключения и разрешённые конфликты: <решение, причина, затронутое правило, условие пересмотра>.
+- Init result/continuation: [prepared foundation, initial/reused specification IDs, first recommended specification/refinement action; questions/tasks remain in specs. Init completion does not prove implementation].
+- Connection basis: [survey.json, completed revision and material limits; current knowledge belongs to owners below].
+- Authored-document/specification language: [language and decision source, also for saved plans, state, reports and human handoff]. English agent instructions do not override it. Preserve technical IDs/original machine messages.
+- Purpose/scope: [README and agreed product-source links].
+- Material risks/limits: [owner link or specific unknown].
+- Current documents: [AGENTS, ARCHITECTURE, ENGINEERING, DEVELOPMENT and justified additional sources].
+- Accepted exceptions/resolved conflicts: [decision, reason, affected rule and review condition].
 
-## Маршрут задачи и спеки
+<a id="маршрут-задачи-и-спеки"></a>
 
-- Новые изменения: проектный каталог `specs/` (либо выбранный при init путь), поддерживаемый формат каталога по справочнику активной CLI, команды `spec-*`. Файлы spec/results разделены; данные сохраняются при удалении High Grade. Номера назначает инструмент. Прежний store переносится явно через spec-migrate --to directory с резервной копией.
-- Навигация: <широкие теги предметных областей>; depends_on — зависимость от включённого результата, related_to — поясняющая связь; без наследования.
-- Повторные проверки: существующая спека и история результатов; эквивалентный повтор не требует нового решения человека. При существенном дрейфе применяется маршрут work активной Поставки.
-- Прежние спецификации: <пути, действующие владельцы и согласованные исключения; массового переноса нет>.
-- Дополнительная методика спецификации: <ссылка, если есть; не копировать её содержание>.
-- Штатные проверки и доказательства: <ссылки на команды DEVELOPMENT, политику тестов и существующего владельца хранения/передачи обязательных отчётов и невосстановимых входов>.
-- Готовность локальной работы: <проверенная среда, доступные проверки и оставшиеся пробелы; техническое подключение отдельно от приёмки>.
-- Местные навыки: <название, отдельная ответственность, связь с общим навыком>.
+## Task and specification route
 
-## Сопровождение
+- New changes: project specs/ or init-selected directory, active-CLI-supported format and spec-* commands. spec/results are separate and survive High Grade removal. CLI assigns numbers. Migrate earlier stores explicitly with spec-migrate --to directory and backup.
+- Navigation: [broad domain tags]; depends_on needs an integrated result, related_to explains a relationship; no content inheritance.
+- Rechecks: existing specification/result history; equivalent repeats need no new human decision. For material drift, use active Delivery work.
+- Previous specifications: [paths, current owners and agreed exceptions; no mass transfer].
+- Additional specification method: [link if present, no copied content].
+- Standard checks/evidence: [DEVELOPMENT commands, test policy and existing mandatory-report/unrecoverable-input storage/delivery owner].
+- Local readiness: [checked environment, available checks and gaps; technical connection is separate from acceptance].
+- Local skills: [name, distinct responsibility and common-skill relationship].
 
-- Реестр бюджетов контекста: [documents.json](documents.json); согласованные диапазоны или unknown заполняются после аудита.
-- Git и идентичность результата: <Git либо неприменим; для noGit — способ неизменяемого пакета/build ID, проверки и хранения, условия завершения Work без коммита. Для Git — связь проверенного SHA/состава с результатом squash/rebase/merge, повторные проверки при дрейфе; историю человеческого решения не переписывать>.
-- Pre-submit: <проверки/ревью до локального коммита и до отправки кандидата, допустимый явный остаток>. Финальная готовность: <обязательные критерии и ревью>. CI: <доступный статус точного SHA; ожидание по умолчанию не блокирует работу, отдельный обязательный барьер — только из явного местного правила или решения автора>.
-- Локальная фиксация через `highgrade-commit`: <политика выбранного состава и кандидатных коммитов; неприменимо без Git>. Локальная активация: <неприменима либо назначенный этап, команды из точного SHA/build ID, preview, проверка и восстановление; release ID и версия только если проект их требует>. Commit не означает человеческую приёмку; вызов разрешает только эту проектную локальную активацию.
-- Публикация через `highgrade-push`: <remote, ветка отправки и выбор диапазона; direct push либо PR с base/head, обязательные правила; проверка удалённого SHA и CI; неприменимо без Git>. Последствия отправки: <автодеплой/внешние действия, целевая среда, необходимые разрешения либо подтверждённое отсутствие>. Push и PR выполняются только в пределах явного поручения.
-- Решения и полномочия: <кто принимает результат и точную редакцию, кто разрешает merge, tag/release и deploy; условия и отдельные барьеры, без вывода полномочий из коммита/CI/активации>. «Активируй» само по себе не означает приёмку.
+<a id="сопровождение"></a>
 
+## Maintenance
 
-Маршрут выбирается по процедуре task активной Поставки: изменение требований — через spec; техническая работа и исправление по неизменному контракту — через work, с планом при зависимых этапах. Проверки и ревью определяются риском, не наличием spec ID.
+- Context registry: [documents.json](documents.json); fill agreed ranges or unknown after audit.
+- Git/result identity: [Git or inapplicable; noGit immutable package/build ID, verification/storage and Work completion without commit. For Git, checked SHA/content linkage after squash/rebase/merge, drift checks; preserve human decision history].
+- Pre-submit: [checks/review before local commit/candidate push, explicitly allowed remainder]. Final readiness: [mandatory criteria/review]. CI: [available exact-SHA status; default no blocking wait; a mandatory wait only from an explicit local rule/user decision].
+- highgrade-commit: [selected scope/candidate-commit policy; inapplicable without Git]. Local activation: [inapplicable or assigned stage, exact SHA/build ID commands, preview/check/recovery; release ID/version only when required]. Commit is not acceptance; its call authorizes only this project local activation.
+- highgrade-push: [remote, branch/range; direct push or PR base/head and rules; remote SHA/CI checks; inapplicable without Git]. Push effects: [automatic deployment/external actions, environment and authority, or confirmed absence]. Push/PR require explicit scope authority.
+- Decisions/authority: [who accepts which exact result, who authorizes merge/tag/release/deploy, conditions/separate barriers; never infer authority from commit/CI/activation]. Activate alone is not acceptance.
+
+Select routes through active Delivery task. Changed requirements use spec; technical work/fixes with unchanged contracts use work, with a plan for dependent stages. Risk defines checks/review, not a spec ID.

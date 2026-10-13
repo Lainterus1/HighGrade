@@ -1,21 +1,29 @@
-# Инженерные соглашения High Grade
+<a id="инженерные-соглашения-high-grade"></a>
 
-Область: разработка Поставки в этом Проекте. Устройство — в [ARCHITECTURE](ARCHITECTURE.md), команды — в [DEVELOPMENT](DEVELOPMENT.md). Общие правила работы принадлежат [kit](../kit/rules.md); полномочия местного принятия и публикации — [проектной инструкции](../.highgrade/project/INSTRUCTIONS.md).
+# High Grade engineering conventions
 
-## Документы и сопровождение
+Scope: Delivery development in this Project. [ARCHITECTURE](ARCHITECTURE.md) owns structure; [DEVELOPMENT](DEVELOPMENT.md) owns commands. [kit](../kit/rules.md) owns common rules; the [local instruction](../.highgrade/project/INSTRUCTIONS.md) owns local recording/publication authority.
 
-Применяй [CONTEXT](workflow/CONTEXT.md). Для нового поведения используй одно нативное JSON-изменение High Grade; задачи и требования не дублируй техническим планом. План зависимой работы хранит только маршрут, ссылки и следующий шаг. Существенные новые решения остаются за автором. Текущие процедуры `kit/` владеют общими правилами документов, доказательств и архива; исторические контракты P0–P5 сохраняют проверенные гарантии CLI.
+<a id="документы-и-сопровождение"></a>
 
-## Компоненты и доказательства
+## Documents and maintenance
 
-Не объединяй runtime и зависимости плагинов: SVG Vectorizer и Code Health Audit проверяются в своей области. Сохраняй их тесты, закрепления и контракты. Структурная проверка, точность переноса, функциональные тесты, установка и приёмка различаются по [QUALITY](workflow/QUALITY.md). Основные изменения workflow и сохранности требуют независимого ревью.
+Apply [CONTEXT](workflow/CONTEXT.md). New behavior uses one native JSON change; do not duplicate its tasks/requirements in a technical plan. Dependent plans contain only route, links and Next. The user owns material new decisions. Current kit/ procedures own common document/evidence/archive rules. Historical P0–P5 contracts retain checked CLI guarantees.
 
-Для Rust сохраняй Cargo.lock; выполняй cargo fmt и поведенческие тесты затронутого контракта. При активации единственная обязательная release-сборка — кандидат из точного SHA; без кандидата отдельная сборка нужна по конкретному риску. Автоматические тесты используют временные каталоги. Продуктовые проекты допускаются только в явно разрешённом пилоте. Ошибка и неизвестное не становятся успешным резервным путём.
+<a id="компоненты-и-доказательства"></a>
 
-## Сохранность
+## Components and evidence
 
-Посторонние изменения сохраняются. До разрушительного преобразования нужна восстанавливаемая исходная копия, если автор явно не поручил отбросить конкретные изменения; область операции проверяется всегда. Без Git исходники и манифесты сохраняются отдельно. Архивирование не разрешает удалять функциональность и установленные плагины.
+Do not merge plugin runtimes/dependencies. SVG Vectorizer/Code Health Audit are checked within their scope. Preserve tests, pins and contracts. [QUALITY](workflow/QUALITY.md) separates structure, transfer accuracy, functionality, installation and acceptance. Core workflow/preservation changes need independent review.
 
-Не публикуй секреты, окружения и локальные логи. Перед публикацией проверяй происхождение и лицензии. Commit, push, активация и пользовательская приёмка имеют отдельные полномочия. Обратная связь остаётся локальной без автоматической отправки.
+For Rust, keep Cargo.lock and use cargo fmt plus affected behavior tests. For activation, the only mandatory release build is an exact-SHA candidate. Without a candidate, a separate build needs a specific risk. Automatic tests use temp directories. Product projects need an explicitly authorized pilot. Error/unknown is not a successful fallback.
 
-Инструкции этапов редактируются в `kit/procedures/`; `python scripts/render-skills.py` формирует полные SKILL.md и обновляет манифест. `--check` проверяет отсутствие дрейфа. Не редактируй сгенерированные тела навыков вручную. Global-update заменяет собственные навыки по активному журналу, сохраняет пользовательские изменения и оставляет журнал для явного global-recover при прерывании. Исторический `bundle/` не является источником текущего workflow.
+<a id="сохранность"></a>
+
+## Preservation
+
+Preserve unrelated changes. Before destructive conversion, keep recoverable originals unless the user explicitly requested discarding specified changes. Always check operation scope. Without Git, preserve sources/manifests separately. Archiving does not authorize removing functionality/installed plugins.
+
+Never publish secrets, environments or local logs. Before publication, check origin/licenses. Commit, push, activation and human acceptance have separate authority. Feedback remains local without automatic sending.
+
+Edit stage instructions in kit/procedures/. python scripts/render-skills.py produces full SKILL.md and refreshes manifest; --check detects drift. Never edit generated bodies manually. global-update replaces owned skills from the active journal, preserves user changes and leaves interrupted-transaction journals for explicit global-recover. Historical bundle/ is not the current workflow source.

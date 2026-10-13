@@ -1,6 +1,6 @@
 # Локальный интерфейс High Grade
 
-Этот документ описывает запуск и наблюдаемое поведение установленного интерфейса. Структура frontend — в [ui/README](../ui/README.md), проверки — в [DEVELOPMENT](DEVELOPMENT.md#интерфейс-и-storybook), сборка — в [BUILD](BUILD.md#ресурсы-интерфейса).
+Этот документ описывает запуск и наблюдаемое поведение установленного интерфейса. Структура frontend — в [ui/README](../ui/README.md), проверки — в [DEVELOPMENT](DEVELOPMENT.md#ui-and-storybook), сборка — в [BUILD](BUILD.md#interface-assets).
 
 ## Запуск
 
@@ -26,7 +26,7 @@
 
 ## Установка и совместимость
 
-Установленному UI не нужны Node, Cargo, Storybook или внешняя сеть. Неполный/несовместимый встроенный комплект даёт `UiBundleInvalid` до открытия порта: переустановите полный выпуск. Разработчик пересобирает frontend и CLI по [BUILD](BUILD.md#ресурсы-интерфейса). `/highgrade-ui.json` содержит отпечатки и происхождение ресурсов; `/licenses/Manrope-OFL.txt` и `/licenses/Lucide-LICENSE.txt` — уведомления.
+Установленному UI не нужны Node, Cargo, Storybook или внешняя сеть. Неполный/несовместимый встроенный комплект даёт `UiBundleInvalid` до открытия порта: переустановите полный выпуск. Разработчик пересобирает frontend и CLI по [BUILD](BUILD.md#interface-assets). `/highgrade-ui.json` содержит отпечатки и происхождение ресурсов; `/licenses/Manrope-OFL.txt` и `/licenses/Lucide-LICENSE.txt` — уведомления.
 
 Прежние неподдерживаемые UI структуры видны в счётчике исключений, без переноса. Действующий компактный состав карточки закреплён [HG-0058](../specs/changes/HG-0058/spec.json); первоначальный маршрут HG-0052–HG-0057 сохранён [в архиве](archive/plans/specification-ui-sequence.md).
 
@@ -60,4 +60,4 @@ Editorial использует тёплый светлый фон, светлу�
 
 ## Запуск из папки проекта
 
-Init создаёт переносимые HighGrade UI.sh и HighGrade UI.cmd, использующие активную установку. Создание, восстановление и ограничения — в [справочнике](../kit/references/tools/installation.md#запуск-ui-из-проекта).
+Init создаёт переносимые HighGrade UI.sh и HighGrade UI.cmd, использующие активную установку. Создание, восстановление и ограничения — в [справочнике](../kit/references/tools/installation.md#launch-ui-from-a-project).

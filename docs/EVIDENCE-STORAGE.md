@@ -1,38 +1,44 @@
-# Хранение результатов проверок
+<a id="хранение-результатов-проверок"></a>
 
-Обычное чтение: `highgrade spec-read --root . --id HG-ID --view evidence`. Это проекция существующих записей, без второго документа и без изменения формата каталога. Полный отчёт нужен при проверке утверждения, диагностике и ревью; корректность хешей не подтверждает подлинность.
+# Verification result storage
 
-## Запуск и сохранение
+Routine reading: highgrade spec-read --root . --id HG-ID --view evidence. This projects existing records without another document/catalog format change. Open full reports for claim verification, diagnostics and review. Correct hashes do not prove authenticity.
 
-`python scripts/verify.py tests` сам создаёт управляемый запуск. Исходные Nextest-файлы остаются в target/nextest/highgrade для проверки актуальности и trace; копии текущей попытки попадают в nextest/ внутри запуска, включая неуспешный результат. После ревью выбери JUnit и необходимые снимки attempt/list/completion, а не одинаковые сведения из run.log. Для trace можно выполнить `run --name scenarios -- python scripts/verify.py scenarios`: его исходные отчёты также попадут в nextest/. Это временные копии, не второй постоянный комплект.
+<a id="запуск-и-сохранение"></a>
 
-Для браузера из корня используй `python scripts/evidence_store.py run --name ui -- npm --prefix ui test`. Playwright сохраняет JSON и вложения в playwright/ этого запуска; явный HIGHGRADE_UI_REPORT по-прежнему поддерживается. HIGHGRADE_UI_BASE_URL задаёт адрес своего Storybook при занятом порте. После ревью передай выбранные относительные файлы в finish, например --file playwright/report.json; нужные снимки или диагностику можно добавить. Код выхода сам по себе не выбирает доказательства и не разрешает удаление.
+## Run and preserve
 
-`python scripts/evidence_store.py run --name check -- COMMAND ARGS` создаёт собственную папку `target/highgrade/runs/check-UUID`, передаёт её в HIGHGRADE_RUN_DIR и пишет stdout/stderr в run.log. Команда получает служебный HIGHGRADE_RUN_TOKEN. Rust и Playwright проверяют его по run.json до записи в управляемую папку; указать только HIGHGRADE_RUN_DIR недостаточно. Токен не входит в экспортные metadata. Команда выполняется без shell, в отдельной группе процессов Unix или Windows Job. Фоновый потомок после завершения команды оставляет запуск незавершённым; на Windows Job завершает оставшихся потомков при выходе владельца. Команды не должны намеренно выходить из группы/Job и передавать файлы внешним процессам. После завершения сохраняются команда, ОС и код выхода; неуспех не подменяется успехом. Перед запуском обслуживаются ранее завершённые управляемые папки. Прерванные или ещё не экспортированные результаты сохраняются для разбора.
+python scripts/verify.py tests creates a managed run. Original Nextest files remain in target/nextest/highgrade for freshness/trace. Current-attempt copies, including failure, enter run nextest/. After review, choose JUnit and necessary attempt/list/completion snapshots instead of duplicate run.log information. For trace, run --name scenarios -- python scripts/verify.py scenarios copies originals into nextest/. These are temporary copies, not another permanent set.
 
-После ревью исходных результатов:
+For browser tests from root: python scripts/evidence_store.py run --name ui -- npm --prefix ui test. Playwright saves JSON/attachments in run playwright/. Explicit HIGHGRADE_UI_REPORT remains supported. HIGHGRADE_UI_BASE_URL selects your Storybook on a busy port. After review, pass selected relative paths to finish, e.g. --file playwright/report.json; add needed images/diagnostics. Exit code alone neither selects evidence nor authorizes deletion.
+
+python scripts/evidence_store.py run --name check -- COMMAND ARGS creates target/highgrade/runs/check-UUID, passes HIGHGRADE_RUN_DIR and captures stdout/stderr in run.log. It passes administrative HIGHGRADE_RUN_TOKEN. Rust/Playwright verify it against run.json before writing; HIGHGRADE_RUN_DIR alone is insufficient. Export metadata excludes the token. Commands run without shell in Unix process groups/Windows Job. A remaining background child leaves the run incomplete; Windows Job terminates children when owner exits. Commands must not deliberately escape groups/Job or hand files to external processes. Completion records command, OS and exit; failure stays failure. Before execution, maintain previously completed managed folders. Preserve interrupted/unexported results for review.
+
+After original-result review:
 
 ```text
 python scripts/evidence_store.py finish --run target/highgrade/runs/check-UUID --file run.log
 ```
 
-Если после просмотра сохранять нечего, используй `finish --run PATH --discard`: экспорт не создаётся, но действующие ссылки и проверки сохранности всё равно блокируют удаление. Это явное решение, не автоматический вывод из exit code.
+If nothing needs keeping, finish --run PATH --discard creates no export; current links/preservation checks still block deletion. This is an explicit choice, not an exit-code inference.
 
-Вместо run.log выбирай конкретный машинный отчёт, если он содержит необходимые наблюдения; несколько --file разрешены. Остальные файлы этого управляемого запуска считаются временными. Команда сохраняет комплект, проверяет его, регистрирует точный состав временной папки и запускает безопасное обслуживание. Активный владелец, новый/изменённый файл, повреждённый комплект, ссылка из каталога/документов или незавершённое восстановление препятствуют удалению. Неизвестные папки автоматически не регистрируются и не удаляются. Безопасность не выводится из возраста файла.
+Prefer a machine report over run.log when it contains required observations. Multiple --file values are allowed. Other files of that managed run are temporary. Finish saves/verifies the set, registers exact temp-folder contents and performs safe maintenance. Active owners, new/changed files, corrupt exports, catalog/doc links or unfinished recovery block removal. Unknown folders are not automatically registered/deleted. Age does not establish safety.
 
-Существующие результаты вне управляемого запуска экспортируются без удаления:
+Export existing unmanaged results without removal:
 
 ```text
 python scripts/evidence_store.py export --metadata .highgrade/local/run-summary.json --file target/nextest/highgrade/junit.xml
 python scripts/evidence_store.py show --manifest docs/evidence/objects/HASH.json
 ```
 
-Metadata содержит фактические команду, среду, исход, время, наблюдение и ограничения; не назначай passed по наличию файла. Манифест перечисляет выбранные источники, хеши, размеры и объекты. Байты хранятся один раз по SHA-256 в docs/evidence/objects; повтор того же комплекта идемпотентен. Для spec-evidence source report может указывать на соответствующий .blob: это неизменённый исходный файл. Сам manifest не заменяет исходное наблюдение. Перенос ранее записанных доказательств требует отдельно проверить ссылки и отпечатки; команда export не меняет каталог и историю.
+Metadata states actual command/environment/outcome/time/observation/limits. File existence is not passed. Manifest lists selected sources, hashes, sizes and objects. Bytes are stored once by SHA-256 in docs/evidence/objects; repeats are idempotent. spec-evidence report may point to the original unchanged .blob. Manifest is not observation. Moving recorded evidence requires separate link/fingerprint checks; export changes neither catalog nor history.
 
-## Обслуживание
+<a id="обслуживание"></a>
 
-Сырые машинные отчёты показываются в Git как артефакты без построчного diff: `.gitattributes` назначает `-diff` объектам `.blob` и перечисленным папкам результатов UI. Markdown-сводки и манифесты остаются текстовыми. Это настройка просмотра, а не удаление или сжатие исходников: байты и SHA-256 сохраняются. Для адресного ревью используй исходный файл либо `git diff --text`; новые выбранные отчёты экспортируй в objects, не расширяй исключения на исходники или спеки. Счётчики внешних приложений, игнорирующих Git attributes, могут показывать прежний объём.
+## Maintenance
 
-`python scripts/target-maintenance.py --sweep` показывает выборку; добавление --apply удаляет её после проверки. Завершённые управляемые запуски обслуживаются автоматически в run/finish; после прерывания — на следующем запуске. Процессы сборки/UI, ссылки и recovery блокируют применение с причиной. Неперенесённый результат остаётся, пока человек/агент не выберет доказательства.
+.gitattributes uses -diff for .blob/UI-result folders. Raw reports appear as artifacts; Markdown summaries/manifests remain text. This changes display, not bytes/hashes or source compression/removal. For targeted review, read originals or git diff --text. Export selected new reports to objects; do not extend exclusions to source/specs. Tools ignoring Git attributes may still show old volume.
 
-Кэш Cargo не удаляется после каждого теста: сначала обслуживаются временные результаты; при превышении существующих 600 МиБ применяется явная выборка ненужных профилей по BUILD. Текущий debug, инструменты и кандидат сохраняются, пока нужны. --check показывает неустранённый остаток, не обещает жёсткий лимит любой ценой. Поиск начинается в src/tests/scripts/kit или выбранной области; target и blobs не входят в обычный сбор контекста. Дерево временных файлов заменяется краткой сводкой обслуживания.
+python scripts/target-maintenance.py --sweep previews selection; --apply deletes after checking. run/finish maintains completed managed folders; after interruption, next run handles them. Active build/UI, links and recovery block apply with reasons. Unexported results remain until evidence is selected.
+
+Do not remove Cargo cache after every test. Maintain temporary results first. For the existing 600 MiB overrun, explicitly select unnecessary profiles under BUILD. Keep current debug/tools/candidate while needed. --check states unresolved remainder, not a hard cap at any cost. Search starts in src/tests/scripts/kit or chosen scope; target/blobs stay out of ordinary context. Replace temp-file trees with a brief maintenance summary.

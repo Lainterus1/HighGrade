@@ -1,0 +1,78 @@
+<a id="проверки-и-доказательства"></a>
+
+# Checks and evidence
+
+Commands take --root PATH; writes use --expected HASH CAS.
+
+| Operation | Parameters |
+|---|---|
+| spec-evidence | --id HG-ID --input evidence.json |
+| spec-evidence-batch | --input batch.json |
+| spec-review | --id HG-ID --verdict go\|no_go --reviewer NAME --conclusion TEXT |
+| spec-check | --id HG-ID; --brief true for short reasons |
+| spec-stats | --id HG-ID; reads attempt counts/times |
+
+Example input, filled from an actual run:
+
+```json
+{
+  "scenario": "HG-CART-S1",
+  "method": "native_report",
+  "command": "python -m unittest tests.test_cart",
+  "captured_at": "2026-09-24T00:00:00Z",
+  "outcome": "passed",
+  "observation": "test_rejects_negative_quantity ran and asserted unchanged cart state",
+  "inputs": ["cart.py", "tests/test_cart.py", "pyproject.toml"],
+  "report": "evidence/cart-run.txt"
+}
+```
+
+For direct observation/normative review, use method=manual. The report names check type, conditions, actions, observations and limits. Normative review does not prove model execution. [work](../../procedures/work.md#область-входов-доказательства) defines input scope. Outcomes: passed, failed, skipped, unknown. Executor/reviewer check input completeness; CLI cannot detect undeclared dependencies or certify report authenticity. Hashes are captured at recording; compare them with the real run. A shared rule change invalidates its scenarios; one scenario change invalidates only its evidence. Input/report changes invalidate referring evidence. New Git SHA alone does not invalidate unchanged checks.
+
+For standard scripts, Playwright and other reports outside trace support, run the real project command and save the original report. If an automatic check created no evidence, verify actual test execution/assertions and record spec-evidence with method=native_report, command, report and causal inputs. Missing trace support does not make a check manual. A declared automatic check still needs a passed run; direct evidence cannot replace it. spec-run/spec-run-import already record automatic-only scenarios. Manual runner:null checks use direct evidence. For mixed scenarios, finish automatic runs and manual checks before one final direct record. Its report combines outcomes; inputs include original automatic reports/manual materials and causal inputs. A later run requires rebuilding final evidence. [Work](../../procedures/work.md#исполнение-сценария) defines sufficiency/method.
+
+For work/commit/push handoff, use spec-check --id HG-CHANGE --brief true. measurements[].brief has technical/human status, change_sha256, inputs_sha256, review and accepted verified_revision. blockers names scenario/check, reason and changed/unavailable path. General structural errors remain findings. This read runs no checks and creates no report. Reuse its snapshot while declared inputs/scope are unchanged. null inputs_sha256 means unavailable input, not confirmation. Nonbrief spec-check retains full compatibility output.
+
+For trace, catalog.json or legacy store enters spec_files. Its source_hashes uses **trace_sha256 from spec-list**, an effective-requirements hash without evidence/tasks; other files use byte SHA-256. This prevents evidence self-reference. Resolve conflicting active changes of one requirement before trace. origins excludes transferred requirements from former owners; other Markdown requirements remain visible. run-record format/runners remain compatible.
+
+<a id="привязки-и-явный-запуск"></a>
+
+## Check bindings and explicit execution
+
+checks entries: {id, scenario_ids, runner, file, selector, preparation, action, observation, inputs}. scenario_ids/inputs are string arrays. A test may cover several scenarios, and a scenario several tests. preparation/action/observation describe reproducible setup/action/outcome. runner:null is manual; file/selector may be empty. Record manual observation through spec-evidence.
+
+Project runners.json stores named standard commands. Set with spec-runner-set --id ID --input runner.json --expected HASH. Example: {"program":"cargo","args":["test","--test","{target}","{selector}","--","--exact"],"cwd":".","format":"cargo-test","timeout_seconds":60}. For JUnit use format=junit and {report} to receive a unique report path. Available substitutions: {file} absolute test path, {target} filename stem, {selector}. Inputs/cwd are root-relative; executable is a PATH name or project-relative path. No shell is added. Commands execute project code and need normal review.
+
+spec-run --id HG-0001 --check CHECK_ID|all --expected HASH runs only the explicit selection. Reading/filtering/schema runs nothing. cargo-test needs one exact passed test. JUnit needs one testcase matching selector by name or classname::name. Empty selection, skips, failures, timeout or input drift cannot pass. Configure runners to terminate children. Windows timeout kills the tree via taskkill; other platforms terminate the direct process.
+
+spec-stats reads runs: attempt/measurement counts, latest time, comparable count, median/max milliseconds. Comparable attempts need current binding and equal before/after hashes of all declared inputs. Unavailable inputs have no comparable time. latest_current_revision/latest_comparable prevent stale-result reuse. For an even count, median is the upper middle value. Old attempts without duration_ms are unmeasured; unexecuted checks show null. Timing covers runner execution, not correctness. Stats neither run tests nor change store nor choose sufficient checks. spec-check/review assess freshness/quality. CLI cannot detect undeclared dependencies; review checks coverage. JUnit may include individual test times.
+
+runs stores command, cwd, start time, completed duration, result, original hashes/reports in files and inputs_after. An unexecuted check is unknown with a reason and no duration. Test file, runner configuration and project executable are added automatically. Declare other causal code/configuration. Review checks input coverage and external-report authenticity. All linked automatic checks must pass; one success cannot hide another failure.
+
+Integrated specifications allow repeated spec-run/evidence/review: requirements/spec.json remain, results.json grows. Material contract, observation, outcome, check-definition or input changes invalidate prior review/acceptance. Equivalent repeats retain freshness; time, duration and report path are excluded from the material revision, but report integrity remains checked. brief shows contract_sha256 separately; change_sha256 includes material evidence. Old fingerprints use the old algorithm. First refresh of old evidence may need new review/decision. History remains. Changed requirements/normative scenarios need a new change; implementation fixes update results. A new Git SHA alone needs no new specification.
+
+spec-evidence-batch takes [{id,evidence}] using the single-record schema. Validate the whole batch before writing; failure cancels all, exact repeat adds no history. Review/acceptance remain separate. Input/transaction limit is 8 MiB; split oversized batches.
+
+Record scenarios from one prepared run as a batch where applicable instead of temporary single-call orchestration. One original report may serve all, but check each outcome/scope. Automatic-only scenarios use all runs/import and CLI evidence. Mixed scenarios get final direct evidence after all checks; same scenario ID replaces the previous record.
+
+Before standard JUnit execution, get snapshot through spec-run-inputs --id HG-ID --check all or a check ID. Afterwards import {snapshot,report:"relative/report.xml",command:["actual-command","argument"]} through spec-run-import --expected HASH --input import.json. A report may cover several selectors; each must resolve to one passed testcase. Inputs/binding must match the snapshot. Without a pre-run snapshot, freshness is unconfirmed. Import runs no tests. Failed/skipped/missing/stale input rejects the whole import. Exact repeat adds no runs. Review checks report authenticity, input completeness and actual command. Other formats use spec-run/spec-evidence.
+
+[work](../../procedures/work.md#доказательства-и-ревью) owns sufficiency, inputs and review; this reference owns operations/formats.
+
+<a id="настройка-отбора-runner"></a>
+
+## Runner selector setup
+
+Optional launch_selector substitutes literally for {selector} at invocation. selector remains the exact JUnit name/classname::name or cargo-test result. Without launch_selector, use selector. Old serialization/fingerprints stay compatible. The field needs compatible CLI; former CLI rejects unknown fields. global-update does not rewrite catalogs.
+
+Arguments are separate values without shell or recursive substitution. If a tool takes regex, runner configuration defines escaping/anchors; CLI does not guess syntax. A runner may invoke suite test while JUnit reports suite > test. Without a difference, no extra field is needed.
+
+At first necessary setup, use a real existing check. Save spec-run-inputs before standard execution and import, or run spec-run. Verify actual command and one executed result. Exit 0 with skipped/missing/duplicate/failure does not prove the scenario. Without a real check, leave setup unverified until the first task; never create a fake product specification. No repeated setup per init is needed.
+
+<a id="компактное-чтение-доказательств"></a>
+
+## Compact evidence reading
+
+spec-read --id HG-ID --view evidence returns current cards: scenario, outcome, command/time, observation, input fingerprint, source/hash and freshness. It omits file maps, history and report text. Long commands/observations are truncated to 240 characters with truncated. Stale reasons show first three plus total. full exposes all values; source.path gives the original. Never guess a missing environment; consult the report. Intact failed/skipped/unknown files do not become passed. integrity=current proves neither authenticity nor acceptance.
+
+Use one selected original report set per run, shared by scenarios. Preserve material failures and needed unrecoverable materials. Do not keep parallel console/machine copies with the same content. Project rules set export/retention. Before removing temporary originals, verify the saved set/links. Never rewrite outcomes, decisions or history. A hash without an accessible source is not evidence.

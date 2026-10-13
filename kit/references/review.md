@@ -1,24 +1,32 @@
-# Метод независимого ревью
+<a id="метод-независимого-ревью"></a>
 
-Отдельный проверяющий читает этот метод по вызову [Work](../procedures/work.md#доказательства-и-ревью). Work определяет момент запуска и барьер готовности. Ревью не заменяет тесты или решение человека.
+# Independent review method
 
-## Вход и область
+A separate reviewer reads this method when [Work](../procedures/work.md#evidence-and-review) calls it. Work owns the trigger and readiness barrier. Review does not replace tests or a human decision.
 
-Получи требования и сценарии, относящийся diff, исходные отчёты, заявленные входы, ограничения и критерии готовности. Уточни редакцию результата и значимые неотслеживаемые файлы; при импорте сверь original_text. Недоступный необходимый вход обозначь пробелом, не подтверждая зависимый вывод.
+<a id="вход-и-область"></a>
 
-Проверяй самостоятельно: сводка исполнителя не заменяет исходный результат. Расширяй область для конкретного риска или противоречия; сохраняй посторонние изменения.
+## Input and scope
 
-## Сверка
+Obtain requirements and scenarios, the relevant diff, original reports, declared inputs, limits and readiness criteria. Identify the result revision and material untracked files. For an import, compare original_text. Mark an unavailable necessary input as a gap; do not confirm the dependent conclusion.
 
-1. Сопоставь каждый обязательный исход с изменённой реализацией и настоящей границей продукта.
-2. Сверь подготовку, selector, исполненную ветку и утверждения теста с нужным исходом. Определи, какое значимое нарушение обнаруживает проверка и следуют ли ожидания из контракта. При изменении ожиданий проверь основание: исправление ошибочного теста допустимо, изменение нормативного исхода проходит Spec; ослабление утверждений ради зелёного результата не подтверждает требование. Это часть итогового ревью, без отдельного обязательного раннего проверяющего или mutation-инструмента. Проверь исходный отчёт, пропуски, время и редакцию; код выхода, ID и файл сами по себе не доказывают выполнение. Скрипт или браузерный тест остаётся автоматической проверкой вне `trace`. Для общего прогона проверь отдельный исход каждого сценария.
-3. Проверь полноту и актуальность влияющих входов: код, тест и данные, конфигурацию, общие модули и важные зависимости. Общий отчёт и весь репозиторий не становятся входами каждого сценария без причинной связи; неизвестную зависимость не исключай догадкой.
-4. Оцени регрессии, граничные исходы, сохранность данных и чужих изменений по риску. Для нормативного текста сверяй смысл и таблицу решений; чтение инструкции не доказывает действий агента.
+Check independently. The executor's summary does not replace the original result. Expand scope for a specific risk or contradiction. Preserve unrelated changes.
 
-Формат `runs`, `trace` и evidence читай в [справочнике проверок](tools/verification.md) при необходимости.
+<a id="сверка"></a>
 
-## Вердикт
+## Checks
 
-Верни **GO** лишь при актуальном подтверждении обязательных исходов и отсутствии блокирующих пробелов; иначе **NO_GO**. Для замечания укажи сценарий, место, наблюдение, последствие и нужное исправление или проверку. Назови пределы ревью; недоступное доказательство не превращается в GO.
+1. Compare each mandatory outcome with the changed implementation and actual product boundary.
+2. Compare setup, selector, executed branch and test assertions with the required outcome. Identify the material violation the check detects and whether expectations follow the contract. If expectations changed, check the grounds: correcting a faulty test is valid; changing a normative outcome requires Spec. Weaker assertions for a green result do not confirm a requirement. This belongs to final review; no mandatory early reviewer or mutation tool is required. Check the original report, skips, time and revision. Exit code, ID and file alone do not prove execution. A script or browser test is still automatic outside `trace`. In a shared run, check each scenario outcome.
+3. Check completeness and freshness of causal inputs: code, test, data, configuration, shared modules and important dependencies. A shared report or the whole repository is not automatically an input of each scenario. Do not exclude an unknown dependency by guesswork.
+4. Assess regressions, boundary outcomes, data preservation and unrelated changes by risk. For normative text, compare meaning and the decision table. Reading instructions does not prove agent actions.
 
-После существенного исправления проверь новую редакцию и затронутые доказательства. Основной агент фиксирует вердикт; проверяющий не записывает человеческую приёмку и не выполняет commit или push.
+Read the [verification reference](tools/verification.md) for `runs`, `trace` or evidence formats when needed.
+
+<a id="вердикт"></a>
+
+## Verdict
+
+Return **GO** only with current confirmation of mandatory outcomes and no blocking gaps. Otherwise return **NO_GO**. For a finding, state scenario, location, observation, consequence and required fix or check. State review limits. Missing evidence cannot become GO.
+
+After a material fix, review the new revision and affected evidence. The main agent records the verdict. The reviewer does not record human acceptance or run commit/push.

@@ -1,0 +1,47 @@
+<a id="содержание-и-оформление-документации"></a>
+
+# Documentation content and style
+
+[Common rules](../rules.md) set applicability. Project conventions define language, audience and format. English instructions do not set the language of user documents. [audit](audit.md#контекст-и-адаптация) owns sources/budgets, [archive](../procedures/archive.md) history, and [work](../procedures/work.md#содержательные-проверки) checks/evidence.
+
+<a id="полезность-и-достаточность"></a>
+
+## Usefulness and sufficiency
+
+Identify the reader and action the text supports. Preserve purpose, conditions, limits, reasons for nonobvious decisions and material consequences. Do not explain standard audience knowledge without need. Obvious individual steps do not make a necessary instruction redundant.
+
+Use an existing source with a suitable purpose. A separate file needs an independent purpose, not merely a new task. Brevity does not remove required specification, instruction or report fields/content.
+
+<a id="связь-с-источниками"></a>
+
+## Source links
+
+Do not restate code, configuration or other documents without reader value. Link the primary source and explain when needed. Search is not an entry point; do not assume the whole document tree is loaded.
+
+For commands, explain purpose, prerequisites and material effects. Add an example when it prevents guesswork. Do not copy implementation/parameter references if a link suffices.
+
+<a id="изменения"></a>
+
+## Changes
+
+Compare descriptions with requirements and implementation. Investigate mismatches; do not fit requirements to code. Remove needless repetition/inapplicable details while preserving guarantees and reasons. Age alone does not make text obsolete.
+
+Keep incidental edits within affected scope. This reference does not trigger general audit, mass rewriting or document migration during Delivery update. Analysis stays analysis. Fix affected links when moving content.
+
+Edit generated documents through sources and the standard generator. Do not restyle original machine reports. Distinguish checked facts, proposals and unknowns in authored explanation.
+
+<a id="оформление-и-комментарии"></a>
+
+## Style and comments
+
+Preserve local conventions. Use clear filenames/headings, simple words and consistent terms. Give one action per instruction step. Keep important conditions.
+
+Use links for navigation, lists for steps/enumeration and tables for comparison. No general prohibition applies to Markdown links, relative paths or tables. Local format defines line wrapping. Do not reformat unaffected text without a reason.
+
+Comments explain reasons, constraints and invariants not clear from code; do not narrate obvious actions. Update comments with behavior. Link workaround cause/review conditions through [Fixer](../procedures/fix.md), without another owner.
+
+<a id="сверка-текста"></a>
+
+## Text verification
+
+Check entry point, prerequisites, claim grounds, affected links/examples, needless repeats and conflicts. Work defines depth; every edit needs no separate report. Reading a command does not prove execution.

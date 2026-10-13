@@ -1,0 +1,130 @@
+{
+  "tokenizer": {
+    "package": "tiktoken",
+    "version": "0.12.0",
+    "encoding": "o200k_base"
+  },
+  "revision": "translated-saved-tree",
+  "scope": "Sum of independently encoded file texts; no messages, tool output or hidden context.",
+  "files": {
+    ".highgrade/project/INSTRUCTIONS.md": {
+      "sha256": "afefeea245bef567e8621f22b71cc534323759ec97913f6e40e90e3b3dfea5ec",
+      "bytes": 8229,
+      "tokens": 1661
+    },
+    "AGENTS.md": {
+      "sha256": "2b5e7a34cedd37754b9e0aa45cdad08a5237c9fe9ded9f5cd6dcbbb68ca1f452",
+      "bytes": 2322,
+      "tokens": 486
+    },
+    "README.md": {
+      "sha256": "81c1d66e26a53e4782190935b79cecbe9148f6e6c877e729a8111c20a4da42ea",
+      "bytes": 8895,
+      "tokens": 1643
+    },
+    "docs/DEVELOPMENT.md": {
+      "sha256": "756f17536b308af88ca74a8d9e72d8fc80a76c526b88d3ed7cea0e1493130729",
+      "bytes": 6913,
+      "tokens": 1571
+    },
+    "docs/ENGINEERING.md": {
+      "sha256": "7dc6a4a819e1b6481db27c132c38514a1886e48b5fb333a22a7b620dce457af6",
+      "bytes": 2582,
+      "tokens": 493
+    },
+    "kit/references/documentation.md": {
+      "sha256": "be5cc44c75879ac895fea8ea10c6618101946e43cbc24a21e3c045d401f06adf",
+      "bytes": 3231,
+      "tokens": 614
+    },
+    "kit/references/tools/diagnostics.md": {
+      "sha256": "e33dbe06336b50f0b56b503b51aaab316c2e4b7ce64c3f02557a572acc71f384",
+      "bytes": 8434,
+      "tokens": 1738
+    },
+    "kit/references/tools/installation.md": {
+      "sha256": "1e446edcb8ab957d3b2b6edb610c472fe6b65d765220a15154fb3f91b5a4cfea",
+      "bytes": 6645,
+      "tokens": 1376
+    },
+    "kit/references/tools/verification.md": {
+      "sha256": "46485571c832cf1107ccd385666b036e6efe22ecbfa8bff86aa82c76e44c6d82",
+      "bytes": 10521,
+      "tokens": 2099
+    },
+    "kit/rules.md": {
+      "sha256": "39e146f4d17edd6037e335543a65cffc9cfd28df32efe9d0e5e34e49bb141515",
+      "bytes": 3888,
+      "tokens": 734
+    },
+    "kit/skills/highgrade-planner/SKILL.md": {
+      "sha256": "556d0d72e4bed8b8e83437da7eb6a6c4e1ac9f1b65b4102b4fee54278cc95743",
+      "bytes": 5693,
+      "tokens": 1096
+    },
+    "kit/skills/highgrade-task/SKILL.md": {
+      "sha256": "ef81584b2ee7f23a829c529f06b354794532c494d92befbe5e157a0abd5eb638",
+      "bytes": 7367,
+      "tokens": 1399
+    },
+    "kit/skills/highgrade-update/SKILL.md": {
+      "sha256": "5f698a117b0a7c9074893f61295fedd89316cbe0a119ed4124d306afaf7a1511",
+      "bytes": 7037,
+      "tokens": 1300
+    },
+    "kit/skills/highgrade-work/SKILL.md": {
+      "sha256": "2e1d6e36f94782c94ec36da3947ad829b31260e5af74a7f0c0136d0c809ba111",
+      "bytes": 19862,
+      "tokens": 3691
+    }
+  },
+  "routes": {
+    "simple-edit": {
+      "paths": [
+        "README.md",
+        "AGENTS.md",
+        ".highgrade/project/INSTRUCTIONS.md",
+        "kit/rules.md"
+      ],
+      "bytes": 23334,
+      "tokens": 4524
+    },
+    "work": {
+      "paths": [
+        "README.md",
+        "AGENTS.md",
+        ".highgrade/project/INSTRUCTIONS.md",
+        "kit/rules.md",
+        "kit/skills/highgrade-work/SKILL.md",
+        "docs/DEVELOPMENT.md",
+        "docs/ENGINEERING.md",
+        "kit/references/documentation.md",
+        "kit/references/tools/verification.md"
+      ],
+      "bytes": 66443,
+      "tokens": 12992
+    },
+    "planner": {
+      "paths": [
+        "README.md",
+        "AGENTS.md",
+        ".highgrade/project/INSTRUCTIONS.md",
+        "kit/rules.md",
+        "kit/skills/highgrade-planner/SKILL.md",
+        "kit/skills/highgrade-task/SKILL.md"
+      ],
+      "bytes": 36394,
+      "tokens": 7019
+    },
+    "update": {
+      "paths": [
+        "kit/rules.md",
+        "kit/skills/highgrade-update/SKILL.md",
+        "kit/references/tools/installation.md",
+        "kit/references/tools/diagnostics.md"
+      ],
+      "bytes": 26004,
+      "tokens": 5148
+    }
+  }
+}

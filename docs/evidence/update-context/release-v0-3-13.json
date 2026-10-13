@@ -1,0 +1,134 @@
+{
+  "release": "v0-3-13",
+  "cli_version": "0.3.13",
+  "captured_at": "2026-10-13T09:40:09.113258+00:00",
+  "rust": {
+    "passed": 231,
+    "failed": 0,
+    "skipped": 0,
+    "report": "docs/evidence/objects/c3f73c223ecb7087dffa00df7567092737f8408938853eab4c39179e5a2953d4.blob"
+  },
+  "evidence_export": {
+    "manifest": "docs/evidence/objects/3ef9dcdb46a4a257fca97fae651b649ce123bf6994c7c2a91e708d9371e39fdd.json",
+    "sources": {
+      "target/highgrade/tmp/release-v0-3-13/normative-release.json": "docs/evidence/objects/303e516be4798ef433c67b06b4edbb0621101552a551182b7d353751873879cc.blob",
+      "target/nextest/highgrade/attempt.json": "docs/evidence/objects/570860fa690265c854387df660256e06182869cfa11be49e0424b9ea578d07d1.blob",
+      "target/nextest/highgrade/completion.json": "docs/evidence/objects/25cb6a5da113e9663b01907f4743e1eff8ea82d5f0919cac98c027709de00e4e.blob",
+      "target/nextest/highgrade/junit.xml": "docs/evidence/objects/c3f73c223ecb7087dffa00df7567092737f8408938853eab4c39179e5a2953d4.blob",
+      "target/nextest/highgrade/list.json": "docs/evidence/objects/a6012bb277ea3951d0a22ebb7b0bb675fb7aa92516bcdbea215166b4d7a494e7.blob",
+      ".highgrade/local/release-v0-3-13-python-ui.txt": "docs/evidence/objects/2af02e653b1ffdc06ffd0b5b4078a7fd23c670d17e2d360da1181fa4026446ff.blob",
+      ".highgrade/local/release-v0-3-13-reuse.txt": "docs/evidence/objects/0aee136e54b5e62c8123685207dbbd753eb43b06d3a3e1c9331d9f8355d150e7.blob",
+      ".highgrade/local/release-v0-3-13-scale.txt": "docs/evidence/objects/c849c8f68736bce48d7ddf9cd73a79ababc992e4bc52e88b31f47f3f521d1bfe.blob",
+      ".highgrade/local/release-v0-3-13-structure.json": "docs/evidence/objects/42301838e663f66c6f1d3cd47514f62ae79df09893ab800788e8ae269902f9b7.blob",
+      ".highgrade/local/release-v0-3-13-trace.txt": "docs/evidence/objects/b6cdbeb99f3ae495a3ec71fdd3d18f09ae8e25fac63fc4982da5ec4fbd34a3ef.blob",
+      "ui/dist/highgrade-ui.json": "docs/evidence/objects/b25c4b4e6f817b37aa24f721b8abefa092d802151c331b5d0458f8e0cccc11c7.blob"
+    },
+    "support_manifest": "docs/evidence/objects/9560e9e7be6e0ddb489afeab30e26622fbe118357dafc9562b089fb200838f4f.json"
+  },
+  "generated_input": {
+    "original": "ui/dist/highgrade-ui.json",
+    "preserved": "docs/evidence/objects/b25c4b4e6f817b37aa24f721b8abefa092d802151c331b5d0458f8e0cccc11c7.blob",
+    "reason": "Игнорируемый вход сборки сохранён точными байтами из проверенного запуска. Входы сценария включают snapshot и исходники генерации; live dist не передаётся в Git."
+  },
+  "checks": {
+    "fmt": "passed",
+    "render_skills": "passed",
+    "repository_structure": "passed",
+    "trace": "passed",
+    "ui_build": "passed",
+    "python_ui_build": "passed (1 test)",
+    "native_scale": "passed",
+    "native_reuse": "passed"
+  },
+  "review": "go",
+  "human_acceptance": "pending",
+  "review_report": "docs/reviews/release-v0-3-13.json",
+  "spec_checks": {
+    "HG-0073": {
+      "ambiguous_result_keys": [],
+      "findings": [],
+      "limitations": [
+        "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+      ],
+      "measurements": [
+        {
+          "brief": {
+            "id": "HG-0073",
+            "blockers": [],
+            "change_sha256": "3b6962318a20c902fa53a7dde41970457f5a4a03e592daa50d29deddc75fdec8",
+            "contract_sha256": "14955bbbd96e9a884db774d6eda5fcad21c80d4bb2da78732d3fcafbd9034029",
+            "human": "pending",
+            "inputs_sha256": "ef2787d8e69d4440219f6b41dc5c35ef667c3ff68e43cf194de36bafe0649329",
+            "technical": "ready",
+            "verified_revision": null,
+            "review": "go"
+          }
+        },
+        {
+          "schema_version": 3,
+          "store_sha256": "8a93052e61a1ec678def6f35be5315a0d7b776e4e698cc0e1d4a7460ed38cae8"
+        }
+      ],
+      "operation": "spec-check",
+      "result": {
+        "brief": {
+          "id": "HG-0073",
+          "blockers": [],
+          "change_sha256": "3b6962318a20c902fa53a7dde41970457f5a4a03e592daa50d29deddc75fdec8",
+          "contract_sha256": "14955bbbd96e9a884db774d6eda5fcad21c80d4bb2da78732d3fcafbd9034029",
+          "human": "pending",
+          "inputs_sha256": "ef2787d8e69d4440219f6b41dc5c35ef667c3ff68e43cf194de36bafe0649329",
+          "technical": "ready",
+          "verified_revision": null,
+          "review": "go"
+        },
+        "schema_version": 3,
+        "store_sha256": "8a93052e61a1ec678def6f35be5315a0d7b776e4e698cc0e1d4a7460ed38cae8"
+      },
+      "status": "passed"
+    },
+    "HG-0074": {
+      "ambiguous_result_keys": [],
+      "findings": [],
+      "limitations": [
+        "Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage."
+      ],
+      "measurements": [
+        {
+          "brief": {
+            "id": "HG-0074",
+            "blockers": [],
+            "change_sha256": "7eac9e6d9cf05db9bbb817c191daf8060de3817539fefacc652d008466ee7c2d",
+            "contract_sha256": "529ef8dfd4774ae2550a979f278b5b2b6ff1b06d68f6527c5a5d568babf984d0",
+            "human": "pending",
+            "inputs_sha256": "0597562fe90dd62087d07ce4f2a1035871389ce412906a47863a5ef61e2a4ea9",
+            "technical": "ready",
+            "verified_revision": null,
+            "review": "go"
+          }
+        },
+        {
+          "schema_version": 3,
+          "store_sha256": "d5c3751a06b3f1815b7433ee53220f105ed6c3147f3b7ee89f69d5ee3f0312b9"
+        }
+      ],
+      "operation": "spec-check",
+      "result": {
+        "brief": {
+          "id": "HG-0074",
+          "blockers": [],
+          "change_sha256": "7eac9e6d9cf05db9bbb817c191daf8060de3817539fefacc652d008466ee7c2d",
+          "contract_sha256": "529ef8dfd4774ae2550a979f278b5b2b6ff1b06d68f6527c5a5d568babf984d0",
+          "human": "pending",
+          "inputs_sha256": "0597562fe90dd62087d07ce4f2a1035871389ce412906a47863a5ef61e2a4ea9",
+          "technical": "ready",
+          "verified_revision": null,
+          "review": "go"
+        },
+        "schema_version": 3,
+        "store_sha256": "d5c3751a06b3f1815b7433ee53220f105ed6c3147f3b7ee89f69d5ee3f0312b9"
+      },
+      "status": "passed"
+    }
+  }
+}

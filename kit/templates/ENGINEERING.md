@@ -1,3 +1,5 @@
-# Инженерные соглашения
+<a id="инженерные-соглашения"></a>
 
-Опиши применимые правила ошибок, зависимостей, совместимости, проверок и критерии изменения. Ссылайся на ARCHITECTURE и DEVELOPMENT без повторения их содержания. Для временного обхода указывай причину, владельца и условие пересмотра.
+# Engineering conventions
+
+Describe applicable error, dependency, compatibility, verification and change rules. Link ARCHITECTURE/DEVELOPMENT without repeating them. Record workaround reason, owner and review condition.

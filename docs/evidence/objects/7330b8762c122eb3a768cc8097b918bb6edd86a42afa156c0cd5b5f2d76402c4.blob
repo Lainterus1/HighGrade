@@ -1,0 +1,137 @@
+{
+  "scope": "Нормативная сверка содержания, не наблюдение будущего исполнения агентом.",
+  "captured_at": "2026-10-13T09:03:31.660265+00:00",
+  "decision_table": [
+    {
+      "condition": "Английская инструкция, русский язык проекта",
+      "outcome": "Ответы, требования, планы, отчёты и пользовательские документы на русском; явный запрос имеет приоритет.",
+      "owners": [
+        "kit/rules.md",
+        ".highgrade/project/INSTRUCTIONS.md",
+        "kit/templates/INSTRUCTIONS.md",
+        "kit/templates/README.md"
+      ]
+    },
+    {
+      "condition": "Запрос только плана / автоматический маршрут Planner",
+      "outcome": "План не разрешает Goal/реализацию; выполнение цепочки через явно вызванный Planner разрешает один Goal.",
+      "owners": [
+        "kit/procedures/task.md",
+        "kit/procedures/planner.md",
+        "kit/templates/AGENTS.md"
+      ]
+    },
+    {
+      "condition": "Неизменённый контракт / новый контракт",
+      "outcome": "Багфикс выполняется в Work с существующими сценариями; новые требования идут через Spec.",
+      "owners": [
+        "kit/procedures/task.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/work.md"
+      ]
+    },
+    {
+      "condition": "Pending/unavailable CI / известный отказ",
+      "outcome": "Ожидание не создаёт барьер; известный отказ разбирается и выявленная ошибка исправляется.",
+      "owners": [
+        "kit/procedures/work.md",
+        "kit/procedures/commit.md",
+        "kit/procedures/push.md",
+        "docs/DEVELOPMENT.md"
+      ]
+    },
+    {
+      "condition": "Commit / активация / Push / приёмка",
+      "outcome": "Каждое действие имеет отдельное основание; успешные проверки не заменяют человеческое решение.",
+      "owners": [
+        "kit/rules.md",
+        "kit/procedures/commit.md",
+        "kit/procedures/push.md",
+        ".highgrade/project/INSTRUCTIONS.md"
+      ]
+    },
+    {
+      "condition": "Update успешно / статус неизвестен / GlobalSkillRecoveryRequired",
+      "outcome": "Подтверждается фактическая установка; при ошибке сохранён журнал, восстановление имеет точное исключение; успешный Update не предоставляет постоянный rollback.",
+      "owners": [
+        "kit/procedures/update.md",
+        "kit/references/tools/installation.md"
+      ]
+    },
+    {
+      "condition": "Значимая функция / внутренняя правка",
+      "outcome": "README сопровождается по пользовательским возможностям при подготовке выпуска; Update не пишет GitHub или проектные документы.",
+      "owners": [
+        "kit/procedures/commit.md",
+        "kit/procedures/update.md",
+        "README.md",
+        "kit/references/release-notes.json"
+      ]
+    },
+    {
+      "condition": "История полная / неполная / недоступна",
+      "outcome": "coverage сообщает границу; до пяти изменений, все breaking/actions; неизвестные факты не добавляются; unreleased не объявляется выпуском.",
+      "owners": [
+        "kit/procedures/update.md",
+        "src/release_notes.rs"
+      ]
+    },
+    {
+      "condition": "Сокращение повторов",
+      "outcome": "Сокращены повторные объяснения CI/передачи на Work и русские рабочие фрагменты ссылок; владельцы и старые якоря сохранены.",
+      "owners": [
+        "kit/rules.md",
+        "kit/procedures/work.md",
+        "kit/procedures/spec.md",
+        "AGENTS.md"
+      ]
+    }
+  ],
+  "inputs": {
+    "kit/rules.md": "4000cc811d695a99bd03098c55adf7f4eacd2aba65b2bb9a9a9ac948acf566f8",
+    "kit/procedures/clear.md": "805f3cdd7a1e3d603a2c080edb31047da227ae60dd7bce8d4d304171eb0a7522",
+    "kit/procedures/fix.md": "40865267a94b3bdac08ad445865876266450cb858621c605cf2bee6eef1d95ae",
+    "kit/procedures/spec.md": "8b82ceae81c29ebbc974c711c2163e4dc1c4660835a8795fa808ec903f1e9d3d",
+    "kit/procedures/archive.md": "549d7d523d67ea5f9125d7947c5897c711c98fb9adf149ad26280de5d65982f8",
+    "kit/procedures/commit.md": "333555909b94c1ecebc7db01cc4397cb2c01c31eb2ccaa4b83fe021a8a88711b",
+    "kit/procedures/init.md": "4e0a65184064e9b561b16ec2fee29c9ce31205e1e44c637c45c3bebfde787923",
+    "kit/procedures/planner.md": "1e079aff2b3630d683ee236f4bb5b5a3fffb721a66fb6046883e3a36cfc3f0fd",
+    "kit/procedures/push.md": "a5dcff691329a50f4edc3cfd7d767fb25af97bc0329b01f50a03af83dbecd042",
+    "kit/procedures/task.md": "f880498350a28a7b78c553ea0a5e214ad7e9ef9036953cddd1113f630f2ea218",
+    "kit/procedures/update.md": "805aa66220fa483aef6ec013887cca2573bff6a773d347ae3ac0ef23f26ec4a8",
+    "kit/procedures/work.md": "f46a65cb48ece35784e4bf15e4865c70e1e2c2c8e2917e1d9d1ef5c5eb1b0d86",
+    "kit/references/audit.md": "436930e523d147400a721ece5a4a328d66f84893e8f7d7f329f6f77a27746f78",
+    "kit/references/cli.md": "9420f010a48f206c34ce0544bd25f0bee266fe7740c94c049b760b3c505b6c0d",
+    "kit/references/review.md": "5b2e85782c330fbba6ecb7ddb39afb66c688468b0530c95ce58b8a30cab1b480",
+    "kit/references/documentation.md": "bf235992df204e9019e2a81a7d4392022c742d01b9214f4833910267fea6017b",
+    "kit/templates/ARCHITECTURE.md": "6b9b1c520e39424ffa63889bc7b9dbbd6038a6197e3c19dc8a75b8fa88a1b84c",
+    "kit/templates/DEVELOPMENT.md": "123bb8902ae259b2328bcd13d979d3d440f5677ac063fceb5c24a11bbcf6789a",
+    "kit/templates/ENGINEERING.md": "c643b91ade0ffbc4f6ffdf9b2fa7594d5fce3e35f72efcbdf6eb6abd781e74c3",
+    "kit/templates/AGENTS.md": "ce44bc63c6deeb201c9858d80d4b03a8d20edc39c53bf1b7ea38f429f732c60e",
+    "kit/templates/INSTRUCTIONS.md": "b977482a19695bd0f1acec1218c7baddf1f8882d1f886d4758f27ef7232d1348",
+    "kit/references/tools/issues.md": "2fdbc1b94361c792cc76446bac119293f564c0b3ec8f5b1468dba17515eaa65c",
+    "kit/references/tools/survey.md": "86fd37a8e407028be4874f8f44ba7d842d7d317261a4663e453dee5b0229a093",
+    "kit/references/tools/diagnostics.md": "23d508ad14a7315279cd6bb32e03dea42ce6d3ed226de92ac05367d29f3ab51b",
+    "kit/references/tools/installation.md": "1e1d49dcc09e8cb998d3341e2baaa5225d85a7b4ad2375dcc64e8ca8492e3c92",
+    "kit/references/tools/specifications.md": "32e48a0f5751fff7c3a33fd6bb991915755e25ffa208165cbd263a5430fb9b11",
+    "kit/references/tools/verification.md": "4b0c6a6533e13a9a003e4bb764f2957f5cfa11dce71b95b868bec3a659c34b4c",
+    "AGENTS.md": "6961ba745f4bea37de299b11bc43aca271b1d9b6916e8d05637ce8ae38259f98",
+    ".highgrade/project/INSTRUCTIONS.md": "e6494e7e45ffd046633e2fa3fdf525bf21ccb35ad6190389769e5fef06d5599a",
+    "docs/ENGINEERING.md": "7dc6a4a819e1b6481db27c132c38514a1886e48b5fb333a22a7b620dce457af6",
+    "docs/DEVELOPMENT.md": "9a2f05cdb9d97c17abbb75c6b6f8eb1071799dff762a9550e28171e7ee45414f",
+    "docs/BUILD.md": "f9ab12366fcd7a17e4c87e6139edc2405e35e08c1a58812220b4a994645975c1",
+    "docs/EVIDENCE-STORAGE.md": "8a03605d4714b19de8d8af708f0379bcf72eca0b754028cbbbd92b6d041bfaa9",
+    "docs/workflow/CONTEXT.md": "849f69cc52b1d0148b604109beb27b9128a2ff5efd088e8ce4193a0d1e4ed072",
+    "docs/workflow/GLOBAL.md": "40ec667b4f0d028f9caeeb0adf77a358cbab907acf713f3f5a7bfecd7a84ca00",
+    "docs/workflow/QUALITY.md": "d9e6c2a705faa00bdfb41e78b3fd17e721d65549256da92328e7789828b351d1",
+    "kit/templates/README.md": "7909d3e4414deb692cfa919ce20394be7aefa2c30323169de361f20625ee5585",
+    "scripts/render-skills.py": "4e1c42978246aae4e355cb67fd77c6da275e1693cab6462105c2753cfd94ab71",
+    "README.md": "3b9f62e8bcb8bc8b4e62d3cd73db1dca1be5f1626a3f4c1ccf9be106d7ee3486"
+  },
+  "limitations": [
+    "Сверка правил не доказывает статистическую устойчивость модели.",
+    "Архив, исходные доказательства и ключи не переводились.",
+    "В presentation остаётся прежний AreaUnclassified; это посторонняя область.",
+    "Коммит, активация, публикация и приёмка не поручены."
+  ]
+}

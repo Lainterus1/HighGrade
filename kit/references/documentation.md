@@ -1,35 +1,47 @@
-# Содержание и оформление документации
+<a id="содержание-и-оформление-документации"></a>
 
-Применимость задают [общие правила](../rules.md). Язык, аудиторию и формат определяют соглашения проекта. Владельцы источников и бюджеты — в [audit](audit.md#контекст-и-адаптация), история — в [archive](../procedures/archive.md), проверки и доказательства — в [work](../procedures/work.md#содержательные-проверки).
+# Documentation content and style
 
-## Полезность и достаточность
+[Common rules](../rules.md) set applicability. Project conventions define language, audience and format. English instructions do not set the language of user documents. [audit](audit.md#context-and-adaptation) owns sources/budgets, [archive](../procedures/archive.md) history, and [work](../procedures/work.md#substantive-checks) checks/evidence.
 
-Определи читателя и действие, которому помогает текст. Сохраняй назначение, условия, ограничения, причины неочевидных решений и существенные последствия. Не объясняй стандартные для этой аудитории понятия без необходимости. Очевидность отдельных шагов не делает нужную инструкцию лишней.
+<a id="полезность-и-достаточность"></a>
 
-Используй существующий источник подходящего назначения. Отдельный файл нужен при самостоятельном назначении, а не для каждой задачи. Краткость не отменяет обязательные поля и содержание спецификации, инструкции или отчёта.
+## Usefulness and sufficiency
 
-## Связь с источниками
+Identify the reader and action the text supports. Preserve purpose, conditions, limits, reasons for nonobvious decisions and material consequences. Do not explain standard audience knowledge without need. Obvious individual steps do not make a necessary instruction redundant.
 
-Не пересказывай код, конфигурацию и другие документы без пользы для читателя. Давай ссылку на основной источник и объясняй, когда он нужен. Поиск не заменяет точку входа; не предполагается, что читатель уже загрузил всё дерево документов.
+Use an existing source with a suitable purpose. A separate file needs an independent purpose, not merely a new task. Brevity does not remove required specification, instruction or report fields/content.
 
-Для команды указывай назначение, необходимые условия и существенные последствия. Добавляй пример, если он позволяет выполнить действие без догадок. Не копируй реализацию или справочник параметров, когда достаточно ссылки.
+<a id="связь-с-источниками"></a>
 
-## Изменения
+## Source links
 
-Сверяй описание с требованиями и реализацией. При расхождении установи причину; не подгоняй требования под код. Убирай ненужные повторы и неприменимые сведения, сохраняя действующие гарантии и причины решений. Возраст текста сам по себе не означает, что он устарел.
+Do not restate code, configuration or other documents without reader value. Link the primary source and explain when needed. Search is not an entry point; do not assume the whole document tree is loaded.
 
-Сопутствующая редактура ограничена затронутой областью. Справочник не запускает общий аудит, массовую переработку или миграцию документов при обновлении Поставки. Запрос только на анализ остаётся анализом. При переносе содержания исправляй затронутые ссылки.
+For commands, explain purpose, prerequisites and material effects. Add an example when it prevents guesswork. Do not copy implementation/parameter references if a link suffices.
 
-Генерируемые документы меняй через исходник и штатный генератор. Исходные машинные отчёты не редактируй ради стиля. В авторском пояснении различай проверенный факт, предложение и неизвестное.
+<a id="изменения"></a>
 
-## Оформление и комментарии
+## Changes
 
-Сохраняй местные соглашения. Используй понятные имена файлов и заголовки, простые слова и постоянные термины. В инструкции указывай одно действие на шаг. Не сокращай важные условия.
+Compare descriptions with requirements and implementation. Investigate mismatches; do not fit requirements to code. Remove needless repetition/inapplicable details while preserving guarantees and reasons. Age alone does not make text obsolete.
 
-Используй ссылки для навигации, списки для шагов и перечислений, таблицы для сравнений. Общего запрета Markdown-ссылок, относительных путей и таблиц нет. Перенос строк определяется местным форматом. Не меняй оформление незатронутого текста без причины.
+Keep incidental edits within affected scope. This reference does not trigger general audit, mass rewriting or document migration during Delivery update. Analysis stays analysis. Fix affected links when moving content.
 
-В комментариях объясняй причины, ограничения и инварианты, которые не выражены ясно кодом. Не пересказывай очевидные действия. Обновляй комментарий вместе с поведением. Для обхода ссылайся на запись причины и условия пересмотра по [Fixer](../procedures/fix.md), не создавая второго источника.
+Edit generated documents through sources and the standard generator. Do not restyle original machine reports. Distinguish checked facts, proposals and unknowns in authored explanation.
 
-## Сверка текста
+<a id="оформление-и-комментарии"></a>
 
-Проверь точку входа, необходимые условия, основания утверждений, затронутые ссылки и примеры, отсутствие новых повторов и противоречий. Глубину проверок определяет Work; отдельный отчёт для каждой правки не нужен. Чтение команды не доказывает её выполнение.
+## Style and comments
+
+Preserve local conventions. Use clear filenames/headings, simple words and consistent terms. Give one action per instruction step. Keep important conditions.
+
+Use links for navigation, lists for steps/enumeration and tables for comparison. No general prohibition applies to Markdown links, relative paths or tables. Local format defines line wrapping. Do not reformat unaffected text without a reason.
+
+Comments explain reasons, constraints and invariants not clear from code; do not narrate obvious actions. Update comments with behavior. Link workaround cause/review conditions through [Fixer](../procedures/fix.md), without another owner.
+
+<a id="сверка-текста"></a>
+
+## Text verification
+
+Check entry point, prerequisites, claim grounds, affected links/examples, needless repeats and conflicts. Work defines depth; every edit needs no separate report. Reading a command does not prove execution.

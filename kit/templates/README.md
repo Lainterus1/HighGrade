@@ -1,5 +1,5 @@
-# <Название проекта>
+# Project purpose and entry
 
-Назначение, пользователи и границы проекта. Краткий вход в документацию: [правила агента](AGENTS.md), [устройство](docs/ARCHITECTURE.md), [инженерные соглашения](docs/ENGINEERING.md), [команды](docs/DEVELOPMENT.md). Изменения требований ведутся в JSON-спецификации High Grade; прежние источники сохраняются по проектной инструкции.
+Describe purpose, scope and document navigation in the project language. Link [agent rules](AGENTS.md), [architecture](docs/ARCHITECTURE.md), [engineering](docs/ENGINEERING.md), [commands](docs/DEVELOPMENT.md) and High Grade specifications. Preserve earlier sources under local rules.
 
-Укажи проектный каталог спецификаций и команду выборочного spec-list/spec-read. Объясни, что эти данные принадлежат проекту и сохраняются при смене workflow.
+Name the project specification catalog and selective spec-list/spec-read commands. Explain that project data survives workflow changes. English template instructions do not require English user-facing text.

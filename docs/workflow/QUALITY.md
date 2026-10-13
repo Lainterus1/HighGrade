@@ -1,27 +1,39 @@
-# Проверки Поставки в Проекте High Grade
+<a id="проверки-поставки-в-проекте-high-grade"></a>
 
-Область: проверка самой Поставки в этом репозитории. Общие правила устанавливаются из `kit/`: [адаптация](../../kit/references/audit.md#контекст-и-адаптация), [выполнение и доказательства](../../kit/procedures/work.md#доказательства-и-ревью), [архив](../../kit/procedures/archive.md). Подключаемые проекты не зависят от этого файла. История решений — в [SPECIFICATION](../archive/workflow/SPECIFICATION.md).
+# Verify the Delivery in the High Grade Project
 
-## Адаптация проекта
+Scope: this repository's Delivery. Installed kit/ owns [adaptation](../../kit/references/audit.md#context-and-adaptation), [execution/evidence](../../kit/procedures/work.md#evidence-and-review) and [archive](../../kit/procedures/archive.md). Connected projects do not depend on this file. [SPECIFICATION](../archive/workflow/SPECIFICATION.md) holds history.
 
-Проверяем самостоятельность установленного пакета и применение адаптации к пустому и существующему проектам. Сверка файлов и хешей подтверждает состав, но не исполнение навыка. Упражнения агента фиксируют вход, действия, наблюдение, состояние кандидата и ограничения.
+<a id="адаптация-проекта"></a>
 
-## Выполнение и ревью
+## Project adaptation
 
-Штатные команды Проекта — в [DEVELOPMENT](../DEVELOPMENT.md), полномочия ревью — в [местной инструкции](../../.highgrade/project/INSTRUCTIONS.md). Применяются общие критерии work. Проверки CLI выполняются на временных данных; продуктовые проекты используются только в отдельно разрешённых пилотах.
+Check installed-package independence and adaptation to empty/existing projects. Files/hashes prove content, not skill execution. Agent exercises record input, actions, observation, candidate state and limits.
 
-## Доказательства
+<a id="выполнение-и-ревью"></a>
 
-У требований и сценариев устойчивые уникальные ID. Для нативного изменения нужны валидация, наблюдаемые проверки по матрице DEVELOPMENT, evidence и независимое ревью. spec-integrate сам проверяет готовность; повторный spec-check не обязателен. Нормативная правка подтверждается смысловой сверкой, а не обязательным агентным пилотом. Запись passed агентом не доказывает исполнение: сверяй исходный отчёт и состав входов. Исторические исходники не редактируются; решения о прежнем переносе и последующей канонизации находятся в [архиве](../archive/legacy-native-specs/2026-09-25/). `spec-transfer` для будущего выборочного импорта закрепляет только сверенный контракт: он не подтверждает поведение, не закрывает `spec-check` и не фиксирует человеческое решение.
+## Execution and review
 
-`scripts/source-scenarios.mjs` проверяет действующий нативный каталог и связь автоматических сценариев с Rust-тестами без загрузки исторического архива. `trace` получает каталог и его смысловой `trace_sha256`; CI проверяет фактический nextest-отчёт. PASS этих проверок не закрывает ручные сценарии и не заменяет `spec-check`. Rust nextest/Playwright поддерживаются, остальные форматы и ручные наблюдения сверяются явно.
+[DEVELOPMENT](../DEVELOPMENT.md) owns commands; the [local instruction](../../.highgrade/project/INSTRUCTIONS.md) owns review authority. Common work criteria apply. CLI checks use temporary data. Product projects need separately authorized pilots.
 
-Проектный барьер CI проверяет ID, привязку автоматических сценариев к тестам, актуальность исходников и фактический результат; `skipped`, `failed`, устаревший отчёт или неизвестная связь не считаются успехом. Отсутствие автоматической связи обозначается `outside_automatic_trace`: это граница отчёта, а не вывод о ручной приёмке. Число Rust-тестов, связанных тестов и сценариев имеет разные знаменатели. Ручные проверки и сценарии без объявленного check показываются отдельно, без фиктивного автоматического покрытия.
+<a id="доказательства"></a>
 
-## Границы выпуска
+## Evidence
 
-Поставка распространяется исходниками через GitHub для Windows и Linux; асинхронный Windows/Linux CI проверяет точный SHA и installed-E2E по [BUILD](../BUILD.md#обязательный-installed-e2e). Готовность по локальным проверкам и ревью не требует ожидания CI; его наблюдаемый статус сообщается отдельно по местной инструкции. Локальные проверки, установка кандидата, пилот, публикация, активация пользовательского профиля и приёмка различаются. Ограниченный пилот завершён по [плану](../archive/plans/2026-09-24/2026-09-24-portable-delivery.md); его результаты не дают полномочий на дальнейшую работу в подключаемых проектах или production deploy.
+Requirements/scenarios have stable unique IDs. Native changes need validation, observable checks under DEVELOPMENT, evidence and independent review. spec-integrate checks readiness itself; no mandatory extra spec-check. Normative edits use semantic review, not mandatory agent pilots. Agent-recorded passed is not proof of execution; check original reports/input scope. Historical sources are immutable; [archive](../archive/legacy-native-specs/2026-09-25/) retains transfer/canonicalization decisions. Future selective-import spec-transfer records only checked contract: it neither confirms behavior nor closes spec-check nor records human decisions.
 
-## Проектный каталог и повторные проверки
+source-scenarios.mjs checks current native catalog and automatic Rust links without loading archive. trace gets catalog/semantic trace_sha256; CI checks actual Nextest reports. PASS closes no manual scenarios and replaces no spec-check. Rust Nextest/Playwright are supported; other formats/manual observations need explicit comparison.
 
-Нативные изменения живут в specs/changes/<ID>/spec.json; результаты и решения — в results.json. Для checks укажи воспроизводимую подготовку, действие, наблюдение, файл/selector и значимые inputs. Явный spec-run использует штатный раннер; чтение каталога не исполняет код. Passed отдельного теста не скрывает непрошедшую привязку того же сценария. Пустой результат, пропуск, тайм-аут и дрейф входов остаются неподтверждёнными. Эквивалентный повтор сохраняет актуальность нового ревью и решения; существенное изменение требует их пересмотра. Старые отпечатки проверяются консервативно по прежнему алгоритму. Полноту входов, смысл ожидания и исходный отчёт проверяет независимое ревью.
+CI checks IDs, automatic-test linkage, source freshness and actual results. Skipped/failed/stale/unknown links cannot pass. outside_automatic_trace marks report scope, not manual acceptance. Rust test, linked-test and scenario counts have different denominators. Show manual/no-check scenarios separately without fictitious coverage.
+
+<a id="границы-выпуска"></a>
+
+## Release boundaries
+
+Delivery distributes source for Windows/Linux through GitHub. Asynchronous CI checks exact SHA and installed-E2E under [BUILD](../BUILD.md#required-installed-e2e). Local checks/review readiness needs no CI wait; report its observed status separately under local rules. Distinguish local checks, candidate installation, pilot, publication, user-profile activation and acceptance. The bounded [pilot](../archive/plans/2026-09-24/2026-09-24-portable-delivery.md) is complete; it grants no authority for further connected-project work or production deploy.
+
+<a id="проектный-каталог-и-повторные-проверки"></a>
+
+## Project catalog and rechecks
+
+Changes live in specs/changes/`<ID>`/spec.json; results/decisions in results.json. checks defines reproducible setup, action, observation, file/selector and causal inputs. Explicit spec-run uses standard runners; catalog reads execute nothing. One passed test cannot hide a failing bound check of the same scenario. Empty, skipped, timed-out or input-drift results remain unconfirmed. Equivalent repeats retain current review/decision; material changes need reconsideration. Old fingerprints use the prior conservative algorithm. Independent review checks input completeness, expectation meaning and original reports.

@@ -1,0 +1,255 @@
+{
+  "title": "Понятные обновления и английские инструкции High Grade",
+  "date": "2026-10-13",
+  "changes": [
+    "HG-0073",
+    "HG-0074"
+  ],
+  "source_revision": "4b9c4d145031cad3d1d0f923c51112b0a16cd3ec",
+  "checked_state": "Рабочее дерево; HEAD не объявлен проверенной версией изменённой реализации.",
+  "result": [
+    "Действующие инструкции Поставки и Проекта переведены на английский. Язык результатов определяется проектом/пользователем.",
+    "Update возвращает release_summary с полнотой истории, до пяти уникальных изменений и всеми breaking/actions.",
+    "История входит в manifest/journal; unreleased не объявляется опубликованным выпуском.",
+    "Подготовка выпуска обновляет тематические разделы README по значимым возможностям."
+  ],
+  "checks": {
+    "rust_nextest": {
+      "passed": 231,
+      "failed": 0,
+      "skipped": 0
+    },
+    "python": {
+      "passed": 68
+    },
+    "node_guards": {
+      "passed": 3
+    },
+    "yaml_frontmatter": {
+      "passed": 9
+    },
+    "render_skills": "passed",
+    "cargo_fmt": "passed",
+    "repository_structure": "passed",
+    "spec_validate": "passed",
+    "trace": "passed",
+    "scale": "passed",
+    "reuse": "passed",
+    "git_diff_check": "passed",
+    "inspect": {
+      "status": "unknown",
+      "failed": 0,
+      "unknown": [
+        {
+          "code": "AreaUnclassified",
+          "path": "presentation",
+          "scope": "Посторонняя ранее существовавшая область"
+        }
+      ],
+      "route_bytes": 80376,
+      "current_budget": 95600
+    }
+  },
+  "token_measurement": {
+    "package": "tiktoken 0.12.0",
+    "encoding": "o200k_base",
+    "scope": "Тексты одинаковых выбранных файлов, не полная сессия и не стоимость.",
+    "intermediate_state": "Промежуточные тексты восстановлены из последовательных правок; после исправлений читаемости и YAML фактические байты повторно измерены и сохранены.",
+    "routes": [
+      {
+        "route": "simple-edit",
+        "baseline": 5489,
+        "translated": 4524,
+        "reduced": 4492,
+        "final": 4481,
+        "reduction_percent": 18.4
+      },
+      {
+        "route": "work",
+        "baseline": 17057,
+        "translated": 12992,
+        "reduced": 12859,
+        "final": 12848,
+        "reduction_percent": 24.7
+      },
+      {
+        "route": "planner",
+        "baseline": 8837,
+        "translated": 7019,
+        "reduced": 6973,
+        "final": 6962,
+        "reduction_percent": 21.2
+      },
+      {
+        "route": "update",
+        "baseline": 6907,
+        "translated": 5148,
+        "reduced": 5119,
+        "final": 5304,
+        "reduction_percent": 23.2
+      }
+    ]
+  },
+  "evidence_manifest": "docs/evidence/objects/3758c38480b7a4185f3cd3ed809fb4a1f2af863fbc015251d81fc08c4a85142a.json",
+  "evidence": {
+    ".highgrade/local/update-language-node.txt": "docs/evidence/objects/bebf9ce4c13afb42694968e1ba118b8cbab82dd9bdd684d66f27fd596f593476.blob",
+    ".highgrade/local/update-language-python-verified.txt": "docs/evidence/objects/8663eec695e59927a3a9347138dd903f9348af1839737d83f1122d7f7280bd10.blob",
+    ".highgrade/local/update-language-reuse-verified.txt": "docs/evidence/objects/0aee136e54b5e62c8123685207dbbd753eb43b06d3a3e1c9331d9f8355d150e7.blob",
+    ".highgrade/local/update-language-scale-complete.txt": "docs/evidence/objects/c849c8f68736bce48d7ddf9cd73a79ababc992e4bc52e88b31f47f3f521d1bfe.blob",
+    ".highgrade/local/update-language-trace-verified.txt": "docs/evidence/objects/7a6b449cb8627c54e3d0d503889b662804c0ab30d880994a94b546089884d6dd.blob",
+    "target/highgrade/tmp/update-language/context-baseline-verified.json": "docs/evidence/objects/31ae4961fad9a3c4b0e90c5a904a9692f2595d61d0b13226628325d1966a1c18.blob",
+    "target/highgrade/tmp/update-language/context-baseline/.highgrade/project/INSTRUCTIONS.md": "docs/evidence/objects/6a7a65ece23a0bb028c767e3f566c357a72cea53cb8db295b171c7a8291c3fdb.blob",
+    "target/highgrade/tmp/update-language/context-baseline/AGENTS.md": "docs/evidence/objects/5a14f3d7cb8136afbb10b31843e06fb0de478c6a89e10e66ba6416b135b55891.blob",
+    "target/highgrade/tmp/update-language/context-baseline/README.md": "docs/evidence/objects/81c1d66e26a53e4782190935b79cecbe9148f6e6c877e729a8111c20a4da42ea.blob",
+    "target/highgrade/tmp/update-language/context-baseline/docs/DEVELOPMENT.md": "docs/evidence/objects/3b6d75f4699274d0c39dd5fb2789060921b4d03081ce5d334ae243923e55a3cc.blob",
+    "target/highgrade/tmp/update-language/context-baseline/docs/ENGINEERING.md": "docs/evidence/objects/e4ae77acaab68c812e90222e5a4bfc6bff4f2afcef9c3ffd4a97c47164a2bc47.blob",
+    "target/highgrade/tmp/update-language/context-baseline/kit/references/documentation.md": "docs/evidence/objects/3f55f774e4f4906528937d6947cefb4d20eb49a5606e7ecbc8aa8f5366710723.blob",
+    "target/highgrade/tmp/update-language/context-baseline/kit/references/tools/diagnostics.md": "docs/evidence/objects/86d2f90af755f74f04285fdc63830eca2108ebfd5e3716a662f815f491df73f6.blob",
+    "target/highgrade/tmp/update-language/context-baseline/kit/references/tools/installation.md": "docs/evidence/objects/0f6428f843fea5c6764587f3f653c4df4cc382b342b4a5810d407967ea4d90eb.blob",
+    "target/highgrade/tmp/update-language/context-baseline/kit/references/tools/verification.md": "docs/evidence/objects/b0db83165bf12550bcac43f8d8fefea33efb9bcc763c37d8119c8f1f4255f94e.blob",
+    "target/highgrade/tmp/update-language/context-baseline/kit/rules.md": "docs/evidence/objects/8072d648952600812ca69bed4170bb18868b049e6e316e860075dd9bc0112a46.blob",
+    "target/highgrade/tmp/update-language/context-baseline/kit/skills/highgrade-planner/SKILL.md": "docs/evidence/objects/2f4ad2d00a8f7c207099ad60725177d992da002ac16fbc98d8ef7b4c319d497b.blob",
+    "target/highgrade/tmp/update-language/context-baseline/kit/skills/highgrade-task/SKILL.md": "docs/evidence/objects/57129a5f7b397779b1f631beda32e22cc3f90b3d64bba29c3a86370a04e4fe20.blob",
+    "target/highgrade/tmp/update-language/context-baseline/kit/skills/highgrade-update/SKILL.md": "docs/evidence/objects/ed2c7f7ad762eab268ad540c6ffa2f1c90b46636133738c27c0c15c354a8003f.blob",
+    "target/highgrade/tmp/update-language/context-baseline/kit/skills/highgrade-work/SKILL.md": "docs/evidence/objects/0dda2b5ffe35aa87604c36e1b3159062da09eb7d946e1a7ecc05feffebd2fe53.blob",
+    "target/highgrade/tmp/update-language/context-final-verified.json": "docs/evidence/objects/bb2ce3c05a3040a083f8e4b9fb5118d12a4759c86a9e9cab4f58e448da544f70.blob",
+    "target/highgrade/tmp/update-language/context-final/.highgrade/project/INSTRUCTIONS.md": "docs/evidence/objects/eb41e50c4edee3c2c4c8e5ef0868d835d201588eba0ab786c0c8a660e3e2113f.blob",
+    "target/highgrade/tmp/update-language/context-final/AGENTS.md": "docs/evidence/objects/6961ba745f4bea37de299b11bc43aca271b1d9b6916e8d05637ce8ae38259f98.blob",
+    "target/highgrade/tmp/update-language/context-final/README.md": "docs/evidence/objects/3b9f62e8bcb8bc8b4e62d3cd73db1dca1be5f1626a3f4c1ccf9be106d7ee3486.blob",
+    "target/highgrade/tmp/update-language/context-final/docs/DEVELOPMENT.md": "docs/evidence/objects/2efc35670103f54716ebb6512fffad75fe2d8aeca0dd6f1c2ad046c506d9d6a9.blob",
+    "target/highgrade/tmp/update-language/context-final/docs/ENGINEERING.md": "docs/evidence/objects/7dc6a4a819e1b6481db27c132c38514a1886e48b5fb333a22a7b620dce457af6.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/archive.md": "docs/evidence/objects/549d7d523d67ea5f9125d7947c5897c711c98fb9adf149ad26280de5d65982f8.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/clear.md": "docs/evidence/objects/805f3cdd7a1e3d603a2c080edb31047da227ae60dd7bce8d4d304171eb0a7522.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/commit.md": "docs/evidence/objects/333555909b94c1ecebc7db01cc4397cb2c01c31eb2ccaa4b83fe021a8a88711b.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/fix.md": "docs/evidence/objects/40865267a94b3bdac08ad445865876266450cb858621c605cf2bee6eef1d95ae.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/init.md": "docs/evidence/objects/b8a206f903cd639276343b51ee0706dc28e88c7b3e221a6e331170a37f1855bd.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/planner.md": "docs/evidence/objects/1e079aff2b3630d683ee236f4bb5b5a3fffb721a66fb6046883e3a36cfc3f0fd.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/push.md": "docs/evidence/objects/a5dcff691329a50f4edc3cfd7d767fb25af97bc0329b01f50a03af83dbecd042.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/spec.md": "docs/evidence/objects/8b82ceae81c29ebbc974c711c2163e4dc1c4660835a8795fa808ec903f1e9d3d.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/task.md": "docs/evidence/objects/f880498350a28a7b78c553ea0a5e214ad7e9ef9036953cddd1113f630f2ea218.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/update.md": "docs/evidence/objects/257c2d4eb1c1725060d017dc109282d57a204382b9c1be9b4f5a113642235f3e.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/procedures/work.md": "docs/evidence/objects/f46a65cb48ece35784e4bf15e4865c70e1e2c2c8e2917e1d9d1ef5c5eb1b0d86.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/references/documentation.md": "docs/evidence/objects/bf235992df204e9019e2a81a7d4392022c742d01b9214f4833910267fea6017b.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/references/tools/diagnostics.md": "docs/evidence/objects/e33dbe06336b50f0b56b503b51aaab316c2e4b7ce64c3f02557a572acc71f384.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/references/tools/installation.md": "docs/evidence/objects/31fba5ec9d0a696e3b13d00e7efd0dd284947054535e23f5cb35653c38753e79.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/references/tools/verification.md": "docs/evidence/objects/4b0c6a6533e13a9a003e4bb764f2957f5cfa11dce71b95b868bec3a659c34b4c.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/rules.md": "docs/evidence/objects/4000cc811d695a99bd03098c55adf7f4eacd2aba65b2bb9a9a9ac948acf566f8.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/skills/highgrade-planner/SKILL.md": "docs/evidence/objects/c7915f772a553c1e40b1c6740bcab75ebcd73f3b2e7b2b8d740ce6d14337c995.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/skills/highgrade-task/SKILL.md": "docs/evidence/objects/233bbc9aacadf3ef58612592fb3abc68eff074eab14111876f4510580de3d921.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/skills/highgrade-update/SKILL.md": "docs/evidence/objects/8a8410ff4c12d698079f87a25073dafc5524f4c579462b1f08c1512185a44b24.blob",
+    "target/highgrade/tmp/update-language/context-final/kit/skills/highgrade-work/SKILL.md": "docs/evidence/objects/590c7d718364b0239936be5511fdc3d098de3a6f54aeff34633616aafd816bb5.blob",
+    "target/highgrade/tmp/update-language/context-reduced-verified.json": "docs/evidence/objects/4fa8d384bf45434d9474dfc99cd94115004671801b60efb4c836af905159984f.blob",
+    "target/highgrade/tmp/update-language/context-reduced/.highgrade/project/INSTRUCTIONS.md": "docs/evidence/objects/eb41e50c4edee3c2c4c8e5ef0868d835d201588eba0ab786c0c8a660e3e2113f.blob",
+    "target/highgrade/tmp/update-language/context-reduced/AGENTS.md": "docs/evidence/objects/6961ba745f4bea37de299b11bc43aca271b1d9b6916e8d05637ce8ae38259f98.blob",
+    "target/highgrade/tmp/update-language/context-reduced/README.md": "docs/evidence/objects/81c1d66e26a53e4782190935b79cecbe9148f6e6c877e729a8111c20a4da42ea.blob",
+    "target/highgrade/tmp/update-language/context-reduced/docs/DEVELOPMENT.md": "docs/evidence/objects/2efc35670103f54716ebb6512fffad75fe2d8aeca0dd6f1c2ad046c506d9d6a9.blob",
+    "target/highgrade/tmp/update-language/context-reduced/docs/ENGINEERING.md": "docs/evidence/objects/7dc6a4a819e1b6481db27c132c38514a1886e48b5fb333a22a7b620dce457af6.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/archive.md": "docs/evidence/objects/549d7d523d67ea5f9125d7947c5897c711c98fb9adf149ad26280de5d65982f8.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/clear.md": "docs/evidence/objects/805f3cdd7a1e3d603a2c080edb31047da227ae60dd7bce8d4d304171eb0a7522.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/commit.md": "docs/evidence/objects/65b6e00962cd6c63397580a4801b62009b6f86463c483eafd7eab618c0f64790.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/fix.md": "docs/evidence/objects/40865267a94b3bdac08ad445865876266450cb858621c605cf2bee6eef1d95ae.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/init.md": "docs/evidence/objects/b8a206f903cd639276343b51ee0706dc28e88c7b3e221a6e331170a37f1855bd.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/planner.md": "docs/evidence/objects/1e079aff2b3630d683ee236f4bb5b5a3fffb721a66fb6046883e3a36cfc3f0fd.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/push.md": "docs/evidence/objects/a5dcff691329a50f4edc3cfd7d767fb25af97bc0329b01f50a03af83dbecd042.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/spec.md": "docs/evidence/objects/8b82ceae81c29ebbc974c711c2163e4dc1c4660835a8795fa808ec903f1e9d3d.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/task.md": "docs/evidence/objects/f880498350a28a7b78c553ea0a5e214ad7e9ef9036953cddd1113f630f2ea218.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/update.md": "docs/evidence/objects/ad1189a590f2392160be89eeec960e027a9892b5872f7b35bcd1922a18791286.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/procedures/work.md": "docs/evidence/objects/f46a65cb48ece35784e4bf15e4865c70e1e2c2c8e2917e1d9d1ef5c5eb1b0d86.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/references/documentation.md": "docs/evidence/objects/bf235992df204e9019e2a81a7d4392022c742d01b9214f4833910267fea6017b.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/references/tools/diagnostics.md": "docs/evidence/objects/e33dbe06336b50f0b56b503b51aaab316c2e4b7ce64c3f02557a572acc71f384.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/references/tools/installation.md": "docs/evidence/objects/31fba5ec9d0a696e3b13d00e7efd0dd284947054535e23f5cb35653c38753e79.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/references/tools/verification.md": "docs/evidence/objects/4b0c6a6533e13a9a003e4bb764f2957f5cfa11dce71b95b868bec3a659c34b4c.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/rules.md": "docs/evidence/objects/4000cc811d695a99bd03098c55adf7f4eacd2aba65b2bb9a9a9ac948acf566f8.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/skills/highgrade-planner/SKILL.md": "docs/evidence/objects/c7915f772a553c1e40b1c6740bcab75ebcd73f3b2e7b2b8d740ce6d14337c995.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/skills/highgrade-task/SKILL.md": "docs/evidence/objects/233bbc9aacadf3ef58612592fb3abc68eff074eab14111876f4510580de3d921.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/skills/highgrade-update/SKILL.md": "docs/evidence/objects/8277fd545586688c5da824119730e996a0837a83252c35d5d4bc081958e059a3.blob",
+    "target/highgrade/tmp/update-language/context-reduced/kit/skills/highgrade-work/SKILL.md": "docs/evidence/objects/590c7d718364b0239936be5511fdc3d098de3a6f54aeff34633616aafd816bb5.blob",
+    "target/highgrade/tmp/update-language/context-translated-verified.json": "docs/evidence/objects/c84b465db073701f77a3eb34ed4e2f9e3201d1f7788b0aba4b3eb343756503aa.blob",
+    "target/highgrade/tmp/update-language/context-translated/.highgrade/project/INSTRUCTIONS.md": "docs/evidence/objects/afefeea245bef567e8621f22b71cc534323759ec97913f6e40e90e3b3dfea5ec.blob",
+    "target/highgrade/tmp/update-language/context-translated/AGENTS.md": "docs/evidence/objects/2b5e7a34cedd37754b9e0aa45cdad08a5237c9fe9ded9f5cd6dcbbb68ca1f452.blob",
+    "target/highgrade/tmp/update-language/context-translated/README.md": "docs/evidence/objects/81c1d66e26a53e4782190935b79cecbe9148f6e6c877e729a8111c20a4da42ea.blob",
+    "target/highgrade/tmp/update-language/context-translated/docs/DEVELOPMENT.md": "docs/evidence/objects/756f17536b308af88ca74a8d9e72d8fc80a76c526b88d3ed7cea0e1493130729.blob",
+    "target/highgrade/tmp/update-language/context-translated/docs/ENGINEERING.md": "docs/evidence/objects/7dc6a4a819e1b6481db27c132c38514a1886e48b5fb333a22a7b620dce457af6.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/archive.md": "docs/evidence/objects/549d7d523d67ea5f9125d7947c5897c711c98fb9adf149ad26280de5d65982f8.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/clear.md": "docs/evidence/objects/0e45f7696e00d82cdcc7c630b7ad526d3f05fddba0f960ff31e68490d7894fe2.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/commit.md": "docs/evidence/objects/a926187c73edacc224b85052660b43a22611bd47bc4c4a20fea37ddea646e898.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/fix.md": "docs/evidence/objects/40865267a94b3bdac08ad445865876266450cb858621c605cf2bee6eef1d95ae.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/init.md": "docs/evidence/objects/9ebb568b4cce476b48b56092d041dfdb55f7ebd4375ea915864975aba361981e.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/planner.md": "docs/evidence/objects/734ec67d533efc6e31f2d524396a5ade3bbae14ddde884985863bd4cc35bf2d8.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/push.md": "docs/evidence/objects/c9a55b10d9e4a87afaa373d338bb0c0b9283b25671db88aed71064cac9a41b7f.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/spec.md": "docs/evidence/objects/4c619053dc0cd92cd9ee9e81cbdddb7ccf1dd780016336d1fe676a8b4ef6d879.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/task.md": "docs/evidence/objects/507194f282f3cce1f28c79224b9813ace1f9cc989a6d28e7965544bc7ad96396.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/update.md": "docs/evidence/objects/783a4729f5e34173d99417b985a542991c3373a025300514a8c8af37c95bc4a9.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/procedures/work.md": "docs/evidence/objects/e25335c83c4f06be5cafac79557d25b7e967f594cd45652cc8ef09f711377baa.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/references/documentation.md": "docs/evidence/objects/be5cc44c75879ac895fea8ea10c6618101946e43cbc24a21e3c045d401f06adf.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/references/tools/diagnostics.md": "docs/evidence/objects/e33dbe06336b50f0b56b503b51aaab316c2e4b7ce64c3f02557a572acc71f384.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/references/tools/installation.md": "docs/evidence/objects/1e446edcb8ab957d3b2b6edb610c472fe6b65d765220a15154fb3f91b5a4cfea.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/references/tools/verification.md": "docs/evidence/objects/46485571c832cf1107ccd385666b036e6efe22ecbfa8bff86aa82c76e44c6d82.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/rules.md": "docs/evidence/objects/39e146f4d17edd6037e335543a65cffc9cfd28df32efe9d0e5e34e49bb141515.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/skills/highgrade-planner/SKILL.md": "docs/evidence/objects/556d0d72e4bed8b8e83437da7eb6a6c4e1ac9f1b65b4102b4fee54278cc95743.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/skills/highgrade-task/SKILL.md": "docs/evidence/objects/ef81584b2ee7f23a829c529f06b354794532c494d92befbe5e157a0abd5eb638.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/skills/highgrade-update/SKILL.md": "docs/evidence/objects/5f698a117b0a7c9074893f61295fedd89316cbe0a119ed4124d306afaf7a1511.blob",
+    "target/highgrade/tmp/update-language/context-translated/kit/skills/highgrade-work/SKILL.md": "docs/evidence/objects/2e1d6e36f94782c94ec36da3947ad829b31260e5af74a7f0c0136d0c809ba111.blob",
+    "target/highgrade/tmp/update-language/inspect-verified.json": "docs/evidence/objects/336f5231ef5ad978eb244ab26a8a54f1032591f53f7ba6546b4739d9a0d851bb.blob",
+    "target/highgrade/tmp/update-language/normative-review-verified.json": "docs/evidence/objects/c94e8dfda4a51e76eb0129a81c6cb03c88418a1f5ea2d912641143adfc134022.blob",
+    "target/highgrade/tmp/update-language/structure-verified.json": "docs/evidence/objects/42301838e663f66c6f1d3cd47514f62ae79df09893ab800788e8ae269902f9b7.blob",
+    "target/highgrade/tmp/update-language/summary-before.txt": "docs/evidence/objects/1405143da9cd6501204cc698044b35178e02a81bb6020dfd612b715d5d915816.blob",
+    "target/highgrade/tmp/update-language/yaml-verified.json": "docs/evidence/objects/17070b18ac22087d1af3349f26b576533c359de62825b58a7df24260dadbfee8.blob",
+    "target/nextest/highgrade/attempt.json": "docs/evidence/objects/5d0bf15892e3a6ad1b7c03b05769695fb1c3a16bc47c67dd7367a761e08b81be.blob",
+    "target/nextest/highgrade/completion.json": "docs/evidence/objects/065afdc3451ecb5d7faa625a82fa148e699dc84e9416809e92cfb08fc8837989.blob",
+    "target/nextest/highgrade/junit.xml": "docs/evidence/objects/36825f28b54377982ff9419a7148769f60e4ee5352dc9ab717aa22e5156a2c8c.blob",
+    "target/nextest/highgrade/list.json": "docs/evidence/objects/1bcc0394f721e2b7a4fa95a543585acdbf0d28bb42d25714c12a65dfbc6a5e00.blob",
+    "target/nextest/highgrade/run.json": "docs/evidence/objects/4819c3c466a57425eae5734a648e53190f7bbbf1685a0d7d914a314e1001857e.blob",
+    "target/nextest/highgrade/trace.json": "docs/evidence/objects/38f5f11bca3e07b1b02cde2491f20de4ae39a905e8bc0168cb2647ba1fb70ec6.blob"
+  },
+  "review": {
+    "HG-0073": "go",
+    "HG-0074": "go"
+  },
+  "delivery": {
+    "commit": "not-requested",
+    "activation": "not-requested",
+    "publication": "not-requested",
+    "human_acceptance": "not-recorded",
+    "active_delivery": "v0-3-12"
+  },
+  "limitations": [
+    "Не подтверждена статистическая устойчивость исполнения инструкций моделью.",
+    "Windows и удалённый CI этой незакоммиченной редакции не запускались.",
+    "Посторонняя .gitignore сохранена.",
+    "История пользовательских изменений до v0-3-10 не восстанавливалась; неполнота явно сообщается."
+  ],
+  "review_report": "docs/reviews/update-context.json",
+  "integration": "HG-0073 и HG-0074 интегрированы; человеческая приёмка не записана.",
+  "final_state": {
+    "HG-0073": {
+      "id": "HG-0073",
+      "blockers": [],
+      "change_sha256": "30b1a0ae336d2f0c00b99bf71943c6eda88997690d29a2ee6c442ded162751ed",
+      "contract_sha256": "14955bbbd96e9a884db774d6eda5fcad21c80d4bb2da78732d3fcafbd9034029",
+      "human": "pending",
+      "inputs_sha256": "ae8407bb3b5f04e7e409dc2b6341801ae9825d475b1cb434324453a8d5f7850c",
+      "technical": "ready",
+      "verified_revision": null,
+      "review": "go"
+    },
+    "HG-0074": {
+      "id": "HG-0074",
+      "blockers": [],
+      "change_sha256": "40677271a98c7a7213c4aa6a202f0fd2bc3e19cdbb7a29ae24c536ee646e4180",
+      "contract_sha256": "529ef8dfd4774ae2550a979f278b5b2b6ff1b06d68f6527c5a5d568babf984d0",
+      "human": "pending",
+      "inputs_sha256": "b797dc459f64feddbcf8e5b5ac352dcb002063ad5be79cb8969932459602bca5",
+      "technical": "ready",
+      "verified_revision": null,
+      "review": "go"
+    }
+  },
+  "failure_history": "docs/evidence/objects/57a7f02a75a13059cb44f06c10714b5beaab88defc5f5d7e02c2c5a7857e788e.json",
+  "cleanup": "Необходимые источники сохранены и проверены; собственные временные пробы и завершённые запуски обслужены. Общий кэш оставлен для продолжения.",
+  "maintenance_limit": {
+    "retained_mib": 1073.54,
+    "budget_mib": 600,
+    "reason": "Текущий debug и прежний build-cache сохранены для продолжения; обслуживание не удаляет нужные артефакты ради лимита. Посторонние старые запуски/пробы не затронуты."
+  }
+}

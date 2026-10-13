@@ -1,20 +1,26 @@
-# Диагностика и документы проекта
+<a id="диагностика-и-документы-проекта"></a>
 
-Для последовательного подключения используй [обследование](survey.md). При действующем реестре обычный inspect проверяет принятые роли; bootstrap ниже остаётся предварительной диагностикой без реестра.
+# Project diagnostics and documents
 
-## Предварительная проверка документов (v0-2-5)
+Use [survey](survey.md) for sequential connection. With a current registry, ordinary inspect checks accepted roles. Bootstrap below is pre-registry diagnostics.
 
-`inspect --bootstrap --root <абсолютный-путь>` работает до создания реестра. JSON-отчёт `measurements[0]` содержит `slots` для семи путей: `README.md`, `AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/ENGINEERING.md`, `docs/DEVELOPMENT.md`, `.highgrade/project/INSTRUCTIONS.md`, `.highgrade/project/documents.json`. `path_state` показывает точное наличие, `candidates` — ограниченные возможные альтернативы по имени файла или подписанной Markdown-ссылке, `candidate_status=not_needed` означает наличие точного пути; `not_found_in_scan` не означает отсутствия содержания. `required_links` отдельно показывает шесть обязательных связей: из README к четырём документам, из AGENTS к проектной инструкции, из неё к реестру. `--bootstrap` нельзя сочетать с `--registry` или `--scope`. Неверный корень даёт `failed`; отсутствующий точный путь или связь — структурное `failed`; недоступная область или предел — `unknown` в находках. Результат не создаёт и не переносит файлы.
+<a id="предварительная-проверка-документов-v0-2-5"></a>
 
-`candidate_scan=performed` означает поиск альтернатив для отсутствующих путей. Если все семь точных путей есть, `candidate_scan=not_needed`, дерево не обходится и `visited_entries=0`; обязательные связи и список исключений всё равно проверяются. Структурный `failed` на ещё не подключённом проекте даёт задачи адаптации, а не отменяет аудит. Ошибка корня или отсутствие пригодного JSON-отчёта останавливает зависимую работу. Содержание и решение о переносе агент фиксирует в таблице адаптации из процедуры init.
+## Document preflight (v0-2-5)
 
-Когда поиск кандидатов нужен, обход включает новые файлы и скрытые инструкции без зависимости от Git. Читаются только `.highgrade/project/inventory-exclusions.json` и три канонических источника ссылок — README, AGENTS, проектная инструкция. Валидные проектные исключения применяются до обхода; свободный текст их причин не выводится. Некорректный список даёт `unknown` и не применяется частично. `.git`, `node_modules`, `target`, `.pnpm-store`, `.output`, `.tanstack`, `.highgrade/releases`, кэши, известные закрытые имена, символические ссылки и Windows reparse points не читаются; `.highgrade/project` остаётся в области. Исключения не доказывают одобрение аудита.
+inspect --bootstrap --root `<absolute-path>` works before registry creation. measurements[0] has slots for seven paths: README.md, AGENTS.md, docs/ARCHITECTURE.md, docs/ENGINEERING.md, docs/DEVELOPMENT.md, .highgrade/project/INSTRUCTIONS.md and .highgrade/project/documents.json. path_state shows exact presence. candidates gives bounded alternatives by filename or labeled Markdown link. candidate_status=not_needed means the exact path exists; not_found_in_scan does not mean content is absent. required_links separately lists six required relationships: README to four documents, AGENTS to project instruction, instruction to registry. Do not combine --bootstrap with --registry/--scope. Invalid root returns failed; missing exact paths/links return structural failed; inaccessible scope/limits yield unknown findings. No files are created/moved.
 
-Пределы: 50 000 записей, 128 чтений, 64 КиБ на входной файл, 12 кандидатов на роль, 32 показанных исключения, 200 байт на путь, глубина 64 и 64 КиБ на JSON-отчёт. Достижение предела отмечается как `unknown`; непоказанная область остаётся задачей агента. Обычный `inspect` требует реестр и проверяет назначенные роли и пути, обязательные связи, прочие зарегистрированные ссылки и бюджеты. Он не заменяет смысловой аудит и не исправляет проект автоматически.
+candidate_scan=performed means missing-path alternatives were searched. If all seven paths exist, candidate_scan=not_needed, no tree walk occurs and visited_entries=0. Required links/exclusion list still get checked. Structural failed before connection gives adaptation tasks; it does not cancel audit. Root errors or no usable JSON report stop dependent work. Record content and move decisions in init's adaptation table.
 
-## Начальный реестр документов
+When needed, candidate search includes new files/hidden instructions independently of Git. It reads only inventory-exclusions.json and three canonical link sources: README, AGENTS and project instruction. Valid project exclusions apply before traversal; their free-text reasons are not printed. An invalid list yields unknown and is not partially applied. .git, node_modules, target, .pnpm-store, .output, .tanstack, .highgrade/releases, caches, known private names, symlinks and Windows reparse points are not read. .highgrade/project stays in scope. Exclusions do not prove audit approval.
 
-Основа `.highgrade/project/documents.json` для init приведена ниже. Укажи реальные области `scope`, дополнительные источники и согласованные бюджеты; `null` намеренно даёт `BudgetNotAgreed`, а не PASS. `active: true, loading: history` проверяет источник и ссылки, исключая его из обычного маршрута; `active: false` вообще исключает строку из проверки. Не назначай широкую область ради скрытия `AreaUnclassified`.
+Limits: 50,000 entries, 128 reads, 64 KiB per input file, 12 candidates per role, 32 displayed exclusions, 200 bytes per path, depth 64 and 64 KiB JSON report. Reaching a limit yields unknown; undisplayed scope remains agent work. Ordinary inspect requires a registry and checks assigned roles/paths, mandatory links, other registered links and budgets. It neither replaces semantic audit nor repairs projects automatically.
+
+<a id="начальный-реестр-документов"></a>
+
+## Initial document registry
+
+Init foundation for .highgrade/project/documents.json follows. Set real scope, additional sources and agreed budgets. null deliberately yields BudgetNotAgreed, not PASS. active: true with loading: history checks sources/links but excludes them from ordinary loading. active: false excludes the row from checking. Do not widen scope just to hide AreaUnclassified.
 
 ```json
 {
@@ -33,28 +39,34 @@
 }
 ```
 
-Путь и `scope` задаются относительно корня проекта. Для согласованного бюджета используется объект `{"unit":"bytes","agreed":true,"min":1000,"baseline":2000,"current":2000,"ceiling":3000,"history":[],"review_trigger":"после двух задач"}`; числа здесь иллюстративные, переносить их как принятые нельзя. Изменение `current` сохраняет цепочку `history` с `from`, `to`, `reason`, `reduction_considered`, `next_review`. Пять основных ролей обязательны и назначаются однозначно. В записи используй либо role (строка), либо roles (непустой массив строк), если один документ выполняет несколько ролей. Пути и ID уникальны; бюджет совмещённого файла учитывается один раз. Шаблонные пути необязательны: inspect проверяет зарегистрированные пути и связи между ними. Служебные INSTRUCTIONS.md и documents.json остаются в .highgrade/project/.
+Paths/scope are root-relative. An agreed budget uses {"unit":"bytes","agreed":true,"min":1000,"baseline":2000,"current":2000,"ceiling":3000,"history":[],"review_trigger":"after two tasks"}. These numbers are illustrative, not accepted values. current changes retain history with from, to, reason, reduction_considered and next_review. Assign the five primary roles unambiguously. Use role string or nonempty roles array for a multi-role document. Paths/IDs are unique. Count one combined file budget once. Template paths are optional; inspect checks registered paths/links. Administrative INSTRUCTIONS.md/documents.json remain in .highgrade/project/.
 
-## Совместимость проекта
+<a id="совместимость-проекта"></a>
 
-Doctor поддерживает `highgrade_project_schema: 1` в начале UTF-8 инструкции между строками `---` (LF/CRLF). `project_instruction=compatible` имеет границу `compatibility_scope=schema-only`, `semantic_compatibility=not_assessed`. Это не проверка заполнения или смысла. Неизвестная схема не понижается автоматически. Для проверки обязательного runner используйте doctor --action spec-run; версию инструмента подтверждает команда проекта. Адаптация и решение конфликтов — в [init](../../procedures/init.md) и [clear](../../procedures/clear.md).
+## Project compatibility
 
-Код самого CLI: 1 — failed, 2 — unknown, 0 — остальные состояния (включая предупреждения). Фиксируй `$LASTEXITCODE` сразу после команды, до следующего процесса; код оболочки или инструмента-обёртки может отличаться. При расхождении с JSON не угадывай код, повтори минимальную диагностику с явным захватом.
+Doctor supports highgrade_project_schema: 1 at the start of a UTF-8 instruction between --- lines with LF/CRLF. project_instruction=compatible is limited to compatibility_scope=schema-only and semantic_compatibility=not_assessed. It checks neither completeness nor meaning. Unknown schemas are not downgraded automatically. For a mandatory runner, use doctor --action spec-run. A project command confirms tool version. [init](../../procedures/init.md)/[clear](../../procedures/clear.md) own adaptation/conflicts.
 
-`doctor --root PATH --action spec-read` проверяет каталог; `--action spec-run --id HG-ID [--check CHECK]` — входы и исполняемые файлы выбранных проверок без исполнения проектного кода. Без action сохраняется прежняя диагностика. Для установки и обновления используйте global-status и preview.
+CLI exit codes: 1 failed, 2 unknown, 0 other states including warnings. Capture $LASTEXITCODE immediately before another process. A shell/wrapper code may differ. If JSON/code disagree, do not guess; repeat minimal diagnostics with explicit capture.
 
-Bootstrap возвращает `validation`, `adaptation`, `applied`: отсутствие стандартных путей и связей означает адаптацию; повреждение или недоступность остаются препятствием. Прежние status/exit code и находки сохранены для совместимости; новые поля разделяют техническую проверку и решение человека.
+doctor --root PATH --action spec-read checks catalog. --action spec-run --id HG-ID [--check CHECK] checks selected inputs/executables without executing project code. No action keeps earlier diagnostics. Use global-status/preview for installation/update.
 
-## Исключения inventory и прежний receipt
+Bootstrap returns validation, adaptation, applied. Missing standard paths/links indicate adaptation; corruption/unavailability remain obstacles. Previous status/exit/findings stay compatible. New fields separate technical checks from human decisions.
 
-`.highgrade/project/inventory-exclusions.json` имеет вид `{"schema_version":1,"entries":[{"path":"relative/path","reason":"конкретная причина"}]}`. Пути относительные, уникальные, не внутри .highgrade; до 128 записей, причина непустая. CLI возвращает список исключений и SHA256 файла. Исключение из снимка не подтверждает прочтение области; методика — в [audit](../audit.md).
+<a id="исключения-inventory-и-прежний-receipt"></a>
 
-Только прежний проектный legacy-install проверяет `exclusions_sha256` в audit receipt: он должен совпасть с конфигурацией (или отсутствовать/null, если файла нет). Изменённые исключения требуют нового соответствующего receipt по legacy-маршруту. Глобальные global-install/global-update не требуют этот receipt и не обследуют проекты.
+## Inventory exclusions and legacy receipt
 
-## Состав передачи доказательств
+.highgrade/project/inventory-exclusions.json: {"schema_version":1,"entries":[{"path":"relative/path","reason":"specific reason"}]}. Paths are relative, unique and outside .highgrade; at most 128 entries, each with a nonempty reason. CLI returns exclusions/file SHA256. Snapshot exclusion does not prove scope reading; see [audit](../audit.md).
 
-`doctor --action spec-delivery --id HG-ID --root PATH [--bundle files.json]` проверяет обязательные отчёты и закреплённые входы выбранной спеки по хешам. Без bundle составом служит Git index; tracked с изменённым рабочим файлом, untracked и ignored различаются. Сверяются фактические байты index blob, без запуска Git-фильтров; даже отличие нормализации даёт index_differs. Для закреплённых файлов сохраняйте выбранные байты при передаче. Команда не меняет индекс, ignore или решения; при недоступном составе результат unknown. Проверять после подготовки выбранного индекса и до коммита.
+Only legacy-install checks exclusions_sha256 in the audit receipt. It must match configuration or be absent/null when no file exists. Changed exclusions need a new matching legacy receipt. global-install/global-update need no receipt and do not survey projects.
 
-Для проекта без Git `files.json` — явный JSON-массив относительных путей выбранного локального пакета. Проверяются текущие файлы, а не существование будущей удалённой копии. Отсутствие обязательного отчёта/изменённый хеш — failed. Исключённый файл/неизвестный состав — unknown. Все закреплённые входы включаются консервативно: инструмент не угадывает, какие можно восстановить. Не требуется включать посторонние логи, кэши или скриншоты. URL сам по себе не доказывает доступность или срок хранения; внешний маршрут проверяют по местным правилам. Проверка передачи не заменяет spec-check и не меняет human acceptance. Для локальной работы без передачи она необязательна. В noGit-проекте Commit/Git-push не требуются: Work использует назначенную проектом неизменяемую редакцию и пакет; один список files.json сам по себе не является таким идентификатором.
+<a id="состав-передачи-доказательств"></a>
 
-Inspect возвращает diagnostic_summary: errors, unknown, warnings отдельно, при сохранении findings и кода выхода. Принятые ограничения сверяются по basis/sources в survey и местной инструкции; summary не удостоверяет их принятие. Неизвестный budget остаётся null/BudgetNotAgreed даже при разрешении продолжить работу с этой неопределённостью. Структурная ошибка требует исправления; текст ограничения не подавляет её.
+## Evidence delivery contents
+
+doctor --action spec-delivery --id HG-ID --root PATH [--bundle files.json] checks required reports and recorded inputs by hash. Without bundle, it uses Git index and distinguishes tracked-but-edited, untracked and ignored files. It compares actual index blob bytes without Git filters. Even normalization differences yield index_differs. Preserve selected recorded bytes in delivery. It changes neither index/ignore nor decisions. Unavailable contents yield unknown. Run after index preparation and before commit.
+
+Without Git, files.json is an explicit JSON array of selected relative package paths. It checks current files, not a future remote copy. Missing mandatory reports/changed hashes yield failed. Excluded files/unknown contents yield unknown. All recorded inputs are included conservatively; the tool cannot infer recoverability. Unrelated logs, caches or screenshots are unnecessary. A URL does not prove accessibility/retention; check external routes under local rules. Delivery verification replaces neither spec-check nor human acceptance. It is optional for local work without handoff. noGit Commit/Git-push are unnecessary; Work uses project-assigned immutable revision/package. files.json alone is not that identifier.
+
+Inspect diagnostic_summary separates errors, unknown and warnings, retaining findings/exit. Compare accepted limits with survey basis/sources and local instructions; summary does not certify acceptance. Unknown budgets remain null/BudgetNotAgreed even with authority to continue. Structural errors need fixes; a limit statement cannot suppress them.

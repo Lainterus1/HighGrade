@@ -1,36 +1,40 @@
-# Общая процедура обследования
+<a id="общая-процедура-обследования"></a>
 
-Для init результат сохраняется в [JSON обследования](tools/survey.md): карта, основания адаптации, известные решения, зависимые пробелы и следующий шаг. inventory --mode structure даёт обзор, snapshot фиксирует только выбранные источники. Прежний inventory остаётся снимком legacy-маршрута. При строго read-only запросе результат остаётся в ответе. После подключения текущие знания передаются владельцам, завершённое обследование хранит историю.
+# Common survey procedure
 
-Определи согласованную область и собери воспроизводимый список её файлов/компонентов. Для init существующего проекта обзор охватывает структуру всего проекта, а углублённое чтение — обязательные источники, области адаптации и найденные риски; для clear действует запрошенная область. `inspect --bootstrap` показывает структурные пробелы документов, но не доказывает отсутствие содержания или полноту аудита. Сверь обзор с фактически прочитанными источниками. Скрытые инструкции, конфигурацию, точки запуска, зависимости, тесты, данные и эксплуатацию читай углублённо там, где они влияют на подключение или риск. Исключённые из технического снимка каталоги оцени по смыслу отдельно. Не выдавай перечисление файлов за прочтение содержимого.
+For init, save [survey JSON](tools/survey.md): map, adaptation grounds, known decisions, dependent gaps and Next. inventory --mode structure gives an overview; snapshot records only selected sources. Earlier inventory remains a legacy-route snapshot. Strict read-only requests keep results in the response. After connection, current knowledge passes to its owners; completed survey remains history.
 
-Если генерируемый каталог или закрытый файл нельзя включить в технический снимок, классифицируй область и запиши причину исключения по [формату диагностики](tools/diagnostics.md#исключения-inventory-и-прежний-receipt). Изменение исключений требует пересмотра охвата аудита. Исключение из хеширования не означает, что область прочитана или её риск исчез.
+Define agreed scope and collect a reproducible file/component list. Existing-project init surveys whole structure, then deeply reads required sources, adaptation areas and found risks. Clear follows requested scope. inspect --bootstrap finds structural document gaps; it proves neither absent content nor complete audit. Compare overview with actually read sources. Deeply read hidden instructions, configuration, entry points, dependencies, tests, data and operations where connection/risk depends on them. Assess excluded snapshot directories semantically too. A file list is not content reading.
 
-Для компонентов, влияющих на адаптацию, установи назначение, связи, поведение, требования, штатные команды, выполненные проверки и ограничения. Остальные компоненты перечисли в обзоре без утверждения, что они изучены. Противоречия связывай с обеими сторонами; новое поведение не объявляй правильным только потому, что оно уже в коде. Для секретов и закрытых данных фиксируй наличие/область без вывода значений.
+If a generated directory or private file cannot enter the snapshot, classify scope and record exclusion reasons under [diagnostics](tools/diagnostics.md#inventory-exclusions-and-legacy-receipt). Changed exclusions require reassessing audit coverage. Excluding hashes proves neither reading nor absence of risk.
 
-Результат: краткий список проверенного и непрочитанного, доказанные проблемы, неизвестные области, решения и влияние на адаптацию. Снимок `inventory` можно вложить в отчёт или ссылку на него. Незавершённая проверка, от которой зависит подключение, останавливает его; непрочитанный независимый компонент остаётся ограничением для будущих задач. Штатные исправления выполняются отдельно в полномочиях задачи.
+For adaptation-relevant components, identify purpose, relationships, behavior, requirements, standard commands, actual checks and limits. List other components without claiming examination. Link both sides of contradictions. Code existence alone does not establish correct behavior. For secrets/private data, record presence/scope without values.
 
-## Контекст и адаптация
+Produce a short list of checked/unread areas, confirmed problems, unknowns, decisions and adaptation impact. Include/link inventory if useful. A pending check blocks connection only if connection depends on it. An unread independent component remains a future-task limit. Routine fixes are separate authorized work.
 
-В результате init местная инструкция связывает проверенные источники и принятые решения:
+<a id="контекст-и-адаптация"></a>
 
-| Область | Что определить |
+## Context and adaptation
+
+Init's local instruction links checked sources and accepted decisions:
+
+| Area | Define |
 |---|---|
-| Продукт | Назначение, границы, существенные риски и ограничения |
-| Источники | Владельцы требований, действующей архитектуры, инженерных правил и команд |
-| Проверки | Реальные команды, необходимая среда, способы доказательства и известные пробелы |
-| Навыки | Повод вызова, отдельная ответственность, вход и выход местных специалистов |
-| Полномочия | Коммит, применимость активации, её проверка и восстановление; отдельный маршрут публикации |
-| Исключения | Принятое решение, причина, область и условие пересмотра |
+| Product | Purpose, scope, material risks/limits |
+| Sources | Owners of requirements, current architecture, engineering and commands |
+| Checks | Real commands, environment, evidence methods and gaps |
+| Skills | Trigger, distinct responsibility, input/output of local specialists |
+| Authority | Commit, activation applicability/check/recovery and separate publication route |
+| Exceptions | Accepted decision, reason, scope and review condition |
 
-Для существенного значения различай **определено** (источник/решение), **неприменимо** (почему) и **неизвестно** (какое действие зависит от ответа). Для нового проекта обследование фиксирует исходное отсутствие и принятые решения о будущем устройстве раздельно по [init](../procedures/init.md#обследование). Не придумывай команды нового проекта; неизвестная публикация не мешает локальной задаче. Незавершённая адаптация блокирует только зависящие от неё действия; срочное исправление в явных полномочиях возможно с обозначенными ограничениями. Уже принятое решение не спрашивай заново. Известное согласие выполнить адаптацию позволяет перейти от плана к изменениям без ещё одного формального подтверждения.
+For a material value, distinguish **defined** with source/decision, **inapplicable** with reason, and **unknown** with dependent action. New-project survey records initial absence and future decisions separately under [init](../procedures/init.md#survey). Never invent commands. Unknown publication does not block local tasks. Incomplete adaptation blocks only dependent actions; an urgent explicitly authorized fix may proceed with stated limits. Reuse accepted decisions. Known adaptation authority permits plan-to-edit progression without formal reapproval.
 
-README владеет назначением и навигацией, AGENTS — маршрутом агента и полномочиями, ARCHITECTURE — устройством и инвариантами, ENGINEERING — инженерными соглашениями, DEVELOPMENT — воспроизводимыми командами. Пути определяет процедура init. Реестр хранит роли, области чтения и бюджеты, а не пересказ документов. JSON-спецификация High Grade владеет новыми изменениями поведения и их задачами; явно сохранённый проектом маршрут спецификации High Grade и решение о совместимости со старым форматом поддерживается до перехода. Профильный документ или ADR нужен при отдельной ответственности или значимом решении, не для каждой задачи. Не переносить историю продуктовых спецификаций без поручения.
+README owns purpose/navigation; AGENTS owns agent routing/authority; ARCHITECTURE owns structure/invariants; ENGINEERING owns engineering conventions; DEVELOPMENT owns reproducible commands. Init defines paths. The registry stores roles, reading scopes and budgets, not document summaries. Native High Grade specifications own new behavior and tasks. An explicitly retained project specification route and old-format compatibility decision stay until transition. A specialist document/ADR is useful for distinct responsibility or a significant decision, not every task. Do not transfer product-spec history without a request.
 
-У каждого правила один основной источник; остальные ссылаются на него. Действующее, предложенное и историческое различаются. Код не отменяет требование, архив не задаёт норму. Проверяй согласованность затронутых документов, кода, тестов и доказательств; общий инвариант расширяет область проверки. Отчёт называет её границы. Содержание и оформление определяет [справочник документации](documentation.md); оформление гибкое внутри назначенных ролей, косметика не блокирует задачу. При адаптации сохраняй местные соглашения и ссылки на их владельцев; не копируй общий справочник в проект и не создавай обязательный новый раздел ради него.
+One primary source owns each rule; other sources link it. Distinguish current, proposed and historical. Code does not override requirements; archives do not set norms. Check affected docs, code, tests and evidence for consistency. A shared invariant expands the check scope. State its limits. [Documentation](documentation.md) owns content/style; formatting is flexible within roles and cosmetics do not block work. Preserve local conventions and owner links. Do not copy the shared reference or require a new section just for it.
 
-Бюджеты и диапазоны определяются при init; несогласованное остаётся `unknown`. Внутри согласованного диапазона изменение требует причины, рассмотренного сокращения и условия пересмотра; потолок меняет автор. Не повышай лимит ради исчезновения предупреждения. Превышение требует пересмотра, но не запрещает завершать независимую работу. Измеряй байты/строки и применимый маршрут; размер файлов не равен окну сеанса. Проверяй на задачах возможность найти требование, код и проверку и продолжить работу. История загружается по необходимости.
+Init sets budgets/ranges. Unagreed values stay unknown. A change within an agreed range needs a reason, considered reduction and review condition. The user changes ceilings. Never increase a limit merely to hide a warning. An overrun needs review but does not stop independent work. Measure bytes/lines and the applicable route; file size is not a session window. Check on tasks whether requirements, code and verification can be found and work resumed. Load history when needed.
 
-Сопровождай документы и временные обходы во время обычной работы. Повторяющиеся сопутствующие проблемы и применимость прежних решений проверяй по [Fixer](../procedures/fix.md), если проект ведёт такой реестр. Для обхода сохраняй причину, владельца, проверку и условие пересмотра в карточке проблемы, если она есть, иначе в задаче; задача ссылается на карточку без дублирования решения; срок не разрешает удалить работающее поведение. Архивирование следует [процедуре архива](../procedures/archive.md), сохраняет причины и входящие ссылки; ошибка переноса не считается успехом. Clear остаётся дополнительным обзором, фонового контроля нет.
+Maintain documents/workarounds during ordinary work. If the project has an issue registry, use [Fixer](../procedures/fix.md) for recurring problems and previous solution applicability. The issue record owns workaround reason, owner, check and review condition; otherwise keep them in the task. Link the issue without duplicate solutions. A deadline does not authorize removing working behavior. [Archive](../procedures/archive.md) preserves reasons and incoming links; failed transfer is not success. Clear is an additional review, with no background monitoring.
 
-Для адаптации процессов до изменений сверь охват создаваемых файлов инструментами проекта и маршрут обязательных доказательств по [init](../procedures/init.md#обследование). Отсутствующий formatter или CI не требуется вводить ради Поставки; строгие местные проверки сохраняются до явного решения об изменении.
+Before adapting processes, check tool coverage of created files and mandatory evidence delivery under [init](../procedures/init.md#survey). Delivery alone does not require adding a formatter/CI. Preserve strict local checks until an explicit change decision.

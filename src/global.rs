@@ -81,7 +81,7 @@ const PREVIOUS_SKILLS: [&str; 6] = [
     "highgrade-clear",
     "highgrade-update",
 ];
-const MATERIALS: [&str; 20] = [
+const MATERIALS: [&str; 21] = [
     "rules.md",
     "procedures/init.md",
     "procedures/task.md",
@@ -102,6 +102,7 @@ const MATERIALS: [&str; 20] = [
     "templates/INSTRUCTIONS.md",
     "procedures/planner.md",
     "references/documentation.md",
+    crate::release_notes::PATH,
 ];
 const APPROVE_MATERIALS: [&str; 19] = [
     "rules.md",
@@ -326,6 +327,11 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
             paths::read_limited(&paths::safe(&source, rel)?, 8 * 1024 * 1024)?,
         );
     }
+    crate::release_notes::summary(
+        &files[&release_file(release, crate::release_notes::PATH)],
+        release,
+        release,
+    )?;
     let executable_bytes = paths::read_limited(executable, 128 * 1024 * 1024)?;
     let manifest_hash = hash(&manifest_bytes);
     let candidate_sha256 =
@@ -401,7 +407,9 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
             .chain([COMMIT_SKILL, PUSH_SKILL].iter())
             .map(|rel| release_file(release, rel)),
     );
-    let mut before_documentation = commit.clone();
+    let mut before_notes = commit.clone();
+    before_notes.remove(&release_file(release, crate::release_notes::PATH));
+    let mut before_documentation = before_notes.clone();
     before_documentation.remove(&release_file(release, "references/documentation.md"));
     let mut prior = expected(&PRIOR_SKILLS, &PRIOR_MATERIALS);
     for rel in [APPROVE_SKILL, PUSH_SKILL] {
@@ -413,6 +421,7 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     legacy.insert(release_file(release, LEGACY_DEPLOY_SKILL));
     let previous = expected(&PREVIOUS_SKILLS, &PREVIOUS_MATERIALS);
     if actual != commit.iter().map(String::as_str).collect()
+        && actual != before_notes.iter().map(String::as_str).collect()
         && actual != before_documentation.iter().map(String::as_str).collect()
         && actual != current.iter().map(String::as_str).collect()
         && actual != with_tools.iter().map(String::as_str).collect()
@@ -1025,9 +1034,14 @@ pub fn update(
             }
         }
     }
+    let notes = crate::release_notes::summary(
+        &c.files[&release_file(&c.release, crate::release_notes::PATH)],
+        &old,
+        &c.release,
+    )?;
     let mut r = Report::new("global-update");
     r.measurements.push(
-        json!({"from":old,"candidate":c.release,"manifest_sha256":c.manifest_hash,"candidate_sha256":c.candidate_sha256,"apply":apply}),
+        json!({"from":old,"candidate":c.release,"manifest_sha256":c.manifest_hash,"candidate_sha256":c.candidate_sha256,"apply":apply,"release_summary":notes}),
     );
     if !apply {
         r.measurements.push(json!({"validation":"passed","decision":"required","applied":false,"next":"review candidate, then apply its candidate_sha256"}));
@@ -1135,7 +1149,8 @@ pub fn update(
         }
     }
     retire_inactive_releases(&profile, &c.release, &mut r);
-    r.measurements.push(json!({"active_release":c.release}));
+    r.measurements
+        .push(json!({"active_release":c.release,"postcheck":"passed","applied":true}));
     Ok(r)
 }
 

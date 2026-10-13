@@ -1,40 +1,48 @@
-# Реестр проблем
+<a id="реестр-проблем"></a>
 
-Необязательный проектный каталог `issues/catalog.json` + `issues/entries/ISS-0001.json`. Версия схемы — 1. Карточки — переносимые JSON; `.highgrade/issues/` содержит только служебные блокировки и временные файлы. Каталог создаётся при первой записи. Чтение отсутствующего каталога ничего не создаёт. Не храните здесь секреты или полные логи.
+# Issue registry
 
-## Команды
+Optional project catalog: issues/catalog.json and issues/entries/ISS-0001.json, schema 1. Records are portable JSON; .highgrade/issues/ holds only locks/temp files. First write creates the catalog. Reading an absent catalog creates nothing. Store neither secrets nor full logs here.
 
-`highgrade <команда> --help` и `issue-schema` показывают схемы. Все команды, кроме справки, принимают `--root PATH`.
+<a id="команды"></a>
 
-| Команда | Параметры и результат |
+## Commands
+
+highgrade `<command>` --help and issue-schema show schemas. Except help, commands take --root PATH.
+
+| Command | Parameters/result |
 |---|---|
-| `issue-list` | Необязательные `--query`, `--tag`, `--status`; сводка, `verification_current` и `store_sha256` |
-| `issue-read` | `--id ISS-0001`, `--view summary\|full`; full включает квитанции случаев |
-| `issue-new` | `--expected HASH --input content.json`; новая открытая карточка |
-| `issue-edit` | `--id ID --expected HASH --input patch.json`; изменения полей content |
-| `issue-record` | `--id ID --expected HASH --input observation.json`; один наблюдаемый случай |
-| `issue-validate` | `--id ID`; проверка структуры каталога, состояния и доступности доказательств карточки |
-| `issue-recover` | `--expected HASH`; завершение обнаруженной прерванной транзакции |
+| issue-list | Optional --query, --tag, --status; summary, verification_current, store_sha256 |
+| issue-read | --id ISS-0001, --view summary\|full; full includes occurrence receipts |
+| issue-new | --expected HASH --input content.json; new open record |
+| issue-edit | --id ID --expected HASH --input patch.json; content fields |
+| issue-record | --id ID --expected HASH --input observation.json; one observation |
+| issue-validate | --id ID; catalog structure, state and record evidence availability |
+| issue-recover | --expected HASH; complete detected interrupted transaction |
 
-Берите CAS `store_sha256` из свежего чтения; для отсутствующего каталога это `absent`. При конфликте перечитайте запись и согласуйте правку с новой редакцией. Схема `content` задаёт вход issue-new без оболочки, схема `patch` — issue-edit. Массивы и вложенные объекты заменяются целиком. Неизвестные и служебные поля отвергаются. Не редактируйте каталог вручную.
+Use store_sha256 CAS from a fresh read; absent catalog uses absent. On conflict, reread/merge deliberately. content schema is issue-new input without a wrapper; patch is issue-edit. Arrays/nested objects replace whole values. Unknown/administrative fields are rejected. Never edit catalog files directly.
 
-## Карточка и состояния
+<a id="карточка-и-состояния"></a>
 
-`content` содержит `title`, `tags`, `status`, `symptom`, `applicability` (`environment`, `conditions`), `cause` (`status: unknown|confirmed`, `description`), `resolution` (`description`, `prevention`) и `related_specs`. Теги — короткие строчные ASCII-имена с цифрами/дефисами. Поиск query нечувствителен к регистру и охватывает content. Ссылки на спеки помогают навигации, но не наследуют требований и не доказывают существование или готовность спеки.
+## Record and states
 
-- `open`: проблема открыта, решение ещё не подтверждено.
-- `mitigated`: исходное действие успешно повторено, работоспособность восстановлена; причина может оставаться неизвестной.
-- `resolved`: успешная проверка решения при подтверждённой причине.
-- `stale`: прежнее подтверждение больше не подходит после существенной правки или неуспешного повторения.
+content has title, tags, status, symptom, applicability (environment/conditions), cause (status unknown|confirmed, description), resolution (description/prevention) and related_specs. Tags are short lowercase ASCII names with digits/hyphens. query is case-insensitive across content. Specification links aid navigation; they inherit no requirements and prove neither existence nor readiness.
 
-`issue-record` получает `occurrence_key`, `outcome: passed|failed|unknown`, `action`, `observed`, `evidence` (массив относительных путей к файлам). Ключ обозначает реальный случай, сохраняется при повторе команды; повтор той же записи и тех же файлов ничего не меняет, иное содержимое с тем же ключом — конфликт. Новое реальное наблюдение получает новый ключ. Счётчик `occurrences`, даты Unix UTC в секундах и квитанции повторов управляются CLI. Это компактные квитанции, не история полных логов каждого запуска.
+- open: problem remains; solution unconfirmed.
+- mitigated: original action repeated successfully; operation restored, cause may remain unknown.
+- resolved: successful solution check with confirmed cause.
+- stale: earlier verification no longer applies after material edits or failed repetition.
 
-После успешного record установите mitigated/resolved через edit. Требуются описание решения и актуальная успешная проверка; resolved дополнительно требует confirmed cause. Изменения симптома, применимости, причины или решения сбрасывают last_verified_at и переводят подтверждённую карточку в stale. Правки названия, тегов и ссылок не сбрасывают проверку. Старый occurrence_key после правки не подтверждает новую редакцию. Failed/unknown сбрасывают подтверждение; для новой проверки используйте новый ключ. Повторное открытие возможно через edit status=open.
+issue-record takes occurrence_key, outcome passed|failed|unknown, action, observed and evidence (relative file paths). A key identifies a real occurrence and stays on command retry. Identical content/files do nothing; different content with the same key conflicts. A new observation needs a new key. CLI owns occurrences, Unix UTC seconds and retry receipts. These are compact receipts, not full-log histories.
 
-Файлы evidence хешируются; изменение или исчезновение файла выдаёт предупреждение при чтении/validate и `verification_current=false` в списке. Чтение не меняет сохранённый status; перейти в подтверждённое состояние со старым файлом нельзя. Каталог issues и служебные файлы .highgrade не допускаются как evidence. Пустой evidence допустим для непосредственного наблюдения, но action/observed обязательны. CLI не запускает проверки и не подтверждает истинность наблюдения или диагноза. Карточки никогда не исполняются как команды.
+After a passed record, edit status to mitigated/resolved. Both require solution description and current passed verification; resolved also needs confirmed cause. Changes to symptom/applicability/cause/solution reset last_verified_at and make confirmed records stale. Title/tag/link edits do not. An old occurrence_key cannot verify edited content. Failed/unknown reset confirmation; use a new key for a new check. edit status=open reopens.
 
-## Целостность и восстановление
+Evidence files are hashed. Changed/missing files warn on read/validate and yield verification_current=false in lists. Reading leaves status unchanged; stale files cannot justify confirmed state. issues catalog/.highgrade administrative files cannot be evidence. Empty evidence is allowed for direct observation, but action/observed remain required. CLI neither runs checks nor certifies observations/diagnosis. Records are never executed as commands.
 
-Запись защищена блокировкой и CAS всего каталога. До изменения валидируются данные; обновление заголовка и карточки сопровождается `issues/transaction.json`. Пока транзакция не завершена, обычные команды отказывают с хешем для issue-recover. Recovery допускает только исходные или уже применённые байты обоих целевых файлов; чужая правка сохраняется и требует разбора. Перед восстановлением изучите ошибку и журнал; повторное восстановление частично применённого изменения безопасно. Не удаляйте активную блокировку другого процесса. После аварии сначала убедитесь, что указанный процесс завершён, затем удалите только его оставшуюся служебную блокировку.
+<a id="целостность-и-восстановление"></a>
 
-Неизвестная версия схемы, чужие файлы в корне issues, небезопасные пути и повреждённые карточки отвергаются. Один файл ограничен 8 МиБ; автоматического обрезания истории квитанций нет. Реестр не заменяет спецификации и не имеет их маршрута интеграции/человеческой приёмки. Когда и что записывать определяет [Fixer](../../procedures/fix.md).
+## Integrity and recovery
+
+Writes use a lock and whole-catalog CAS. Validate before edits. Header/record updates use issues/transaction.json. Until completion, normal commands refuse and provide the recovery hash. Recovery accepts only original/already applied bytes for both targets. Preserve foreign edits for diagnosis. Inspect error/journal before recovery; repeating partially applied recovery is safe. Never delete another process's active lock. After a crash, confirm the named process ended, then remove only its orphan administrative lock.
+
+Unknown schemas, foreign root files, unsafe paths and corrupt records are rejected. File limit is 8 MiB; receipt history is not truncated automatically. Issues do not replace specifications or use their integration/human-acceptance route. [Fixer](../../procedures/fix.md) defines when/what to record.

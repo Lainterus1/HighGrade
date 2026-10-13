@@ -1,11 +1,13 @@
-# Актуализация состояния проекта
+<a id="актуализация-состояния-проекта"></a>
 
-Clear — обзор состояния, а не команда удаления. При запросе «проверь» или «проанализируй» работай только на чтение. Для неинициализированного проекта `inspect --bootstrap` показывает структуру документов; область обзора кода находи целевым чтением и аудитом. Используй общий аудит, `doctor`/`inspect` и применимые штатные проверки; сравни фактический код, действующие требования, владение документами, ссылки, бюджеты контекста, временные обходы, архив и обязанности навыков. OpenSpec проверяй только там, где проект явно сохранил его действующим маршрутом. Проверь схему и совместимость проектной инструкции с глобальной поставкой; назови противоречия и затронутые задачи.
+# Review project state
 
-Если исправления поручены, меняй только согласованную область, проверяй результат и сохраняй историю. Повышение бюджетов и удаление функциональности требуют отдельного существенного решения. Обычное обновление документов и архива не ждёт вызова clear.
+Clear reviews state; it is not a deletion command. A request to check or analyze authorizes reading only. For an uninitialized project, `inspect --bootstrap` shows document structure. Find the code review scope through targeted reading and audit. Use common audit, `doctor`/`inspect` and applicable standard checks. Compare actual code, current requirements, document ownership, links, context budgets, workarounds, archive and skill responsibilities. Check OpenSpec only where the project explicitly retains that route. Check project instruction schema and compatibility with the global Delivery. Name conflicts and affected tasks.
 
-Применяй [контракт совместимости](../references/tools/diagnostics.md#совместимость-проекта): схема отдельно от смысла, принятые исключения сохраняются, автоматически проектная инструкция не переписывается.
+If fixes are requested, change only the agreed scope, check the result and preserve history. Budget increases and functionality removal need a separate material decision. Routine document and archive maintenance does not wait for Clear.
 
-Проверь каталог specs (или путь из specs-location.json), действующие требования, осиротевшие ссылки, актуальность доказательств и широких тегов. spec-list/spec-read не запускают проверки; повторный spec-run выполняй только в разрешённой области. Не переносить файлы по статусам и не удалять проектный каталог вместе с .highgrade. Не объединяй синонимы тегов без оценки контекста; согласованное объединение выполняет spec-tag-merge одной транзакцией.
+Apply the [compatibility contract](../references/tools/diagnostics.md#project-compatibility): schema and meaning are separate, accepted exceptions remain, and project instructions are not rewritten automatically.
 
-Если в области обзора уже есть issues/, используй issue-list/read и выборочный issue-validate: проверь применимость решений, verification_current, ссылки на evidence и существенные открытые обходы. Ошибка или устаревание записи — находка, а не разрешение автоматически повторять рецепт. Отсутствующий реестр не создавай. Владение решением — по [Fixer](fix.md).
+Check specs (or specs-location.json), current requirements, orphan links, evidence freshness and broad tags. spec-list/spec-read do not run checks. Repeat spec-run only within authorized scope. Do not move files by status or delete the project catalog with .highgrade. Assess context before merging tag synonyms. An agreed merge uses spec-tag-merge in one transaction.
+
+If issues/ exists within review scope, use issue-list/read and selective issue-validate. Check solution applicability, verification_current, evidence links and material open workarounds. A faulty or stale record is a finding, not authority to rerun its recipe. Do not create a missing registry. [Fixer](fix.md) owns reusable solutions.

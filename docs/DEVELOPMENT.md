@@ -1,10 +1,14 @@
-# Разработка и проверки
+<a id="разработка-и-проверки"></a>
 
-Нужны Python 3.12+, Node.js 24 и Rust 1.89. Команды — из корня. Кандидат CLI: Nextest либо `cargo build --locked`.
+# Development and verification
 
-## Изменения требований: нативные спецификации
+Use Python 3.12+, Node.js 24 and Rust 1.89. Run from root. Nextest or cargo build --locked builds candidate CLI.
 
-Маршрут — по [task](../kit/procedures/task.md#выбор-достаточного-маршрута), зависимая работа — через [Planner](../kit/procedures/planner.md); Goal требует поручения. CLI активной Поставки:
+<a id="изменения-требований-нативные-спецификации"></a>
+
+## Requirement changes: native specifications
+
+Select [task route](../kit/procedures/task.md#choose-a-sufficient-route). [Planner](../kit/procedures/planner.md) coordinates dependencies; Goal needs authority. Active CLI:
 
 ```powershell
 $hgProfile = $env:USERPROFILE
@@ -21,60 +25,74 @@ hgExe="$HOME/.highgrade/global/releases/$hgRelease/highgrade"
 "$hgExe" spec-schema --root "$PWD"
 ```
 
-Статус: `spec-check --id HG-CHANGE --brief true`; контекст: `spec-read --view summary|editable|full`.
+Status: spec-check --id HG-CHANGE --brief true. Context: spec-read --view summary|editable|full.
 
-Каталог изменяй совместимой CLI: `spec-new` с хешем → `spec-read --view editable` → `spec-edit --input patch.json --expected HASH --validate true`. Активную версию определяет global-status, target/debug — кандидат. Полный spec-save и параметры — в [справочнике](../kit/references/tools/specifications.md#структурированные-спецификации).
+Edit through compatible CLI: spec-new with hash → spec-read --view editable → spec-edit --input patch.json --expected HASH --validate true. global-status identifies active version; target/debug is a candidate. [Reference](../kit/references/tools/specifications.md#structured-specifications) owns spec-save/options.
 
-Далее: `spec-validate` → работа/тесты → `spec-evidence` → независимое ревью/`spec-review` → `spec-integrate --brief true` с проверкой готовности. Причины — spec-check, решение человека — spec-decide. Фокус CLI: `cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts`.
+Continue spec-validate → work/tests → spec-evidence → independent review/spec-review → spec-integrate --brief true with readiness check. spec-check explains gaps; spec-decide records human decisions. Focus: cargo test --locked --test catalog_contracts --test spec_contracts --test trace_contracts.
 
-## Сценарии и исходные результаты
+<a id="сценарии-и-исходные-результаты"></a>
 
-Метка `// highgrade: HG-...` связывает сценарий с Rust-тестом; trace требует фактический результат. Checks для spec-run необязательны, но объявленная связь должна совпадать. Требования к доказательствам — в [QUALITY](workflow/QUALITY.md).
+## Scenarios and original results
 
-Установите Nextest 0.9.146 в `target/highgrade/tools/bin` и добавьте каталог в PATH.
+// highgrade: HG-... links Rust tests/scenarios; trace requires actual results. spec-run checks are optional, but declared links must match. [QUALITY](workflow/QUALITY.md) owns evidence requirements.
 
-`verify.py tests` сверяет входы до/после Nextest. `prepare` сверяет хеши, состав входов и отчёты завершённой попытки; после сбоя/прерывания повтори `tests`. mtime не доказывает актуальность, снимок — подлинность. После `spec-integrate` повтори `prepare`/`trace`/`verify`: эквивалентный каталог допускает reuse, иначе повтори `tests`; причина — `native_report_reason`.
+Install Nextest 0.9.146 into target/highgrade/tools/bin and add it to PATH.
 
-Отчёты tests/UI: [запуск, экспорт и очистка](EVIDENCE-STORAGE.md).
+verify.py tests compares inputs before/after Nextest. prepare checks hashes, input contents and completed-attempt reports. After failure/interruption, repeat tests. mtime proves no freshness; a snapshot proves no authenticity. After integration, repeat prepare/trace/verify. Equivalent catalogs allow reuse; otherwise repeat tests. native_report_reason explains why.
 
-## Выбор проверок
+Tests/UI reports: [run/export/cleanup](EVIDENCE-STORAGE.md).
 
-| Изменение | Достаточная проверка | Когда расширять |
+<a id="выбор-проверок"></a>
+
+## Select checks
+
+| Change | Sufficient check | Expand when |
 |---|---|---|
-| Документы, UI/API | Смысловая сверка [UI](UI.md), [ui/README](../ui/README.md) и diff; check-repository, render-skills --check, inspect | Новое поведение — его тесты |
-| Rust CLI, формат, установка | Узкие контрактные тесты; один полный Nextest/trace для итоговой редакции цепочки | При конкретном непокрытом риске или отказе переиспользования |
-| Только результаты/метаданные каталога | spec-validate/check; prepare/trace/verify при изменении трассировки | Nextest лишь при изменении его значимых входов |
-| Сборка/активация | build-release.py из SHA, preview/apply одного кандидата, global-status | Ошибка — адресная диагностика и восстановление |
+| Documents, UI/API | Semantic review of [UI](UI.md), [ui/README](../ui/README.md), diff; check-repository, render-skills --check, inspect | New behavior needs its tests |
+| Rust CLI, format, installation | Narrow contract tests; one full final-chain Nextest/trace | Specific uncovered risk or reuse refusal |
+| Catalog results/metadata only | spec-validate/check; prepare/trace/verify if trace changes | Nextest only for changed causal inputs |
+| Build/activation | build-release.py from SHA; one candidate preview/apply/global-status | Failure needs targeted diagnosis/recovery |
 
-Внешний пилот требует поручения.
+External pilots need a request.
 
-Контракт — spec-list/read; причинные входы — [work](../kit/procedures/work.md#область-входов-доказательства), [примеры](evidence/current-requirements/2026-10-01/verification.md). Общий снимок их не заменяет.
+Contract: spec-list/read. Causal inputs: [work](../kit/procedures/work.md#evidence-input-scope), [examples](evidence/current-requirements/2026-10-01/verification.md). A shared snapshot does not replace them.
 
-`spec-stats --id HG-CHANGE` читает длительности без запуска. Для наблюдения человека сохрани ссылку на сообщение.
+spec-stats reads timings without execution. Preserve the message link for human observations.
 
-## Rust CLI и глобальная поставка
+<a id="rust-cli-и-глобальная-поставка"></a>
 
-JUnit: spec-run-inputs до запуска, spec-run-import после. Снимок задним числом не подтверждает актуальность; формат — в справочнике CLI.
+## Rust CLI and global Delivery
 
-Диагностика активной CLI: `doctor` и `inspect --root <проект>`. Установку проверяют global_contracts; дополнительные профили нужны при непокрытом риске. unknown не является PASS.
+JUnit: spec-run-inputs before execution, spec-run-import afterwards. A retrospective snapshot does not prove freshness. CLI reference owns format.
 
-Временные пробы — только в `target/highgrade/tmp/<запуск>`; после задачи убирай их. Структура и обслуживание — в [BUILD](BUILD.md); контроль размера: `python scripts/target-maintenance.py --check`.
+Active CLI diagnostics: doctor and inspect --root `<project>`. global_contracts checks installation; add isolated profiles for uncovered risks. unknown is not PASS.
 
-## Интерфейс и Storybook
+Use only target/highgrade/tmp/`<run>` for temporary probes; remove after work. [BUILD](BUILD.md) owns structure/maintenance. Size: python scripts/target-maintenance.py --check.
 
-ui: `npm ci`, `npm run build`, `npm run build-storybook`, `npm test`; корень: `cargo build --locked`. `npm run storybook`: 127.0.0.1:6006. [Installed E2E и браузер](BUILD.md#обязательный-installed-e2e).
+<a id="интерфейс-и-storybook"></a>
 
-## Отдельные плагины
+## UI and Storybook
 
-SVG Vectorizer — [README](../plugins/svg-vectorizer/README.md); Code Health Audit — [SKILL.md](../plugins/code-health-audit/skills/code-health-audit/SKILL.md). Проверки поведения — в собственных окружениях плагинов.
+ui/: npm ci, npm run build, npm run build-storybook, npm test. Root: cargo build --locked. npm run storybook serves 127.0.0.1:6006. [Installed E2E/browser](BUILD.md#required-installed-e2e).
 
-## Принятие и публикация
+<a id="отдельные-плагины"></a>
 
-Полномочия и последовательность — в [местной инструкции](../.highgrade/project/INSTRUCTIONS.md), сборка — в [BUILD](BUILD.md). Push разрешается отдельно.
+## Separate plugins
 
-## Общие проверки и CI
+SVG Vectorizer: [README](../plugins/svg-vectorizer/README.md). Code Health Audit: [SKILL](../plugins/code-health-audit/skills/code-health-audit/SKILL.md). Their own environments check behavior.
 
-Штатные команды по матрице выше:
+<a id="принятие-и-публикация"></a>
+
+## Acceptance and publication
+
+The [local instruction](../.highgrade/project/INSTRUCTIONS.md) owns authority/order. [BUILD](BUILD.md) owns builds. Push needs separate authority.
+
+<a id="общие-проверки-и-ci"></a>
+
+## Common checks and CI
+
+Standard commands selected by the matrix:
 
 ```bash
 cargo fmt --all -- --check
@@ -90,15 +108,15 @@ node scripts/check-repository.mjs
 python scripts/verify.py inspect
 ```
 
-CI асинхронен: ожидание не блокирует Work, интеграцию и порученные коммит, активацию или push. Статус точного SHA сообщается отдельно; известный отказ разбирается по местной инструкции.
+CI is asynchronous; waiting does not block Work, integration or authorized commit/activation/push. Report exact-SHA status separately; diagnose known failure under local rules.
 
-| Проверка | Linux | Windows |
+| Check | Linux | Windows |
 |---|---|---|
-| render-skills, fmt, структура, inspect, specs | Да | — |
-| Python lifecycle, Nextest inventory/run/trace, Node guards | Да | Да |
-| Scale/reuse, Storybook, native/decision/edit Playwright | Да | — |
-| Embedded UI, exact release build, required installed upgrade/recovery | Да | Да |
+| render-skills, fmt, structure, inspect, specs | Yes | — |
+| Python lifecycle, Nextest inventory/run/trace, Node guards | Yes | Yes |
+| Scale/reuse, Storybook, native/decision/edit Playwright | Yes | — |
+| Embedded UI, exact release build, required installed upgrade/recovery | Yes | Yes |
 
-`ubuntu-24.04` — [образ GitHub Linux runner](https://docs.github.com/en/actions/reference/runners/github-hosted-runners), не требование к пользователю. Тонкие native UI отказы отдельно проверены только на Linux; при Windows UI дефекте повтори затронутый selector на Windows.
+ubuntu-24.04 is the [GitHub runner image](https://docs.github.com/en/actions/reference/runners/github-hosted-runners), not a user requirement. Narrow native UI failures were separately tested on Linux only; repeat affected selectors on Windows for a Windows UI defect.
 
-`verify.py specs` читает каталог один раз. Cargo cache имеет ключ SHA и fallback по платформе/toolchain/dependencies. Проверка исторического кэша — [BUILD](BUILD.md#обязательный-installed-e2e); область кэшей — [GitHub](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching). Новый запуск отменяет прежний запуск той же ветки. Кэш и локальный PASS не доказывают результат другой ОС или приёмку. Экономия времени требует измерения нового run.
+verify.py specs reads catalog once. Cargo cache keys use SHA with platform/toolchain/dependency fallbacks. [BUILD](BUILD.md#required-installed-e2e) owns historical-cache checks; [GitHub](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching) defines cache scope. A new run cancels the previous run on the same branch. Cache/local PASS proves neither another OS result nor acceptance. Time savings need new-run measurement.

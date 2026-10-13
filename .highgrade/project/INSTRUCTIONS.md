@@ -2,44 +2,56 @@
 highgrade_project_schema: 1
 highgrade_spec_format: native-v1
 ---
-# Местная инструкция Проекта High Grade
+<a id="местная-инструкция-проекта-high-grade"></a>
 
-Установленную версию Поставки проверяет `global-status`; записи выпусков находятся в [docs/releases](../../docs/releases/). Служебный статус выпуска не меняет эти рабочие правила. Эта инструкция управляет только Проектом — репозиторием разработки Поставки — и не входит в установленную Поставку. Подключаемые проекты получают собственную адаптацию; термины определены в [README](../../README.md#термины-и-границы).
+# High Grade Project local instruction
 
-## Владение знаниями
+global-status confirms the installed Delivery; [docs/releases](../../docs/releases/) stores release records. Administrative release state does not alter these work rules. This instruction governs the Delivery development repository only and is not installed. Connected projects receive their own adaptation. [README](../../README.md#термины-и-границы) defines terms.
 
-- Цель и вход: [README](../../README.md).
-- Агентские правила: [AGENTS](../../AGENTS.md).
-- Фактическое устройство: [ARCHITECTURE](../../docs/ARCHITECTURE.md).
-- Инженерные правила и команды: [ENGINEERING](../../docs/ENGINEERING.md) и [DEVELOPMENT](../../docs/DEVELOPMENT.md).
-- Общий продуктовый контракт: [GLOBAL](../../docs/workflow/GLOBAL.md). Действующие правила доказательств и контекста: [QUALITY](../../docs/workflow/QUALITY.md) и [CONTEXT](../../docs/workflow/CONTEXT.md); [SPECIFICATION](../../docs/archive/workflow/SPECIFICATION.md) — история решений.
-- Реестр ролей, областей и бюджетов: [documents.json](documents.json). Текущий статус и основание бюджетов приведены в реестре; исходные измерения и предложенные диапазоны — в [обосновании](../../docs/proposals/context-budget-2026-09-23.md).
+<a id="владение-знаниями"></a>
 
-## Работа над задачей и спецификацией
+## Knowledge ownership
 
-- Язык авторских документов и отчётов — русский; машинные ключи, ID и команды не переводятся.
-- Каталог — `specs/`, нативный JSON (каталоги v3/v4/v5). Владение форматом и команды — в [справочнике](../../kit/references/tools/specifications.md#структурированные-спецификации), проверочный маршрут — в [DEVELOPMENT](../../docs/DEVELOPMENT.md). Каталог изменяется через CLI. Общая установка не мигрирует его автоматически.
-- Версию установки подтверждает global-status. При разработке нового формата допустима собранная CLI из проверяемого дерева; обозначай её как кандидат. Не объявляй активной до global-update. После записи новых полей используй совместимую CLI; прежняя версия не должна редактировать такой каталог.
-- Автоматический маршрут highgrade-planner принят для зависимых задач и спек; он не даёт самостоятельного разрешения создать Goal. Состояние продолжения — в игнорируемом `.highgrade/local/`, задачи — в спеках; отдельный backlog не нужен.
-- Значимые изменения проверяет независимый субагент: требования, относящийся diff и исходные результаты. Передача разрешена без повторного вопроса. Правила ревью — в [work](../../kit/procedures/work.md#доказательства-и-ревью); обязательное недоступное ревью не считается завершённым.
-- История OpenSpec и промежуточного JSON сохранена в [архиве](../../docs/archive/legacy-native-specs/2026-09-25/). Не переносить старое evidence в passed из наличия исторического контракта.
+- Goal/entry: [README](../../README.md).
+- Agent rules: [AGENTS](../../AGENTS.md).
+- Actual structure: [ARCHITECTURE](../../docs/ARCHITECTURE.md).
+- Engineering/commands: [ENGINEERING](../../docs/ENGINEERING.md), [DEVELOPMENT](../../docs/DEVELOPMENT.md).
+- Common product contract: [GLOBAL](../../docs/workflow/GLOBAL.md). Current evidence/context rules: [QUALITY](../../docs/workflow/QUALITY.md), [CONTEXT](../../docs/workflow/CONTEXT.md). [SPECIFICATION](../../docs/archive/workflow/SPECIFICATION.md) is decision history.
+- Roles, scope and budgets: [documents.json](documents.json). The registry owns current state/grounds; [proposal](../../docs/proposals/context-budget-2026-09-23.md) stores original measurements/ranges.
 
-## Локальная фиксация через `highgrade-commit`
+<a id="работа-над-задачей-и-спецификацией"></a>
 
-- Область коммита определяется порученной задачей, её спецификацией при наличии и ревью; посторонние изменения остаются вне него. До кандидатного коммита выполни применимые локальные проверки и независимое ревью из [DEVELOPMENT](../../docs/DEVELOPMENT.md), проверь полный staged diff, лицензию и отсутствие закрытых данных. Рабочие документы и архив готовит work; commit устраняет найденный разрыв. Неудача pre-submit-проверки возвращает задачу в Work. CI Linux/Windows выполняется асинхронно после публикации. Его ожидание или недоступность не блокирует готовность Work, spec-integrate и порученную активацию. Сообщи статус точного SHA отдельно; известный отказ разбери и исправь выявленную ошибку. Локальный PASS не доказывает Windows CI, приёмку или будущую работу агента.
-- Разовый переход на v0-2-7 завершён; его условия сохранены в [архивной спецификации выпуска](../../docs/archive/legacy-openspec/specs/release-workflow/spec.md), результат — в [записи выпуска](../../docs/releases/v0-2-7.md). К текущим задачам переходная процедура не применяется.
-- `highgrade-commit` фиксирует точный локальный Git-коммит; кандидат с финальными пробелами не является принятым результатом. В этом Проекте локальная активация назначена, если меняется исполняемая CLI (`src/`, `Cargo.toml`, `Cargo.lock`) или Поставка `kit/`, либо автор явно просит активировать. При невыполненных обязательных локальных критериях и при явном ограничении поручения «без активации/выпуска» она отложена; release ID не повышается. Ожидаемый CI сам по себе активацию не откладывает. В зависимой цепочке, где итоговая активация назначена этим правилом или автором, промежуточные коммиты не активируй и не повышай release ID, если следующему этапу не нужна новая активная CLI; активируй последний готовый коммит цепочки. Если промежуточная активная CLI нужна или автор просит активацию конкретного этапа, применяй обычный маршрут на этом этапе. Отсрочка не означает выполненную активацию. Для остальных проектных документов и скриптов без такого поручения не собирай кандидат выпуска и не повышай версию; нужные тесты выполняй обычным маршрутом.
-- Если активация назначена для текущего коммита, **до коммита и сборки кандидата** назначь следующий неиспользованный release ID: используй явно назначенную автором версию, иначе повысь patch-версию; синхронно обнови значения в `Cargo.toml`, `Cargo.lock`, `kit/manifest.json` (`release` и `cli_version`) и обнови ожидания версии в тестах. Проверь манифест и тесты. Не собирай для активации новый кандидат с уже установленным ID: выпуск неизменяем.
-- При назначенной активации после коммита выполни `python scripts/build-release.py <SHA>`: это единственная обязательная release-сборка для данного кандидата. Изолированные исходники удаляются, Cargo использует `target/highgrade/build-cache`, готовый кандидат — `target/highgrade/candidate`. Запусти **CLI кандидата** из `target/highgrade/candidate/` (`highgrade` либо `highgrade.exe` согласно ОС) с командой `global-update --profile <домашний-каталог> --source <абсолютный-путь-к-candidate/kit> --candidate-exe <абсолютный-путь-к-candidate/highgrade>`; в Windows имя кандидата заканчивается на `.exe`. Подробности — в [инструкции сборки](../../docs/BUILD.md). Сначала preview и смысловая сверка, затем apply с тем же `candidate_sha256`. Не собирай из грязного дерева. Проверка — `global-status`; после сбоя проверь фактическое состояние по [процедуре Update](../../kit/procedures/update.md#повтор-и-ошибки). Если активация не прошла, коммит остаётся, статус задачи частичный. Commit не разрешает GitHub push.
+## Task and specification work
 
-## Публикация через `highgrade-push`
+- Active agent instructions use English. User documents, README, specifications, plans and reports use Russian. Answer in Russian unless the user requests another language. Instruction language does not change project/product language. Keep machine keys, IDs, commands and original messages unchanged.
+- specs/ uses native JSON directory v3/v4/v5. [Reference](../../kit/references/tools/specifications.md#structured-specifications) owns format/commands; [DEVELOPMENT](../../docs/DEVELOPMENT.md) owns checks. Edit catalogs through CLI. Global installation never migrates them automatically.
+- global-status confirms active CLI. New-format development may use a built CLI explicitly identified as candidate. Do not claim it active before global-update. After writing new fields, use compatible CLI; former versions must not edit that catalog.
+- Automatic highgrade-planner routing is accepted for dependent tasks/specifications; it does not itself authorize a Goal. Continuation lives in ignored .highgrade/local/. Specifications own tasks; no separate backlog.
+- Significant changes need independent subagent review of requirements, relevant diff and original results. Delegation needs no repeated question. [work](../../kit/procedures/work.md#evidence-and-review) owns method; unavailable mandatory review remains unfinished.
+- OpenSpec/intermediate JSON history is in [archive](../../docs/archive/legacy-native-specs/2026-09-25/). Historical contracts alone do not turn old evidence into passed.
 
-- Remote — `origin`, репозиторий `Lainterus1/HighGrade`, основная ветка — `main`. По отдельному поручению отправляй выбранный непрерывный диапазон в явно выбранную ветку: кандидат для CI — в порученную рабочую ветку, готовое изменение — через порученный PR с base `main` либо явно разрешённый direct push. Наличие разрешения на push не разрешает PR/merge. Диапазон может включать несколько задач; неоднозначный состав или цель требуют уточнения.
-- Pre-submit — актуальные применимые локальные проверки из DEVELOPMENT, независимое ревью, известный состав и проверка секретов/лицензий. Готовность определяется применимыми локальными проверками и независимым ревью. CI не требует ожидания: один раз проверь доступный статус точного SHA и сообщи его отдельно. Известный отказ возвращает выявленную ошибку в Work; pending/unavailable не отменяет завершение порученной работы. Перед отправкой сверь актуальную ветку и последствия workflow, включая возможный deploy; новый внешний эффект требует соответствующих полномочий. Используй обычный push без force и проверь удалённый SHA выбранной ветки. Успех push/CI не разрешает merge, tag/release или deploy и не означает приёмку.
-- После squash/rebase/merge сверь значимые входы и содержимое, сохрани связь с проверенной редакцией и сообщи доступный статус CI нового SHA без обязательного ожидания. Прежний verified_revision не переписывается; существенный дрейф требует нового результата и решения. Публикация не доказывает активацию: установленную версию определяет только global-status. Установленные SVG/CHA и другие проекты не входят в маршрут.
+<a id="локальная-фиксация-через-highgrade-commit"></a>
 
-## Полномочия и исключения
+## Local recording through highgrade-commit
 
-- Этот репозиторий поддерживает исходники High Grade. Работа с SNAF, PlantsNotify и другими целевыми проектами выполняется в их каталогах по отдельному поручению.
-- Публикация следующих версий, переключение SVG/CHA, деплой и приёмка пилотов требуют соответствующего поручения; прежние выпуски не дают постоянного разрешения на эти действия.
-- Для выпуска v0-2-15 автор 2026-09-25 явно принял все 15 действующих спек, остановил дополнительные агентные пилоты и поручил продолжить коммит, локальную активацию и публикацию при известных пробелах проверки. Решение и точный исходный снимок — в [записи](../../docs/evidence/spec-verification/2026-09-25-human-decision.json), технический остаток — в [записи выпуска](../../docs/releases/v0-2-15.md). Исключение действует только для этого выпуска: недостающие наблюдения не отмечать `passed`, машинный статус CLI не подменять. Остальные найденные конфликты показывать автору до зависимого действия.
+- Task/request, specification if present and review define scope. Preserve unrelated changes. Before a candidate commit, complete applicable local checks/review under DEVELOPMENT, inspect full staged diff, license/private data. Work prepares documents/history; Commit closes found gaps. Failed pre-submit returns to Work. Linux/Windows CI runs asynchronously after publication. Pending/unavailable CI does not block Work readiness, integration or authorized activation. Report exact-SHA status separately. Diagnose known failures and fix actual defects. Local PASS proves neither Windows CI, acceptance nor future agent behavior.
+- The one-time v0-2-7 transition is complete; [archived contract](../../docs/archive/legacy-openspec/specs/release-workflow/spec.md) and [record](../../docs/releases/v0-2-7.md) retain it. It does not apply to current tasks.
+- Commit records an exact local SHA; candidates with final gaps are not accepted results. Local activation is assigned when executable CLI (src/, Cargo.toml/Cargo.lock) or kit/ changes, or explicitly requested. Defer for unmet mandatory local criteria or an explicit no-activation/release limit; do not increment release ID. Pending CI alone does not defer. For dependent chains, defer intermediate activation/version increments until the last ready commit unless the next stage needs active new CLI or the user assigns activation of that stage. Then use the normal route. Deferred is not completed. Other project documents/scripts alone need no release candidate/version increment without a request; run applicable ordinary checks.
+- For assigned activation, **before commit/candidate build**, select the next unused release ID: explicit user version, otherwise patch increment. Synchronize Cargo.toml, Cargo.lock, kit/manifest.json release/cli_version and version test expectations. Check manifest/tests. Never activate new content with an installed ID; releases are immutable.
+- After commit with assigned activation, run python scripts/build-release.py `<SHA>`. This is the candidate's only mandatory release build. Isolated sources are removed; Cargo uses target/highgrade/build-cache; output is target/highgrade/candidate. Use its CLI (highgrade or highgrade.exe) for global-update --profile `<home>` --source `<absolute-candidate/kit>` --candidate-exe `<absolute-candidate/highgrade[.exe]>`. [BUILD](../../docs/BUILD.md) owns details. Preview/semantic review first, then apply the same candidate_sha256. Never build activation from a dirty tree. Verify global-status. Diagnose failure under [Update](../../kit/procedures/update.md#retry-and-failures). Failed activation keeps the commit and partial task status. Commit does not authorize GitHub push.
+
+<a id="публикация-через-highgrade-push"></a>
+
+## Publication through highgrade-push
+
+- Remote origin, repository Lainterus1/HighGrade, main branch main. On a separate request, send the selected continuous range to an explicit branch: CI candidates to assigned work branches; ready changes through an assigned PR with base main or explicitly authorized direct push. Push authority does not imply PR/merge. Ranges may cover several tasks; clarify ambiguous scope/target.
+- Pre-submit needs current applicable DEVELOPMENT checks, independent review, known scope and secrets/licenses check. Local checks/review determine readiness. CI needs no wait: read available exact-SHA status once and report separately. Known failure returns the actual defect to Work; pending/unavailable does not undo authorized completion. Before sending, check current branch/workflow effects including deployment. New external effects need authority. Use ordinary push without force and verify remote SHA. Push/CI success does not authorize merge, tag/release/deploy or acceptance.
+- After squash/rebase/merge, compare causal inputs/content, preserve verified-revision linkage and report available new-SHA CI without mandatory wait. Never rewrite former verified_revision. Material drift needs new results/decision. Publication does not prove activation; only global-status confirms installation. Installed SVG/CHA and other projects remain outside scope.
+
+<a id="полномочия-и-исключения"></a>
+
+## Authority and exceptions
+
+- This repository maintains High Grade sources. Work on SNAF, PlantsNotify or other products requires a separate request in their directories.
+- Future-version publication, SVG/CHA switching, deployment and pilot acceptance need their own requests; former releases confer no standing authority.
+- For v0-2-15 on 2026-09-25, the user explicitly accepted all 15 current specifications, stopped extra agent pilots and requested commit/local activation/publication with known gaps. [Decision](../../docs/evidence/spec-verification/2026-09-25-human-decision.json) and [release record](../../docs/releases/v0-2-15.md) retain the exact snapshot/remainder. This exception applies only to that release. Do not mark absent observations passed or override machine status. Show other material conflicts before dependent action.

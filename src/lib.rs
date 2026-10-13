@@ -7,6 +7,7 @@ pub mod issues;
 pub mod launcher;
 pub mod package;
 pub mod paths;
+pub mod release_notes;
 pub mod specs;
 pub mod survey;
 pub mod trace;

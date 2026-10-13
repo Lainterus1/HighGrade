@@ -31,15 +31,15 @@ class WorkflowContractTests(unittest.TestCase):
     def test_init_links_the_adaptation_that_commit_and_push_consume(self):
         init = (KIT / 'procedures/init.md').read_text(encoding='utf-8')
         self.assertIn('../templates/INSTRUCTIONS.md', init)
-        self.assertIn('не переписывай принятые местные правила молча', init)
+        self.assertIn('do not silently overwrite accepted local rules', init)
         template = (KIT / 'templates/INSTRUCTIONS.md').read_text(encoding='utf-8')
-        for field in ('Git и идентичность результата', 'Pre-submit', 'Финальная готовность',
-                      'highgrade-commit', 'highgrade-push', 'base/head', 'Последствия отправки',
-                      'Решения и полномочия', 'build ID', 'squash/rebase/merge'):
+        for field in ('Git/result identity', 'Pre-submit', 'Final readiness',
+                      'highgrade-commit', 'highgrade-push', 'base/head', 'Push effects',
+                      'Decisions/authority', 'build ID', 'squash/rebase/merge'):
             self.assertIn(field, template)
         for procedure in ('commit', 'push'):
             body = (KIT / f'procedures/{procedure}.md').read_text(encoding='utf-8')
-            for boundary in ('pre-submit', 'Work', 'Git', 'SHA', 'приёмк'):
+            for boundary in ('pre-submit', 'Work', 'Git', 'SHA', 'acceptance'):
                 self.assertIn(boundary, body)
 
     def test_planner_route_does_not_grant_goal_or_plan_only_execution(self):
@@ -48,14 +48,14 @@ class WorkflowContractTests(unittest.TestCase):
         task = (KIT / 'procedures/task.md').read_text(encoding='utf-8')
         template = (KIT / 'templates/AGENTS.md').read_text(encoding='utf-8')
         planner = (KIT / 'procedures/planner.md').read_text(encoding='utf-8')
-        self.assertIn('Автоматический выбор Planner не разрешает Goal', task)
-        self.assertIn('Запрос только на план не разрешает Goal или реализацию', task)
-        self.assertIn('Принятие этого маршрута не разрешает создание Goal', template)
-        self.assertIn('подготовь план без Goal и реализации', template)
-        self.assertNotIn('это принятое проектом поручение на Goal', template)
-        self.assertNotIn('ограничь Goal подготовкой плана', template)
-        self.assertIn('сам по себе не разрешает создание Goal', planner)
-        self.assertIn('запрос только на план не разрешают создавать Goal', planner)
+        self.assertIn('Automatic Planner selection does not authorize a Goal', task)
+        self.assertIn('A plan-only request authorizes neither a Goal nor implementation', task)
+        self.assertIn('Accepted routing does not authorize a Goal', template)
+        self.assertIn('creates a plan without Goal/implementation', template)
+        self.assertNotIn('this accepted project route authorizes a Goal', template)
+        self.assertNotIn('limit the Goal to preparing a plan', template)
+        self.assertIn('Automatic routing alone does not authorize it', planner)
+        self.assertIn('plan-only requests authorize neither a Goal nor edits', planner)
 
     def test_all_current_kit_markdown_links_resolve_after_the_rename(self):
         for path in KIT.rglob('*.md'):

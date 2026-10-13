@@ -1,5 +1,7 @@
-# Действующее устройство
+<a id="действующее-устройство"></a>
 
-Опиши реальные компоненты, данные, связи и инварианты проекта. Отмечай границы знания и действующие ограничения. Поведение и сценарии принадлежат спецификациям High Grade; решения, объясняющие долговременный выбор, при необходимости получают ADR.
+# Current architecture
 
-Покажи проектный каталог требований и изменений отдельно от служебной настройки High Grade; место штатных тестов и связи checks с их исходниками. Не дублируй тексты требований в архитектуре.
+Describe actual components, data, relationships and invariants. State knowledge boundaries and current limits. High Grade specifications own behavior/scenarios. Use ADRs for lasting decisions when needed.
+
+Show the requirements/change catalog separately from High Grade administrative configuration, standard test locations and check-source links. Do not duplicate requirements here.

@@ -1,0 +1,45 @@
+<a id="локальная-фиксация-задачи"></a>
+
+# Record a local task commit
+
+Run on an explicit highgrade-commit request for a specific task. It authorizes a local Git commit and only project-assigned local activation. It does not authorize push, PR, merge, tag, release or remote deployment. Old highgrade-approve/highgrade-deploy names are not additional active skills. Clarify an ambiguous legacy call without expanding earlier authority.
+
+<a id="состав-и-барьер-коммита"></a>
+
+## Commit scope and barrier
+
+Read local rules for scope, pre-submit checks, final checks and activation. Identify the task source, specification state if present, documents and review. Work prepares content/evidence; Commit checks freshness and resolves gaps. For a native change, use spec-check --brief true. An unfinished mandatory criterion cannot become ready. Keep CI separate from readiness under [work](work.md).
+
+If the project/user explicitly assigns a late mandatory check, a local candidate commit is allowed after applicable pre-submit checks and review. Name the open criterion, source and next step; dependent readiness stays unfinished. This does not bypass a failed local check, unknown scope or project prohibition. Do not call spec-integrate, result attention or spec-decide accepted before their actual barriers. Do not automatically require CI waiting.
+
+Without Git, commit/Git-push are inapplicable. Do not run git init for this stage. Continue Work with the project method for immutable recording, verification and storage, such as a hash-manifest package and immutable build ID. If no method exists, state the identification gap. Work completion does not require Git. Native acceptance requires technical readiness and an exact checked-input snapshot, not a mandatory SHA/build ID.
+
+For Git, select only task files/hunks. Leave unclear/unrelated content outside the commit. Do not rewrite another index or blindly use git add -A, reset or stash. Preserve rejected reasons in the project archive. Remove one-time material only after ownership/link checks. Review the full staged diff, origin, licenses, secrets and caches. Compare required spec/results, reports and unrecoverable inputs with the chosen index through [delivery diagnostics](../references/tools/diagnostics.md#evidence-delivery-contents). Do not add all logs automatically.
+
+Reuse current Work results. Repeat affected checks, a specific gap or mandatory project barrier. For a technical task without a specification, check request/plan and result without requiring a spec ID. With a specification, mark only completed tasks and include its ID in the commit message. Commit the chosen scope; report SHA, candidate/readiness and remainder. A commit needs no known push route and does not imply human acceptance.
+
+<a id="решение-пользователя"></a>
+
+## User decision
+
+Explicit acceptance plus activation of a shown exact ready result may authorize both. Activate alone authorizes only activation, even after a ready result. Execute, a Commit call, requirements agreement and a prior request with future acceptance do not accept an unseen result. Record spec-decide only on explicit acceptance of selected specifications with known revision, checks and remainder. Do not request the same decision again.
+
+At technical readiness, result attention and an explicit human decision may be recorded before commit. Known SHA/build ID is optional; do not create a commit to fill an acceptance form. Include new catalog/results records in the authorized commit. A candidate awaiting CI needs neither fictitious acceptance nor a second empty commit. A later decision needs a new record and authorized recording; it is not already published.
+
+Acceptance does not prove a human-observation scenario. After rechecking, treat acceptance as current only if spec-list reports accepted. Do not transfer it across drift. After squash/rebase/merge, compare actual content and causal inputs; link the verified revision to the new SHA under project rules. The old verified_revision remains historical. Never replace it manually or claim the human checked another commit. Material changes need checks and a new decision. Branch names/commit messages alone do not prove equivalence.
+
+<a id="проектная-активация"></a>
+
+## Project activation
+
+Without assigned local activation, the stage ends at commit. For a candidate with open mandatory criteria, defer activation unless the user/project explicitly permits trial operation. Trial success does not close gaps. Pending CI alone does not defer activation under [work](work.md). Before an expensive assigned build, check authority, project barrier and delivery of a readable candidate to the target environment. Check release ID, version increment and immutability only when the project requires them. An ordinary commit does not require a release.
+
+Use an isolated exact-SHA copy or the project immutable result, with assigned preview/apply/check/recovery commands. Do not substitute High Grade global-update for a connected project's command, activate a dirty tree or expand whole-profile access for handoff. On failure, check actual state. Claim automatic rollback only with a confirmed mechanism guarantee. Keep the commit; report that recording succeeded but local activation failed, with cause and next step.
+
+Report checks/readiness, local recording, activation, publication and human acceptance separately. One success does not confirm the others.
+
+## Delivery release description
+
+When preparing a High Grade Delivery release, use references/release-notes.json as the single user-change source. After the project assigns the new release ID, move unreleased changes/breaking/actions into one entry with that ID and previous verified release, then clear unreleased. Do not rename an immutable published entry. Record only verified shipped behavior and all required compatibility actions. Missing older history remains explicit; do not invent it.
+
+Under Work, maintain the affected README section for a significant capability: a new user scenario, changed way of working or required update action. Internal changes need no README feature list. Keep README in the project language and link details. The update summary and release description use the same source facts; README explains current capabilities rather than accumulating release history. Publishing those edits still follows Push authority.

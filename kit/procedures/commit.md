@@ -1,31 +1,45 @@
-# Локальная фиксация задачи
+<a id="локальная-фиксация-задачи"></a>
 
-Запускай по явному поручению `highgrade-commit` для конкретной задачи. Вызов разрешает локальный Git-коммит и только назначенную проектом локальную активацию; не разрешает push, PR, merge, тег, выпуск или удалённое развёртывание. Старые имена `highgrade-approve` и `highgrade-deploy` не являются дополнительными активными навыками: уточни область устаревшего вызова, если она неоднозначна, не расширяя прежнее разрешение.
+# Record a local task commit
 
-## Состав и барьер коммита
+Run on an explicit highgrade-commit request for a specific task. It authorizes a local Git commit and only project-assigned local activation. It does not authorize push, PR, merge, tag, release or remote deployment. Old highgrade-approve/highgrade-deploy names are not additional active skills. Clarify an ambiguous legacy call without expanding earlier authority.
 
-Прочитай местную инструкцию: выбранный состав, проверки до коммита/отправки (pre-submit), финальные проверки и условия активации. Установи источник задачи, состояние спеки при её наличии, документы и ревью. `work` готовит содержание и доказательства; commit сверяет их актуальность и устраняет выявленные пробелы. Для нативного change используй `spec-check --brief true`; невыполненный обязательный критерий не превращай в ready. Статус CI отделяй от готовности по [work](work.md).
+<a id="состав-и-барьер-коммита"></a>
 
-Если проект или пользователь явно назначил обязательную позднюю проверку, разрешён локальный кандидатный коммит после применимых pre-submit-проверок и ревью. Назови незакрытый критерий, источник и следующий шаг; его зависимую готовность оставь незавершённой. Это не обход упавшей локальной проверки, неизвестного состава или запрета проекта. Не вызывай `spec-integrate`, обращение `result` или `spec-decide accepted` до их действительных барьеров. Не назначай ожидание CI автоматически.
+## Commit scope and barrier
 
-При отсутствии Git коммит и Git-push неприменимы: не запускай git init ради этапа. Продолжи Work по проектному способу фиксации неизменяемого результата (например, пакет с манифестом хешей и неизменяемым build ID), его проверке и хранению. Без такого способа явно назови пробел идентификации. Завершение Work не требует Git; приёмка нативной спеки требует технической готовности и точного снимка проверенных входов, но не обязательного SHA/build ID.
+Read local rules for scope, pre-submit checks, final checks and activation. Identify the task source, specification state if present, documents and review. Work prepares content/evidence; Commit checks freshness and resolves gaps. For a native change, use spec-check --brief true. An unfinished mandatory criterion cannot become ready. Keep CI separate from readiness under [work](work.md).
 
-Для Git выбери только файлы/участки задачи. Неясное и постороннее оставь вне коммита; не переписывай чужой индекс и не применяй без разбора `git add -A`, `reset` или `stash`. Причины отвергнутого сохрани в принятом архиве, одноразовое удаляй только после проверки принадлежности и ссылок. Проверь полный staged diff, происхождение, лицензии, секреты и кэши. Обязательные spec/results, отчёты и невосстановимые входы сверь с выбранным индексом по [диагностике передачи](../references/tools/diagnostics.md#состав-передачи-доказательств); не добавляй все логи автоматически.
+If the project/user explicitly assigns a late mandatory check, a local candidate commit is allowed after applicable pre-submit checks and review. Name the open criterion, source and next step; dependent readiness stays unfinished. This does not bypass a failed local check, unknown scope or project prohibition. Do not call spec-integrate, result attention or spec-decide accepted before their actual barriers. Do not automatically require CI waiting.
 
-Переиспользуй актуальные результаты Work; повторяй затронутые проверки, конкретный пробел или обязательный барьер проекта. Для технической задачи без спеки проверь поручение/план и результат, не требуй spec ID. При наличии спеки отмечай только фактически выполненные задачи и укажи ID в сообщении коммита. Создай коммит выбранного состава и сообщи SHA, статус кандидата/готовности и остаток. Коммит не требует известного маршрута push и не означает человеческую приёмку.
+Without Git, commit/Git-push are inapplicable. Do not run git init for this stage. Continue Work with the project method for immutable recording, verification and storage, such as a hash-manifest package and immutable build ID. If no method exists, state the identification gap. Work completion does not require Git. Native acceptance requires technical readiness and an exact checked-input snapshot, not a mandatory SHA/build ID.
 
-## Решение пользователя
+For Git, select only task files/hunks. Leave unclear/unrelated content outside the commit. Do not rewrite another index or blindly use git add -A, reset or stash. Preserve rejected reasons in the project archive. Remove one-time material only after ownership/link checks. Review the full staged diff, origin, licenses, secrets and caches. Compare required spec/results, reports and unrecoverable inputs with the chosen index through [delivery diagnostics](../references/tools/diagnostics.md#evidence-delivery-contents). Do not add all logs automatically.
 
-Явное «принимаю и активируй» по показанному точному готовому результату может разрешать оба действия. Слово «активируй» само по себе разрешает только активацию, даже в ответ на готовый результат. «Выполняй», вызов Commit, согласование требований и предварительное поручение с будущей приёмкой не означают принятия ещё не показанного результата. Записывай решение через spec-decide только по явному принятию выбранных спек с известными редакцией, проверками и остатком; повторное согласие для того же решения не требуется.
+Reuse current Work results. Repeat affected checks, a specific gap or mandatory project barrier. For a technical task without a specification, check request/plan and result without requiring a spec ID. With a specification, mark only completed tasks and include its ID in the commit message. Commit the chosen scope; report SHA, candidate/readiness and remainder. A commit needs no known push route and does not imply human acceptance.
 
-При технической готовности обращение `result` и явное решение человека можно записать по проверенному снимку до коммита. Известный SHA/build ID — необязательное дополнение; не создавай отдельный коммит ради заполнения формы приёмки. Новые записи каталога/results включи в порученный коммит выбранного состава. Кандидат с ожидаемым CI не требует фиктивной приёмки или второго пустого коммита. При позднем решении нужны новая запись и разрешённая фиксация; решение не считается уже опубликованным.
+<a id="решение-пользователя"></a>
 
-Решение принять не доказывает сценарий с наблюдением человека. После повторной проверки считай принятие действующим лишь если spec-list подтверждает accepted; при дрейфе не переноси его на новые доказательства. При squash/rebase/merge сверь фактическое содержимое и значимые входы, сохрани связь проверенной редакции с новым SHA по проектному правилу. Прежний `verified_revision` остаётся историческим фактом: не заменяй его новым SHA вручную и не утверждай, что человек проверил другой коммит. Существенное изменение требует проверок и нового решения; эквивалентность содержимого не доказывается одним названием ветки или сообщением коммита.
+## User decision
 
-## Проектная активация
+Explicit acceptance plus activation of a shown exact ready result may authorize both. Activate alone authorizes only activation, even after a ready result. Execute, a Commit call, requirements agreement and a prior request with future acceptance do not accept an unseen result. Record spec-decide only on explicit acceptance of selected specifications with known revision, checks and remainder. Do not request the same decision again.
 
-Если локальная активация не назначена, этап заканчивается фиксацией. Для кандидата с невыполненными обязательными критериями активация откладывается, если проект/пользователь явно не разрешил пробный режим; его успех не закрывает эти пробелы. Ожидаемый CI сам по себе не откладывает активацию по [work](work.md). Если активация назначена на этом этапе, до затратной сборки проверь полномочия, проектный барьер и передачу читаемого кандидата среде применения. Release ID, повышение версии и неизменяемость выпуска проверяй только если их требует проект; обычный Git-коммит не требует выпуска.
+At technical readiness, result attention and an explicit human decision may be recorded before commit. Known SHA/build ID is optional; do not create a commit to fill an acceptance form. Include new catalog/results records in the authorized commit. A candidate awaiting CI needs neither fictitious acceptance nor a second empty commit. A later decision needs a new record and authorized recording; it is not already published.
 
-Используй изолированную копию точного SHA либо проектный неизменяемый результат и назначенные команды preview, применения, проверки и восстановления. Не подставляй High Grade global-update вместо команды подключаемого проекта, не активируй грязное рабочее дерево и не расширяй доступ ко всему профилю ради передачи. При сбое проверь фактическое состояние; автоматический откат утверждай только при подтверждённой гарантии механизма. Коммит сохраняется: сообщи «закоммичено, локальная активация не прошла», причину и следующий шаг.
+Acceptance does not prove a human-observation scenario. After rechecking, treat acceptance as current only if spec-list reports accepted. Do not transfer it across drift. After squash/rebase/merge, compare actual content and causal inputs; link the verified revision to the new SHA under project rules. The old verified_revision remains historical. Never replace it manually or claim the human checked another commit. Material changes need checks and a new decision. Branch names/commit messages alone do not prove equivalence.
 
-В отчёте разделяй проверки и техническую готовность, локальную фиксацию, активацию, публикацию и человеческую приёмку. Успех одного не подтверждает остальные.
+<a id="проектная-активация"></a>
+
+## Project activation
+
+Without assigned local activation, the stage ends at commit. For a candidate with open mandatory criteria, defer activation unless the user/project explicitly permits trial operation. Trial success does not close gaps. Pending CI alone does not defer activation under [work](work.md). Before an expensive assigned build, check authority, project barrier and delivery of a readable candidate to the target environment. Check release ID, version increment and immutability only when the project requires them. An ordinary commit does not require a release.
+
+Use an isolated exact-SHA copy or the project immutable result, with assigned preview/apply/check/recovery commands. Do not substitute High Grade global-update for a connected project's command, activate a dirty tree or expand whole-profile access for handoff. On failure, check actual state. Claim automatic rollback only with a confirmed mechanism guarantee. Keep the commit; report that recording succeeded but local activation failed, with cause and next step.
+
+Report checks/readiness, local recording, activation, publication and human acceptance separately. One success does not confirm the others.
+
+## Delivery release description
+
+When preparing a High Grade Delivery release, use references/release-notes.json as the single user-change source. After the project assigns the new release ID, move unreleased changes/breaking/actions into one entry with that ID and previous verified release, then clear unreleased. Do not rename an immutable published entry. Record only verified shipped behavior and all required compatibility actions. Missing older history remains explicit; do not invent it.
+
+Under Work, maintain the affected README section for a significant capability: a new user scenario, changed way of working or required update action. Internal changes need no README feature list. Keep README in the project language and link details. The update summary and release description use the same source facts; README explains current capabilities rather than accumulating release history. Publishing those edits still follows Push authority.

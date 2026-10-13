@@ -1,0 +1,57 @@
+---
+highgrade_project_schema: 1
+highgrade_spec_format: native-v1
+---
+<a id="местная-инструкция-проекта-high-grade"></a>
+
+# High Grade Project local instruction
+
+global-status confirms the installed Delivery; [docs/releases](../../docs/releases/) stores release records. Administrative release state does not alter these work rules. This instruction governs the Delivery development repository only and is not installed. Connected projects receive their own adaptation. [README](../../README.md#термины-и-границы) defines terms.
+
+<a id="владение-знаниями"></a>
+
+## Knowledge ownership
+
+- Goal/entry: [README](../../README.md).
+- Agent rules: [AGENTS](../../AGENTS.md).
+- Actual structure: [ARCHITECTURE](../../docs/ARCHITECTURE.md).
+- Engineering/commands: [ENGINEERING](../../docs/ENGINEERING.md), [DEVELOPMENT](../../docs/DEVELOPMENT.md).
+- Common product contract: [GLOBAL](../../docs/workflow/GLOBAL.md). Current evidence/context rules: [QUALITY](../../docs/workflow/QUALITY.md), [CONTEXT](../../docs/workflow/CONTEXT.md). [SPECIFICATION](../../docs/archive/workflow/SPECIFICATION.md) is decision history.
+- Roles, scope and budgets: [documents.json](documents.json). The registry owns current state/grounds; [proposal](../../docs/proposals/context-budget-2026-09-23.md) stores original measurements/ranges.
+
+<a id="работа-над-задачей-и-спецификацией"></a>
+
+## Task and specification work
+
+- Active agent instructions use English. User documents, README, specifications, plans and reports use Russian. Answer in Russian unless the user requests another language. Instruction language does not change project/product language. Keep machine keys, IDs, commands and original messages unchanged.
+- specs/ uses native JSON directory v3/v4/v5. [Reference](../../kit/references/tools/specifications.md#structured-specifications) owns format/commands; [DEVELOPMENT](../../docs/DEVELOPMENT.md) owns checks. Edit catalogs through CLI. Global installation never migrates them automatically.
+- global-status confirms active CLI. New-format development may use a built CLI explicitly identified as candidate. Do not claim it active before global-update. After writing new fields, use compatible CLI; former versions must not edit that catalog.
+- Automatic highgrade-planner routing is accepted for dependent tasks/specifications; it does not itself authorize a Goal. Continuation lives in ignored .highgrade/local/. Specifications own tasks; no separate backlog.
+- Significant changes need independent subagent review of requirements, relevant diff and original results. Delegation needs no repeated question. [work](../../kit/procedures/work.md#evidence-and-review) owns method; unavailable mandatory review remains unfinished.
+- OpenSpec/intermediate JSON history is in [archive](../../docs/archive/legacy-native-specs/2026-09-25/). Historical contracts alone do not turn old evidence into passed.
+
+<a id="локальная-фиксация-через-highgrade-commit"></a>
+
+## Local recording through highgrade-commit
+
+- Task/request, specification if present and review define scope. Preserve unrelated changes. Before a candidate commit, complete applicable local checks/review under DEVELOPMENT, inspect full staged diff, license/private data. Work prepares documents/history; Commit closes found gaps. Failed pre-submit returns to Work. Linux/Windows CI runs asynchronously after publication. Pending/unavailable CI does not block Work readiness, integration or authorized activation. Report exact-SHA status separately. Diagnose known failures and fix actual defects. Local PASS proves neither Windows CI, acceptance nor future agent behavior.
+- The one-time v0-2-7 transition is complete; [archived contract](../../docs/archive/legacy-openspec/specs/release-workflow/spec.md) and [record](../../docs/releases/v0-2-7.md) retain it. It does not apply to current tasks.
+- Commit records an exact local SHA; candidates with final gaps are not accepted results. Local activation is assigned when executable CLI (src/, Cargo.toml/Cargo.lock) or kit/ changes, or explicitly requested. Defer for unmet mandatory local criteria or an explicit no-activation/release limit; do not increment release ID. Pending CI alone does not defer. For dependent chains, defer intermediate activation/version increments until the last ready commit unless the next stage needs active new CLI or the user assigns activation of that stage. Then use the normal route. Deferred is not completed. Other project documents/scripts alone need no release candidate/version increment without a request; run applicable ordinary checks.
+- For assigned activation, **before commit/candidate build**, select the next unused release ID: explicit user version, otherwise patch increment. Synchronize Cargo.toml, Cargo.lock, kit/manifest.json release/cli_version and version test expectations. Check manifest/tests. Never activate new content with an installed ID; releases are immutable.
+- After commit with assigned activation, run python scripts/build-release.py <SHA>. This is the candidate's only mandatory release build. Isolated sources are removed; Cargo uses target/highgrade/build-cache; output is target/highgrade/candidate. Use its CLI (highgrade or highgrade.exe) for global-update --profile <home> --source <absolute-candidate/kit> --candidate-exe <absolute-candidate/highgrade[.exe]>. [BUILD](../../docs/BUILD.md) owns details. Preview/semantic review first, then apply the same candidate_sha256. Never build activation from a dirty tree. Verify global-status. Diagnose failure under [Update](../../kit/procedures/update.md#retry-and-failures). Failed activation keeps the commit and partial task status. Commit does not authorize GitHub push.
+
+<a id="публикация-через-highgrade-push"></a>
+
+## Publication through highgrade-push
+
+- Remote origin, repository Lainterus1/HighGrade, main branch main. On a separate request, send the selected continuous range to an explicit branch: CI candidates to assigned work branches; ready changes through an assigned PR with base main or explicitly authorized direct push. Push authority does not imply PR/merge. Ranges may cover several tasks; clarify ambiguous scope/target.
+- Pre-submit needs current applicable DEVELOPMENT checks, independent review, known scope and secrets/licenses check. Local checks/review determine readiness. CI needs no wait: read available exact-SHA status once and report separately. Known failure returns the actual defect to Work; pending/unavailable does not undo authorized completion. Before sending, check current branch/workflow effects including deployment. New external effects need authority. Use ordinary push without force and verify remote SHA. Push/CI success does not authorize merge, tag/release/deploy or acceptance.
+- After squash/rebase/merge, compare causal inputs/content, preserve verified-revision linkage and report available new-SHA CI without mandatory wait. Never rewrite former verified_revision. Material drift needs new results/decision. Publication does not prove activation; only global-status confirms installation. Installed SVG/CHA and other projects remain outside scope.
+
+<a id="полномочия-и-исключения"></a>
+
+## Authority and exceptions
+
+- This repository maintains High Grade sources. Work on SNAF, PlantsNotify or other products requires a separate request in their directories.
+- Future-version publication, SVG/CHA switching, deployment and pilot acceptance need their own requests; former releases confer no standing authority.
+- For v0-2-15 on 2026-09-25, the user explicitly accepted all 15 current specifications, stopped extra agent pilots and requested commit/local activation/publication with known gaps. [Decision](../../docs/evidence/spec-verification/2026-09-25-human-decision.json) and [release record](../../docs/releases/v0-2-15.md) retain the exact snapshot/remainder. This exception applies only to that release. Do not mark absent observations passed or override machine status. Show other material conflicts before dependent action.

@@ -1,56 +1,68 @@
-# Обследование проекта
+<a id="обследование-проекта"></a>
 
-Маршрут и опрос — в [init](../../procedures/init.md), методика — в [audit](../audit.md). JSON `.highgrade/project/survey.json` принадлежит проекту и работает до specs/реестра. Представление производится из него; второй редактируемый отчёт не нужен.
+# Project survey
 
-## Команды
+[init](../../procedures/init.md) owns route/questions; [audit](../audit.md) owns method. Project .highgrade/project/survey.json works before specs/registry. Views derive from JSON; no second editable report is needed.
 
-Все команды используют `--root PATH`; запись, кроме создания, требует `--expected HASH` из survey-read/check. Чтение и проверка не запускают проектный код/сеть и не пишут файлы.
+<a id="команды"></a>
 
-| Команда | Параметры и результат |
+## Commands
+
+All commands take --root PATH. Except creation, writes require --expected HASH from survey-read/check. Reading/checking runs neither project code nor network and writes nothing.
+
+| Command | Parameters/result |
 |---|---|
-| survey-schema | Схемы document/content из типов CLI |
-| survey-new | Создать черновик, существующий документ не перезаписывается |
-| survey-read | `--view summary\|full\|editable\|markdown` либо имя раздела; default summary; survey_sha256 |
-| survey-edit | `--input patch.json`; patch верхних полей content, массив заменяется целиком |
-| survey-snapshot | Зафиксировать выбранные файлы и состав областей |
-| survey-review | `--reviewer NAME --conclusion TEXT --verdict go\|no_go`; записать фактическую смысловую сверку текущего содержания/снимка |
-| survey-check | Структура, изменения входов, препятствия, актуальность записи ревью; unknown — exit 2 |
-| survey-reopen | Сохранить завершённую редакцию в history, начать следующую с прежними решениями |
+| survey-schema | document/content schemas from CLI types |
+| survey-new | Create draft; never overwrite an existing document |
+| survey-read | --view summary\|full\|editable\|markdown or section name; default summary; survey_sha256 |
+| survey-edit | --input patch.json; top-level content patch, whole-array replacement |
+| survey-snapshot | Record selected files/area contents |
+| survey-review | --reviewer NAME --conclusion TEXT --verdict go\|no_go; actual semantic review record of content/snapshot |
+| survey-check | Structure, input drift, obstacles, review freshness; unknown exits 2 |
+| survey-reopen | Preserve completed revision in history, start next with previous decisions |
 
-Маршрут: new → read editable → edit → snapshot → смысловая сверка → review → check. Каждый пишущий шаг использует новый HASH. Переходы через edit: `{"stage":"planned"}`, затем `{"stage":"adapting"}`; завершение — `{"stage":"completed","next":""}`. Правка содержания сохраняет фактический stage, если новый не указан. Существенный diff делает прежнее ревью неактуальным; обнови затронутый снимок и ревью до зависимого действия. Промежуточные этапы не требуется записывать задним числом.
+Route: new → read editable → edit → snapshot → semantic review → review → check. Each write uses a fresh HASH. edit transitions: {"stage":"planned"}, then {"stage":"adapting"}; completion: {"stage":"completed","next":""}. Content edits retain actual stage unless specified. Material diff makes review stale; refresh affected snapshot/review before dependent action. Do not retrospectively record intermediate stages.
 
-## Модель
+<a id="модель"></a>
 
-[Схема](../survey-schema.json) и [шаблон content](../../templates/survey.json) входят в Поставку. Дополнительные ограничения CLI проверяют ссылки, пути и состояния.
+## Model
 
-Content: goal, scope (относительные области, `.` — корень), stage, next; decisions, sections; source_paths (хешируемые файлы), areas (состав областей). Sources/areas находятся в scope. Семь decisions имеют ID purpose/scope/preservation/changes/local_rules/environment/mandate и первоначально unknown.
+[Schema](../survey-schema.json) and [content template](../../templates/survey.json) are shipped. CLI adds link/path/state constraints.
 
-Sections: components, knowledge, processes, skills, observations, findings, adaptation, routes. Пустой раздел не обследован; неприменимость записывается с причиной. Карта описывает компоненты/пути/связи, knowledge — владельцев знаний, observations — что прочитано/выполнено и предел, adaptation — предложения/результат и ссылки на задачи, routes — характерные цепочки дальнейшей работы без квоты.
+Content: goal, scope (relative areas, . means root), stage, next, decisions, sections, source_paths (hashed files), areas (contents). Sources/areas stay within scope. Seven initial unknown decisions: purpose, scope, preservation, changes, local_rules, environment, mandate.
 
-Элемент: id, state (`confirmed`, `proposed`, `unknown`, `not_applicable`), description, basis (источники решения/наблюдения/причины), sources (пути из source_paths), blocks (зависящие от нерешённого вопроса действия). ID уникальны в редакции. Confirmed/not_applicable требуют непустого basis; запись не доказывает истинность. Наблюдение команды описывает условия, команду, дату/редакцию, результат и ссылку на отчёт. Секреты не записываются.
+Sections: components, knowledge, processes, skills, observations, findings, adaptation, routes. Empty means unexamined. Record inapplicability with reason. Map describes components/paths/links; knowledge records owners; observations record reading/actions/limits; adaptation holds proposals/results/task links; routes show representative future chains without quotas.
 
-Системные blocks: `plan`, `adaptation`, `completion`. `execute-adaptation` читается как прежний синоним adaptation; прочие строки — отдельные зависимости в other_dependencies. План требует обследованных разделов, актуального снимка/go и отсутствия блока plan, но сохраняет нерешённые блокеры адаптации. Adaptation запрещают нерешённые ключевые decisions, пустые разделы и blocks adaptation/execute-adaptation; completion требует отсутствия всех блокеров. Неизвестный независимый компонент может иметь пустой blocks и остаётся ограничением. Для завершения выбранного поручения все зависимые действия должны быть разрешены; действия вне поручения описываются ограничением без фиктивного обязательного блока.
+Item: id, state confirmed|proposed|unknown|not_applicable, description, basis (decision/observation/reason sources), sources (from source_paths), blocks (actions dependent on unanswered questions). IDs are unique per revision. confirmed/not_applicable need nonempty basis; a record does not prove truth. Command observations describe conditions, command, date/revision, result/report. Never record secrets.
 
-## Актуальность и сохранность
+System blocks: plan, adaptation, completion. execute-adaptation is a legacy synonym of adaptation; other strings are other_dependencies. Planning needs examined sections, current snapshot/go and no plan blocker, but retains adaptation blockers. Adaptation rejects unresolved key decisions, empty sections and adaptation/execute-adaptation blocks. Completion requires no blockers. An unknown independent component may have empty blocks and remain a limit. All dependent actions within the request must be authorized. Out-of-scope actions are limits, not fictitious mandatory blocks.
 
-Check отдельно показывает structure, snapshot_current, changed_sources, unknown_sources, blockers, review_record_current, review_go, plan_ready/adaptation_ready/completion_ready, historically_completed. Semantic correctness остаётся not_certified, пользовательская приёмка этим инструментом не записывается. Отрицательное ревью блокирует готовность. Смена этапа проверяет его технические предпосылки и актуальное go; permission=not_assessed, разрешение берётся из поручения и mandate. Сохранение текущего этапа с неактуальным go допустимо для учёта фактов и не разрешает зависимое выполнение.
+<a id="актуальность-и-сохранность"></a>
 
-Snapshot содержит хеши файлов, состав/полноту/пропуски areas и отпечаток исключений. Значимый дрейф требует разбора; посторонний файл или Git SHA сами по себе результат не обесценивают. Содержимое новых компонентов агент читает по риску. Собственные survey/служебные файлы не становятся входами. Производное представление не сохраняй внутри отслеживаемой области либо явно исключи его.
+## Freshness and preservation
 
-Завершённая редакция неизменяема через edit/snapshot/review; reopen сохраняет её в history и очищает текущие snapshot/review. Историческое завершение не означает актуальности. Предел документа с историей — 8 МиБ; автоматического удаления истории нет.
+Check separates structure, snapshot_current, changed_sources, unknown_sources, blockers, review_record_current, review_go, plan_ready/adaptation_ready/completion_ready and historically_completed. Semantic correctness remains not_certified. The tool records no human acceptance. Negative review blocks readiness. Stage changes check technical prerequisites/current go; permission=not_assessed. Request/mandate supply authority. Saving actual stage with stale go is allowed for facts, not dependent execution.
 
-CAS, lock и атомарная замена защищают один JSON. Конфликт, неизвестная схема/поля и неверный ввод оставляют прежние данные. После аварии survey.lock/survey.next блокируют запись: убедись, что писателя нет, сравни/сохрани нужные данные до удаления подтверждённого остатка. Автоматически остатки не удаляются. Это не транзакция адаптации всего проекта.
+Snapshot holds file hashes, area contents/completeness/skips and exclusions hash. Diagnose material drift. An unrelated file/new Git SHA alone does not invalidate a result. Read new components by risk. Survey/administrative files are not their own inputs. Keep derived views outside tracked scope or explicitly exclude them.
 
-## Структурный обзор
+Completed revisions cannot be edited/snapshotted/reviewed; reopen preserves them in history and clears current snapshot/review. Historical completion does not mean freshness. Document including history is limited to 8 MiB. No automatic history removal.
 
-`inventory --mode structure [--scope PATH]` возвращает имена/типы без чтения содержимого файлов, кроме конфигурации исключений. До 5000 записей, глубина 64; локальное препятствие даёт доступную часть с unknown, небезопасный/неверный корень или scope — отказ. Complete относится к допустимому обходу, а не полноте содержательного аудита.
+CAS, lock and atomic replacement protect one JSON. Conflict, unknown schema/fields and invalid input preserve old data. After a crash, survey.lock/survey.next block writes. Confirm no writer, compare/preserve needed data before removing a confirmed remnant. No automatic cleanup. This is not a whole-project adaptation transaction.
 
-Используются правила bootstrap для закрытых имён/кэшей и inventory-exclusions; .highgrade/project доступен, остальные служебные области .highgrade исключены. Ссылки/junction не обходятся. Snapshot читает только выбранные обычные файлы до 32 МиБ, до 256 источников и 32 областей; запрещённые пути отвергаются, недоступный обычный файл остаётся unknown.
+<a id="структурный-обзор"></a>
 
-Inventory без mode и legacy-install сохраняют прежние результаты/отказы; частичный обзор не заменяет audit receipt. При существующем реестре обычный inspect проверяет принятые роли; bootstrap сохраняет предварительную диагностику без реестра.
+## Structural overview
 
-## Новый проект
+inventory --mode structure [--scope PATH] returns names/types without content reading except exclusions configuration. Limit 5000 entries, depth 64. A local obstacle returns available scope with unknown. Unsafe/invalid root/scope is rejected. Complete means allowed traversal, not a complete semantic audit.
 
-Применение инструментов и границу init определяет [init](../../procedures/init.md#обследование). Нынешняя схема позволяет хранить обследованное отсутствие как confirmed с основанием наблюдения; принятое решение о будущем устройстве — как конкретное утверждение в adaptation. Оно не подтверждает наличие компонента. Proposed обозначает предложение, unknown — неизвестное; not_applicable требует действительной неприменимости, не отсутствия реализации.
+Bootstrap private-name/cache/exclusion rules apply. .highgrade/project is accessible; other .highgrade administrative areas are excluded. Links/junctions are not followed. Snapshot reads selected regular files up to 32 MiB, 256 sources and 32 areas. Forbidden paths reject; unavailable regular files stay unknown.
 
-Для пустого проекта source_paths могут быть пустыми; snapshot/check тогда не доказывают прочтение кода. Будущие пути не включаются как существующие источники. Карта обновляется после создания файлов. Completed относится к согласованной подготовке: вопросы будущих продуктовых спек хранятся в них, существенные пробелы подготовки остаются блокерами. Черновик спеки может оставаться незавершённым при completed survey; это не разрешение work и не приёмка продукта. Фактическое существование подготовленной основы проверяет исполнитель, структурное go не удостоверяет смысл записи.
+Inventory without mode and legacy-install retain earlier results/errors. Partial overview cannot replace an audit receipt. With a registry, ordinary inspect checks assigned roles; bootstrap remains pre-registry diagnostics.
+
+<a id="новый-проект"></a>
+
+## New project
+
+[init](../../procedures/init.md#survey) defines tool use/scope. Observed absence may be confirmed with an observation basis. An accepted future design is a specific adaptation claim, not component existence. proposed means suggestion, unknown means unknown; not_applicable needs actual inapplicability, not missing implementation.
+
+Empty projects may have empty source_paths. snapshot/check then do not prove code reading. Future paths are not existing sources. Update the map after creating files. Completed refers to agreed preparation: future product questions stay in specifications; material preparation gaps remain blockers. An incomplete draft can coexist with completed survey. This authorizes neither work nor product acceptance. The executor checks actual foundation existence; structural go does not certify record meaning.
