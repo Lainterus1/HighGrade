@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "target/highgrade/candidate/highgrade",
+    "global-update",
+    "--profile",
+    "/home/lainterus",
+    "--source",
+    "/home/lainterus/Projects/High Grade/target/highgrade/candidate/kit",
+    "--candidate-exe",
+    "/home/lainterus/Projects/High Grade/target/highgrade/candidate/highgrade"
+  ],
+  "cwd": "/home/lainterus/Projects/High Grade",
+  "started_at": "2026-10-14T04:34:44.807255+00:00",
+  "ended_at": "2026-10-14T04:34:44.907353+00:00",
+  "exit_code": 2,
+  "stdout": "{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [\n    {\n      \"code\": \"SemanticReviewRequired\",\n      \"location\": \"global-update\",\n      \"message\": \"Сравните смысл общих правил перед применением.\",\n      \"status\": \"unknown\"\n    }\n  ],\n  \"limitations\": [],\n  \"measurements\": [\n    {\n      \"apply\": false,\n      \"candidate\": \"v0-4-0\",\n      \"candidate_sha256\": \"66ab88c6c62d975b994ed832cb7745c7bb8de4c8c7642bf3cabcce8cb99a2da7\",\n      \"from\": \"v0-3-13\",\n      \"manifest_sha256\": \"413c41bfe0eaeeb57bc8ef7448a53dd5299f8e675a2e43058de8af9a73732981\",\n      \"release_summary\": {\n        \"actions\": [],\n        \"breaking\": [],\n        \"changes\": [\n          \"Актуализация выбирает документацию, тесты и объём проверки; недостающие параметры уточняются одним коротким раундом.\",\n          \"Clear всегда использует Planner и проходит выбранные каталоги по этапам с учётом проверенных источников, исправлений и остатка.\",\n          \"Проверка выбранных тестов включает реальные изолированные мутации, разбор выживших изменений и повтор исходных тестов после восстановления кода.\"\n        ],\n        \"coverage\": \"complete\",\n        \"from\": \"v0-3-13\",\n        \"missing_release\": null,\n        \"no_user_changes\": false,\n        \"reason\": null,\n        \"releases\": [\n          \"v0-4-0\"\n        ],\n        \"to\": \"v0-4-0\",\n        \"total_changes\": 3\n      }\n    },\n    {\n      \"applied\": false,\n      \"decision\": \"required\",\n      \"next\": \"review candidate, then apply its candidate_sha256\",\n      \"validation\": \"passed\"\n    }\n  ],\n  \"operation\": \"global-update\",\n  \"result\": {\n    \"applied\": false,\n    \"apply\": false,\n    \"candidate\": \"v0-4-0\",\n    \"candidate_sha256\": \"66ab88c6c62d975b994ed832cb7745c7bb8de4c8c7642bf3cabcce8cb99a2da7\",\n    \"decision\": \"required\",\n    \"from\": \"v0-3-13\",\n    \"manifest_sha256\": \"413c41bfe0eaeeb57bc8ef7448a53dd5299f8e675a2e43058de8af9a73732981\",\n    \"next\": \"review candidate, then apply its candidate_sha256\",\n    \"release_summary\": {\n      \"actions\": [],\n      \"breaking\": [],\n      \"changes\": [\n        \"Актуализация выбирает документацию, тесты и объём проверки; недостающие параметры уточняются одним коротким раундом.\",\n        \"Clear всегда использует Planner и проходит выбранные каталоги по этапам с учётом проверенных источников, исправлений и остатка.\",\n        \"Проверка выбранных тестов включает реальные изолированные мутации, разбор выживших изменений и повтор исходных тестов после восстановления кода.\"\n      ],\n      \"coverage\": \"complete\",\n      \"from\": \"v0-3-13\",\n      \"missing_release\": null,\n      \"no_user_changes\": false,\n      \"reason\": null,\n      \"releases\": [\n        \"v0-4-0\"\n      ],\n      \"to\": \"v0-4-0\",\n      \"total_changes\": 3\n    },\n    \"validation\": \"passed\"\n  },\n  \"status\": \"unknown\"\n}\n",
+  "stderr": ""
+}

@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "target/highgrade/candidate/highgrade",
+    "ui",
+    "--root",
+    "/home/lainterus/Projects/High Grade",
+    "--check",
+    "true"
+  ],
+  "cwd": "/home/lainterus/Projects/High Grade",
+  "started_at": "2026-10-14T04:35:19.665001+00:00",
+  "ended_at": "2026-10-14T04:35:19.666666+00:00",
+  "exit_code": 1,
+  "stdout": "{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [\n    {\n      \"code\": \"OperationFailed\",\n      \"location\": \"arguments-or-input\",\n      \"message\": \"Usage: ui --check cannot be combined with --root or --no-open\",\n      \"status\": \"failed\"\n    }\n  ],\n  \"limitations\": [],\n  \"measurements\": [\n    {\n      \"input_schema\": \"highgrade spec-schema --root PATH\",\n      \"next\": \"highgrade <command> --help\"\n    }\n  ],\n  \"operation\": \"error\",\n  \"result\": {\n    \"input_schema\": \"highgrade spec-schema --root PATH\",\n    \"next\": \"highgrade <command> --help\"\n  },\n  \"status\": \"failed\"\n}\n",
+  "stderr": ""
+}
