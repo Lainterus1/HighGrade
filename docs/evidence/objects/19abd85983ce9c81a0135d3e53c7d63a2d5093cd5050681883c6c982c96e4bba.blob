@@ -1,0 +1,31 @@
+{
+  "verdict": "GO",
+  "candidate_sha256": "ad5b7620f76f94ce650352f4080e954658e8111e0b8938b3ee9bc400ca9b50a8",
+  "source_sha": "160399bfb87fa3a1e325b3b85abdd5b4cbfb1342",
+  "from": "v0-4-0",
+  "to": "v0-4-1",
+  "common_rules_exactly_unchanged": true,
+  "changed_materials": [
+    "procedures/clear.md",
+    "procedures/planner.md",
+    "procedures/task.md",
+    "references/review.md",
+    "templates/AGENTS.md",
+    "references/release-notes.json"
+  ],
+  "new_materials": [
+    "skills/highgrade-clear/SKILL.md",
+    "skills/highgrade-init/SKILL.md",
+    "skills/highgrade-planner/SKILL.md",
+    "skills/highgrade-spec/SKILL.md",
+    "skills/highgrade-task/SKILL.md",
+    "skills/highgrade-update/SKILL.md",
+    "skills/highgrade-work/SKILL.md",
+    "references/clear-batches.md",
+    "tools/clear_batch.py"
+  ],
+  "review": "Independent release review and checked source contracts: authority stays explicit; Planner and Review own shared policy; real helper restored-source/original/reuse guards tested; common preservation/read-only rules retained. Older native actor/evidence readiness not asserted. Published note values unchanged.",
+  "breaking": [],
+  "actions": [],
+  "scope": "semantic comparison for this exact candidate; not human acceptance"
+}

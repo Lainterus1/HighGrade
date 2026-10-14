@@ -1,0 +1,82 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [
+    {
+      "code": "SemanticReviewRequired",
+      "location": "global-update",
+      "message": "Сравните смысл общих правил перед применением.",
+      "status": "unknown"
+    }
+  ],
+  "limitations": [],
+  "measurements": [
+    {
+      "apply": false,
+      "candidate": "v0-4-1",
+      "candidate_sha256": "ad5b7620f76f94ce650352f4080e954658e8111e0b8938b3ee9bc400ca9b50a8",
+      "from": "v0-4-0",
+      "manifest_sha256": "fedcc64036de4880aa11fc84dab7419e493cac4268a2c2961dd61efe41451d2f",
+      "release_summary": {
+        "actions": [],
+        "breaking": [],
+        "changes": [
+          "Clear проверяет требования и методы заранее; Goal — по полномочию.",
+          "Батчи: исходные отчёты, точное восстановление, проверка reuse.",
+          "Исправлены имена helper и неоднозначная trace.",
+          "UI отменяет чтение; Unix Update сохраняет чужие файлы/ссылки.",
+          "Усилены тесты; сокращены повторы правил и отчётов."
+        ],
+        "coverage": "complete",
+        "from": "v0-4-0",
+        "missing_release": null,
+        "no_user_changes": false,
+        "reason": null,
+        "releases": [
+          "v0-4-1"
+        ],
+        "to": "v0-4-1",
+        "total_changes": 5
+      }
+    },
+    {
+      "applied": false,
+      "decision": "required",
+      "next": "review candidate, then apply its candidate_sha256",
+      "validation": "passed"
+    }
+  ],
+  "operation": "global-update",
+  "result": {
+    "applied": false,
+    "apply": false,
+    "candidate": "v0-4-1",
+    "candidate_sha256": "ad5b7620f76f94ce650352f4080e954658e8111e0b8938b3ee9bc400ca9b50a8",
+    "decision": "required",
+    "from": "v0-4-0",
+    "manifest_sha256": "fedcc64036de4880aa11fc84dab7419e493cac4268a2c2961dd61efe41451d2f",
+    "next": "review candidate, then apply its candidate_sha256",
+    "release_summary": {
+      "actions": [],
+      "breaking": [],
+      "changes": [
+        "Clear проверяет требования и методы заранее; Goal — по полномочию.",
+        "Батчи: исходные отчёты, точное восстановление, проверка reuse.",
+        "Исправлены имена helper и неоднозначная trace.",
+        "UI отменяет чтение; Unix Update сохраняет чужие файлы/ссылки.",
+        "Усилены тесты; сокращены повторы правил и отчётов."
+      ],
+      "coverage": "complete",
+      "from": "v0-4-0",
+      "missing_release": null,
+      "no_user_changes": false,
+      "reason": null,
+      "releases": [
+        "v0-4-1"
+      ],
+      "to": "v0-4-1",
+      "total_changes": 5
+    },
+    "validation": "passed"
+  },
+  "status": "unknown"
+}
