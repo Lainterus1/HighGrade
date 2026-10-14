@@ -1,0 +1,3098 @@
+{
+  "schema": 1,
+  "scope": "Independent semantic evidence/build/helpers and repository-plugin audit; presentation and installed profiles excluded",
+  "recorded_at": "2026-10-14T13:44:25.836496+00:00",
+  "status": "SEMANTIC_AUDIT_COMPLETE_FOR_ASSIGNED_REQUIREMENTS; EXECUTION_PENDING",
+  "execution_verdict": null,
+  "requirements_count": 34,
+  "scenarios_count": 64,
+  "requirements": [
+    {
+      "id": "HG-0019-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0019-S1"
+      ],
+      "judgment": "Assertions check committed kit/binary, source SHA, cache directory and empty work; they do not themselves export permanent evidence.",
+      "owner": "docs/BUILD.md; scripts/build-release.py",
+      "test": "scripts/tests/test_build_release.py::test_exact_revision_repeat_and_failed_build_preserve_candidate",
+      "method": "Exact-SHA Git archive -> real Node/Cargo fixture, actual artifact invocation, dirty tree ignored, failed next build preserves candidate.",
+      "gap": "Current baseline, final originals export and owned-probe cleanup pending.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0019:HG-0019-C1"
+      ]
+    },
+    {
+      "id": "HG-0019-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0019-S2",
+        "HG-0019-S3"
+      ],
+      "judgment": "Preview is read-only; all parameters are checked before removal; Cargo refusal is not disguised as success. Budget is soft and measures unique payload.",
+      "owner": "docs/BUILD.md; scripts/target-maintenance.py",
+      "test": "scripts/tests/test_target_maintenance.py",
+      "method": "Real temporary target preview/apply, hashes/foreign sentinel, active/recovery/link refusal and explicit cache selection.",
+      "gap": "Current runtime results and post-maintenance measurement pending.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0019:HG-0019-C2",
+        "HG-0019:HG-0019-C3"
+      ]
+    },
+    {
+      "id": "HG-0021-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0021-S1"
+      ],
+      "judgment": "Normative ordering is explicit. CAS and run lifecycle preserve originals. A later note cannot be appended to hashed report.",
+      "owner": "kit/procedures/work.md; docs/EVIDENCE-STORAGE.md",
+      "test": "HG-0021-C1 manual sequence; scripts/tests/test_evidence_store.py",
+      "method": "Finish immutable original report before evidence/final review; keep cleanup separately; check only affected causal drift.",
+      "gap": "Actual sequence and exported final original hashes to be reviewed later.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0021:HG-0021-C1"
+      ]
+    },
+    {
+      "id": "HG-0021-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0021-S2"
+      ],
+      "judgment": "Scenarios require distinguishable behavior; shared runs are allowed with separate outcomes. Structural counts cannot prove semantics or agent actions.",
+      "owner": "kit/procedures/spec.md",
+      "test": "HG-0021-C2 bounded shared observation",
+      "method": "Semantic distinction of scenarios and per-outcome observations in a shared run; no ID/test/run quota.",
+      "gap": "No new actor execution is claimed by this semantic audit.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0021:HG-0021-C2"
+      ]
+    },
+    {
+      "id": "HG-0021-R3",
+      "read": true,
+      "scenario_ids": [
+        "HG-0026-S1",
+        "HG-0026-S2",
+        "HG-0066-S1",
+        "HG-0066-S2",
+        "HG-0066-S3",
+        "HG-0066-S4",
+        "HG-0066-S5",
+        "HG-0066-S6",
+        "HG-0066-S7",
+        "HG-0066-S8"
+      ],
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0021-R4",
+      "read": true,
+      "scenario_ids": [
+        "HG-0021-S4"
+      ],
+      "judgment": "Work requires prep and actual observed write boundary. Full log means original actions, not generated summary.",
+      "owner": "kit/procedures/work.md",
+      "test": "HG-0021-C4 bounded actor observation",
+      "method": "Before expensive actor exercise, check cwd/isolation/features/input/expected outcome; preserve full original log and compact summary.",
+      "gap": "No expensive actor exercise or its original transcript was executed/read as current evidence here.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0021:HG-0021-C4"
+      ]
+    },
+    {
+      "id": "HG-0022-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0022-S1",
+        "HG-0022-S2",
+        "HG-0022-S3"
+      ],
+      "judgment": "Assertions identify affected scenario/check/path, preserve independent evidence, and do not invalidate status-only changes.",
+      "owner": "src/specs/progress.rs; tests/catalog_contracts.rs",
+      "test": "spec_check_brief_reports_affected_inputs; spec_check_brief_reports_stale_run",
+      "method": "Real isolated native catalog, two independent inputs, one changed input; compare blockers and byte preservation.",
+      "gap": "Current Rust execution pending; no read command executed by reviewer.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0022:HG-0022-C1",
+        "HG-0022:HG-0022-C2"
+      ]
+    },
+    {
+      "id": "HG-0022-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0022-S4"
+      ],
+      "judgment": "Assertion meaning remains current. Baseline wording work/approve/push has pending explicit owner HG63 changing it to work/commit/push; do not regress current canonical Commit route.",
+      "owner": "src/specs/progress.rs; kit/procedures/work.md; pending HG-0063 transition",
+      "test": "tests/catalog_contracts.rs::spec_check_brief_returns_stable_handoff",
+      "method": "Real brief/read/list state, twice identical result, technical/human/review fingerprints, unchanged results bytes.",
+      "gap": "Current Rust execution pending. Pending normative owner is preserved, not integrated by this audit.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0022:HG-0022-C3"
+      ]
+    },
+    {
+      "id": "HG-0023-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0023-S1",
+        "HG-0023-S2"
+      ],
+      "judgment": "Assertions separate measured/unmeasured/comparable attempts and preserve failed/unknown; elapsed time does not imply PASS.",
+      "owner": "src/specs/checks.rs; docs/DEVELOPMENT.md",
+      "test": "tests/catalog_contracts.rs::run_statistics_track_attempts_without_execution",
+      "method": "Real successful assertion/failed/timeout runner, legacy duration absence, missing program, repeated stats read byte preservation.",
+      "gap": "Current Rust execution pending.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0023:HG-0023-C1"
+      ]
+    },
+    {
+      "id": "HG-0023-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0023-S3"
+      ],
+      "judgment": "Work rules support reuse, expand unknown scope and state omissions. Current audit itself assigns risk-driven checks rather than a quota.",
+      "owner": "kit/procedures/work.md; docs/DEVELOPMENT.md",
+      "test": "HG-0023-C2 bounded method-selection exercise",
+      "method": "Select focus + mandatory barrier + independent coverage; identify true duplicates by causal scope; passive measured timings only.",
+      "gap": "Actual selected command journal/final outputs pending.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0023:HG-0023-C2"
+      ]
+    },
+    {
+      "id": "HG-0023-R3",
+      "read": true,
+      "scenario_ids": [
+        "HG-0026-S3"
+      ],
+      "judgment": "Current procedure names evidence provenance and leaves unknown open; manual is not acceptance.",
+      "owner": "kit/procedures/work.md; kit/references/review.md",
+      "test": "Independent normative source/provenance table",
+      "method": "Distinguish automatic result, direct agent observation, user testimony and authority/acceptance; no forced repeat of human-only observation.",
+      "gap": "No human-only observed result was supplied or manufactured.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0024-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0024-S1",
+        "HG-0024-S2",
+        "HG-0024-S3"
+      ],
+      "judgment": "Trace test checks counts, outside-auto scope and bad identities; source guards retain attempt/completion/publication linkage. Core trace fixture preserves retained OpenSpec compatibility; native project barrier remains separate.",
+      "owner": "src/trace.rs; scripts/source-scenarios.mjs; docs/workflow/QUALITY.md",
+      "test": "tests/trace_contracts.rs::automatic_trace_keeps_scope_and_outcomes_distinct; scripts/tests/test_source_scenarios.py",
+      "method": "Actual report + inventory identity, separate totals and per-scenario outcomes; failed/skip/unknown/stale and missing tests do not pass.",
+      "gap": "Current actual Nextest/trace pending. Cargo-config freshness omission is EVID-01.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0024:HG-0024-C1"
+      ]
+    },
+    {
+      "id": "HG-0024-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0024-S4"
+      ],
+      "judgment": "TestDir creates a unique owned temp path and cleans on last drop; foreign dir survives. Cleanup failure emits diagnostics and is not magically reversed.",
+      "owner": "tests/support/mod.rs; docs/BUILD.md",
+      "test": "tests/temp_contracts.rs::test_dir_cleans_after_panic_and_keeps_foreign_directory",
+      "method": "Real panic/drop ownership case plus full Nextest before/after owned-temp inventory.",
+      "gap": "Current full Nextest and temp inventory comparison pending.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0024:HG-0024-C2"
+      ]
+    },
+    {
+      "id": "HG-0025-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0025-S1",
+        "HG-0025-S2",
+        "HG-0025-S3"
+      ],
+      "judgment": "Most source/semantic/report guards are substantive. Optional local Cargo configuration files are absent from inputHashes, so creation/change/deletion is currently an unobserved causal gap. Activation/push are separate and unassigned here.",
+      "owner": "docs/DEVELOPMENT.md; docs/BUILD.md; .highgrade/project/INSTRUCTIONS.md; scripts/source-scenarios.mjs",
+      "test": "scripts/check-scenario-reuse.mjs; scripts/tests/test_source_scenarios.py; build lifecycle",
+      "method": "One full final Nextest/trace; reuse only semantically equivalent catalogs and unchanged causal sources/config/inventory. Exact-SHA candidate only when assigned.",
+      "gap": "EVID-01 regression and targeted recheck required; current final barrier pending.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0025:HG-0025-C1",
+        "HG-0025:HG-0025-C2",
+        "HG-0025:HG-0025-C3"
+      ]
+    },
+    {
+      "id": "HG-0033-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0033-S1",
+        "HG-0033-S2",
+        "HG-0064-S1",
+        "HG-0064-S2",
+        "HG-0064-S3",
+        "HG-0064-S4"
+      ],
+      "judgment": "Tests compare full reconstructed model, order/history/review/acceptance, distinguish absence/null/empty paths, reject malformed references without mutating source bytes.",
+      "owner": "src/specs/storage.rs; kit/references/tools/specifications.md",
+      "test": "tests/catalog_contracts.rs compact_*; tests/shared_inputs_contracts.rs",
+      "method": "Real v3/v4/v5 migration, complete model/fingerprint/readback equality, idempotence, bounded growth, corruption/dual/missing refs and prewrite limits/recovery.",
+      "gap": "Current Rust execution and assigned independent catalog review pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0034-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0034-S1",
+        "HG-0034-S2",
+        "HG-0034-S3"
+      ],
+      "judgment": "Assertions preserve catalog digest/history on refusal; imports are separate from execution/review/acceptance. A synthetic JUnit test proves import guards, not authenticity of arbitrary reports.",
+      "owner": "src/specs/checks.rs; src/specs/storage.rs; docs/workflow/QUALITY.md",
+      "test": "tests/catalog_contracts.rs::native_report_import_reuses_suite_and_rejects_stale_or_missing_results; evidence_batch_is_atomic_and_exact_repeat_is_noop",
+      "method": "Pre-execution snapshot, actual report selection; skipped/failure/error/rerun/flaky/empty/stale rejection; exact repeat no-op; mixed invalid batch atomic refusal.",
+      "gap": "Current Rust execution and original-result audit pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0043-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0043-S1"
+      ],
+      "judgment": "Spec and Work share the same route matrix. No text test is promoted to model execution.",
+      "owner": "kit/procedures/spec.md; kit/procedures/work.md; kit/references/review.md",
+      "test": "Independent normative decision table; workflow structural tests only",
+      "method": "Choose semantic review for normative content and actual observations for execution claims; no mandatory actor pilot for editorial changes.",
+      "gap": "Final normative decision table/review pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0043-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0043-S2"
+      ],
+      "judgment": "Work says keep unknown dependency conservative and do not rewrite old results. Local Cargo configuration is a concrete missing possible input in whole-run guard.",
+      "owner": "kit/procedures/work.md; docs/workflow/QUALITY.md",
+      "test": "Independent causal input audit; relevant native tests",
+      "method": "Scenario-specific causal scope separate from common snapshot; narrowing needs new observed evidence; historical integration/acceptance does not refresh current evidence.",
+      "gap": "EVID-01 plus actual final scenario-specific input selection pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0043-R3",
+      "read": true,
+      "scenario_ids": [
+        "HG-0043-S3"
+      ],
+      "judgment": "Clear/Work route references keep issue ownership optional and separate from tasks. This audit creates only requested report/coverage, no second registry.",
+      "owner": "kit/procedures/clear.md; kit/references/audit.md; docs/workflow/CONTEXT.md",
+      "test": "Independent ownership/navigation semantic review",
+      "method": "Existing issue record owns reusable diagnosis/recipe; task links it; Clear does not create absent registry; history marked historical.",
+      "gap": "CONTEXT/fix complete normative review is assigned to workflow reviewer; no issue recipe execution by this reviewer.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0044-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0044-S1",
+        "HG-0065-S1"
+      ],
+      "judgment": "Assertions check selected deletion and Cargo commands, preserve candidate/tools/foreign data and deduplicate hardlink payload correctly.",
+      "owner": "docs/BUILD.md; scripts/target-maintenance.py",
+      "test": "scripts/tests/test_target_maintenance.py",
+      "method": "Real selected preview/apply, real hardlinks across areas, logical/unique/allocated/unknown metrics; no forced budget deletion.",
+      "gap": "Current Python execution and post-task target measurement pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0044-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0044-S2"
+      ],
+      "judgment": "Tests verify that invalid cache/report/path/file and active/recovery/link conditions refuse before scratch/sentinel mutation.",
+      "owner": "docs/BUILD.md; scripts/target-maintenance.py",
+      "test": "test_invalid_mixed_selection_refuses_before_deleting_scratch; test_cache_file_refuses_before_removing_selected_scratch; active/link cases",
+      "method": "Validate all selection/path/reparse/build/recovery/work conditions before first removal; mixed bad request keeps safe scratch too.",
+      "gap": "Current Python execution pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0044-R3",
+      "read": true,
+      "scenario_ids": [
+        "HG-0044-S3"
+      ],
+      "judgment": "Owners document explicit cache choices, exact candidate sources, preserved unknown data, no work-dir drafts and no arbitrary local/catalog cleanup.",
+      "owner": "docs/BUILD.md; docs/DEVELOPMENT.md; docs/EVIDENCE-STORAGE.md",
+      "test": "Independent normative paths/preparation review; lifecycle suites",
+      "method": "Fresh/cleaned project preparation with pinned Nextest and active/candidate CLI; separate cache/probe/original-evidence lifetime.",
+      "gap": "Current maintenance residuals/preflight to be measured by root; no cleanup applied by reviewer.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0065-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0065-S2"
+      ],
+      "judgment": "Cargo.toml has dev debug=0/incremental=false and no separate test profile; Nextest naturally builds the CLI. This static fact does not establish current measured size/time benefit.",
+      "owner": "Cargo.toml; docs/BUILD.md",
+      "test": "Controlled pinned-SHA inventory/profile comparison; normal Nextest",
+      "method": "Compare baseline/split/unified profiles on one pinned SHA; same normalized tests, CLI already available after Nextest, no second profile dependency copy.",
+      "gap": "HG65S2 controlled measurement requires current matching causal evidence or explicit historical limitation; no new performance comparison executed here.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0065-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0065-S3",
+        "HG-0065-S4"
+      ],
+      "judgment": "Tests mock disk capacity while observing real orchestration no-capture call; distinguish project and configured filesystem. Floor does not guarantee peak storage.",
+      "owner": "scripts/verify.py; docs/BUILD.md",
+      "test": "scripts/tests/test_verify.py low_space/headroom/configured_target tests",
+      "method": "Disk preflight before capture/compiler/report replacement, actual effective target via metadata --offline --locked; 1 GiB inclusive boundary/existing ancestor.",
+      "gap": "Current Python execution and actual preflight capacity pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0069-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0069-S1"
+      ],
+      "judgment": "Assertions check retained negative outcome, absence of files, limited card size and stale report state. Integrity is not authenticity.",
+      "owner": "src/specs/progress.rs; docs/EVIDENCE-STORAGE.md",
+      "test": "tests/spec_contracts.rs::evidence_cards_are_compact_preserve_outcome_and_detect_changed_report",
+      "method": "Real compact CLI view, failed retained, changed/missing original stale, no full file map/body by default.",
+      "gap": "Current Rust execution pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0069-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0069-S2"
+      ],
+      "judgment": "The same-size corruption test actually exercises hash validation rather than size only. Manifest/raw bytes are content addressed and originals are preserved.",
+      "owner": "scripts/evidence_store.py; docs/EVIDENCE-STORAGE.md",
+      "test": "scripts/tests/test_evidence_store.py::test_export_is_selected_idempotent_and_detects_corruption; damaged/links cases",
+      "method": "Explicit selected CAS export, identical repeat deduplicated, same-length and other corruption rejected, no source removal before verification.",
+      "gap": "Current Python execution and final selected original export pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0069-R3",
+      "read": true,
+      "scenario_ids": [
+        "HG-0069-S3"
+      ],
+      "judgment": "Assertions include added empty directory/file, missing blob, interrupted sealing, live references and a real background child. Only exact sealed sets can be removed.",
+      "owner": "scripts/evidence_store.py; scripts/target-maintenance.py; docs/EVIDENCE-STORAGE.md",
+      "test": "scripts/tests/test_evidence_store.py sweep/seal/owner/link/descendants/interruption tests",
+      "method": "Real sealed inventory and export verification; active/unknown/unexported/changed/reference/recovery data retained; age never authorizes cleanup.",
+      "gap": "Current Python execution and root final owner/link safe maintenance pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0069-R4",
+      "read": true,
+      "scenario_ids": [
+        "HG-0069-S4"
+      ],
+      "judgment": "Current owners distinguish originals/cache/unknown leftovers and prohibit arbitrary removal. Mere passing storage tests does not close actual current task cleanup or overrun.",
+      "owner": "docs/EVIDENCE-STORAGE.md; docs/BUILD.md; kit/procedures/work.md",
+      "test": "Actual target/store inventory and selected final export/cleanup; lifecycle suites",
+      "method": "Keep routine reports temporary, preserve selected original evidence, compact default context, no automatic full cache rebuild or budget increase.",
+      "gap": "Actual current evidence volume/owned cleanup/residual reasons pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0072-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0072-S1"
+      ],
+      "judgment": "Local rules are aligned and no new CI/publish/activate authority is assigned by this Clear. Current local PASS cannot prove a different SHA or Windows.",
+      "owner": "kit/procedures/work.md/planner.md; local INSTRUCTIONS; docs/DEVELOPMENT.md",
+      "test": "Independent CI status/authority decision table",
+      "method": "Pending/unavailable CI no mandatory wait; exact-SHA observed status separate; known failure addressed; explicit user/project late gate preserved.",
+      "gap": "Final normative table and actual currently available CI observation are root-owned; no network CI fetch by reviewer.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0072-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0072-S2"
+      ],
+      "judgment": "Docs/workflow consistently separate platform and runner label, and retain platform-specific authentic predecessor SHAs.",
+      "owner": "README.md; docs/BUILD.md; docs/DEVELOPMENT.md; .github/workflows/verify.yml",
+      "test": "Semantic platform/image/environment review",
+      "method": "Linux/Windows support separate from ubuntu-24.04 runner image; local Linux is neither all distributions nor Windows execution.",
+      "gap": "No Windows execution/source modernization inferred from local review.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0072-R3",
+      "read": true,
+      "scenario_ids": [
+        "HG-0072-S3"
+      ],
+      "judgment": "Workflow preserves required installed E2E inputs and both platform lifecycle/trace; cache hit still passes installed guards. Cancellation uses branch/ref grouping. No new runtime speed saving inferred.",
+      "owner": ".github/workflows/verify.yml; docs/DEVELOPMENT.md; docs/BUILD.md",
+      "test": "YAML/actionlint; real Python/Node/Nextest/installed fixture guard entrypoints",
+      "method": "Two exact-head platform jobs, Linux-only shared static/Storybook/native UI, real pinned cached predecessor with candidate/byte/version executable guards, upload inventory/completion/trace.",
+      "gap": "Current applicable local entrypoints/YAML check pending; remote both-platform execution is separately unobserved.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0072-R4",
+      "read": true,
+      "scenario_ids": [
+        "HG-0072-S4"
+      ],
+      "judgment": "Assertions compare addressed findings, validated IDs, exact catalog digest, real CLI success and ActiveSpecConflict without readiness/acceptance confusion.",
+      "owner": "scripts/verify.py; src/specs.rs; docs/DEVELOPMENT.md",
+      "test": "tests/spec_contracts.rs::batch_validation_matches_addressed_findings_without_writes; scripts/tests/test_verify.py::test_spec_validation_propagates_batch_failure_without_reloading_ids",
+      "method": "Real batch/addressed validation equality, cancelled omitted, unfinished tasks not structural failure, conflicting active drafts caught; Python calls batch once.",
+      "gap": "Current Rust/Python execution pending.",
+      "execution_confirmed": false,
+      "declared_checks": []
+    },
+    {
+      "id": "HG-0076-R1",
+      "read": true,
+      "scenario_ids": [
+        "HG-0076-S5",
+        "HG-0076-S6",
+        "HG-0076-S7"
+      ],
+      "judgment": "Sources/tests/contract protection and actual load witness are meaningful. Windows trailing dot/space aliases are not currently rejected; string protected-input membership can miss an alias.",
+      "owner": "kit/tools/clear_batch.py; kit/references/clear-batches.md; kit/references/review.md",
+      "test": "scripts/tests/test_clear_batch.py; tests/global_contracts.rs::installed_clear_helper_runs_after_candidate_sources_are_removed",
+      "method": "Real processes, compiled-loaded source witness, one violation at a time, baseline/final and exact bytes/modes restore, invalid classes/descendant/foreign edits/conflicting output/serial constraints.",
+      "gap": "EVID-02 guard regression needed; non_assertion exact category/reason and strengthened final assertions are useful weak-check refinements; current execution pending.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0076:HG-0076-C1",
+        "HG-0076:HG-0076-C3"
+      ]
+    },
+    {
+      "id": "HG-0076-R2",
+      "read": true,
+      "scenario_ids": [
+        "HG-0076-S8",
+        "HG-0076-S9",
+        "HG-0076-S10"
+      ],
+      "judgment": "Reuse guards compare actual recorded causal inputs and export original references. Comparison covers same three violations and counts 9 vs 5 actual test commands; it makes no universal/net development-cost/token saving claim.",
+      "owner": "kit/tools/clear_batch.py; kit/references/clear-batches.md; docs/EVIDENCE-STORAGE.md",
+      "test": "scripts/tests/test_clear_batch.py reuse + measured-control tests; evidence_store suites",
+      "method": "Complete matching plan/helper/source/test/contracts/data/dependency/environment/probe fingerprint + intact prior originals; raw originals/common snapshot; matched control vs batch timings/counts/bytes, unavailable tokens and prep cost.",
+      "gap": "Current observed comparison/reuse/raw preservation results and final export pending.",
+      "execution_confirmed": false,
+      "declared_checks": [
+        "HG-0076:HG-0076-C3"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "HG-0019-S1",
+      "requirement": "HG-0019-R1",
+      "read": true,
+      "judgment": "Assertions check committed kit/binary, source SHA, cache directory and empty work; they do not themselves export permanent evidence.",
+      "owner": "docs/BUILD.md; scripts/build-release.py",
+      "test": "scripts/tests/test_build_release.py::test_exact_revision_repeat_and_failed_build_preserve_candidate",
+      "method": "В изолированной копии выполнить scripts/build-release.py для точного SHA, проверить созданные пути и отсутствие оставшихся проб после завершения; сверить долговременные доказательства и корень target",
+      "method_selected_before_baseline": "Exact-SHA Git archive -> real Node/Cargo fixture, actual artifact invocation, dirty tree ignored, failed next build preserves candidate.",
+      "gap": "Current baseline, final originals export and owned-probe cleanup pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0019",
+          "id": "HG-0019-C1",
+          "action": "python -m unittest discover -s scripts/tests -v",
+          "file": "scripts/tests/test_build_release.py",
+          "inputs": [
+            "scripts/build-release.py",
+            "scripts/tests/test_build_release.py"
+          ],
+          "observation": "Кандидат построен из зафиксированного SHA в target/highgrade; временные исходники удалены; сбой следующей сборки сохраняет кандидата",
+          "preparation": "Временный Git/Cargo-проект с зафиксированным SHA, грязным рабочим деревом и рабочим кандидатом",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0019-S1"
+          ],
+          "selector": "test_exact_revision_repeat_and_failed_build_preserve_candidate"
+        }
+      ]
+    },
+    {
+      "id": "HG-0019-S2",
+      "requirement": "HG-0019-R2",
+      "read": true,
+      "judgment": "Preview is read-only; all parameters are checked before removal; Cargo refusal is not disguised as success. Budget is soft and measures unique payload.",
+      "owner": "docs/BUILD.md; scripts/target-maintenance.py",
+      "test": "scripts/tests/test_target_maintenance.py",
+      "method": "Запустить scripts/tests/test_target_maintenance.py на фикстуре с хешами всех файлов до и после просмотра и применения; проверить точный список удалённых и сохранённых путей",
+      "method_selected_before_baseline": "Real temporary target preview/apply, hashes/foreign sentinel, active/recovery/link refusal and explicit cache selection.",
+      "gap": "Current runtime results and post-maintenance measurement pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0019",
+          "id": "HG-0019-C2",
+          "action": "python -m unittest discover -s scripts/tests -v",
+          "file": "scripts/tests/test_target_maintenance.py",
+          "inputs": [
+            "scripts/target-maintenance.py",
+            "scripts/tests/test_target_maintenance.py"
+          ],
+          "observation": "Просмотр ничего не меняет; применение удаляет выбранное и сохраняет кандидата и неизвестное",
+          "preparation": "Временный target с пробой, кандидатом и неизвестным файлом",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0019-S2"
+          ],
+          "selector": "test_preview_is_read_only_and_apply_preserves_candidate_and_unknown,test_cache_cleanup_requires_explicit_selection"
+        }
+      ]
+    },
+    {
+      "id": "HG-0019-S3",
+      "requirement": "HG-0019-R2",
+      "read": true,
+      "judgment": "Preview is read-only; all parameters are checked before removal; Cargo refusal is not disguised as success. Budget is soft and measures unique payload.",
+      "owner": "docs/BUILD.md; scripts/target-maintenance.py",
+      "test": "scripts/tests/test_target_maintenance.py",
+      "method": "Запустить scripts/tests/test_target_maintenance.py с внешним sentinel-файлом, reparse point и признаком активной сборки; сверить байты кандидата и sentinel после отказа",
+      "method_selected_before_baseline": "Real temporary target preview/apply, hashes/foreign sentinel, active/recovery/link refusal and explicit cache selection.",
+      "gap": "Current runtime results and post-maintenance measurement pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0019",
+          "id": "HG-0019-C3",
+          "action": "python -m unittest discover -s scripts/tests -v",
+          "file": "scripts/tests/test_target_maintenance.py",
+          "inputs": [
+            "scripts/target-maintenance.py",
+            "scripts/tests/test_target_maintenance.py"
+          ],
+          "observation": "Отказ до удаления; внешние данные, кандидат и проба сохраняются",
+          "preparation": "Временный target с внешним sentinel, junction, кандидатом и признаком работающего Cargo",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0019-S3"
+          ],
+          "selector": "test_active_build_and_recovery_state_refuse_without_changes,test_link_outside_root_refuses_and_preserves_sentinel"
+        }
+      ]
+    },
+    {
+      "id": "HG-0021-S1",
+      "requirement": "HG-0021-R1",
+      "read": true,
+      "judgment": "Normative ordering is explicit. CAS and run lifecycle preserve originals. A later note cannot be appended to hashed report.",
+      "owner": "kit/procedures/work.md; docs/EVIDENCE-STORAGE.md",
+      "test": "HG-0021-C1 manual sequence; scripts/tests/test_evidence_store.py",
+      "method": "Перед итоговым ревью сверить порядок действий, хеши отчёта и записи evidence; очистку проверить по отдельной записи",
+      "method_selected_before_baseline": "Finish immutable original report before evidence/final review; keep cleanup separately; check only affected causal drift.",
+      "gap": "Actual sequence and exported final original hashes to be reviewed later.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0021",
+          "id": "HG-0021-C1",
+          "action": "Записать evidence, убрать временные материалы, проверить неизменность отчётов; изменить только зависимый вход и обновить нужное доказательство",
+          "file": "",
+          "inputs": [
+            "kit/procedures/work.md"
+          ],
+          "observation": "Отчёты не меняются от очистки; затронутое доказательство устаревает и обновляется адресно; все актуальные записи готовы до итогового ревью",
+          "preparation": "Сохранить два независимых отчёта и входы до записи evidence; подготовить служебную очистку и адресную правку одного входа",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0021-S1"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0021-S2",
+      "requirement": "HG-0021-R2",
+      "read": true,
+      "judgment": "Scenarios require distinguishable behavior; shared runs are allowed with separate outcomes. Structural counts cannot prove semantics or agent actions.",
+      "owner": "kit/procedures/spec.md",
+      "test": "HG-0021-C2 bounded shared observation",
+      "method": "Сверить требования, список сценариев, один исходный прогон и отдельные наблюдения по ID",
+      "method_selected_before_baseline": "Semantic distinction of scenarios and per-outcome observations in a shared run; no ID/test/run quota.",
+      "gap": "No new actor execution is claimed by this semantic audit.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0021",
+          "id": "HG-0021-C2",
+          "action": "Выбрать сценарии и выполнить общий тестовый прогон",
+          "file": "",
+          "inputs": [
+            "kit/procedures/spec.md"
+          ],
+          "observation": "Эквивалентные примеры не создают лишний сценарий; обязательные исходы наблюдаются отдельно, один прогон покрывает оба",
+          "preparation": "В изолированном упражнении задать два эквивалентных примера сложения и отдельный исход ошибки типа",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0021-S2"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0026-S1",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Содержательная сверка действующей инструкции и таблицы решений; это проверка нормативного маршрута, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0026-S2",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Содержательная сверка действующей инструкции и таблицы решений; это проверка нормативного маршрута, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0066-S1",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Нормативная сверка соответствующих пунктов Work/ревью/проектного примера и строки таблицы решений с независимым смысловым ревью; это проверка содержания инструкции, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0066-S2",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Нормативная сверка соответствующих пунктов Work/ревью/проектного примера и строки таблицы решений с независимым смысловым ревью; это проверка содержания инструкции, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0066-S3",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Нормативная сверка соответствующих пунктов Work/ревью/проектного примера и строки таблицы решений с независимым смысловым ревью; это проверка содержания инструкции, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0066-S4",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Нормативная сверка соответствующих пунктов Work/ревью/проектного примера и строки таблицы решений с независимым смысловым ревью; это проверка содержания инструкции, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0066-S5",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Нормативная сверка соответствующих пунктов Work/ревью/проектного примера и строки таблицы решений с независимым смысловым ревью; это проверка содержания инструкции, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0066-S6",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Нормативная сверка соответствующих пунктов Work/ревью/проектного примера и строки таблицы решений с независимым смысловым ревью; это проверка содержания инструкции, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0066-S7",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Нормативная сверка соответствующих пунктов Work/ревью/проектного примера и строки таблицы решений с независимым смысловым ревью; это проверка содержания инструкции, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0066-S8",
+      "requirement": "HG-0021-R3",
+      "read": true,
+      "judgment": "Current Work/review keeps meaningful before/after checks, exception grounds, one final project barrier and no universal tool/extra pilot. Text tests remain structural.",
+      "owner": "kit/procedures/work.md; kit/references/review.md; docs/DEVELOPMENT.md",
+      "test": "scripts/tests/test_workflow_contract.py (structure only); independent semantic decision table",
+      "method": "Нормативная сверка соответствующих пунктов Work/ревью/проектного примера и строки таблицы решений с независимым смысловым ревью; это проверка содержания инструкции, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Normative content review of prose/CLI/workflow classes and test-before-implementation exceptions; narrow real RED before bugfix, PASS after; preserve failed history.",
+      "gap": "Actual bugfix RED/PASS and final review are pending; semantic review does not certify future agent behavior.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0021-S4",
+      "requirement": "HG-0021-R4",
+      "read": true,
+      "judgment": "Work requires prep and actual observed write boundary. Full log means original actions, not generated summary.",
+      "owner": "kit/procedures/work.md",
+      "test": "HG-0021-C4 bounded actor observation",
+      "method": "Проверить предзапусковые условия, реальный каталог записи, журнал и краткий вывод",
+      "method_selected_before_baseline": "Before expensive actor exercise, check cwd/isolation/features/input/expected outcome; preserve full original log and compact summary.",
+      "gap": "No expensive actor exercise or its original transcript was executed/read as current evidence here.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0021",
+          "id": "HG-0021-C4",
+          "action": "Отклонить неверную подготовку, затем выполнить допустимый агентный прогон с сохранённым журналом",
+          "file": "",
+          "inputs": [
+            "kit/procedures/work.md"
+          ],
+          "observation": "Недопустимый запуск не состоялся; реальный каталог изолирован; полный исходный журнал и краткий итог доступны проверяющему",
+          "preparation": "Проверить неверный и допустимый cwd, режим сеанса и входы до запуска изолированного упражнения",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0021-S4"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0022-S1",
+      "requirement": "HG-0022-R1",
+      "read": true,
+      "judgment": "Assertions identify affected scenario/check/path, preserve independent evidence, and do not invalidate status-only changes.",
+      "owner": "src/specs/progress.rs; tests/catalog_contracts.rs",
+      "test": [
+        "tests/catalog_contracts.rs::spec_check_brief_reports_affected_inputs"
+      ],
+      "method": "Изолированный Rust-контракт создаёт change, записывает оба доказательства, меняет один вход и сравнивает вывод и байты каталога.",
+      "method_selected_before_baseline": "Real isolated native catalog, two independent inputs, one changed input; compare blockers and byte preservation.",
+      "gap": "Current Rust execution pending; no read command executed by reviewer.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0022",
+          "id": "HG-0022-C1",
+          "action": "Изменить значимый и затем незаявленный служебный вход; вызвать spec-check --brief true.",
+          "file": "tests/catalog_contracts.rs",
+          "inputs": [
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/main.rs",
+            "src/specs.rs",
+            "src/specs/checks.rs",
+            "src/specs/progress.rs",
+            "tests/catalog_contracts.rs"
+          ],
+          "observation": "Назван только реально изменённый вход и затронутый сценарий; незаявленный файл не обесценивает результат.",
+          "preparation": "Создать временный нативный каталог с двумя сценариями и успешными доказательствами.",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0022-S1",
+            "HG-0022-S2"
+          ],
+          "selector": "spec_check_brief_reports_affected_inputs"
+        }
+      ]
+    },
+    {
+      "id": "HG-0022-S2",
+      "requirement": "HG-0022-R1",
+      "read": true,
+      "judgment": "Assertions identify affected scenario/check/path, preserve independent evidence, and do not invalidate status-only changes.",
+      "owner": "src/specs/progress.rs; tests/catalog_contracts.rs",
+      "test": [
+        "tests/catalog_contracts.rs::spec_check_brief_reports_affected_inputs"
+      ],
+      "method": "Изолированный Rust-контракт меняет только незаявленный файл и сравнивает статус и записи доказательств.",
+      "method_selected_before_baseline": "Real isolated native catalog, two independent inputs, one changed input; compare blockers and byte preservation.",
+      "gap": "Current Rust execution pending; no read command executed by reviewer.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0022",
+          "id": "HG-0022-C1",
+          "action": "Изменить значимый и затем незаявленный служебный вход; вызвать spec-check --brief true.",
+          "file": "tests/catalog_contracts.rs",
+          "inputs": [
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/main.rs",
+            "src/specs.rs",
+            "src/specs/checks.rs",
+            "src/specs/progress.rs",
+            "tests/catalog_contracts.rs"
+          ],
+          "observation": "Назван только реально изменённый вход и затронутый сценарий; незаявленный файл не обесценивает результат.",
+          "preparation": "Создать временный нативный каталог с двумя сценариями и успешными доказательствами.",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0022-S1",
+            "HG-0022-S2"
+          ],
+          "selector": "spec_check_brief_reports_affected_inputs"
+        }
+      ]
+    },
+    {
+      "id": "HG-0022-S3",
+      "requirement": "HG-0022-R1",
+      "read": true,
+      "judgment": "Assertions identify affected scenario/check/path, preserve independent evidence, and do not invalidate status-only changes.",
+      "owner": "src/specs/progress.rs; tests/catalog_contracts.rs",
+      "test": [
+        "tests/catalog_contracts.rs::spec_check_brief_reports_stale_run"
+      ],
+      "method": "Изолированный Rust-контракт создаёт успешный run, меняет вход и проверяет причину устаревания.",
+      "method_selected_before_baseline": "Real isolated native catalog, two independent inputs, one changed input; compare blockers and byte preservation.",
+      "gap": "Current Rust execution pending; no read command executed by reviewer.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0022",
+          "id": "HG-0022-C2",
+          "action": "Изменить проверенный вход run; вызвать spec-check --brief true.",
+          "file": "tests/catalog_contracts.rs",
+          "inputs": [
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/main.rs",
+            "src/specs.rs",
+            "src/specs/checks.rs",
+            "src/specs/progress.rs",
+            "tests/catalog_contracts.rs"
+          ],
+          "observation": "Названы ID проверки и изменённый путь; старый run не считается актуальным.",
+          "preparation": "Создать временный каталог с прошедшим автоматическим run.",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0022-S3"
+          ],
+          "selector": "spec_check_brief_reports_stale_run"
+        }
+      ]
+    },
+    {
+      "id": "HG-0022-S4",
+      "requirement": "HG-0022-R2",
+      "read": true,
+      "judgment": "Assertion meaning remains current. Baseline wording work/approve/push has pending explicit owner HG63 changing it to work/commit/push; do not regress current canonical Commit route.",
+      "owner": "src/specs/progress.rs; kit/procedures/work.md; pending HG-0063 transition",
+      "test": [
+        "tests/catalog_contracts.rs::spec_check_brief_returns_stable_handoff"
+      ],
+      "method": "Изолированный Rust-контракт сравнивает снимок с spec-read и spec-list и проверяет неизменность файлов каталога.",
+      "method_selected_before_baseline": "Real brief/read/list state, twice identical result, technical/human/review fingerprints, unchanged results bytes.",
+      "gap": "Current Rust execution pending. Pending normative owner is preserved, not integrated by this audit.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0022",
+          "id": "HG-0022-C3",
+          "action": "Дважды вызвать spec-check --brief true и сравнить с spec-read и spec-list.",
+          "file": "tests/catalog_contracts.rs",
+          "inputs": [
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/main.rs",
+            "src/specs.rs",
+            "src/specs/checks.rs",
+            "src/specs/progress.rs",
+            "tests/catalog_contracts.rs"
+          ],
+          "observation": "Краткий вывод содержит точные статусы и отпечатки без истории и записи новых файлов.",
+          "preparation": "Создать временный готовый change с актуальным ревью и человеческим решением.",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0022-S4"
+          ],
+          "selector": "spec_check_brief_returns_stable_handoff"
+        }
+      ]
+    },
+    {
+      "id": "HG-0023-S1",
+      "requirement": "HG-0023-R1",
+      "read": true,
+      "judgment": "Assertions separate measured/unmeasured/comparable attempts and preserve failed/unknown; elapsed time does not imply PASS.",
+      "owner": "src/specs/checks.rs; docs/DEVELOPMENT.md",
+      "test": [
+        "tests/catalog_contracts.rs::run_statistics_track_attempts_without_execution"
+      ],
+      "method": "Тест CLI с настоящим коротким раннером, старой записью и сравнением состояния до/после чтения",
+      "method_selected_before_baseline": "Real successful assertion/failed/timeout runner, legacy duration absence, missing program, repeated stats read byte preservation.",
+      "gap": "Current Rust execution pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0023",
+          "id": "HG-0023-C1",
+          "action": "Запустить выборку и прочитать статистику; сравнить снимок каталога",
+          "file": "tests/catalog_contracts.rs",
+          "inputs": [
+            "src/main.rs",
+            "src/specs.rs",
+            "src/specs/checks.rs",
+            "tests/catalog_contracts.rs"
+          ],
+          "observation": "Длительности и исходы правдивы, чтение ничего не запускает и не пишет",
+          "preparation": "Изолированный каталог и настоящий тестовый раннер с коротким успешным и ошибочным процессами; старый результат без длительности",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0023-S1",
+            "HG-0023-S2"
+          ],
+          "selector": "run_statistics_track_attempts_without_execution"
+        }
+      ]
+    },
+    {
+      "id": "HG-0023-S2",
+      "requirement": "HG-0023-R1",
+      "read": true,
+      "judgment": "Assertions separate measured/unmeasured/comparable attempts and preserve failed/unknown; elapsed time does not imply PASS.",
+      "owner": "src/specs/checks.rs; docs/DEVELOPMENT.md",
+      "test": [
+        "tests/catalog_contracts.rs::run_statistics_track_attempts_without_execution"
+      ],
+      "method": "Тест CLI для завершения с ошибкой и тайм-аута с проверкой исхода и времени",
+      "method_selected_before_baseline": "Real successful assertion/failed/timeout runner, legacy duration absence, missing program, repeated stats read byte preservation.",
+      "gap": "Current Rust execution pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0023",
+          "id": "HG-0023-C1",
+          "action": "Запустить выборку и прочитать статистику; сравнить снимок каталога",
+          "file": "tests/catalog_contracts.rs",
+          "inputs": [
+            "src/main.rs",
+            "src/specs.rs",
+            "src/specs/checks.rs",
+            "tests/catalog_contracts.rs"
+          ],
+          "observation": "Длительности и исходы правдивы, чтение ничего не запускает и не пишет",
+          "preparation": "Изолированный каталог и настоящий тестовый раннер с коротким успешным и ошибочным процессами; старый результат без длительности",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0023-S1",
+            "HG-0023-S2"
+          ],
+          "selector": "run_statistics_track_attempts_without_execution"
+        }
+      ]
+    },
+    {
+      "id": "HG-0023-S3",
+      "requirement": "HG-0023-R2",
+      "read": true,
+      "judgment": "Work rules support reuse, expand unknown scope and state omissions. Current audit itself assigns risk-driven checks rather than a quota.",
+      "owner": "kit/procedures/work.md; docs/DEVELOPMENT.md",
+      "test": "HG-0023-C2 bounded method-selection exercise",
+      "method": "Изолированное упражнение агента с матрицей тестов, журналом фактических запусков и входов",
+      "method_selected_before_baseline": "Select focus + mandatory barrier + independent coverage; identify true duplicates by causal scope; passive measured timings only.",
+      "gap": "Actual selected command journal/final outputs pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0023",
+          "id": "HG-0023-C2",
+          "action": "Выполнить минимальный достаточный маршрут и сохранить журнал выбора и запусков",
+          "file": "",
+          "inputs": [
+            "docs/DEVELOPMENT.md",
+            "kit/procedures/work.md",
+            "kit/templates/DEVELOPMENT.md",
+            "tests/catalog_contracts.rs"
+          ],
+          "observation": "Нет лишнего прогона и нет пропуска независимого покрытия",
+          "preparation": "Подготовить фокус, барьер, дубликат и независимое покрытие в изолированном примере",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0023-S3"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0026-S3",
+      "requirement": "HG-0023-R3",
+      "read": true,
+      "judgment": "Current procedure names evidence provenance and leaves unknown open; manual is not acceptance.",
+      "owner": "kit/procedures/work.md; kit/references/review.md",
+      "test": "Independent normative source/provenance table",
+      "method": "Содержательная сверка действующей инструкции и таблицы решений; это проверка нормативного маршрута, не наблюдение будущего поведения агента.",
+      "method_selected_before_baseline": "Distinguish automatic result, direct agent observation, user testimony and authority/acceptance; no forced repeat of human-only observation.",
+      "gap": "No human-only observed result was supplied or manufactured.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0024-S1",
+      "requirement": "HG-0024-R1",
+      "read": true,
+      "judgment": "Trace test checks counts, outside-auto scope and bad identities; source guards retain attempt/completion/publication linkage. Core trace fixture preserves retained OpenSpec compatibility; native project barrier remains separate.",
+      "owner": "src/trace.rs; scripts/source-scenarios.mjs; docs/workflow/QUALITY.md",
+      "test": [
+        "tests/trace_contracts.rs::automatic_trace_keeps_scope_and_outcomes_distinct"
+      ],
+      "method": "Rust-тест trace на изолированном отчёте Nextest и проверка проектной сводки по настоящему прогону",
+      "method_selected_before_baseline": "Actual report + inventory identity, separate totals and per-scenario outcomes; failed/skip/unknown/stale and missing tests do not pass.",
+      "gap": "Current actual Nextest/trace pending. Cargo-config freshness omission is EVID-01.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0024",
+          "id": "HG-0024-C1",
+          "action": "Запустить тест и прочитать trace",
+          "file": "tests/trace_contracts.rs",
+          "inputs": [
+            "scripts/source-scenarios.mjs",
+            "src/trace.rs",
+            "tests/support/mod.rs",
+            "tests/trace_contracts.rs"
+          ],
+          "observation": "Счётчики согласованы, несвязанное вне автоматической области, сбой и пропуск не становятся PASS",
+          "preparation": "Изолированный каталог с несколькими Rust-тестами, ручным сценарием и отчётами с разными исходами",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0024-S1",
+            "HG-0024-S2",
+            "HG-0024-S3"
+          ],
+          "selector": "automatic_trace_keeps_scope_and_outcomes_distinct"
+        }
+      ]
+    },
+    {
+      "id": "HG-0024-S2",
+      "requirement": "HG-0024-R1",
+      "read": true,
+      "judgment": "Trace test checks counts, outside-auto scope and bad identities; source guards retain attempt/completion/publication linkage. Core trace fixture preserves retained OpenSpec compatibility; native project barrier remains separate.",
+      "owner": "src/trace.rs; scripts/source-scenarios.mjs; docs/workflow/QUALITY.md",
+      "test": [
+        "tests/trace_contracts.rs::automatic_trace_keeps_scope_and_outcomes_distinct"
+      ],
+      "method": "Rust-тест trace с несвязанным сценарием и сохранённым отдельным доказательством",
+      "method_selected_before_baseline": "Actual report + inventory identity, separate totals and per-scenario outcomes; failed/skip/unknown/stale and missing tests do not pass.",
+      "gap": "Current actual Nextest/trace pending. Cargo-config freshness omission is EVID-01.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0024",
+          "id": "HG-0024-C1",
+          "action": "Запустить тест и прочитать trace",
+          "file": "tests/trace_contracts.rs",
+          "inputs": [
+            "scripts/source-scenarios.mjs",
+            "src/trace.rs",
+            "tests/support/mod.rs",
+            "tests/trace_contracts.rs"
+          ],
+          "observation": "Счётчики согласованы, несвязанное вне автоматической области, сбой и пропуск не становятся PASS",
+          "preparation": "Изолированный каталог с несколькими Rust-тестами, ручным сценарием и отчётами с разными исходами",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0024-S1",
+            "HG-0024-S2",
+            "HG-0024-S3"
+          ],
+          "selector": "automatic_trace_keeps_scope_and_outcomes_distinct"
+        }
+      ]
+    },
+    {
+      "id": "HG-0024-S3",
+      "requirement": "HG-0024-R1",
+      "read": true,
+      "judgment": "Trace test checks counts, outside-auto scope and bad identities; source guards retain attempt/completion/publication linkage. Core trace fixture preserves retained OpenSpec compatibility; native project barrier remains separate.",
+      "owner": "src/trace.rs; scripts/source-scenarios.mjs; docs/workflow/QUALITY.md",
+      "test": [
+        "tests/trace_contracts.rs::automatic_trace_keeps_scope_and_outcomes_distinct"
+      ],
+      "method": "Rust-тесты trace для failed, skipped и stale по настоящей структуре отчёта",
+      "method_selected_before_baseline": "Actual report + inventory identity, separate totals and per-scenario outcomes; failed/skip/unknown/stale and missing tests do not pass.",
+      "gap": "Current actual Nextest/trace pending. Cargo-config freshness omission is EVID-01.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0024",
+          "id": "HG-0024-C1",
+          "action": "Запустить тест и прочитать trace",
+          "file": "tests/trace_contracts.rs",
+          "inputs": [
+            "scripts/source-scenarios.mjs",
+            "src/trace.rs",
+            "tests/support/mod.rs",
+            "tests/trace_contracts.rs"
+          ],
+          "observation": "Счётчики согласованы, несвязанное вне автоматической области, сбой и пропуск не становятся PASS",
+          "preparation": "Изолированный каталог с несколькими Rust-тестами, ручным сценарием и отчётами с разными исходами",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0024-S1",
+            "HG-0024-S2",
+            "HG-0024-S3"
+          ],
+          "selector": "automatic_trace_keeps_scope_and_outcomes_distinct"
+        }
+      ]
+    },
+    {
+      "id": "HG-0024-S4",
+      "requirement": "HG-0024-R2",
+      "read": true,
+      "judgment": "TestDir creates a unique owned temp path and cleans on last drop; foreign dir survives. Cleanup failure emits diagnostics and is not magically reversed.",
+      "owner": "tests/support/mod.rs; docs/BUILD.md",
+      "test": "tests/temp_contracts.rs::test_dir_cleans_after_panic_and_keeps_foreign_directory",
+      "method": "Регрессионный тест фикстуры и сравнение созданных тестовых каталогов до и после полного Nextest-прогона",
+      "method_selected_before_baseline": "Real panic/drop ownership case plus full Nextest before/after owned-temp inventory.",
+      "gap": "Current full Nextest and temp inventory comparison pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0024",
+          "id": "HG-0024-C2",
+          "action": "Выполнить полный Nextest и пробу ошибочного завершения фикстуры",
+          "file": "",
+          "inputs": [
+            "tests/bootstrap_contracts.rs",
+            "tests/catalog_contracts.rs",
+            "tests/contracts.rs",
+            "tests/global_contracts.rs",
+            "tests/package_contracts.rs",
+            "tests/spec_contracts.rs",
+            "tests/support/mod.rs",
+            "tests/temp_contracts.rs",
+            "tests/trace_contracts.rs"
+          ],
+          "observation": "Новые test-owned каталоги очищены; чужой каталог сохранён, исход ошибки доступен",
+          "preparation": "Зафиксировать test-owned каталоги и отдельный посторонний каталог перед прогоном",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0024-S4"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0025-S1",
+      "requirement": "HG-0025-R1",
+      "read": true,
+      "judgment": "Most source/semantic/report guards are substantive. Optional local Cargo configuration files are absent from inputHashes, so creation/change/deletion is currently an unobserved causal gap. Activation/push are separate and unassigned here.",
+      "owner": "docs/DEVELOPMENT.md; docs/BUILD.md; .highgrade/project/INSTRUCTIONS.md; scripts/source-scenarios.mjs",
+      "test": "scripts/check-scenario-reuse.mjs; scripts/tests/test_source_scenarios.py; build lifecycle",
+      "method": "Постоянная изолированная проверка scripts/check-scenario-reuse.mjs после реального Nextest/JUnit",
+      "method_selected_before_baseline": "One full final Nextest/trace; reuse only semantically equivalent catalogs and unchanged causal sources/config/inventory. Exact-SHA candidate only when assigned.",
+      "gap": "EVID-01 regression and targeted recheck required; current final barrier pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0025",
+          "id": "HG-0025-C1",
+          "action": "В изолированной копии изменить только метаданные спеки, затем исход сценария и Rust-файл",
+          "file": "",
+          "inputs": [
+            ".github/workflows/verify.yml",
+            ".highgrade/project/INSTRUCTIONS.md",
+            "docs/DEVELOPMENT.md",
+            "scripts/check-scenario-reuse.mjs",
+            "scripts/source-scenarios.mjs",
+            "specs/changes/HG-0025/spec.json"
+          ],
+          "observation": "Эквивалентный каталог переиспользует отчёт, семантическое или исходное изменение отвергается",
+          "preparation": "Есть свежий полный Nextest/JUnit и записанный run.json",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0025-S1"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0025-S2",
+      "requirement": "HG-0025-R1",
+      "read": true,
+      "judgment": "Most source/semantic/report guards are substantive. Optional local Cargo configuration files are absent from inputHashes, so creation/change/deletion is currently an unobserved causal gap. Activation/push are separate and unassigned here.",
+      "owner": "docs/DEVELOPMENT.md; docs/BUILD.md; .highgrade/project/INSTRUCTIONS.md; scripts/source-scenarios.mjs",
+      "test": "scripts/check-scenario-reuse.mjs; scripts/tests/test_source_scenarios.py; build lifecycle",
+      "method": "Сверить ENGINEERING, DEVELOPMENT, BUILD, проектную инструкцию, код build-release.py и проверенный прежний выпуск; новую активацию не приписывать этой задаче",
+      "method_selected_before_baseline": "One full final Nextest/trace; reuse only semantically equivalent catalogs and unchanged causal sources/config/inventory. Exact-SHA candidate only when assigned.",
+      "gap": "EVID-01 regression and targeted recheck required; current final barrier pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0025",
+          "id": "HG-0025-C2",
+          "action": "Сверить команды проекта с кодом, тестами сборки и исходным журналом выпуска",
+          "file": "",
+          "inputs": [
+            ".highgrade/project/INSTRUCTIONS.md",
+            "docs/BUILD.md",
+            "docs/DEVELOPMENT.md",
+            "docs/ENGINEERING.md",
+            "scripts/build-release.py",
+            "scripts/tests/test_build_release.py"
+          ],
+          "observation": "Указана одна release-сборка, защита точного SHA и все барьеры применения сохранены",
+          "preparation": "Имеются build-release.py и подтверждённый выпуск из точного SHA",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0025-S2"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0025-S3",
+      "requirement": "HG-0025-R1",
+      "read": true,
+      "judgment": "Most source/semantic/report guards are substantive. Optional local Cargo configuration files are absent from inputHashes, so creation/change/deletion is currently an unobserved causal gap. Activation/push are separate and unassigned here.",
+      "owner": "docs/DEVELOPMENT.md; docs/BUILD.md; .highgrade/project/INSTRUCTIONS.md; scripts/source-scenarios.mjs",
+      "test": "scripts/check-scenario-reuse.mjs; scripts/tests/test_source_scenarios.py; build lifecycle",
+      "method": "Сверить таблицу решений с проектной инструкцией и runbook; фактическое поведение будущего агента остаётся отдельным наблюдением",
+      "method_selected_before_baseline": "One full final Nextest/trace; reuse only semantically equivalent catalogs and unchanged causal sources/config/inventory. Exact-SHA candidate only when assigned.",
+      "gap": "EVID-01 regression and targeted recheck required; current final barrier pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0025",
+          "id": "HG-0025-C3",
+          "action": "Разобрать два этапа цепочки по действующей проектной инструкции",
+          "file": "",
+          "inputs": [
+            ".highgrade/project/INSTRUCTIONS.md",
+            "docs/BUILD.md",
+            "docs/DEVELOPMENT.md"
+          ],
+          "observation": "Правило однозначно откладывает промежуточный выпуск, сохраняет исключение для необходимой активной CLI и отдельный push",
+          "preparation": "Пример цепочки с промежуточным и последним коммитом",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0025-S3"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0033-S1",
+      "requirement": "HG-0033-R1",
+      "read": true,
+      "judgment": "Tests compare full reconstructed model, order/history/review/acceptance, distinguish absence/null/empty paths, reject malformed references without mutating source bytes.",
+      "owner": "src/specs/storage.rs; kit/references/tools/specifications.md",
+      "test": [
+        "tests/catalog_contracts.rs::compact_history_preserves_observations_and_rejects_corruption",
+        "tests/catalog_contracts.rs::compact_catalog_accepts_empty_changes_and_new_changes"
+      ],
+      "method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+      "method_selected_before_baseline": "Real v3/v4/v5 migration, complete model/fingerprint/readback equality, idempotence, bounded growth, corruption/dual/missing refs and prewrite limits/recovery.",
+      "gap": "Current Rust execution and assigned independent catalog review pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0033-S2",
+      "requirement": "HG-0033-R1",
+      "read": true,
+      "judgment": "Tests compare full reconstructed model, order/history/review/acceptance, distinguish absence/null/empty paths, reject malformed references without mutating source bytes.",
+      "owner": "src/specs/storage.rs; kit/references/tools/specifications.md",
+      "test": [
+        "tests/catalog_contracts.rs::compact_history_preserves_observations_and_rejects_corruption",
+        "tests/catalog_contracts.rs::compact_catalog_accepts_empty_changes_and_new_changes",
+        "tests/catalog_contracts.rs::compact_transaction_limit_and_recovery_preserve_catalog",
+        "tests/shared_inputs_contracts.rs::shared_inputs_migration_recovery_validates_complete_prospective_snapshot",
+        "tests/shared_inputs_contracts.rs::shared_inputs_limits_fail_before_any_catalog_write"
+      ],
+      "method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+      "method_selected_before_baseline": "Real v3/v4/v5 migration, complete model/fingerprint/readback equality, idempotence, bounded growth, corruption/dual/missing refs and prewrite limits/recovery.",
+      "gap": "Current Rust execution and assigned independent catalog review pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0064-S1",
+      "requirement": "HG-0033-R1",
+      "read": true,
+      "judgment": "Tests compare full reconstructed model, order/history/review/acceptance, distinguish absence/null/empty paths, reject malformed references without mutating source bytes.",
+      "owner": "src/specs/storage.rs; kit/references/tools/specifications.md",
+      "test": [
+        "tests/shared_inputs_contracts.rs::shared_inputs_migrate_v3_and_v4_losslessly_and_idempotently",
+        "tests/shared_inputs_contracts.rs::shared_inputs_schema_exposes_exact_versioned_storage_shape",
+        "tests/shared_inputs_contracts.rs::shared_inputs_support_empty_catalog_and_review_only_results"
+      ],
+      "method": "Контрактный тест реальных CLI-команд сравнивает полную модель и размер, обе исходные версии; отдельный замер на копии HG-0063",
+      "method_selected_before_baseline": "Real v3/v4/v5 migration, complete model/fingerprint/readback equality, idempotence, bounded growth, corruption/dual/missing refs and prewrite limits/recovery.",
+      "gap": "Current Rust execution and assigned independent catalog review pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0064-S2",
+      "requirement": "HG-0033-R1",
+      "read": true,
+      "judgment": "Tests compare full reconstructed model, order/history/review/acceptance, distinguish absence/null/empty paths, reject malformed references without mutating source bytes.",
+      "owner": "src/specs/storage.rs; kit/references/tools/specifications.md",
+      "test": [
+        "tests/shared_inputs_contracts.rs::shared_inputs_append_reuses_manifests_with_bounded_growth",
+        "tests/shared_inputs_contracts.rs::shared_inputs_support_empty_catalog_and_review_only_results"
+      ],
+      "method": "Контрактный тест проверяет число объектов, размер при повторных записях и точный readback",
+      "method_selected_before_baseline": "Real v3/v4/v5 migration, complete model/fingerprint/readback equality, idempotence, bounded growth, corruption/dual/missing refs and prewrite limits/recovery.",
+      "gap": "Current Rust execution and assigned independent catalog review pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0064-S3",
+      "requirement": "HG-0033-R1",
+      "read": true,
+      "judgment": "Tests compare full reconstructed model, order/history/review/acceptance, distinguish absence/null/empty paths, reject malformed references without mutating source bytes.",
+      "owner": "src/specs/storage.rs; kit/references/tools/specifications.md",
+      "test": [
+        "tests/shared_inputs_contracts.rs::shared_inputs_fail_closed_on_corrupt_missing_or_ambiguous_data",
+        "tests/shared_inputs_contracts.rs::shared_inputs_migration_recovery_validates_complete_prospective_snapshot"
+      ],
+      "method": "Контрактные тесты corruption/missing-reference/dual-fields, сверка исходных байтов до отказа",
+      "method_selected_before_baseline": "Real v3/v4/v5 migration, complete model/fingerprint/readback equality, idempotence, bounded growth, corruption/dual/missing refs and prewrite limits/recovery.",
+      "gap": "Current Rust execution and assigned independent catalog review pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0064-S4",
+      "requirement": "HG-0033-R1",
+      "read": true,
+      "judgment": "Tests compare full reconstructed model, order/history/review/acceptance, distinguish absence/null/empty paths, reject malformed references without mutating source bytes.",
+      "owner": "src/specs/storage.rs; kit/references/tools/specifications.md",
+      "test": [
+        "tests/shared_inputs_contracts.rs::shared_inputs_preserve_fingerprints_and_stale_detection"
+      ],
+      "method": "Контрактный тест до/после изменения входа сравнивает исходный и мигрированный каталог",
+      "method_selected_before_baseline": "Real v3/v4/v5 migration, complete model/fingerprint/readback equality, idempotence, bounded growth, corruption/dual/missing refs and prewrite limits/recovery.",
+      "gap": "Current Rust execution and assigned independent catalog review pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0034-S1",
+      "requirement": "HG-0034-R1",
+      "read": true,
+      "judgment": "Assertions preserve catalog digest/history on refusal; imports are separate from execution/review/acceptance. A synthetic JUnit test proves import guards, not authenticity of arbitrary reports.",
+      "owner": "src/specs/checks.rs; src/specs/storage.rs; docs/workflow/QUALITY.md",
+      "test": [
+        "tests/catalog_contracts.rs::native_report_import_reuses_suite_and_rejects_stale_or_missing_results"
+      ],
+      "method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+      "method_selected_before_baseline": "Pre-execution snapshot, actual report selection; skipped/failure/error/rerun/flaky/empty/stale rejection; exact repeat no-op; mixed invalid batch atomic refusal.",
+      "gap": "Current Rust execution and original-result audit pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0034-S2",
+      "requirement": "HG-0034-R1",
+      "read": true,
+      "judgment": "Assertions preserve catalog digest/history on refusal; imports are separate from execution/review/acceptance. A synthetic JUnit test proves import guards, not authenticity of arbitrary reports.",
+      "owner": "src/specs/checks.rs; src/specs/storage.rs; docs/workflow/QUALITY.md",
+      "test": [
+        "tests/catalog_contracts.rs::native_report_import_reuses_suite_and_rejects_stale_or_missing_results"
+      ],
+      "method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+      "method_selected_before_baseline": "Pre-execution snapshot, actual report selection; skipped/failure/error/rerun/flaky/empty/stale rejection; exact repeat no-op; mixed invalid batch atomic refusal.",
+      "gap": "Current Rust execution and original-result audit pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0034-S3",
+      "requirement": "HG-0034-R1",
+      "read": true,
+      "judgment": "Assertions preserve catalog digest/history on refusal; imports are separate from execution/review/acceptance. A synthetic JUnit test proves import guards, not authenticity of arbitrary reports.",
+      "owner": "src/specs/checks.rs; src/specs/storage.rs; docs/workflow/QUALITY.md",
+      "test": [
+        "tests/catalog_contracts.rs::evidence_batch_is_atomic_and_exact_repeat_is_noop"
+      ],
+      "method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+      "method_selected_before_baseline": "Pre-execution snapshot, actual report selection; skipped/failure/error/rerun/flaky/empty/stale rejection; exact repeat no-op; mixed invalid batch atomic refusal.",
+      "gap": "Current Rust execution and original-result audit pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0043-S1",
+      "requirement": "HG-0043-R1",
+      "read": true,
+      "judgment": "Spec and Work share the same route matrix. No text test is promoted to model execution.",
+      "owner": "kit/procedures/spec.md; kit/procedures/work.md; kit/references/review.md",
+      "test": "Independent normative decision table; workflow structural tests only",
+      "method": "Нормативная сверка для инструкций; реальные адресные тесты для операций очистки. Доказательства содержат относящиеся к сценарию входы и предел наблюдения.",
+      "method_selected_before_baseline": "Choose semantic review for normative content and actual observations for execution claims; no mandatory actor pilot for editorial changes.",
+      "gap": "Final normative decision table/review pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0043-S2",
+      "requirement": "HG-0043-R2",
+      "read": true,
+      "judgment": "Work says keep unknown dependency conservative and do not rewrite old results. Local Cargo configuration is a concrete missing possible input in whole-run guard.",
+      "owner": "kit/procedures/work.md; docs/workflow/QUALITY.md",
+      "test": "Independent causal input audit; relevant native tests",
+      "method": "Нормативная сверка для инструкций; реальные адресные тесты для операций очистки. Доказательства содержат относящиеся к сценарию входы и предел наблюдения.",
+      "method_selected_before_baseline": "Scenario-specific causal scope separate from common snapshot; narrowing needs new observed evidence; historical integration/acceptance does not refresh current evidence.",
+      "gap": "EVID-01 plus actual final scenario-specific input selection pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0043-S3",
+      "requirement": "HG-0043-R3",
+      "read": true,
+      "judgment": "Clear/Work route references keep issue ownership optional and separate from tasks. This audit creates only requested report/coverage, no second registry.",
+      "owner": "kit/procedures/clear.md; kit/references/audit.md; docs/workflow/CONTEXT.md",
+      "test": "Independent ownership/navigation semantic review",
+      "method": "Нормативная сверка для инструкций; реальные адресные тесты для операций очистки. Доказательства содержат относящиеся к сценарию входы и предел наблюдения.",
+      "method_selected_before_baseline": "Existing issue record owns reusable diagnosis/recipe; task links it; Clear does not create absent registry; history marked historical.",
+      "gap": "CONTEXT/fix complete normative review is assigned to workflow reviewer; no issue recipe execution by this reviewer.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0044-S1",
+      "requirement": "HG-0044-R1",
+      "read": true,
+      "judgment": "Assertions check selected deletion and Cargo commands, preserve candidate/tools/foreign data and deduplicate hardlink payload correctly.",
+      "owner": "docs/BUILD.md; scripts/target-maintenance.py",
+      "test": "scripts/tests/test_target_maintenance.py",
+      "method": "Нормативная сверка для инструкций; реальные адресные тесты для операций очистки. Доказательства содержат относящиеся к сценарию входы и предел наблюдения.",
+      "method_selected_before_baseline": "Real selected preview/apply, real hardlinks across areas, logical/unique/allocated/unknown metrics; no forced budget deletion.",
+      "gap": "Current Python execution and post-task target measurement pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0065-S1",
+      "requirement": "HG-0044-R1",
+      "read": true,
+      "judgment": "Assertions check selected deletion and Cargo commands, preserve candidate/tools/foreign data and deduplicate hardlink payload correctly.",
+      "owner": "docs/BUILD.md; scripts/target-maintenance.py",
+      "test": "scripts/tests/test_target_maintenance.py",
+      "method": "Python-тесты создают реальные hardlinks, сверяют выделенные блоки, имитируют отсутствие данных ОС и проверяют бюджет без двойного учёта",
+      "method_selected_before_baseline": "Real selected preview/apply, real hardlinks across areas, logical/unique/allocated/unknown metrics; no forced budget deletion.",
+      "gap": "Current Python execution and post-task target measurement pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0044-S2",
+      "requirement": "HG-0044-R2",
+      "read": true,
+      "judgment": "Tests verify that invalid cache/report/path/file and active/recovery/link conditions refuse before scratch/sentinel mutation.",
+      "owner": "docs/BUILD.md; scripts/target-maintenance.py",
+      "test": "test_invalid_mixed_selection_refuses_before_deleting_scratch; test_cache_file_refuses_before_removing_selected_scratch; active/link cases",
+      "method": "Нормативная сверка для инструкций; реальные адресные тесты для операций очистки. Доказательства содержат относящиеся к сценарию входы и предел наблюдения.",
+      "method_selected_before_baseline": "Validate all selection/path/reparse/build/recovery/work conditions before first removal; mixed bad request keeps safe scratch too.",
+      "gap": "Current Python execution pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0044-S3",
+      "requirement": "HG-0044-R3",
+      "read": true,
+      "judgment": "Owners document explicit cache choices, exact candidate sources, preserved unknown data, no work-dir drafts and no arbitrary local/catalog cleanup.",
+      "owner": "docs/BUILD.md; docs/DEVELOPMENT.md; docs/EVIDENCE-STORAGE.md",
+      "test": "Independent normative paths/preparation review; lifecycle suites",
+      "method": "Нормативная сверка для инструкций; реальные адресные тесты для операций очистки. Доказательства содержат относящиеся к сценарию входы и предел наблюдения.",
+      "method_selected_before_baseline": "Fresh/cleaned project preparation with pinned Nextest and active/candidate CLI; separate cache/probe/original-evidence lifetime.",
+      "gap": "Current maintenance residuals/preflight to be measured by root; no cleanup applied by reviewer.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0065-S2",
+      "requirement": "HG-0065-R1",
+      "read": true,
+      "judgment": "Cargo.toml has dev debug=0/incremental=false and no separate test profile; Nextest naturally builds the CLI. This static fact does not establish current measured size/time benefit.",
+      "owner": "Cargo.toml; docs/BUILD.md",
+      "test": "Controlled pinned-SHA inventory/profile comparison; normal Nextest",
+      "method": "Контролируемое сравнение baseline, ошибочного split-profile и единого dev=0 на одном pinned SHA; исходные inventory и замеры сохраняются",
+      "method_selected_before_baseline": "Compare baseline/split/unified profiles on one pinned SHA; same normalized tests, CLI already available after Nextest, no second profile dependency copy.",
+      "gap": "HG65S2 controlled measurement requires current matching causal evidence or explicit historical limitation; no new performance comparison executed here.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0065-S3",
+      "requirement": "HG-0065-R2",
+      "read": true,
+      "judgment": "Tests mock disk capacity while observing real orchestration no-capture call; distinguish project and configured filesystem. Floor does not guarantee peak storage.",
+      "owner": "scripts/verify.py; docs/BUILD.md",
+      "test": "scripts/tests/test_verify.py low_space/headroom/configured_target tests",
+      "method": "Python-тест подставляет недостаточный disk_usage, проверяет отсутствие любых вызовов capture/build и фактический отчёт",
+      "method_selected_before_baseline": "Disk preflight before capture/compiler/report replacement, actual effective target via metadata --offline --locked; 1 GiB inclusive boundary/existing ancestor.",
+      "gap": "Current Python execution and actual preflight capacity pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0065-S4",
+      "requirement": "HG-0065-R2",
+      "read": true,
+      "judgment": "Tests mock disk capacity while observing real orchestration no-capture call; distinguish project and configured filesystem. Floor does not guarantee peak storage.",
+      "owner": "scripts/verify.py; docs/BUILD.md",
+      "test": "scripts/tests/test_verify.py low_space/headroom/configured_target tests",
+      "method": "Python-тест проверяет metadata --offline --locked, эффективный путь и граничное значение",
+      "method_selected_before_baseline": "Disk preflight before capture/compiler/report replacement, actual effective target via metadata --offline --locked; 1 GiB inclusive boundary/existing ancestor.",
+      "gap": "Current Python execution and actual preflight capacity pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0069-S1",
+      "requirement": "HG-0069-R1",
+      "read": true,
+      "judgment": "Assertions check retained negative outcome, absence of files, limited card size and stale report state. Integrity is not authenticity.",
+      "owner": "src/specs/progress.rs; docs/EVIDENCE-STORAGE.md",
+      "test": [
+        "tests/spec_contracts.rs::evidence_cards_are_compact_preserve_outcome_and_detect_changed_report"
+      ],
+      "method": "Реальные CLI/Python контракты на изолированных файлах; нормативная сверка процедур отдельно от исполнения; измерения текущего дерева и независимое ревью. Локальная ОС отдельно от Windows CI.",
+      "method_selected_before_baseline": "Real compact CLI view, failed retained, changed/missing original stale, no full file map/body by default.",
+      "gap": "Current Rust execution pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0069-S2",
+      "requirement": "HG-0069-R2",
+      "read": true,
+      "judgment": "The same-size corruption test actually exercises hash validation rather than size only. Manifest/raw bytes are content addressed and originals are preserved.",
+      "owner": "scripts/evidence_store.py; docs/EVIDENCE-STORAGE.md",
+      "test": "scripts/tests/test_evidence_store.py::test_export_is_selected_idempotent_and_detects_corruption; damaged/links cases",
+      "method": "Реальные CLI/Python контракты на изолированных файлах; нормативная сверка процедур отдельно от исполнения; измерения текущего дерева и независимое ревью. Локальная ОС отдельно от Windows CI.",
+      "method_selected_before_baseline": "Explicit selected CAS export, identical repeat deduplicated, same-length and other corruption rejected, no source removal before verification.",
+      "gap": "Current Python execution and final selected original export pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0069-S3",
+      "requirement": "HG-0069-R3",
+      "read": true,
+      "judgment": "Assertions include added empty directory/file, missing blob, interrupted sealing, live references and a real background child. Only exact sealed sets can be removed.",
+      "owner": "scripts/evidence_store.py; scripts/target-maintenance.py; docs/EVIDENCE-STORAGE.md",
+      "test": "scripts/tests/test_evidence_store.py sweep/seal/owner/link/descendants/interruption tests",
+      "method": "Реальные CLI/Python контракты на изолированных файлах; нормативная сверка процедур отдельно от исполнения; измерения текущего дерева и независимое ревью. Локальная ОС отдельно от Windows CI.",
+      "method_selected_before_baseline": "Real sealed inventory and export verification; active/unknown/unexported/changed/reference/recovery data retained; age never authorizes cleanup.",
+      "gap": "Current Python execution and root final owner/link safe maintenance pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0069-S4",
+      "requirement": "HG-0069-R4",
+      "read": true,
+      "judgment": "Current owners distinguish originals/cache/unknown leftovers and prohibit arbitrary removal. Mere passing storage tests does not close actual current task cleanup or overrun.",
+      "owner": "docs/EVIDENCE-STORAGE.md; docs/BUILD.md; kit/procedures/work.md",
+      "test": "Actual target/store inventory and selected final export/cleanup; lifecycle suites",
+      "method": "Реальные CLI/Python контракты на изолированных файлах; нормативная сверка процедур отдельно от исполнения; измерения текущего дерева и независимое ревью. Локальная ОС отдельно от Windows CI.",
+      "method_selected_before_baseline": "Keep routine reports temporary, preserve selected original evidence, compact default context, no automatic full cache rebuild or budget increase.",
+      "gap": "Actual current evidence volume/owned cleanup/residual reasons pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0072-S1",
+      "requirement": "HG-0072-R1",
+      "read": true,
+      "judgment": "Local rules are aligned and no new CI/publish/activate authority is assigned by this Clear. Current local PASS cannot prove a different SHA or Windows.",
+      "owner": "kit/procedures/work.md/planner.md; local INSTRUCTIONS; docs/DEVELOPMENT.md",
+      "test": "Independent CI status/authority decision table",
+      "method": "Смысловая независимая сверка текста и таблицы решений; не доказательство будущего исполнения агентом.",
+      "method_selected_before_baseline": "Pending/unavailable CI no mandatory wait; exact-SHA observed status separate; known failure addressed; explicit user/project late gate preserved.",
+      "gap": "Final normative table and actual currently available CI observation are root-owned; no network CI fetch by reviewer.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0072-S2",
+      "requirement": "HG-0072-R2",
+      "read": true,
+      "judgment": "Docs/workflow consistently separate platform and runner label, and retain platform-specific authentic predecessor SHAs.",
+      "owner": "README.md; docs/BUILD.md; docs/DEVELOPMENT.md; .github/workflows/verify.yml",
+      "test": "Semantic platform/image/environment review",
+      "method": "Смысловая и структурная сверка, системные данные текущей ОС, официальная документация GitHub.",
+      "method_selected_before_baseline": "Linux/Windows support separate from ubuntu-24.04 runner image; local Linux is neither all distributions nor Windows execution.",
+      "gap": "No Windows execution/source modernization inferred from local review.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0072-S3",
+      "requirement": "HG-0072-R3",
+      "read": true,
+      "judgment": "Workflow preserves required installed E2E inputs and both platform lifecycle/trace; cache hit still passes installed guards. Cancellation uses branch/ref grouping. No new runtime speed saving inferred.",
+      "owner": ".github/workflows/verify.yml; docs/DEVELOPMENT.md; docs/BUILD.md",
+      "test": "YAML/actionlint; real Python/Node/Nextest/installed fixture guard entrypoints",
+      "method": "Смысловое ревью workflow, YAML/actionlint и реальные штатные guards/lifecycle/Nextest; новый remote run и экономия времени сообщаются только по наблюдению.",
+      "method_selected_before_baseline": "Two exact-head platform jobs, Linux-only shared static/Storybook/native UI, real pinned cached predecessor with candidate/byte/version executable guards, upload inventory/completion/trace.",
+      "gap": "Current applicable local entrypoints/YAML check pending; remote both-platform execution is separately unobserved.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0072-S4",
+      "requirement": "HG-0072-R4",
+      "read": true,
+      "judgment": "Assertions compare addressed findings, validated IDs, exact catalog digest, real CLI success and ActiveSpecConflict without readiness/acceptance confusion.",
+      "owner": "scripts/verify.py; src/specs.rs; docs/DEVELOPMENT.md",
+      "test": [
+        "tests/spec_contracts.rs::batch_validation_matches_addressed_findings_without_writes"
+      ],
+      "method": "Реальный Rust контракт пакетной CLI и Python проверка штатного entry point.",
+      "method_selected_before_baseline": "Real batch/addressed validation equality, cancelled omitted, unfinished tasks not structural failure, conflicting active drafts caught; Python calls batch once.",
+      "gap": "Current Rust/Python execution pending.",
+      "execution_confirmed": false,
+      "checks": []
+    },
+    {
+      "id": "HG-0076-S5",
+      "requirement": "HG-0076-R1",
+      "read": true,
+      "judgment": "Sources/tests/contract protection and actual load witness are meaningful. Windows trailing dot/space aliases are not currently rejected; string protected-input membership can miss an alias.",
+      "owner": "kit/tools/clear_batch.py; kit/references/clear-batches.md; kit/references/review.md",
+      "test": [
+        "tests/global_contracts.rs::installed_clear_helper_runs_after_candidate_sources_are_removed"
+      ],
+      "method": "Воспроизводимый контрактный тест реального помощника на изолированных исходниках и реальных процессах. Сверить исходные команды, исполненные тесты, хеши, diff, причину результата и точное восстановление. Успешный exit или наличие файла не заменяет наблюдение.",
+      "method_selected_before_baseline": "Real processes, compiled-loaded source witness, one violation at a time, baseline/final and exact bytes/modes restore, invalid classes/descendant/foreign edits/conflicting output/serial constraints.",
+      "gap": "EVID-02 guard regression needed; non_assertion exact category/reason and strengthened final assertions are useful weak-check refinements; current execution pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0076",
+          "id": "HG-0076-C1",
+          "action": "Run actual installed helper against a meaningful mutation",
+          "file": "tests/global_contracts.rs",
+          "inputs": [
+            "Cargo.lock",
+            "Cargo.toml",
+            "build.rs",
+            "kit/manifest.json",
+            "kit/references/clear-batches.md",
+            "kit/tools/clear_batch.py",
+            "src/global.rs",
+            "src/lib.rs",
+            "src/main.rs",
+            "src/package.rs",
+            "src/paths.rs",
+            "src/release_notes.rs",
+            "src/ui.rs",
+            "src/ui/bundle.rs",
+            "tests/global_contracts.rs",
+            "tests/support/mod.rs",
+            "ui/dist/highgrade-ui.json"
+          ],
+          "observation": "Actual relevant assertion, baseline/final execution, exact restore, live sentinel preserved",
+          "preparation": "Install candidate kit in isolated profile; remove source copy; prepare tiny Python project",
+          "runner": "rust-contracts",
+          "scenario_ids": [
+            "HG-0076-S5"
+          ],
+          "selector": "installed_clear_helper_runs_after_candidate_sources_are_removed"
+        },
+        {
+          "change": "HG-0076",
+          "id": "HG-0076-C3",
+          "action": "Run real unittest suite and inspect per-case raw reports, snapshot, diffs and measured comparison",
+          "file": "scripts/tests/test_clear_batch.py",
+          "inputs": [
+            "kit/references/clear-batches.md",
+            "kit/tools/clear_batch.py",
+            "scripts/tests/test_clear_batch.py"
+          ],
+          "observation": "Detected/survived/invalid/restoration/provenance/reuse differ by actual cause; comparison keeps mandatory outcomes; no token estimate",
+          "preparation": "Prepare fixtures/methods before implementation; preserve real subprocess originals",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0075-S5",
+            "HG-0075-S6",
+            "HG-0076-S10",
+            "HG-0076-S5",
+            "HG-0076-S6",
+            "HG-0076-S7",
+            "HG-0076-S8",
+            "HG-0076-S9"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0076-S6",
+      "requirement": "HG-0076-R1",
+      "read": true,
+      "judgment": "Sources/tests/contract protection and actual load witness are meaningful. Windows trailing dot/space aliases are not currently rejected; string protected-input membership can miss an alias.",
+      "owner": "kit/tools/clear_batch.py; kit/references/clear-batches.md; kit/references/review.md",
+      "test": "scripts/tests/test_clear_batch.py; tests/global_contracts.rs::installed_clear_helper_runs_after_candidate_sources_are_removed",
+      "method": "Воспроизводимый контрактный тест реального помощника на изолированных исходниках и реальных процессах. Сверить исходные команды, исполненные тесты, хеши, diff, причину результата и точное восстановление. Успешный exit или наличие файла не заменяет наблюдение.",
+      "method_selected_before_baseline": "Real processes, compiled-loaded source witness, one violation at a time, baseline/final and exact bytes/modes restore, invalid classes/descendant/foreign edits/conflicting output/serial constraints.",
+      "gap": "EVID-02 guard regression needed; non_assertion exact category/reason and strengthened final assertions are useful weak-check refinements; current execution pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0076",
+          "id": "HG-0076-C3",
+          "action": "Run real unittest suite and inspect per-case raw reports, snapshot, diffs and measured comparison",
+          "file": "scripts/tests/test_clear_batch.py",
+          "inputs": [
+            "kit/references/clear-batches.md",
+            "kit/tools/clear_batch.py",
+            "scripts/tests/test_clear_batch.py"
+          ],
+          "observation": "Detected/survived/invalid/restoration/provenance/reuse differ by actual cause; comparison keeps mandatory outcomes; no token estimate",
+          "preparation": "Prepare fixtures/methods before implementation; preserve real subprocess originals",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0075-S5",
+            "HG-0075-S6",
+            "HG-0076-S10",
+            "HG-0076-S5",
+            "HG-0076-S6",
+            "HG-0076-S7",
+            "HG-0076-S8",
+            "HG-0076-S9"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0076-S7",
+      "requirement": "HG-0076-R1",
+      "read": true,
+      "judgment": "Sources/tests/contract protection and actual load witness are meaningful. Windows trailing dot/space aliases are not currently rejected; string protected-input membership can miss an alias.",
+      "owner": "kit/tools/clear_batch.py; kit/references/clear-batches.md; kit/references/review.md",
+      "test": "scripts/tests/test_clear_batch.py; tests/global_contracts.rs::installed_clear_helper_runs_after_candidate_sources_are_removed",
+      "method": "Воспроизводимый контрактный тест реального помощника на изолированных исходниках и реальных процессах. Сверить исходные команды, исполненные тесты, хеши, diff, причину результата и точное восстановление. Успешный exit или наличие файла не заменяет наблюдение.",
+      "method_selected_before_baseline": "Real processes, compiled-loaded source witness, one violation at a time, baseline/final and exact bytes/modes restore, invalid classes/descendant/foreign edits/conflicting output/serial constraints.",
+      "gap": "EVID-02 guard regression needed; non_assertion exact category/reason and strengthened final assertions are useful weak-check refinements; current execution pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0076",
+          "id": "HG-0076-C3",
+          "action": "Run real unittest suite and inspect per-case raw reports, snapshot, diffs and measured comparison",
+          "file": "scripts/tests/test_clear_batch.py",
+          "inputs": [
+            "kit/references/clear-batches.md",
+            "kit/tools/clear_batch.py",
+            "scripts/tests/test_clear_batch.py"
+          ],
+          "observation": "Detected/survived/invalid/restoration/provenance/reuse differ by actual cause; comparison keeps mandatory outcomes; no token estimate",
+          "preparation": "Prepare fixtures/methods before implementation; preserve real subprocess originals",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0075-S5",
+            "HG-0075-S6",
+            "HG-0076-S10",
+            "HG-0076-S5",
+            "HG-0076-S6",
+            "HG-0076-S7",
+            "HG-0076-S8",
+            "HG-0076-S9"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0076-S8",
+      "requirement": "HG-0076-R2",
+      "read": true,
+      "judgment": "Reuse guards compare actual recorded causal inputs and export original references. Comparison covers same three violations and counts 9 vs 5 actual test commands; it makes no universal/net development-cost/token saving claim.",
+      "owner": "kit/tools/clear_batch.py; kit/references/clear-batches.md; docs/EVIDENCE-STORAGE.md",
+      "test": "scripts/tests/test_clear_batch.py reuse + measured-control tests; evidence_store suites",
+      "method": "Воспроизводимый контрактный тест реального помощника на изолированных исходниках и реальных процессах. Сверить исходные команды, исполненные тесты, хеши, diff, причину результата и точное восстановление. Успешный exit или наличие файла не заменяет наблюдение.",
+      "method_selected_before_baseline": "Complete matching plan/helper/source/test/contracts/data/dependency/environment/probe fingerprint + intact prior originals; raw originals/common snapshot; matched control vs batch timings/counts/bytes, unavailable tokens and prep cost.",
+      "gap": "Current observed comparison/reuse/raw preservation results and final export pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0076",
+          "id": "HG-0076-C3",
+          "action": "Run real unittest suite and inspect per-case raw reports, snapshot, diffs and measured comparison",
+          "file": "scripts/tests/test_clear_batch.py",
+          "inputs": [
+            "kit/references/clear-batches.md",
+            "kit/tools/clear_batch.py",
+            "scripts/tests/test_clear_batch.py"
+          ],
+          "observation": "Detected/survived/invalid/restoration/provenance/reuse differ by actual cause; comparison keeps mandatory outcomes; no token estimate",
+          "preparation": "Prepare fixtures/methods before implementation; preserve real subprocess originals",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0075-S5",
+            "HG-0075-S6",
+            "HG-0076-S10",
+            "HG-0076-S5",
+            "HG-0076-S6",
+            "HG-0076-S7",
+            "HG-0076-S8",
+            "HG-0076-S9"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0076-S9",
+      "requirement": "HG-0076-R2",
+      "read": true,
+      "judgment": "Reuse guards compare actual recorded causal inputs and export original references. Comparison covers same three violations and counts 9 vs 5 actual test commands; it makes no universal/net development-cost/token saving claim.",
+      "owner": "kit/tools/clear_batch.py; kit/references/clear-batches.md; docs/EVIDENCE-STORAGE.md",
+      "test": "scripts/tests/test_clear_batch.py reuse + measured-control tests; evidence_store suites",
+      "method": "Воспроизводимый контрактный тест реального помощника на изолированных исходниках и реальных процессах. Сверить исходные команды, исполненные тесты, хеши, diff, причину результата и точное восстановление. Успешный exit или наличие файла не заменяет наблюдение.",
+      "method_selected_before_baseline": "Complete matching plan/helper/source/test/contracts/data/dependency/environment/probe fingerprint + intact prior originals; raw originals/common snapshot; matched control vs batch timings/counts/bytes, unavailable tokens and prep cost.",
+      "gap": "Current observed comparison/reuse/raw preservation results and final export pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0076",
+          "id": "HG-0076-C3",
+          "action": "Run real unittest suite and inspect per-case raw reports, snapshot, diffs and measured comparison",
+          "file": "scripts/tests/test_clear_batch.py",
+          "inputs": [
+            "kit/references/clear-batches.md",
+            "kit/tools/clear_batch.py",
+            "scripts/tests/test_clear_batch.py"
+          ],
+          "observation": "Detected/survived/invalid/restoration/provenance/reuse differ by actual cause; comparison keeps mandatory outcomes; no token estimate",
+          "preparation": "Prepare fixtures/methods before implementation; preserve real subprocess originals",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0075-S5",
+            "HG-0075-S6",
+            "HG-0076-S10",
+            "HG-0076-S5",
+            "HG-0076-S6",
+            "HG-0076-S7",
+            "HG-0076-S8",
+            "HG-0076-S9"
+          ],
+          "selector": ""
+        }
+      ]
+    },
+    {
+      "id": "HG-0076-S10",
+      "requirement": "HG-0076-R2",
+      "read": true,
+      "judgment": "Reuse guards compare actual recorded causal inputs and export original references. Comparison covers same three violations and counts 9 vs 5 actual test commands; it makes no universal/net development-cost/token saving claim.",
+      "owner": "kit/tools/clear_batch.py; kit/references/clear-batches.md; docs/EVIDENCE-STORAGE.md",
+      "test": "scripts/tests/test_clear_batch.py reuse + measured-control tests; evidence_store suites",
+      "method": "Воспроизводимый контрактный тест реального помощника на изолированных исходниках и реальных процессах. Сверить исходные команды, исполненные тесты, хеши, diff, причину результата и точное восстановление. Успешный exit или наличие файла не заменяет наблюдение.",
+      "method_selected_before_baseline": "Complete matching plan/helper/source/test/contracts/data/dependency/environment/probe fingerprint + intact prior originals; raw originals/common snapshot; matched control vs batch timings/counts/bytes, unavailable tokens and prep cost.",
+      "gap": "Current observed comparison/reuse/raw preservation results and final export pending.",
+      "execution_confirmed": false,
+      "checks": [
+        {
+          "change": "HG-0076",
+          "id": "HG-0076-C3",
+          "action": "Run real unittest suite and inspect per-case raw reports, snapshot, diffs and measured comparison",
+          "file": "scripts/tests/test_clear_batch.py",
+          "inputs": [
+            "kit/references/clear-batches.md",
+            "kit/tools/clear_batch.py",
+            "scripts/tests/test_clear_batch.py"
+          ],
+          "observation": "Detected/survived/invalid/restoration/provenance/reuse differ by actual cause; comparison keeps mandatory outcomes; no token estimate",
+          "preparation": "Prepare fixtures/methods before implementation; preserve real subprocess originals",
+          "runner": null,
+          "scenario_ids": [
+            "HG-0075-S5",
+            "HG-0075-S6",
+            "HG-0076-S10",
+            "HG-0076-S5",
+            "HG-0076-S6",
+            "HG-0076-S7",
+            "HG-0076-S8",
+            "HG-0076-S9"
+          ],
+          "selector": ""
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "EVID-01",
+      "severity": "P2",
+      "location": "scripts/source-scenarios.mjs::inputHashes",
+      "contracts": [
+        "HG-0025-R1",
+        "HG-0043-R2"
+      ],
+      "observation": "The read revision omits optional .cargo/config and .cargo/config.toml from the causal set. Adding/changing/removing them after capture is not represented.",
+      "effect": "A matching source/catalog report may be reused despite changed project Cargo configuration.",
+      "required": "Isolated RED for optional config creation/change/deletion, include present files with set identity, targeted final rerun.",
+      "limit": "No universal environment closure is asserted; ancestor/home/env configuration needs a concrete causal risk and observation."
+    },
+    {
+      "id": "EVID-02",
+      "severity": "P2",
+      "location": "kit/tools/clear_batch.py::safe",
+      "contracts": [
+        "HG-0076-R1"
+      ],
+      "observation": "The read revision omits trailing dot/space component rejection. On Windows such names may alias protected tests/contracts.",
+      "effect": "String membership alone can miss a protected logical file alias.",
+      "required": "Parametric path validation regression on POSIX names, reject portable aliases before output; Windows-specific observation separately.",
+      "limit": "Static platform reasoning, not an observed Windows mutation; root will establish RED before fix."
+    },
+    {
+      "id": "EVID-03",
+      "severity": "quality refinement",
+      "location": "scripts/tests/test_clear_batch.py::test_non_assertion_failures_never_detect; test_survivor_then_stronger_assertion_keeps_initial_history",
+      "contracts": [
+        "HG-0076-R1"
+      ],
+      "observation": "Non-assertion cases assert != detected, not exact invalid/reason; strengthened-survivor case lacks explicit complete/final assertions.",
+      "effect": "Some classification/final-check regressions could be hidden by an unrelated open outcome.",
+      "required": "Strengthen only relevant assertions when touching those cases; do not manufacture retirement or claim a current runtime bug.",
+      "limit": "Independent concrete source/test observation; no mutation result claimed."
+    }
+  ],
+  "unlinked_test_owners": [
+    {
+      "file": "scripts/tests/test_build_release.py",
+      "tests": [
+        "test_exact_revision_repeat_and_failed_build_preserve_candidate",
+        "test_missing_ui_sources_and_failed_probe_preserve_candidate",
+        "test_wrong_embedded_source_is_not_promoted",
+        "test_foreign_candidate_data_is_preserved",
+        "test_linked_target_is_refused",
+        "test_nested_cache_junction_is_refused_before_cargo_writes",
+        "test_double_rename_failure_keeps_recovery_candidate",
+        "test_developer_release_does_not_replace_candidate_artifact",
+        "test_target_override_uses_artifact_from_current_build"
+      ],
+      "count": 9,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_clear_batch.py",
+      "tests": [
+        "test_standalone_batch_restores_exact_bytes_and_detects_actual_assertions",
+        "test_survivor_then_stronger_assertion_keeps_initial_history",
+        "test_invalid_baseline_does_not_assess_mutations",
+        "test_non_assertion_failures_never_detect",
+        "test_descendants_cannot_turn_a_failure_into_detection_or_continue_worker",
+        "test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+        "test_existing_output_and_unsafe_inputs_do_not_overwrite",
+        "test_windows_trailing_path_aliases_are_rejected_before_output",
+        "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+        "test_measured_control_and_batch_preserve_same_outcomes"
+      ],
+      "count": 10,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_document_budget.py",
+      "tests": [
+        "test_development_budget_survives_git_checkout_line_endings"
+      ],
+      "count": 1,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_evidence_store.py",
+      "tests": [
+        "test_export_is_selected_idempotent_and_detects_corruption",
+        "test_sweep_preserves_active_unknown_changed_and_unexported",
+        "test_damaged_export_blocks_collection_and_links_never_export",
+        "test_catalog_reference_blocks_deleting_exported_source",
+        "test_explicit_discard_keeps_referenced_run_but_exports_nothing",
+        "test_manifest_corruption_and_live_owner_refuse_finish",
+        "test_interruption_after_export_before_inventory_preserves_scratch",
+        "test_nested_native_run_record_is_evidence_but_wrapper_state_is_not",
+        "test_real_wrapper_preserves_exit_code_and_finishes_selected_report",
+        "test_background_descendant_is_not_marked_ready_for_collection"
+      ],
+      "count": 10,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_render_skills.py",
+      "tests": [
+        "test_update_entry_does_not_require_a_project",
+        "test_other_skills_keep_their_project_entry",
+        "test_update_body_and_metadata_come_from_their_editable_sources"
+      ],
+      "count": 3,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_source_scenarios.py",
+      "tests": [
+        "test_same_report_and_equivalent_spec_metadata_are_reusable",
+        "test_changed_inputs_and_deleted_files_rejected_without_timestamp_drift",
+        "test_relocated_completed_attempt_keeps_original_capture_and_rejects_drift",
+        "test_project_cargo_config_creation_change_and_deletion_reject_reuse",
+        "test_older_attempt_cannot_complete_a_newer_capture",
+        "test_capture_between_complete_read_and_write_cannot_inherit_success",
+        "test_running_attempt_cannot_complete_after_relocation",
+        "test_first_run_drift_rejected_and_new_successful_run_is_accepted",
+        "test_semantic_change_rejected_even_with_restored_timestamp",
+        "test_failed_partial_and_interrupted_attempts_cannot_inherit_success",
+        "test_capture_parse_error_invalidates_prior_success",
+        "test_report_inventory_and_missing_snapshot_are_rejected",
+        "test_superseded_prepare_cannot_publish_current_evidence",
+        "test_final_gate_rejects_capture_and_source_drift_while_reading_trace",
+        "test_final_identity_check_rejects_capture_after_source_freshness_reads",
+        "test_final_gate_rejects_unbound_record_and_mismatched_trace_provenance",
+        "test_real_failed_and_interrupted_processes_leave_attempt_incomplete",
+        "test_verify_orchestration_completes_only_after_success"
+      ],
+      "count": 18,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_spec_archive.py",
+      "tests": [
+        "test_later_retirement_is_distinct_from_loss_or_reused_retired_id"
+      ],
+      "count": 1,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_target_maintenance.py",
+      "tests": [
+        "test_inventory_deduplicates_hardlinks_and_reports_each_area",
+        "test_inventory_without_allocated_size_reports_unknown_not_estimate",
+        "test_inventory_does_not_deduplicate_unavailable_inode_ids",
+        "test_windows_direntry_zero_identity_uses_real_path_stat",
+        "test_missing_target_has_empty_measurements",
+        "test_budget_check_counts_hardlinked_payload_once",
+        "test_preview_is_read_only_and_apply_preserves_candidate_and_unknown",
+        "test_active_build_and_recovery_state_refuse_without_changes",
+        "test_link_outside_root_refuses_and_preserves_sentinel",
+        "test_cache_cleanup_requires_explicit_selection",
+        "test_scratch_path_escape_is_refused",
+        "test_selected_preview_and_real_build_cache_cleanup",
+        "test_invalid_mixed_selection_refuses_before_deleting_scratch",
+        "test_cache_file_refuses_before_removing_selected_scratch"
+      ],
+      "count": 14,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_ui_build.py",
+      "tests": [
+        "test_release_requires_complete_bundle_but_debug_allows_absent_dist"
+      ],
+      "count": 1,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_verify.py",
+      "tests": [
+        "test_spec_validation_propagates_batch_failure_without_reloading_ids",
+        "test_default_test_command_enters_the_owned_run_wrapper",
+        "test_managed_test_attempt_keeps_native_outputs_even_on_failure",
+        "test_foreign_or_finished_report_folder_refuses_before_running_checks",
+        "test_foreign_active_context_cannot_replace_another_runs_reports",
+        "test_low_space_refuses_before_capture_or_report_replacement",
+        "test_headroom_uses_cargo_target_and_accepts_exact_boundary",
+        "test_low_configured_target_refuses_even_when_project_has_space",
+        "test_inspect_report_round_trips_on_windows_legacy_console"
+      ],
+      "count": 9,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "scripts/tests/test_workflow_contract.py",
+      "tests": [
+        "test_canonical_commit_skill_is_rendered_without_a_second_approve_route",
+        "test_init_links_the_adaptation_that_commit_and_push_consume",
+        "test_planner_route_links_one_primary_procedure",
+        "test_all_current_kit_markdown_links_resolve_after_the_rename"
+      ],
+      "count": 4,
+      "read": true,
+      "owner": [
+        "docs/BUILD.md",
+        "docs/DEVELOPMENT.md",
+        "docs/EVIDENCE-STORAGE.md",
+        ".highgrade/project/documents.json",
+        "kit/procedures/work.md"
+      ],
+      "judgment": "Project lifecycle, source/report freshness, generation, bounds and workflow structure have owned project contracts; marker absence does not authorize retirement.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "plugins/svg-vectorizer/tests/test_vectorize.py",
+      "tests": [
+        "test_png_svg_and_alpha",
+        "test_jpg",
+        "test_webp_transparency",
+        "test_every_preset_renders",
+        "test_illustration_small_detail_survives",
+        "test_line_art_preserves_thin_line_removes_isolated_noise",
+        "test_alpha_levels_and_invisible_rgb",
+        "test_palette_transparent_png",
+        "test_empty_transparent_image",
+        "test_no_optimize_and_overrides",
+        "test_color_limit",
+        "test_deterministic_output",
+        "test_auto_selection",
+        "test_missing_input",
+        "test_unsupported_format",
+        "test_disguised_format_and_corrupt_input",
+        "test_animation_rejected",
+        "test_missing_vtracer_has_install_command",
+        "test_missing_svgo_real_bridge",
+        "test_missing_node",
+        "test_engine_failure_preserves_existing_output",
+        "test_validation_failure_preserves_existing_output",
+        "test_optimization_channel_guard_boundary_and_output_preservation",
+        "test_opaque_source_cannot_develop_transparent_gaps",
+        "test_old_engine_api_has_update_command",
+        "test_illustration_scale_preserves_output_dimensions_and_opacity",
+        "test_scaled_pixel_budget_requires_explicit_smaller_scale",
+        "test_invalid_svg_rejected",
+        "test_malformed_path_rejected_even_with_valid_xml",
+        "test_no_optimize_does_not_require_svgo_but_requires_renderer",
+        "test_flat_white_and_black",
+        "test_invalid_arguments",
+        "test_exif_orientation",
+        "test_cli_help_and_real_conversion"
+      ],
+      "count": 34,
+      "read": true,
+      "owner": [
+        "plugins/svg-vectorizer/README.md",
+        "plugins/svg-vectorizer/skills/vectorize/SKILL.md"
+      ],
+      "judgment": "Actual VTracer/SVGO/resvg pixel assertions, bounds, alpha, EXIF, deterministic output, explicit overrides and atomic failure preservation. CLI test itself has a narrower existence guard; pipeline behavior is covered by other cases.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_contracts.py",
+      "tests": [
+        "test_failure_report_uses_effective_snapshot_policy",
+        "test_non_git_policy_can_include_build_and_snapshot_new_files",
+        "test_policy_rejects_typo_bad_thresholds_and_escaping_paths",
+        "test_scope_and_configured_test_paths",
+        "test_acceptance_binds_effective_policy_and_low_direction",
+        "test_registry_rejects_unknown_metric_and_unsafe_guard",
+        "test_repeated_method_names_have_unique_ids",
+        "test_schema_rejects_wrong_measurement_types_and_nonfinite_numbers",
+        "test_snapshot_detects_second_dirty_edit_new_file_and_staged_registry",
+        "test_namespace_from_import_cycle_is_not_zero",
+        "test_test_command_changing_readme_cannot_be_attested"
+      ],
+      "count": 11,
+      "read": true,
+      "owner": [
+        "plugins/code-health-audit/skills/code-health-audit/references/toolchain.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/report-contract.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/accepted-findings.md",
+        "plugins/code-health-audit/skills/code-health-audit/scripts/data/default-policy.json"
+      ],
+      "judgment": "Analyzer metrics/acceptance/provenance/schema/read-only/runtime assertions have owned contracts. Dependent skips must remain gaps; package PASS on Linux does not certify runtime.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_core.py",
+      "tests": [
+        "test_high_metric_boundaries",
+        "test_low_metric_boundaries",
+        "test_formatting_and_comments_do_not_change_ast_fingerprint",
+        "test_semantic_change_reopens_fingerprint",
+        "test_sequential_branches_do_not_accumulate_depth",
+        "test_elif_stays_flat_while_nested_blocks_increase_depth",
+        "test_nested_functions_are_measured_independently",
+        "test_lizard_adapter_ignores_mutable_ns_and_is_order_invariant",
+        "test_unchanged_justified_finding_is_inactive",
+        "test_changed_code_reopens_accepted_finding",
+        "test_metric_regression_reopens_accepted_finding",
+        "test_improvement_suggests_tighter_baseline",
+        "test_policy_change_reopens_accepted_finding",
+        "test_analyzer_change_reopens_accepted_finding",
+        "test_guard_change_reopens_accepted_finding",
+        "test_malformed_registry_root_fails_closed",
+        "test_non_numeric_ceiling_is_rejected",
+        "test_ignored_untracked_registry_is_not_clean",
+        "test_tracked_head_registry_is_clean",
+        "test_malformed_coverage_file_fails_without_measurements",
+        "test_forged_coverage_percentage_fails_without_measurements",
+        "test_pylint_fatal_output_fails_without_ok_measurements",
+        "test_environment_paths_and_artifacts_do_not_affect_digest"
+      ],
+      "count": 23,
+      "read": true,
+      "owner": [
+        "plugins/code-health-audit/skills/code-health-audit/references/toolchain.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/report-contract.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/accepted-findings.md",
+        "plugins/code-health-audit/skills/code-health-audit/scripts/data/default-policy.json"
+      ],
+      "judgment": "Analyzer metrics/acceptance/provenance/schema/read-only/runtime assertions have owned contracts. Dependent skips must remain gaps; package PASS on Linux does not certify runtime.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_metrics.py",
+      "tests": [
+        "test_explicit_else_if_is_nested_and_elif_is_flat",
+        "test_missing_pylint_never_manufactures_zero_diff_measurements",
+        "test_module_aliases_resolve_only_unambiguous_scoped_paths",
+        "test_only_real_required_suppression_comments_are_findings",
+        "test_comments_do_not_inflate_duplication_count_or_percent",
+        "test_src_and_namespace_paths_exist_and_diff_keeps_duplicate",
+        "test_unrelated_pylint_disable_does_not_make_analysis_partial",
+        "test_unlisted_file_is_not_analyzed_by_recursive_directory_expansion"
+      ],
+      "count": 8,
+      "read": true,
+      "owner": [
+        "plugins/code-health-audit/skills/code-health-audit/references/toolchain.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/report-contract.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/accepted-findings.md",
+        "plugins/code-health-audit/skills/code-health-audit/scripts/data/default-policy.json"
+      ],
+      "judgment": "Analyzer metrics/acceptance/provenance/schema/read-only/runtime assertions have owned contracts. Dependent skips must remain gaps; package PASS on Linux does not certify runtime.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_preflight.py",
+      "tests": [
+        "test_runtime_change_reopens_otherwise_identical_finding",
+        "test_active_dependency_closure_is_fully_pinned",
+        "test_transitive_dependency_drift_changes_runtime_identity",
+        "test_preflight_reports_runtime_scope_without_changing_repository",
+        "test_preflight_missing_base_is_actionable",
+        "test_diff_real_changed_line_coverage_and_stable_digest",
+        "test_touch_without_content_change_keeps_observed_coverage_valid",
+        "test_incomplete_provenance_cannot_attest_coverage"
+      ],
+      "count": 8,
+      "read": true,
+      "owner": [
+        "plugins/code-health-audit/skills/code-health-audit/references/toolchain.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/report-contract.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/accepted-findings.md",
+        "plugins/code-health-audit/skills/code-health-audit/scripts/data/default-policy.json"
+      ],
+      "judgment": "Analyzer metrics/acceptance/provenance/schema/read-only/runtime assertions have owned contracts. Dependent skips must remain gaps; package PASS on Linux does not certify runtime.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    },
+    {
+      "file": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_workflows.py",
+      "tests": [
+        "test_observed_capture_and_repeat_audit",
+        "test_old_data_reexport_cannot_confirm_changed_sources",
+        "test_json_without_provenance_is_incomplete",
+        "test_failed_test_cannot_create_verified_capture",
+        "test_stale_bytecode_cannot_attest_different_source",
+        "test_syntax_error_produces_report_and_final_snapshot",
+        "test_invalid_policy_produces_failure_report",
+        "test_worker_timeout_returns_failure_without_measurements",
+        "test_timeout_stops_descendant_before_late_write"
+      ],
+      "count": 9,
+      "read": true,
+      "owner": [
+        "plugins/code-health-audit/skills/code-health-audit/references/toolchain.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/report-contract.md",
+        "plugins/code-health-audit/skills/code-health-audit/references/accepted-findings.md",
+        "plugins/code-health-audit/skills/code-health-audit/scripts/data/default-policy.json"
+      ],
+      "judgment": "Analyzer metrics/acceptance/provenance/schema/read-only/runtime assertions have owned contracts. Dependent skips must remain gaps; package PASS on Linux does not certify runtime.",
+      "retirement_assumed": false,
+      "execution_confirmed": false
+    }
+  ],
+  "sources_read": [
+    {
+      "path": ".config/nextest.toml",
+      "read": "full content",
+      "hash_at_report_recording": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+      "audit_initial_sha256": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "read": "full content",
+      "hash_at_report_recording": "072076d58723a58c2b0a61609043538dbd9aaa1d150b4badbd6ea67db44fd885",
+      "audit_initial_sha256": "072076d58723a58c2b0a61609043538dbd9aaa1d150b4badbd6ea67db44fd885",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": ".highgrade/project/INSTRUCTIONS.md",
+      "read": "full content",
+      "hash_at_report_recording": "0c71a844982c327d8ad874d6779252dbaeed152c7f4b33167f07977914714836",
+      "audit_initial_sha256": "0c71a844982c327d8ad874d6779252dbaeed152c7f4b33167f07977914714836",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "Cargo.toml",
+      "read": "full content",
+      "hash_at_report_recording": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+      "audit_initial_sha256": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "README.md",
+      "read": "full content",
+      "hash_at_report_recording": "0969df4f93ffdafac8c89f13fa4bac0e4f6177090d8db7ed80a89633899bf808",
+      "audit_initial_sha256": "0969df4f93ffdafac8c89f13fa4bac0e4f6177090d8db7ed80a89633899bf808",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "build.rs",
+      "read": "full content",
+      "hash_at_report_recording": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+      "audit_initial_sha256": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "docs/BUILD.md",
+      "read": "full content",
+      "hash_at_report_recording": "2b3d12d74941e30903a5191bb650e841b614c4df89a1cc4b138bdafa8b032d3b",
+      "audit_initial_sha256": "2b3d12d74941e30903a5191bb650e841b614c4df89a1cc4b138bdafa8b032d3b",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "read": "full content",
+      "hash_at_report_recording": "c2f821c0ca963024b47e38d14848cfe1074be1805d0a031d3c49402653e37cdf",
+      "audit_initial_sha256": "c2f821c0ca963024b47e38d14848cfe1074be1805d0a031d3c49402653e37cdf",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "docs/ENGINEERING.md",
+      "read": "full content",
+      "hash_at_report_recording": "aafc758b0b19d821fda79c2ef92418e2f762a9e44c3efe7a4b247bcd23e98f73",
+      "audit_initial_sha256": "aafc758b0b19d821fda79c2ef92418e2f762a9e44c3efe7a4b247bcd23e98f73",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "docs/EVIDENCE-STORAGE.md",
+      "read": "full content",
+      "hash_at_report_recording": "8a03605d4714b19de8d8af708f0379bcf72eca0b754028cbbbd92b6d041bfaa9",
+      "audit_initial_sha256": "8a03605d4714b19de8d8af708f0379bcf72eca0b754028cbbbd92b6d041bfaa9",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "docs/workflow/QUALITY.md",
+      "read": "full content",
+      "hash_at_report_recording": "94bf5f1a65f7e352b5b917eb470549d83e5172ba304464c68ef89c57b7e35425",
+      "audit_initial_sha256": "94bf5f1a65f7e352b5b917eb470549d83e5172ba304464c68ef89c57b7e35425",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "kit/procedures/spec.md",
+      "read": "full content",
+      "hash_at_report_recording": "8b82ceae81c29ebbc974c711c2163e4dc1c4660835a8795fa808ec903f1e9d3d",
+      "audit_initial_sha256": "8b82ceae81c29ebbc974c711c2163e4dc1c4660835a8795fa808ec903f1e9d3d",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "kit/procedures/work.md",
+      "read": "full content",
+      "hash_at_report_recording": "f46a65cb48ece35784e4bf15e4865c70e1e2c2c8e2917e1d9d1ef5c5eb1b0d86",
+      "audit_initial_sha256": "f46a65cb48ece35784e4bf15e4865c70e1e2c2c8e2917e1d9d1ef5c5eb1b0d86",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "kit/references/clear-batches.md",
+      "read": "full content",
+      "hash_at_report_recording": "6730ed440d1586c9037b457cd27dcef5b215062139e0cbc008e34b2a8d2caa08",
+      "audit_initial_sha256": "6730ed440d1586c9037b457cd27dcef5b215062139e0cbc008e34b2a8d2caa08",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "kit/references/review.md",
+      "read": "full content",
+      "hash_at_report_recording": "647ab5b9a513171aadde4a460cbb20ad13c12ecd82fd55f98615f4c947d4e2f6",
+      "audit_initial_sha256": "647ab5b9a513171aadde4a460cbb20ad13c12ecd82fd55f98615f4c947d4e2f6",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "kit/tools/clear_batch.py",
+      "read": "full content",
+      "hash_at_report_recording": "0a1066cb42905d4a714caf87eeb77fc0b08104b9da48abc00c557bf07cea6f2b",
+      "audit_initial_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "changed_since_audit_start": true
+    },
+    {
+      "path": "plugins/README.md",
+      "read": "full content",
+      "hash_at_report_recording": "73b41d27ae57c9ea8f342fe7a2e26191633220352f2525320ccd38a95e065965",
+      "audit_initial_sha256": "73b41d27ae57c9ea8f342fe7a2e26191633220352f2525320ccd38a95e065965",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/SKILL.md",
+      "read": "full content",
+      "hash_at_report_recording": "84bee4f01c28592b70121cc6b89fb2e6f343c0ab464849167b381269248d7f99",
+      "audit_initial_sha256": "84bee4f01c28592b70121cc6b89fb2e6f343c0ab464849167b381269248d7f99",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/references/accepted-findings.md",
+      "read": "full content",
+      "hash_at_report_recording": "e73828605defded44cc5e9a29c1841d873a7e27ab53a86592de1d23caf47bbdd",
+      "audit_initial_sha256": "e73828605defded44cc5e9a29c1841d873a7e27ab53a86592de1d23caf47bbdd",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/references/report-contract.md",
+      "read": "full content",
+      "hash_at_report_recording": "c5a1aa8b682ba0931228bf42e6252c20594029fb268bfc069384402d8c939a3f",
+      "audit_initial_sha256": "c5a1aa8b682ba0931228bf42e6252c20594029fb268bfc069384402d8c939a3f",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/references/toolchain.md",
+      "read": "full content",
+      "hash_at_report_recording": "50cd7a88a31fff1f0d1804b25a3896fc752320eb05c74659bf9d8d2d7f92fa36",
+      "audit_initial_sha256": "50cd7a88a31fff1f0d1804b25a3896fc752320eb05c74659bf9d8d2d7f92fa36",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/capture_coverage.py",
+      "read": "full content",
+      "hash_at_report_recording": "3dc5310de27d76cdd810e2362426064e2a82ee596770d3a0bacd85a1f1fdeabf",
+      "audit_initial_sha256": "3dc5310de27d76cdd810e2362426064e2a82ee596770d3a0bacd85a1f1fdeabf",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/acceptance.py",
+      "read": "full content",
+      "hash_at_report_recording": "e32a2d143fccff65ba0f8efac6ff88f614f3cf319d7a0772cc7970c2e218fe8c",
+      "audit_initial_sha256": "e32a2d143fccff65ba0f8efac6ff88f614f3cf319d7a0772cc7970c2e218fe8c",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/core.py",
+      "read": "full content",
+      "hash_at_report_recording": "3152a5abac4d65c81015ce7c20bea9febeecb462c3cf6ab0f77221e8cfbeafb5",
+      "audit_initial_sha256": "3152a5abac4d65c81015ce7c20bea9febeecb462c3cf6ab0f77221e8cfbeafb5",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/execution.py",
+      "read": "full content",
+      "hash_at_report_recording": "0979ea2ab41576f70fc6d7a5ca68d37019e6009560129250177bec3de7d83f2d",
+      "audit_initial_sha256": "0979ea2ab41576f70fc6d7a5ca68d37019e6009560129250177bec3de7d83f2d",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/git_scope.py",
+      "read": "full content",
+      "hash_at_report_recording": "65795e3ea21d8652fd8c8ef2284ea682f13670421220161a5d0b522b2b157724",
+      "audit_initial_sha256": "65795e3ea21d8652fd8c8ef2284ea682f13670421220161a5d0b522b2b157724",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/processes.py",
+      "read": "full content",
+      "hash_at_report_recording": "557577565d624a038952e38239c3775b3965cf068962f9576d1eb33faec41fce",
+      "audit_initial_sha256": "557577565d624a038952e38239c3775b3965cf068962f9576d1eb33faec41fce",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/provenance.py",
+      "read": "full content",
+      "hash_at_report_recording": "ee28ffbf417c915ea936d915ba8d3ca16abba94fc3f9fc0f3e3ceef1d7b64a0b",
+      "audit_initial_sha256": "ee28ffbf417c915ea936d915ba8d3ca16abba94fc3f9fc0f3e3ceef1d7b64a0b",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/runtime.py",
+      "read": "full content",
+      "hash_at_report_recording": "8a6c792335c47fd38909ce55db955bc5d544d1572423f4985eeab8dfb7d65837",
+      "audit_initial_sha256": "8a6c792335c47fd38909ce55db955bc5d544d1572423f4985eeab8dfb7d65837",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/validation.py",
+      "read": "full content",
+      "hash_at_report_recording": "a36947ee4f5fb2b4bb95248ff070a5508a85c31981792056f44a717038bf6009",
+      "audit_initial_sha256": "a36947ee4f5fb2b4bb95248ff070a5508a85c31981792056f44a717038bf6009",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/data/default-policy.json",
+      "read": "full content",
+      "hash_at_report_recording": "74db8d61a763056bf91cdc41e1fccb631250a76ed1f0ffc456b126f3e4661797",
+      "audit_initial_sha256": "74db8d61a763056bf91cdc41e1fccb631250a76ed1f0ffc456b126f3e4661797",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/data/toolchain.json",
+      "read": "full content",
+      "hash_at_report_recording": "a8523e27c5d59b80632df473acbb4f2e87d733bd4b032f260dd227fc48642653",
+      "audit_initial_sha256": "a8523e27c5d59b80632df473acbb4f2e87d733bd4b032f260dd227fc48642653",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_contracts.py",
+      "read": "full content",
+      "hash_at_report_recording": "cb6bf513ce164b26af3eaab2f8bace14e2bded7294d10ec370ff000cda5a3cc4",
+      "audit_initial_sha256": "cb6bf513ce164b26af3eaab2f8bace14e2bded7294d10ec370ff000cda5a3cc4",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_core.py",
+      "read": "full content",
+      "hash_at_report_recording": "08efe78a6cf65930565685430ad4ffb30bc54f80addad4a0961bf11e8d4f9242",
+      "audit_initial_sha256": "08efe78a6cf65930565685430ad4ffb30bc54f80addad4a0961bf11e8d4f9242",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_metrics.py",
+      "read": "full content",
+      "hash_at_report_recording": "d989f0390d6acd554d763d78c2067b2051bde6d67c78780cc06c75118559cc1b",
+      "audit_initial_sha256": "d989f0390d6acd554d763d78c2067b2051bde6d67c78780cc06c75118559cc1b",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_preflight.py",
+      "read": "full content",
+      "hash_at_report_recording": "3ce11db2d593f9cd0a7cbd567ecf8573650850fe29c2d89d46cac5b13ec65730",
+      "audit_initial_sha256": "3ce11db2d593f9cd0a7cbd567ecf8573650850fe29c2d89d46cac5b13ec65730",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_workflows.py",
+      "read": "full content",
+      "hash_at_report_recording": "813da2790deab44fa2d7cb144d6b0a025c558dedcea086088bdc2956e00ab56e",
+      "audit_initial_sha256": "813da2790deab44fa2d7cb144d6b0a025c558dedcea086088bdc2956e00ab56e",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/README.md",
+      "read": "full content",
+      "hash_at_report_recording": "9ec741925d7821b673e82d96991aa63f3eb585a35a3521ff73d9841a9dfcc7f2",
+      "audit_initial_sha256": "9ec741925d7821b673e82d96991aa63f3eb585a35a3521ff73d9841a9dfcc7f2",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/VERIFICATION.md",
+      "read": "full content",
+      "hash_at_report_recording": "851ef530979fe3cdabb4c3e2457cd874357ffdbdc257893ede3091e5a8fff263",
+      "audit_initial_sha256": "851ef530979fe3cdabb4c3e2457cd874357ffdbdc257893ede3091e5a8fff263",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/package.json",
+      "read": "full content",
+      "hash_at_report_recording": "40a512dddefbfdc854c5ff390a25303a2207877ba65e05b618ba508f6051c8d8",
+      "audit_initial_sha256": "40a512dddefbfdc854c5ff390a25303a2207877ba65e05b618ba508f6051c8d8",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/pyproject.toml",
+      "read": "full content",
+      "hash_at_report_recording": "9d05923f9dc6355d8a3bcebc01c09a54aef27f2ddf3cc501333986fa49e04be0",
+      "audit_initial_sha256": "9d05923f9dc6355d8a3bcebc01c09a54aef27f2ddf3cc501333986fa49e04be0",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/requirements.txt",
+      "read": "full content",
+      "hash_at_report_recording": "d22a3b5880f8608e432a0a91f3ea625a7652dad6a7a64df19a94364c159657af",
+      "audit_initial_sha256": "d22a3b5880f8608e432a0a91f3ea625a7652dad6a7a64df19a94364c159657af",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/scripts/svg_tools.mjs",
+      "read": "full content",
+      "hash_at_report_recording": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+      "audit_initial_sha256": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/scripts/vectorize.py",
+      "read": "full content",
+      "hash_at_report_recording": "6f0e39ae238dc346ee0aa9c820fe11e92b7ad2b8696aaa965529cb5107239fad",
+      "audit_initial_sha256": "6f0e39ae238dc346ee0aa9c820fe11e92b7ad2b8696aaa965529cb5107239fad",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/skills/vectorize/SKILL.md",
+      "read": "full content",
+      "hash_at_report_recording": "41c5155a1b0106ea2c66f70c830c8b4e6d70a5d981f608510d6f54240cbb789d",
+      "audit_initial_sha256": "41c5155a1b0106ea2c66f70c830c8b4e6d70a5d981f608510d6f54240cbb789d",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/tests/fixtures.py",
+      "read": "full content",
+      "hash_at_report_recording": "71fb8f8e1880659ba15cc7306ff169be1d7d21e0aa043e1d507ad1b6f2327ffe",
+      "audit_initial_sha256": "71fb8f8e1880659ba15cc7306ff169be1d7d21e0aa043e1d507ad1b6f2327ffe",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/tests/smoke.py",
+      "read": "full content",
+      "hash_at_report_recording": "3af8b600fa960a733b2ec7cfc09d00e8099e6fb3db237caaab6876643be5156e",
+      "audit_initial_sha256": "3af8b600fa960a733b2ec7cfc09d00e8099e6fb3db237caaab6876643be5156e",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "plugins/svg-vectorizer/tests/test_vectorize.py",
+      "read": "full content",
+      "hash_at_report_recording": "d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286",
+      "audit_initial_sha256": "d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "read": "full content",
+      "hash_at_report_recording": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+      "audit_initial_sha256": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/build-release.py",
+      "read": "full content",
+      "hash_at_report_recording": "5aefbed904a490ceec1f01ba79fb6b99acb42eab98025d0af30a4c3db3c96e0b",
+      "audit_initial_sha256": "5aefbed904a490ceec1f01ba79fb6b99acb42eab98025d0af30a4c3db3c96e0b",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/check-repository.mjs",
+      "read": "full content",
+      "hash_at_report_recording": "54e97df13131bbc99ebd6fa5b0629b80ab837bd9ab21863a2ac24e5ce88737c3",
+      "audit_initial_sha256": "54e97df13131bbc99ebd6fa5b0629b80ab837bd9ab21863a2ac24e5ce88737c3",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/check-scenario-reuse.mjs",
+      "read": "full content",
+      "hash_at_report_recording": "25f93ede4c3d65fff6ff6173784b3a298e897c6b5126c732d66e7fb66f8060a3",
+      "audit_initial_sha256": "25f93ede4c3d65fff6ff6173784b3a298e897c6b5126c732d66e7fb66f8060a3",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/check-scenario-scale.mjs",
+      "read": "full content",
+      "hash_at_report_recording": "c50798143c0cbd7450c0819be4007c9ba965e429a031a9e11a5f989b9ff3df12",
+      "audit_initial_sha256": "c50798143c0cbd7450c0819be4007c9ba965e429a031a9e11a5f989b9ff3df12",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/check-spec-archive.mjs",
+      "read": "full content",
+      "hash_at_report_recording": "89ba7451ed73a53dc5ce1d1d064b4d79d337f559ce893a4e80cd2fa2a194d949",
+      "audit_initial_sha256": "89ba7451ed73a53dc5ce1d1d064b4d79d337f559ce893a4e80cd2fa2a194d949",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/context-tokens.py",
+      "read": "full content",
+      "hash_at_report_recording": "caa8e1f9bf0587aff7ceccfc1e073572c7842818d435320adebabde34ea09034",
+      "audit_initial_sha256": "caa8e1f9bf0587aff7ceccfc1e073572c7842818d435320adebabde34ea09034",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/evidence_store.py",
+      "read": "full content",
+      "hash_at_report_recording": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+      "audit_initial_sha256": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/render-skills.py",
+      "read": "full content",
+      "hash_at_report_recording": "4e1c42978246aae4e355cb67fd77c6da275e1693cab6462105c2753cfd94ab71",
+      "audit_initial_sha256": "4e1c42978246aae4e355cb67fd77c6da275e1693cab6462105c2753cfd94ab71",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/source-scenarios.mjs",
+      "read": "full content",
+      "hash_at_report_recording": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+      "audit_initial_sha256": "2d336cd14209b6d6b2cc5f5035508b60bb16c141c13fd50b453b60cd6bfa0050",
+      "changed_since_audit_start": true
+    },
+    {
+      "path": "scripts/target-maintenance.py",
+      "read": "full content",
+      "hash_at_report_recording": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+      "audit_initial_sha256": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/tests/test_build_release.py",
+      "read": "full content",
+      "hash_at_report_recording": "fd09113b6100bf142976e2f4be763a205b2007b0cec50f7a78eff6b1ba94077b",
+      "audit_initial_sha256": "fd09113b6100bf142976e2f4be763a205b2007b0cec50f7a78eff6b1ba94077b",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/tests/test_clear_batch.py",
+      "read": "full content",
+      "hash_at_report_recording": "e2a0f446c74dc94cda17a0efd31368e636cb718d11a7f347b8ccd071c9c287a9",
+      "audit_initial_sha256": "4aa3c52893fb2a8871a79c308f93f495f4fbc490afd9a75057486cc3921d7c16",
+      "changed_since_audit_start": true
+    },
+    {
+      "path": "scripts/tests/test_document_budget.py",
+      "read": "full content",
+      "hash_at_report_recording": "699a9e81ce8f544ca1ede2f194a858a294e5a3fabcc1385d2d928b1d730357d1",
+      "audit_initial_sha256": "699a9e81ce8f544ca1ede2f194a858a294e5a3fabcc1385d2d928b1d730357d1",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/tests/test_evidence_store.py",
+      "read": "full content",
+      "hash_at_report_recording": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e",
+      "audit_initial_sha256": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/tests/test_render_skills.py",
+      "read": "full content",
+      "hash_at_report_recording": "916e5ee048030b8cef2facbffbe90ab3219787e90e1b580ece1ff6ce1351da2a",
+      "audit_initial_sha256": "916e5ee048030b8cef2facbffbe90ab3219787e90e1b580ece1ff6ce1351da2a",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/tests/test_source_scenarios.py",
+      "read": "full content",
+      "hash_at_report_recording": "a4265ec47c7c2435fe8bb858eec5a8fd1bb59b38669df2ca4153c7f9fd077671",
+      "audit_initial_sha256": "f19b446b0fafd21c03c94c065062e10dbb1d29d8a825146d195fbb9279732887",
+      "changed_since_audit_start": true
+    },
+    {
+      "path": "scripts/tests/test_spec_archive.py",
+      "read": "full content",
+      "hash_at_report_recording": "90736ead378f86b8e05e0b738f98dc771fff89b705400c27b77e73fd6d9af3df",
+      "audit_initial_sha256": "90736ead378f86b8e05e0b738f98dc771fff89b705400c27b77e73fd6d9af3df",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/tests/test_target_maintenance.py",
+      "read": "full content",
+      "hash_at_report_recording": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+      "audit_initial_sha256": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/tests/test_ui_build.py",
+      "read": "full content",
+      "hash_at_report_recording": "5e6c1c576ccd3e3dc3f867dafbfb3b4cc258f7859ea2afe4189fda19a7f8e6b1",
+      "audit_initial_sha256": "5e6c1c576ccd3e3dc3f867dafbfb3b4cc258f7859ea2afe4189fda19a7f8e6b1",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/tests/test_verify.py",
+      "read": "full content",
+      "hash_at_report_recording": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb",
+      "audit_initial_sha256": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/tests/test_workflow_contract.py",
+      "read": "full content",
+      "hash_at_report_recording": "c7340b4bc318746c5d0acb23bc8c1aee31018156fb739ee74774db5f2c109bb6",
+      "audit_initial_sha256": "c7340b4bc318746c5d0acb23bc8c1aee31018156fb739ee74774db5f2c109bb6",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/verify-spec-catalog-pilot.py",
+      "read": "full content",
+      "hash_at_report_recording": "b722783dba79f168a5f203c075d4627062cff13abd7709c08ed3c23750ae194d",
+      "audit_initial_sha256": "b722783dba79f168a5f203c075d4627062cff13abd7709c08ed3c23750ae194d",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "scripts/verify.py",
+      "read": "full content",
+      "hash_at_report_recording": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+      "audit_initial_sha256": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "tests/shared_inputs_contracts.rs",
+      "read": "full content",
+      "hash_at_report_recording": "f6b86fa2a4bb7d73c011dd9269820352b8549c489126ffb80d9c351a6cd05950",
+      "audit_initial_sha256": "f6b86fa2a4bb7d73c011dd9269820352b8549c489126ffb80d9c351a6cd05950",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "tests/support/mod.rs",
+      "read": "full content",
+      "hash_at_report_recording": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+      "audit_initial_sha256": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+      "changed_since_audit_start": false
+    },
+    {
+      "path": "tests/temp_contracts.rs",
+      "read": "full content",
+      "hash_at_report_recording": "4fc1ac197af44cbfe887a536918bc1275b69231833f6eb5de172a22fc5a30d3d",
+      "audit_initial_sha256": "4fc1ac197af44cbfe887a536918bc1275b69231833f6eb5de172a22fc5a30d3d",
+      "changed_since_audit_start": false
+    }
+  ],
+  "partial_source_reads": {
+    "tests/catalog_contracts.rs": "Complete named compact/import/batch/stats/brief test functions and related fixtures; not full file.",
+    "tests/spec_contracts.rs": "Complete named batch-validation/evidence-card test functions; not full file.",
+    "tests/global_contracts.rs": "Complete installed_clear_helper function; not full file.",
+    "tests/trace_contracts.rs": "Complete automatic_trace_keeps_scope_and_outcomes_distinct; not full file.",
+    "plugins/code-health-audit/skills/code-health-audit/scripts/audit.py": "Runtime setup, execution/snapshot/report/failure boundaries read; analyzer aggregation/diff middle reviewed by tests, not full source.",
+    "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/adapters.py": "Function inventory and test-driven references only; full analyzer internals not claimed."
+  },
+  "pending_transitions_read": [
+    "HG-0063 modifies HG-0022-R2 to canonical work/commit/push",
+    "HG-0063 preserves evidence storage/handoff ownership via HG-0048-R2 and installed catalog independence HG-0004-R3"
+  ],
+  "proposed_mutations": [
+    {
+      "target": "kit/tools/clear_batch.py observe source hash guard",
+      "check": "ClearBatchTests.test_non_assertion_failures_never_detect",
+      "violation": "Wrong executed-source witness becomes detected instead of invalid."
+    },
+    {
+      "target": "kit/tools/clear_batch.py current-vs-expected restore guard",
+      "check": "ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+      "violation": "Unknown foreign source edit overwritten or worker continued."
+    },
+    {
+      "target": "kit/tools/clear_batch.py prior snapshot fingerprint comparison",
+      "check": "ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+      "violation": "Changed contract/data/dependency/adapter/helper/environment becomes reusable."
+    }
+  ],
+  "tests_executed_by_reviewer": [],
+  "code_or_catalog_edits_by_reviewer": [],
+  "limits": [
+    "No execution GO before original current results.",
+    "Requirements/scenarios read in the supplied native snapshot; partial implementation reads are explicitly listed.",
+    "No installed plugin/environment modification, dependency installation, live Goal API, publication or acceptance.",
+    "Windows/remote runtime and pinned-profile cost comparison remain separate evidence.",
+    "Reported source hashes are recording-time fingerprints; root changes made during the audit require affected reread in final review."
+  ]
+}

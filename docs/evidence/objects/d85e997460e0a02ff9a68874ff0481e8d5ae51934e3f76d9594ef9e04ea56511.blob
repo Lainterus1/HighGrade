@@ -1,0 +1,13 @@
+# Независимое runtime-дополнение
+
+GO в прежнем назначенном локальном срезе. Блокирующих замечаний нет. Источники продукта повторно не ревьюировались; их ранее проверенные SHA и immutable checks.md не изменились.
+
+Первый Node результат из четырёх file containers недостаточен для подтверждения отдельных случаев. Новый final-checks.md прямо исправляет эту трактовку и сохраняет исходный сигнал. Прочитаны новые raw logs: 14 actual cases PASS, 0 skipped/failed/cancelled; scale на 100/200 требований PASS; reuse с relocation и отказом после изменения scenario/source/hash/toolchain PASS.
+
+Новый полный Nextest содержит 242 raw cases без failure/error/skip. Attempt/completion identity и report/list SHA совпадают; все 482 source pins актуальны. Новый trace: 145/145 automatic PASS, 187 outside, 242 executed, 154 linked/88 unlinked, без missing/skipped/unknown/findings. Проверены SHA/bytes всех 22 payload в runtime manifest9c97ea…, Rust sealba46e6… и trace seal4a9a0a…. Оригиналы доступны в CAS после удаления owned runs.
+
+Исполнитель сообщил точную команду с Node24 PATH. Позднее текущее подтверждение показывает v24.19.0 и штатный execPath под тем же PATH. Для того attempt не было отдельного version preflight. Это не историческая запечатанная tool/environment identity. Старый предел сохранён; authenticity или полная environment closure не заявлены.
+
+Сверены sweep/clean/check originals: удалены два новых собственных запечатанных run, семь прежних неизвестных/прерванных сохранены. После очистки cache и восстановления CLI target365.07MiB <600. Current CLI и backup совпадают по SHA b6f659b9b33cca73108a12f63fc5f6f7f479bf20acd81cd0c70cac1acdd67c16 и mode0755. Maintenance check имеет exit2 из-за сохранённого foreign hg58; это не общий PASS очистки.
+
+Прочитан preservation-final PASS (20 modified scope files, 24 recovery exclusions,2137objects/142manifests). Полный скан reviewer повторно не выполнял. Ранее доказанная сохранность tests/history/acceptance остаётся основанием предыдущего GO; новый runtime её не подменяет. Actor/Windows, прежний комплексный Clear, deployment и human acceptance этим дополнением не закрываются. Новых тестов reviewer не запускал; commit/activation/push не назначены, presentation исключён.

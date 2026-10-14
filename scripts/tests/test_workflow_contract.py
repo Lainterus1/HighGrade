@@ -42,20 +42,15 @@ class WorkflowContractTests(unittest.TestCase):
             for boundary in ('pre-submit', 'Work', 'Git', 'SHA', 'acceptance'):
                 self.assertIn(boundary, body)
 
-    def test_planner_route_does_not_grant_goal_or_plan_only_execution(self):
-        # A structural regression tripwire. Semantic review and actor observations
-        # remain mandatory; this does not claim a real Goal API was exercised.
+    def test_planner_route_links_one_primary_procedure(self):
+        # Structure only. Authority meaning belongs to independent review and
+        # actual/controlled observations, not exact wording assertions.
         task = (KIT / 'procedures/task.md').read_text(encoding='utf-8')
-        template = (KIT / 'templates/AGENTS.md').read_text(encoding='utf-8')
+        clear = (KIT / 'procedures/clear.md').read_text(encoding='utf-8')
         planner = (KIT / 'procedures/planner.md').read_text(encoding='utf-8')
-        self.assertIn('Automatic Planner selection does not authorize a Goal', task)
-        self.assertIn('A plan-only request authorizes neither a Goal nor implementation', task)
-        self.assertIn('Accepted routing does not authorize a Goal', template)
-        self.assertIn('creates a plan without Goal/implementation', template)
-        self.assertNotIn('this accepted project route authorizes a Goal', template)
-        self.assertNotIn('limit the Goal to preparing a plan', template)
-        self.assertIn('Automatic routing alone does not authorize it', planner)
-        self.assertIn('plan-only requests authorize neither a Goal nor edits', planner)
+        self.assertIn('[Planner](planner.md)',task)
+        self.assertIn('[Planner](planner.md)',clear)
+        self.assertIn('[route selection](task.md#choose-a-sufficient-route)',planner)
 
     def test_all_current_kit_markdown_links_resolve_after_the_rename(self):
         for path in KIT.rglob('*.md'):

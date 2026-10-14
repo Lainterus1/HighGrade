@@ -1,0 +1,1484 @@
+{
+  "phase": "semantic review before baseline; written record at reconciliation",
+  "requirements": [
+    {
+      "id": "HG-0006-R1",
+      "title": "Выбор маршрута",
+      "read": true,
+      "judgment": "Маршрут выбирают по требуемому исходу. Быстрое исправление сохраняет контракт, проверки и ревью. Термин approve заменён в pending HG63, без смены критериев.",
+      "owner": [
+        "kit/procedures/task.md",
+        "kit/procedures/fix.md",
+        "kit/procedures/work.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0006-S1",
+          "verification": "Изолированное упражнение агента: исходные файлы, фактические действия, итоговые артефакты и тесты; независимое ревью"
+        },
+        {
+          "id": "HG-0006-S2",
+          "verification": "Изолированное упражнение агента: исходные файлы, фактические действия, итоговые артефакты и тесты; независимое ревью"
+        },
+        {
+          "id": "HG-0006-S3",
+          "verification": "Изолированное упражнение агента: исходные файлы, фактические действия, итоговые артефакты и тесты; независимое ревью"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0006-R2",
+      "title": "Исправление по контракту",
+      "read": true,
+      "judgment": "Маршрут выбирают по требуемому исходу. Быстрое исправление сохраняет контракт, проверки и ревью. Термин approve заменён в pending HG63, без смены критериев.",
+      "owner": [
+        "kit/procedures/task.md",
+        "kit/procedures/fix.md",
+        "kit/procedures/work.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0006-S4",
+          "verification": "Изолированное упражнение агента: исходные файлы, фактические действия, итоговые артефакты и тесты; независимое ревью"
+        },
+        {
+          "id": "HG-0006-S5",
+          "verification": "Изолированное упражнение агента: исходные файлы, фактические действия, итоговые артефакты и тесты; независимое ревью"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0006-R3",
+      "title": "Качество всех маршрутов",
+      "read": true,
+      "judgment": "Маршрут выбирают по требуемому исходу. Быстрое исправление сохраняет контракт, проверки и ревью. Термин approve заменён в pending HG63, без смены критериев.",
+      "owner": [
+        "kit/procedures/task.md",
+        "kit/procedures/fix.md",
+        "kit/procedures/work.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0006-S6",
+          "verification": "Изолированное упражнение агента: исходные файлы, фактические действия, итоговые артефакты и тесты; независимое ревью"
+        },
+        {
+          "id": "HG-0006-S7",
+          "verification": "Изолированное упражнение агента: исходные файлы, фактические действия, итоговые артефакты и тесты; независимое ревью"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0009-R1",
+      "title": "Роли основных источников и проектные пути",
+      "read": true,
+      "judgment": "Структурная диагностика отделена от смыслового чтения. Inventory не доказывает адаптацию; кандидаты обходят только по реальной необходимости. Bootstrap assertions проверяют точные находки/сохранность.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/audit.md",
+        "src/bootstrap.rs",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0028-S1",
+          "verification": "Контрактный тест inspect."
+        },
+        {
+          "id": "HG-0028-S2",
+          "verification": "Контрактные тесты inspect."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0009-R2",
+      "title": "Предварительная проверка без реестра",
+      "read": true,
+      "judgment": "Структурная диагностика отделена от смыслового чтения. Inventory не доказывает адаптацию; кандидаты обходят только по реальной необходимости. Bootstrap assertions проверяют точные находки/сохранность.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/audit.md",
+        "src/bootstrap.rs",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [
+        "tests/bootstrap_contracts.rs::bootstrap_reports_all_slots_before_registry_exists",
+        "tests/bootstrap_contracts.rs::alternative_name_is_candidate_but_never_accepted_as_role"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0009-S4",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts bootstrap_reports_all_slots_before_registry_exists -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0009-S5",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts alternative_name_is_candidate_but_never_accepted_as_role -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0009-S6",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0009-R3",
+      "title": "Проверяемая навигация",
+      "read": true,
+      "judgment": "Структурная диагностика отделена от смыслового чтения. Inventory не доказывает адаптацию; кандидаты обходят только по реальной необходимости. Bootstrap assertions проверяют точные находки/сохранность.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/audit.md",
+        "src/bootstrap.rs",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [
+        "tests/bootstrap_contracts.rs::complete_project_still_reports_missing_navigation_without_candidate_walk",
+        "tests/bootstrap_contracts.rs::migrated_architecture_with_old_readme_link_is_reported"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0009-S7",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts complete_project_still_reports_missing_navigation_without_candidate_walk -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0009-S8",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts migrated_architecture_with_old_readme_link_is_reported -- --exact; проверить фактические утверждения о результате и границах сценария"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0009-R4",
+      "title": "Безопасный и ограниченный обход",
+      "read": true,
+      "judgment": "Структурная диагностика отделена от смыслового чтения. Inventory не доказывает адаптацию; кандидаты обходят только по реальной необходимости. Bootstrap assertions проверяют точные находки/сохранность.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/audit.md",
+        "src/bootstrap.rs",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [
+        "tests/bootstrap_contracts.rs::exclusions_are_safe_and_bad_registry_does_not_hide_candidates",
+        "tests/bootstrap_contracts.rs::alternative_name_is_candidate_but_never_accepted_as_role"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0009-S9",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0009-S10",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts exclusions_are_safe_and_bad_registry_does_not_hide_candidates -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0009-S11",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts alternative_name_is_candidate_but_never_accepted_as_role -- --exact; проверить фактические утверждения о результате и границах сценария"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0009-R5",
+      "title": "Действия агента при инициализации",
+      "read": true,
+      "judgment": "Структурная диагностика отделена от смыслового чтения. Inventory не доказывает адаптацию; кандидаты обходят только по реальной необходимости. Bootstrap assertions проверяют точные находки/сохранность.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/audit.md",
+        "src/bootstrap.rs",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0009-S12",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0009-S13",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0009-S14",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0009-R6",
+      "title": "Контроль подключённого проекта",
+      "read": true,
+      "judgment": "Структурная диагностика отделена от смыслового чтения. Inventory не доказывает адаптацию; кандидаты обходят только по реальной необходимости. Bootstrap assertions проверяют точные находки/сохранность.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/audit.md",
+        "src/bootstrap.rs",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [
+        "tests/bootstrap_contracts.rs::missing_link_is_distinct_from_missing_file_and_registry_path_mismatch",
+        "tests/bootstrap_contracts.rs::canonical_project_has_separate_path_and_link_evidence"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0009-S15",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts missing_link_is_distinct_from_missing_file_and_registry_path_mismatch -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0009-S16",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts canonical_project_has_separate_path_and_link_evidence -- --exact; проверить фактические утверждения о результате и границах сценария"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0009-R7",
+      "title": "Передача предварительных находок в план адаптации",
+      "read": true,
+      "judgment": "Структурная диагностика отделена от смыслового чтения. Inventory не доказывает адаптацию; кандидаты обходят только по реальной необходимости. Bootstrap assertions проверяют точные находки/сохранность.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/audit.md",
+        "src/bootstrap.rs",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0028-S3",
+          "verification": "Смысловое ревью инструкций; не наблюдение поведения будущего агента."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0009-R8",
+      "title": "Поиск кандидатов только при структурной необходимости",
+      "read": true,
+      "judgment": "Структурная диагностика отделена от смыслового чтения. Inventory не доказывает адаптацию; кандидаты обходят только по реальной необходимости. Bootstrap assertions проверяют точные находки/сохранность.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/audit.md",
+        "src/bootstrap.rs",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [
+        "tests/bootstrap_contracts.rs::canonical_project_has_separate_path_and_link_evidence",
+        "tests/bootstrap_contracts.rs::bootstrap_reports_multiple_unvisited_locations_with_a_count"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0009-S19",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts canonical_project_has_separate_path_and_link_evidence -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0009-S20",
+          "verification": "Запустить cargo test --locked --test bootstrap_contracts bootstrap_reports_multiple_unvisited_locations_with_a_count -- --exact; проверить фактические утверждения о результате и границах сценария"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0010-R1",
+      "title": "Самостоятельный установленный контекст",
+      "read": true,
+      "judgment": "Поставка и локальная адаптация разделены. Машинная совместимость не доказывает исполнение процедур. Старое approve исправлено pending HG63. CLI tests не заменяют агентные упражнения.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/update.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/global_contracts.rs"
+      ],
+      "tests": [
+        "tests/global_contracts.rs::installed_runtime_references_survive_removal_of_source_copy",
+        "tests/global_contracts.rs::update_replaces_owned_skill_and_preserves_user_edit",
+        "tests/global_contracts.rs::interrupted_skill_update_recovers_without_overwriting_user_edit",
+        "tests/global_contracts.rs::failed_candidate_stage_restores_changed_skill",
+        "tests/global_contracts.rs::planner_router_is_portable"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0010-S1",
+          "verification": "Запустить cargo test --locked --test global_contracts installed_runtime_references_survive_removal_of_source_copy -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0027-S1",
+          "verification": "Контрактные тесты global_contracts: обновление принадлежащего навыка и сохранность изменённого пользователем."
+        },
+        {
+          "id": "HG-0027-S2",
+          "verification": "Детерминированные фикстуры незавершённой транзакции и ошибки применения в global_contracts."
+        },
+        {
+          "id": "HG-0027-S3",
+          "verification": "Проверка генератора --check и контрактный тест установленного навыка."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0010-R2",
+      "title": "Результат адаптации",
+      "read": true,
+      "judgment": "Поставка и локальная адаптация разделены. Машинная совместимость не доказывает исполнение процедур. Старое approve исправлено pending HG63. CLI tests не заменяют агентные упражнения.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/update.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/global_contracts.rs"
+      ],
+      "tests": [
+        "tests/global_contracts.rs::shipped_registry_example_is_accepted_without_inventing_budgets"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0010-S2",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0010-S3",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0010-S4",
+          "verification": "Запустить cargo test --locked --test global_contracts shipped_registry_example_is_accepted_without_inventing_budgets -- --exact; проверить фактические утверждения о результате и границах сценария"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0010-R3",
+      "title": "Проектная активация",
+      "read": true,
+      "judgment": "Поставка и локальная адаптация разделены. Машинная совместимость не доказывает исполнение процедур. Старое approve исправлено pending HG63. CLI tests не заменяют агентные упражнения.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/update.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/global_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0010-S5",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0010-R4",
+      "title": "Содержательные поведенческие сценарии",
+      "read": true,
+      "judgment": "Поставка и локальная адаптация разделены. Машинная совместимость не доказывает исполнение процедур. Старое approve исправлено pending HG63. CLI tests не заменяют агентные упражнения.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/update.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/global_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0010-S6",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0010-R5",
+      "title": "Наблюдаемое доказательство вне trace",
+      "read": true,
+      "judgment": "Поставка и локальная адаптация разделены. Машинная совместимость не доказывает исполнение процедур. Старое approve исправлено pending HG63. CLI tests не заменяют агентные упражнения.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/update.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/global_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0010-S7",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0010-S8",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0010-R6",
+      "title": "Переходы и продолжение",
+      "read": true,
+      "judgment": "Поставка и локальная адаптация разделены. Машинная совместимость не доказывает исполнение процедур. Старое approve исправлено pending HG63. CLI tests не заменяют агентные упражнения.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/update.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/global_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0010-S9",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0010-R7",
+      "title": "Граница машинной совместимости",
+      "read": true,
+      "judgment": "Поставка и локальная адаптация разделены. Машинная совместимость не доказывает исполнение процедур. Старое approve исправлено pending HG63. CLI tests не заменяют агентные упражнения.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/update.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/global_contracts.rs"
+      ],
+      "tests": [
+        "tests/global_contracts.rs::supported_adapter_does_not_claim_semantic_readiness",
+        "tests/global_contracts.rs::unsupported_project_adapter_is_a_failure"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0010-S10",
+          "verification": "Запустить cargo test --locked --test global_contracts supported_adapter_does_not_claim_semantic_readiness -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0010-S11",
+          "verification": "Запустить cargo test --locked --test global_contracts unsupported_project_adapter_is_a_failure -- --exact; проверить фактические утверждения о результате и границах сценария"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0010-R8",
+      "title": "Проверка при входе и сохранность обновления",
+      "read": true,
+      "judgment": "Поставка и локальная адаптация разделены. Машинная совместимость не доказывает исполнение процедур. Старое approve исправлено pending HG63. CLI tests не заменяют агентные упражнения.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/update.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/global_contracts.rs"
+      ],
+      "tests": [
+        "tests/global_contracts.rs::global_update_preserves_project_adaptation_in_profile"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0010-S12",
+          "verification": "Запустить cargo test --locked --test global_contracts global_update_preserves_project_adaptation_in_profile -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0010-S13",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0010-R9",
+      "title": "Воспроизводимый и диагностируемый Update",
+      "read": true,
+      "judgment": "Поставка и локальная адаптация разделены. Машинная совместимость не доказывает исполнение процедур. Старое approve исправлено pending HG63. CLI tests не заменяют агентные упражнения.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/update.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/global_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0010-S14",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0010-S15",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0010-S16",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0011-R1",
+      "title": "Локальное принятие задачи",
+      "read": true,
+      "judgment": "Commit, activation, publication и acceptance имеют отдельные основания. Exact range/candidate и сохранность обязательны. Прежнее имя принятия снято pending HG63; старые решения не переписаны.",
+      "owner": [
+        "kit/procedures/commit.md",
+        "kit/procedures/push.md",
+        "kit/procedures/update.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0011-S1",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0011-S2",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0011-R2",
+      "title": "Отбор состава при локальном принятии",
+      "read": true,
+      "judgment": "Commit, activation, publication и acceptance имеют отдельные основания. Exact range/candidate и сохранность обязательны. Прежнее имя принятия снято pending HG63; старые решения не переписаны.",
+      "owner": [
+        "kit/procedures/commit.md",
+        "kit/procedures/push.md",
+        "kit/procedures/update.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0011-S3",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0011-S4",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0011-R3",
+      "title": "Публикация проверенного диапазона",
+      "read": true,
+      "judgment": "Commit, activation, publication и acceptance имеют отдельные основания. Exact range/candidate и сохранность обязательны. Прежнее имя принятия снято pending HG63; старые решения не переписаны.",
+      "owner": [
+        "kit/procedures/commit.md",
+        "kit/procedures/push.md",
+        "kit/procedures/update.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0011-S5",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0011-S6",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0011-S7",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0011-S8",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0011-R4",
+      "title": "Безопасное обновление и очистка прежнего выпуска",
+      "read": true,
+      "judgment": "Commit, activation, publication и acceptance имеют отдельные основания. Exact range/candidate и сохранность обязательны. Прежнее имя принятия снято pending HG63; старые решения не переписаны.",
+      "owner": [
+        "kit/procedures/commit.md",
+        "kit/procedures/push.md",
+        "kit/procedures/update.md"
+      ],
+      "tests": [
+        "tests/global_contracts.rs::global_update_preview_switch_and_cleanup_keep_unrelated_files",
+        "tests/global_contracts.rs::update_preserves_foreign_file_in_old_release"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0011-S9",
+          "verification": "Запустить cargo test --locked --test global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files -- --exact; проверить фактические утверждения о результате и границах сценария"
+        },
+        {
+          "id": "HG-0011-S10",
+          "verification": "Запустить cargo test --locked --test global_contracts update_preserves_foreign_file_in_old_release -- --exact; проверить фактические утверждения о результате и границах сценария"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0011-R5",
+      "title": "Раздельная запись состояний выпуска",
+      "read": true,
+      "judgment": "Commit, activation, publication и acceptance имеют отдельные основания. Exact range/candidate и сохранность обязательны. Прежнее имя принятия снято pending HG63; старые решения не переписаны.",
+      "owner": [
+        "kit/procedures/commit.md",
+        "kit/procedures/push.md",
+        "kit/procedures/update.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0011-S11",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0011-S12",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0014-R1",
+      "title": "Однозначный вход в общий маршрут",
+      "read": true,
+      "judgment": "Один вход ведёт к общему достаточному маршруту; generated проверяется через canonical sources и render-skills, без второго нормативного тела.",
+      "owner": [
+        "kit/procedures/task.md",
+        "kit/skills",
+        "scripts/render-skills.py"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0014-S1",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0014-S2",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0015-R1",
+      "title": "Честная диагностика доступности инструментов",
+      "read": true,
+      "judgment": "Неизвестная возможность инструмента не считается доступной. Контрактные тесты диагностики проверяют фактические сообщения; заглушка не подтверждает внешнюю доступность.",
+      "owner": [
+        "kit/references/tools/diagnostics.md",
+        "src/inspect.rs",
+        "tests/contracts.rs"
+      ],
+      "tests": [
+        "tests/global_contracts.rs::doctor_reports_unavailable_tool_without_claiming_version"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0015-S1",
+          "verification": "Запустить cargo test --locked --test global_contracts doctor_reports_unavailable_tool_without_claiming_version -- --exact; проверить фактические утверждения о результате и границах сценария"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0016-R1",
+      "title": "Вопросы только при нерешённом выборе",
+      "read": true,
+      "judgment": "Вопрос нужен для нерешённого существенного параметра. Известные ответы сохраняются; Clear использовал прежний scope, без лишнего нового согласования.",
+      "owner": [
+        "kit/procedures/task.md",
+        "kit/procedures/init.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0016-S1",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0016-S2",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0016-S3",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0017-R1",
+      "title": "Проверяемый маршрут сценария",
+      "read": true,
+      "judgment": "Связь ID и зелёный тест не доказывают сценарий. Сверены preparation/action/observation и обязательные методы; отсутствие наблюдения не превращено в PASS.",
+      "owner": [
+        "kit/references/tools/verification.md",
+        "kit/references/review.md",
+        "docs/workflow/QUALITY.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0017-S1",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0017-S2",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        },
+        {
+          "id": "HG-0017-S3",
+          "verification": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0018-R1",
+      "title": "Ревью значимых изменений субагентом",
+      "read": true,
+      "judgment": "Значимые исправления получают независимое ревью требований, diff и исходных отчётов. В этом запуске задействованы независимые reviewers; итоговый вердикт имеет явный охват.",
+      "owner": [
+        "kit/references/review.md",
+        "kit/procedures/work.md",
+        ".highgrade/project/INSTRUCTIONS.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0018-S1",
+          "verification": "Локально провести ревью этой задачи отдельным субагентом и сохранить его входы, вердикт и повторную проверку"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0020-R1",
+      "title": "Выбор Planner и единого Goal",
+      "read": true,
+      "judgment": "Один план хранит цепочку/Next. Автоматический Planner не разрешает Goal; отдельный запрос разрешает plan-only Goal. Этот Clear использует ordinary_plan, без нового Goal.",
+      "owner": [
+        "kit/procedures/planner.md",
+        "kit/references/tools/scenarios/goal-cases.json"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0020-S1",
+          "verification": "Изолированное упражнение агента: зафиксировать исходный запрос, действия, Goal, план, состояние и границы записи"
+        },
+        {
+          "id": "HG-0020-S2",
+          "verification": "Изолированное упражнение агента: зафиксировать исходный запрос, действия, Goal, план, состояние и границы записи"
+        },
+        {
+          "id": "HG-0020-S3",
+          "verification": "Изолированное упражнение агента: зафиксировать исходный запрос, действия, Goal, план, состояние и границы записи"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0020-R2",
+      "title": "Поэтапный Goal и продолжение",
+      "read": true,
+      "judgment": "Один план хранит цепочку/Next. Автоматический Planner не разрешает Goal; отдельный запрос разрешает plan-only Goal. Этот Clear использует ordinary_plan, без нового Goal.",
+      "owner": [
+        "kit/procedures/planner.md",
+        "kit/references/tools/scenarios/goal-cases.json"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0020-S4",
+          "verification": "Изолированное упражнение агента: зафиксировать исходный запрос, действия, Goal, план, состояние и границы записи"
+        },
+        {
+          "id": "HG-0020-S5",
+          "verification": "Изолированное упражнение агента: зафиксировать исходный запрос, действия, Goal, план, состояние и границы записи"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0020-R3",
+      "title": "Полномочия и занятый Goal",
+      "read": true,
+      "judgment": "Один план хранит цепочку/Next. Автоматический Planner не разрешает Goal; отдельный запрос разрешает plan-only Goal. Этот Clear использует ordinary_plan, без нового Goal.",
+      "owner": [
+        "kit/procedures/planner.md",
+        "kit/references/tools/scenarios/goal-cases.json"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0020-S6",
+          "verification": "Изолированное упражнение агента: зафиксировать исходный запрос, действия, Goal, план, состояние и границы записи"
+        },
+        {
+          "id": "HG-0020-S7",
+          "verification": "Изолированное упражнение агента: зафиксировать исходный запрос, действия, Goal, план, состояние и границы записи"
+        },
+        {
+          "id": "HG-0020-S8",
+          "verification": "Изолированное упражнение агента: зафиксировать исходный запрос, действия, Goal, план, состояние и границы записи"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0020-R4",
+      "title": "Переносимый маршрут",
+      "read": true,
+      "judgment": "Один план хранит цепочку/Next. Автоматический Planner не разрешает Goal; отдельный запрос разрешает plan-only Goal. Этот Clear использует ordinary_plan, без нового Goal.",
+      "owner": [
+        "kit/procedures/planner.md",
+        "kit/references/tools/scenarios/goal-cases.json"
+      ],
+      "tests": [
+        "tests/global_contracts.rs::planner_router_is_portable"
+      ],
+      "mandatory_methods": [
+        {
+          "id": "HG-0020-S9",
+          "verification": "Rust-контракт установки сравнивает установленные файлы и активный журнал"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0026-R1",
+      "title": "Владение правилами и выборочное чтение",
+      "read": true,
+      "judgment": "У каждого правила есть владелец. История читается по причине, generated через источник. Budgets не увеличивались; inspect проверяет действующий предел.",
+      "owner": [
+        "kit/references/documentation.md",
+        "docs/workflow/CONTEXT.md",
+        ".highgrade/project/documents.json"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0026-S4",
+          "verification": "Содержательная сверка действующей инструкции и таблицы решений; это проверка нормативного маршрута, не наблюдение будущего поведения агента."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0031-R1",
+      "title": "Явное совмещённое решение пользователя",
+      "read": true,
+      "judgment": "Явное совмещённое решение распространяется на названные действия и snapshot. Оно не создаёт постоянного разрешения на будущие acceptance/push.",
+      "owner": [
+        "kit/procedures/task.md",
+        "kit/procedures/spec.md",
+        "kit/procedures/work.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0031-S1",
+          "verification": "Смысловое ревью нормативного текста и независимый reviewer; не проверка поведения будущего агента."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0032-R1",
+      "title": "Минимальная адаптация проекта разработки",
+      "read": true,
+      "judgment": "Адаптация проекта разработки сохраняет общие правила у общих владельцев. Местный документ задаёт только проектный маршрут и исключения.",
+      "owner": [
+        "AGENTS.md",
+        ".highgrade/project/INSTRUCTIONS.md",
+        "kit/templates/AGENTS.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0032-S1",
+          "verification": "Смысловая сверка, inspect/check-repository и независимое ревью; без агентного пилота."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0042-R1",
+      "title": "Достаточный маршрут Fixer",
+      "read": true,
+      "judgment": "Fixer допускает достаточное решение без выдуманного обязательного реестра. Поставка самостоятельна; отсутствующий issues/ не создавался.",
+      "owner": [
+        "kit/procedures/fix.md",
+        "kit/references/tools/diagnostics.md",
+        "src/inspect.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0042-S1",
+          "verification": "Адресные контрактные тесты CLI; для нормативной процедуры — смысловое ревью и проверка установленных ссылок, без утверждения о поведении модели."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0042-R2",
+      "title": "Самостоятельная Поставка",
+      "read": true,
+      "judgment": "Fixer допускает достаточное решение без выдуманного обязательного реестра. Поставка самостоятельна; отсутствующий issues/ не создавался.",
+      "owner": [
+        "kit/procedures/fix.md",
+        "kit/references/tools/diagnostics.md",
+        "src/inspect.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0042-S2",
+          "verification": "Адресные контрактные тесты CLI; для нормативной процедуры — смысловое ревью и проверка установленных ссылок, без утверждения о поведении модели."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0047-R1",
+      "title": "Фиксированный набор решений",
+      "read": true,
+      "judgment": "Фиксированный порядок вопросов и выбор достаточного маршрута сохраняются. Подключение требует наблюдаемой проверки; один текст инструкции её не доказывает.",
+      "owner": [
+        "kit/procedures/task.md",
+        "kit/procedures/init.md",
+        "kit/procedures/spec.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0047-S1",
+          "verification": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0047-R2",
+      "title": "Достаточный маршрут и жизненный цикл",
+      "read": true,
+      "judgment": "Фиксированный порядок вопросов и выбор достаточного маршрута сохраняются. Подключение требует наблюдаемой проверки; один текст инструкции её не доказывает.",
+      "owner": [
+        "kit/procedures/task.md",
+        "kit/procedures/init.md",
+        "kit/procedures/spec.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0047-S2",
+          "verification": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0047-R3",
+      "title": "Проверка подключения",
+      "read": true,
+      "judgment": "Фиксированный порядок вопросов и выбор достаточного маршрута сохраняются. Подключение требует наблюдаемой проверки; один текст инструкции её не доказывает.",
+      "owner": [
+        "kit/procedures/task.md",
+        "kit/procedures/init.md",
+        "kit/procedures/spec.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0047-S3",
+          "verification": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0048-R1",
+      "title": "Диагностика выбранной передачи",
+      "read": true,
+      "judgment": "Передача имеет явную область и владельца доказательств. Preflight выявляет несовместимость до записи; не выдумывает существующую среду.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0048-S1",
+          "verification": "Адресные контрактные тесты для исполняемого поведения; нормативная таблица решений для инструкций. Область входов и предел наблюдения фиксируются в evidence."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0048-R2",
+      "title": "Владение обязательными доказательствами",
+      "read": true,
+      "judgment": "Передача имеет явную область и владельца доказательств. Preflight выявляет несовместимость до записи; не выдумывает существующую среду.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0048-S2",
+          "verification": "Адресные контрактные тесты для исполняемого поведения; нормативная таблица решений для инструкций. Область входов и предел наблюдения фиксируются в evidence."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0048-R3",
+      "title": "Совместимость среды до адаптации",
+      "read": true,
+      "judgment": "Передача имеет явную область и владельца доказательств. Preflight выявляет несовместимость до записи; не выдумывает существующую среду.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/references/tools/diagnostics.md",
+        "tests/bootstrap_contracts.rs"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0048-S3",
+          "verification": "Адресные контрактные тесты для исполняемого поведения; нормативная таблица решений для инструкций. Область входов и предел наблюдения фиксируются в evidence."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0049-R1",
+      "title": "План и выполнение обследования",
+      "read": true,
+      "judgment": "Обследование выполняет план по стадиям. Актуализация не требует фиктивной миграции состояния. Диагностический результат отдельно от приёмки.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/planner.md",
+        "kit/references/audit.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0049-S1",
+          "verification": "Адресные контрактные тесты для исполняемого поведения; нормативная таблица решений для инструкций. Область входов и предел наблюдения фиксируются в evidence."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0049-R2",
+      "title": "Актуализация без фиктивных переходов",
+      "read": true,
+      "judgment": "Обследование выполняет план по стадиям. Актуализация не требует фиктивной миграции состояния. Диагностический результат отдельно от приёмки.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/planner.md",
+        "kit/references/audit.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0049-S2",
+          "verification": "Адресные контрактные тесты для исполняемого поведения; нормативная таблица решений для инструкций. Область входов и предел наблюдения фиксируются в evidence."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0049-R3",
+      "title": "Разделение диагностических результатов",
+      "read": true,
+      "judgment": "Обследование выполняет план по стадиям. Актуализация не требует фиктивной миграции состояния. Диагностический результат отдельно от приёмки.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/planner.md",
+        "kit/references/audit.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0049-S3",
+          "verification": "Адресные контрактные тесты для исполняемого поведения; нормативная таблица решений для инструкций. Область входов и предел наблюдения фиксируются в evidence."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0051-R1",
+      "title": "Намерение и граница init",
+      "read": true,
+      "judgment": "Init сохраняет намерение и достаточные первичные требования. Пустой проект не получает фиктивную readiness; последующая проработка имеет собственные критерии.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/task.md",
+        "kit/procedures/spec.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0051-S1",
+          "verification": "Смысловая сверка нормативного содержания и таблица решений; для представимости состояний — ограниченное наблюдение существующего CLI на изолированных данных без приложения. Будущее поведение агента не заявляется."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0051-R2",
+      "title": "Достаточные первичные требования",
+      "read": true,
+      "judgment": "Init сохраняет намерение и достаточные первичные требования. Пустой проект не получает фиктивную readiness; последующая проработка имеет собственные критерии.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/task.md",
+        "kit/procedures/spec.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0051-S2",
+          "verification": "Смысловая сверка нормативного содержания и таблица решений; для представимости состояний — ограниченное наблюдение существующего CLI на изолированных данных без приложения. Будущее поведение агента не заявляется."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0051-R3",
+      "title": "Минимальное устройство репозитория",
+      "read": true,
+      "judgment": "Init сохраняет намерение и достаточные первичные требования. Пустой проект не получает фиктивную readiness; последующая проработка имеет собственные критерии.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/task.md",
+        "kit/procedures/spec.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0051-S3",
+          "verification": "Смысловая сверка нормативного содержания и таблица решений; для представимости состояний — ограниченное наблюдение существующего CLI на изолированных данных без приложения. Будущее поведение агента не заявляется."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0051-R4",
+      "title": "Честное обследование пустого проекта",
+      "read": true,
+      "judgment": "Init сохраняет намерение и достаточные первичные требования. Пустой проект не получает фиктивную readiness; последующая проработка имеет собственные критерии.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/task.md",
+        "kit/procedures/spec.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0051-S4",
+          "verification": "Смысловая сверка нормативного содержания и таблица решений; для представимости состояний — ограниченное наблюдение существующего CLI на изолированных данных без приложения. Будущее поведение агента не заявляется."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0051-R5",
+      "title": "Начальные спеки и последующая проработка",
+      "read": true,
+      "judgment": "Init сохраняет намерение и достаточные первичные требования. Пустой проект не получает фиктивную readiness; последующая проработка имеет собственные критерии.",
+      "owner": [
+        "kit/procedures/init.md",
+        "kit/procedures/task.md",
+        "kit/procedures/spec.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0051-S5",
+          "verification": "Смысловая сверка нормативного содержания и таблица решений; для представимости состояний — ограниченное наблюдение существующего CLI на изолированных данных без приложения. Будущее поведение агента не заявляется."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0062-R1",
+      "title": "Однозначное нормативное руководство Update",
+      "read": true,
+      "judgment": "Нормативный маршрут Update один. Router/generated не дублируют процедурные правила; установленная версия подтверждается global-status отдельно.",
+      "owner": [
+        "kit/procedures/update.md",
+        "kit/references/tools/installation.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0062-S1",
+          "verification": "Нормативная сверка с таблицей решений, исходниками и существующими контрактами; для генерации также регрессионные тесты scripts/tests/test_render_skills.py. Наблюдение реального исполнения навыка не заявляется."
+        },
+        {
+          "id": "HG-0062-S2",
+          "verification": "Нормативная сверка с таблицей решений, исходниками и существующими контрактами; для генерации также регрессионные тесты scripts/tests/test_render_skills.py. Наблюдение реального исполнения навыка не заявляется."
+        },
+        {
+          "id": "HG-0062-S3",
+          "verification": "Нормативная сверка с таблицей решений, исходниками и существующими контрактами; для генерации также регрессионные тесты scripts/tests/test_render_skills.py. Наблюдение реального исполнения навыка не заявляется."
+        },
+        {
+          "id": "HG-0062-S4",
+          "verification": "Нормативная сверка с таблицей решений, исходниками и существующими контрактами; для генерации также регрессионные тесты scripts/tests/test_render_skills.py. Наблюдение реального исполнения навыка не заявляется."
+        },
+        {
+          "id": "HG-0062-S5",
+          "verification": "Нормативная сверка с таблицей решений, исходниками и существующими контрактами; для генерации также регрессионные тесты scripts/tests/test_render_skills.py. Наблюдение реального исполнения навыка не заявляется."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0071-R1",
+      "title": "Выборочные правила содержания документации",
+      "read": true,
+      "judgment": "Текущая документация проверяется по цели, владельцам и последствиям. Выборочное чтение не выдаётся за полный аудит истории; исправлены подтверждённые ссылки/термины.",
+      "owner": [
+        "kit/references/documentation.md",
+        "docs/workflow/CONTEXT.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0071-S1",
+          "verification": "Смысловая сверка нормативного текста и таблицы решений; не наблюдение будущего агента."
+        },
+        {
+          "id": "HG-0071-S2",
+          "verification": "Смысловая сверка нормативного текста и таблицы решений; не наблюдение будущего агента."
+        },
+        {
+          "id": "HG-0071-S3",
+          "verification": "Смысловая сверка нормативного текста и таблицы решений; не наблюдение будущего агента."
+        },
+        {
+          "id": "HG-0071-S4",
+          "verification": "Реальный контрактный тест установки, проверяющий файлы манифеста и локальные ссылки после удаления исходной копии."
+        },
+        {
+          "id": "HG-0071-S5",
+          "verification": "Контрактный тест старого состава журнала: status, preview/apply и байты справочника."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0073-R1",
+      "title": "Язык инструкций и измеримый контекст",
+      "read": true,
+      "judgment": "Agent instructions English, проектные отчёты/спеки Russian. Условия и последствия не сокращены ради бюджета. Измерение context не доказывает экономию токенов.",
+      "owner": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "kit/references/documentation.md",
+        ".highgrade/project/documents.json"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0073-S1",
+          "verification": "Нормативная таблица решений и независимое ревью содержания; не доказательство устойчивого исполнения моделью."
+        },
+        {
+          "id": "HG-0073-S2",
+          "verification": "Нормативная таблица решений и независимое ревью содержания; не доказательство устойчивого исполнения моделью."
+        },
+        {
+          "id": "HG-0073-S3",
+          "verification": "Воспроизводимый scripts/context-tokens.py с исходным снимком и отчётами."
+        },
+        {
+          "id": "HG-0073-S4",
+          "verification": "Нормативная таблица решений и независимое ревью содержания; не доказательство устойчивого исполнения моделью."
+        },
+        {
+          "id": "HG-0073-S5",
+          "verification": "tests/global_contracts.rs::installed_runtime_references_survive_removal_of_source_copy"
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0074-R1",
+      "title": "Описание пользовательских изменений",
+      "read": true,
+      "judgment": "Описание выпуска объясняет пользовательский результат. Исторический release record сохранён; текущие незакоммиченные исправления не объявлены новым выпуском.",
+      "owner": [
+        "kit/references/release-notes.json",
+        "kit/procedures/commit.md",
+        "docs/releases"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0074-S1",
+          "verification": "Контрактный тест настоящей global::update в изолированном профиле."
+        },
+        {
+          "id": "HG-0074-S2",
+          "verification": "Контрактный тест сводки с настоящим загрузчиком истории."
+        },
+        {
+          "id": "HG-0074-S3",
+          "verification": "Тесты отсутствия истории, разрыва и обратного перехода."
+        },
+        {
+          "id": "HG-0074-S4",
+          "verification": "Контрактный тест пустых изменений и более пяти обязательных действий."
+        },
+        {
+          "id": "HG-0074-S5",
+          "verification": "global_contracts: успешное применение и существующий тест ошибки postcheck/recovery."
+        },
+        {
+          "id": "HG-0074-S6",
+          "verification": "Контрактный тест прежнего состава журнала и автономной установки."
+        },
+        {
+          "id": "HG-0074-S7",
+          "verification": "Нормативная таблица решений и независимое ревью содержания; не доказательство устойчивого исполнения моделью."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0075-R1",
+      "title": "Область, объём и обязательный Planner",
+      "read": true,
+      "judgment": "Этот Clear читает все текущие контракты, заранее выбирает методы и сохраняет исходные результаты. Батчи не снижают полноту смыслового аудита. Открытые mandatory методы остаются в Next.",
+      "owner": [
+        "kit/procedures/clear.md",
+        "kit/procedures/planner.md",
+        "kit/references/review.md",
+        "kit/references/clear-batches.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0075-S1",
+          "verification": "Смысловая сверка кандидатных инструкций и таблицы решений с независимым ревью. Она подтверждает содержание правила, не устойчивое исполнение моделью."
+        },
+        {
+          "id": "HG-0075-S2",
+          "verification": "Смысловая сверка кандидатных инструкций и таблицы решений с независимым ревью. Она подтверждает содержание правила, не устойчивое исполнение моделью. Дополнительно контролируемое упражнение независимого агента на локальном искусственном проекте с исходными файлами, командами, наблюдением и границами записи."
+        },
+        {
+          "id": "HG-0076-S1",
+          "verification": "Смысловая сверка текущих требований, процедур и таблицы решений; затем независимое упражнение агента на изолированном проекте с исходным запросом и минимумом сырых файлов. Зафиксировать действия, выбранный маршрут, действительно прочитанные источники, результаты и пределы. Текст инструкции не доказывает её исполнение."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0075-R2",
+      "title": "Содержательное обследование документации",
+      "read": true,
+      "judgment": "Этот Clear читает все текущие контракты, заранее выбирает методы и сохраняет исходные результаты. Батчи не снижают полноту смыслового аудита. Открытые mandatory методы остаются в Next.",
+      "owner": [
+        "kit/procedures/clear.md",
+        "kit/procedures/planner.md",
+        "kit/references/review.md",
+        "kit/references/clear-batches.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0075-S3",
+          "verification": "Смысловая сверка кандидатных инструкций и таблицы решений с независимым ревью. Она подтверждает содержание правила, не устойчивое исполнение моделью. Дополнительно контролируемое упражнение независимого агента на локальном искусственном проекте с исходными файлами, командами, наблюдением и границами записи."
+        },
+        {
+          "id": "HG-0075-S4",
+          "verification": "Смысловая сверка кандидатных инструкций и таблицы решений с независимым ревью. Она подтверждает содержание правила, не устойчивое исполнение моделью. Дополнительно контролируемое упражнение независимого агента на локальном искусственном проекте с исходными файлами, командами, наблюдением и границами записи."
+        },
+        {
+          "id": "HG-0076-S3",
+          "verification": "Смысловая сверка текущих требований, процедур и таблицы решений; затем независимое упражнение агента на изолированном проекте с исходным запросом и минимумом сырых файлов. Зафиксировать действия, выбранный маршрут, действительно прочитанные источники, результаты и пределы. Текст инструкции не доказывает её исполнение."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0075-R3",
+      "title": "Актуальность и сила выбранных тестов",
+      "read": true,
+      "judgment": "Этот Clear читает все текущие контракты, заранее выбирает методы и сохраняет исходные результаты. Батчи не снижают полноту смыслового аудита. Открытые mandatory методы остаются в Next.",
+      "owner": [
+        "kit/procedures/clear.md",
+        "kit/procedures/planner.md",
+        "kit/references/review.md",
+        "kit/references/clear-batches.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0075-S5",
+          "verification": "Смысловая сверка кандидатных инструкций и таблицы решений с независимым ревью. Она подтверждает содержание правила, не устойчивое исполнение моделью. Дополнительно контролируемое упражнение независимого агента на локальном искусственном проекте с исходными файлами, командами, наблюдением и границами записи."
+        },
+        {
+          "id": "HG-0075-S6",
+          "verification": "Смысловая сверка кандидатных инструкций и таблицы решений с независимым ревью. Она подтверждает содержание правила, не устойчивое исполнение моделью."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    },
+    {
+      "id": "HG-0075-R4",
+      "title": "Завершение, продолжение и границы",
+      "read": true,
+      "judgment": "Этот Clear читает все текущие контракты, заранее выбирает методы и сохраняет исходные результаты. Батчи не снижают полноту смыслового аудита. Открытые mandatory методы остаются в Next.",
+      "owner": [
+        "kit/procedures/clear.md",
+        "kit/procedures/planner.md",
+        "kit/references/review.md",
+        "kit/references/clear-batches.md"
+      ],
+      "tests": [],
+      "mandatory_methods": [
+        {
+          "id": "HG-0075-S7",
+          "verification": "Смысловая сверка кандидатных инструкций и таблицы решений с независимым ревью. Она подтверждает содержание правила, не устойчивое исполнение моделью."
+        },
+        {
+          "id": "HG-0075-S8",
+          "verification": "Смысловая сверка кандидатных инструкций и таблицы решений с независимым ревью. Она подтверждает содержание правила, не устойчивое исполнение моделью. Дополнительно контролируемое упражнение независимого агента на локальном искусственном проекте с исходными файлами, командами, наблюдением и границами записи."
+        },
+        {
+          "id": "HG-0076-S4",
+          "verification": "Смысловая сверка текущих требований, процедур и таблицы решений; затем независимое упражнение агента на изолированном проекте с исходным запросом и минимумом сырых файлов. Зафиксировать действия, выбранный маршрут, действительно прочитанные источники, результаты и пределы. Текст инструкции не доказывает её исполнение."
+        }
+      ],
+      "gap": "Автоматический результат относится к выполненным assertions. Отдельные агентные упражнения, человеческие решения и внешние методы не объявлены заново пройденными."
+    }
+  ],
+  "counts": {
+    "requirements": 61,
+    "scenarios": 127
+  },
+  "method_snapshot": "workflow-methods-before-baseline.json",
+  "execution_claim": "none from semantic review alone",
+  "pending_scope": "HG63 corrected Goal/acceptance/Commit terms; no integration of open chain"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "S1",
+  "subject": "plugins/svg-vectorizer/scripts/svg_tools.mjs",
+  "intended_violation": "Optimization changing a rendered channel by more than 2 must fail and preserve destinations",
+  "mutation_diff": "--- svg_tools.mjs\n+++ svg_tools.mjs\n@@ -54,7 +54,7 @@\n   for (let i = 0; i < before.pixels.length; i++) {\n     maxDifference = Math.max(maxDifference, Math.abs(before.pixels[i] - after.pixels[i]));\n   }\n-  if (maxDifference > 2) {\n+  if (false) {\n     fail(`\u041d\u0435\u0432\u0430\u043b\u0438\u0434\u043d\u044b\u0439 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: SVGO \u0438\u0437\u043c\u0435\u043d\u0438\u043b \u043e\u0442\u0440\u0438\u0441\u043e\u0432\u043a\u0443 (\u0440\u0430\u0437\u043d\u0438\u0446\u0430 \u043a\u0430\u043d\u0430\u043b\u0430 ${maxDifference}/255). \u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 --no-optimize.`);\n   }\n   let visible = false;\n",
+  "runs": [
+    {
+      "name": "svg-mutation-old-baseline",
+      "report": "plugin-checks/svg-mutation-old-baseline.json",
+      "exit_code": 0,
+      "subject_sha256": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+      "tests_sha256": "9d2247dd204df95dfb6c4c13fd55e8fe7f03d0869f9774a7c1f0c3808ac8f671"
+    },
+    {
+      "name": "svg-mutation-old-survivor",
+      "report": "plugin-checks/svg-mutation-old-survivor.json",
+      "exit_code": 0,
+      "subject_sha256": "ceb7e89fd5d418d2f4abd1d39b1b2a7312cccdc6862fa6f0e7518842761a3cb5",
+      "tests_sha256": "9d2247dd204df95dfb6c4c13fd55e8fe7f03d0869f9774a7c1f0c3808ac8f671"
+    },
+    {
+      "name": "svg-mutation-strengthened-detected",
+      "report": "plugin-checks/svg-mutation-strengthened-detected.json",
+      "exit_code": 1,
+      "subject_sha256": "ceb7e89fd5d418d2f4abd1d39b1b2a7312cccdc6862fa6f0e7518842761a3cb5",
+      "tests_sha256": "d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286"
+    },
+    {
+      "name": "svg-mutation-restored",
+      "report": "plugin-checks/svg-mutation-restored.json",
+      "exit_code": 0,
+      "subject_sha256": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+      "tests_sha256": "d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286"
+    }
+  ],
+  "classification": "Original tests missed the real guard removal; strengthened test detected +3/255 violation; restored full 34-test suite passed"
+}

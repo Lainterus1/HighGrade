@@ -36,7 +36,9 @@ class PreflightWorkflowTests(unittest.TestCase):
         self.fixture.setUp()
         self.addCleanup(self.fixture.doCleanups)
 
-    def preflight(self,*extra,expected=0):
+    def preflight(self,*extra,expected=None):
+        if expected is None:
+            expected = 0 if test_workflows.SUPPORTED_RUNTIME else 2
         fixture=self.fixture
         result=fixture.run_cmd([sys.executable,'-B',str(SCRIPTS/'audit.py'),'--root',str(fixture.root),'--mode','full','--preflight',*extra],expected)
         return json.loads(result.stdout)
@@ -61,7 +63,12 @@ class PreflightWorkflowTests(unittest.TestCase):
                 if req.marker is None or req.marker.evaluate({'extra':''}):
                     self.assertFalse(req.extras,'explicit extras require a reviewed dependency closure')
                     queue.append(req.name)
-        self.assertEqual(found,declared)
+        self.assertTrue(set(found).issubset(declared), 'active dependencies must all have reviewed pins')
+        for name, version in found.items():
+            self.assertEqual(version, declared[name], name)
+        # Inactive platform dependencies remain pinned and installed; markers do not remove their declaration.
+        for name, version in declared.items():
+            self.assertEqual(importlib.metadata.version(name), version, name)
         requirements=dict(line.split('==') for line in (SCRIPTS/'data/requirements-analyzers.txt').read_text().splitlines() if line)
         self.assertEqual(requirements,declared)
 
@@ -83,7 +90,10 @@ class PreflightWorkflowTests(unittest.TestCase):
         fixture=self.fixture
         before=snapshot_repository(fixture.root,[])
         result=self.preflight()
-        self.assertTrue(result['ready'])
+        self.assertEqual(result['ready'], test_workflows.SUPPORTED_RUNTIME)
+        self.assertEqual(result['runtime']['validated'], test_workflows.SUPPORTED_RUNTIME)
+        self.assertEqual(result['runtime']['problems'], [] if test_workflows.SUPPORTED_RUNTIME else [test_workflows.UNVERIFIED_PLATFORM])
+        self.assertEqual(result['errors'], [])
         self.assertEqual(result['runtime']['executable'],sys.executable)
         self.assertEqual(result['scope']['python_files'],['m.py','test_m.py'])
         self.assertEqual(compare_snapshots(before,snapshot_repository(fixture.root,[])),[])
@@ -102,7 +112,7 @@ class PreflightWorkflowTests(unittest.TestCase):
         first=fixture.audit(args)
         second=fixture.audit(args)
         validate_report(first)
-        self.assertEqual(first['audit']['completeness'],'COMPLETE')
+        self.assertEqual(first['audit']['completeness'],'COMPLETE' if test_workflows.SUPPORTED_RUNTIME else 'INCOMPLETE')
         self.assertEqual(first['scope']['diff_branch_coverage'],'NOT_MEASURED')
         self.assertFalse(any(m['metric']=='branch_coverage' for m in first['measurements']))
         self.assertTrue(any(m['metric']=='line_coverage' and m['value']==100 for m in first['measurements']))
@@ -113,7 +123,9 @@ class PreflightWorkflowTests(unittest.TestCase):
         cap,_=fixture.capture()
         os.utime(fixture.root/'m.py',(time.time()+60,time.time()+60))
         report=fixture.audit(['--coverage-json',str(cap/'coverage.json'),'--coverage-provenance',str(cap/'coverage-provenance.json')])
-        self.assertEqual(report['audit']['completeness'],'COMPLETE')
+        self.assertEqual(report['audit']['completeness'],'COMPLETE' if test_workflows.SUPPORTED_RUNTIME else 'INCOMPLETE')
+        self.assertTrue(any(m['metric']=='line_coverage' and m['value']==100 for m in report['measurements']))
+        self.assertFalse(any(e['code']=='COVERAGE_PROVENANCE_UNVERIFIED' for e in report['errors']))
 
     def test_incomplete_provenance_cannot_attest_coverage(self):
         fixture=self.fixture

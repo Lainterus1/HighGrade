@@ -1,0 +1,812 @@
+{
+  "at": "2026-10-14T06:43:00.812555+00:00",
+  "current_sources": {
+    "src/ui/bundle.rs": "6caa17bfae762c66f8e870cd2a35b977d349299b1a726c1399d04103b8b7df3d",
+    ".github/workflows/verify.yml": "072076d58723a58c2b0a61609043538dbd9aaa1d150b4badbd6ea67db44fd885",
+    "docs/UI.md": "451a29dfca3ee2df9c84500c06c2859bbac64789af14e277e56d4ab7910de7cc",
+    "ui/README.md": "488fbb96f70e87685523361a9c07d4eb432edb51a43714b03945391f76ab746f",
+    "docs/BUILD.md": "2b3d12d74941e30903a5191bb650e841b614c4df89a1cc4b138bdafa8b032d3b",
+    "ui/tests/api-client.spec.ts": "69450c83e572d9b1db2bb970b62c2ed7b4e8ae42cf1ec4f08c1aa4073fed4198",
+    "ui/tests/decision.spec.ts": "78c1eb33e9d5e318763209e88d42c3b48db9efa1776b03bcceefe2c2001b61cd",
+    "ui/tests/native-fixture.ts": "9ae620214389e426e909730017a7d38585439c36b9ffd1859af42ae9e2a59edd",
+    "ui/tests/installed.spec.ts": "a2fc0e7aeb4cb32f4f22ff1858dde76cb1628abf68270df691817812560f047a",
+    "ui/scripts/tests/bundle.test.mjs": "802382c88343685375d645dd97500c8ff747f0ad1ccfb6e2ffdcad9b2daab342",
+    "ui/scripts/tests/installed-config.test.mjs": "a7df7b3bad5d804e73bfaa23a63b87d66e4cbf9030753b1a8b1db268c20f3921",
+    "ui/scripts/tests/playwright-output.test.mjs": "f299fe937396a85fa523974f45c0644b285127af86077cc3b6a950f0ae150698",
+    "ui/src/api/client.ts": "6d7865193a9e73fa8c675691a617f30ee97f122947da7099c8f622bd3bc8989c",
+    "ui/src/features/specs/decisionDrafts.ts": "573826419e65f3d4042d130f5b274f9a6d919cc19558c4f239f04e2e51e886b5",
+    "ui/scripts/installed-config.mjs": "9c84f8976234d30bff5525bd74995e8d49b0dbf2d7bde114cafccbb01df157d6",
+    "ui/scripts/bundle.mjs": "ee1e9e8fce12abe731316985382841ec09bac1c9d1e936882011408509051976",
+    "ui/playwright.config.ts": "e5a7485b0cf57762e9edc34708f2c75dccbedfdb81f63f12a839edd78754495c"
+  },
+  "wrappers": {
+    "browser-final-permitted.json": {
+      "sha256": "19ddb126ccb37ea74f31ada21e7d2a4c70bfacc6e8e9bd8dfb747c5f461cfc24",
+      "argv": [
+        "python",
+        "scripts/evidence_store.py",
+        "run",
+        "--name",
+        "clear-ui",
+        "--",
+        "npm",
+        "--prefix",
+        "ui",
+        "test",
+        "--",
+        "native.spec.ts",
+        "decision.spec.ts",
+        "edit.spec.ts",
+        "api-client.spec.ts",
+        "editorial.spec.ts",
+        "hg58.spec.ts",
+        "hg58-keyboard.spec.ts",
+        "visual.spec.ts",
+        "--fail-on-flaky-tests"
+      ],
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "current_scope_checks": {
+        "src/ui/bundle.rs": true,
+        ".github/workflows/verify.yml": true,
+        "ui/tests/api-client.spec.ts": true,
+        "ui/tests/decision.spec.ts": true,
+        "ui/tests/native-fixture.ts": true,
+        "ui/tests/installed.spec.ts": true,
+        "ui/scripts/tests/bundle.test.mjs": true,
+        "ui/scripts/tests/installed-config.test.mjs": true,
+        "ui/scripts/tests/playwright-output.test.mjs": true,
+        "ui/src/api/client.ts": true,
+        "ui/src/features/specs/decisionDrafts.ts": true,
+        "ui/scripts/installed-config.mjs": true,
+        "ui/scripts/bundle.mjs": true,
+        "ui/playwright.config.ts": true
+      },
+      "causal_scope_checks": {
+        "src/ui/bundle.rs": true,
+        ".github/workflows/verify.yml": true,
+        "ui/tests/api-client.spec.ts": true,
+        "ui/tests/decision.spec.ts": true,
+        "ui/tests/native-fixture.ts": true,
+        "ui/tests/installed.spec.ts": true,
+        "ui/scripts/tests/bundle.test.mjs": true,
+        "ui/scripts/tests/installed-config.test.mjs": true,
+        "ui/scripts/tests/playwright-output.test.mjs": true,
+        "ui/src/api/client.ts": true,
+        "ui/src/features/specs/decisionDrafts.ts": true,
+        "ui/scripts/installed-config.mjs": true,
+        "ui/scripts/bundle.mjs": true,
+        "ui/playwright.config.ts": true
+      },
+      "environment": {
+        "HIGHGRADE_CHROME": "/usr/bin/chromium"
+      }
+    },
+    "installed-current-fixture.json": {
+      "sha256": "31ee3d18bf6f22faf19e4804e91e6da0cdf7ee609eda3cdc95f8f6d6a3fe8b0b",
+      "argv": [
+        "python",
+        "scripts/evidence_store.py",
+        "run",
+        "--name",
+        "clear-installed",
+        "--",
+        "npm",
+        "--prefix",
+        "ui",
+        "test",
+        "--",
+        "installed.spec.ts",
+        "--fail-on-flaky-tests"
+      ],
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "current_scope_checks": {
+        "src/ui/bundle.rs": true,
+        ".github/workflows/verify.yml": true,
+        "ui/tests/api-client.spec.ts": true,
+        "ui/tests/decision.spec.ts": true,
+        "ui/tests/native-fixture.ts": true,
+        "ui/tests/installed.spec.ts": true,
+        "ui/scripts/tests/bundle.test.mjs": true,
+        "ui/scripts/tests/installed-config.test.mjs": true,
+        "ui/scripts/tests/playwright-output.test.mjs": true,
+        "ui/src/api/client.ts": true,
+        "ui/src/features/specs/decisionDrafts.ts": true,
+        "ui/scripts/installed-config.mjs": true,
+        "ui/scripts/bundle.mjs": true,
+        "ui/playwright.config.ts": true
+      },
+      "causal_scope_checks": {
+        "src/ui/bundle.rs": true,
+        ".github/workflows/verify.yml": true,
+        "ui/tests/api-client.spec.ts": true,
+        "ui/tests/decision.spec.ts": true,
+        "ui/tests/native-fixture.ts": true,
+        "ui/tests/installed.spec.ts": true,
+        "ui/scripts/tests/bundle.test.mjs": true,
+        "ui/scripts/tests/installed-config.test.mjs": true,
+        "ui/scripts/tests/playwright-output.test.mjs": true,
+        "ui/src/api/client.ts": true,
+        "ui/src/features/specs/decisionDrafts.ts": true,
+        "ui/scripts/installed-config.mjs": true,
+        "ui/scripts/bundle.mjs": true,
+        "ui/playwright.config.ts": true
+      },
+      "environment": {
+        "HIGHGRADE_CHROME": "/usr/bin/chromium",
+        "HIGHGRADE_UI_CANDIDATE": "/home/lainterus/Projects/High Grade/target/highgrade/candidate",
+        "HIGHGRADE_UI_SOURCE_SHA": "ea6d14ab1babcbe4e29e23b31fb9b42f76074c5c",
+        "HIGHGRADE_UI_VERSION": "0.4.0",
+        "HIGHGRADE_OLD_SOURCE": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-predecessor/repository/target/highgrade/candidate/kit",
+        "HIGHGRADE_OLD_EXE": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-predecessor/repository/target/highgrade/candidate/highgrade",
+        "HIGHGRADE_OLD_SOURCE_SHA": "fda4117312ca4c5af4388c960081dac94c10ea8f",
+        "HIGHGRADE_OLD_VERSION": "0.3.4",
+        "HIGHGRADE_UI_REQUIRED": "true"
+      }
+    },
+    "nextest-final-permitted.json": {
+      "sha256": "85ac02b46704da5967ac496e6ba63a45a61c5c27e937fe340beedfd33a7798a0",
+      "argv": [
+        "python",
+        "scripts/verify.py",
+        "tests"
+      ],
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "current_scope_checks": {
+        "src/ui/bundle.rs": true,
+        ".github/workflows/verify.yml": true,
+        "ui/tests/api-client.spec.ts": true,
+        "ui/tests/decision.spec.ts": true,
+        "ui/tests/native-fixture.ts": true,
+        "ui/tests/installed.spec.ts": true,
+        "ui/scripts/tests/bundle.test.mjs": true,
+        "ui/scripts/tests/installed-config.test.mjs": true,
+        "ui/scripts/tests/playwright-output.test.mjs": true,
+        "ui/src/api/client.ts": true,
+        "ui/src/features/specs/decisionDrafts.ts": true,
+        "ui/scripts/installed-config.mjs": true,
+        "ui/scripts/bundle.mjs": true,
+        "ui/playwright.config.ts": true
+      },
+      "causal_scope_checks": {
+        "src/ui/bundle.rs": true,
+        ".github/workflows/verify.yml": true,
+        "ui/tests/api-client.spec.ts": true,
+        "ui/tests/decision.spec.ts": true,
+        "ui/tests/native-fixture.ts": true,
+        "ui/tests/installed.spec.ts": true,
+        "ui/scripts/tests/bundle.test.mjs": true,
+        "ui/scripts/tests/installed-config.test.mjs": true,
+        "ui/scripts/tests/playwright-output.test.mjs": true,
+        "ui/src/api/client.ts": true,
+        "ui/src/features/specs/decisionDrafts.ts": true,
+        "ui/scripts/installed-config.mjs": true,
+        "ui/scripts/bundle.mjs": true,
+        "ui/playwright.config.ts": true
+      },
+      "environment": {}
+    },
+    "node-guards-node24.json": {
+      "sha256": "2534639318e912db4a697cb217c3bdd5fb11f4def6ce542bca9cb76c835d23b2",
+      "argv": [
+        "node",
+        "--test",
+        "ui/scripts/tests/bundle.test.mjs",
+        "ui/scripts/tests/installed-config.test.mjs",
+        "ui/scripts/tests/playwright-output.test.mjs",
+        "ui/scripts/tests/decision-copy.test.mjs"
+      ],
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "current_scope_checks": {
+        "src/ui/bundle.rs": true,
+        ".github/workflows/verify.yml": true,
+        "ui/tests/api-client.spec.ts": true,
+        "ui/tests/decision.spec.ts": true,
+        "ui/tests/native-fixture.ts": false,
+        "ui/tests/installed.spec.ts": true,
+        "ui/scripts/tests/bundle.test.mjs": true,
+        "ui/scripts/tests/installed-config.test.mjs": true,
+        "ui/scripts/tests/playwright-output.test.mjs": true,
+        "ui/src/api/client.ts": true,
+        "ui/src/features/specs/decisionDrafts.ts": true,
+        "ui/scripts/installed-config.mjs": true,
+        "ui/scripts/bundle.mjs": true,
+        "ui/playwright.config.ts": true
+      },
+      "causal_scope_checks": {
+        "ui/scripts/tests/bundle.test.mjs": true,
+        "ui/scripts/tests/installed-config.test.mjs": true,
+        "ui/scripts/tests/playwright-output.test.mjs": true,
+        "ui/scripts/installed-config.mjs": true,
+        "ui/scripts/bundle.mjs": true,
+        "ui/playwright.config.ts": true
+      },
+      "environment": {}
+    }
+  },
+  "playwright": {
+    "target/highgrade/runs/clear-ui-21e320bb223b47e6b944d4a0805c76b9/playwright/report.json": {
+      "sha256": "65838e094dca8698189421df66dd5a9b94f5fa2ae037b973bb662edb4df16c36",
+      "stats": {
+        "startTime": "2026-10-14T06:26:15.184Z",
+        "duration": 97659.473,
+        "expected": 41,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "files": {
+        "api-client.spec.ts": 2,
+        "decision.spec.ts": 9,
+        "edit.spec.ts": 10,
+        "editorial.spec.ts": 1,
+        "hg58-keyboard.spec.ts": 1,
+        "hg58.spec.ts": 1,
+        "native.spec.ts": 10,
+        "visual.spec.ts": 7
+      },
+      "all_results_once_passed": true,
+      "errors": []
+    },
+    "target/highgrade/runs/clear-installed-5203abae4b38417099027aa841cefbcb/playwright/report.json": {
+      "sha256": "d6c83541c917cc2701a2b0944a7bdc2e354cbdf0b60e17fa6c2a28de4a76981e",
+      "stats": {
+        "startTime": "2026-10-14T06:28:57.943Z",
+        "duration": 4522.562,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "files": {
+        "installed.spec.ts": 1
+      },
+      "all_results_once_passed": true,
+      "errors": []
+    }
+  },
+  "mutations": [
+    {
+      "id": "R6",
+      "subject": "src/ui/bundle.rs",
+      "only_mutated_path": [
+        "src/ui/bundle.rs"
+      ],
+      "restored_all_captured_inputs": true,
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "cargo",
+            "test",
+            "--locked",
+            "--offline",
+            "--lib",
+            "ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes",
+            "--",
+            "--exact"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "cargo",
+            "test",
+            "--locked",
+            "--offline",
+            "--lib",
+            "ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes",
+            "--",
+            "--exact"
+          ],
+          "exit_code": 101,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "cargo",
+            "test",
+            "--locked",
+            "--offline",
+            "--lib",
+            "ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes",
+            "--",
+            "--exact"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        }
+      ],
+      "original_subject_sha256": "6caa17bfae762c66f8e870cd2a35b977d349299b1a726c1399d04103b8b7df3d",
+      "mutant_subject_sha256": "83c2aa178f5f34336f7664969a66a179354511e15ad3244e12eb9b264a15f324",
+      "test_hashes_current": true,
+      "current_subject_raw_match": true,
+      "current_subject_crlf_normalized_match": true
+    },
+    {
+      "id": "U1",
+      "subject": "ui/src/features/specs/decisionDrafts.ts",
+      "only_mutated_path": [
+        "ui/src/features/specs/decisionDrafts.ts"
+      ],
+      "restored_all_captured_inputs": true,
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "ui/node_modules/@playwright/test/cli.js",
+            "test",
+            "decision.spec.ts",
+            "--grep",
+            "keeps text, selected status and retry guard across target or input drift",
+            "--config",
+            "ui/playwright.config.ts"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "ui/node_modules/@playwright/test/cli.js",
+            "test",
+            "decision.spec.ts",
+            "--grep",
+            "keeps text, selected status and retry guard across target or input drift",
+            "--config",
+            "ui/playwright.config.ts"
+          ],
+          "exit_code": 1,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "ui/node_modules/@playwright/test/cli.js",
+            "test",
+            "decision.spec.ts",
+            "--grep",
+            "keeps text, selected status and retry guard across target or input drift",
+            "--config",
+            "ui/playwright.config.ts"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        }
+      ],
+      "original_subject_sha256": "573826419e65f3d4042d130f5b274f9a6d919cc19558c4f239f04e2e51e886b5",
+      "mutant_subject_sha256": "93fca7881a7615255ede29b65391bdaf584258dd76c299a62ed5813c62daaaf3",
+      "test_hashes_current": true,
+      "current_subject_raw_match": true,
+      "current_subject_crlf_normalized_match": true
+    },
+    {
+      "id": "U2",
+      "subject": "ui/src/api/client.ts",
+      "only_mutated_path": [
+        "ui/src/api/client.ts"
+      ],
+      "restored_all_captured_inputs": true,
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "ui/node_modules/@playwright/test/cli.js",
+            "test",
+            "api-client.spec.ts",
+            "--grep",
+            "POST StoreBusy",
+            "--config",
+            "ui/playwright.config.ts"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "ui/node_modules/@playwright/test/cli.js",
+            "test",
+            "api-client.spec.ts",
+            "--grep",
+            "POST StoreBusy",
+            "--config",
+            "ui/playwright.config.ts"
+          ],
+          "exit_code": 1,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "ui/node_modules/@playwright/test/cli.js",
+            "test",
+            "api-client.spec.ts",
+            "--grep",
+            "POST StoreBusy",
+            "--config",
+            "ui/playwright.config.ts"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        }
+      ],
+      "original_subject_sha256": "fdc8aa2ee1eaa632a833aab112ff1ba9a08fd9abedfc2b4106bd131c98a59c38",
+      "mutant_subject_sha256": "3e14b46575bdc876644f9aed4d4043b7d356c3b7d0c0f97550e393f8c52d3a5a",
+      "test_hashes_current": true,
+      "current_subject_raw_match": false,
+      "current_subject_crlf_normalized_match": true
+    },
+    {
+      "id": "U3",
+      "subject": "ui/scripts/installed-config.mjs",
+      "only_mutated_path": [
+        "ui/scripts/installed-config.mjs"
+      ],
+      "restored_all_captured_inputs": true,
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 1,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        }
+      ],
+      "original_subject_sha256": "9c84f8976234d30bff5525bd74995e8d49b0dbf2d7bde114cafccbb01df157d6",
+      "mutant_subject_sha256": "560f888ff28014e58fb4829e9c66e7eadf29432640d05746135f2de09d902f05",
+      "test_hashes_current": true,
+      "current_subject_raw_match": true,
+      "current_subject_crlf_normalized_match": true
+    },
+    {
+      "id": "U4",
+      "subject": "ui/scripts/installed-config.mjs",
+      "only_mutated_path": [
+        "ui/scripts/installed-config.mjs"
+      ],
+      "restored_all_captured_inputs": true,
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 1,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        }
+      ],
+      "original_subject_sha256": "9c84f8976234d30bff5525bd74995e8d49b0dbf2d7bde114cafccbb01df157d6",
+      "mutant_subject_sha256": "cd343c3ea9c897c91292d6e34383991e2adcd71e5ccd6e1e12a4478b6939ad05",
+      "test_hashes_current": true,
+      "current_subject_raw_match": true,
+      "current_subject_crlf_normalized_match": true
+    },
+    {
+      "id": "U5",
+      "subject": "ui/playwright.config.ts",
+      "only_mutated_path": [
+        "ui/playwright.config.ts"
+      ],
+      "restored_all_captured_inputs": true,
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/playwright-output.test.mjs"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/playwright-output.test.mjs"
+          ],
+          "exit_code": 1,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/playwright-output.test.mjs"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        }
+      ],
+      "original_subject_sha256": "e5a7485b0cf57762e9edc34708f2c75dccbedfdb81f63f12a839edd78754495c",
+      "mutant_subject_sha256": "ae257ea863f277426f29ecb83228166946db5dc65ad869865c170b344a57fedd",
+      "test_hashes_current": true,
+      "current_subject_raw_match": true,
+      "current_subject_crlf_normalized_match": true
+    },
+    {
+      "id": "U6",
+      "subject": "ui/scripts/bundle.mjs",
+      "only_mutated_path": [
+        "ui/scripts/bundle.mjs"
+      ],
+      "restored_all_captured_inputs": true,
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/bundle.test.mjs"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/bundle.test.mjs"
+          ],
+          "exit_code": 1,
+          "inputs_unchanged": true
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "ui/scripts/tests/bundle.test.mjs"
+          ],
+          "exit_code": 0,
+          "inputs_unchanged": true
+        }
+      ],
+      "original_subject_sha256": "ee1e9e8fce12abe731316985382841ec09bac1c9d1e936882011408509051976",
+      "mutant_subject_sha256": "92627a87d3b77122cee9fb13aca153d28523976589ba8a40e8dc662cb2729ee6",
+      "test_hashes_current": true,
+      "current_subject_raw_match": true,
+      "current_subject_crlf_normalized_match": true
+    }
+  ],
+  "node_expanded": [
+    {
+      "id": "U3",
+      "subject": "ui/scripts/installed-config.mjs",
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 0,
+          "subject_sha256": "9c84f8976234d30bff5525bd74995e8d49b0dbf2d7bde114cafccbb01df157d6"
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 1,
+          "subject_sha256": "560f888ff28014e58fb4829e9c66e7eadf29432640d05746135f2de09d902f05"
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 0,
+          "subject_sha256": "9c84f8976234d30bff5525bd74995e8d49b0dbf2d7bde114cafccbb01df157d6"
+        }
+      ],
+      "current_tests_match": true
+    },
+    {
+      "id": "U4",
+      "subject": "ui/scripts/installed-config.mjs",
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 0,
+          "subject_sha256": "9c84f8976234d30bff5525bd74995e8d49b0dbf2d7bde114cafccbb01df157d6"
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 1,
+          "subject_sha256": "cd343c3ea9c897c91292d6e34383991e2adcd71e5ccd6e1e12a4478b6939ad05"
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/installed-config.test.mjs"
+          ],
+          "exit_code": 0,
+          "subject_sha256": "9c84f8976234d30bff5525bd74995e8d49b0dbf2d7bde114cafccbb01df157d6"
+        }
+      ],
+      "current_tests_match": true
+    },
+    {
+      "id": "U5",
+      "subject": "ui/playwright.config.ts",
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/playwright-output.test.mjs"
+          ],
+          "exit_code": 0,
+          "subject_sha256": "e5a7485b0cf57762e9edc34708f2c75dccbedfdb81f63f12a839edd78754495c"
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/playwright-output.test.mjs"
+          ],
+          "exit_code": 1,
+          "subject_sha256": "ae257ea863f277426f29ecb83228166946db5dc65ad869865c170b344a57fedd"
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/playwright-output.test.mjs"
+          ],
+          "exit_code": 0,
+          "subject_sha256": "e5a7485b0cf57762e9edc34708f2c75dccbedfdb81f63f12a839edd78754495c"
+        }
+      ],
+      "current_tests_match": true
+    },
+    {
+      "id": "U6",
+      "subject": "ui/scripts/bundle.mjs",
+      "stages": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/bundle.test.mjs"
+          ],
+          "exit_code": 0,
+          "subject_sha256": "ee1e9e8fce12abe731316985382841ec09bac1c9d1e936882011408509051976"
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/bundle.test.mjs"
+          ],
+          "exit_code": 1,
+          "subject_sha256": "92627a87d3b77122cee9fb13aca153d28523976589ba8a40e8dc662cb2729ee6"
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node",
+            "--test",
+            "--test-isolation=none",
+            "ui/scripts/tests/bundle.test.mjs"
+          ],
+          "exit_code": 0,
+          "subject_sha256": "ee1e9e8fce12abe731316985382841ec09bac1c9d1e936882011408509051976"
+        }
+      ],
+      "current_tests_match": true
+    }
+  ],
+  "nextest": {
+    "report": "/home/lainterus/Projects/High Grade/target/highgrade/runs/rust-151c3da49eb5462db459e5628a0895ec/nextest/junit.xml",
+    "report_sha256": "803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d",
+    "summary": {
+      "name": "nextest-run",
+      "tests": "237",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "uuid": "5e1d2bdc-ad5b-450f-8bda-0d7019943dcd",
+      "timestamp": "2026-10-14T13:26:16.767+07:00",
+      "time": "26.866"
+    },
+    "completion_hashes_verified": true,
+    "current_bundle_source_hash_verified": true
+  },
+  "gitignore_sha256": "9b3ded5f615f6e5fe70d8ed7273571c7b3c9b66805d62c6dad61a2a7d722bea8"
+}

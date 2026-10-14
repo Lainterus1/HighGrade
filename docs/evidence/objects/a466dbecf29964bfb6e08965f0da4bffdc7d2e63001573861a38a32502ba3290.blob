@@ -1,0 +1,10 @@
+import unittest
+from src.calc import number,reject
+class Cases(unittest.TestCase):
+ # contract F-R1
+ def test_number(self): self.assertEqual(number(),1)
+ # contract F-R2
+ def test_preservation(self):
+  data=[1,2]; self.assertEqual(reject(data),[1,2]); self.assertEqual(data,[1,2])
+ # no spec link: engineering invariant
+ def test_roundtrip(self): self.assertEqual(list(reversed(list(reversed([1,2])))),[1,2])

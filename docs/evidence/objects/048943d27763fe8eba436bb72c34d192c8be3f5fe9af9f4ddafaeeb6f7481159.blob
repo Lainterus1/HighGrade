@@ -1,0 +1,81 @@
+{
+  "at": "2026-10-14T06:29:51.406724+00:00",
+  "runs": [
+    {
+      "name": "svg-mutation-old-baseline",
+      "report": "plugin-checks/svg-mutation-old-baseline.json",
+      "exit_code": 0,
+      "subject_sha256": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+      "tests_sha256": "9d2247dd204df95dfb6c4c13fd55e8fe7f03d0869f9774a7c1f0c3808ac8f671",
+      "metadata_and_stream_hashes_verified": true,
+      "argv": [
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/svg/.venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "name": "svg-mutation-old-survivor",
+      "report": "plugin-checks/svg-mutation-old-survivor.json",
+      "exit_code": 0,
+      "subject_sha256": "ceb7e89fd5d418d2f4abd1d39b1b2a7312cccdc6862fa6f0e7518842761a3cb5",
+      "tests_sha256": "9d2247dd204df95dfb6c4c13fd55e8fe7f03d0869f9774a7c1f0c3808ac8f671",
+      "metadata_and_stream_hashes_verified": true,
+      "argv": [
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/svg/.venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "name": "svg-mutation-strengthened-detected",
+      "report": "plugin-checks/svg-mutation-strengthened-detected.json",
+      "exit_code": 1,
+      "subject_sha256": "ceb7e89fd5d418d2f4abd1d39b1b2a7312cccdc6862fa6f0e7518842761a3cb5",
+      "tests_sha256": "d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286",
+      "metadata_and_stream_hashes_verified": true,
+      "argv": [
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/svg/.venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "name": "svg-mutation-restored",
+      "report": "plugin-checks/svg-mutation-restored.json",
+      "exit_code": 0,
+      "subject_sha256": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+      "tests_sha256": "d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286",
+      "metadata_and_stream_hashes_verified": true,
+      "argv": [
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/svg/.venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    }
+  ],
+  "restored_subject_sha256": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+  "repo_subject_sha256": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+  "tested_final_tests_sha256": "d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286",
+  "verdict": "GO for scoped plugin docs/tests changes; runtime certification remains unverified; npm dependency advisory separate"
+}

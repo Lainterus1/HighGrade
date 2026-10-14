@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.metadata
 import json
 import os
+import platform
 import py_compile
 from pathlib import Path
 import subprocess
@@ -16,7 +17,13 @@ sys.path.insert(0, str(SCRIPTS))
 from code_health.execution import run_adapter
 from code_health.processes import run_bounded
 
-PINS = json.loads((SCRIPTS / 'data/toolchain.json').read_text())["tools"]
+TOOLCHAIN = json.loads((SCRIPTS / 'data/toolchain.json').read_text())
+PINS = TOOLCHAIN["tools"]
+ACTUAL_RUNTIME = {'python':platform.python_version(),'implementation':platform.python_implementation(),
+                  'system':platform.system(),'machine':platform.machine()}
+SUPPORTED_RUNTIME = any(all(ACTUAL_RUNTIME.get(key) == value for key,value in tested.items())
+                        for tested in TOOLCHAIN['tested_runtimes'])
+UNVERIFIED_PLATFORM = 'This Python/platform combination has not been validated for this release'
 POLICY = json.loads((SCRIPTS / 'data/default-policy.json').read_text())
 def pins_available():
     try:
@@ -57,17 +64,26 @@ class WorkflowTests(unittest.TestCase):
         result = self.run_cmd([sys.executable, '-B', str(SCRIPTS / 'capture_coverage.py'), '--root', str(self.root), '--output-dir', str(output), '--script', 'test_m.py'], expected)
         return output, result
 
-    def audit(self, extra=(), expected=0):
+    def audit(self, extra=(), expected=None):
+        runtime_only_limit = expected is None
+        if runtime_only_limit:
+            expected = 0 if SUPPORTED_RUNTIME else 2
         output = self.work / ('report-' + str(len(list(self.work.glob('report-*')))))
         self.run_cmd([sys.executable, '-B', str(SCRIPTS / 'audit.py'), '--root', str(self.root), '--mode', 'full', '--output-dir', str(output), *extra], expected)
-        return json.loads((output / 'code-health-audit.json').read_text(encoding='utf-8'))
+        report = json.loads((output / 'code-health-audit.json').read_text(encoding='utf-8'))
+        if runtime_only_limit:
+            self.assertEqual(report['runtime']['validated'], SUPPORTED_RUNTIME)
+            self.assertEqual(report['runtime']['problems'], [] if SUPPORTED_RUNTIME else [UNVERIFIED_PLATFORM])
+            self.assertEqual(report['audit']['completeness'], 'COMPLETE' if SUPPORTED_RUNTIME else 'INCOMPLETE')
+            self.assertEqual(report['errors'], [] if SUPPORTED_RUNTIME else [{'code':'RUNTIME_UNVERIFIED','message':UNVERIFIED_PLATFORM}])
+        return report
 
     def test_observed_capture_and_repeat_audit(self):
         cap, _ = self.capture()
         options = ['--coverage-json', str(cap / 'coverage.json'), '--coverage-provenance', str(cap / 'coverage-provenance.json')]
         first = self.audit(options)
         second = self.audit(options)
-        self.assertEqual(first['audit']['verdict'], 'HEALTHY')
+        self.assertEqual(first['audit']['verdict'], 'HEALTHY' if SUPPORTED_RUNTIME else 'INCOMPLETE')
         self.assertEqual(first['audit']['content_digest'], second['audit']['content_digest'])
 
     def test_old_data_reexport_cannot_confirm_changed_sources(self):

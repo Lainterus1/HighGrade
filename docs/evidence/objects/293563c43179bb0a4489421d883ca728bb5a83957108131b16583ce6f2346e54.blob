@@ -1,0 +1,177 @@
+{
+  "purpose": "Real implementation mutations; immutable test expectations; isolated source copies",
+  "source_revision": "591dcb1ece4739d27a2e00cd702657ed6c9e70e3",
+  "environment": {
+    "node": "v24.18.0",
+    "rust": "rustc 1.89.0 (29483883e 2025-08-04)"
+  },
+  "selections": [
+    {
+      "id": "R1",
+      "subject": "src/specs/storage.rs",
+      "intended_violation": "Later user edit and every journal target must survive recovery conflict",
+      "selector": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline",
+        "--test",
+        "catalog_contracts",
+        "recovery_conflict_preserves_all_targets_and_the_observed_journal",
+        "--",
+        "--exact"
+      ]
+    },
+    {
+      "id": "R2",
+      "subject": "src/trace.rs",
+      "intended_violation": "Report hash mismatch cannot confirm a scenario",
+      "selector": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline",
+        "--test",
+        "trace_contracts",
+        "rust_requires_real_listed_passing_result",
+        "--",
+        "--exact"
+      ]
+    },
+    {
+      "id": "R3",
+      "subject": "src/trace.rs",
+      "intended_violation": "Contradictory duplicate results cannot overwrite failure with PASS",
+      "selector": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline",
+        "--test",
+        "trace_contracts",
+        "duplicate_rust_results_preserve_independent_outcomes_and_raw_counts",
+        "--",
+        "--exact"
+      ]
+    },
+    {
+      "id": "R4",
+      "subject": "src/trace.rs",
+      "intended_violation": "Missing causal source pin cannot confirm related test",
+      "selector": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline",
+        "--test",
+        "trace_contracts",
+        "unverified_rust_provenance_does_not_confirm_neighboring_scenarios",
+        "--",
+        "--exact"
+      ]
+    },
+    {
+      "id": "R5",
+      "subject": "src/trace.rs",
+      "intended_violation": "Raw case counts must include distinct observations of duplicate keys",
+      "selector": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline",
+        "--test",
+        "trace_contracts",
+        "duplicate_rust_results_preserve_independent_outcomes_and_raw_counts",
+        "--",
+        "--exact"
+      ]
+    },
+    {
+      "id": "R6",
+      "subject": "src/ui/bundle.rs",
+      "intended_violation": "All delivered Lora copies missing must reject complete-looking manifest",
+      "selector": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline",
+        "--bin",
+        "highgrade",
+        "ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes",
+        "--",
+        "--exact"
+      ]
+    },
+    {
+      "id": "U1",
+      "subject": "ui/src/features/specs/decisionDrafts.ts",
+      "intended_violation": "Each causal request revision change must change identity",
+      "selector": [
+        "NODE",
+        "ui/node_modules/@playwright/test/cli.js",
+        "test",
+        "decision.spec.ts",
+        "--grep",
+        "keeps text, selected status and retry guard across target or input drift",
+        "--config",
+        "ui/playwright.config.ts"
+      ]
+    },
+    {
+      "id": "U2",
+      "subject": "ui/src/api/client.ts",
+      "intended_violation": "POST cannot blindly retry after StoreBusy",
+      "selector": [
+        "NODE",
+        "ui/node_modules/@playwright/test/cli.js",
+        "test",
+        "api-client.spec.ts",
+        "--grep",
+        "POST StoreBusy",
+        "--config",
+        "ui/playwright.config.ts"
+      ]
+    },
+    {
+      "id": "U3",
+      "subject": "ui/scripts/installed-config.mjs",
+      "intended_violation": "CI cannot silently skip required installed fixtures",
+      "selector": [
+        "NODE",
+        "--test",
+        "ui/scripts/tests/installed-config.test.mjs"
+      ]
+    },
+    {
+      "id": "U4",
+      "subject": "ui/scripts/installed-config.mjs",
+      "intended_violation": "A foreign artifact owner is refused with valid file hashes",
+      "selector": [
+        "NODE",
+        "--test",
+        "ui/scripts/tests/installed-config.test.mjs"
+      ]
+    },
+    {
+      "id": "U5",
+      "subject": "ui/playwright.config.ts",
+      "intended_violation": "Invalid/completed managed run cannot redirect reports",
+      "selector": [
+        "NODE",
+        "--test",
+        "ui/scripts/tests/playwright-output.test.mjs"
+      ]
+    },
+    {
+      "id": "U6",
+      "subject": "ui/scripts/bundle.mjs",
+      "intended_violation": "Lora provenance and its own OFL must be delivered",
+      "selector": [
+        "NODE",
+        "--test",
+        "ui/scripts/tests/bundle.test.mjs"
+      ]
+    }
+  ],
+  "mutations": []
+}

@@ -482,12 +482,24 @@ fn reviewed_contract_transfer_preserves_unverified_status_and_rejects_bad_inputs
     .unwrap();
     let before = fs::read(root.join(specs::STORE)).unwrap();
     let transfer = |root: &Path| {
-        call(
+        let preserved = [specs::STORE, "legacy.md", "requirement.json"]
+            .map(|rel| (rel, fs::read(root.join(rel)).unwrap()));
+        let report = call(
             root,
             "spec-transfer",
             &[("--id", "HG-IMPORT"), ("--expected", &sha(root))],
         )
-        .unwrap()
+        .unwrap();
+        if report.status == "failed" {
+            for (rel, bytes) in preserved {
+                assert_eq!(
+                    fs::read(root.join(rel)).unwrap(),
+                    bytes,
+                    "every rejected transfer must preserve {rel}"
+                );
+            }
+        }
+        report
     };
     assert!(
         call(

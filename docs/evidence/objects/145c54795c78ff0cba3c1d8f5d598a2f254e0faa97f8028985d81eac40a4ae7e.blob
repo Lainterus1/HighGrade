@@ -1,0 +1,19 @@
+# Дополнение: текущий baseline репозиторных плагинов
+
+**GO для проверенного локального package baseline SVG/CHA.** Прежний предел «новое package execution отсутствует» закрыт нынешними исходными результатами. Старые отчёты не изменены.
+
+- CHA: 59 реально названных уникальных cases, OK, 20.752 с, без skips/failures/errors.
+- SVG: 34 реально названных уникальных cases, OK, 10.205 с, без skips/failures/errors.
+- Все 54 source copies (SVG21 + CHA33) совпадают before/after, с текущими оригиналами и global initial hashes. Исходники не менялись.
+
+Lexical venv executable/sys.prefix подтверждают временное CPython3.12.14 окружение. Pip check прошёл. Все **20** analyzer/tool dependency pins совпадают с toolchain, runtime evidence и freeze. Дополнительно закреплены Pillow12.3.0 и VTracer1.0.0a4: всего 22 freeze entries. SVG Node пакеты svgo4.1.0/resvg2.6.2 совпадают с lock/pins. Первые base-interpreter outputs не использованы как venv evidence.
+
+Runtime и runner hashes проверены. Однако `validated=false`: Linux CPython3.12.14 отсутствует в certified tested_runtimes. Tests корректно ожидают RUNTIME_UNVERIFIED/INCOMPLETE. Эти 59 PASS не сертифицируют Linux runtime и не доказывают complete CHA audit произвольного проекта.
+
+Первый SVG attempt завершился ImportError из-за cwd. Это setup failure, не meaningful product RED. Он сохранён отдельно. Исправленный launcher явно выбирает lexical venv interpreter и SVG subject cwd; последующий реальный suite прошёл.
+
+Npm ci сообщил одно high finding в прежних SVG dependencies. Пины/lockfile не изменены. Advisory не объявлен закрытым; функциональный PASS не заменяет security fix.
+
+До cleanup root должен экспортировать выбранные original logs, runtime/pin records и 54 source copies. Не экспортировать гигантские venv/node_modules. Удалять только подтверждённый owned plugin scratch, не следуя его links. Reviewer cleanup не исполнял.
+
+Никакой проверки или переключения установленных Codex plugins не происходило. Остальные runtime/external/CI/cost limits прежние. Точные команды, cases, пути и hashes — в final-plugin-review-addendum.json.

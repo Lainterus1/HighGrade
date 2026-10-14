@@ -148,6 +148,22 @@ fs.writeFileSync({json.dumps(str(self.root / REPORTS / 'list.json'))}, inventory
                     path.write_bytes(content)
             self.run_step('prepare')
 
+    def test_project_cargo_config_creation_change_and_deletion_reject_reuse(self):
+        for name in ['.cargo/config.toml', '.cargo/config']:
+            with self.subTest(name=name):
+                self.passed_attempt()
+                config = self.write(name, '[build]\nrustflags = ["--cfg", "clear_probe"]\n')
+                self.assertIn('inputs changed', self.run_step('prepare', False)['message'])
+                self.passed_attempt()
+                original, timestamp = config.read_bytes(), config.stat()
+                config.write_bytes(original + b'\n# changed config\n')
+                os.utime(config, ns=(timestamp.st_atime_ns, timestamp.st_mtime_ns))
+                self.assertIn('inputs changed', self.run_step('prepare', False)['message'])
+                config.write_bytes(original)
+                self.run_step('prepare')
+                config.unlink()
+                self.assertIn('inputs changed', self.run_step('prepare', False)['message'])
+
     def test_older_attempt_cannot_complete_a_newer_capture(self):
         self.run_step('capture')
         old_id = self.attempt_id

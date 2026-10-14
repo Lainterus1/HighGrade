@@ -1,0 +1,322 @@
+{
+  "purpose": "real implementation mutations in isolated selected Python sources",
+  "source_revision": "591dcb1ece4739d27a2e00cd702657ed6c9e70e3",
+  "mutations": [
+    {
+      "id": "P1-same-size-corruption",
+      "subject": "scripts/evidence_store.py",
+      "intended_violation": "Same-length byte corruption of stored evidence must be rejected by SHA256",
+      "mutation_diff": "--- scripts/evidence_store.py\n+++ scripts/evidence_store.py\n@@ -93,7 +93,7 @@\n         if not re.fullmatch('[a-f0-9]{64}', sha) or item['path'] != f'{BASE}/{sha}.blob':\n             raise ValueError('Invalid evidence object')\n         content = safe(root, item['path']).read_bytes()\n-        if len(content) != item['bytes'] or digest(content) != sha:\n+        if len(content) != item['bytes']:\n             raise ValueError('Evidence hash mismatch: ' + item['path'])\n     return value\n \n",
+      "classification": "survived",
+      "baseline": {
+        "stage": "baseline",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_evidence_store",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P1-same-size-corruption",
+        "started_at": "2026-10-14T05:29:52.384191+00:00",
+        "ended_at": "2026-10-14T05:29:52.734886+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_background_descendant_is_not_marked_ready_for_collection (scripts.tests.test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok\ntest_catalog_reference_blocks_deleting_exported_source (scripts.tests.test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok\ntest_damaged_export_blocks_collection_and_links_never_export (scripts.tests.test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok\ntest_explicit_discard_keeps_referenced_run_but_exports_nothing (scripts.tests.test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok\ntest_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok\ntest_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok\ntest_manifest_corruption_and_live_owner_refuse_finish (scripts.tests.test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok\ntest_nested_native_run_record_is_evidence_but_wrapper_state_is_not (scripts.tests.test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ok\ntest_real_wrapper_preserves_exit_code_and_finishes_selected_report (scripts.tests.test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok\ntest_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.291s\n\nOK\n"
+      },
+      "mutant": {
+        "stage": "mutant",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_evidence_store",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P1-same-size-corruption",
+        "started_at": "2026-10-14T05:29:52.744778+00:00",
+        "ended_at": "2026-10-14T05:29:53.086044+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "fa9bb71d72ed0ada0a61db479086df9a7adcb48a094936930f886d347c5b7a59",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_background_descendant_is_not_marked_ready_for_collection (scripts.tests.test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok\ntest_catalog_reference_blocks_deleting_exported_source (scripts.tests.test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok\ntest_damaged_export_blocks_collection_and_links_never_export (scripts.tests.test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok\ntest_explicit_discard_keeps_referenced_run_but_exports_nothing (scripts.tests.test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok\ntest_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok\ntest_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok\ntest_manifest_corruption_and_live_owner_refuse_finish (scripts.tests.test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok\ntest_nested_native_run_record_is_evidence_but_wrapper_state_is_not (scripts.tests.test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ok\ntest_real_wrapper_preserves_exit_code_and_finishes_selected_report (scripts.tests.test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok\ntest_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.283s\n\nOK\n"
+      },
+      "restored": {
+        "stage": "restored",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_evidence_store",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P1-same-size-corruption",
+        "started_at": "2026-10-14T05:29:53.086570+00:00",
+        "ended_at": "2026-10-14T05:29:53.448392+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_background_descendant_is_not_marked_ready_for_collection (scripts.tests.test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok\ntest_catalog_reference_blocks_deleting_exported_source (scripts.tests.test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok\ntest_damaged_export_blocks_collection_and_links_never_export (scripts.tests.test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok\ntest_explicit_discard_keeps_referenced_run_but_exports_nothing (scripts.tests.test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok\ntest_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok\ntest_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok\ntest_manifest_corruption_and_live_owner_refuse_finish (scripts.tests.test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok\ntest_nested_native_run_record_is_evidence_but_wrapper_state_is_not (scripts.tests.test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ok\ntest_real_wrapper_preserves_exit_code_and_finishes_selected_report (scripts.tests.test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok\ntest_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.300s\n\nOK\n"
+      }
+    },
+    {
+      "id": "P2-foreign-scratch",
+      "subject": "scripts/evidence_store.py",
+      "intended_violation": "Files/directories added after sealing must remain, even with valid export",
+      "mutation_diff": "--- scripts/evidence_store.py\n+++ scripts/evidence_store.py\n@@ -214,7 +214,7 @@\n             # Never erase files added or modified after sealing. Extras present at\n             # sealing are explicitly disposable; capture the entire inventory below.\n             inventory = tree_hashes(root, rel)\n-            if inventory != state.get('inventory'):\n+            if False:\n                 raise ValueError('scratch changed since sealing')\n             if blocked:\n                 raise ValueError(blocked)\n",
+      "classification": "inspect-failure-cause",
+      "baseline": {
+        "stage": "baseline",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_evidence_store",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P2-foreign-scratch",
+        "started_at": "2026-10-14T05:29:53.457686+00:00",
+        "ended_at": "2026-10-14T05:29:53.800615+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_background_descendant_is_not_marked_ready_for_collection (scripts.tests.test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok\ntest_catalog_reference_blocks_deleting_exported_source (scripts.tests.test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok\ntest_damaged_export_blocks_collection_and_links_never_export (scripts.tests.test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok\ntest_explicit_discard_keeps_referenced_run_but_exports_nothing (scripts.tests.test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok\ntest_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok\ntest_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok\ntest_manifest_corruption_and_live_owner_refuse_finish (scripts.tests.test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok\ntest_nested_native_run_record_is_evidence_but_wrapper_state_is_not (scripts.tests.test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ok\ntest_real_wrapper_preserves_exit_code_and_finishes_selected_report (scripts.tests.test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok\ntest_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.277s\n\nOK\n"
+      },
+      "mutant": {
+        "stage": "mutant",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_evidence_store",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P2-foreign-scratch",
+        "started_at": "2026-10-14T05:29:53.809753+00:00",
+        "ended_at": "2026-10-14T05:29:54.134084+00:00",
+        "exit_code": 1,
+        "input_hashes": {
+          "scripts/evidence_store.py": "22231ef7a0f62df7cc8e1a2106ca8663eabe2aae44bf0958356c48de8a050589",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_background_descendant_is_not_marked_ready_for_collection (scripts.tests.test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok\ntest_catalog_reference_blocks_deleting_exported_source (scripts.tests.test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok\ntest_damaged_export_blocks_collection_and_links_never_export (scripts.tests.test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok\ntest_explicit_discard_keeps_referenced_run_but_exports_nothing (scripts.tests.test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok\ntest_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok\ntest_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... FAIL\ntest_manifest_corruption_and_live_owner_refuse_finish (scripts.tests.test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok\ntest_nested_native_run_record_is_evidence_but_wrapper_state_is_not (scripts.tests.test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ok\ntest_real_wrapper_preserves_exit_code_and_finishes_selected_report (scripts.tests.test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok\ntest_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... FAIL\n\n======================================================================\nFAIL: test_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P2-foreign-scratch/scripts/tests/test_evidence_store.py\", line 106, in test_interruption_after_export_before_inventory_preserves_scratch\n    self.assertEqual([],m.sweep(self.root,True)['removed'])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [] != ['target/highgrade/runs/test-e4253dfb606e49f082d62bd1ec98724b']\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n'target/highgrade/runs/test-e4253dfb606e49f082d62bd1ec98724b'\n\n- []\n+ ['target/highgrade/runs/test-e4253dfb606e49f082d62bd1ec98724b']\n\n======================================================================\nFAIL: test_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P2-foreign-scratch/scripts/tests/test_evidence_store.py\", line 49, in test_sweep_preserves_active_unknown_changed_and_unexported\n    self.assertEqual([], m.sweep(self.root, True)['removed'])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [] != ['target/highgrade/runs/test-b4cfbfe55ee44c0da8542e55cd2275cf']\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n'target/highgrade/runs/test-b4cfbfe55ee44c0da8542e55cd2275cf'\n\n- []\n+ ['target/highgrade/runs/test-b4cfbfe55ee44c0da8542e55cd2275cf']\n\n----------------------------------------------------------------------\nRan 10 tests in 0.270s\n\nFAILED (failures=2)\n"
+      },
+      "restored": {
+        "stage": "restored",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_evidence_store",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P2-foreign-scratch",
+        "started_at": "2026-10-14T05:29:54.134528+00:00",
+        "ended_at": "2026-10-14T05:29:54.468493+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_background_descendant_is_not_marked_ready_for_collection (scripts.tests.test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok\ntest_catalog_reference_blocks_deleting_exported_source (scripts.tests.test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok\ntest_damaged_export_blocks_collection_and_links_never_export (scripts.tests.test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok\ntest_explicit_discard_keeps_referenced_run_but_exports_nothing (scripts.tests.test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok\ntest_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok\ntest_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok\ntest_manifest_corruption_and_live_owner_refuse_finish (scripts.tests.test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok\ntest_nested_native_run_record_is_evidence_but_wrapper_state_is_not (scripts.tests.test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ok\ntest_real_wrapper_preserves_exit_code_and_finishes_selected_report (scripts.tests.test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok\ntest_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.278s\n\nOK\n"
+      }
+    },
+    {
+      "id": "P3-active-cargo",
+      "subject": "scripts/target-maintenance.py",
+      "intended_violation": "Active build must reject deletion and preserve selected scratch",
+      "mutation_diff": "--- scripts/target-maintenance.py\n+++ scripts/target-maintenance.py\n@@ -157,7 +157,7 @@\n     if before['links']:\n         raise ValueError(f'Linked or unsupported paths; nothing removed: {before[\"links\"]}')\n     running = active_builds()\n-    if running:\n+    if False:\n         raise ValueError(f'Build processes active; nothing removed: {running}')\n     project = root / 'target' / 'highgrade'\n     work = project / 'work'\n",
+      "classification": "inspect-failure-cause",
+      "baseline": {
+        "stage": "baseline",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_target_maintenance",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P3-active-cargo",
+        "started_at": "2026-10-14T05:29:54.477472+00:00",
+        "ended_at": "2026-10-14T05:29:54.703971+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_active_build_and_recovery_state_refuse_without_changes (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_active_build_and_recovery_state_refuse_without_changes) ... ok\ntest_budget_check_counts_hardlinked_payload_once (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_budget_check_counts_hardlinked_payload_once) ... ok\ntest_cache_cleanup_requires_explicit_selection (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_cache_cleanup_requires_explicit_selection) ... ok\ntest_cache_file_refuses_before_removing_selected_scratch (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_cache_file_refuses_before_removing_selected_scratch) ... ok\ntest_invalid_mixed_selection_refuses_before_deleting_scratch (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_invalid_mixed_selection_refuses_before_deleting_scratch) ... ok\ntest_inventory_deduplicates_hardlinks_and_reports_each_area (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_inventory_deduplicates_hardlinks_and_reports_each_area) ... ok\ntest_inventory_does_not_deduplicate_unavailable_inode_ids (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_inventory_does_not_deduplicate_unavailable_inode_ids) ... ok\ntest_inventory_without_allocated_size_reports_unknown_not_estimate (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_inventory_without_allocated_size_reports_unknown_not_estimate) ... ok\ntest_link_outside_root_refuses_and_preserves_sentinel (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_link_outside_root_refuses_and_preserves_sentinel) ... ok\ntest_missing_target_has_empty_measurements (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_missing_target_has_empty_measurements) ... ok\ntest_preview_is_read_only_and_apply_preserves_candidate_and_unknown (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_preview_is_read_only_and_apply_preserves_candidate_and_unknown) ... ok\ntest_scratch_path_escape_is_refused (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_scratch_path_escape_is_refused) ... ok\ntest_selected_preview_and_real_build_cache_cleanup (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_selected_preview_and_real_build_cache_cleanup) ...      Removed 10 files, 10.3KiB total\nok\ntest_windows_direntry_zero_identity_uses_real_path_stat (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_windows_direntry_zero_identity_uses_real_path_stat) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.147s\n\nOK\n"
+      },
+      "mutant": {
+        "stage": "mutant",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_target_maintenance",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P3-active-cargo",
+        "started_at": "2026-10-14T05:29:54.706272+00:00",
+        "ended_at": "2026-10-14T05:29:54.926905+00:00",
+        "exit_code": 1,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "e6a7fb3c7ef5f556d303f28470445d7909114f6443fc6a910a3b354aea3b63ff",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_active_build_and_recovery_state_refuse_without_changes (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_active_build_and_recovery_state_refuse_without_changes) ... FAIL\ntest_budget_check_counts_hardlinked_payload_once (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_budget_check_counts_hardlinked_payload_once) ... ok\ntest_cache_cleanup_requires_explicit_selection (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_cache_cleanup_requires_explicit_selection) ... ok\ntest_cache_file_refuses_before_removing_selected_scratch (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_cache_file_refuses_before_removing_selected_scratch) ... ok\ntest_invalid_mixed_selection_refuses_before_deleting_scratch (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_invalid_mixed_selection_refuses_before_deleting_scratch) ... ok\ntest_inventory_deduplicates_hardlinks_and_reports_each_area (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_inventory_deduplicates_hardlinks_and_reports_each_area) ... ok\ntest_inventory_does_not_deduplicate_unavailable_inode_ids (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_inventory_does_not_deduplicate_unavailable_inode_ids) ... ok\ntest_inventory_without_allocated_size_reports_unknown_not_estimate (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_inventory_without_allocated_size_reports_unknown_not_estimate) ... ok\ntest_link_outside_root_refuses_and_preserves_sentinel (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_link_outside_root_refuses_and_preserves_sentinel) ... ok\ntest_missing_target_has_empty_measurements (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_missing_target_has_empty_measurements) ... ok\ntest_preview_is_read_only_and_apply_preserves_candidate_and_unknown (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_preview_is_read_only_and_apply_preserves_candidate_and_unknown) ... ok\ntest_scratch_path_escape_is_refused (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_scratch_path_escape_is_refused) ... ok\ntest_selected_preview_and_real_build_cache_cleanup (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_selected_preview_and_real_build_cache_cleanup) ...      Removed 10 files, 10.3KiB total\nok\ntest_windows_direntry_zero_identity_uses_real_path_stat (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_windows_direntry_zero_identity_uses_real_path_stat) ... ok\n\n======================================================================\nFAIL: test_active_build_and_recovery_state_refuse_without_changes (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_active_build_and_recovery_state_refuse_without_changes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P3-active-cargo/scripts/tests/test_target_maintenance.py\", line 176, in test_active_build_and_recovery_state_refuse_without_changes\n    with self.assertRaisesRegex(ValueError, 'Build processes active'):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 14 tests in 0.150s\n\nFAILED (failures=1)\n"
+      },
+      "restored": {
+        "stage": "restored",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_target_maintenance",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P3-active-cargo",
+        "started_at": "2026-10-14T05:29:54.927396+00:00",
+        "ended_at": "2026-10-14T05:29:55.157131+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_active_build_and_recovery_state_refuse_without_changes (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_active_build_and_recovery_state_refuse_without_changes) ... ok\ntest_budget_check_counts_hardlinked_payload_once (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_budget_check_counts_hardlinked_payload_once) ... ok\ntest_cache_cleanup_requires_explicit_selection (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_cache_cleanup_requires_explicit_selection) ... ok\ntest_cache_file_refuses_before_removing_selected_scratch (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_cache_file_refuses_before_removing_selected_scratch) ... ok\ntest_invalid_mixed_selection_refuses_before_deleting_scratch (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_invalid_mixed_selection_refuses_before_deleting_scratch) ... ok\ntest_inventory_deduplicates_hardlinks_and_reports_each_area (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_inventory_deduplicates_hardlinks_and_reports_each_area) ... ok\ntest_inventory_does_not_deduplicate_unavailable_inode_ids (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_inventory_does_not_deduplicate_unavailable_inode_ids) ... ok\ntest_inventory_without_allocated_size_reports_unknown_not_estimate (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_inventory_without_allocated_size_reports_unknown_not_estimate) ... ok\ntest_link_outside_root_refuses_and_preserves_sentinel (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_link_outside_root_refuses_and_preserves_sentinel) ... ok\ntest_missing_target_has_empty_measurements (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_missing_target_has_empty_measurements) ... ok\ntest_preview_is_read_only_and_apply_preserves_candidate_and_unknown (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_preview_is_read_only_and_apply_preserves_candidate_and_unknown) ... ok\ntest_scratch_path_escape_is_refused (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_scratch_path_escape_is_refused) ... ok\ntest_selected_preview_and_real_build_cache_cleanup (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_selected_preview_and_real_build_cache_cleanup) ...      Removed 10 files, 10.3KiB total\nok\ntest_windows_direntry_zero_identity_uses_real_path_stat (scripts.tests.test_target_maintenance.TargetMaintenanceTests.test_windows_direntry_zero_identity_uses_real_path_stat) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.161s\n\nOK\n"
+      }
+    },
+    {
+      "id": "P4-unknown-validation",
+      "subject": "scripts/verify.py",
+      "intended_violation": "Unknown specification validation must not be treated as successful verification",
+      "mutation_diff": "--- scripts/verify.py\n+++ scripts/verify.py\n@@ -120,7 +120,7 @@\n             collect_reports(managed)\n     elif step == 'specs':\n         validation = report('spec-validate')\n-        if validation['status'] != 'passed':\n+        if validation['status'] == 'failed':\n             raise RuntimeError(validation)\n     elif step == 'scenarios':\n         managed = managed_run()\n",
+      "classification": "survived",
+      "baseline": {
+        "stage": "baseline",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_verify",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P4-unknown-validation",
+        "started_at": "2026-10-14T05:29:55.166194+00:00",
+        "ended_at": "2026-10-14T05:29:55.273816+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_default_test_command_enters_the_owned_run_wrapper (scripts.tests.test_verify.VerifyOutputTests.test_default_test_command_enters_the_owned_run_wrapper) ... ok\ntest_foreign_active_context_cannot_replace_another_runs_reports (scripts.tests.test_verify.VerifyOutputTests.test_foreign_active_context_cannot_replace_another_runs_reports) ... ok\ntest_foreign_or_finished_report_folder_refuses_before_running_checks (scripts.tests.test_verify.VerifyOutputTests.test_foreign_or_finished_report_folder_refuses_before_running_checks) ... ok\ntest_headroom_uses_cargo_target_and_accepts_exact_boundary (scripts.tests.test_verify.VerifyOutputTests.test_headroom_uses_cargo_target_and_accepts_exact_boundary) ... ok\ntest_inspect_report_round_trips_on_windows_legacy_console (scripts.tests.test_verify.VerifyOutputTests.test_inspect_report_round_trips_on_windows_legacy_console) ... ok\ntest_low_configured_target_refuses_even_when_project_has_space (scripts.tests.test_verify.VerifyOutputTests.test_low_configured_target_refuses_even_when_project_has_space) ... ok\ntest_low_space_refuses_before_capture_or_report_replacement (scripts.tests.test_verify.VerifyOutputTests.test_low_space_refuses_before_capture_or_report_replacement) ... ok\ntest_managed_test_attempt_keeps_native_outputs_even_on_failure (scripts.tests.test_verify.VerifyOutputTests.test_managed_test_attempt_keeps_native_outputs_even_on_failure) ... ok\ntest_spec_validation_propagates_batch_failure_without_reloading_ids (scripts.tests.test_verify.VerifyOutputTests.test_spec_validation_propagates_batch_failure_without_reloading_ids) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.023s\n\nOK\n"
+      },
+      "mutant": {
+        "stage": "mutant",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_verify",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P4-unknown-validation",
+        "started_at": "2026-10-14T05:29:55.276259+00:00",
+        "ended_at": "2026-10-14T05:29:55.362316+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "ba14cf2ddab432107ccdd45fca4af2a150c28243f115219020ec2aba948bf90d",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_default_test_command_enters_the_owned_run_wrapper (scripts.tests.test_verify.VerifyOutputTests.test_default_test_command_enters_the_owned_run_wrapper) ... ok\ntest_foreign_active_context_cannot_replace_another_runs_reports (scripts.tests.test_verify.VerifyOutputTests.test_foreign_active_context_cannot_replace_another_runs_reports) ... ok\ntest_foreign_or_finished_report_folder_refuses_before_running_checks (scripts.tests.test_verify.VerifyOutputTests.test_foreign_or_finished_report_folder_refuses_before_running_checks) ... ok\ntest_headroom_uses_cargo_target_and_accepts_exact_boundary (scripts.tests.test_verify.VerifyOutputTests.test_headroom_uses_cargo_target_and_accepts_exact_boundary) ... ok\ntest_inspect_report_round_trips_on_windows_legacy_console (scripts.tests.test_verify.VerifyOutputTests.test_inspect_report_round_trips_on_windows_legacy_console) ... ok\ntest_low_configured_target_refuses_even_when_project_has_space (scripts.tests.test_verify.VerifyOutputTests.test_low_configured_target_refuses_even_when_project_has_space) ... ok\ntest_low_space_refuses_before_capture_or_report_replacement (scripts.tests.test_verify.VerifyOutputTests.test_low_space_refuses_before_capture_or_report_replacement) ... ok\ntest_managed_test_attempt_keeps_native_outputs_even_on_failure (scripts.tests.test_verify.VerifyOutputTests.test_managed_test_attempt_keeps_native_outputs_even_on_failure) ... ok\ntest_spec_validation_propagates_batch_failure_without_reloading_ids (scripts.tests.test_verify.VerifyOutputTests.test_spec_validation_propagates_batch_failure_without_reloading_ids) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.014s\n\nOK\n"
+      },
+      "restored": {
+        "stage": "restored",
+        "argv": [
+          "/usr/bin/python",
+          "-m",
+          "unittest",
+          "scripts.tests.test_verify",
+          "-v"
+        ],
+        "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P4-unknown-validation",
+        "started_at": "2026-10-14T05:29:55.362828+00:00",
+        "ended_at": "2026-10-14T05:29:55.452617+00:00",
+        "exit_code": 0,
+        "input_hashes": {
+          "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "scripts/tests/test_evidence_store.py": "c61e8b24b4eab8e327e87b1fe75cd16de2989f039d8484dd5db31bbe98f2ccaf",
+          "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+          "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+        },
+        "stdout": "",
+        "stderr": "test_default_test_command_enters_the_owned_run_wrapper (scripts.tests.test_verify.VerifyOutputTests.test_default_test_command_enters_the_owned_run_wrapper) ... ok\ntest_foreign_active_context_cannot_replace_another_runs_reports (scripts.tests.test_verify.VerifyOutputTests.test_foreign_active_context_cannot_replace_another_runs_reports) ... ok\ntest_foreign_or_finished_report_folder_refuses_before_running_checks (scripts.tests.test_verify.VerifyOutputTests.test_foreign_or_finished_report_folder_refuses_before_running_checks) ... ok\ntest_headroom_uses_cargo_target_and_accepts_exact_boundary (scripts.tests.test_verify.VerifyOutputTests.test_headroom_uses_cargo_target_and_accepts_exact_boundary) ... ok\ntest_inspect_report_round_trips_on_windows_legacy_console (scripts.tests.test_verify.VerifyOutputTests.test_inspect_report_round_trips_on_windows_legacy_console) ... ok\ntest_low_configured_target_refuses_even_when_project_has_space (scripts.tests.test_verify.VerifyOutputTests.test_low_configured_target_refuses_even_when_project_has_space) ... ok\ntest_low_space_refuses_before_capture_or_report_replacement (scripts.tests.test_verify.VerifyOutputTests.test_low_space_refuses_before_capture_or_report_replacement) ... ok\ntest_managed_test_attempt_keeps_native_outputs_even_on_failure (scripts.tests.test_verify.VerifyOutputTests.test_managed_test_attempt_keeps_native_outputs_even_on_failure) ... ok\ntest_spec_validation_propagates_batch_failure_without_reloading_ids (scripts.tests.test_verify.VerifyOutputTests.test_spec_validation_propagates_batch_failure_without_reloading_ids) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.015s\n\nOK\n"
+      }
+    }
+  ]
+}

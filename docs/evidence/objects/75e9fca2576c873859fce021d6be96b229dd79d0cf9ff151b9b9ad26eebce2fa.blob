@@ -1,0 +1,121 @@
+test_project_cargo_config_creation_change_and_deletion_reject_reuse (scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse) ... 
+  test_project_cargo_config_creation_change_and_deletion_reject_reuse (scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse) (name='.cargo/config.toml') ... FAIL
+  test_project_cargo_config_creation_change_and_deletion_reject_reuse (scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse) (name='.cargo/config') ... FAIL
+test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) ... 
+  test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (name='adapter.py.') ... FAIL
+  test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (name='adapter.py ') ... FAIL
+  test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (name='folder./calc.py') ... FAIL
+  test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (name='folder /calc.py') ... FAIL
+  test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (cli='adapter.py.') ... FAIL
+  test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (cli='adapter.py ') ... FAIL
+
+======================================================================
+FAIL: test_project_cargo_config_creation_change_and_deletion_reject_reuse (scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse) (name='.cargo/config.toml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_source_scenarios.py", line 156, in test_project_cargo_config_creation_change_and_deletion_reject_reuse
+    self.assertIn('inputs changed', self.run_step('prepare', False)['message'])
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_source_scenarios.py", line 63, in run_step
+    self.assertEqual(result.returncode == 0, success, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True != False : {
+  "status": "passed",
+  "requirements": 1,
+  "scenarios": 1,
+  "automatic": 1,
+  "manual_check_scenarios": 0,
+  "no_declared_check_scenarios": 0,
+  "no_declared_check_ids": [],
+  "record": "target/nextest/highgrade/run.json",
+  "pinned_files": 19,
+  "native_tests_passed": 1,
+  "native_report_reused": false,
+  "native_report_reason": "fresh_report"
+}
+
+
+======================================================================
+FAIL: test_project_cargo_config_creation_change_and_deletion_reject_reuse (scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse) (name='.cargo/config')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_source_scenarios.py", line 156, in test_project_cargo_config_creation_change_and_deletion_reject_reuse
+    self.assertIn('inputs changed', self.run_step('prepare', False)['message'])
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_source_scenarios.py", line 63, in run_step
+    self.assertEqual(result.returncode == 0, success, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True != False : {
+  "status": "passed",
+  "requirements": 1,
+  "scenarios": 1,
+  "automatic": 1,
+  "manual_check_scenarios": 0,
+  "no_declared_check_scenarios": 0,
+  "no_declared_check_ids": [],
+  "record": "target/nextest/highgrade/run.json",
+  "pinned_files": 19,
+  "native_tests_passed": 1,
+  "native_report_reused": false,
+  "native_report_reason": "fresh_report"
+}
+
+
+======================================================================
+FAIL: test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (name='adapter.py.')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_clear_batch.py", line 181, in test_windows_trailing_path_aliases_are_rejected_before_output
+    with self.assertRaisesRegex(ValueError, 'nonportable path'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (name='adapter.py ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_clear_batch.py", line 181, in test_windows_trailing_path_aliases_are_rejected_before_output
+    with self.assertRaisesRegex(ValueError, 'nonportable path'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (name='folder./calc.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_clear_batch.py", line 181, in test_windows_trailing_path_aliases_are_rejected_before_output
+    with self.assertRaisesRegex(ValueError, 'nonportable path'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (name='folder /calc.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_clear_batch.py", line 181, in test_windows_trailing_path_aliases_are_rejected_before_output
+    with self.assertRaisesRegex(ValueError, 'nonportable path'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (cli='adapter.py.')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_clear_batch.py", line 189, in test_windows_trailing_path_aliases_are_rejected_before_output
+    self.assertEqual(2, process.returncode, process.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : 
+
+======================================================================
+FAIL: test_windows_trailing_path_aliases_are_rejected_before_output (scripts.tests.test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output) (cli='adapter.py ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_clear_batch.py", line 189, in test_windows_trailing_path_aliases_are_rejected_before_output
+    self.assertEqual(2, process.returncode, process.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : 
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.072s
+
+FAILED (failures=8)

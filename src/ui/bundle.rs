@@ -29,9 +29,11 @@ pub fn validate(assets: &[Asset<'_>], version: &str) -> Result<Manifest, String>
         || [
             "index.html",
             "fonts/Manrope.ttf",
+            "fonts/Lora.ttf",
             "brand/mark.svg",
             "brand/wordmark.svg",
             "licenses/Manrope-OFL.txt",
+            "licenses/Lora-OFL.txt",
             "licenses/Lucide-LICENSE.txt",
             "licenses/packages.json",
         ]
@@ -88,6 +90,8 @@ mod tests {
         let original = super::super::UI_ASSETS;
         for omitted in [
             "fonts/Manrope.ttf",
+            "fonts/Lora.ttf",
+            "licenses/Lora-OFL.txt",
             "brand/wordmark.svg",
             "licenses/packages.json",
             ".js",
@@ -108,12 +112,26 @@ mod tests {
                 .find(|file| file.ends_with(omitted))
                 .unwrap()
                 .clone();
-            manifest["files"].as_object_mut().unwrap().remove(&file);
+            let removed: Vec<_> = if omitted == "fonts/Lora.ttf" {
+                let font_hash = manifest["files"][&file].clone();
+                manifest["files"]
+                    .as_object()
+                    .unwrap()
+                    .iter()
+                    .filter(|(_, hash)| **hash == font_hash)
+                    .map(|(name, _)| name.clone())
+                    .collect()
+            } else {
+                vec![file.clone()]
+            };
+            for name in &removed {
+                manifest["files"].as_object_mut().unwrap().remove(name);
+            }
             let bytes = serde_json::to_vec(&manifest).unwrap();
             let mut assets: Vec<_> = original
                 .iter()
                 .copied()
-                .filter(|a| a.0 != format!("/{file}"))
+                .filter(|a| !removed.iter().any(|name| a.0 == format!("/{name}")))
                 .collect();
             assets
                 .iter_mut()

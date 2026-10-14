@@ -1,0 +1,67 @@
+# Независимое смысловое ревью каталога
+
+Чтение назначенной области завершено: 41 текущий контракт, 56 сценариев. Полностью прочитаны statements/GWT/verification и все assertions соответствующих catalog/spec/issue/survey/general тестов. Расширенно прочитаны все global/bootstrap/package/launcher/shared-inputs assertions. Это начальное ревью. Оно не подтверждает результаты исполнения и не выдаёт финальный GO.
+
+Сначала требуется закрыть найденный дефект сохранности. На Unix `src/package.rs::replace_active` пишет во временный `.next` через `fs::write`. Существующий обычный файл будет перезаписан; симлинк может изменить чужой referent. Global update и recovery используют этот helper для указателя и роутеров. Текущий Unix test создаёт directory blocker, поэтому не ловит эти два случая. Вывод получен чтением кода. Нужны изолированная проба, безопасная публикация temp и точные проверки сохранности.
+
+Другие существенные замечания:
+
+- Engine checks фиксирует объявленные inputs, check file, shared inputs, relative runner и runners.json. Он не выводит Rust dependencies/fixtures/materials. Исходные HG12/HG13 и часть global/bootstrap bindings неполны. Точные добавки для 28 выбранных и 24 расширенных checks записаны в `catalog-check-input-proposals.json`.
+- `action_diagnostics_check_runner_without_execution` проверяет SHA каталога. Это не наблюдение отсутствия запуска runner. Нужен marker от runner и assert его отсутствия. Сам текущий source runner не запускает.
+- Transfer S2 проверяет bytes после первого отказа. Для следующих stale/origin/mixed/ID refusals есть finding assertions, но нет каждого exact no-write comparison.
+- HG37 требует сопоставимый замер выгоды. Тесты выбранного вывода и local CAS этот замер не заменяют.
+- CLI boundary accepted-without-external-ID полезно зафиксировать отдельно: существующий CLI test удаляет ID/comment для needs_changes. Действующий контракт допускает отсутствие ID и при принятии.
+
+Исходный pending HG63 конфликтовал с текущими HG12/HG70. Последующая редакция HG63 R1/S4/S5 прочитана: exact snapshots/readiness/explicit decision обязательны; внешний ID необязателен. Это правильная актуализация уже действующей нормы. Старый export сохранён. В HG4R3 старое слово Approve покрыто pending modify на Commit. Четыре тематических references HG40 не означают число skills и не устарели.
+
+Из 56 сценариев у 35 нет declared check в исходном export. Многие имеют настоящие annotated tests. Это отдельный знаменатель и metadata gap, а не доказательство неисправного кода или отсутствия тестов. HG13S5 и полный установленный маршрут HG4S3 требуют фактического упражнения; текст инструкции и structural PASS его не выполняют.
+
+Recovery specs/issues сначала проверяет весь набор и prospective model, затем пишет. Это соответствует сохранности. Новый late-conflict assertion HG2S2 прочитан. V1/V2/3/4/5, legacy journal shapes, current synthetic migration review и JUnit fixtures оценены как тестовые данные. Они не выдаются за запуск старого бинарника или authentic внешний отчет.
+
+Полные строки read=true, judgment, owner/test/method/gap для всех 41 требований и 56 сценариев находятся в JSON. Файлы фактически прочитанные и границы targeted trace/UI reads записаны там же. Обязательные методы сохранены в `catalog-methods-before-baseline.json`; выбранные изолированные mutation proposals включены в JSON.
+
+| Требование | Смысловой вывод |
+|---|---|
+| HG-0002-R1 | Отдельные spec/results и внешний выбранный catalog root; foreign schema/structured files отвергаются, служебная конфигурация не владеет каталогом. Assertions сравнивают sibling/foreign bytes и доступность после удаления .highgrade. |
+| HG-0002-R2 | Миграция только explicit, точная резервная копия и старые writer markers; recover валидирует все target states и prospective model до записи. Assertions охватывают malformed/partial/delete-required/lock/collision, новый поздний conflict сохраняет journal и обе цели. |
+| HG-0002-R3 | Recheck integrated change оставляет истории review/evidence/acceptance; новая материальная редакция не наследует принятие. Assertions сохраняют history, technical/human states и material code drift. |
+| HG-0003-R1 | Explicit depends/related не наследуют контракт; unknown dependency и cycle отклонены; readiness учитывает требуемые зависимости. |
+| HG-0003-R2 | Tags flat and explicit; batch merge переназначает references, used removal и invalid batches не меняют bytes. |
+| HG-0003-R3 | List total/selected и dependencies отделены; unknown filters не создают ложный PASS. |
+| HG-0004-R1 | Реальные exact tests, manual explicit, relative check file; failing sibling не скрывается общим Passed. |
+| HG-0004-R2 | Actual unittest/Cargo fixtures: pass/fail/skip/empty/timeout/input drift; batch сохраняет previous observations и per-scenario reports; failure tags даже при exit0 не подтверждают run. |
+| HG-0004-R3 | Слово approve в текущем snapshot требует согласования с уже действующим Commit owner. Pending HG63 modify исправляет это. Требуемый installed lifecycle нельзя вывести из library tests/инструкции. |
+| HG-0008-R1 | Reviewed transfer сохраняет exact origin/IDs, tasks/fresh GO; ordinary integrate не принимает behavior-unverified; technical in_progress/human pending. Trace выбирает один native owner и сохраняет соседний legacy scenario. |
+| HG-0012-R1 | Монотонная выдача HG IDs сохраняется после abandon/failure и competing CLI writers; title/createdAt обязательны для нового shape. |
+| HG-0012-R2 | V1 exact backup и ID/evidence/review digest preservation; исторический fingerprint остается значимым, legacy unknown title допустим. |
+| HG-0012-R3 | Explicit human, tool time, exact change/evidence/input snapshots; пакет invalid no-write/history protected/new drift stale. External Git/build ID и comment optional по текущему contract и serde defaults. |
+| HG-0012-R4 | Technical/readiness/human отделены; skipped/missing/unknown/negative current review не дают ready. |
+| HG-0012-R5 | Два accepted/один returned, пакет all-or-none, correction отдельная история; известную версию можно передать, новую сборку ради поля создавать не нужно. |
+| HG-0013-R1 | Draft read, strict field/version rejection, one owner, protected results editing; failed writes сохраняют каталог. |
+| HG-0013-R2 | CAS lock/atomic store и baseline integrate barriers: competing process, failed replacement, removal reason, stale base. |
+| HG-0013-R3 | Evidence определяется конкретным req/scenario/input/report, sibling addition не инвалидирует прежний unchanged scenario, material common statement/code changes делают stale. |
+| HG-0013-R4 | Полный самостоятельный установленный маршрут требует реального отдельного агента с сохраненным unfinished task, version/input/actions/diff/outcome. Manual binding корректно не содержит fake test file. |
+| HG-0018-R2 | Default registry строго .highgrade/project/documents.json; .agents legacy не fallback; --registry explicit еще доступен. |
+| HG-0029-R1 | Equivalent timestamp/duration/report path retains material review/human; failed run, changed observation and report-also-input drift меняют revision; old fingerprint сохраняется. |
+| HG-0030-R1 | Compact views/patch field whitelist CAS; optional validate before write; shared_inputs content and membership freshness. |
+| HG-0035-R1 | Rootless help из allowed_options общего parser owner, error hint, public options/required/examples, input schema, global-recover. |
+| HG-0036-R1 | Preview technical/decision/applied separate; bootstrap adaptation vs failure/unknown; selected diagnostic reads inputs/PATH and does not execute runner. Current Unix replacement overwrites deterministic .next without no-clobber. |
+| HG-0037-R1 | Scoped output/readiness, independent local CAS accepted, touched dependency/runner drift rejected. Directory selected loading действительно сокращает reads; legacy monolithic full read остается поддержкой. |
+| HG-0038-R1 | Metadata tags на integrated/draft CAS atomic; review/human current states и history сохранены; missing batch no-write, exact repeat noop. |
+| HG-0039-R1 | Новый scoped baseline пуст, first modify/remove captures observed target при global CAS; remove/re-add не обновляет base; legacy broad baseline не переписывается. |
+| HG-0040-R1 | JSON thematic order не меняет значения/fingerprint. Четыре thematic references distinct from девяти skills; installed link tests удаляют source и используют shipped materials. |
+| HG-0041-R1 | Separate project issue owner and strict formats; search/read no recipes, recipe marker assertion absent. |
+| HG-0041-R2 | Atomic CAS/lock/journal recovery preflights complete targets/prospective entries; case-variant owned paths rejected; exact occurrence receipt idempotent. |
+| HG-0041-R3 | Mitigated/resolved differ, resolved demands cause confirmed; wrong outcome and changed material solution remove last_verified, unrelated edit retains it; counter/idempotency stable. |
+| HG-0045-R1 | Survey independent single JSON without specs; read marker absent and no write/create check. |
+| HG-0045-R2 | Unknown fact/decision/current negative review/dependent findings remain blockers; action plan retains issue facts and lacks permission grant. |
+| HG-0045-R3 | Selected source hashes/composition detect drift; own survey and history outputs excluded; completed old history preserved/reopen new revision. |
+| HG-0046-R1 | Bounded names/types structural inventory не хеширует secret/generated files; .highgrade/project visible; links/reparse skipped with incomplete. |
+| HG-0046-R2 | Selected normal file contents and area membership drift checked, own state excluded; missing/unreadable source explicit incomplete. |
+| HG-0046-R3 | Strict schema, stale CAS, invalid values, held lock and link root preserve exact state/outside sentinel. |
+| HG-0046-R4 | Inventory/read no network/commands, no approval inferred; sentinel recipe remains absent. |
+| HG-0050-R1 | Named measurements preserve legacy, ambiguous repeated key not guessed; --path valid catalog creation and missing value Usage. |
+| HG-0050-R2 | launch_selector literal argv distinct from report selector; embedded {report} shell metacharacters stay literal, no shell; legacy absence fingerprint unchanged. |
+| HG-0050-R3 | Existing suite JUnit reused only exact current required selector, no skips/duplicates/fail/missing; changed input rejects, check run not faked by annotation. |
+
+Пределы: запусков в этом ревью нет. Final GO нужен после исправлений, исходных control/mutant/restored/final результатов и проверки актуальности causal inputs. Родитель проверяет отдельные workflow требования; этот отчёт не объявляет все старые спеки актуальными. Windows execution, remote CI, broad deployed pilot, приёмка, commit/activation/push не подтверждаются. Presentation и чужие проекты не читались. `.gitignore` сохранён.

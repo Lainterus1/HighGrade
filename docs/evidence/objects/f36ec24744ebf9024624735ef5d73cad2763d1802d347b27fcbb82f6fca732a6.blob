@@ -1,0 +1,12 @@
+{
+  "command": [
+    "./node_modules/.bin/playwright",
+    "test",
+    "--config",
+    "../.highgrade/local/clear-audit-2026-10-14/poll-repro.config.ts"
+  ],
+  "exit_code": 1,
+  "classification": "setup_failure",
+  "observation": "Config loaded as CommonJS; import.meta outside a module. No product behavior assessed.",
+  "repair": "Local exercise package.json now explicitly sets type:module."
+}

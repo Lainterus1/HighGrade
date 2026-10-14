@@ -1,0 +1,31 @@
+{
+  "source": "User answers in current chat: documentation and tests; all main project areas; check and fix",
+  "plan": ".highgrade/local/project-refresh-2026-10-14/plan.md",
+  "observed_revision": "591dcb1ece4739d27a2e00cd702657ed6c9e70e3",
+  "stage": "complete",
+  "next": "none",
+  "blocker": null,
+  "preserved_gitignore_sha256": "9b3ded5f615f6e5fe70d8ed7273571c7b3c9b66805d62c6dad61a2a7d722bea8",
+  "goal": "not_assigned",
+  "evidence": [
+    "docs/evidence/project-refresh-2026-10-14/verification.md",
+    "docs/evidence/project-refresh-2026-10-14/closure.json"
+  ],
+  "findings": [
+    "Missing same-size evidence corruption assertion (fixed test, mutant detected)",
+    "Trace invalid report/provenance and duplicate results produced false scenario PASS; fixing under existing HG-0024/HG-0013 contracts",
+    "Trace raw case counters conflated with unique keys",
+    "UI bundle completeness omitted Lora/OFL; negative test reproduced, guard fixed",
+    "Decision revision drift assertions derived expected identity from subject (test strengthened)",
+    "RecoveryConflict across multiple catalog targets lacked regression (test added)"
+  ],
+  "explicit_exclusion": "User 2026-10-14: presentation must not be checked; recorded in inventory-exclusions.json, content untouched",
+  "status": "confirmed_local_scope_complete_with_documented_remainders",
+  "completed_at": "2026-10-14T07:20:37.591920+00:00",
+  "remainders": [
+    "target storage --check exit 2: 1448.31 MiB >600; inherited runs/hg58/shared caches retained",
+    "HG-0061-S4 and HG-0069-S4 not reconfirmed",
+    "No new exact-SHA release/Windows CI; Linux CHA runtime UNVERIFIED; SVG dependency advisory retained for separate change",
+    "No new commit, activation, push or human acceptance"
+  ]
+}

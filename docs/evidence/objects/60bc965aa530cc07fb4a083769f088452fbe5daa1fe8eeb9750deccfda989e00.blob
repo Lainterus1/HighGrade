@@ -1,0 +1,547 @@
+{
+  "helper_sha256": "2cd403acd70b97c74ddc341988761bc9f9f01bb8668bac957ef74dcdb63b9829",
+  "records": [
+    {
+      "case": "signal_exit",
+      "argv": [
+        "/usr/bin/python",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/hg76-independent-d337x_ke/clear_batch.py",
+        "--root",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/hg76-independent-d337x_ke/signal_exit",
+        "--plan",
+        "plan.json",
+        "--output",
+        "batch"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"summary\": \"batch/summary.json\", \"complete\": false, \"reused\": false, \"commands\": 3, \"outcomes\": {\"m1\": \"invalid\"}}\n",
+      "stderr": "",
+      "plan": {
+        "schema": 1,
+        "inputs": [
+          "calc.py",
+          "adapter.py",
+          "contract.txt",
+          "sentinel"
+        ],
+        "tests": [
+          "adapter.py"
+        ],
+        "contracts": [
+          "contract.txt"
+        ],
+        "scope_complete": true,
+        "runtime_probes": [
+          [
+            "/usr/bin/python",
+            "--version"
+          ]
+        ],
+        "checks": [
+          {
+            "id": "number",
+            "command": [
+              "/usr/bin/python",
+              "-B",
+              "adapter.py"
+            ],
+            "expected_tests": [
+              "test_number"
+            ],
+            "sources": [
+              "calc.py"
+            ]
+          }
+        ],
+        "mutations": [
+          {
+            "id": "m1",
+            "path": "calc.py",
+            "before": "return 2",
+            "after": "return 0",
+            "checks": [
+              "number"
+            ],
+            "failures": [
+              {
+                "test": "test_number",
+                "contains": "number contract"
+              }
+            ],
+            "requirement": "fixture-R1",
+            "scenario": "fixture-S1"
+          }
+        ]
+      },
+      "inputs": {
+        "calc.py": "def number():\r\n    return 2\r\n",
+        "adapter.py": "import hashlib, json, os, sys, unittest\nfrom pathlib import Path\nMODE = 'normal'\nraw = Path('calc.py').read_bytes()\nhashes = {'calc.py': hashlib.sha256(raw).hexdigest()}\nnamespace = {}\ncases = []\ntry:\n    exec(compile(raw, 'calc.py', 'exec'), namespace)\n    class Test(unittest.TestCase):\n        def test_number(self):\n            if MODE == 'badbaseline': self.fail('broken baseline fixture')\n            if MODE == 'skip': self.skipTest('unavailable')\n            if MODE == 'weak': self.assertGreaterEqual(namespace['number'](), 0)\n            else: self.assertEqual(namespace['number'](), 2, 'number contract')\n    class Result(unittest.TestResult):\n        def addSuccess(self, test):\n            super().addSuccess(test); cases.append({'id':'test_number','outcome':'passed','message':''})\n        def addFailure(self, test, err):\n            super().addFailure(test,err); cases.append({'id':'test_number','outcome':'assertion','message':str(err[1])})\n        def addError(self, test, err):\n            super().addError(test,err); cases.append({'id':'test_number','outcome':'error','message':str(err[1])})\n        def addSkip(self, test, reason):\n            super().addSkip(test,reason); cases.append({'id':'test_number','outcome':'skipped','message':reason})\n    result = Result()\n    if MODE != 'empty': unittest.defaultTestLoader.loadTestsFromTestCase(Test).run(result)\n    if MODE == 'timeout' and b'return 0' in raw:\n        import time; time.sleep(4)\n    if MODE == 'setup' and b'return 0' in raw: raise RuntimeError('setup unavailable')\n    if MODE == 'restore' and b'return 0' in raw: Path('calc.py').write_bytes(b'foreign edit\\x00')\n    if MODE == 'stale' and b'return 0' in raw:\n        hashes['calc.py'] = hashlib.sha256(raw.replace(b'return 0', b'return 2')).hexdigest()\n    report = {'format':'highgrade-clear-v1','tests':cases,'source_hashes':hashes}\n    if MODE == 'unsupported' and b'return 0' in raw: report['format'] = 'other'\nexcept BaseException as error:\n    report = {'format':'highgrade-clear-v1','tests':[{'id':'test_number','outcome':'error','message':str(error)}],'source_hashes':hashes}\nPath(os.environ['HG_CLEAR_REPORT']).write_text(json.dumps(report))\nif b'return 0' in raw:\n    import signal; os.kill(os.getpid(),signal.SIGTERM)\nsys.exit(0 if all(c['outcome']=='passed' for c in report['tests']) else 1)\n",
+        "contract.txt": "number must equal 2",
+        "sentinel": "foreign\u0000\r\n"
+      },
+      "summary": {
+        "baseline": [
+          {
+            "assertions": [],
+            "executed_tests": [
+              "test_number"
+            ],
+            "id": "number",
+            "original": "logs/baseline-number.run.json",
+            "outcome": "passed",
+            "reason": "actual passed"
+          }
+        ],
+        "captured_at": "2026-10-14T09:17:47.558628+00:00",
+        "complete": false,
+        "final": [
+          {
+            "assertions": [],
+            "executed_tests": [
+              "test_number"
+            ],
+            "id": "number",
+            "original": "logs/final-number.run.json",
+            "outcome": "passed",
+            "reason": "actual passed"
+          }
+        ],
+        "format": "highgrade-clear-v1",
+        "metrics": {
+          "commands": 3,
+          "evidence_bytes": 5009,
+          "probe_commands": 1,
+          "retries": 0,
+          "tokens": "unavailable",
+          "wall_seconds": 0.20268476199998986
+        },
+        "mutations": [
+          {
+            "checks": [
+              {
+                "executed_tests": [],
+                "id": "number",
+                "original": "logs/mutation-m1-number.run.json",
+                "outcome": "invalid",
+                "reason": "exit/report conflict"
+              }
+            ],
+            "diff": "logs/m1.diff",
+            "diff_sha256": "39bd2b22a11c899dc42c05fd68148721c5913810342141fe4726ccb526ba2b4a",
+            "id": "m1",
+            "outcome": "invalid",
+            "requirement": "fixture-R1",
+            "restored": true,
+            "scenario": "fixture-S1",
+            "source_before_sha256": "7190f5d62ac2f1f962555d14f0afffeea8a37699a5746c8a80e92a801fccde89",
+            "source_mutated_sha256": "ea7b2bc2c7f505d9c7c87e02212bcb0d7609ce57d54bdb395ae94014926e2821"
+          }
+        ],
+        "originals": {
+          "logs/baseline-number.report.json": "750842f068a9e6717fb04d5bb6e884e50692c7291a21eef1df02be49d7d22d90",
+          "logs/baseline-number.run.json": "dc919314321b5372899f681717613e85f0306118bc2382a455a30b6b32531980",
+          "logs/baseline-number.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/baseline-number.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/final-number.report.json": "750842f068a9e6717fb04d5bb6e884e50692c7291a21eef1df02be49d7d22d90",
+          "logs/final-number.run.json": "3ec0585992a0698932e67c982e0e1c0a289451a3ee907d8b3dc8f99ee1f29b3e",
+          "logs/final-number.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/final-number.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/m1.diff": "39bd2b22a11c899dc42c05fd68148721c5913810342141fe4726ccb526ba2b4a",
+          "logs/mutation-m1-number.report.json": "6748387c099044aeb2843a5afa81d3219b5684540567a0d032c955f3af31e3c9",
+          "logs/mutation-m1-number.run.json": "c7000dff85a0446e46ef270562b4fb648d996b7cb976388d61f19e785fb00d18",
+          "logs/mutation-m1-number.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/mutation-m1-number.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/runtime-0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/runtime-0.stdout": "0366d77cc1f1ac88ea458231ba4f639323d5caf34de0d50b7618277fd4395f1f",
+          "originals/adapter.py": "13a862253f32748f01beb6eda2b446501ca271982b83de2391c4ca943668d052",
+          "originals/calc.py": "7190f5d62ac2f1f962555d14f0afffeea8a37699a5746c8a80e92a801fccde89",
+          "originals/contract.txt": "58a3844e01ba397ea81b26c1bb511655ed6b4adcafbd20de3f150759ecb18465",
+          "originals/sentinel": "0fa57ac837b9ac760e833b975f64c93dafb6b7981a4c54e58d530c159e795e9a",
+          "snapshot.json": "a9126d2645d6439fd2e99d6f1ff966429c1751f1607339c4df0eb001c2b863f3"
+        },
+        "restored": true,
+        "reuse_reason": "not requested",
+        "reused": false,
+        "snapshot": "snapshot.json",
+        "summary_sha256": "c06ff2ed0ac05e42ff4e9b71d7ee1aa8ba42a57ac2ca7b9c5d0165f5283e7a83"
+      },
+      "originals": {
+        "logs/runtime-0.stdout": "Python 3.14.7\n",
+        "logs/runtime-0.stderr": "",
+        "logs/baseline-number.stdout": "",
+        "logs/baseline-number.stderr": "",
+        "logs/baseline-number.report.json": "{\"format\": \"highgrade-clear-v1\", \"tests\": [{\"id\": \"test_number\", \"outcome\": \"passed\", \"message\": \"\"}], \"source_hashes\": {\"calc.py\": \"7190f5d62ac2f1f962555d14f0afffeea8a37699a5746c8a80e92a801fccde89\"}}",
+        "logs/baseline-number.run.json": "{\"assertions\":[],\"command\":[\"/usr/bin/python\",\"-B\",\"adapter.py\"],\"descendants\":false,\"executed_tests\":[\"test_number\"],\"exit_code\":0,\"expected_tests\":[\"test_number\"],\"outcome\":\"passed\",\"reason\":\"actual passed\",\"report\":\"logs/baseline-number.report.json\",\"seconds\":0.06390917799944873}\n",
+        "logs/m1.diff": "--- calc.py\n+++ calc.py\n@@ -1,2 +1,2 @@\n def number():\n-    return 2\n+    return 0\n",
+        "logs/mutation-m1-number.stdout": "",
+        "logs/mutation-m1-number.stderr": "",
+        "logs/mutation-m1-number.report.json": "{\"format\": \"highgrade-clear-v1\", \"tests\": [{\"id\": \"test_number\", \"outcome\": \"assertion\", \"message\": \"0 != 2 : number contract\"}], \"source_hashes\": {\"calc.py\": \"ea7b2bc2c7f505d9c7c87e02212bcb0d7609ce57d54bdb395ae94014926e2821\"}}",
+        "logs/mutation-m1-number.run.json": "{\"command\":[\"/usr/bin/python\",\"-B\",\"adapter.py\"],\"descendants\":false,\"executed_tests\":[],\"exit_code\":-15,\"expected_tests\":[\"test_number\"],\"outcome\":\"invalid\",\"reason\":\"exit/report conflict\",\"report\":\"logs/mutation-m1-number.report.json\",\"seconds\":0.0639267819969973}\n",
+        "logs/final-number.stdout": "",
+        "logs/final-number.stderr": "",
+        "logs/final-number.report.json": "{\"format\": \"highgrade-clear-v1\", \"tests\": [{\"id\": \"test_number\", \"outcome\": \"passed\", \"message\": \"\"}], \"source_hashes\": {\"calc.py\": \"7190f5d62ac2f1f962555d14f0afffeea8a37699a5746c8a80e92a801fccde89\"}}",
+        "logs/final-number.run.json": "{\"assertions\":[],\"command\":[\"/usr/bin/python\",\"-B\",\"adapter.py\"],\"descendants\":false,\"executed_tests\":[\"test_number\"],\"exit_code\":0,\"expected_tests\":[\"test_number\"],\"outcome\":\"passed\",\"reason\":\"actual passed\",\"report\":\"logs/final-number.report.json\",\"seconds\":0.06388960199910798}\n"
+      },
+      "live_preserved": true
+    },
+    {
+      "case": "string_scope",
+      "argv": [
+        "/usr/bin/python",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/hg76-independent-d337x_ke/clear_batch.py",
+        "--root",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/hg76-independent-d337x_ke/string_scope",
+        "--plan",
+        "plan.json",
+        "--output",
+        "batch"
+      ],
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "scope_complete must be boolean\n",
+      "plan": {
+        "schema": 1,
+        "inputs": [
+          "calc.py",
+          "adapter.py",
+          "contract.txt",
+          "sentinel"
+        ],
+        "tests": [
+          "adapter.py"
+        ],
+        "contracts": [
+          "contract.txt"
+        ],
+        "scope_complete": "false",
+        "runtime_probes": [
+          [
+            "/usr/bin/python",
+            "--version"
+          ]
+        ],
+        "checks": [
+          {
+            "id": "number",
+            "command": [
+              "/usr/bin/python",
+              "-B",
+              "adapter.py"
+            ],
+            "expected_tests": [
+              "test_number"
+            ],
+            "sources": [
+              "calc.py"
+            ]
+          }
+        ],
+        "mutations": [
+          {
+            "id": "m1",
+            "path": "calc.py",
+            "before": "return 2",
+            "after": "return 0",
+            "checks": [
+              "number"
+            ],
+            "failures": [
+              {
+                "test": "test_number",
+                "contains": "number contract"
+              }
+            ],
+            "requirement": "fixture-R1",
+            "scenario": "fixture-S1"
+          }
+        ]
+      },
+      "inputs": {
+        "calc.py": "def number():\r\n    return 2\r\n",
+        "adapter.py": "import hashlib, json, os, sys, unittest\nfrom pathlib import Path\nMODE = 'normal'\nraw = Path('calc.py').read_bytes()\nhashes = {'calc.py': hashlib.sha256(raw).hexdigest()}\nnamespace = {}\ncases = []\ntry:\n    exec(compile(raw, 'calc.py', 'exec'), namespace)\n    class Test(unittest.TestCase):\n        def test_number(self):\n            if MODE == 'badbaseline': self.fail('broken baseline fixture')\n            if MODE == 'skip': self.skipTest('unavailable')\n            if MODE == 'weak': self.assertGreaterEqual(namespace['number'](), 0)\n            else: self.assertEqual(namespace['number'](), 2, 'number contract')\n    class Result(unittest.TestResult):\n        def addSuccess(self, test):\n            super().addSuccess(test); cases.append({'id':'test_number','outcome':'passed','message':''})\n        def addFailure(self, test, err):\n            super().addFailure(test,err); cases.append({'id':'test_number','outcome':'assertion','message':str(err[1])})\n        def addError(self, test, err):\n            super().addError(test,err); cases.append({'id':'test_number','outcome':'error','message':str(err[1])})\n        def addSkip(self, test, reason):\n            super().addSkip(test,reason); cases.append({'id':'test_number','outcome':'skipped','message':reason})\n    result = Result()\n    if MODE != 'empty': unittest.defaultTestLoader.loadTestsFromTestCase(Test).run(result)\n    if MODE == 'timeout' and b'return 0' in raw:\n        import time; time.sleep(4)\n    if MODE == 'setup' and b'return 0' in raw: raise RuntimeError('setup unavailable')\n    if MODE == 'restore' and b'return 0' in raw: Path('calc.py').write_bytes(b'foreign edit\\x00')\n    if MODE == 'stale' and b'return 0' in raw:\n        hashes['calc.py'] = hashlib.sha256(raw.replace(b'return 0', b'return 2')).hexdigest()\n    report = {'format':'highgrade-clear-v1','tests':cases,'source_hashes':hashes}\n    if MODE == 'unsupported' and b'return 0' in raw: report['format'] = 'other'\nexcept BaseException as error:\n    report = {'format':'highgrade-clear-v1','tests':[{'id':'test_number','outcome':'error','message':str(error)}],'source_hashes':hashes}\nPath(os.environ['HG_CLEAR_REPORT']).write_text(json.dumps(report))\nsys.exit(0 if all(c['outcome']=='passed' for c in report['tests']) else 1)\n",
+        "contract.txt": "number must equal 2",
+        "sentinel": "foreign\u0000\r\n"
+      },
+      "summary": null,
+      "originals": {},
+      "live_preserved": true
+    },
+    {
+      "case": "string_scope",
+      "argv": [
+        "/usr/bin/python",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/hg76-independent-d337x_ke/clear_batch.py",
+        "--root",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/hg76-independent-d337x_ke/string_scope",
+        "--plan",
+        "plan.json",
+        "--output",
+        "reuse",
+        "--reuse",
+        "batch/summary.json"
+      ],
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "scope_complete must be boolean\n",
+      "plan": {
+        "schema": 1,
+        "inputs": [
+          "calc.py",
+          "adapter.py",
+          "contract.txt",
+          "sentinel"
+        ],
+        "tests": [
+          "adapter.py"
+        ],
+        "contracts": [
+          "contract.txt"
+        ],
+        "scope_complete": "false",
+        "runtime_probes": [
+          [
+            "/usr/bin/python",
+            "--version"
+          ]
+        ],
+        "checks": [
+          {
+            "id": "number",
+            "command": [
+              "/usr/bin/python",
+              "-B",
+              "adapter.py"
+            ],
+            "expected_tests": [
+              "test_number"
+            ],
+            "sources": [
+              "calc.py"
+            ]
+          }
+        ],
+        "mutations": [
+          {
+            "id": "m1",
+            "path": "calc.py",
+            "before": "return 2",
+            "after": "return 0",
+            "checks": [
+              "number"
+            ],
+            "failures": [
+              {
+                "test": "test_number",
+                "contains": "number contract"
+              }
+            ],
+            "requirement": "fixture-R1",
+            "scenario": "fixture-S1"
+          }
+        ]
+      },
+      "inputs": {
+        "calc.py": "def number():\r\n    return 2\r\n",
+        "adapter.py": "import hashlib, json, os, sys, unittest\nfrom pathlib import Path\nMODE = 'normal'\nraw = Path('calc.py').read_bytes()\nhashes = {'calc.py': hashlib.sha256(raw).hexdigest()}\nnamespace = {}\ncases = []\ntry:\n    exec(compile(raw, 'calc.py', 'exec'), namespace)\n    class Test(unittest.TestCase):\n        def test_number(self):\n            if MODE == 'badbaseline': self.fail('broken baseline fixture')\n            if MODE == 'skip': self.skipTest('unavailable')\n            if MODE == 'weak': self.assertGreaterEqual(namespace['number'](), 0)\n            else: self.assertEqual(namespace['number'](), 2, 'number contract')\n    class Result(unittest.TestResult):\n        def addSuccess(self, test):\n            super().addSuccess(test); cases.append({'id':'test_number','outcome':'passed','message':''})\n        def addFailure(self, test, err):\n            super().addFailure(test,err); cases.append({'id':'test_number','outcome':'assertion','message':str(err[1])})\n        def addError(self, test, err):\n            super().addError(test,err); cases.append({'id':'test_number','outcome':'error','message':str(err[1])})\n        def addSkip(self, test, reason):\n            super().addSkip(test,reason); cases.append({'id':'test_number','outcome':'skipped','message':reason})\n    result = Result()\n    if MODE != 'empty': unittest.defaultTestLoader.loadTestsFromTestCase(Test).run(result)\n    if MODE == 'timeout' and b'return 0' in raw:\n        import time; time.sleep(4)\n    if MODE == 'setup' and b'return 0' in raw: raise RuntimeError('setup unavailable')\n    if MODE == 'restore' and b'return 0' in raw: Path('calc.py').write_bytes(b'foreign edit\\x00')\n    if MODE == 'stale' and b'return 0' in raw:\n        hashes['calc.py'] = hashlib.sha256(raw.replace(b'return 0', b'return 2')).hexdigest()\n    report = {'format':'highgrade-clear-v1','tests':cases,'source_hashes':hashes}\n    if MODE == 'unsupported' and b'return 0' in raw: report['format'] = 'other'\nexcept BaseException as error:\n    report = {'format':'highgrade-clear-v1','tests':[{'id':'test_number','outcome':'error','message':str(error)}],'source_hashes':hashes}\nPath(os.environ['HG_CLEAR_REPORT']).write_text(json.dumps(report))\nsys.exit(0 if all(c['outcome']=='passed' for c in report['tests']) else 1)\n",
+        "contract.txt": "number must equal 2",
+        "sentinel": "foreign\u0000\r\n"
+      },
+      "summary": null,
+      "originals": {},
+      "live_preserved": true
+    },
+    {
+      "case": "repeated_argv",
+      "argv": [
+        "/usr/bin/python",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/hg76-independent-d337x_ke/clear_batch.py",
+        "--root",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/hg76-independent-d337x_ke/repeated_argv",
+        "--plan",
+        "plan.json",
+        "--output",
+        "batch"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"summary\": \"batch/summary.json\", \"complete\": true, \"reused\": false, \"commands\": 3, \"outcomes\": {\"m1\": \"detected\"}}\n",
+      "stderr": "",
+      "plan": {
+        "schema": 1,
+        "inputs": [
+          "calc.py",
+          "adapter.py",
+          "contract.txt",
+          "sentinel"
+        ],
+        "tests": [
+          "adapter.py"
+        ],
+        "contracts": [
+          "contract.txt"
+        ],
+        "scope_complete": true,
+        "runtime_probes": [
+          [
+            "/usr/bin/python",
+            "--version"
+          ]
+        ],
+        "checks": [
+          {
+            "id": "number",
+            "command": [
+              "/usr/bin/python",
+              "-B",
+              "adapter.py",
+              "same",
+              "same"
+            ],
+            "expected_tests": [
+              "test_number"
+            ],
+            "sources": [
+              "calc.py"
+            ]
+          }
+        ],
+        "mutations": [
+          {
+            "id": "m1",
+            "path": "calc.py",
+            "before": "return 2",
+            "after": "return 0",
+            "checks": [
+              "number"
+            ],
+            "failures": [
+              {
+                "test": "test_number",
+                "contains": "number contract"
+              }
+            ],
+            "requirement": "fixture-R1",
+            "scenario": "fixture-S1"
+          }
+        ]
+      },
+      "inputs": {
+        "calc.py": "def number():\r\n    return 2\r\n",
+        "adapter.py": "import hashlib, json, os, sys, unittest\nfrom pathlib import Path\nMODE = 'normal'\nraw = Path('calc.py').read_bytes()\nhashes = {'calc.py': hashlib.sha256(raw).hexdigest()}\nnamespace = {}\ncases = []\ntry:\n    exec(compile(raw, 'calc.py', 'exec'), namespace)\n    class Test(unittest.TestCase):\n        def test_number(self):\n            if MODE == 'badbaseline': self.fail('broken baseline fixture')\n            if MODE == 'skip': self.skipTest('unavailable')\n            if MODE == 'weak': self.assertGreaterEqual(namespace['number'](), 0)\n            else: self.assertEqual(namespace['number'](), 2, 'number contract')\n    class Result(unittest.TestResult):\n        def addSuccess(self, test):\n            super().addSuccess(test); cases.append({'id':'test_number','outcome':'passed','message':''})\n        def addFailure(self, test, err):\n            super().addFailure(test,err); cases.append({'id':'test_number','outcome':'assertion','message':str(err[1])})\n        def addError(self, test, err):\n            super().addError(test,err); cases.append({'id':'test_number','outcome':'error','message':str(err[1])})\n        def addSkip(self, test, reason):\n            super().addSkip(test,reason); cases.append({'id':'test_number','outcome':'skipped','message':reason})\n    result = Result()\n    if MODE != 'empty': unittest.defaultTestLoader.loadTestsFromTestCase(Test).run(result)\n    if MODE == 'timeout' and b'return 0' in raw:\n        import time; time.sleep(4)\n    if MODE == 'setup' and b'return 0' in raw: raise RuntimeError('setup unavailable')\n    if MODE == 'restore' and b'return 0' in raw: Path('calc.py').write_bytes(b'foreign edit\\x00')\n    if MODE == 'stale' and b'return 0' in raw:\n        hashes['calc.py'] = hashlib.sha256(raw.replace(b'return 0', b'return 2')).hexdigest()\n    report = {'format':'highgrade-clear-v1','tests':cases,'source_hashes':hashes}\n    if MODE == 'unsupported' and b'return 0' in raw: report['format'] = 'other'\nexcept BaseException as error:\n    report = {'format':'highgrade-clear-v1','tests':[{'id':'test_number','outcome':'error','message':str(error)}],'source_hashes':hashes}\nPath(os.environ['HG_CLEAR_REPORT']).write_text(json.dumps(report))\nsys.exit(0 if all(c['outcome']=='passed' for c in report['tests']) else 1)\n",
+        "contract.txt": "number must equal 2",
+        "sentinel": "foreign\u0000\r\n"
+      },
+      "summary": {
+        "baseline": [
+          {
+            "assertions": [],
+            "executed_tests": [
+              "test_number"
+            ],
+            "id": "number",
+            "original": "logs/baseline-number.run.json",
+            "outcome": "passed",
+            "reason": "actual passed"
+          }
+        ],
+        "captured_at": "2026-10-14T09:17:47.910283+00:00",
+        "complete": true,
+        "final": [
+          {
+            "assertions": [],
+            "executed_tests": [
+              "test_number"
+            ],
+            "id": "number",
+            "original": "logs/final-number.run.json",
+            "outcome": "passed",
+            "reason": "actual passed"
+          }
+        ],
+        "format": "highgrade-clear-v1",
+        "metrics": {
+          "commands": 3,
+          "evidence_bytes": 5057,
+          "probe_commands": 1,
+          "retries": 0,
+          "tokens": "unavailable",
+          "wall_seconds": 0.20022723799775122
+        },
+        "mutations": [
+          {
+            "checks": [
+              {
+                "assertions": [
+                  {
+                    "message": "0 != 2 : number contract",
+                    "test": "test_number"
+                  }
+                ],
+                "executed_tests": [
+                  "test_number"
+                ],
+                "id": "number",
+                "original": "logs/mutation-m1-number.run.json",
+                "outcome": "assertion",
+                "reason": "actual assertion"
+              }
+            ],
+            "diff": "logs/m1.diff",
+            "diff_sha256": "39bd2b22a11c899dc42c05fd68148721c5913810342141fe4726ccb526ba2b4a",
+            "id": "m1",
+            "outcome": "detected",
+            "requirement": "fixture-R1",
+            "restored": true,
+            "scenario": "fixture-S1",
+            "source_before_sha256": "7190f5d62ac2f1f962555d14f0afffeea8a37699a5746c8a80e92a801fccde89",
+            "source_mutated_sha256": "ea7b2bc2c7f505d9c7c87e02212bcb0d7609ce57d54bdb395ae94014926e2821"
+          }
+        ],
+        "originals": {
+          "logs/baseline-number.report.json": "750842f068a9e6717fb04d5bb6e884e50692c7291a21eef1df02be49d7d22d90",
+          "logs/baseline-number.run.json": "ce98f265811c7324c256a9e08211add073aff1afbfc9b5ffb92a84d88a7053b9",
+          "logs/baseline-number.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/baseline-number.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/final-number.report.json": "750842f068a9e6717fb04d5bb6e884e50692c7291a21eef1df02be49d7d22d90",
+          "logs/final-number.run.json": "137b39a43caae96c0646894f20b521c541fe86a8f3a79df217c667a6f547723b",
+          "logs/final-number.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/final-number.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/m1.diff": "39bd2b22a11c899dc42c05fd68148721c5913810342141fe4726ccb526ba2b4a",
+          "logs/mutation-m1-number.report.json": "6748387c099044aeb2843a5afa81d3219b5684540567a0d032c955f3af31e3c9",
+          "logs/mutation-m1-number.run.json": "fa2f8ce203d42b6774f7253661a94bce10894bc41f5b1828975e765c9797353f",
+          "logs/mutation-m1-number.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/mutation-m1-number.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/runtime-0.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logs/runtime-0.stdout": "0366d77cc1f1ac88ea458231ba4f639323d5caf34de0d50b7618277fd4395f1f",
+          "originals/adapter.py": "da5b626481c293c6606fb048bed885ad1be0ae46da1dc1c240a75313169850fe",
+          "originals/calc.py": "7190f5d62ac2f1f962555d14f0afffeea8a37699a5746c8a80e92a801fccde89",
+          "originals/contract.txt": "58a3844e01ba397ea81b26c1bb511655ed6b4adcafbd20de3f150759ecb18465",
+          "originals/sentinel": "0fa57ac837b9ac760e833b975f64c93dafb6b7981a4c54e58d530c159e795e9a",
+          "snapshot.json": "46ea4c4208125a8ba3508918d9911a7493d76965ee9459675ff74e3ad80598d0"
+        },
+        "restored": true,
+        "reuse_reason": "not requested",
+        "reused": false,
+        "snapshot": "snapshot.json",
+        "summary_sha256": "3e7ebe43d4ad3607f42c3fc4b5bda849d8635b7e939053e95508353edfb4f52d"
+      },
+      "originals": {
+        "logs/runtime-0.stdout": "Python 3.14.7\n",
+        "logs/runtime-0.stderr": "",
+        "logs/baseline-number.stdout": "",
+        "logs/baseline-number.stderr": "",
+        "logs/baseline-number.report.json": "{\"format\": \"highgrade-clear-v1\", \"tests\": [{\"id\": \"test_number\", \"outcome\": \"passed\", \"message\": \"\"}], \"source_hashes\": {\"calc.py\": \"7190f5d62ac2f1f962555d14f0afffeea8a37699a5746c8a80e92a801fccde89\"}}",
+        "logs/baseline-number.run.json": "{\"assertions\":[],\"command\":[\"/usr/bin/python\",\"-B\",\"adapter.py\",\"same\",\"same\"],\"descendants\":false,\"executed_tests\":[\"test_number\"],\"exit_code\":0,\"expected_tests\":[\"test_number\"],\"outcome\":\"passed\",\"reason\":\"actual passed\",\"report\":\"logs/baseline-number.report.json\",\"seconds\":0.0638487959986378}\n",
+        "logs/m1.diff": "--- calc.py\n+++ calc.py\n@@ -1,2 +1,2 @@\n def number():\n-    return 2\n+    return 0\n",
+        "logs/mutation-m1-number.stdout": "",
+        "logs/mutation-m1-number.stderr": "",
+        "logs/mutation-m1-number.report.json": "{\"format\": \"highgrade-clear-v1\", \"tests\": [{\"id\": \"test_number\", \"outcome\": \"assertion\", \"message\": \"0 != 2 : number contract\"}], \"source_hashes\": {\"calc.py\": \"ea7b2bc2c7f505d9c7c87e02212bcb0d7609ce57d54bdb395ae94014926e2821\"}}",
+        "logs/mutation-m1-number.run.json": "{\"assertions\":[{\"message\":\"0 != 2 : number contract\",\"test\":\"test_number\"}],\"command\":[\"/usr/bin/python\",\"-B\",\"adapter.py\",\"same\",\"same\"],\"descendants\":false,\"executed_tests\":[\"test_number\"],\"exit_code\":1,\"expected_tests\":[\"test_number\"],\"outcome\":\"assertion\",\"reason\":\"actual assertion\",\"report\":\"logs/mutation-m1-number.report.json\",\"seconds\":0.06406388700270327}\n",
+        "logs/final-number.stdout": "",
+        "logs/final-number.stderr": "",
+        "logs/final-number.report.json": "{\"format\": \"highgrade-clear-v1\", \"tests\": [{\"id\": \"test_number\", \"outcome\": \"passed\", \"message\": \"\"}], \"source_hashes\": {\"calc.py\": \"7190f5d62ac2f1f962555d14f0afffeea8a37699a5746c8a80e92a801fccde89\"}}",
+        "logs/final-number.run.json": "{\"assertions\":[],\"command\":[\"/usr/bin/python\",\"-B\",\"adapter.py\",\"same\",\"same\"],\"descendants\":false,\"executed_tests\":[\"test_number\"],\"exit_code\":0,\"expected_tests\":[\"test_number\"],\"outcome\":\"passed\",\"reason\":\"actual passed\",\"report\":\"logs/final-number.report.json\",\"seconds\":0.06393998600105988}\n"
+      },
+      "live_preserved": true
+    }
+  ]
+}

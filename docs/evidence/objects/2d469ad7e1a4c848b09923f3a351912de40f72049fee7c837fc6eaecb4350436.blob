@@ -1,0 +1,29 @@
+usage: vectorize [-h] -o OUTPUT
+                 [--preset {auto,logo,icon,illustration,line-art}]
+                 [--colors COLORS] [--simplify SIMPLIFY]
+                 [--filter-speckle FILTER_SPECKLE] [--scale {1,2}]
+                 [--no-optimize] [--verbose]
+                 input
+
+Локальная PNG/JPG/WebP -> SVG векторизация: VTracer, SVGO, validation.
+
+positional arguments:
+  input                 входной PNG, JPG/JPEG или WebP
+
+options:
+  -h, --help            show this help message and exit
+  -o OUTPUT, --output OUTPUT
+                        путь к выходному SVG
+  --preset {auto,logo,icon,illustration,line-art}
+                        профиль; по умолчанию auto
+  --colors COLORS       максимум цветов палитры 2..256 (без оттенков alpha-
+                        маски)
+  --simplify SIMPLIFY   упрощение 0..10: больше — меньше деталей; шкала
+                        VTracer length_threshold
+  --filter-speckle FILTER_SPECKLE
+                        порог мелких пятен в пикселях исходника; 0 сохраняет
+                        мелкие детали
+  --scale {1,2}         масштаб трассировки: illustration=2 (Lanczos),
+                        остальные=1; размеры SVG сохраняются
+  --no-optimize         пропустить SVGO; XML и render validation остаются
+  --verbose             показать preset и стадии pipeline

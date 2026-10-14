@@ -1,0 +1,318 @@
+{
+  "verified_manifests": [
+    {
+      "name": "clear-python-final-fe7d5c3946d64576b52095817c0d06ac",
+      "manifest": "docs/evidence/objects/4f07feac7a7e1002736b92f0dfb33ced5752ddbedec928f604023b266a9051e5.json",
+      "files": 1,
+      "metadata": {
+        "captured_at": "2026-10-14T14:35:49.615366+00:00",
+        "command": [
+          "python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "scripts/tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-node-final-f962d24a0c20471a98dfcf200e443067",
+      "manifest": "docs/evidence/objects/bab3b18b8302df2fe857fe558ba6a2dc36faac4b356d29bc11c089b9750ae5f1.json",
+      "files": 1,
+      "metadata": {
+        "captured_at": "2026-10-14T14:35:08.351742+00:00",
+        "command": [
+          "node",
+          "--test",
+          "ui/scripts/tests/bundle.test.mjs",
+          "ui/scripts/tests/installed-config.test.mjs",
+          "ui/scripts/tests/playwright-output.test.mjs"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-storybook-final-d9b9ecab91a8450b95ea3f5fe2009b49",
+      "manifest": "docs/evidence/objects/de266d94a4b4b4286b377e5f856d7d1234a1a124d634bbf05b566624540eb6de.json",
+      "files": 1,
+      "metadata": {
+        "captured_at": "2026-10-14T14:36:36.846071+00:00",
+        "command": [
+          "npm",
+          "--prefix",
+          "ui",
+          "run",
+          "build-storybook"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-browser-final-dec74301f796489aacf1938795f5e776",
+      "manifest": "docs/evidence/objects/d92228c6aaeebf5f5c7c5045295725def72ee71a3cd9ac6d4184354b8b694d0a.json",
+      "files": 21,
+      "metadata": {
+        "captured_at": "2026-10-14T14:39:53.426158+00:00",
+        "command": [
+          "npm",
+          "--prefix",
+          "ui",
+          "test",
+          "--",
+          "api-client.spec.ts",
+          "decision.spec.ts",
+          "edit.spec.ts",
+          "editorial.spec.ts",
+          "hg58-keyboard.spec.ts",
+          "hg58.spec.ts",
+          "native.spec.ts",
+          "visual.spec.ts"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-ui-rust-142ab1cd5fa94c8b8cfd85f4cf10a790",
+      "manifest": "docs/evidence/objects/69b60372d469857f5a72552d30d2e141dcb7099cdceb17b8e3ba594924b0c87b.json",
+      "files": 1,
+      "metadata": {
+        "captured_at": "2026-10-14T14:24:00.336393+00:00",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--test",
+          "ui_contracts"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "rust-1922a3d1fbc34f36b0f116b13975c166",
+      "manifest": "docs/evidence/objects/9a9e3fefaba2a190738b8794d9171ee9b3471b6d5c276f72a8d5c16ec8fd1058.json",
+      "files": 5,
+      "metadata": {
+        "captured_at": "2026-10-14T14:35:54.524848+00:00",
+        "command": [
+          "/usr/bin/python",
+          "/home/lainterus/Projects/High Grade/scripts/verify.py",
+          "tests"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-attention-final-cfa0cb3ca3ec48368dc4d18a9bbf5854",
+      "manifest": "docs/evidence/objects/d97189503c5a643c356c02cb735dc7920c0febbe78affe75654e6748dde12523.json",
+      "files": 1,
+      "metadata": {
+        "captured_at": "2026-10-14T14:47:11.535414+00:00",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--test",
+          "attention_contracts"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-native-quiet-final-bf44a30a2fe14836b91d7141cbd43887",
+      "manifest": "docs/evidence/objects/3cf86ec7edf109f5e769285846d036f6e446df5312e280c215db751feece13f6.json",
+      "files": 4,
+      "metadata": {
+        "captured_at": "2026-10-14T14:50:21.521961+00:00",
+        "command": [
+          "npm",
+          "--prefix",
+          "ui",
+          "test",
+          "--",
+          "native.spec.ts"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-scenarios-final-3e4b35863ae94dc48e22a24dc92fb606",
+      "manifest": "docs/evidence/objects/53ef1a5c451285605d428b8f7c0797759e5454c4de89ad7ddb68f7f4de7728de.json",
+      "files": 5,
+      "metadata": {
+        "captured_at": "2026-10-14T14:40:40.157160+00:00",
+        "command": [
+          "python",
+          "scripts/verify.py",
+          "scenarios"
+        ],
+        "exit_code": 1,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "rust-fb3f004e7e67416888f65a58154a488a",
+      "manifest": "docs/evidence/objects/83b39f50992da8c792fb1f7d777023715a9d66be911398093c934f60d385dce2.json",
+      "files": 5,
+      "metadata": {
+        "captured_at": "2026-10-14T14:54:27.940522+00:00",
+        "command": [
+          "/usr/bin/python",
+          "/home/lainterus/Projects/High Grade/scripts/verify.py",
+          "tests"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-api-wait-final-5b0669cbacf64d53a310eb1940cdb269",
+      "manifest": "docs/evidence/objects/7d8ac305a108791267d43cc4cd704fcc1234c7b703e96d02e28770fb90145b07.json",
+      "files": 3,
+      "metadata": {
+        "captured_at": "2026-10-14T14:55:07.121099+00:00",
+        "command": [
+          "npm",
+          "--prefix",
+          "ui",
+          "test",
+          "--",
+          "api-client.spec.ts"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-scenarios-complete-462039f2828442a2b8a848af8f31d608",
+      "manifest": "docs/evidence/objects/0f811e99ab58285cdf092e70cf23bca20e5eb4aa237496fbce9dd6fb024adb62.json",
+      "files": 5,
+      "metadata": {
+        "captured_at": "2026-10-14T14:56:53.506166+00:00",
+        "command": [
+          "python",
+          "scripts/verify.py",
+          "scenarios"
+        ],
+        "exit_code": 1,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-scenarios-serial-ba79ec2a5c4d46e5892308b82bdcdb2b",
+      "manifest": "docs/evidence/objects/1143298a0089da650fc22569ab4a4ada0c794f9deefdacc992e08b28006a8357.json",
+      "files": 7,
+      "metadata": {
+        "captured_at": "2026-10-14T14:58:05.964705+00:00",
+        "command": [
+          "python",
+          "scripts/verify.py",
+          "scenarios"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-scale-guard-9f41b97384eb43eab7e13dbbb5de7377",
+      "manifest": "docs/evidence/objects/588eac00a446c708e3e4d7bfa1c458d1d3ca9c0c67f436f1dff14f7a9bb587ea.json",
+      "files": 1,
+      "metadata": {
+        "captured_at": "2026-10-14T15:01:10.577150+00:00",
+        "command": [
+          "node",
+          "scripts/check-scenario-scale.mjs"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    },
+    {
+      "name": "clear-reuse-guard-e09dcaab4aed4e6e839da6d8f806f7e4",
+      "manifest": "docs/evidence/objects/0a8aa6985dadc19e11b9fe900169893e65f3e6f458bcbf401769ae6cbea9c40b.json",
+      "files": 1,
+      "metadata": {
+        "captured_at": "2026-10-14T15:01:55.313231+00:00",
+        "command": [
+          "node",
+          "scripts/check-scenario-reuse.mjs"
+        ],
+        "exit_code": 0,
+        "observation": "Process exit only; inspect selected source for scenario results",
+        "outcome": "unknown",
+        "platform": "Linux-7.2.5-3-omarchy-x86_64-with-glibc2.44"
+      }
+    }
+  ],
+  "errors": [],
+  "trace": {
+    "source": "docs/evidence/objects/446472241d1ea39237662a5d6c9d6cafee44ef8fdc9dd63255c804bba280b93c.blob",
+    "sha256": "446472241d1ea39237662a5d6c9d6cafee44ef8fdc9dd63255c804bba280b93c",
+    "status": "passed",
+    "counts": {
+      "passed": 145,
+      "outside_automatic_trace": 187
+    },
+    "summary": [
+      {
+        "automatic_passed": 145,
+        "automatic_scenarios": 145,
+        "linked_test_cases": 154,
+        "outside_automatic_trace": 187,
+        "scenarios_total": 332,
+        "test_cases_executed": 241,
+        "test_cases_missing": 0,
+        "test_cases_reported": 241,
+        "test_cases_skipped": 0,
+        "test_cases_unknown": 0,
+        "unlinked_test_cases": 87
+      }
+    ],
+    "semantic_equal": true,
+    "ordinary_drift": []
+  },
+  "inspect": {
+    "status": "warning",
+    "codes": {
+      "ExternalLinkUnchecked": 11
+    }
+  }
+}

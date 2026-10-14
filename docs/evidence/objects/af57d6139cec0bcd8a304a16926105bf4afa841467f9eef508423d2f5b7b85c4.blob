@@ -1,0 +1,1044 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-14T15:22:11.648517+00:00",
+  "verdict": "GO",
+  "scope": "Текущий локальный package baseline SVG/CHA на неизменённых source copies с проверенными pins. Не сертификация runtime, Windows, установленного Codex plugin или всех audit/project outcomes.",
+  "previous_reviews_unchanged": {
+    ".highgrade/local/clear-audit-2026-10-14/final-evidence-review.md": "d7649bc852a2d61f6b7a2bdd02712fbfc7de4de171e1614e66511b50f1d2018a",
+    ".highgrade/local/clear-audit-2026-10-14/final-evidence-review.json": "874d2052baf485b48957680f90469d2be82df4653f0d37391486d9daf53f0d76",
+    ".highgrade/local/clear-audit-2026-10-14/final-evidence-review-addendum.md": "9a0d9b06772fcc766a02d348918a79f3b1fe7ecfcb93ece6d6f492bfc0d4b251",
+    ".highgrade/local/clear-audit-2026-10-14/final-evidence-review-addendum.json": "91d4d257c762e63dbe722a41d4872e11344f308d0a5f088cfb48acf248970127"
+  },
+  "closed_previous_gap": "Прежнее отсутствие нового package execution закрыто реальными нынешними 34/59 результатами; старые PASS не переименованы.",
+  "suite_results": [
+    {
+      "package": "CHA",
+      "original_log": "target/highgrade/runs/clear-cha-tests-25fc7843f2da4274b5acdd6a65bcb6cd/run.log",
+      "sha256": "9d88f3481c014c96d332b6f38f70cccb4eca350b388ea78ebedbf4833d42018b",
+      "actual_case_ids": [
+        "test_contracts.CaptureReadOnlyTest.test_test_command_changing_readme_cannot_be_attested",
+        "test_contracts.ContractTests.test_acceptance_binds_effective_policy_and_low_direction",
+        "test_contracts.ContractTests.test_failure_report_uses_effective_snapshot_policy",
+        "test_contracts.ContractTests.test_non_git_policy_can_include_build_and_snapshot_new_files",
+        "test_contracts.ContractTests.test_policy_rejects_typo_bad_thresholds_and_escaping_paths",
+        "test_contracts.ContractTests.test_registry_rejects_unknown_metric_and_unsafe_guard",
+        "test_contracts.ContractTests.test_repeated_method_names_have_unique_ids",
+        "test_contracts.ContractTests.test_schema_rejects_wrong_measurement_types_and_nonfinite_numbers",
+        "test_contracts.ContractTests.test_scope_and_configured_test_paths",
+        "test_contracts.ContractTests.test_snapshot_detects_second_dirty_edit_new_file_and_staged_registry",
+        "test_contracts.NamespaceTests.test_namespace_from_import_cycle_is_not_zero",
+        "test_core.AcceptanceTests.test_analyzer_change_reopens_accepted_finding",
+        "test_core.AcceptanceTests.test_changed_code_reopens_accepted_finding",
+        "test_core.AcceptanceTests.test_guard_change_reopens_accepted_finding",
+        "test_core.AcceptanceTests.test_improvement_suggests_tighter_baseline",
+        "test_core.AcceptanceTests.test_malformed_registry_root_fails_closed",
+        "test_core.AcceptanceTests.test_metric_regression_reopens_accepted_finding",
+        "test_core.AcceptanceTests.test_non_numeric_ceiling_is_rejected",
+        "test_core.AcceptanceTests.test_policy_change_reopens_accepted_finding",
+        "test_core.AcceptanceTests.test_unchanged_justified_finding_is_inactive",
+        "test_core.AdapterFailureTests.test_forged_coverage_percentage_fails_without_measurements",
+        "test_core.AdapterFailureTests.test_malformed_coverage_file_fails_without_measurements",
+        "test_core.AdapterFailureTests.test_pylint_fatal_output_fails_without_ok_measurements",
+        "test_core.ClassificationTests.test_high_metric_boundaries",
+        "test_core.ClassificationTests.test_low_metric_boundaries",
+        "test_core.DigestTests.test_environment_paths_and_artifacts_do_not_affect_digest",
+        "test_core.FingerprintTests.test_formatting_and_comments_do_not_change_ast_fingerprint",
+        "test_core.FingerprintTests.test_semantic_change_reopens_fingerprint",
+        "test_core.PythonNestingTests.test_elif_stays_flat_while_nested_blocks_increase_depth",
+        "test_core.PythonNestingTests.test_lizard_adapter_ignores_mutable_ns_and_is_order_invariant",
+        "test_core.PythonNestingTests.test_nested_functions_are_measured_independently",
+        "test_core.PythonNestingTests.test_sequential_branches_do_not_accumulate_depth",
+        "test_core.TrustedRegistryTests.test_ignored_untracked_registry_is_not_clean",
+        "test_core.TrustedRegistryTests.test_tracked_head_registry_is_clean",
+        "test_metrics.MetricTests.test_explicit_else_if_is_nested_and_elif_is_flat",
+        "test_metrics.MetricTests.test_missing_pylint_never_manufactures_zero_diff_measurements",
+        "test_metrics.MetricTests.test_module_aliases_resolve_only_unambiguous_scoped_paths",
+        "test_metrics.MetricTests.test_only_real_required_suppression_comments_are_findings",
+        "test_metrics.PylintMetricsTests.test_comments_do_not_inflate_duplication_count_or_percent",
+        "test_metrics.PylintMetricsTests.test_src_and_namespace_paths_exist_and_diff_keeps_duplicate",
+        "test_metrics.PylintMetricsTests.test_unlisted_file_is_not_analyzed_by_recursive_directory_expansion",
+        "test_metrics.PylintMetricsTests.test_unrelated_pylint_disable_does_not_make_analysis_partial",
+        "test_preflight.PreflightWorkflowTests.test_active_dependency_closure_is_fully_pinned",
+        "test_preflight.PreflightWorkflowTests.test_diff_real_changed_line_coverage_and_stable_digest",
+        "test_preflight.PreflightWorkflowTests.test_incomplete_provenance_cannot_attest_coverage",
+        "test_preflight.PreflightWorkflowTests.test_preflight_missing_base_is_actionable",
+        "test_preflight.PreflightWorkflowTests.test_preflight_reports_runtime_scope_without_changing_repository",
+        "test_preflight.PreflightWorkflowTests.test_touch_without_content_change_keeps_observed_coverage_valid",
+        "test_preflight.PreflightWorkflowTests.test_transitive_dependency_drift_changes_runtime_identity",
+        "test_preflight.RuntimeAcceptanceTests.test_runtime_change_reopens_otherwise_identical_finding",
+        "test_workflows.WorkflowTests.test_failed_test_cannot_create_verified_capture",
+        "test_workflows.WorkflowTests.test_invalid_policy_produces_failure_report",
+        "test_workflows.WorkflowTests.test_json_without_provenance_is_incomplete",
+        "test_workflows.WorkflowTests.test_observed_capture_and_repeat_audit",
+        "test_workflows.WorkflowTests.test_old_data_reexport_cannot_confirm_changed_sources",
+        "test_workflows.WorkflowTests.test_stale_bytecode_cannot_attest_different_source",
+        "test_workflows.WorkflowTests.test_syntax_error_produces_report_and_final_snapshot",
+        "test_workflows.WorkflowTests.test_timeout_stops_descendant_before_late_write",
+        "test_workflows.WorkflowTests.test_worker_timeout_returns_failure_without_measurements"
+      ],
+      "case_count": 59,
+      "unique_case_count": 59,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "framework_seconds": 20.752,
+      "outcome": "passed",
+      "command": [
+        "target/highgrade/tmp/clear-audit-plugins/.venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests",
+        "-v"
+      ]
+    },
+    {
+      "package": "SVG",
+      "original_log": "target/highgrade/runs/clear-svg-tests-fixed-9297a2fb2c8c4b13a94e2343336f16d5/run.log",
+      "sha256": "57d9bd36e9ab06a0f73fa953970f64a907b91ab529a2227bec1efa1bfce89b8f",
+      "actual_case_ids": [
+        "test_vectorize.PipelineTests.test_alpha_levels_and_invisible_rgb",
+        "test_vectorize.PipelineTests.test_animation_rejected",
+        "test_vectorize.PipelineTests.test_auto_selection",
+        "test_vectorize.PipelineTests.test_cli_help_and_real_conversion",
+        "test_vectorize.PipelineTests.test_color_limit",
+        "test_vectorize.PipelineTests.test_deterministic_output",
+        "test_vectorize.PipelineTests.test_disguised_format_and_corrupt_input",
+        "test_vectorize.PipelineTests.test_empty_transparent_image",
+        "test_vectorize.PipelineTests.test_engine_failure_preserves_existing_output",
+        "test_vectorize.PipelineTests.test_every_preset_renders",
+        "test_vectorize.PipelineTests.test_exif_orientation",
+        "test_vectorize.PipelineTests.test_flat_white_and_black",
+        "test_vectorize.PipelineTests.test_illustration_scale_preserves_output_dimensions_and_opacity",
+        "test_vectorize.PipelineTests.test_illustration_small_detail_survives",
+        "test_vectorize.PipelineTests.test_invalid_arguments",
+        "test_vectorize.PipelineTests.test_invalid_svg_rejected",
+        "test_vectorize.PipelineTests.test_jpg",
+        "test_vectorize.PipelineTests.test_line_art_preserves_thin_line_removes_isolated_noise",
+        "test_vectorize.PipelineTests.test_malformed_path_rejected_even_with_valid_xml",
+        "test_vectorize.PipelineTests.test_missing_input",
+        "test_vectorize.PipelineTests.test_missing_node",
+        "test_vectorize.PipelineTests.test_missing_svgo_real_bridge",
+        "test_vectorize.PipelineTests.test_missing_vtracer_has_install_command",
+        "test_vectorize.PipelineTests.test_no_optimize_and_overrides",
+        "test_vectorize.PipelineTests.test_no_optimize_does_not_require_svgo_but_requires_renderer",
+        "test_vectorize.PipelineTests.test_old_engine_api_has_update_command",
+        "test_vectorize.PipelineTests.test_opaque_source_cannot_develop_transparent_gaps",
+        "test_vectorize.PipelineTests.test_optimization_channel_guard_boundary_and_output_preservation",
+        "test_vectorize.PipelineTests.test_palette_transparent_png",
+        "test_vectorize.PipelineTests.test_png_svg_and_alpha",
+        "test_vectorize.PipelineTests.test_scaled_pixel_budget_requires_explicit_smaller_scale",
+        "test_vectorize.PipelineTests.test_unsupported_format",
+        "test_vectorize.PipelineTests.test_validation_failure_preserves_existing_output",
+        "test_vectorize.PipelineTests.test_webp_transparency"
+      ],
+      "case_count": 34,
+      "unique_case_count": 34,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "framework_seconds": 10.205,
+      "outcome": "passed",
+      "command": [
+        "python",
+        ".highgrade/local/clear-audit-2026-10-14/run_svg_suite.py"
+      ]
+    }
+  ],
+  "source_identity": {
+    "files": 54,
+    "svg_files": 21,
+    "cha_files": 33,
+    "copy_before_after_equal": true,
+    "current_copy_equals_original_and_global_initial": true,
+    "files_verified": [
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/.codex-plugin/plugin.json",
+        "original_source": "plugins/code-health-audit/.codex-plugin/plugin.json",
+        "sha256": "7163f690521fddb4f461e75a36e4d3c5e60c137a398c9ab3f96d5547c1bfee83",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/SKILL.md",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/SKILL.md",
+        "sha256": "84bee4f01c28592b70121cc6b89fb2e6f343c0ab464849167b381269248d7f99",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/agents/openai.yaml",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/agents/openai.yaml",
+        "sha256": "a2815b0a8b44537895bb15126e8b26e25adc8b02a9d65d5e49a5beac505ad9fb",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/references/accepted-findings.md",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/references/accepted-findings.md",
+        "sha256": "e73828605defded44cc5e9a29c1841d873a7e27ab53a86592de1d23caf47bbdd",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/references/report-contract.md",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/references/report-contract.md",
+        "sha256": "c5a1aa8b682ba0931228bf42e6252c20594029fb268bfc069384402d8c939a3f",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/references/toolchain.md",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/references/toolchain.md",
+        "sha256": "50cd7a88a31fff1f0d1804b25a3896fc752320eb05c74659bf9d8d2d7f92fa36",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/analyzer_worker.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/analyzer_worker.py",
+        "sha256": "b76bccc2b79d100bda981eb0a864bfedb34a1ab70da94ddf4a2a2fefd56cdb6f",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/audit.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/audit.py",
+        "sha256": "4bff97c5ed3639a7154fcf6fad33341b0afe5eb5a4d713dec4c46e4ab73a8bca",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/capture_coverage.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/capture_coverage.py",
+        "sha256": "3dc5310de27d76cdd810e2362426064e2a82ee596770d3a0bacd85a1f1fdeabf",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/__init__.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/__init__.py",
+        "sha256": "1aa11b32132c34ede2d1f70ac1041f5c44129f8eb530583b16712a9ac9f17288",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/acceptance.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/acceptance.py",
+        "sha256": "e32a2d143fccff65ba0f8efac6ff88f614f3cf319d7a0772cc7970c2e218fe8c",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/adapters.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/adapters.py",
+        "sha256": "df3a89752626da4fba0e83e32a24fce6919ebf2d7fee2a734da98409f6585615",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/core.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/core.py",
+        "sha256": "3152a5abac4d65c81015ce7c20bea9febeecb462c3cf6ab0f77221e8cfbeafb5",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/execution.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/execution.py",
+        "sha256": "0979ea2ab41576f70fc6d7a5ca68d37019e6009560129250177bec3de7d83f2d",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/git_scope.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/git_scope.py",
+        "sha256": "65795e3ea21d8652fd8c8ef2284ea682f13670421220161a5d0b522b2b157724",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/processes.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/processes.py",
+        "sha256": "557577565d624a038952e38239c3775b3965cf068962f9576d1eb33faec41fce",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/provenance.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/provenance.py",
+        "sha256": "ee28ffbf417c915ea936d915ba8d3ca16abba94fc3f9fc0f3e3ceef1d7b64a0b",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/render.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/render.py",
+        "sha256": "4fad81d5f4680630dae52f5a62b3ebe0ff9da857efc87214c2116c6936bda81d",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/runtime.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/runtime.py",
+        "sha256": "8a6c792335c47fd38909ce55db955bc5d544d1572423f4985eeab8dfb7d65837",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/validation.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/validation.py",
+        "sha256": "a36947ee4f5fb2b4bb95248ff070a5508a85c31981792056f44a717038bf6009",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/accepted-findings.schema.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/accepted-findings.schema.json",
+        "sha256": "9011a5274cf16f3ea2baf5bf59a847ed1e005cc4dbee4eadc3469002e9c43b8c",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/coverage-provenance.schema.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/coverage-provenance.schema.json",
+        "sha256": "b67dbd626f47f07ef2c3ea642ae2abbc11b0f9cf3d4a58750b2bbe5f218ba6a4",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/default-policy.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/default-policy.json",
+        "sha256": "74db8d61a763056bf91cdc41e1fccb631250a76ed1f0ffc456b126f3e4661797",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/policy.schema.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/policy.schema.json",
+        "sha256": "eebb071049743612a327b31ff99bf78c19f24f9f0ba1fd5abb33a2cdc71bb5ed",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/report.schema.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/report.schema.json",
+        "sha256": "3c6fb1ddd072f4a8ce0af9dd09fe29a29b618a58d326a6b4b5d9d2f1b4e86d52",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/requirements-analyzers.txt",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/requirements-analyzers.txt",
+        "sha256": "6e87fa65447b356c0789d256658d4e22a8e6bef6eaddd6d42a15ec7301b0be0c",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/toolchain.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/toolchain.json",
+        "sha256": "a8523e27c5d59b80632df473acbb4f2e87d733bd4b032f260dd227fc48642653",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/pylint_entry.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/pylint_entry.py",
+        "sha256": "1a5b4595aca94e724f6f5ae716cc0516789ba334c8bc967680063a670123b273",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_contracts.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_contracts.py",
+        "sha256": "cb6bf513ce164b26af3eaab2f8bace14e2bded7294d10ec370ff000cda5a3cc4",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_core.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_core.py",
+        "sha256": "08efe78a6cf65930565685430ad4ffb30bc54f80addad4a0961bf11e8d4f9242",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_metrics.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_metrics.py",
+        "sha256": "d989f0390d6acd554d763d78c2067b2051bde6d67c78780cc06c75118559cc1b",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_preflight.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_preflight.py",
+        "sha256": "3ce11db2d593f9cd0a7cbd567ecf8573650850fe29c2d89d46cac5b13ec65730",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_workflows.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_workflows.py",
+        "sha256": "813da2790deab44fa2d7cb144d6b0a025c558dedcea086088bdc2956e00ab56e",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/.codex-plugin/plugin.json",
+        "original_source": "plugins/svg-vectorizer/.codex-plugin/plugin.json",
+        "sha256": "4065c228ee7f52ee2ed4e4e08f7d74a271f2ca5ae8fcf48902ac809942b73e69",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/.gitignore",
+        "original_source": "plugins/svg-vectorizer/.gitignore",
+        "sha256": "fb30bc289372d84dc05ef495aed02e3917204b207fa0977f0fe15f7eec1235e4",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/README.md",
+        "original_source": "plugins/svg-vectorizer/README.md",
+        "sha256": "9ec741925d7821b673e82d96991aa63f3eb585a35a3521ff73d9841a9dfcc7f2",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/VERIFICATION.md",
+        "original_source": "plugins/svg-vectorizer/VERIFICATION.md",
+        "sha256": "851ef530979fe3cdabb4c3e2457cd874357ffdbdc257893ede3091e5a8fff263",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/cli-output.svg",
+        "original_source": "plugins/svg-vectorizer/examples/cli-output.svg",
+        "sha256": "a996a59704e50d361e9438c91a5b6862cdd38b28dc09f9c3d809ef9d7a6720f0",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/smoke-input.png",
+        "original_source": "plugins/svg-vectorizer/examples/smoke-input.png",
+        "sha256": "6a8162c327097386871dcb663c142e002d65b41e5b25582e4ac5de05cb2ba315",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/smoke-output.svg",
+        "original_source": "plugins/svg-vectorizer/examples/smoke-output.svg",
+        "sha256": "a996a59704e50d361e9438c91a5b6862cdd38b28dc09f9c3d809ef9d7a6720f0",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/smoke-rendered.png",
+        "original_source": "plugins/svg-vectorizer/examples/smoke-rendered.png",
+        "sha256": "0ed29453384843cdf5b6797610a2b1f3b8a088ab7c9c9041485ef0e4e8f486cd",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/smoke-report.json",
+        "original_source": "plugins/svg-vectorizer/examples/smoke-report.json",
+        "sha256": "874a8c94b22e97dcc32cee78e8bf42d110086b696d9c0b564401cb7378b0f455",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/package-lock.json",
+        "original_source": "plugins/svg-vectorizer/package-lock.json",
+        "sha256": "b0b492a4465e70da87269199c94ff620a977a05545a19f96e4aaa59516891a26",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/package.json",
+        "original_source": "plugins/svg-vectorizer/package.json",
+        "sha256": "40a512dddefbfdc854c5ff390a25303a2207877ba65e05b618ba508f6051c8d8",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/pyproject.toml",
+        "original_source": "plugins/svg-vectorizer/pyproject.toml",
+        "sha256": "9d05923f9dc6355d8a3bcebc01c09a54aef27f2ddf3cc501333986fa49e04be0",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/requirements.txt",
+        "original_source": "plugins/svg-vectorizer/requirements.txt",
+        "sha256": "d22a3b5880f8608e432a0a91f3ea625a7652dad6a7a64df19a94364c159657af",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/scripts/__init__.py",
+        "original_source": "plugins/svg-vectorizer/scripts/__init__.py",
+        "sha256": "02ad53a5bb06c7f746575f5b96ae6e85bb7d04e1e7816977152e8b71781c657e",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/scripts/svg_tools.mjs",
+        "original_source": "plugins/svg-vectorizer/scripts/svg_tools.mjs",
+        "sha256": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/scripts/vectorize.py",
+        "original_source": "plugins/svg-vectorizer/scripts/vectorize.py",
+        "sha256": "6f0e39ae238dc346ee0aa9c820fe11e92b7ad2b8696aaa965529cb5107239fad",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/skills/vectorize/SKILL.md",
+        "original_source": "plugins/svg-vectorizer/skills/vectorize/SKILL.md",
+        "sha256": "41c5155a1b0106ea2c66f70c830c8b4e6d70a5d981f608510d6f54240cbb789d",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/tests/__init__.py",
+        "original_source": "plugins/svg-vectorizer/tests/__init__.py",
+        "sha256": "3c171aff42e4a44f8166a5ca8045266dd680fdb2080a37ed3c915ffcedef3bc3",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/tests/fixtures.py",
+        "original_source": "plugins/svg-vectorizer/tests/fixtures.py",
+        "sha256": "71fb8f8e1880659ba15cc7306ff169be1d7d21e0aa043e1d507ad1b6f2327ffe",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/tests/smoke.py",
+        "original_source": "plugins/svg-vectorizer/tests/smoke.py",
+        "sha256": "3af8b600fa960a733b2ec7cfc09d00e8099e6fb3db237caaab6876643be5156e",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/tests/test_vectorize.py",
+        "original_source": "plugins/svg-vectorizer/tests/test_vectorize.py",
+        "sha256": "d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      }
+    ]
+  },
+  "environment": {
+    "record": ".highgrade/local/clear-audit-2026-10-14/plugin-environment-record.json",
+    "interpreter": "lexical temporary .venv/bin/python",
+    "python": "3.12.14",
+    "implementation": "CPython",
+    "system": "Linux",
+    "machine": "x86_64",
+    "sys_prefix_confirms_venv": true,
+    "pip_check_exit": 0,
+    "pip_check": "No broken requirements found.",
+    "analyzer_tool_dependency_pins": 20,
+    "all_20_match_runtime_and_freeze": true,
+    "additional_svg_python_pins": {
+      "vtracer": "1.0.0a4",
+      "pillow": "12.3.0"
+    },
+    "freeze_entries": 22,
+    "svg_node_pins": {
+      "svgo": "4.1.0",
+      "@resvg/resvg-js": "2.6.2"
+    },
+    "base_interpreter_artifacts_used_as_venv_evidence": false,
+    "note": "Совместимый общий временный env применён только для этих package tests; продуктовые среды/поставки плагинов не объединялись."
+  },
+  "runtime_boundary": {
+    "runtime_evidence": ".highgrade/local/clear-audit-2026-10-14/plugin-runtime-evidence.json",
+    "runtime_sha256": "484ef4496dda5d8e7bd761ae92e448304f0966366ea375a67accf624160928aa",
+    "runner_sha256": "14b011fba87a085fd3c86dee683b44a3b629d7e258d174d43f6d40b631f4a551",
+    "identity_hash_verified": true,
+    "runner_hash_verified": true,
+    "validated": false,
+    "problems": [
+      "This Python/platform combination has not been validated for this release"
+    ],
+    "meaning": "Workflow assertions корректно ожидают RUNTIME_UNVERIFIED/INCOMPLETE на Linux CPython3.12.14. Package PASS не меняет tested_runtimes Windows CPython3.12.10 и не сертифицирует Linux audit."
+  },
+  "initial_svg_attempt": {
+    "original": "target/highgrade/runs/clear-svg-tests-a8c78bcb991c4aad9b3afa8574431bdc/run.log",
+    "sha256": "994bc86555e3daf036f7c3b3215d2da9163a4945d90e12c5ab5895e8fc11f452",
+    "classification": "setup/import failure from wrong cwd",
+    "real_product_RED": false,
+    "corrected_launcher": ".highgrade/local/clear-audit-2026-10-14/run_svg_suite.py",
+    "launcher_sha256": "e67ff2d1f5970c90039a30f39f8db57810cff2bb2c766fcab3d3bc15be8b7df2",
+    "separate_successful_run": "target/highgrade/runs/clear-svg-tests-fixed-9297a2fb2c8c4b13a94e2343336f16d5/run.log",
+    "history_preserved": true
+  },
+  "dependency_advisory": {
+    "reported_by_root_setup": "npm ci reported one high finding in known SVG dependencies",
+    "pins_changed": false,
+    "advisory_declared_closed": false,
+    "scope_limit": "Функциональные package tests не подтверждают исправление advisory. Новое security investigation/update в этом review не выполнялось."
+  },
+  "preservation_before_cleanup": {
+    "selected_originals": [
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-environment-record.json",
+        "sha256": "0ab178447c71b224803ad16ef3be41f561b3fa19ec90c414dffdd4e8043fb094"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-pip-check.stdout",
+        "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-pip-check.stderr",
+        "sha256": "10b6b19fd5aacdaa8feaf70d95e68793cc0ae43ceae99075220a6bc57c0ba3ac"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-pip-freeze.stdout",
+        "sha256": "d84385316d3ff2e296afad050a22382a0e72a8474e29011a3494deadb5c748d6"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-pip-freeze.stderr",
+        "sha256": "10b6b19fd5aacdaa8feaf70d95e68793cc0ae43ceae99075220a6bc57c0ba3ac"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-python.stdout",
+        "sha256": "9c5f418ad1f8d447054d226c3563c866a0c7b4dfc0f3ecc007363c6ebcfefac8"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-python.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-runtime-evidence.json",
+        "sha256": "1558a59d25069cd8705e2513bc86acd49cfdf643f34c0f3b8fd9f85d5a490d07"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-subject-before-svg.json",
+        "sha256": "be12ba5a2b3a52cdb05ebeda9704b23a698a20698a57cb549c4fb08e132163b3"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/plugin-subject-after.json",
+        "sha256": "be12ba5a2b3a52cdb05ebeda9704b23a698a20698a57cb549c4fb08e132163b3"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/run_svg_suite.py",
+        "sha256": "e67ff2d1f5970c90039a30f39f8db57810cff2bb2c766fcab3d3bc15be8b7df2"
+      },
+      {
+        "path": "target/highgrade/runs/clear-svg-tests-a8c78bcb991c4aad9b3afa8574431bdc/run.log",
+        "sha256": "994bc86555e3daf036f7c3b3215d2da9163a4945d90e12c5ab5895e8fc11f452"
+      },
+      {
+        "path": "target/highgrade/runs/clear-cha-tests-25fc7843f2da4274b5acdd6a65bcb6cd/run.log",
+        "sha256": "9d88f3481c014c96d332b6f38f70cccb4eca350b388ea78ebedbf4833d42018b"
+      },
+      {
+        "path": "target/highgrade/runs/clear-svg-tests-fixed-9297a2fb2c8c4b13a94e2343336f16d5/run.log",
+        "sha256": "57d9bd36e9ab06a0f73fa953970f64a907b91ab529a2227bec1efa1bfce89b8f"
+      }
+    ],
+    "source_copies": [
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/.codex-plugin/plugin.json",
+        "original_source": "plugins/code-health-audit/.codex-plugin/plugin.json",
+        "sha256": "7163f690521fddb4f461e75a36e4d3c5e60c137a398c9ab3f96d5547c1bfee83",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/SKILL.md",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/SKILL.md",
+        "sha256": "84bee4f01c28592b70121cc6b89fb2e6f343c0ab464849167b381269248d7f99",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/agents/openai.yaml",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/agents/openai.yaml",
+        "sha256": "a2815b0a8b44537895bb15126e8b26e25adc8b02a9d65d5e49a5beac505ad9fb",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/references/accepted-findings.md",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/references/accepted-findings.md",
+        "sha256": "e73828605defded44cc5e9a29c1841d873a7e27ab53a86592de1d23caf47bbdd",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/references/report-contract.md",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/references/report-contract.md",
+        "sha256": "c5a1aa8b682ba0931228bf42e6252c20594029fb268bfc069384402d8c939a3f",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/references/toolchain.md",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/references/toolchain.md",
+        "sha256": "50cd7a88a31fff1f0d1804b25a3896fc752320eb05c74659bf9d8d2d7f92fa36",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/analyzer_worker.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/analyzer_worker.py",
+        "sha256": "b76bccc2b79d100bda981eb0a864bfedb34a1ab70da94ddf4a2a2fefd56cdb6f",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/audit.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/audit.py",
+        "sha256": "4bff97c5ed3639a7154fcf6fad33341b0afe5eb5a4d713dec4c46e4ab73a8bca",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/capture_coverage.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/capture_coverage.py",
+        "sha256": "3dc5310de27d76cdd810e2362426064e2a82ee596770d3a0bacd85a1f1fdeabf",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/__init__.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/__init__.py",
+        "sha256": "1aa11b32132c34ede2d1f70ac1041f5c44129f8eb530583b16712a9ac9f17288",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/acceptance.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/acceptance.py",
+        "sha256": "e32a2d143fccff65ba0f8efac6ff88f614f3cf319d7a0772cc7970c2e218fe8c",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/adapters.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/adapters.py",
+        "sha256": "df3a89752626da4fba0e83e32a24fce6919ebf2d7fee2a734da98409f6585615",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/core.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/core.py",
+        "sha256": "3152a5abac4d65c81015ce7c20bea9febeecb462c3cf6ab0f77221e8cfbeafb5",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/execution.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/execution.py",
+        "sha256": "0979ea2ab41576f70fc6d7a5ca68d37019e6009560129250177bec3de7d83f2d",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/git_scope.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/git_scope.py",
+        "sha256": "65795e3ea21d8652fd8c8ef2284ea682f13670421220161a5d0b522b2b157724",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/processes.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/processes.py",
+        "sha256": "557577565d624a038952e38239c3775b3965cf068962f9576d1eb33faec41fce",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/provenance.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/provenance.py",
+        "sha256": "ee28ffbf417c915ea936d915ba8d3ca16abba94fc3f9fc0f3e3ceef1d7b64a0b",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/render.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/render.py",
+        "sha256": "4fad81d5f4680630dae52f5a62b3ebe0ff9da857efc87214c2116c6936bda81d",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/runtime.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/runtime.py",
+        "sha256": "8a6c792335c47fd38909ce55db955bc5d544d1572423f4985eeab8dfb7d65837",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/code_health/validation.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/code_health/validation.py",
+        "sha256": "a36947ee4f5fb2b4bb95248ff070a5508a85c31981792056f44a717038bf6009",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/accepted-findings.schema.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/accepted-findings.schema.json",
+        "sha256": "9011a5274cf16f3ea2baf5bf59a847ed1e005cc4dbee4eadc3469002e9c43b8c",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/coverage-provenance.schema.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/coverage-provenance.schema.json",
+        "sha256": "b67dbd626f47f07ef2c3ea642ae2abbc11b0f9cf3d4a58750b2bbe5f218ba6a4",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/default-policy.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/default-policy.json",
+        "sha256": "74db8d61a763056bf91cdc41e1fccb631250a76ed1f0ffc456b126f3e4661797",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/policy.schema.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/policy.schema.json",
+        "sha256": "eebb071049743612a327b31ff99bf78c19f24f9f0ba1fd5abb33a2cdc71bb5ed",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/report.schema.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/report.schema.json",
+        "sha256": "3c6fb1ddd072f4a8ce0af9dd09fe29a29b618a58d326a6b4b5d9d2f1b4e86d52",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/requirements-analyzers.txt",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/requirements-analyzers.txt",
+        "sha256": "6e87fa65447b356c0789d256658d4e22a8e6bef6eaddd6d42a15ec7301b0be0c",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/data/toolchain.json",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/data/toolchain.json",
+        "sha256": "a8523e27c5d59b80632df473acbb4f2e87d733bd4b032f260dd227fc48642653",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/pylint_entry.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/pylint_entry.py",
+        "sha256": "1a5b4595aca94e724f6f5ae716cc0516789ba334c8bc967680063a670123b273",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_contracts.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_contracts.py",
+        "sha256": "cb6bf513ce164b26af3eaab2f8bace14e2bded7294d10ec370ff000cda5a3cc4",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_core.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_core.py",
+        "sha256": "08efe78a6cf65930565685430ad4ffb30bc54f80addad4a0961bf11e8d4f9242",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_metrics.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_metrics.py",
+        "sha256": "d989f0390d6acd554d763d78c2067b2051bde6d67c78780cc06c75118559cc1b",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_preflight.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_preflight.py",
+        "sha256": "3ce11db2d593f9cd0a7cbd567ecf8573650850fe29c2d89d46cac5b13ec65730",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/audit/skills/code-health-audit/scripts/tests/test_workflows.py",
+        "original_source": "plugins/code-health-audit/skills/code-health-audit/scripts/tests/test_workflows.py",
+        "sha256": "813da2790deab44fa2d7cb144d6b0a025c558dedcea086088bdc2956e00ab56e",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/.codex-plugin/plugin.json",
+        "original_source": "plugins/svg-vectorizer/.codex-plugin/plugin.json",
+        "sha256": "4065c228ee7f52ee2ed4e4e08f7d74a271f2ca5ae8fcf48902ac809942b73e69",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/.gitignore",
+        "original_source": "plugins/svg-vectorizer/.gitignore",
+        "sha256": "fb30bc289372d84dc05ef495aed02e3917204b207fa0977f0fe15f7eec1235e4",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/README.md",
+        "original_source": "plugins/svg-vectorizer/README.md",
+        "sha256": "9ec741925d7821b673e82d96991aa63f3eb585a35a3521ff73d9841a9dfcc7f2",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/VERIFICATION.md",
+        "original_source": "plugins/svg-vectorizer/VERIFICATION.md",
+        "sha256": "851ef530979fe3cdabb4c3e2457cd874357ffdbdc257893ede3091e5a8fff263",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/cli-output.svg",
+        "original_source": "plugins/svg-vectorizer/examples/cli-output.svg",
+        "sha256": "a996a59704e50d361e9438c91a5b6862cdd38b28dc09f9c3d809ef9d7a6720f0",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/smoke-input.png",
+        "original_source": "plugins/svg-vectorizer/examples/smoke-input.png",
+        "sha256": "6a8162c327097386871dcb663c142e002d65b41e5b25582e4ac5de05cb2ba315",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/smoke-output.svg",
+        "original_source": "plugins/svg-vectorizer/examples/smoke-output.svg",
+        "sha256": "a996a59704e50d361e9438c91a5b6862cdd38b28dc09f9c3d809ef9d7a6720f0",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/smoke-rendered.png",
+        "original_source": "plugins/svg-vectorizer/examples/smoke-rendered.png",
+        "sha256": "0ed29453384843cdf5b6797610a2b1f3b8a088ab7c9c9041485ef0e4e8f486cd",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/examples/smoke-report.json",
+        "original_source": "plugins/svg-vectorizer/examples/smoke-report.json",
+        "sha256": "874a8c94b22e97dcc32cee78e8bf42d110086b696d9c0b564401cb7378b0f455",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/package-lock.json",
+        "original_source": "plugins/svg-vectorizer/package-lock.json",
+        "sha256": "b0b492a4465e70da87269199c94ff620a977a05545a19f96e4aaa59516891a26",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/package.json",
+        "original_source": "plugins/svg-vectorizer/package.json",
+        "sha256": "40a512dddefbfdc854c5ff390a25303a2207877ba65e05b618ba508f6051c8d8",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/pyproject.toml",
+        "original_source": "plugins/svg-vectorizer/pyproject.toml",
+        "sha256": "9d05923f9dc6355d8a3bcebc01c09a54aef27f2ddf3cc501333986fa49e04be0",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/requirements.txt",
+        "original_source": "plugins/svg-vectorizer/requirements.txt",
+        "sha256": "d22a3b5880f8608e432a0a91f3ea625a7652dad6a7a64df19a94364c159657af",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/scripts/__init__.py",
+        "original_source": "plugins/svg-vectorizer/scripts/__init__.py",
+        "sha256": "02ad53a5bb06c7f746575f5b96ae6e85bb7d04e1e7816977152e8b71781c657e",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/scripts/svg_tools.mjs",
+        "original_source": "plugins/svg-vectorizer/scripts/svg_tools.mjs",
+        "sha256": "e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/scripts/vectorize.py",
+        "original_source": "plugins/svg-vectorizer/scripts/vectorize.py",
+        "sha256": "6f0e39ae238dc346ee0aa9c820fe11e92b7ad2b8696aaa965529cb5107239fad",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/skills/vectorize/SKILL.md",
+        "original_source": "plugins/svg-vectorizer/skills/vectorize/SKILL.md",
+        "sha256": "41c5155a1b0106ea2c66f70c830c8b4e6d70a5d981f608510d6f54240cbb789d",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/tests/__init__.py",
+        "original_source": "plugins/svg-vectorizer/tests/__init__.py",
+        "sha256": "3c171aff42e4a44f8166a5ca8045266dd680fdb2080a37ed3c915ffcedef3bc3",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/tests/fixtures.py",
+        "original_source": "plugins/svg-vectorizer/tests/fixtures.py",
+        "sha256": "71fb8f8e1880659ba15cc7306ff169be1d7d21e0aa043e1d507ad1b6f2327ffe",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/tests/smoke.py",
+        "original_source": "plugins/svg-vectorizer/tests/smoke.py",
+        "sha256": "3af8b600fa960a733b2ec7cfc09d00e8099e6fb3db237caaab6876643be5156e",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      },
+      {
+        "temporary_copy": "target/highgrade/tmp/clear-audit-plugins/svg/tests/test_vectorize.py",
+        "original_source": "plugins/svg-vectorizer/tests/test_vectorize.py",
+        "sha256": "d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286",
+        "copy_after_matches": true,
+        "original_matches_global_initial": true
+      }
+    ],
+    "exclude_from_export": [
+      "temporary .venv",
+      "svg/node_modules",
+      "pip/npm cache or base interpreter tree"
+    ],
+    "cleanup_condition": "Root может сохранить logs/runtime/source selection существующим CAS route и затем удалить только подтверждённый owned scratch без следования ссылкам. Этот review не исполняет cleanup."
+  },
+  "retained_limits": [
+    "Локальный package baseline — отдельный факт от полноценного CHA audit с complete evidence и contextual hotspot review.",
+    "Code Health tested_runtimes не изменён; runtime validated=false сохраняется.",
+    "Installed Codex plugins/marketplaces/other projects не проверялись и не менялись.",
+    "SVG advisory не закрыт; версии/lockfile сохранены.",
+    "Глобальная полнота ancestor/home/env Cargo config и Windows/Node24 CI не выводятся из этих package reports.",
+    "Token/money/cost saving claims не добавлены."
+  ],
+  "reviewer_edits": "Только final-plugin-review-addendum.md/json; код, каталог, предыдущие reviews, пакеты и установки не изменены."
+}

@@ -1,0 +1,44 @@
+{
+  "id": "execute_without_goal",
+  "request": "Используй Planner и выполни два шага в этой папке: создай note.txt со словом done, затем summary.txt с результатом первого шага. Goal не поручен.",
+  "capability_input": "no Goal choice",
+  "capability_provenance": "controlled fixture input; not a live API observation",
+  "coordination_mode": "ordinary_plan",
+  "goal_action": "none",
+  "implementation_actions": [
+    {
+      "operation": "write",
+      "path": "note.txt",
+      "value": "done"
+    },
+    {
+      "operation": "read",
+      "path": "note.txt",
+      "observed_value": "done"
+    },
+    {
+      "operation": "write",
+      "path": "summary.txt",
+      "derived_from": "observed note.txt content"
+    },
+    {
+      "operation": "read",
+      "path": "summary.txt",
+      "observed_value": "note.txt содержит: done\n"
+    }
+  ],
+  "implementation_files": [
+    "note.txt",
+    "summary.txt"
+  ],
+  "status": "completed",
+  "next": "none",
+  "file_sha256": {
+    "note.txt": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "summary.txt": "33fb238ccc332ceaf8a1f3e1af1fb2f388019f99075b7dee3e80df6ea149dbf2"
+  },
+  "observation_artifacts": [
+    "response.md",
+    "case-observation.json"
+  ]
+}

@@ -1,0 +1,19 @@
+# Дополнение к plugin REVIEW_GO и подтверждение scratch
+
+2026-10-14, `clear_forward`. Новые тесты и presentation checks не запускались.
+
+Последний `audit-unit-final-whitespace.{json,stdout,stderr}` проверен: **59 PASS, 0 skip**, exit 0, 22.368 s. Хеши обоих original streams совпадают с metadata. Пять test source hashes совпадают с текущими tracked bytes и собственной source copy. Их финальные bytes сохранены в `final-test-sources/`. Изменение `test_workflows.py` после прежнего GO ограничено удалением trailing whitespace. Production runtime/toolchain/pins сохранены. Linux runtime остаётся `unverified`; вывод прежнего REVIEW_GO не расширяется.
+
+Точное владение подтверждено для единственного пути:
+
+`/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward`
+
+Marker `owner=clear_forward-plugin-package-review-v1`, созданный мной `2026-10-14T06:07:09.350105+00:00`, побайтно совпадает с `owner-original.json`. Корень не ссылка; resolved path совпадает. Все девять ссылок — внутренние alias либо ссылки venv на существующий bundled Python. При удалении scratch нельзя переходить к их targets.
+
+Нужного необработанного результата в env/source/node_modules не осталось. Все original command streams проверены по recorded hashes. Пять новых smoke/CLI artifacts совпадают с сохранёнными bytes в `svg-artifacts/`; source examples являются исходными fixtures. Дополнительно сохранены шесть npm setup/debug logs в `setup-cache-logs/`. В scratch остались только 547 Node compile-cache files; лишние source-copy files являются metadata editable install. Venv, node_modules и download caches нужны только для повторного запуска, который сейчас не назначен.
+
+Доступный `/proc` показал три процесса и ни одного owned reference в cwd/exe/argv/open fd. Это проверка доступного PID namespace, **не host-wide гарантия**. Мои проверки завершены; активных тестовых сессий с этим scratch у меня нет. Основной агент координирует остальные сессии перед удалением.
+
+**Ack:** после immutable экспорта актуального `local/plugin-checks/` основной агент может удалить только указанный owned scratch, без обхода symlink targets. Само удаление этим ревью не выполнено. Подробные marker/link/usage/inventory/hash наблюдения: `scratch-cleanup-review.json`.
+
+Прежний предел evidence сохранён: самая ранняя ошибка shell quoting не запустила child process и не имеет child report; её описание находится в `setup-quoting-error.md`, исходный traceback — в tool transcript. Это не потерянный результат package test внутри удаляемой среды.

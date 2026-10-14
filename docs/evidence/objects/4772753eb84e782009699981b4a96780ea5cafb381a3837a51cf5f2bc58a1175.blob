@@ -1,0 +1,154 @@
+{
+  "config": {
+    "argv": [
+      "/home/lainterus/.local/share/mise/installs/node/26.8.2/bin/node",
+      "/home/lainterus/Projects/High Grade/ui/node_modules/.bin/playwright",
+      "test",
+      "api-client.spec.ts"
+    ],
+    "configFile": "/home/lainterus/Projects/High Grade/ui/playwright.config.ts",
+    "rootDir": "/home/lainterus/Projects/High Grade/ui/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/lainterus/Projects/High Grade/target/highgrade/runs/clear-api-wait-final-5b0669cbacf64d53a310eb1940cdb269/playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/lainterus/Projects/High Grade/ui/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/home/lainterus/Projects/High Grade/target/highgrade/runs/clear-api-wait-final-5b0669cbacf64d53a310eb1940cdb269/playwright/report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "api-client.spec.ts",
+      "file": "api-client.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "POST StoreBusy rejects after one request; GET may retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 207,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T14:55:06.827Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0157bbfa85bceaa9c48-afbf891c0b08c92237e8",
+          "file": "api-client.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "abort interrupts GET retry waiting",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 22,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T14:55:07.053Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b0157bbfa85bceaa9c48-908e2c410b34f7e53bdd",
+          "file": "api-client.spec.ts",
+          "line": 22,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-14T14:55:06.491Z",
+    "duration": 607.066,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,9 @@
+GO только для повторения назначенного real native poll repro на local Linux candidate. Это не общий execution GO Clear, не installed exact-SHA E2E, не Windows CI и не приёмка.
+
+Тот же тест, что исходный RED, теперь PASS. Пока фоновое чтение A удерживалось, запрос B и видимый документ B появились до release A. DOM до release: heading «Спецификация 2», loading отсутствует, выбран HG-0002. Alert отсутствует; хеш prepared fixture каталога совпадает. Served manifest.files равен текущему dist. Screenshot before-release.png прочитан независимо: виден документ B.
+
+Исходники NativeWorkspace.tsx изменены с RED; api/client.ts имеет прежние bytes. Контролируемый hold не подменяет native API: fixture использует настоящий процесс CLI/UI и реальную CLI-запись до readonly phase.
+
+Предел позднего ответа: этот same repro утверждает B после release, но не ждёт завершения route callback. Отдельный исправленный permanent regression ожидает handled и затем проверяет B/no-alert/catalog; его execution подтверждается отдельным исходным отчётом, когда он будет предоставлен. Source signal/serial guards также прочитаны.
+
+Исходные command/report/run.log/events/artifacts сохранены. Setup/config/selector failures до meaningful RED не считаются нарушением продукта. Полный исходный RED находится в соседнем poll-repro-red/.

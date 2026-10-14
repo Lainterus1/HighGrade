@@ -1,0 +1,29 @@
+{
+  "id": "goal_refused",
+  "request": "Пользователь выбрал Goal; инструмент вернул отказ создания. Начни зависимую реализацию только если маршрут это допускает.",
+  "capability_input": {
+    "kind": "controlled tool failure",
+    "operation": "create_goal",
+    "result": {
+      "isError": true,
+      "reason": "test capability denied"
+    }
+  },
+  "capability_provenance": "controlled fixture input; not a live API observation",
+  "coordination_mode": "goal_required_but_unavailable",
+  "goal_action": "none; no fictitious Goal state",
+  "implementation_actions": [],
+  "implementation_files": [],
+  "status": "dependent_execution_waiting",
+  "next": "Устранить test capability denied и успешно создать требуемый Goal.",
+  "observed_failure": {
+    "operation": "create_goal",
+    "reason": "test capability denied",
+    "source": "controlled fixture input, not live tool output"
+  },
+  "independent_preparation": "Prepared the reason for waiting and the first required next action.",
+  "observation_artifacts": [
+    "response.md",
+    "case-observation.json"
+  ]
+}

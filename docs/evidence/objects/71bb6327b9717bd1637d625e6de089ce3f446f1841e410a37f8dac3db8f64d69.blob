@@ -1,0 +1,183 @@
+{
+  "date": "2026-10-14T05:30:59.064313+00:00",
+  "cli_sha256": "d4cbfc2d5d953d9b922b4521aded639845bba769ccd969cafb71dc441c4846f1",
+  "records": [
+    {
+      "case": "baseline",
+      "command_argv": [
+        "/home/lainterus/.highgrade/global/releases/v0-4-0/highgrade",
+        "trace",
+        "--root",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/rust-trace-review-nl3q3d65",
+        "--record",
+        "run.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [],\n  \"limitations\": [\n    \"Сопоставление структурное; качество теста и полноту выбора существенных зависимостей проверяет агент. CLI не запускает тесты и не создаёт доказательства.\",\n    \"Сценарии вне автоматической трассировки требуют отдельного доказательства; их ручной или внешний результат здесь не определяется.\"\n  ],\n  \"measurements\": [\n    {\n      \"scenario_id\": \"HG-MATH-001\",\n      \"source\": \"openspec/specs/math/spec.md\",\n      \"status\": \"passed\",\n      \"tests\": [\n        [\n          \"math::adds\",\n          \"passed\"\n        ]\n      ]\n    },\n    {\n      \"automatic_passed\": 1,\n      \"automatic_scenarios\": 1,\n      \"linked_test_cases\": 1,\n      \"outside_automatic_trace\": 0,\n      \"scenarios_total\": 1,\n      \"test_cases_executed\": 1,\n      \"test_cases_missing\": 0,\n      \"test_cases_reported\": 1,\n      \"test_cases_skipped\": 0,\n      \"test_cases_unknown\": 0,\n      \"unlinked_test_cases\": 0\n    },\n    {\n      \"scope\": \"math\",\n      \"captured_at\": \"2026-10-14T00:00:00Z\",\n      \"command\": \"bounded native report reader probe\",\n      \"report\": \"junit.xml\",\n      \"report_sha256\": \"55fcd7d7e5b5b374eedbc04803de07cfa85ab5f52fc8b2249baad6215837a4b3\",\n      \"tool\": \"rust-nextest\"\n    }\n  ],\n  \"operation\": \"trace\",\n  \"result\": {\n    \"scope\": \"math\",\n    \"automatic_passed\": 1,\n    \"automatic_scenarios\": 1,\n    \"captured_at\": \"2026-10-14T00:00:00Z\",\n    \"command\": \"bounded native report reader probe\",\n    \"linked_test_cases\": 1,\n    \"outside_automatic_trace\": 0,\n    \"report\": \"junit.xml\",\n    \"report_sha256\": \"55fcd7d7e5b5b374eedbc04803de07cfa85ab5f52fc8b2249baad6215837a4b3\",\n    \"scenario_id\": \"HG-MATH-001\",\n    \"scenarios_total\": 1,\n    \"source\": \"openspec/specs/math/spec.md\",\n    \"status\": \"passed\",\n    \"test_cases_executed\": 1,\n    \"test_cases_missing\": 0,\n    \"test_cases_reported\": 1,\n    \"test_cases_skipped\": 0,\n    \"test_cases_unknown\": 0,\n    \"tests\": [\n      [\n        \"math::adds\",\n        \"passed\"\n      ]\n    ],\n    \"tool\": \"rust-nextest\",\n    \"unlinked_test_cases\": 0\n  },\n  \"status\": \"passed\"\n}\n",
+      "stderr": "",
+      "inputs": {
+        "spec": "### Requirement: [HG-MATH-REQ] Add integers\nThe system SHALL add integers.\n\n#### Scenario: [HG-MATH-001] Adds two values\n- WHEN two values are added\n- THEN the sum is returned\n",
+        "source": "// highgrade: HG-MATH-001\n#[test]\nfn adds() { assert_eq!(1+1,2); }\n",
+        "inventory": {
+          "rust-suites": {
+            "math": {
+              "kind": "test",
+              "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/rust-trace-review-nl3q3d65",
+              "binary-name": "math",
+              "testcases": {
+                "adds": {
+                  "filter-match": {
+                    "status": "matches"
+                  },
+                  "ignored": false
+                }
+              }
+            }
+          }
+        },
+        "junit_xml": "<testsuites><testcase classname=\"math\" name=\"adds\"/></testsuites>",
+        "run": {
+          "schema_version": 1,
+          "tool": "rust-nextest",
+          "command": "bounded native report reader probe",
+          "scope": "math",
+          "captured_at": "2026-10-14T00:00:00Z",
+          "capture_root": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/rust-trace-review-nl3q3d65",
+          "exit_code": 0,
+          "report": "junit.xml",
+          "report_sha256": "55fcd7d7e5b5b374eedbc04803de07cfa85ab5f52fc8b2249baad6215837a4b3",
+          "spec_files": [
+            "openspec/specs/math/spec.md"
+          ],
+          "test_sources": [
+            "tests/math.rs"
+          ],
+          "source_hashes": {
+            "openspec/specs/math/spec.md": "8ab899f5ad9bfff4c359e45564a086afd37a08481e019f67091b7d426549139d",
+            "tests/math.rs": "04337a50af14b9b2333105ea464e7cccd73cfc4b28995df64c51cf87f4cb730b",
+            "list.json": "d15a107202b748ba48dece6009ce0d6a85a20c39ae32b00873f997dc53ee58da"
+          },
+          "inventory": "list.json"
+        }
+      }
+    },
+    {
+      "case": "duplicate-failed-then-passed",
+      "command_argv": [
+        "/home/lainterus/.highgrade/global/releases/v0-4-0/highgrade",
+        "trace",
+        "--root",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/rust-trace-review-nl3q3d65",
+        "--record",
+        "run.json"
+      ],
+      "exit_code": 1,
+      "stdout": "{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [\n    {\n      \"code\": \"DuplicateTestResult\",\n      \"location\": \"junit.xml\",\n      \"message\": \"math::adds\",\n      \"status\": \"failed\"\n    }\n  ],\n  \"limitations\": [\n    \"Сопоставление структурное; качество теста и полноту выбора существенных зависимостей проверяет агент. CLI не запускает тесты и не создаёт доказательства.\",\n    \"Сценарии вне автоматической трассировки требуют отдельного доказательства; их ручной или внешний результат здесь не определяется.\"\n  ],\n  \"measurements\": [\n    {\n      \"scenario_id\": \"HG-MATH-001\",\n      \"source\": \"openspec/specs/math/spec.md\",\n      \"status\": \"passed\",\n      \"tests\": [\n        [\n          \"math::adds\",\n          \"passed\"\n        ]\n      ]\n    },\n    {\n      \"automatic_passed\": 1,\n      \"automatic_scenarios\": 1,\n      \"linked_test_cases\": 1,\n      \"outside_automatic_trace\": 0,\n      \"scenarios_total\": 1,\n      \"test_cases_executed\": 1,\n      \"test_cases_missing\": 0,\n      \"test_cases_reported\": 1,\n      \"test_cases_skipped\": 0,\n      \"test_cases_unknown\": 0,\n      \"unlinked_test_cases\": 0\n    },\n    {\n      \"scope\": \"math\",\n      \"captured_at\": \"2026-10-14T00:00:00Z\",\n      \"command\": \"bounded native report reader probe\",\n      \"report\": \"junit.xml\",\n      \"report_sha256\": \"0851b58ba5e94d80aef9c7d747673d2e4901f4cf9441b4edde6bc382e571d44f\",\n      \"tool\": \"rust-nextest\"\n    }\n  ],\n  \"operation\": \"trace\",\n  \"result\": {\n    \"scope\": \"math\",\n    \"automatic_passed\": 1,\n    \"automatic_scenarios\": 1,\n    \"captured_at\": \"2026-10-14T00:00:00Z\",\n    \"command\": \"bounded native report reader probe\",\n    \"linked_test_cases\": 1,\n    \"outside_automatic_trace\": 0,\n    \"report\": \"junit.xml\",\n    \"report_sha256\": \"0851b58ba5e94d80aef9c7d747673d2e4901f4cf9441b4edde6bc382e571d44f\",\n    \"scenario_id\": \"HG-MATH-001\",\n    \"scenarios_total\": 1,\n    \"source\": \"openspec/specs/math/spec.md\",\n    \"status\": \"passed\",\n    \"test_cases_executed\": 1,\n    \"test_cases_missing\": 0,\n    \"test_cases_reported\": 1,\n    \"test_cases_skipped\": 0,\n    \"test_cases_unknown\": 0,\n    \"tests\": [\n      [\n        \"math::adds\",\n        \"passed\"\n      ]\n    ],\n    \"tool\": \"rust-nextest\",\n    \"unlinked_test_cases\": 0\n  },\n  \"status\": \"failed\"\n}\n",
+      "stderr": "",
+      "inputs": {
+        "spec": "### Requirement: [HG-MATH-REQ] Add integers\nThe system SHALL add integers.\n\n#### Scenario: [HG-MATH-001] Adds two values\n- WHEN two values are added\n- THEN the sum is returned\n",
+        "source": "// highgrade: HG-MATH-001\n#[test]\nfn adds() { assert_eq!(1+1,2); }\n",
+        "inventory": {
+          "rust-suites": {
+            "math": {
+              "kind": "test",
+              "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/rust-trace-review-nl3q3d65",
+              "binary-name": "math",
+              "testcases": {
+                "adds": {
+                  "filter-match": {
+                    "status": "matches"
+                  },
+                  "ignored": false
+                }
+              }
+            }
+          }
+        },
+        "junit_xml": "<testsuites><testcase classname=\"math\" name=\"adds\"><failure/></testcase><testcase classname=\"math\" name=\"adds\"/></testsuites>",
+        "run": {
+          "schema_version": 1,
+          "tool": "rust-nextest",
+          "command": "bounded native report reader probe",
+          "scope": "math",
+          "captured_at": "2026-10-14T00:00:00Z",
+          "capture_root": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/rust-trace-review-nl3q3d65",
+          "exit_code": 0,
+          "report": "junit.xml",
+          "report_sha256": "0851b58ba5e94d80aef9c7d747673d2e4901f4cf9441b4edde6bc382e571d44f",
+          "spec_files": [
+            "openspec/specs/math/spec.md"
+          ],
+          "test_sources": [
+            "tests/math.rs"
+          ],
+          "source_hashes": {
+            "openspec/specs/math/spec.md": "8ab899f5ad9bfff4c359e45564a086afd37a08481e019f67091b7d426549139d",
+            "tests/math.rs": "04337a50af14b9b2333105ea464e7cccd73cfc4b28995df64c51cf87f4cb730b",
+            "list.json": "d15a107202b748ba48dece6009ce0d6a85a20c39ae32b00873f997dc53ee58da"
+          },
+          "inventory": "list.json"
+        }
+      }
+    },
+    {
+      "case": "wrong-report-hash",
+      "command_argv": [
+        "/home/lainterus/.highgrade/global/releases/v0-4-0/highgrade",
+        "trace",
+        "--root",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/rust-trace-review-nl3q3d65",
+        "--record",
+        "run.json"
+      ],
+      "exit_code": 1,
+      "stdout": "{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [\n    {\n      \"code\": \"ReportHashMismatch\",\n      \"location\": \"junit.xml\",\n      \"message\": \"Исходный отчёт изменён.\",\n      \"status\": \"failed\"\n    }\n  ],\n  \"limitations\": [\n    \"Сопоставление структурное; качество теста и полноту выбора существенных зависимостей проверяет агент. CLI не запускает тесты и не создаёт доказательства.\",\n    \"Сценарии вне автоматической трассировки требуют отдельного доказательства; их ручной или внешний результат здесь не определяется.\"\n  ],\n  \"measurements\": [\n    {\n      \"scenario_id\": \"HG-MATH-001\",\n      \"source\": \"openspec/specs/math/spec.md\",\n      \"status\": \"passed\",\n      \"tests\": [\n        [\n          \"math::adds\",\n          \"passed\"\n        ]\n      ]\n    },\n    {\n      \"automatic_passed\": 1,\n      \"automatic_scenarios\": 1,\n      \"linked_test_cases\": 1,\n      \"outside_automatic_trace\": 0,\n      \"scenarios_total\": 1,\n      \"test_cases_executed\": 1,\n      \"test_cases_missing\": 0,\n      \"test_cases_reported\": 1,\n      \"test_cases_skipped\": 0,\n      \"test_cases_unknown\": 0,\n      \"unlinked_test_cases\": 0\n    },\n    {\n      \"scope\": \"math\",\n      \"captured_at\": \"2026-10-14T00:00:00Z\",\n      \"command\": \"bounded native report reader probe\",\n      \"report\": \"junit.xml\",\n      \"report_sha256\": \"55fcd7d7e5b5b374eedbc04803de07cfa85ab5f52fc8b2249baad6215837a4b3\",\n      \"tool\": \"rust-nextest\"\n    }\n  ],\n  \"operation\": \"trace\",\n  \"result\": {\n    \"scope\": \"math\",\n    \"automatic_passed\": 1,\n    \"automatic_scenarios\": 1,\n    \"captured_at\": \"2026-10-14T00:00:00Z\",\n    \"command\": \"bounded native report reader probe\",\n    \"linked_test_cases\": 1,\n    \"outside_automatic_trace\": 0,\n    \"report\": \"junit.xml\",\n    \"report_sha256\": \"55fcd7d7e5b5b374eedbc04803de07cfa85ab5f52fc8b2249baad6215837a4b3\",\n    \"scenario_id\": \"HG-MATH-001\",\n    \"scenarios_total\": 1,\n    \"source\": \"openspec/specs/math/spec.md\",\n    \"status\": \"passed\",\n    \"test_cases_executed\": 1,\n    \"test_cases_missing\": 0,\n    \"test_cases_reported\": 1,\n    \"test_cases_skipped\": 0,\n    \"test_cases_unknown\": 0,\n    \"tests\": [\n      [\n        \"math::adds\",\n        \"passed\"\n      ]\n    ],\n    \"tool\": \"rust-nextest\",\n    \"unlinked_test_cases\": 0\n  },\n  \"status\": \"failed\"\n}\n",
+      "stderr": "",
+      "inputs": {
+        "spec": "### Requirement: [HG-MATH-REQ] Add integers\nThe system SHALL add integers.\n\n#### Scenario: [HG-MATH-001] Adds two values\n- WHEN two values are added\n- THEN the sum is returned\n",
+        "source": "// highgrade: HG-MATH-001\n#[test]\nfn adds() { assert_eq!(1+1,2); }\n",
+        "inventory": {
+          "rust-suites": {
+            "math": {
+              "kind": "test",
+              "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/rust-trace-review-nl3q3d65",
+              "binary-name": "math",
+              "testcases": {
+                "adds": {
+                  "filter-match": {
+                    "status": "matches"
+                  },
+                  "ignored": false
+                }
+              }
+            }
+          }
+        },
+        "junit_xml": "<testsuites><testcase classname=\"math\" name=\"adds\"/></testsuites>",
+        "run": {
+          "schema_version": 1,
+          "tool": "rust-nextest",
+          "command": "bounded native report reader probe",
+          "scope": "math",
+          "captured_at": "2026-10-14T00:00:00Z",
+          "capture_root": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/rust-trace-review-nl3q3d65",
+          "exit_code": 0,
+          "report": "junit.xml",
+          "report_sha256": "wrong",
+          "spec_files": [
+            "openspec/specs/math/spec.md"
+          ],
+          "test_sources": [
+            "tests/math.rs"
+          ],
+          "source_hashes": {
+            "openspec/specs/math/spec.md": "8ab899f5ad9bfff4c359e45564a086afd37a08481e019f67091b7d426549139d",
+            "tests/math.rs": "04337a50af14b9b2333105ea464e7cccd73cfc4b28995df64c51cf87f4cb730b",
+            "list.json": "d15a107202b748ba48dece6009ce0d6a85a20c39ae32b00873f997dc53ee58da"
+          },
+          "inventory": "list.json"
+        }
+      }
+    }
+  ]
+}

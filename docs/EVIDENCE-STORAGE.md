@@ -24,6 +24,8 @@ If nothing needs keeping, finish --run PATH --discard creates no export; current
 
 Prefer a machine report over run.log when it contains required observations. Multiple --file values are allowed. Other files of that managed run are temporary. Finish saves/verifies the set, registers exact temp-folder contents and performs safe maintenance. Active owners, new/changed files, corrupt exports, catalog/doc links or unfinished recovery block removal. Unknown folders are not automatically registered/deleted. Age does not establish safety.
 
+A full CLI response may repeat the change and history. Select its original runner reports and required snapshots instead. Keep a full response only when it supplies a necessary observation; compact derived receipts do not replace original reports.
+
 Export existing unmanaged results without removal:
 
 ```text

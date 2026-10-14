@@ -185,6 +185,50 @@ fn malformed_recovery_never_unblocks_catalog() {
     fs::remove_dir_all(root).unwrap();
 }
 
+// Additional preservation regression; existing HG-0002-S2 selectors remain unchanged.
+#[test]
+fn recovery_conflict_preserves_all_targets_and_the_observed_journal() {
+    let root = root();
+    create(&root);
+    create(&root);
+    let first = "specs/changes/HG-0001/spec.json";
+    let second = "specs/changes/HG-0002/spec.json";
+    let before_first = fs::read(root.join(first)).unwrap();
+    let before_second = fs::read(root.join(second)).unwrap();
+    let mut desired_first: Value = serde_json::from_slice(&before_first).unwrap();
+    let mut desired_second: Value = serde_json::from_slice(&before_second).unwrap();
+    desired_first["title"] = json!("First transaction target");
+    desired_second["title"] = json!("Second transaction target");
+    let journal = json!({
+        first: {"before": highgrade::hash(&before_first), "after": serde_json::to_string_pretty(&desired_first).unwrap()},
+        second: {"before": highgrade::hash(&before_second), "after": serde_json::to_string_pretty(&desired_second).unwrap()}
+    });
+    put(&root, "specs/transaction.json", &journal);
+    let journal_bytes = fs::read(root.join("specs/transaction.json")).unwrap();
+    let mut user_edit: Value = serde_json::from_slice(&before_second).unwrap();
+    user_edit["title"] = json!("Later user edit, outside the transaction");
+    put(&root, second, &user_edit);
+    let user_bytes = fs::read(root.join(second)).unwrap();
+    let error = call(
+        &root,
+        "spec-recover",
+        &[("--expected", &highgrade::hash(&journal_bytes))],
+    )
+    .unwrap_err();
+    assert!(error.contains("RecoveryConflict"), "{error}");
+    assert_eq!(fs::read(root.join(first)).unwrap(), before_first);
+    assert_eq!(fs::read(root.join(second)).unwrap(), user_bytes);
+    assert_eq!(
+        fs::read(root.join("specs/transaction.json")).unwrap(),
+        journal_bytes
+    );
+    assert!(
+        specs::load(&root)
+            .unwrap_err()
+            .contains("CatalogRecoveryRequired")
+    );
+}
+
 // highgrade: HG-0002-S1
 #[test]
 fn foreign_structured_files_are_not_deleted() {
@@ -994,6 +1038,13 @@ fn local_edit_rejects_dependency_runner_drift() {
 fn action_diagnostics_check_runner_without_execution() {
     let root = root();
     runner_fixture(&root);
+    let runner_path = root.join("runner.py");
+    let runner = fs::read_to_string(&runner_path).unwrap();
+    fs::write(
+        &runner_path,
+        format!("import pathlib\npathlib.Path('runner-executed').write_text('executed')\n{runner}"),
+    )
+    .unwrap();
     let before = sha(&root);
     assert_eq!(
         specs::diagnose(&root, "spec-read", None, None)
@@ -1004,6 +1055,26 @@ fn action_diagnostics_check_runner_without_execution() {
     let r = specs::diagnose(&root, "spec-run", Some("HG-0001"), Some("all")).unwrap();
     assert_eq!(r.status, "passed");
     assert_eq!(before, sha(&root));
+    assert!(
+        !root.join("runner-executed").exists(),
+        "diagnostics must not execute a runner"
+    );
+    let actual = call(
+        &root,
+        "spec-run",
+        &[
+            ("--id", "HG-0001"),
+            ("--check", "all"),
+            ("--expected", &sha(&root)),
+        ],
+    )
+    .unwrap();
+    assert_eq!(actual.status, "passed");
+    assert_eq!(
+        fs::read_to_string(root.join("runner-executed")).unwrap(),
+        "executed",
+        "positive control must observe real runner execution"
+    );
     let mut runner = json(&root, "runner.json");
     runner["program"] = json!("missing-highgrade-test-tool");
     put(&root, "runner.json", &runner);

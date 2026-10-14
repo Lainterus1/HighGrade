@@ -1,0 +1,44 @@
+# Раннее независимое ревью kit
+
+Действующие правила kit согласованы с проверенной инфраструктурой. Существенного конфликта полномочий, сохранности или миграции не найдено. Найдены две неточности справки CLI по уже существующим режимам. Финальный GO пока не запрошен и не дан.
+
+Область: текущий kit и его материальные связи с CLI/schema. База — `591dcb1ece4739d27a2e00cd702657ed6c9e70e3`, рабочая версия содержит исправления текущего Clear. Код, спеки, историю и установку reviewer не менял. Записаны только этот отзыв, покрытие и оригинал дешёвых read-only проб.
+
+## Реально прочитанные источники
+
+Содержание всех 31 первичных материалов manifest прочитано:
+
+- `kit/rules.md`.
+- `kit/procedures/{task,spec,init,work,clear,planner,commit,push,update,archive,fix}.md`.
+- `kit/references/{audit,cli,documentation,review}.md`.
+- `kit/references/tools/{specifications,verification,installation,diagnostics,issues,survey}.md`.
+- `kit/references/survey-schema.json`, `kit/references/release-notes.json`.
+- `kit/templates/{AGENTS,ARCHITECTURE,DEVELOPMENT,ENGINEERING,INSTRUCTIONS,README}.md`, `kit/templates/survey.json`.
+
+У девяти `kit/skills/highgrade-*/SKILL.md` прочитаны front matter, указание происхождения и общий вход. Повторные тела не использованы как отдельные нормативы. Прочитан `scripts/render-skills.py`; `python scripts/render-skills.py --check` подтвердил совпадение generated bodies и всех 40 manifest hashes. Проверка происхождения не выдана за повторное содержательное чтение этих тел.
+
+Полный список отдельных путей и SHA256 находится в [kit-read-coverage.json](kit-read-coverage.json). Дополнительно прочитаны README, AGENTS, местная инструкция, текущие ARCHITECTURE, ENGINEERING, GLOBAL, QUALITY. Реальная проверка dispatch/schema опирается на `src/main.rs`, адресные ветки `src/specs.rs`, storage/shared_inputs, survey, issues, global и package; глубина каждой указана в coverage. Это не заявление о полном новом аудите каждого модуля.
+
+## Замечания
+
+1. `src/main.rs:116`, `command_help`: `spec-validate --help` добавляет `--id` в required. Dispatch `src/specs.rs:834` поддерживает пакетную проверку без ID; `kit/references/tools/specifications.md` прямо описывает её. Проба `spec-validate --root <empty-temp>` вернула `passed`, `validated_changes: []`. Требуется убрать ложное обязательное поле только для этого режима. Существующий одно-ID режим сохраняется.
+2. `src/main.rs:189`, condition для `spec-read`: формулировка «--id or --requirement» не называет третий маршрут — текущие требования через `--view requirements` без ID, с необязательным tag. Dispatch `src/specs.rs:859` и тот же reference его поддерживают. Проба в пустом temp вернула `passed` с пустым списком требований. Требуется дополнить справку этим условием. Нет оснований запрещать поддерживаемую команду или менять норму.
+
+Оригинальные stdout, returncode, argv и hash использованного candidate CLI сохранены в [kit-cli-read-probe.json](kit-cli-read-probe.json). Ни одного файла после read-only проб в temp не было. Это проверка справки и схем, а не функциональная проверка непустого каталога. Reviewer не запускал повтор дорогих suites.
+
+## Существенные зависимости и согласованность
+
+- Rules задаёт полномочия; procedures задают этапы; tool references задают CLI/формат. Шаблоны явно требуют местной адаптации и не выдают незаполненные поля за принятые решения. Локальные исключения имеют отдельного владельца. История не используется как действующая норма.
+- Clear всегда назначает Planner. Автоматический маршрут не даёт Goal. Строгий анализ сохраняет план/continuation в ответе. Refresh разрешает локальные исправления только в согласованной области. Commit, активация, push и решение человека имеют отдельные условия. Candidate для CI не объявляется готовым результатом при открытом обязательном критерии.
+- Каталоги принадлежат проекту и переживают удаление .highgrade. Документы различают v3/v4/v5 и модель store 3. Явные compact/shared-inputs migration, совместимый CLI, CAS, journal recovery и лимит 8 МиБ согласованы с прочитанными ветками. Update не мигрирует каталоги и не переписывает местную инструкцию. Общие модули/необъявленные причинные входы остаются предметом ревью.
+- Survey JSON schemas content/document/patch и template структурно совпали с результатом текущего CLI. Семь unknown decisions, восемь sections и отдельные stage/readiness/permission ограничения согласованы. Issue records не заменяют требования, доказательства или авторизацию.
+- Installation/Update требуют одного preview fingerprint, неизменного candidate, проверки установленного состояния и подтверждённого recovery. Прочитанные binary/doctor/UI checks включают launcher_protocol=1. Никакой проверки или записи реального профиля reviewer не выполнял.
+- Verification/Work/Review/QUALITY не приравнивают exit 0, наличие ID, историческое evidence или общий статус отчёта к исполнению конкретного сценария. Manual/outside_automatic_trace остаются отдельными. Новые trace guards сохраняют адресный unknown и независимые результаты; это соответствует этим правилам. Raw cases, уникальные связи и сценарии имеют разные знаменатели. Действующий reference не задаёт иной знаменатель.
+- Оригиналы не редактируют ради заметок. Выбранные постоянные отчёты идут через project storage; временные логи не публикуются автоматически. Уточнённая ENGINEERING больше не запрещает законные выбранные evidence logs. ARCHITECTURE теперь явно называет формат 5.
+- Release notes остаются историей выпущенных возможностей; текущая работа не переписывает v0-4-0. Документы не требуют массово обновить старые 71 in_progress: drift/history не доказывают дефект кода. Предыдущее scoped GO и CI exact SHA не заменяют финальные доказательства текущих изменений.
+
+## Пределы и следующий барьер
+
+Три прежних замечания к новым trace fixtures просмотрены в текущем diff: точный unknown, второй независимый spec owner и отдельные Playwright retries теперь присутствуют. Их окончательная сила должна подтверждаться оригиналами текущих мутаций/restored baseline. Не даны обещания будущего исполнения агентом, полного model reliability, Windows текущего dirty diff или человеческой приёмки.
+
+Для финального ревью нужны окончательный diff и оригинальные финальные отчёты. Build/setup failure, нулевой selector и Cargo-cache collision нельзя считать обнаруженной мутацией. Материальные неизменённые источники kit можно использовать повторно по сохранённым hashes. .gitignore сохранён с SHA256 `9b3ded5f615f6e5fe70d8ed7273571c7b3c9b66805d62c6dad61a2a7d722bea8`; installed plugins и другие проекты вне проверки.

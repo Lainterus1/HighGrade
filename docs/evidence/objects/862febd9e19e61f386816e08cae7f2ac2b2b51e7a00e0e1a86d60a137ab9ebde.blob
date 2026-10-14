@@ -1,0 +1,18 @@
+[
+  {
+    "id": "semantic_all",
+    "request": "Используй candidate Clear. Проанализируй документацию и тесты всего этого проекта по основным каталогам. Только анализ: исходники не менять, тесты не запускать. Goal не выбран. Определи полноту контракта и дальнейший достаточный маршрут.",
+    "project": "semantic-project"
+  },
+  {
+    "id": "closure_gap",
+    "request": "Заверши оценку готовности комплексного Clear по этим наблюдениям и сформулируй продолжение. Не меняй проект и не вызывай Goal API.",
+    "controlled_inputs": {
+      "initial_scope": "All selected docs and test-linked contracts; mandatory deployed after-observation",
+      "mutations": "3 selected actual violations detected; restore and final passed",
+      "semantic_coverage": "F-R1 read; F-R2 not read",
+      "mandatory_deployed_after_observation": "unavailable",
+      "coordination_mode": "explicitly chosen Goal, already active as controlled input"
+    }
+  }
+]

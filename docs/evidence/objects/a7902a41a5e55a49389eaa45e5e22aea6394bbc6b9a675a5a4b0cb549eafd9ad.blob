@@ -1,0 +1,51 @@
+# HG-0076: независимое финальное ревью
+
+**GO для локальной готовности реализации HG-0076 к записи доказательств/review и интеграции.** Блокирующих дефектов в выбранном изменении не найдено. Интеграция, сохранение оригиналов, обслуживание собственного scratch и окончательное continuation закрытие остаются следующими назначенными действиями исполнителя. Этот GO сам их не подтверждает.
+
+## Проверенный охват
+
+Прочитаны текущие AGENTS/README/local instruction, HG-0076 и selected-methods, affected diff Clear/review/batch helper/global packaging/tests/registry/architecture/template. Planner/Task проверены как зависимые владельцы режима; HG-0063-T10 имеет отдельное узкое независимое ревью. Прочитаны реальные requests/responses и observations Clear/Goal cases, loaded-source adapter, raw helper run/report/diff/snapshot, native JUnit/inventory/attempt/completion и текущая запись C1. Generated bodies проверены через происхождение renderer и manifest; повторяемый generated текст не считался новым нормативом.
+
+Clear теперь требует смыслового чтения всех выбранных связанных текущих контрактов, включая неизменённые, владельца unlinked tests и обязательных методов до baseline. Успех выбранных mutations не закрывает unread contract или missing method. Полномочия Goal принадлежат явному выбору пользователя; обычный Planner их не создаёт. Документы согласованы с serial copy execution и явно ограниченным adapter.
+
+## Исходные подтверждения
+
+- `hg76-validate-final.json`: native spec-validate HG-0076 passed, findings пусты; operations/checks/tasks соответствуют текущей спецификации. Пустой `specs-final.json` не использован как доказательство PASS.
+- `helper-red.log`: содержательный assertion RED, ожидаемые три detected против пустого результата. `helper-sealed.log`: все 9 текущих регрессий PASS. Под `target/highgrade/tmp/hg76-helper-sealed` независимо проверены 29 summaries, их self-hashes, точные сохранённые bytes `plan.json`, snapshot pins, diffs и compact original refs. Единственный повреждённый old report намеренно создан тестом corruption; он вызывает fresh execution. Intact reused originals сохранены отдельно.
+- Реальные loaded-source unittest assertions обнаруживают нарушения. Слабый assertion оставляет survivor; после усиления тот же diff обнаружен, прежняя история сохранена. Compile/setup/timeout/skip/empty/stale/unsupported/descendant получают invalid. Unknown edit получает restore_failed и прекращает worker без стирания чужих bytes. Existing output и jobs=2 отвергнуты. Matching reuse исполняет 0 новых test commands; contract/test/fixture/dependency/helper/environment drift, unknown scope и damaged original требуют fresh execution.
+- `rust-sealed.log` и `target/highgrade/runs/rust-ad90492a22ed4d009f389c38438b2518/nextest`: 239/239 PASS, включая все 38 global tests, 0 skip/error/failure. Report/inventory/attempt совпадают; все 480 source pins совпали с текущими bytes. Helper `8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34`, manifest `1d6df82468baa67beb21f4abb2ed2d58adfedea3762a26839af0038e56c028b1`.
+- Последний native C1: `specs/changes/HG-0076/evidence/HG-0076-C1-1791970451332548748.log`, exact installed helper test PASS. Before/after и текущие declared pins равны. Кандидатные исходники реально удалены до installed helper execution. Legacy exact journal sets сохранены; повреждённый новый материал отвергается без смены active pointer. Ранние 2 FAIL legacy fixtures не скрыты; текущие global38 подтверждают исправленные fixtures.
+- `python-final.log`: полный предыдущий проход 78 PASS. После последних изменений helper и plan preservation заново пройдены все 9 affected helper regressions и current Rust239. Полный прежний Python проход не представлен как запуск последней редакции helper. Все 42 текущих manifest hashes независимо совпали.
+- Actual `hg76-clear-execution`: оба контракта и unlinked engineering owner прочитаны; baseline green-stale; raw meaningful RED `1 != 2` до source fix; final 3 PASS. Same actual root Goal наблюдался до этой dependent работы. Независимые Clear actor cases сохраняют read-only authority и partial/Next при unread F-R2 и unavailable mandatory observation. Actor fixture hashes сохранены. Goal occupied/refused являются controlled inputs, а не живым API отказом.
+- `comparison-sealed.json` сверён с raw metrics: одинаковые три detected, test commands 9→5, probes/outer calls 3→1; originals bytes 18376→7901. Наблюдённые времена 0.7662→0.3865 s и fixture preparation 0.000275 s относятся к минимальному fixture. Adapter/helper authoring и tokens — нет данных. Общая экономия разработки и универсальный эффект не заявлены.
+- `structure-final.json` PASS; `inspect-final.json` имеет только 11 известных ExternalLinkUnchecked, route 95583≤95600, нет budget/unknown/error findings. Неизменность унаследованных tracked bytes независимо сверена: отличаются лишь назначенные ARCHITECTURE и HG-0063 spec. Пользовательский `.gitignore` SHA256 `9b3ded5f615f6e5fe70d8ed7273571c7b3c9b66805d62c6dad61a2a7d722bea8` сохранён.
+
+Подробная независимая сверка: `independent-sealed-proof-check.json`, SHA256 `2f7172cb3163932093259a8585af5f900dd2e0064f7d95faf277af71165cb17a`. Ранние три дополнительные subprocess пробы остаются историческим адресным наблюдением до последнего env/plan изменения, а не финальным полным запуском.
+
+## Пределы и продолжение
+
+`scenarios-final.log` подтверждает 145/145 automatic и 239 cases для своих исходных pins. После записи нового C1 изменился только catalog metadata pin; эта более ранняя trace карта не выдана за финальную текущую карту после всех records. Перед окончательным закрытием нужны назначенные serial checks/records и сохранение актуальных originals. Кодовые causal inputs текущего Rust run не дрейфовали.
+
+Helper не является OS sandbox. Он не сертифицирует добросовестность произвольного adapter или полноту объявленных dependencies. Runtime probes и команды требуют ревью внешних effects. Windows job code проверен по реализации; Windows execution, широкий пилот разных проектов и deployed acceptance здесь не наблюдались. Controlled Goal failure и closure cases показывают решения на заданных входах, а не будущую гарантию автономности всех вызовов.
+
+GO ограничен HG-0076. Он не завершает весь HG-0063, не делает все старые спецификации актуальными и не отменяет унаследованный target storage бюджетный остаток. Presentation исключена. Commit, activation, push и human acceptance этим ревью не выполнены.
+
+## Точные входы ревью
+
+```json
+{
+  "specs/changes/HG-0076/spec.json": "131289d7f715222400ed62704bb508029d7d7828d1c55c708895b4e7650a2979",
+  "kit/procedures/clear.md": "a3e44e3eb9452a69680930060b6e4e3d17a17c22c9a0b3ebe4d8ae356846c452",
+  "kit/references/review.md": "647ab5b9a513171aadde4a460cbb20ad13c12ecd82fd55f98615f4c947d4e2f6",
+  "kit/references/clear-batches.md": "6730ed440d1586c9037b457cd27dcef5b215062139e0cbc008e34b2a8d2caa08",
+  "kit/tools/clear_batch.py": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+  "src/global.rs": "74a54e5ffd7d0e62b3f640ea89f87d6cf0f8970821f0129227cfa35ec5a052d9",
+  "tests/global_contracts.rs": "18fc109e06d3fb2a310920437a51cafeebb83e637940880e18c8c25a2b7f124d",
+  "scripts/tests/test_clear_batch.py": "4aa3c52893fb2a8871a79c308f93f495f4fbc490afd9a75057486cc3921d7c16",
+  "kit/templates/AGENTS.md": "0ead95e09c686db0f636a617eae9452e5104d8e0a66df19e6c7ed138b884eb79",
+  "scripts/tests/test_workflow_contract.py": "c7340b4bc318746c5d0acb23bc8c1aee31018156fb739ee74774db5f2c109bb6",
+  "kit/manifest.json": "1d6df82468baa67beb21f4abb2ed2d58adfedea3762a26839af0038e56c028b1",
+  ".highgrade/project/documents.json": "d76eb4370272c165d1944498b405c7d21e999a90daf5c19c36c9be86c0652f9b",
+  "docs/ARCHITECTURE.md": "f47a6ce7990ec09960934a166528bf54fb752b4054d3db1d5de6909766da72f1"
+}
+```

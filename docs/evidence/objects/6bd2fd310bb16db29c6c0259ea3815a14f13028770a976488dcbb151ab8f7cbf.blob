@@ -1,0 +1,102 @@
+{
+  "subjectStarted": true,
+  "assertionsBeforeRelease": true,
+  "events": [
+    {
+      "at": 1791988309732,
+      "kind": "request",
+      "path": "/api/session",
+      "detail": "GET"
+    },
+    {
+      "at": 1791988309760,
+      "kind": "response",
+      "path": "/api/session",
+      "detail": 200
+    },
+    {
+      "at": 1791988309764,
+      "kind": "request",
+      "path": "/api/specs",
+      "detail": "GET"
+    },
+    {
+      "at": 1791988309772,
+      "kind": "response",
+      "path": "/api/specs",
+      "detail": 200
+    },
+    {
+      "at": 1791988309772,
+      "kind": "request",
+      "path": "/api/specs/HG-0001",
+      "detail": "GET"
+    },
+    {
+      "at": 1791988309779,
+      "kind": "response",
+      "path": "/api/specs/HG-0001",
+      "detail": 200
+    },
+    {
+      "at": 1791988309901,
+      "kind": "request",
+      "path": "/api/specs",
+      "detail": "GET"
+    },
+    {
+      "at": 1791988309910,
+      "kind": "response",
+      "path": "/api/specs",
+      "detail": 200
+    },
+    {
+      "at": 1791988309911,
+      "kind": "request",
+      "path": "/api/specs/HG-0001",
+      "detail": "GET"
+    },
+    {
+      "at": 1791988309911,
+      "kind": "poll_A_held"
+    },
+    {
+      "at": 1791988309946,
+      "kind": "request",
+      "path": "/api/specs/HG-0002",
+      "detail": "GET"
+    },
+    {
+      "at": 1791988309946,
+      "kind": "selected_B"
+    },
+    {
+      "at": 1791988309956,
+      "kind": "response",
+      "path": "/api/specs/HG-0002",
+      "detail": 200
+    },
+    {
+      "at": 1791988309976,
+      "kind": "dom_before_release",
+      "detail": {
+        "heading": [
+          "Спецификация 2"
+        ],
+        "loading": [],
+        "selected": [
+          "HG-0002Спецификация 2В работе"
+        ],
+        "assertionsBeforeRelease": true
+      }
+    },
+    {
+      "at": 1791988310031,
+      "kind": "poll_A_released"
+    },
+    {
+      "at": 1791988310034,
+      "kind": "B_visible_after_release"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,subprocess,hashlib,difflib
+root=Path.cwd();local=root/'.highgrade/local/project-refresh-2026-10-14';scope=root/'target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/svg'
+bridge=scope/'scripts/svg_tools.mjs';tests=scope/'tests/test_vectorize.py';original=bridge.read_bytes();updated=(root/'plugins/svg-vectorizer/tests/test_vectorize.py').read_bytes();old=subprocess.check_output(['git','show','HEAD:plugins/svg-vectorizer/tests/test_vectorize.py'])
+assert original.count(b'if (maxDifference > 2) {')==1
+mutant=original.replace(b'if (maxDifference > 2) {',b'if (false) {')
+report={'id':'S1','subject':'plugins/svg-vectorizer/scripts/svg_tools.mjs','intended_violation':'Optimization changing a rendered channel by more than 2 must fail and preserve destinations','mutation_diff':''.join(difflib.unified_diff(original.decode().splitlines(True),mutant.decode().splitlines(True),fromfile='svg_tools.mjs',tofile='svg_tools.mjs')),'runs':[]}
+(local/'svg-mutation-declared.json').write_text(json.dumps(report,indent=2)+'\n')
+try:
+ for name,source,test_source,expected in [('svg-mutation-old-baseline',original,old,0),('svg-mutation-old-survivor',mutant,old,0),('svg-mutation-strengthened-detected',mutant,updated,1),('svg-mutation-restored',original,updated,0)]:
+  bridge.write_bytes(source);tests.write_bytes(test_source)
+  subprocess.run(['python',str(local/'plugin-checks/run.py'),name,'svg',str(scope/'.venv/bin/python'),'-B','-m','unittest','discover','-s','tests','-v'],check=True)
+  record=json.loads((local/'plugin-checks'/f'{name}.json').read_text());assert record['exit_code']==expected,name
+  report['runs'].append({'name':name,'report':f'plugin-checks/{name}.json','exit_code':record['exit_code'],'subject_sha256':hashlib.sha256(source).hexdigest(),'tests_sha256':hashlib.sha256(test_source).hexdigest()})
+  (local/'svg-mutation-results.json').write_text(json.dumps(report,indent=2)+'\n')
+ report['classification']='Original tests missed the real guard removal; strengthened test detected +3/255 violation; restored full 34-test suite passed'
+ (local/'svg-mutation-results.json').write_text(json.dumps(report,indent=2)+'\n')
+finally:
+ bridge.write_bytes(original);tests.write_bytes(updated)

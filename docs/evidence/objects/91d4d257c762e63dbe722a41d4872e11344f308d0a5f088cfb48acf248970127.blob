@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-14T15:10:42.539774+00:00",
+  "verdict": "GO",
+  "scope": "Дополнение к предыдущему scoped GO: current полный локальный Rust run, automatic trace и byte-integrity/полнота выбранного CAS экспорта мутаций. Не GO всем manual/plugin/external исходам.",
+  "previous_review_unchanged": {
+    ".highgrade/local/clear-audit-2026-10-14/final-evidence-review.md": "d7649bc852a2d61f6b7a2bdd02712fbfc7de4de171e1614e66511b50f1d2018a",
+    ".highgrade/local/clear-audit-2026-10-14/final-evidence-review.json": "874d2052baf485b48957680f90469d2be82df4653f0d37391486d9daf53f0d76"
+  },
+  "resolved_limit": "Дрейф tests/attention_contracts.rs после старого Rust run закрыт новым current run; прежний отчёт и факт drift сохранены как история.",
+  "current_rust": {
+    "directory": "target/highgrade/runs/rust-fb3f004e7e67416888f65a58154a488a/nextest",
+    "tests": 241,
+    "inventory_cases": 241,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "attempt_matches_completion": true,
+    "completion_report_inventory_hashes_match": true,
+    "ordinary_source_pins_verified": 481,
+    "native_manifest_inventory_pins_verified": 3,
+    "ordinary_source_drift": [],
+    "attention_sha256": "45947d8de35fbb0bb3bb7b2fbe3d049ec65cc9c60880d3945708585ca1c4c695"
+  },
+  "current_trace": {
+    "directory": "target/highgrade/runs/clear-scenarios-serial-ba79ec2a5c4d46e5892308b82bdcdb2b/nextest",
+    "operation": "trace",
+    "status": "passed",
+    "findings": [],
+    "all_scenario_rows_unique": true,
+    "counts": {
+      "automatic_passed": 145,
+      "automatic_scenarios": 145,
+      "linked_test_cases": 154,
+      "outside_automatic_trace": 187,
+      "scenarios_total": 332,
+      "test_cases_executed": 241,
+      "test_cases_missing": 0,
+      "test_cases_reported": 241,
+      "test_cases_skipped": 0,
+      "test_cases_unknown": 0,
+      "unlinked_test_cases": 87
+    },
+    "native_copy_matches_current_rust": true,
+    "provenance_matches_prepared_record": true,
+    "scope_limit": "145 automatic passed; 187 outside_automatic_trace не являются подтверждёнными manual/external результатами.",
+    "catalog_semantic_pin_limit": "Каталожный semantic hash не сравнивался здесь с byte hash; catalog reviewer подтвердил текущий semantic scope отдельно."
+  },
+  "mutation_CAS": {
+    "receipt": ".highgrade/local/clear-audit-2026-10-14/mutation-originals.json",
+    "manifest": "docs/evidence/objects/700ed77fd30aca2a9162d1c72a3a0611391b76268b890fb7d162a1f9ca78c760.json",
+    "manifest_sha256": "700ed77fd30aca2a9162d1c72a3a0611391b76268b890fb7d162a1f9ca78c760",
+    "selected_files": 3513,
+    "every_blob_size_and_sha256_verified": true,
+    "current_live_selected_files_match_export": true,
+    "selection_covers_entire_helper_and_config_batch_trees": true,
+    "live_file_counts": {
+      "target/highgrade/tmp/clear-audit-python/helper-batch": 3408,
+      "target/highgrade/tmp/clear-audit-python/config-batch": 103
+    },
+    "extra_selected_sources": [
+      "target/highgrade/tmp/clear-audit-python/config-plan.json",
+      "target/highgrade/tmp/clear-audit-python/plan.json"
+    ],
+    "receipt_files": 135,
+    "nested_framework_files": 3256,
+    "logical_selected_bytes": 2428797,
+    "limits": "Проверена сохранность фактических bytes, включая intentional invalid/corrupt test histories. CAS integrity не является authenticity или новым PASS каждого nested result. Logical selected bytes не равны физическому дополнительному объёму CAS из-за deduplication."
+  },
+  "artifact_fingerprints": {
+    "target/highgrade/runs/rust-fb3f004e7e67416888f65a58154a488a/nextest/attempt.json": "69bfe68661abab5b24da6efcabe58f884eae44f7dbdaba4efbdd292a796ef08c",
+    "target/highgrade/runs/rust-fb3f004e7e67416888f65a58154a488a/nextest/completion.json": "32a9fef67308b14227d329eb4c7ae87b40bcecc58419edd3c0f45a83c4f95e98",
+    "target/highgrade/runs/rust-fb3f004e7e67416888f65a58154a488a/nextest/junit.xml": "bd51b51097432b99d44e0a483fd3def88c2d765c4d881be0936eb5b3b4f63ab1",
+    "target/highgrade/runs/rust-fb3f004e7e67416888f65a58154a488a/nextest/list.json": "04d505571649568315bdee7e04e48676c3c917ee08f51778d974c7085f5df9e2",
+    "target/highgrade/runs/clear-scenarios-serial-ba79ec2a5c4d46e5892308b82bdcdb2b/nextest/run.json": "bc7abcca723aff93d88d1317b64e44f465354493ad4d17cd7f9e3f1ae61f64d3",
+    "target/highgrade/runs/clear-scenarios-serial-ba79ec2a5c4d46e5892308b82bdcdb2b/nextest/trace.json": "446472241d1ea39237662a5d6c9d6cafee44ef8fdc9dd63255c804bba280b93c",
+    ".highgrade/local/clear-audit-2026-10-14/mutation-originals.json": "35020786819d1d63f48acdfd91e96dfd50cb48f1988e8582cc908c9c460534bd",
+    "docs/evidence/objects/700ed77fd30aca2a9162d1c72a3a0611391b76268b890fb7d162a1f9ca78c760.json": "700ed77fd30aca2a9162d1c72a3a0611391b76268b890fb7d162a1f9ca78c760"
+  },
+  "retained_limits": [
+    "Локально наблюдённые Python 3.14.7/Node26.8.2 не выданы за Node24 CI или Windows.",
+    "scope_complete=false/fresh-only не доказывает universal runtime или ancestor/home/env Cargo configuration completeness.",
+    "187 outside automatic scenarios сохраняют свои отдельные evidence methods и gaps.",
+    "Новое package execution SVG/CHA не выполнено; historical34/59 не перенесён в current PASS.",
+    "Для текущих 3 helper guard violations отсутствует matched unbatched control; token/money данных нет, экономия не объявлена.",
+    "CAS сохранение подтверждено; destructive cleanup и полное завершение Clear этим addendum не выполнялись."
+  ],
+  "reviewer_edits": "Только final-evidence-review-addendum.md/json; прошлый review, код, каталог и исходные отчёты не изменены."
+}

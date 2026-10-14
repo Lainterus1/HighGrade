@@ -1,7 +1,9 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {installedConfig, verifyArtifact} from '../installed-config.mjs';
-import {mkdtempSync, mkdirSync, writeFileSync, rmSync} from 'node:fs';
+import {mkdtempSync, mkdirSync, writeFileSync, readFileSync, copyFileSync, chmodSync, symlinkSync, rmSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 
@@ -43,4 +45,38 @@ test('wrong source/version and modified fixture bytes are rejected before runnin
     assert.throws(() => verifyArtifact(dir, 'a'.repeat(40), '0.3.5', 'highgrade'), /source\/version/);
     assert.throws(() => verifyArtifact(dir, 'a'.repeat(40), '0.3.8', 'highgrade'), /fingerprints/);
   } finally { rmSync(dir, {recursive: true}); }
+});
+
+test('complete fingerprints require the owner and the actual executable version', () => {
+  const root = fileURLToPath(new URL('../../../', import.meta.url));
+  const name = process.platform === 'win32' ? 'highgrade.exe' : 'highgrade';
+  const executable = process.env.HIGHGRADE_TEST_EXE ?? path.join(root, 'target/debug', name);
+  const version = readFileSync(path.join(root, 'Cargo.toml'), 'utf8').match(/^version = "([^"]+)"/m)[1];
+  const dir = mkdtempSync(path.join(tmpdir(), 'hg-installed-probe-'));
+  const hash = file => createHash('sha256').update(readFileSync(path.join(dir, file))).digest('hex');
+  function record(owner = 'highgrade-build-release-v1') {
+    writeFileSync(path.join(dir, 'candidate.json'), JSON.stringify({owner,source_sha:'a'.repeat(40),files:{
+      'kit/manifest.json':hash('kit/manifest.json'), [name]:hash(name),
+    }}));
+  }
+  try {
+    mkdirSync(path.join(dir,'kit'));
+    copyFileSync(executable,path.join(dir,name));
+    if (process.platform !== 'win32') chmodSync(path.join(dir,name),0o700);
+    writeFileSync(path.join(dir,'kit/manifest.json'),JSON.stringify({cli_version:version}));
+    record();
+    assert.equal(verifyArtifact(dir,'a'.repeat(40),version,name).cli_version,version);
+    record('foreign-owner');
+    assert.throws(() => verifyArtifact(dir,'a'.repeat(40),version,name), /source\/version/);
+    // Hashes and metadata agree; only the real executable version differs.
+    writeFileSync(path.join(dir,'kit/manifest.json'),JSON.stringify({cli_version:'987.654.321'}));
+    record();
+    assert.throws(() => verifyArtifact(dir,'a'.repeat(40),'987.654.321',name), /executable version/);
+    writeFileSync(path.join(dir,'kit/manifest.json'),JSON.stringify({cli_version:version}));
+    record();
+    // Directory junctions are available without file-symlink privileges on Windows.
+    symlinkSync(path.join(dir,'kit'),path.join(dir,'linked-kit'),process.platform === 'win32' ? 'junction' : 'dir');
+    assert.throws(() => verifyArtifact(dir,'a'.repeat(40),version,name), /Linked installed fixture/);
+    assert.equal(readFileSync(path.join(dir,'kit/manifest.json'),'utf8'),JSON.stringify({cli_version:version}));
+  } finally { rmSync(dir,{recursive:true}); }
 });

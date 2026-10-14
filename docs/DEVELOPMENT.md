@@ -39,7 +39,7 @@ Continue spec-validate → work/tests → spec-evidence → independent review/s
 
 Install Nextest 0.9.146 into target/highgrade/tools/bin and add it to PATH.
 
-verify.py tests compares inputs before/after Nextest. prepare checks hashes, input contents and completed-attempt reports. After failure/interruption, repeat tests. mtime proves no freshness; a snapshot proves no authenticity. After integration, repeat prepare/trace/verify. Equivalent catalogs allow reuse; otherwise repeat tests. native_report_reason explains why.
+verify.py tests compares input hashes before/after Nextest; ancestor/home Cargo config and tool/environment identity are unsealed. Failed/interrupted runs need new tests. mtime proves no freshness; snapshots prove no authenticity. After integration, repeat prepare/trace/verify. prepare checks hashes/completion. Reuse needs equivalent catalogs; see native_report_reason.
 
 Tests/UI reports: [run/export/cleanup](EVIDENCE-STORAGE.md).
 
@@ -114,7 +114,7 @@ CI is asynchronous; waiting does not block Work, integration or authorized commi
 |---|---|---|
 | render-skills, fmt, structure, inspect, specs | Yes | — |
 | Python lifecycle, Nextest inventory/run/trace, Node guards | Yes | Yes |
-| Scale/reuse, Storybook, native/decision/edit Playwright | Yes | — |
+| Scale/reuse, Storybook, native/decision/edit/api-client Playwright | Yes | — |
 | Embedded UI, exact release build, required installed upgrade/recovery | Yes | Yes |
 
 ubuntu-24.04 is the [GitHub runner image](https://docs.github.com/en/actions/reference/runners/github-hosted-runners), not a user requirement. Narrow native UI failures were separately tested on Linux only; repeat affected selectors on Windows for a Windows UI defect.

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "HG-0061",
+    "evidence": {
+      "scenario": "HG-0061-S3",
+      "method": "native_report",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "captured_at": "2026-10-14T06:49:47.566170+00:00",
+      "outcome": "passed",
+      "observation": "Current lib bundle unit rejects omitted resources with consistent remaining hashes, including all delivered Lora copies and Lora OFL. ui_check_is_rootless_read_only_and_rejects_conflicting_options and incompatible_ui_candidate_is_rejected_before_install_or_update_writes passed with actual binary probes and profile byte preservation. R6 guard-removal mutation independently caused the omission assertion to fail; restored selector passed. Source: original 237-case JUnit, zero skips. This is local Linux evidence, not new-SHA Windows CI, activation or acceptance.",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "build.rs",
+        "kit/manifest.json",
+        "rust-toolchain.toml",
+        "src/global.rs",
+        "src/install.rs",
+        "src/launcher.rs",
+        "src/lib.rs",
+        "src/main.rs",
+        "src/package.rs",
+        "src/paths.rs",
+        "src/release_notes.rs",
+        "src/ui.rs",
+        "src/ui/bundle.rs",
+        "tests/support/mod.rs",
+        "tests/ui_bundle_contracts.rs",
+        "ui/dist/highgrade-ui.json"
+      ],
+      "report": "docs/evidence/objects/803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d.blob"
+    }
+  },
+  {
+    "id": "HG-0061",
+    "evidence": {
+      "scenario": "HG-0061-S5",
+      "method": "native_report",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "captured_at": "2026-10-14T06:49:47.566231+00:00",
+      "outcome": "passed",
+      "observation": "Actual repeated_requests, repeated_result_requests and repeated_result_responses cases rechecked readiness/input identity, rejected changed revision/payload and preserved exact history/neighboring questions. Equivalent repeats did not add duplicate decisions. Source: original 237-case JUnit, zero skips. This is local Linux evidence, not new-SHA Windows CI, activation or acceptance.",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/attention_contracts.rs",
+        "tests/support/mod.rs"
+      ],
+      "report": "docs/evidence/objects/803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d.blob"
+    }
+  },
+  {
+    "id": "HG-0061",
+    "evidence": {
+      "scenario": "HG-0061-S6",
+      "method": "native_report",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "captured_at": "2026-10-14T06:49:47.566278+00:00",
+      "outcome": "passed",
+      "observation": "legacy_result_responses_require_unambiguous_acceptance_revision actually passed: old response without saved version remains readable, unique equivalent association may repeat, ambiguous/different associations reject, and old history is preserved. Source: original 237-case JUnit, zero skips. This is local Linux evidence, not new-SHA Windows CI, activation or acceptance.",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/attention_contracts.rs",
+        "tests/support/mod.rs"
+      ],
+      "report": "docs/evidence/objects/803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d.blob"
+    }
+  },
+  {
+    "id": "HG-0069",
+    "evidence": {
+      "scenario": "HG-0069-S1",
+      "method": "native_report",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "captured_at": "2026-10-14T06:49:47.566335+00:00",
+      "outcome": "passed",
+      "observation": "evidence_cards_are_compact_preserve_outcome_and_detect_changed_report actually asserted failed remains failed, full file maps are absent, changed large report becomes stale, compact JSON remains below 2500 bytes and missing source is reported. No report authenticity or future agent reliability is inferred. Source: original 237-case JUnit, zero skips. This is local Linux evidence, not new-SHA Windows CI, activation or acceptance.",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/delivery.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/fixtures/native-v1/store.json",
+        "tests/spec_contracts.rs",
+        "tests/support/mod.rs"
+      ],
+      "report": "docs/evidence/objects/803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d.blob"
+    }
+  }
+]

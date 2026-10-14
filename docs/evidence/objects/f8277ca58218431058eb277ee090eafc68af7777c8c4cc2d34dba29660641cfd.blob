@@ -1,0 +1,121 @@
+{
+  "reviewer": "independent clear_review subagent",
+  "verdict": "GO",
+  "scope": "Prepared0.4.1 release delta and explicitly selected dependent local result: HG0063T10/HG0076, prior Clear corrections and selective cleanup. Not whole-spec/Clear readiness or human acceptance.",
+  "inputs": {
+    "Cargo.toml": "ae89776d11f6a279279f4a74bb590c9cc67be8ca7921731b53d2a66baa1345bf",
+    "Cargo.lock": "d1b585bee4e3867c17299922f5434ca5ac3859a49de51ad0907a68791277274e",
+    "kit/manifest.json": "fedcc64036de4880aa11fc84dab7419e493cac4268a2c2961dd61efe41451d2f",
+    "kit/references/release-notes.json": "82c4fd24a8e52d95f7b4bd47789a3eaa6fec6cea20ece0d571e3ba7cbcec4ec1",
+    "README.md": "351e464143182c66827e396a7441f60e2b146451644f7566143d0f644c53c38c",
+    "docs/releases/v0-4-1.md": "bbbcc890e08ac31ff3cf3d30dbaa576c491f0ab87ed9bad7d915e4f53f8e101c"
+  },
+  "originals": {
+    ".highgrade/local/release-v0-4-1-2026-10-15/selected-files.json": "f0f20101f5424d7daf6a57f9de83ddab39f0d18600b231765174119cc9c0dff3",
+    ".highgrade/local/release-v0-4-1-2026-10-15/index-pins-final.json": "8953f7152c5047faa885153b7c5563e3155ee157bd63d53aaf6a8febf1c171ab",
+    ".highgrade/local/release-v0-4-1-2026-10-15/package-preflight-final.json": "2d14654a09e4c1b7d5f617851cf1e62662b66a0c236f1fe35090559fb63c558f",
+    ".highgrade/local/release-v0-4-1-2026-10-15/workflow-contract.log": "7d84c17910436f7bdd60d0294e0e408107158538a526a4c5d09615d3aa331a47",
+    ".highgrade/local/release-v0-4-1-2026-10-15/ui-build.log": "60f2d4a6d65390fae52b49b93d4eec934110a92b1d64918ce9cc042334a5edf7",
+    ".highgrade/local/release-v0-4-1-2026-10-15/node24-guards.log": "937674889617f53352481b2d2b7ffb92059c6071b72bc9082fce001706be0900",
+    ".highgrade/local/release-v0-4-1-2026-10-15/scale.log": "c849c8f68736bce48d7ddf9cd73a79ababc992e4bc52e88b31f47f3f521d1bfe",
+    ".highgrade/local/release-v0-4-1-2026-10-15/reuse.log": "0aee136e54b5e62c8123685207dbbd753eb43b06d3a3e1c9331d9f8355d150e7",
+    ".highgrade/local/release-v0-4-1-2026-10-15/delivery-HG-0076.json": "a5afbac85126d95c518d818b5a5c8179070ece8ae83bfc5979153502551dbe88",
+    ".highgrade/local/release-v0-4-1-2026-10-15/delivery-HG-0024.json": "2793c11524d49f855a895868e4698b0c53a2713a40e4b829c5fc8fb480cb154c",
+    ".highgrade/local/release-v0-4-1-2026-10-15/inspect-reviewed-final.json": "6b63ed22cac1990a62814588648343cd63fed782b20c679bc2a9b93325227033",
+    ".highgrade/local/release-v0-4-1-2026-10-15/structure-final.json": "cc5f75d12e47511c962ed7e5a033b77aca5630493a22b5f7f23d946274a7d510"
+  },
+  "frozen_current_seals": {
+    "docs/evidence/objects/a897120ee3ee117d100ca0e02cf6b66e7448696424ee191d47fbeda8c9b423b9.json": "a897120ee3ee117d100ca0e02cf6b66e7448696424ee191d47fbeda8c9b423b9",
+    "docs/evidence/objects/e847e8c4659ea99738fb9ea1bbea285d72eaea99938b9b36014db2a9d056b79f.json": "e847e8c4659ea99738fb9ea1bbea285d72eaea99938b9b36014db2a9d056b79f"
+  },
+  "authority": {
+    "commit_activation_push": "Explicit user request supplied by parent; pending runtime actions not reported complete",
+    "predecessor": "Original global-status passed v0-4-0; backup previous CLI preserved",
+    "next_release": "unused patch0.4.1/v0-4-1; synchronized Cargo.toml/lock and manifest",
+    "activation_route": "After selected commit, exact-SHA build-release only; candidate CLI+kit from same output, semantic preview and same candidate_sha256 apply, successful global-status",
+    "push": "ordinary origin/main, no force/tag/hosted deployment; exact-SHA CI separately"
+  },
+  "release_metadata": {
+    "manifest_schema": 3,
+    "source_files": 42,
+    "hash_errors": 0,
+    "published_note_values": "all former entry values unchanged; JSON formatting compacted only",
+    "new_note_changes": 5,
+    "previous": "v0-4-0",
+    "breaking_actions": "empty; current release changes no catalog format/launcher protocol/dependency interfaces",
+    "README_bytes": 8893,
+    "README_budget": 8900,
+    "mutation_wording": "corrected to mutation checks, not mutation of tests",
+    "route_bytes": 95513,
+    "route_budget": 95600
+  },
+  "index": {
+    "selected_files": 1936,
+    "changed_files": 1933,
+    "unchanged_dedup_objects": 3,
+    "selected_bytes": 39299495,
+    "index_vs_current": "all1936 exact SHA/bytes independently verified; final admin pin refresh confirmed",
+    "stored_pin_current_errors": 0,
+    "changed_outside_selection": 0,
+    "presentation_recovery_outside_paths": 0,
+    "gitignore": "excluded from selected/index; only unstaged tracked path; workingSHA9b3ded5f615f6e5fe70d8ed7273571c7b3c9b66805d62c6dad61a2a7d722bea8",
+    "credentials": "original pattern scan0 paths; no exhaustive secret guarantee",
+    "licenses": "No new dependency/vendor/font source changes; existing project MIT and UI license checks reused"
+  },
+  "checks": {
+    "frozen_rust": {
+      "raw_cases": 242,
+      "failure_error_skip": 0,
+      "source_pins": 482,
+      "current_drift": 0,
+      "attempt_completion_report_inventory": "verified"
+    },
+    "frozen_trace": {
+      "status": "passed",
+      "findings": 0,
+      "automatic_passed": 145,
+      "automatic_scenarios": 145,
+      "outside": 187,
+      "executed": 242,
+      "linked": 154,
+      "unlinked": 88,
+      "missing_unknown_skipped": 0
+    },
+    "node_actual_cases": 14,
+    "scale_reuse": "passed originals",
+    "ui_build": "passed original",
+    "workflow_tests": 4,
+    "inspect": "11ExternalLinkUnchecked only; no failed/unknown/budget excess",
+    "unchanged_source_runtime_GO": "reused in established scope; no new reviewer test executions"
+  },
+  "preservation_and_old_delivery": {
+    "prior_history_runs_inputs_acceptance": "earlier independent preservation GO reused; no rewriting current records as fresh actor proof",
+    "wrapper_exclusions": "22 wrappers and2 old selections recoverable outside Git; required runner originals selected",
+    "doctor_HG0076": "failed24 old input-hash findings, not PASS",
+    "doctor_HG0024": "failed12 old input-hash findings, not PASS",
+    "mapped_old_inputs": "Exact CAS/Git/backup available for mapped Cargo/norm docs/helper/test/manifest inputs and old global/spec tests",
+    "explicit_unmapped_old_bytes": [
+      "HG0076 clear-batches SHA6730ed prefix",
+      "HG0076 ignored old UI manifest SHAfc0a9a prefix",
+      "HG0024 old catalogue test SHA3a8b prefix",
+      "HG0024 old trace SHAe13c directCAS absent; earlier exact reverse reconstruction known"
+    ],
+    "whole_old_snapshot_completeness": "not claimed; limits explicit in staged release index",
+    "maintenance": "executor final365.07MiB; full check exit2 preserves hg58. Not general maintenance PASS"
+  },
+  "resolved_findings": [
+    "Removed unrelated user .gitignore from selection/index without changing working bytes",
+    "Compacted release notes/README within unchanged budgets; former published values retained",
+    "Corrected README mutation wording",
+    "Refreshed final administrative pin after restage"
+  ],
+  "blocking_findings": [],
+  "limits": [
+    "GO permits prepared local commit and assigned activation route; does not itself prove build/install/push success",
+    "No wholeHG0063/HG0076, prior comprehensive Clear, actor/Windows or human acceptance certification",
+    "Known old-input delivery failures remain failures and historic stale evidence remains stale",
+    "Tool/environment identity and ancestor/home Cargo settings unsealed",
+    "Presentation excluded; no installed plugins/other projects touched",
+    "Only post-review originals/admin metadata may be added with exact closure verification; changed core/tests/manifest needs renewed review"
+  ]
+}

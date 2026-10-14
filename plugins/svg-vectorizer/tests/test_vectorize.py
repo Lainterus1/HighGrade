@@ -1,5 +1,6 @@
 import base64
 import io
+import json
 from pathlib import Path
 import subprocess
 import sys
@@ -188,6 +189,35 @@ class PipelineTests(unittest.TestCase):
             with self.assertRaisesRegex(tool.VectorizeError, "Невалидный SVG"):
                 tool.vectorize(self.source, self.output)
         self.assertEqual(self.output.read_text(), "keep me")
+
+    def test_optimization_channel_guard_boundary_and_output_preservation(self):
+        Image.new("RGB", (32, 32), (17, 34, 51)).save(self.source)
+        optimizer = self.folder / "controlled-optimizer.mjs"
+        bridge = self.folder / "real-render-guard.mjs"
+        renderer = (tool.ROOT / "node_modules/@resvg/resvg-js/index.js").as_uri()
+        # Only the optimizer dependency is controlled. Production comparison,
+        # actual resvg rendering and atomic destination handling remain real.
+        source = tool.BRIDGE.read_text(encoding="utf-8")
+        source = source.replace("dependency('svgo',", f"dependency({json.dumps(optimizer.as_uri())},")
+        source = source.replace("dependency('@resvg/resvg-js',", f"dependency({json.dumps(renderer)},")
+        bridge.write_text(source, encoding="utf-8")
+        for difference in (2, 3):
+            with self.subTest(difference=difference):
+                color = "#%02x2233" % (17 + difference)
+                optimizer.write_text("export function optimize(svg){if(!svg.includes('#112233'))throw Error('fixture color missing');return {data:svg.replaceAll('#112233'," + json.dumps(color) + ")}}", encoding="utf-8")
+                self.output.write_text("keep me", encoding="utf-8")
+                with patch.object(tool, "BRIDGE", bridge):
+                    if difference == 2:
+                        report = tool.vectorize(self.source, self.output, preset="logo")
+                        self.assertEqual(report["render_max_difference"], 2)
+                        self.assertIn(color, self.output.read_text(encoding="utf-8"))
+                    else:
+                        absent = self.folder / "absent-output-parent" / "result.svg"
+                        for destination in (self.output, absent):
+                            with self.assertRaisesRegex(tool.VectorizeError, "разница канала 3/255"):
+                                tool.vectorize(self.source, destination, preset="logo")
+                        self.assertEqual(self.output.read_text(encoding="utf-8"), "keep me")
+                        self.assertFalse(absent.parent.exists())
 
     def test_opaque_source_cannot_develop_transparent_gaps(self):
         Image.new("RGB", (32, 32), "red").save(self.source)

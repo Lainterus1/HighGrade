@@ -1,0 +1,49 @@
+{
+  "sha": "fda4117312ca4c5af4388c960081dac94c10ea8f",
+  "runs": [
+    {
+      "argv": [
+        "git",
+        "clone",
+        "--quiet",
+        "--shared",
+        "--no-checkout",
+        "/home/lainterus/Projects/High Grade",
+        "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-predecessor/repository"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "started_at": "2026-10-14T06:16:52.751073+00:00",
+      "ended_at": "2026-10-14T06:16:52.760289+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "fda4117312ca4c5af4388c960081dac94c10ea8f"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-predecessor/repository",
+      "started_at": "2026-10-14T06:16:52.760476+00:00",
+      "ended_at": "2026-10-14T06:16:52.853382+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "HEAD is now at fda4117 feat: support Linux installation and verification (HG-0052)\n"
+    },
+    {
+      "argv": [
+        "python",
+        "scripts/build-release.py",
+        "fda4117312ca4c5af4388c960081dac94c10ea8f"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-predecessor/repository",
+      "started_at": "2026-10-14T06:16:52.853600+00:00",
+      "ended_at": "2026-10-14T06:17:06.006383+00:00",
+      "exit_code": 0,
+      "stdout": "{\"source_sha\": \"fda4117312ca4c5af4388c960081dac94c10ea8f\", \"candidate\": \"target/highgrade/candidate\"}\n",
+      "stderr": ""
+    }
+  ]
+}

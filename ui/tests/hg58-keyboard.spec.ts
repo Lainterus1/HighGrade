@@ -11,7 +11,7 @@ test('HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 p
   await expect(nav.nth(i).locator('svg')).toHaveAttribute('aria-hidden','true');
   const other=nav.nth((i+1)%4);await expect(other).toHaveAttribute('aria-pressed','false');
   expect(await nav.nth(i).evaluate(e=>getComputedStyle(e).backgroundColor)).not.toBe(await other.evaluate(e=>getComputedStyle(e).backgroundColor));
-  await page.screenshot({path:`../target/highgrade/tmp/hg58/keyboard-${i}.png`});
+  await page.screenshot({path:test.info().outputPath(`keyboard-${i}.png`)});
  }
  await page.goto('/iframe.html?id='+encodeURIComponent('основы-визуальный-язык--typography')+'&viewMode=story');
  // A specimen rendered with the actual loaded application font, not a replacement font.
@@ -23,7 +23,7 @@ test('HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 p
   expect(await page.locator('.token-card p').evaluateAll(es=>es.map(e=>getComputedStyle(e).fontWeight))).toEqual(['400','550','700']);
   expect(await page.locator('.token-card p').first().evaluate(e=>getComputedStyle(e).fontFamily)).toContain('Manrope');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
-  await page.screenshot({path:`../target/highgrade/tmp/hg58/cyrillic-${scale}.png`,fullPage:true});
+  await page.screenshot({path:test.info().outputPath(`cyrillic-${scale}.png`),fullPage:true});
  }
  expect(external).toEqual([]);
 });

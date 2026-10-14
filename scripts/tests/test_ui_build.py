@@ -45,8 +45,8 @@ class UiBuildTests(unittest.TestCase):
             dist.mkdir(parents=True)
             (dist / 'index.html').write_text('incomplete')
             build(success=False)
-            assets = ['index.html', 'fonts/Manrope.ttf', 'brand/mark.svg', 'brand/wordmark.svg',
-                      'licenses/Manrope-OFL.txt', 'licenses/Lucide-LICENSE.txt', 'licenses/packages.json',
+            assets = ['index.html', 'fonts/Manrope.ttf', 'fonts/Lora.ttf', 'brand/mark.svg', 'brand/wordmark.svg',
+                      'licenses/Manrope-OFL.txt', 'licenses/Lora-OFL.txt', 'licenses/Lucide-LICENSE.txt', 'licenses/packages.json',
                       'assets/app.js', 'assets/app.css']
             for asset in assets:
                 destination = dist / asset

@@ -1,0 +1,2592 @@
+{
+  "verdict": "go",
+  "scope": "Only locally observed UI/HTTP/projection outcomes and current source/test semantic review with listed limits",
+  "full_selected_ui_completion": false,
+  "whole_clear_execution_go": false,
+  "captured_at": "2026-10-14T15:17:08.749154+00:00",
+  "requirements_read": 31,
+  "scenarios_read": 69,
+  "requirements": [
+    {
+      "id": "HG-0052-R1",
+      "read": true,
+      "judgment": "Структурный профиль согласован с attention::supported; возраст и accepted status не фильтруются. Коррупция отделена от legacy.",
+      "owner": [
+        "src/specs/attention.rs",
+        "src/specs.rs",
+        "tests/attention_contracts.rs"
+      ],
+      "test": [
+        "projection_preserves_bytes_excludes_legacy_and_reports_corruption",
+        "result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement"
+      ],
+      "method": [
+        "Контрактный тест реальной операции проекции; fixture смешанных структур, сравнение ID/причин и хешей файлов.",
+        "Отрицательный контрактный тест: наблюдать отдельную диагностику повреждения и отсутствие записи выдуманного решения."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S1",
+          "read": true,
+          "required_method": "Контрактный тест реальной операции проекции; fixture смешанных структур, сравнение ID/причин и хешей файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S2",
+          "read": true,
+          "required_method": "Отрицательный контрактный тест: наблюдать отдельную диагностику повреждения и отсутствие записи выдуманного решения.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "New attention17: old-current created_at=1, accepted-current integrated fixture HG4, exact supported IDs and excluded ID/reason; catalog bytes unchanged; corruption branch retained.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "При baseline дополнить строгий смешанный fixture: старый по created_at current и принятый current. Текущий первый тест проверяет число, не точный набор ID/возрастные границы.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "New attention17: old-current created_at=1, accepted-current integrated fixture HG4, exact supported IDs and excluded ID/reason; catalog bytes unchanged; corruption branch retained.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0052-R2",
+      "read": true,
+      "judgment": "Согласие и принятие раздельны; optional version и пустой result-return comment реализованы. Решение не вызывает executor.",
+      "owner": [
+        "src/specs/attention.rs",
+        "src/specs/progress.rs",
+        "ui/src/features/specs/DecisionDialog.tsx"
+      ],
+      "test": [
+        "explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_request",
+        "result_status_without_build_id_keeps_snapshot_history_and_replay_gates",
+        "ui/tests/edit.spec.ts"
+      ],
+      "method": [
+        "Контрактный тест операции решения и смысловая сверка процедуры полномочий; наблюдать историю, неизменные результаты и отсутствие побочных запусков.",
+        "Отрицательные тесты реальных команд и сравнение сохранённого состояния до/после."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S3",
+          "read": true,
+          "required_method": "Контрактный тест операции решения и смысловая сверка процедуры полномочий; наблюдать историю, неизменные результаты и отсутствие побочных запусков.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S4",
+          "read": true,
+          "required_method": "Отрицательные тесты реальных команд и сравнение сохранённого состояния до/после.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Real attention/HTTP and edit/decision cases separate agreement from execution, retain tasks/evidence and selected response history; synthetic acceptance is not this project user acceptance.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Новый прогон с byte-preservation до/после отказа и неизменными tasks/evidence; не выдавать UI fixture acceptance за приёмку проекта.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Real attention/HTTP and edit/decision cases separate agreement from execution, retain tasks/evidence and selected response history; synthetic acceptance is not this project user acceptance.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0052-R3",
+      "read": true,
+      "judgment": "Очередь возникает из явной передачи, одного question и актуальных snapshots; другой вопрос не закрывается ответом.",
+      "owner": [
+        "src/specs/attention.rs",
+        "tests/attention_contracts.rs"
+      ],
+      "test": [
+        "explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_request",
+        "answers_in_reverse_request_order_use_recorded_sequence",
+        "repeated_requests_recheck_readiness_and_preserve_unrelated_questions"
+      ],
+      "method": [
+        "Табличный контрактный тест на изолированных записях с точным ожидаемым набором ID и действий.",
+        "Контрактный тест переходов с двумя вопросами одной спеки и повтором операции; наблюдать очередь и историю."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S5",
+          "read": true,
+          "required_method": "Табличный контрактный тест на изолированных записях с точным ожидаемым набором ID и действий.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S6",
+          "read": true,
+          "required_method": "Контрактный тест переходов с двумя вопросами одной спеки и повтором операции; наблюдать очередь и историю.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Explicit request/response and question targeting passed in actual attention17 and real native/edit flows.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужен фактический baseline выбранных переходов; source listing не есть execution.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Explicit request/response and question targeting passed in actual attention17 and real native/edit flows.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0052-R4",
+      "read": true,
+      "judgment": "Deterministic content snapshot исключает done/служебные результаты; CAS и история сохранены.",
+      "owner": [
+        "src/specs/attention.rs",
+        "src/specs/progress.rs",
+        "tests/attention_contracts.rs",
+        "ui/tests/edit.spec.ts"
+      ],
+      "test": [
+        "content_snapshots_metadata_and_stale_writes_are_distinct",
+        "result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement",
+        "HG56 S6 S7"
+      ],
+      "method": [
+        "Контрактный тест сохранения редакций, детерминированного diff и переходов до/после передачи.",
+        "Контрактный тест по отдельности для метаданных и повторного evidence.",
+        "Негативный CAS-тест реальной команды с хешами A/B."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S7",
+          "read": true,
+          "required_method": "Контрактный тест сохранения редакций, детерминированного diff и переходов до/после передачи.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S8",
+          "read": true,
+          "required_method": "Контрактный тест по отдельности для метаданных и повторного evidence.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S9",
+          "read": true,
+          "required_method": "Негативный CAS-тест реальной команды с хешами A/B.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Current attention17 compares exact catalogue bytes for stale/CAS/replay refusals and material content drift; shared HTTP/CLI boundary also passed.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Новый baseline и сравнение exact bytes при отрицательных CAS/устарелых решениях.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Current attention17 compares exact catalogue bytes for stale/CAS/replay refusals and material content drift; shared HTTP/CLI boundary also passed.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0052-R5",
+      "read": true,
+      "judgment": "Категории current/historical/unknown и API2 согласованы; сервер владеет readiness. Date/ID порядок реализован.",
+      "owner": [
+        "src/specs/attention.rs",
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "tests/attention_contracts.rs",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "queue_priority_categories_and_counts_are_deterministic",
+        "integrated_history_is_not_current_work_or_current_acceptance",
+        "HG59 S3 S4"
+      ],
+      "method": [
+        "Табличный тест проекции на точных данных и проверка единственного членства в рабочих категориях.",
+        "Табличный Rust-тест реальной проекции на временном каталоге: точные категории, флаг интеграции, счётчики, повторяемость и неизменность файлов.",
+        "Контрактный HTTP-тест API версии и браузерный тест совместимой страницы; сравнение каталога до и после чтения."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S10",
+          "read": true,
+          "required_method": "Табличный тест проекции на точных данных и проверка единственного членства в рабочих категориях.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0059-S1",
+          "read": true,
+          "required_method": "Табличный Rust-тест реальной проекции на временном каталоге: точные категории, флаг интеграции, счётчики, повторяемость и неизменность файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0059-S2",
+          "read": true,
+          "required_method": "Контрактный HTTP-тест API версии и браузерный тест совместимой страницы; сравнение каталога до и после чтения.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "New attention17 checks controlled same-kind reverse-ID dates, within-row request order, equal-date row ID tie-break, categories/counts/no duplication and unchanged bytes; native11 shows backend counts.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Queue test не задаёт разные at для одинакового kind: обратный date sort может пройти. Добавить или выбрать точную старый→новый+ID negative boundary. UI counts также требуют прямых assertions.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "New attention17 checks controlled same-kind reverse-ID dates, within-row request order, equal-date row ID tie-break, categories/counts/no duplication and unchanged bytes; native11 shows backend counts.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0053-R1",
+      "read": true,
+      "judgment": "Корень канонический, port0 loopback, изолированные процессы и штатный shutdown реализованы. Отказ opener не покрыт существующим S2-tagged тестом.",
+      "owner": [
+        "src/ui.rs",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "isolated_servers_share_cli_cas_and_run_without_node"
+      ],
+      "method": [
+        "Интеграционный тест запусков CLI/HTTP с двумя временными каталогами и сверкой файлов.",
+        "Интеграционное наблюдение порта/выхода процесса с контролируемой недоступностью браузера."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0053-S1",
+          "read": true,
+          "required_method": "Интеграционный тест запусков CLI/HTTP с двумя временными каталогами и сверкой файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_linux",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_linux",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0053-S2",
+          "read": true,
+          "required_method": "Интеграционное наблюдение порта/выхода процесса с контролируемой недоступностью браузера.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_linux",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_linux",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local_linux",
+        "observation": "HTTP7 exercises two real roots and real opener spawn failure with PATH empty, bounded diagnostic wait, useful URL, live GET and graceful shutdown. Unix branch only.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "HG53S2: Server::start всегда --no-open true и stderr=null. Нужен Unix реальный spawn-error xdg-open через PATH empty с stderr+URL+живым сервером+shutdown. Windows отдельно; fake opener exit1 не является spawn-error.",
+      "final_scope_status": "confirmed_local_linux",
+      "actual_confirmation": "HTTP7 exercises two real roots and real opener spawn failure with PATH empty, bounded diagnostic wait, useful URL, live GET and graceful shutdown. Unix branch only.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0053-R2",
+      "read": true,
+      "judgment": "Boundary проверяет Host/Origin/Fetch-Site/token; typed payload не принимает root/path/command. Основной код согласован, assertions не полностью подтверждают внешний sentinel/token hygiene.",
+      "owner": [
+        "src/ui.rs",
+        "src/specs.rs",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "hostile_origins_tokens_paths_and_extra_fields_never_mutate",
+        "unsupported_record_cannot_be_read_or_edited_by_direct_url"
+      ],
+      "method": [
+        "Негативные HTTP-тесты с Origin/Host/path/token вариантами и сравнением байтов.",
+        "Интеграционный тест API против результата эквивалентной CLI-операции."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0053-S3",
+          "read": true,
+          "required_method": "Негативные HTTP-тесты с Origin/Host/path/token вариантами и сравнением байтов.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0053-S4",
+          "read": true,
+          "required_method": "Интеграционный тест API против результата эквивалентной CLI-операции.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "HTTP7 uses actual sibling sentinel outside root. Every hostile Host/Origin/Fetch-Site, missing/wrong token, traversal/operation/root refusal asserts no token/private bytes; catalogue-byte hashes and sibling bytes preserved.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "HG53S3: outside.txt находится внутри root, traversal адресует sibling вне root. Нужен настоящий внешний sentinel; для каждого отказа проверить body не содержит session token и bytes обоих каталогов.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "HTTP7 uses actual sibling sentinel outside root. Every hostile Host/Origin/Fetch-Site, missing/wrong token, traversal/operation/root refusal asserts no token/private bytes; catalogue-byte hashes and sibling bytes preserved.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0053-R3",
+      "read": true,
+      "judgment": "CLI/HTTP входят в общий lock/CAS/readiness; readonly GET проверяет ту же locked snapshot. Отсутствие/пустота/порча/recovery различимы.",
+      "owner": [
+        "src/ui.rs",
+        "src/specs.rs",
+        "ui/src/api/client.ts",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "missing_empty_corrupt_and_interrupted_catalogs_remain_distinct",
+        "read_endpoints_recheck_catalog_state_and_external_edits",
+        "isolated_servers_share_cli_cas_and_run_without_node"
+      ],
+      "method": [
+        "Интеграционный тест CLI/HTTP с копиями fixtures и сравнением дерева до/после.",
+        "Перекрёстный CLI/HTTP-тест одной записи."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0053-S5",
+          "read": true,
+          "required_method": "Интеграционный тест CLI/HTTP с копиями fixtures и сравнением дерева до/после.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0053-S6",
+          "read": true,
+          "required_method": "Перекрёстный CLI/HTTP-тест одной записи.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "HTTP7 exercises missing/empty/corrupt/interrupted/unsupported catalogs, cross CLI/HTTP stale write and repeated real reads, without automatic initialization/recovery.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Baseline должен выполнять real HTTP/CLI и внешнюю запись, не только schema check. Запрет автоматического init/recover проверять деревом до/после.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "HTTP7 exercises missing/empty/corrupt/interrupted/unsupported catalogs, cross CLI/HTTP stale write and repeated real reads, without automatic initialization/recovery.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0053-R4",
+      "read": true,
+      "judgment": "Embedded статика, API2, CSP и graceful drain согласованы; запись не объявляется до подтверждения.",
+      "owner": [
+        "src/ui.rs",
+        "src/ui/bundle.rs",
+        "ui/src/api/client.ts",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "server_shutdown_during_write_request_never_reports_false_success",
+        "isolated_servers_share_cli_cas_and_run_without_node"
+      ],
+      "method": [
+        "Интеграционный тест кандидата и жизненного цикла, результат записи проверяется повторным чтением."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0053-S7",
+          "read": true,
+          "required_method": "Интеграционный тест кандидата и жизненного цикла, результат записи проверяется повторным чтением.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "HTTP7 executes abrupt incomplete write termination and graceful accepted-request drain, plus API-version/native bundle checks; no false-success assertion and persistence outcomes passed.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны две реальные ветви: abrupt incomplete body без write и graceful accepted request с подтверждённым сохранением; baseline ещё не выполнен мной.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "HTTP7 executes abrupt incomplete write termination and graceful accepted-request drain, plus API-version/native bundle checks; no false-success assertion and persistence outcomes passed.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R1",
+      "read": true,
+      "judgment": "CURRENT Manrope/24–30px отличается от source, но PENDING HG-0067 прямо задаёт Lora600/28–36px и допустимую лёгкую тень. Candidate соответствует pending; новый дизайн не выдумывается.",
+      "owner": [
+        "specs/changes/HG-0067/spec.json",
+        "ui/src/styles/theme.css",
+        "ui/src/components/ui",
+        "docs/UI.md",
+        "ui/README.md"
+      ],
+      "test": [
+        "ui/tests/editorial.spec.ts",
+        "ui/tests/hg58.spec.ts",
+        "ui/tests/visual.spec.ts"
+      ],
+      "method": [
+        "Playwright-снимки фиксированных viewport и ручная визуальная сверка с референсом; отдельно наблюдать масштаб и фокус.",
+        "Смысловое ревью структуры/README и импортов реальных компонентов; это проверка сопровождаемости, не поведения агента.",
+        "Наблюдение реального UI на 1440 и 390 px и общих компонентов Storybook; сравнить исходный текст и снимки, включая focus/reduced motion. Прежние elements-* отчёты — ориентир, не PASS новой редакции."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S1",
+          "read": true,
+          "required_method": "Playwright-снимки фиксированных viewport и ручная визуальная сверка с референсом; отдельно наблюдать масштаб и фокус.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_pending_norm",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_pending_norm",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0054-S2",
+          "read": true,
+          "required_method": "Смысловое ревью структуры/README и импортов реальных компонентов; это проверка сопровождаемости, не поведения агента.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_pending_norm",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_pending_norm",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0058-S1",
+          "read": true,
+          "required_method": "Наблюдение реального UI на 1440 и 390 px и общих компонентов Storybook; сравнить исходный текст и снимки, включая focus/reduced motion. Прежние elements-* отчёты — ориентир, не PASS новой редакции.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_pending_norm",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_pending_norm",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local_pending_norm",
+        "observation": "Current candidate is assessed against already-agreed pending HG67 Editorial/Lora, not old Manrope-only text. Current 1440/390/720/effective200 captures reviewed; fonts/focus/reduced-motion and actual text boundaries passed. Structure/imports/README semantic review reused for unchanged sources.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "HG67 evidence unknown и 4–22 drifted inputs по каждому current наблюдению. Нужны current screenshots 1440/390/zoom200, ручная визуальная сверка, focus/reduced-motion. Исторические картинки не current PASS.",
+      "final_scope_status": "confirmed_local_pending_norm",
+      "actual_confirmation": "Current candidate is assessed against already-agreed pending HG67 Editorial/Lora, not old Manrope-only text. Current 1440/390/720/effective200 captures reviewed; fonts/focus/reduced-motion and actual text boundaries passed. Structure/imports/README semantic review reused for unchanged sources.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R2",
+      "read": true,
+      "judgment": "Логотип сохранён как traced vector; происхождение и plugin runtime boundary документированы. SVG regenerating не назначается данным audit.",
+      "owner": [
+        "ui/src/assets/brand",
+        "ui/licenses/README.md",
+        "docs/evidence/specification-ui/brand-tracing.md",
+        "ui/src/components/Foundations.stories.tsx"
+      ],
+      "test": [
+        "ui/tests/visual.spec.ts: brand is vector-only and adapted icons render at their real sizes"
+      ],
+      "method": [
+        "Фактический отчёт SVG Vectorizer, разбор SVG и визуальные renders 16/32/48; при сбое не объявлять SVG готовым."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S3",
+          "read": true,
+          "required_method": "Фактический отчёт SVG Vectorizer, разбор SVG и визуальные renders 16/32/48; при сбое не объявлять SVG готовым.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_with_historical_origin_reuse",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_with_historical_origin_reuse",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local_with_historical_origin_reuse",
+        "observation": "Current SVG XML parses; no raster/active/external content found. Actual current 16/32/48 render read and compared with mark/wordmark sources and selected right-column variant10. Six brand bytes match historical visual-source-inputs and before-Clear snapshot; factual brand-tracing report reused. No new plugin execution claimed.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Обязателен XML + реальные renders 16/32/48 и сравнение исходного варианта10. Существующий traced report можно reuse при совпавших причинных bytes; новый вызов installed SVG plugin вне scope. Automatic SVG no-raster assertion не подтверждает узнаваемость.",
+      "final_scope_status": "confirmed_local_with_historical_origin_reuse",
+      "actual_confirmation": "Current SVG XML parses; no raster/active/external content found. Actual current 16/32/48 render read and compared with mark/wordmark sources and selected right-column variant10. Six brand bytes match historical visual-source-inputs and before-Clear snapshot; factual brand-tracing report reused. No new plugin execution claimed.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R3",
+      "read": true,
+      "judgment": "PENDING HG67 согласует Editorial/Lora, tokens берутся из theme variables, stories явно synthetic и сохраняют common components.",
+      "owner": [
+        "specs/changes/HG-0067/spec.json",
+        "ui/.storybook",
+        "ui/src/components/Foundations.stories.tsx",
+        "ui/src/app/Welcome.stories.tsx",
+        "ui/README.md"
+      ],
+      "test": [
+        "ui/tests/visual.spec.ts: catalog manager navigation and component controls work",
+        "every documented state renders without accessibility violations or backend writes"
+      ],
+      "method": [
+        "Сборка Storybook и браузерный проход по разделам с наблюдением компонентов и отсутствия запросов записи в backend."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S4",
+          "read": true,
+          "required_method": "Сборка Storybook и браузерный проход по разделам с наблюдением компонентов и отсутствия запросов записи в backend.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_pending_norm",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_pending_norm",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local_pending_norm",
+        "observation": "Current Storybook build passed; all story traversal/a11y/no-backend-write case and manager Controls interaction passed. Actual current Storybook capture read; fonts/icons/shared components match pending HG67.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны build static Storybook и browser traversal/controls с network GET-only. SpecWorkspace demo не доказывает реальные POST/DecisionDialog/SpecEditor действия; это проверяются native отдельно.",
+      "final_scope_status": "confirmed_local_pending_norm",
+      "actual_confirmation": "Current Storybook build passed; all story traversal/a11y/no-backend-write case and manager Controls interaction passed. Actual current Storybook capture read; fonts/icons/shared components match pending HG67.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R4",
+      "read": true,
+      "judgment": "Демонстрационные state fixtures покрывают назначенные состояния; actual editor/decision flows дополнительно покрыты native tests.",
+      "owner": [
+        "ui/src/features/specs/States.stories.tsx",
+        "ui/src/features/specs/SpecWorkspace.tsx",
+        "ui/src/features/specs/SpecEditor.stories.tsx",
+        "ui/src/components/ui"
+      ],
+      "test": [
+        "ui/tests/visual.spec.ts: editing validation discard",
+        "every documented state",
+        "ui/tests/decision.spec.ts",
+        "ui/tests/edit.spec.ts"
+      ],
+      "method": [
+        "Storybook interaction/a11y проверки и ручная клавиатурная проверка экранов; результаты по состояниям отдельно."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S5",
+          "read": true,
+          "required_method": "Storybook interaction/a11y проверки и ручная клавиатурная проверка экранов; результаты по состояниям отдельно.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_manual_keyboard_unavailable",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_manual_keyboard_unavailable",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "partial_manual_keyboard_unavailable",
+        "observation": "Automatic state/a11y/keyboard cases passed; current screenshots, visible focus, error/conflict/demo labels reviewed. Mandatory manual keyboard screen exercise not performed: CUA inventory empty, iab unavailable, native controls disabled. This stays a local execution gap.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Обязательны state-by-state a11y + ручная keyboard/focus и narrow observation. Только story count>=25 или Axe zero не доказывает semantic completeness.",
+      "final_scope_status": "partial_manual_keyboard_unavailable",
+      "actual_confirmation": "Automatic state/a11y/keyboard cases passed; current screenshots, visible focus, error/conflict/demo labels reviewed. Mandatory manual keyboard screen exercise not performed: CUA inventory empty, iab unavailable, native controls disabled. This stays a local execution gap.",
+      "gap": "Automatic state/a11y/keyboard cases passed; current screenshots, visible focus, error/conflict/demo labels reviewed. Mandatory manual keyboard screen exercise not performed: CUA inventory empty, iab unavailable, native controls disabled. This stays a local execution gap.",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R5",
+      "read": true,
+      "judgment": "Одноразовый исторический S3 handoff/pause сохраняется. CURRENT ссылка docs/plans/specification-ui-sequence.md устарела: владелец в docs/archive/plans. Это не новый pause текущего Clear.",
+      "owner": [
+        "specs/requirements/HG-0054-R5.json",
+        "docs/UI.md",
+        "docs/archive/plans/specification-ui-sequence.md"
+      ],
+      "test": [
+        "Смысловая адресная сверка historical barrier и оригинального handoff/authority"
+      ],
+      "method": [
+        "Смысловая сверка барьера при подготовке; при исполнении — наблюдение фактической передачи, состояния Planner и отсутствия начала S4."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S6",
+          "read": true,
+          "required_method": "Смысловая сверка барьера при подготовке; при исполнении — наблюдение фактической передачи, состояния Planner и отсутствия начала S4.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_preparation_historical_execution_not_repeated",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_preparation_historical_execution_not_repeated",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "historical handoff"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_preparation_historical_execution_not_repeated",
+        "observation": "HG67 pending operation equals current R5 except archive link; target exists. Historical user pause, S4 prohibition and no invented consent/Goal completion preserved. No new S3 human handoff or acceptance claimed.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Исправление ссылки через отдельное modify/current Spec, без переписывания HG54 history и без снятия прежней паузы. Не объявлять новое human visual acceptance из нынешних screenshots/GO.",
+      "final_scope_status": "confirmed_preparation_historical_execution_not_repeated",
+      "actual_confirmation": "HG67 pending operation equals current R5 except archive link; target exists. Historical user pause, S4 prohibition and no invented consent/Goal completion preserved. No new S3 human handoff or acceptance claimed.",
+      "gap": "Historical execution/user approval not repeated or invented; prepared link correction only.",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R6",
+      "read": true,
+      "judgment": "CURRENT Manrope-only и PENDING HG67 Lora+Manrope различены. Local faces, custom Lucide geometry, aria labels/operation icons исходно согласованы.",
+      "owner": [
+        "specs/changes/HG-0067/spec.json",
+        "ui/src/components/icons.tsx",
+        "ui/src/components/StatusBadge.tsx",
+        "ui/src/styles/theme.css",
+        "ui/licenses/README.md"
+      ],
+      "test": [
+        "ui/tests/editorial.spec.ts",
+        "ui/tests/hg58-keyboard.spec.ts",
+        "ui/tests/hg58.spec.ts",
+        "ui/tests/edit.spec.ts: HG56 S6 S7"
+      ],
+      "method": [
+        "Браузерная проверка FontFaceSet/загруженного локального face и сетевых запросов, визуальная сверка кириллицы и размеров при масштабе 100/200%.",
+        "Визуальная сверка оригинал→адаптация и малых размеров, проверка SVG/имён в accessibility tree и состояний с клавиатуры.",
+        "Браузер/Storybook: три операции, accessibility tree и before/after с разными ID; сверить ui/tests/edit.spec.ts сценарий HG56 S6 S7."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S7",
+          "read": true,
+          "required_method": "Браузерная проверка FontFaceSet/загруженного локального face и сетевых запросов, визуальная сверка кириллицы и размеров при масштабе 100/200%.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_pending_norm",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_pending_norm",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0054-S8",
+          "read": true,
+          "required_method": "Визуальная сверка оригинал→адаптация и малых размеров, проверка SVG/имён в accessibility tree и состояний с клавиатуры.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_pending_norm",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_pending_norm",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0058-S2",
+          "read": true,
+          "required_method": "Браузер/Storybook: три операции, accessibility tree и before/after с разными ID; сверить ui/tests/edit.spec.ts сценарий HG56 S6 S7.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local_pending_norm",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local_pending_norm",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local_pending_norm",
+        "observation": "Editorial FontFaceSet proves loaded local Lora+Manrope in native and Storybook; network/provenance/asset license paths checked. Current Cyrillic100/effective200, original-to-adapted icons16/20/24 and keyboard active/focus captures reviewed; no mere CSS-family claim.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны FontFaceSet loaded+network absence+licenses/provenance и визуальное сравнение original→adaptation 16/20/24. Один CSS fontFamily/asset existence не подтверждает реальный face или малую читаемость.",
+      "final_scope_status": "confirmed_local_pending_norm",
+      "actual_confirmation": "Editorial FontFaceSet proves loaded local Lora+Manrope in native and Storybook; network/provenance/asset license paths checked. Current Cyrillic100/effective200, original-to-adapted icons16/20/24 and keyboard active/focus captures reviewed; no mere CSS-family claim.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0055-R1",
+      "read": true,
+      "judgment": "Список/filters/search/initial category/current selection согласованы с backend projection. Счётчики рисуются прямо, но тест counts не утверждает их числа.",
+      "owner": [
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "src/specs/attention.rs",
+        "ui/tests/native.spec.ts"
+      ],
+      "test": [
+        "HG55 S1 S2: real catalog filters counts",
+        "HG59 S3 S4: integrated history"
+      ],
+      "method": [
+        "Playwright с реальным локальным API на временном каталоге, проверка точного набора строк и файловых хешей.",
+        "Браузерный сценарий двух пустых состояний.",
+        "Playwright с реальным локальным API и временным каталогом: вкладки, видимый выбор, поиск, счётчики и хеши файлов.",
+        "Браузерное наблюдение точного текста и статусов на подготовленных данных плюс проверка отсутствия записей."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0055-S1",
+          "read": true,
+          "required_method": "Playwright с реальным локальным API на временном каталоге, проверка точного набора строк и файловых хешей.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0055-S2",
+          "read": true,
+          "required_method": "Браузерный сценарий двух пустых состояний.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0059-S3",
+          "read": true,
+          "required_method": "Playwright с реальным локальным API и временным каталогом: вкладки, видимый выбор, поиск, счётчики и хеши файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0059-S4",
+          "read": true,
+          "required_method": "Браузерное наблюдение точного текста и статусов на подготовленных данных плюс проверка отсутствия записей.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Native11 executes real filters/count/empty/history cases; .count asserted against CLI projection for each category, date fixture and cancellation/excluded buckets retained.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны exact row IDs и visible .count по той же projection в каждой category; cancellation/excluded/integrated buckets не дублируются. Существующий count assertion только о числе .spec-row.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Native11 executes real filters/count/empty/history cases; .count asserted against CLI projection for each category, date fixture and cancellation/excluded buckets retained.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0055-R2",
+      "read": true,
+      "judgment": "Карточка использует raw React text, все then открыты/dedup, remove reason/questions/diff доступны; service fields скрыты, HTML inert.",
+      "owner": [
+        "ui/src/features/specs/NativeDocument.tsx",
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "ui/tests/native.spec.ts"
+      ],
+      "test": [
+        "HG55 S3 S4: full source operations and hostile text remain inert",
+        "HG55 S3 S6: compact source view"
+      ],
+      "method": [
+        "ui/tests/native.spec.ts: HG55 S3 S4 и HG55 S3 S6; сверить текст с fixture, отсутствие скрытых разделов, все условия и хеши файлов.",
+        "Негативный браузерный тест с перехватом сети и проверкой отсутствия побочного исполнения."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0055-S3",
+          "read": true,
+          "required_method": "ui/tests/native.spec.ts: HG55 S3 S4 и HG55 S3 S6; сверить текст с fixture, отсутствие скрытых разделов, все условия и хеши файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0055-S4",
+          "read": true,
+          "required_method": "Негативный браузерный тест с перехватом сети и проверкой отсутствия побочного исполнения.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Native11 renders full original add/modify/remove text and all readiness clauses, hostile script/image text stays inert with no external request; meaningful source IDs remain stored, not reconstructed.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны source text exact equality, все уникальные then, arbitrary hostile script/image/link network observation и unchanged catalog. Baseline ещё не запущен мной.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Native11 renders full original add/modify/remove text and all readiness clauses, hostile script/image text stays inert with no external request; meaningful source IDs remain stored, not reconstructed.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0055-R3",
+      "read": true,
+      "judgment": "Primary action/quiet state/status wording и technical-reference extraction согласованы; оригинал result reason сохраняется в раскрытии.",
+      "owner": [
+        "ui/src/features/specs/DecisionReason.tsx",
+        "ui/src/features/specs/decisionCopy.ts",
+        "ui/src/components/StatusBadge.tsx",
+        "NativeWorkspace"
+      ],
+      "test": [
+        "HG55 S5: one actual handoff action or quiet reading",
+        "ui/scripts/tests/decision-copy.test.mjs",
+        "HG70 S1 S2 S4"
+      ],
+      "method": [
+        "Playwright/визуальная сверка четырёх состояний на реальном API."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0055-S5",
+          "read": true,
+          "required_method": "Playwright/визуальная сверка четырёх состояний на реальном API.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Native11 exercises question/agreement/result primary actions and settled quiet reading. Quiet branch now awaits correct h1 and Refresh enabled before decision0; fresh screenshot has no loading. Technical-reference rendering observation uses a controlled payload and does not certify provenance of that payload.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Тесты result reason с route-modified payload оценивают rendering, не backend provenance. Нужны все4actual action states и сохранение useful constraints/source text; no extra LLM/network.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Native11 exercises question/agreement/result primary actions and settled quiet reading. Quiet branch now awaits correct h1 and Refresh enabled before decision0; fresh screenshot has no loading. Technical-reference rendering observation uses a controlled payload and does not certify provenance of that payload.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0055-R4",
+      "read": true,
+      "judgment": "CONFIRMED RED: background poll read A не имеет AbortSignal и блокирует global api pending queue. Новый выбор B появляется лишь после release A. Selected-read cancellation уже есть и тестируется отдельно.",
+      "owner": [
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "ui/src/api/client.ts",
+        "ui/tests/native.spec.ts"
+      ],
+      "test": [
+        "Latest selection does not wait for an obsolete read",
+        "HG55 S6 context",
+        "poll-repro.spec.ts real native independent reproduction"
+      ],
+      "method": [
+        "Браузерный тест с реальной CLI-записью и наблюдением scroll/содержания до явного обновления.",
+        "Браузерный тест прерывания связи и восстановления.",
+        "ui/tests/native.spec.ts: Latest selection does not wait for an obsolete read и HG55 S3 S6. Удерживать B до утверждения о C; не подменять проверку обычным быстрым ответом."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0055-S6",
+          "read": true,
+          "required_method": "Браузерный тест с реальной CLI-записью и наблюдением scroll/содержания до явного обновления.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0055-S7",
+          "read": true,
+          "required_method": "Браузерный тест прерывания связи и восстановления.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0058-S3",
+          "read": true,
+          "required_method": "ui/tests/native.spec.ts: Latest selection does not wait for an obsolete read и HG55 S3 S6. Удерживать B до утверждения о C; не подменять проверку обычным быстрым ответом.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Independent real native meaningful RED and two fixed same repro GREENs preserved. Current native11 holds poll A until B visible, waits handled then checks B/no-alert/catalog; older selection/context/cache/unavailable cases passed. API2 now aborts during registered retry timer wait before known first200ms interval; POST is not repeated.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Блокер current boundary: отменять obsolete poll read без ошибки нового выбора и без отмены/retry POST. Нужен GREEN того же repro, сохранённые RED originals; равноправно удерживать A до утверждения B, затем проверить restoration/error absence.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Independent real native meaningful RED and two fixed same repro GREENs preserved. Current native11 holds poll A until B visible, waits handled then checks B/no-alert/catalog; older selection/context/cache/unavailable cases passed. API2 now aborts during registered retry timer wait before known first200ms interval; POST is not repeated.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0056-R1",
+      "read": true,
+      "judgment": "Editor реализует shallow immutable drafts, explicit changed-field patch, then-only fields и сохранение hidden fields. Backend защищает archived/contracts.",
+      "owner": [
+        "ui/src/features/specs/SpecEditor.tsx",
+        "src/specs.rs",
+        "ui/tests/edit.spec.ts"
+      ],
+      "test": [
+        "HG56 S1 S2",
+        "HG56 S3 integrated/protected",
+        "delayed write locks fields",
+        "memoized requirement fields retain validation"
+      ],
+      "method": [
+        "Playwright с реальным API и проверкой файла/CLI-read после перезапуска страницы.",
+        "Браузерный тест валидации/отмены/навигации и сравнение байтов.",
+        "Негативный API-тест и браузерная проверка режима чтения.",
+        "ui/tests/edit.spec.ts: HG56 S1 S2 сравнивает всю структуру operations с единственным ожидаемым изменением then; остальные сценарии проверяют CAS и отмену."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0056-S1",
+          "read": true,
+          "required_method": "Playwright с реальным API и проверкой файла/CLI-read после перезапуска страницы.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S2",
+          "read": true,
+          "required_method": "Браузерный тест валидации/отмены/навигации и сравнение байтов.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S3",
+          "read": true,
+          "required_method": "Негативный API-тест и браузерная проверка режима чтения.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0058-S4",
+          "read": true,
+          "required_method": "ui/tests/edit.spec.ts: HG56 S1 S2 сравнивает всю структуру operations с единственным ожидаемым изменением then; остальные сценарии проверяют CAS и отмену.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Real native edit cases passed explicit save/validation/cancel/protected operations/memoized then fields/delayed write; actual CLI/storage/reload bytes compared.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Обязательны real API + CLI/file/reload, full operations diff, negative validation/Cancel/beforeunload. Client validation-only case не заменяет backend protected-field reject.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Real native edit cases passed explicit save/validation/cancel/protected operations/memoized then fields/delayed write; actual CLI/storage/reload bytes compared.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0056-R2",
+      "read": true,
+      "judgment": "Local CAS допускает независимую запись; конфликт/uncertain outcome требует explicit read/new base. Blind POST retry запрещён client и form.",
+      "owner": [
+        "ui/src/features/specs/SpecEditor.tsx",
+        "ui/src/api/client.ts",
+        "src/specs.rs",
+        "ui/tests/edit.spec.ts"
+      ],
+      "test": [
+        "HG56 S4 S5 local CAS conflict and lost response",
+        "api-client POST StoreBusy rejects after one request"
+      ],
+      "method": [
+        "Сквозной тест Playwright плюс параллельная CLI-запись; проверить ввод и файловую версию.",
+        "Интеграционный тест локального CAS и браузерный тест потерянного ответа с контролем числа записей."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0056-S4",
+          "read": true,
+          "required_method": "Сквозной тест Playwright плюс параллельная CLI-запись; проверить ввод и файловую версию.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S5",
+          "read": true,
+          "required_method": "Интеграционный тест локального CAS и браузерный тест потерянного ответа с контролем числа записей.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Actual CAS/conflict/lost committed and unwritten response cases passed, with explicit GET/new-base retry and POST counts; no blind automatic write retry.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны read-only recovery и write count для committed/unwritten lost response, оба catalog/input variants сохранны. Полная свежая boundary execution требуется после изменений client/poll.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Actual CAS/conflict/lost committed and unwritten response cases passed, with explicit GET/new-base retry and POST counts; no blind automatic write retry.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0056-R3",
+      "read": true,
+      "judgment": "Согласование visible content/diff, unsaved/stale guards и task authority согласованы; protected agreement не запускает work.",
+      "owner": [
+        "NativeWorkspace",
+        "DecisionDialog",
+        "src/specs/attention.rs",
+        "ui/tests/edit.spec.ts"
+      ],
+      "test": [
+        "HG56 S6 S7",
+        "changed visible revision cannot be agreed through open dialog"
+      ],
+      "method": [
+        "Браузерный сценарий с CLI-read истории и отсутствием побочных процессов.",
+        "Отрицательные UI/API-тесты несохранённого ввода и конкурентного изменения."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0056-S6",
+          "read": true,
+          "required_method": "Браузерный сценарий с CLI-read истории и отсутствием побочных процессов.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S7",
+          "read": true,
+          "required_method": "Отрицательные UI/API-тесты несохранённого ввода и конкурентного изменения.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Visible agreement/diff and stale open dialog cases passed, real history/CLI bytes preserved; agreement does not execute tasks.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны exact before/after original HG IDs, real history two agreements, stale CAS rejection и no agent/Git side-effect; UI demo не storage observation.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Visible agreement/diff and stale open dialog cases passed, real history/CLI bytes preserved; agreement does not execute tasks.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0056-R4",
+      "read": true,
+      "judgment": "Status-only acceptance, system source/time, automatic optional version, separate question text, remaining queue и no executor реализованы.",
+      "owner": [
+        "DecisionDialog",
+        "ResultStatusSelect",
+        "decisionDrafts",
+        "src/specs/attention.rs",
+        "src/specs/progress.rs"
+      ],
+      "test": [
+        "HG56 S8 S10",
+        "HG56 S8 S9",
+        "HG70 S1 S2 S4",
+        "ui/tests/decision.spec.ts"
+      ],
+      "method": [
+        "Playwright плюс CLI-read и проверка привязки решения/счётчиков.",
+        "Негативные UI/API-тесты дрейфа доказательств и пустого комментария.",
+        "Сквозной сценарий ответов/возврата и сверка истории обращений."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0056-S8",
+          "read": true,
+          "required_method": "Playwright плюс CLI-read и проверка привязки решения/счётчиков.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S9",
+          "read": true,
+          "required_method": "Негативные UI/API-тесты дрейфа доказательств и пустого комментария.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S10",
+          "read": true,
+          "required_method": "Сквозной сценарий ответов/возврата и сверка истории обращений.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Real status acceptance/return, stale/readiness refusal and separate question closure passed; absence of manual technical field and exact stored metadata checked. Fixture decisions are not project human acceptance.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Baseline real catalog reload/CLI equality for acceptance+return+two questions и rejected stale result. Источник synthetic fixture decision не human acceptance этого проекта.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Real status acceptance/return, stale/readiness refusal and separate question closure passed; absence of manual technical field and exact stored metadata checked. Fixture decisions are not project human acceptance.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0057-R1",
+      "read": true,
+      "judgment": "Builder использует git archive exact SHA и probes actual Cargo binary; bundle includes local fonts/icons/licenses. Debug without dist не пользовательский installed route.",
+      "owner": [
+        "build.rs",
+        "src/ui/bundle.rs",
+        "ui/scripts/bundle.mjs",
+        "scripts/build-release.py",
+        "ui/licenses/README.md"
+      ],
+      "test": [
+        "installed.spec.ts HG57 S1–S7",
+        "scripts/tests/test_ui_build.py",
+        "bundle.test.mjs",
+        "ui_bundle_contracts"
+      ],
+      "method": [
+        "Интеграционный smoke установленного кандидата плюс Playwright и наблюдение сети/реальной записи.",
+        "Негативный тест временного выпуска и сравнение каталога.",
+        "Проверка состава кандидата и смысловая сверка конкретных лицензий с фактически включёнными assets; один файл NOTICE без сопоставления состава недостаточен."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0057-S1",
+          "read": true,
+          "required_method": "Интеграционный smoke установленного кандидата плюс Playwright и наблюдение сети/реальной записи.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_current_installed_method_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_current_installed_method_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0057-S2",
+          "read": true,
+          "required_method": "Негативный тест временного выпуска и сравнение каталога.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_current_installed_method_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_current_installed_method_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0057-S7",
+          "read": true,
+          "required_method": "Проверка состава кандидата и смысловая сверка конкретных лицензий с фактически включёнными assets; один файл NOTICE без сопоставления состава недостаточен.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_current_installed_method_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_current_installed_method_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "partial_current_installed_method_open",
+        "observation": "Current native bundle/fonts/assets, validator source and Linux Rust bundle boundaries checked. Current installed release smoke, damaged temporary release and delivered-candidate asset/license composition methods remain unexecuted in this review; installed.spec.ts was not selected.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны exact candidate+predecessor identities, real installed UI offline/PATH without Node/Cargo, every manifest asset/hash и конкретные license↔asset origins. Старые кандидаты не подтверждают dirtytree.",
+      "final_scope_status": "partial_current_installed_method_open",
+      "actual_confirmation": "Current native bundle/fonts/assets, validator source and Linux Rust bundle boundaries checked. Current installed release smoke, damaged temporary release and delivered-candidate asset/license composition methods remain unexecuted in this review; installed.spec.ts was not selected.",
+      "gap": "Current native bundle/fonts/assets, validator source and Linux Rust bundle boundaries checked. Current installed release smoke, damaged temporary release and delivered-candidate asset/license composition methods remain unexecuted in this review; installed.spec.ts was not selected.",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0057-R2",
+      "read": true,
+      "judgment": "Global candidate/installer precheck и postcheck/recovery сохраняют project roots; synthetic faults используются для updater behavior, не имитируют сам UI.",
+      "owner": [
+        "src/global.rs candidate/install/update",
+        "src/package.rs::verify_ui",
+        "tests/global_contracts.rs",
+        "installed.spec.ts"
+      ],
+      "test": [
+        "global_install_does_not_touch_project_and_checks_adapter",
+        "global_update_preview_switch_and_cleanup_keep_unrelated_files",
+        "interrupted_skill_update_recovers_without_overwriting_user_edit",
+        "installed.spec.ts"
+      ],
+      "method": [
+        "Контракт установки/обновления на временных профилях с хешами и браузерным smoke.",
+        "Регрессионный контрактный тест установки с контролируемым сбоем; не запускать в реальном профиле."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0057-S3",
+          "read": true,
+          "required_method": "Контракт установки/обновления на временных профилях с хешами и браузерным smoke.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_current_installed_method_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_current_installed_method_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0057-S4",
+          "read": true,
+          "required_method": "Регрессионный контрактный тест установки с контролируемым сбоем; не запускать в реальном профиле.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_current_installed_method_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_current_installed_method_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "partial_current_installed_method_open",
+        "observation": "Linux Rust isolated install/recovery controls passed in original full suite; this does not substitute current candidate installation plus browser smoke/preservation workflow. New installed user-file sentinel assertions were read, not executed.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужен new/current installed fixture two-root inventory and recovery; real profile activation не назначена и не требуется для этих isolated assertions.",
+      "final_scope_status": "partial_current_installed_method_open",
+      "actual_confirmation": "Linux Rust isolated install/recovery controls passed in original full suite; this does not substitute current candidate installation plus browser smoke/preservation workflow. New installed user-file sentinel assertions were read, not executed.",
+      "gap": "Linux Rust isolated install/recovery controls passed in original full suite; this does not substitute current candidate installation plus browser smoke/preservation workflow. New installed user-file sentinel assertions were read, not executed.",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0057-R3",
+      "read": true,
+      "judgment": "docs/UI и ui/README согласованы с current+pending UI; DEVELOPMENT/BUILD являются владельцами commands. Все pipeline stages требуют настоящего installed observation, а не mock screenshots.",
+      "owner": [
+        "README",
+        "docs/UI.md",
+        "ui/README.md",
+        "docs/DEVELOPMENT.md",
+        "docs/BUILD.md"
+      ],
+      "test": [
+        "installed.spec.ts",
+        "normative docs review + run documented commands"
+      ],
+      "method": [
+        "Единый сквозной Playwright/CLI прогон с раздельными наблюдениями сценариев и актуальными входами, независимое ревью.",
+        "Смысловая сверка документации плюс фактический запуск документированных команд в тестовой среде."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0057-S5",
+          "read": true,
+          "required_method": "Единый сквозной Playwright/CLI прогон с раздельными наблюдениями сценариев и актуальными входами, независимое ревью.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_current_installed_method_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_current_installed_method_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0057-S6",
+          "read": true,
+          "required_method": "Смысловая сверка документации плюс фактический запуск документированных команд в тестовой среде.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_current_installed_method_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_current_installed_method_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "partial_current_installed_method_open",
+        "observation": "UI/docs/Storybook commands and local native launch-edit-conflict-agree-accept boundaries checked separately. Unified current exact candidate installed Playwright/CLI workflow and its documented release/install commands remain open.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Единый current exact candidate launch→edit→conflict→agree→accept scoped exercise остаётся обязательным. Historical visual handoff/human acceptance сохраняются отдельно. Rootless ui --check не доказывает workflow.",
+      "final_scope_status": "partial_current_installed_method_open",
+      "actual_confirmation": "UI/docs/Storybook commands and local native launch-edit-conflict-agree-accept boundaries checked separately. Unified current exact candidate installed Playwright/CLI workflow and its documented release/install commands remain open.",
+      "gap": "UI/docs/Storybook commands and local native launch-edit-conflict-agree-accept boundaries checked separately. Unified current exact candidate installed Playwright/CLI workflow and its documented release/install commands remain open.",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0060-R1",
+      "read": true,
+      "judgment": "Unix permissions/profile paths и platform-selected browser paths согласованы; broken exec bit и neighbour skill сохранность реально asserted.",
+      "owner": [
+        "src/global.rs",
+        "src/install.rs interface",
+        "src/ui.rs",
+        "tests/global_contracts.rs"
+      ],
+      "test": [
+        "unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills",
+        "ui installed/native",
+        "ui check"
+      ],
+      "method": [
+        "Rust global_contracts, установленный Playwright и isolated global-status",
+        "UI и Storybook builds, Playwright native и installed, проверка URL и ресурсов"
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0060-S1",
+          "read": true,
+          "required_method": "Rust global_contracts, установленный Playwright и isolated global-status",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_installed_and_windows_methods_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_installed_and_windows_methods_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0060-S2",
+          "read": true,
+          "required_method": "UI и Storybook builds, Playwright native и installed, проверка URL и ресурсов",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_installed_and_windows_methods_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_installed_and_windows_methods_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "partial_installed_and_windows_methods_open",
+        "observation": "Linux real global/launcher/URL/bundle and native/Storybook outcomes checked. Required installed Playwright/current profile smoke and Windows platform observations not performed.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Local Unix и external Windows outcomes показывать отдельно. Test не должен заявлять Windows PASS из cfg(unix) или изменить реальную installation.",
+      "final_scope_status": "partial_installed_and_windows_methods_open",
+      "actual_confirmation": "Linux real global/launcher/URL/bundle and native/Storybook outcomes checked. Required installed Playwright/current profile smoke and Windows platform observations not performed.",
+      "gap": "Linux real global/launcher/URL/bundle and native/Storybook outcomes checked. Required installed Playwright/current profile smoke and Windows platform observations not performed.",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0061-R1",
+      "read": true,
+      "judgment": "Draft key включает canonical root/spec/request/kind; status/text/uncertain guard сохраняются. Optional version берётся из target handoff без ручного поля.",
+      "owner": [
+        "DecisionDialog",
+        "decisionDrafts",
+        "ui/tests/decision.spec.ts"
+      ],
+      "test": [
+        "Close close icon Escape navigation",
+        "lost unwritten/committed",
+        "stale/lost result",
+        "pending write blocks repeated actions",
+        "scope/revision unit cases"
+      ],
+      "method": [
+        "Реальный Playwright сценарий Close/Escape/unmount плюс проверки изоляции хранилища.",
+        "Playwright/API с контролируемым ответом и дрейфом, проверкой числа POST и настоящего каталога."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0061-S1",
+          "read": true,
+          "required_method": "Реальный Playwright сценарий Close/Escape/unmount плюс проверки изоляции хранилища.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0061-S2",
+          "read": true,
+          "required_method": "Playwright/API с контролируемым ответом и дрейфом, проверкой числа POST и настоящего каталога.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Decision storage unit and real remount/Close/Escape, root/spec/request isolation, target drift and lost-response POST-count cases passed. New revision test asserts each material variant differs from original.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны обе lost-response branches и drift, verified optional metadata boundary. Current source больше не имеет manual version field — нельзя требовать устаревший field selector из старого then без учёта HG70 modification.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Decision storage unit and real remount/Close/Escape, root/spec/request isolation, target drift and lost-response POST-count cases passed. New revision test asserts each material variant differs from original.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0061-R2",
+      "read": true,
+      "judgment": "Release/debug/check/install guards and required-mode no-skip согласованы. CI pins real current+predecessor with Linux/Windows matrix.",
+      "owner": [
+        "src/ui/bundle.rs",
+        "build.rs",
+        "ui_bundle_contracts",
+        "installed-config.mjs",
+        "installed.spec.ts",
+        ".github/workflows/verify.yml"
+      ],
+      "test": [
+        "incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes",
+        "ui_check_is_rootless_read_only",
+        "incompatible_ui_candidate...",
+        "installed-config tests"
+      ],
+      "method": [
+        "Тесты сборочного валидатора, установщика и read-only CLI probe с проверкой неизменности профиля.",
+        "Проверки required-mode и installed.spec.ts; exact-commit Windows/Linux CI после отдельно разрешённой публикации."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0061-S3",
+          "read": true,
+          "required_method": "Тесты сборочного валидатора, установщика и read-only CLI probe с проверкой неизменности профиля.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_required_mode_and_exact_ci_methods_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_required_mode_and_exact_ci_methods_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0061-S4",
+          "read": true,
+          "required_method": "Проверки required-mode и installed.spec.ts; exact-commit Windows/Linux CI после отдельно разрешённой публикации.",
+          "method_selected_before_baseline": true,
+          "outcome": "partial_required_mode_and_exact_ci_methods_open",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "partial_required_mode_and_exact_ci_methods_open",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "external exact SHA Windows/Linux"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "partial_required_mode_and_exact_ci_methods_open",
+        "observation": "Rust/UI local bundle/validator outcomes and changed installed-config source reviewed. Required-mode/Node/Python build protocol results are owned by separate evidence reviewer. Current exact-SHA installed E2E Linux/Windows with authentic pinned predecessor and separately authorized publication CI remains open.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "HG61S4 external exact current SHA Windows/Linux CI и installed E2E обязательны этому сценарию; missing fixture/skip != PASS. При отсутствии publication authority оставить явный external remainder, не активировать release.",
+      "final_scope_status": "partial_required_mode_and_exact_ci_methods_open",
+      "actual_confirmation": "Rust/UI local bundle/validator outcomes and changed installed-config source reviewed. Required-mode/Node/Python build protocol results are owned by separate evidence reviewer. Current exact-SHA installed E2E Linux/Windows with authentic pinned predecessor and separately authorized publication CI remains open.",
+      "gap": "Rust/UI local bundle/validator outcomes and changed installed-config source reviewed. Required-mode/Node/Python build protocol results are owned by separate evidence reviewer. Current exact-SHA installed E2E Linux/Windows with authentic pinned predecessor and separately authorized publication CI remains open.",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0061-R3",
+      "read": true,
+      "judgment": "Payload/revision/readiness replay rules и legacy ambiguity реализованы и проверяются real CLI/bytes; несовместимые writers нельзя использовать после нового поля.",
+      "owner": [
+        "src/specs/attention.rs",
+        "src/specs/progress.rs",
+        "tests/attention_contracts.rs"
+      ],
+      "test": [
+        "repeated_result_requests_recheck_inputs_revision_and_readiness",
+        "repeated_result_responses_preserve_exact_revision_and_recheck_gates",
+        "legacy_result_responses_require_unambiguous_acceptance_revision"
+      ],
+      "method": [
+        "Rust attention_contracts на реальных CLI/storage границах.",
+        "Rust контрактные тесты совместимости и истории принятия."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0061-S5",
+          "read": true,
+          "required_method": "Rust attention_contracts на реальных CLI/storage границах.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0061-S6",
+          "read": true,
+          "required_method": "Rust контрактные тесты совместимости и истории принятия.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Current attention17 executes optional/saved metadata, replay/stale gates, history compatibility and whole-batch rejection with exact byte preservation.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужен current Rust baseline с exact no-write inventory, old-format fixture и actual input/report drift; dates/hashes сами не authenticity.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Current attention17 executes optional/saved metadata, replay/stale gates, history compatibility and whole-batch rejection with exact byte preservation.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0070-R1",
+      "read": true,
+      "judgment": "Форма использует status+optional comment, сохраняет system source, exact source reason+disclosed refs; no LLM or manual technical requirements.",
+      "owner": [
+        "DecisionDialog",
+        "ResultStatusSelect",
+        "DecisionReason",
+        "decisionCopy",
+        "src/specs/attention.rs",
+        "progress.rs"
+      ],
+      "test": [
+        "HG70 S1 S2 S4 status needs no manual fields",
+        "HG70 S3 lost/stale flows",
+        "result_status_without_build_id...",
+        "known/ambiguous version Rust contracts"
+      ],
+      "method": [
+        "Playwright с реальным API и CLI-read принятия/возврата; контрактный Rust-тест новой записи без версии.",
+        "Rust attention/decision contracts и Playwright автоматического использования версии обращения.",
+        "Rust CAS/readiness/replay contracts и Playwright lost-response/reopen/recovery.",
+        "Playwright точного отображения исходной строки, сохранности ограничений/данных и отсутствия внешних запросов; смысловая сверка правил Work."
+      ],
+      "scenario_reviews": [
+        {
+          "id": "HG-0070-S1",
+          "read": true,
+          "required_method": "Playwright с реальным API и CLI-read принятия/возврата; контрактный Rust-тест новой записи без версии.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0070-S2",
+          "read": true,
+          "required_method": "Rust attention/decision contracts и Playwright автоматического использования версии обращения.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0070-S3",
+          "read": true,
+          "required_method": "Rust CAS/readiness/replay contracts и Playwright lost-response/reopen/recovery.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0070-S4",
+          "read": true,
+          "required_method": "Playwright точного отображения исходной строки, сохранности ограничений/данных и отсутствия внешних запросов; смысловая сверка правил Work.",
+          "method_selected_before_baseline": true,
+          "outcome": "confirmed_local",
+          "boundary": "Local confirmation with listed per-requirement limits; required external/manual methods remain open.",
+          "final_scope_status": "confirmed_local",
+          "limits": "Requirement-level observation is scoped; no automatic PASS assigned from test count alone.",
+          "initial_outcome": "not_claimed",
+          "initial_boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": {
+        "scope_status": "confirmed_local",
+        "observation": "Actual status-only accepted/return, unique/ambiguous saved metadata, raw reason/reference disclosure, lost answer once-only and no unnecessary fields/external request cases passed.",
+        "whole_requirement_pass_not_implied": true
+      },
+      "initial_gap": "Нужны current no-build accepted/return, unique/ambiguous known version, lost answer counts, raw reason equality и no external requests. Один truthy snapshot hash не доказывает весь independent causal scope.",
+      "final_scope_status": "confirmed_local",
+      "actual_confirmation": "Actual status-only accepted/return, unique/ambiguous saved metadata, raw reason/reference disclosure, lost answer once-only and no unnecessary fields/external request cases passed.",
+      "gap": "",
+      "initial_execution": "early audit; no whole-baseline PASS claimed"
+    }
+  ],
+  "actual_checks": [
+    {
+      "key": "browser42",
+      "path": "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776",
+      "observed": "passed",
+      "passed": 42,
+      "skipped": 0,
+      "flaky": 0,
+      "cases": [
+        {
+          "file": "api-client.spec.ts",
+          "line": 4,
+          "title": "POST StoreBusy rejects after one request; GET may retry",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "api-client.spec.ts",
+          "line": 22,
+          "title": "abort interrupts GET retry waiting",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "decision.spec.ts",
+          "line": 13,
+          "title": "preserves exact draft through repeated remounts and clears only the confirmed target",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "decision.spec.ts",
+          "line": 26,
+          "title": "isolates the canonical project root, specification and request, even with equal display names",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "decision.spec.ts",
+          "line": 38,
+          "title": "keeps text, selected status and retry guard across target or input drift",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "decision.spec.ts",
+          "line": 77,
+          "title": "Close, close icon, Escape and navigation preserve the same result draft without writes",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "decision.spec.ts",
+          "line": 95,
+          "title": "a lost unwritten response remains blocked after dismissal until GET inspection and explicit retry",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "decision.spec.ts",
+          "line": 107,
+          "title": "a lost committed response and a failed inspection cannot reset the retry guard",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "decision.spec.ts",
+          "line": 120,
+          "title": "HG70 S3: a stale result preserves status and text without posting again",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "decision.spec.ts",
+          "line": 135,
+          "title": "HG70 S3: lost result response preserves selected status and records acceptance once",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "decision.spec.ts",
+          "line": 144,
+          "title": "a pending write blocks repeated actions and clears only its own draft after confirmation",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 9,
+          "title": "HG56 S1 S2: explicit save, validation, cancel and navigation retain correct bytes",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 15,
+          "title": "HG56 S3: integrated and protected content cannot be edited through UI or API",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 19,
+          "title": "HG56 S1: delayed write locks fields and navigation until confirmation",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 22,
+          "title": "HG56 S4 S5: local CAS, conflict comparison and lost response never blindly retry writes",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 27,
+          "title": "HG56 S6 S7: agreement is bound to visible content and actual baseline diff",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 31,
+          "title": "HG56 S8 S9: result readiness is checked at write time with no manual version",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 34,
+          "title": "HG56 S7: a changed visible revision cannot be agreed through an already open dialog",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 37,
+          "title": "HG56 S8 S10: accepted result stays visible and only answered question closes",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 43,
+          "title": "memoized requirement fields retain validation, edits across groups and clean reversion",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "edit.spec.ts",
+          "line": 62,
+          "title": "HG70 S1 S2 S4: result status needs no manual fields or new explanation",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "editorial.spec.ts",
+          "line": 4,
+          "title": "Editorial local fonts render in Storybook and the real UI without external requests",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "hg58-keyboard.spec.ts",
+          "line": 2,
+          "title": "HG58 keyboard navigation icon states and Cyrillic weights at 100 and 200 percent",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "hg58.spec.ts",
+          "line": 3,
+          "title": "HG58 typography operations and compact reading at desktop mobile and reduced motion",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 9,
+          "title": "HG55 S1 S2: real catalog filters counts and empty states preserve files",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 21,
+          "title": "HG55 R4: changing selection cancels an obsolete background read",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 48,
+          "title": "HG59 S3 S4: integrated history stays visible without a false work selection",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 80,
+          "title": "HG55 S3 S4: full source operations and hostile text remain inert",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 86,
+          "title": "HG55 S5: one actual handoff action or quiet reading",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 92,
+          "title": "HG55 S6: context restored and external CLI edit requires explicit refresh",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 97,
+          "title": "HG55 S7: unavailable API preserves visible document and retries",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 101,
+          "title": "HG55 S7: slow first snapshot is reused and temporary StoreBusy does not fail startup",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 111,
+          "title": "HG55 S3 S6: compact source view and rapid selection show the last chosen spec",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 143,
+          "title": "Latest selection does not wait for an obsolete read",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 159,
+          "title": "document cache evicts least recently used snapshots without losing drafts or list search",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "visual.spec.ts",
+          "line": 5,
+          "title": "reading, font and real visual reference",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "visual.spec.ts",
+          "line": 14,
+          "title": "editing, validation, discard and decision dialog are keyboard usable",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "visual.spec.ts",
+          "line": 23,
+          "title": "narrow and 200 percent layout preserve controls and focus",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "visual.spec.ts",
+          "line": 31,
+          "title": "selecting a specification changes its content and required action",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "visual.spec.ts",
+          "line": 44,
+          "title": "every documented state renders without accessibility violations or backend writes",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "visual.spec.ts",
+          "line": 56,
+          "title": "brand is vector-only and adapted icons render at their real sizes",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "visual.spec.ts",
+          "line": 61,
+          "title": "catalog manager navigation and component controls work",
+          "status": "passed",
+          "attempts": 1
+        }
+      ],
+      "limits": "Separate runs, not added into a coverage percentage. Later native11/api2 replace affected earlier browser42 observations."
+    },
+    {
+      "key": "native11",
+      "path": "target/highgrade/runs/clear-native-quiet-final-bf44a30a2fe14836b91d7141cbd43887",
+      "observed": "passed",
+      "passed": 11,
+      "skipped": 0,
+      "flaky": 0,
+      "cases": [
+        {
+          "file": "native.spec.ts",
+          "line": 9,
+          "title": "HG55 S1 S2: real catalog filters counts and empty states preserve files",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 21,
+          "title": "HG55 R4: changing selection cancels an obsolete background read",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 48,
+          "title": "HG59 S3 S4: integrated history stays visible without a false work selection",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 80,
+          "title": "HG55 S3 S4: full source operations and hostile text remain inert",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 86,
+          "title": "HG55 S5: one actual handoff action or quiet reading",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 92,
+          "title": "HG55 S6: context restored and external CLI edit requires explicit refresh",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 97,
+          "title": "HG55 S7: unavailable API preserves visible document and retries",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 101,
+          "title": "HG55 S7: slow first snapshot is reused and temporary StoreBusy does not fail startup",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 111,
+          "title": "HG55 S3 S6: compact source view and rapid selection show the last chosen spec",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 143,
+          "title": "Latest selection does not wait for an obsolete read",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "native.spec.ts",
+          "line": 159,
+          "title": "document cache evicts least recently used snapshots without losing drafts or list search",
+          "status": "passed",
+          "attempts": 1
+        }
+      ],
+      "limits": "Separate runs, not added into a coverage percentage. Later native11/api2 replace affected earlier browser42 observations."
+    },
+    {
+      "key": "api2",
+      "path": "target/highgrade/runs/clear-api-wait-final-5b0669cbacf64d53a310eb1940cdb269",
+      "observed": "passed",
+      "passed": 2,
+      "skipped": 0,
+      "flaky": 0,
+      "cases": [
+        {
+          "file": "api-client.spec.ts",
+          "line": 4,
+          "title": "POST StoreBusy rejects after one request; GET may retry",
+          "status": "passed",
+          "attempts": 1
+        },
+        {
+          "file": "api-client.spec.ts",
+          "line": 22,
+          "title": "abort interrupts GET retry waiting",
+          "status": "passed",
+          "attempts": 1
+        }
+      ],
+      "limits": "Separate runs, not added into a coverage percentage. Later native11/api2 replace affected earlier browser42 observations."
+    },
+    {
+      "key": "http7",
+      "path": "target/highgrade/runs/clear-ui-rust-142ab1cd5fa94c8b8cfd85f4cf10a790",
+      "observed": "passed",
+      "passed": 7,
+      "ignored": 0
+    },
+    {
+      "key": "attention17",
+      "path": "target/highgrade/runs/clear-attention-final-cfa0cb3ca3ec48368dc4d18a9bbf5854",
+      "observed": "passed",
+      "passed": 17,
+      "ignored": 0
+    },
+    {
+      "key": "rust241",
+      "path": "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166",
+      "passed": 241,
+      "skipped": 0,
+      "original_report_and_inventory_hashes_match": true,
+      "limits": "Original full run preceded new attention test assertions. Current attention17 run confirms the affected file; current whole-suite result/trace is owned by root."
+    },
+    {
+      "key": "storybook",
+      "path": "target/highgrade/runs/clear-storybook-final-d9b9ecab91a8450b95ea3f5fe2009b49",
+      "observed": "build passed",
+      "limits": "No fresh user visual acceptance; build alone is not a visual result."
+    }
+  ],
+  "source_sha256": {
+    "ui/src/features/specs/NativeWorkspace.tsx": "e2803c427dac6eb52f1aa5bf8c853ead806a3e4765bdd0271679bb8b1ae6803a",
+    "ui/src/api/client.ts": "6d7865193a9e73fa8c675691a617f30ee97f122947da7099c8f622bd3bc8989c",
+    "ui/tests/api-client.spec.ts": "32c2c534a3dba6eff08b4fca618116dc5c3a2e0d1352ade689d6daaabe21081c",
+    "ui/tests/native.spec.ts": "cb42f99f7dda77a5b0e70e5ad7f806a6c719ec7b5175dee508e1641931927f11",
+    "ui/tests/native-fixture.ts": "9ae620214389e426e909730017a7d38585439c36b9ffd1859af42ae9e2a59edd",
+    "ui/tests/decision.spec.ts": "78c1eb33e9d5e318763209e88d42c3b48db9efa1776b03bcceefe2c2001b61cd",
+    "ui/tests/installed.spec.ts": "a2fc0e7aeb4cb32f4f22ff1858dde76cb1628abf68270df691817812560f047a",
+    "ui/tests/visual.spec.ts": "debeac1feb8606cfdf949312d8ac392654bca73875e0df09c07373e1feefa8be",
+    "ui/tests/hg58.spec.ts": "421135da67d2a9322f48a49c0a95703b6abc340c2abe6bb85fe3b73f34edef3b",
+    "ui/tests/hg58-keyboard.spec.ts": "febe0e2f57f98c7050e3586cd93084eb79e48d6290de11720aa7115a9a945c75",
+    "tests/ui_contracts.rs": "e61a11fc66fc6e46101167bf3a1b342f7312267f5a5b01176f1c1ad99c3fd9fe",
+    "tests/attention_contracts.rs": "45947d8de35fbb0bb3bb7b2fbe3d049ec65cc9c60880d3945708585ca1c4c695",
+    "src/ui.rs": "a0d1b091355ef6353179330fa1ef02f1edf52b5816f759f954734f1fd28e3b09",
+    "src/ui/bundle.rs": "6caa17bfae762c66f8e870cd2a35b977d349299b1a726c1399d04103b8b7df3d",
+    "build.rs": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+    "ui/package-lock.json": "5e1b1671bc6b74116010ca46b36940316975b0eb43aa34d057b63708b3ebb339",
+    "specs/changes/HG-0067/spec.json": "789455cceeaa794e2d713b4943c891bf75b760a1bf84989c4a9e2b806bc2ed58"
+  },
+  "pending_HG67_archive_operation": {
+    "read": true,
+    "only_archive_link_change": true,
+    "target_exists": true,
+    "historical_user_pause_and_scope_preserved": true
+  },
+  "pending_HG67_design": {
+    "agreed_design_reused": true,
+    "current_local_visual_fonts_storybook_checked": true,
+    "no_new_design_choice_or_user_acceptance_inferred": true
+  },
+  "pending_HG68": {
+    "all_three_operations_previously_read": true,
+    "Linux_only_scoped_outcomes": "partial",
+    "Windows_current_exact_evidence": "unperformed"
+  },
+  "manual_visual_review": {
+    "screenshots_read": [
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/hg58-keyboard-HG58-keyboar-00d31-ghts-at-100-and-200-percent/keyboard-0.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/hg58-keyboard-HG58-keyboar-00d31-ghts-at-100-and-200-percent/keyboard-1.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/hg58-keyboard-HG58-keyboar-00d31-ghts-at-100-and-200-percent/keyboard-2.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/hg58-keyboard-HG58-keyboar-00d31-ghts-at-100-and-200-percent/keyboard-3.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/hg58-keyboard-HG58-keyboar-00d31-ghts-at-100-and-200-percent/cyrillic-1.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/hg58-keyboard-HG58-keyboar-00d31-ghts-at-100-and-200-percent/cyrillic-2.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/hg58-HG58-typography-opera-77aaf-p-mobile-and-reduced-motion/native-1440.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/hg58-HG58-typography-opera-77aaf-p-mobile-and-reduced-motion/native-390.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/hg58-HG58-typography-opera-77aaf-p-mobile-and-reduced-motion/native-720.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/native-HG55-S5-one-actual-handoff-action-or-quiet-reading/reading.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/visual-reading-font-and-real-visual-reference/desktop.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/visual-narrow-and-200-perc-15de7-preserve-controls-and-focus/narrow.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/visual-narrow-and-200-perc-15de7-preserve-controls-and-focus/zoom-200.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/visual-every-documented-st-f9c34-iolations-or-backend-writes/icons.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/visual-every-documented-st-f9c34-iolations-or-backend-writes/brand.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/visual-every-documented-st-f9c34-iolations-or-backend-writes/editing.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/visual-every-documented-st-f9c34-iolations-or-backend-writes/conflict.png",
+      "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/visual-catalog-manager-nav-3a820-and-component-controls-work/storybook.png",
+      "target/highgrade/runs/clear-native-quiet-final-bf44a30a2fe14836b91d7141cbd43887/playwright/native-HG55-S5-one-actual-handoff-action-or-quiet-reading/reading.png"
+    ],
+    "observations": "Desktop/native390/720/effective200, editor/conflict, glyph weights, original/adapted icons16/20/24, brand16/32/48 and keyboard focus images read independently; fresh native quiet screenshot replaces earlier transitional reading capture. No blocking visual defect found in this observed sample. This is not manual keyboard execution or human design acceptance."
+  },
+  "negative_and_boundary_review": [
+    "hostile Host/Origin/Fetch-Site",
+    "missing/wrong token",
+    "actual outside sibling traversal/no byte or token leak",
+    "unknown operation/root extra payload",
+    "unsupported/corrupt/interrupted/missing/empty catalogs",
+    "CLI/HTTP CAS drift",
+    "abrupt vs graceful write shutdown",
+    "stale agreement/result and replay",
+    "committed and unwritten lost response",
+    "POST StoreBusy no retry",
+    "GET retry wait abort in progress",
+    "obsolete selected read and background poll",
+    "rapid context restoration and LRU eviction",
+    "old-current + accepted-current structural profile",
+    "same-kind date and ID queue tie-break",
+    "settled quiet reading and cancelled/history/unknown categories"
+  ],
+  "same_poll_repro": {
+    "before": "meaningful RED",
+    "after": "two preserved scoped GREEN runs",
+    "originals": [
+      "poll-repro-red/",
+      "poll-repro-fixed/",
+      "poll-repro-final/"
+    ],
+    "permanent_regression": "native11 passed; B before release A, handled awaited then B/no-alert/catalog",
+    "limits": "Same isolated repro does not itself wait handled; permanent regression supplies that late-handling observation. No general latency/startup/savings promise."
+  },
+  "foreign_preservation": {
+    "before_after_equal": true,
+    "current_bytes_match": true,
+    "count": 17,
+    "snapshots": [
+      "foreign-hg58-before-browser.json",
+      "foreign-hg58-after-browser.json"
+    ],
+    "new_screenshot_paths": "test.info().outputPath within current owned managed run"
+  },
+  "findings_disposition": [
+    {
+      "id": "UI-F1",
+      "disposition": "fixed and meaningful real native RED/GREEN + permanent native11 current confirmed"
+    },
+    {
+      "id": "UI-F2",
+      "disposition": "actual Unix opener failure + bounded diagnostics/URL/server/shutdown confirmed HTTP7"
+    },
+    {
+      "id": "UI-F3",
+      "disposition": "real outside sibling/no token/private bytes for every refusal/catalog byte hashes confirmed HTTP7"
+    },
+    {
+      "id": "UI-F4",
+      "disposition": "actual count assertions confirmed native11"
+    },
+    {
+      "id": "UI-F5",
+      "disposition": "scoped pending modify link only; historical pause preserved, archive target exists"
+    },
+    {
+      "id": "UI-F6",
+      "disposition": "already-agreed HG67 current local design/fonts/Storybook/render observations checked; manual keyboard/user history kept separate"
+    },
+    {
+      "id": "UI-F7",
+      "disposition": "installed current exact/Windows methods remain unexecuted, not hidden"
+    },
+    {
+      "id": "UI-F8",
+      "disposition": "new exact IDs/old-current/accepted and date/ID fixture assertions confirmed attention17"
+    },
+    {
+      "id": "UI-F9-quiet",
+      "disposition": "settled real document before decision0/screenshot confirmed native11"
+    },
+    {
+      "id": "UI-F10-retry-wait",
+      "disposition": "abort during registered retry wait, bounded before known first retry, calls1 confirmed api2"
+    }
+  ],
+  "invalid_attempts_not_product_red": [
+    "Earlier isolated repro config/sandbox/selector setup failures",
+    "First narrowed attention setup used nonexistent fixture results path; fixed to fixture spec.json, not mutation RED",
+    "Manual CUA unavailable surface; not executed/PASS"
+  ],
+  "remaining_methods": [
+    {
+      "id": "UI-NEXT-MANUAL",
+      "scenarios": [
+        "HG-0054-S5"
+      ],
+      "kind": "local_execution_gap",
+      "method": "Manual keyboard screen exercise in current Storybook; per-screen focus/accessible-name/error/primary-action/demo-no-write observations",
+      "unavailable_evidence": {
+        "tool": "mcp__cua_repl",
+        "inventory": "apps=[], browsers=[]",
+        "attempt": "createBrowserTab iab",
+        "result": "Browser is not available: iab",
+        "native": "Native computer APIs disabled",
+        "open_in_codex": "queued; not an observed browser surface",
+        "saved_record": "manual-keyboard-unavailable.json"
+      },
+      "next": "Expose an available browser/native control surface for the current Storybook build. With keyboard, traverse catalog/navigation, open editor, trigger validation, visit conflict/unsaved dialog, cancel/Escape and return to reading. Record each resulting focus, screenshot/AX state, readable error/unique primary action, narrow layout and demo no-write boundary. Do not relabel automatic script PASS as manual or user approval."
+    },
+    {
+      "id": "UI-NEXT-INSTALLED",
+      "scenarios": [
+        "HG-0057-S1",
+        "HG-0057-S2",
+        "HG-0057-S3",
+        "HG-0057-S4",
+        "HG-0057-S5",
+        "HG-0057-S6",
+        "HG-0057-S7",
+        "HG-0060-S1",
+        "HG-0060-S2",
+        "HG-0061-S4"
+      ],
+      "kind": "unexecuted_current_installed_method",
+      "method": "Current exact candidate installed.spec.ts in required mode with authentic pinned predecessor; isolated profiles/two roots/offline/no Node, real edit-conflict-agree-accept, damaged resource/recovery, exact assets/licenses and unrelated user-file sentinels",
+      "next": "Obtain the agreed exact candidate and authentic predecessor under project commit/publication authority; execute required installed workflow and inspect per-scenario originals. Dirty local debug browser is not a substitute."
+    },
+    {
+      "id": "UI-NEXT-WINDOWS",
+      "scenarios": [
+        "HG-0061-S4",
+        "HG-0068-S1",
+        "HG-0068-S2",
+        "HG-0068-S3"
+      ],
+      "kind": "external_platform_method",
+      "method": "Exact-commit Windows/Linux CI after separately authorized publication, real Windows launcher/CLI/update-recovery and installed UI evidence",
+      "next": "Run matching authorized CI/platform exercise and verify original identities, no skip and source hashes; do not infer Windows from cfg(unix)."
+    },
+    {
+      "id": "UI-NEXT-BUILD-REVIEW",
+      "scenarios": [
+        "HG-0061-S3"
+      ],
+      "kind": "separate_review_owner",
+      "method": "Current Node/Python build/installed-config required-mode/skip/probe and helper/config mutation results",
+      "next": "Join the separate evidence reviewer verdict and its originals; this UI review certifies only read Rust/UI/local build outcomes."
+    },
+    {
+      "id": "UI-HISTORICAL-HANDOFF",
+      "scenarios": [
+        "HG-0054-S6"
+      ],
+      "kind": "historical_conditional_execution",
+      "method": "At actual S3 execution: human handoff, Planner continuation and no S4 before new command; at this preparation: semantic barrier/link review",
+      "next": "Keep old history and barrier intact. Do not create fresh user approval/Goal completion from current screenshots or this reviewer GO."
+    }
+  ],
+  "unlinked_test_owners_reused": [
+    {
+      "test": "ui/tests/api-client.spec.ts: POST StoreBusy; abort GET retry waiting",
+      "owner": "HG-0055-R4 / HG-0056-R2; docs/UI API read/write retry",
+      "disposition": "retain; meaningful client boundaries, no forced new requirement"
+    },
+    {
+      "test": "ui/tests/native.spec.ts: document cache evicts LRU",
+      "owner": "ui/README current NativeWorkspace LRU=10 architecture rule; HG-0055-R4 context preservation",
+      "disposition": "retain; finite cache/draft/search contract, not orphan"
+    },
+    {
+      "test": "ui/tests/edit.spec.ts: memoized requirement fields retain validation/clean reversion",
+      "owner": "HG-0056-R1 immutable draft/change-only patch/clean reversion",
+      "disposition": "retain; actual group validation and saved operations assertions"
+    },
+    {
+      "test": "ui/tests/editorial.spec.ts",
+      "owner": "pending HG-0067 modifies HG-0054-R1/R3/R6",
+      "disposition": "retain under candidate norm; do not weaken to old current font"
+    },
+    {
+      "test": "ui/tests/visual.spec.ts and hg58-keyboard/hg58",
+      "owner": "HG-0054 R1–R4/R6 + HG-0058 S1–S4 + pending HG67",
+      "disposition": "retain; real frames/a11y/network, manual visual outcome separate"
+    },
+    {
+      "test": "src/ui/bundle.rs: embedded_bundle_rejects_missing_changed_and_incompatible_resources",
+      "owner": "HG-0057-R1/S2; HG-0061-R2/S3",
+      "disposition": "retain; this untagged test is a real bundle contract"
+    },
+    {
+      "test": "tests/global_contracts.rs: unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills",
+      "owner": "HG-0060-R1; installation preservation contract",
+      "disposition": "retain; cfg(unix) scope must remain explicit"
+    },
+    {
+      "test": "ui/scripts/tests/bundle, installed-config, decision-copy, playwright-output",
+      "owner": "HG-0057-R1 provenance; HG-0061-R2 no-skip; HG-0070-R1 source text; HG-0069 managed-report ownership",
+      "disposition": "retain; Node tests have real engineering/storage contracts without trace labels"
+    },
+    {
+      "test": "scripts/tests/test_ui_build.py",
+      "owner": "HG-0061-R2/S3 and HG-0057-R1/S2",
+      "disposition": "retain; actually compiles build.rs in offline fixture; setup failure is not product rejection"
+    }
+  ],
+  "limits": [
+    "No code/catalog/source edits by reviewer; only local review/repro artifacts",
+    "No Goal, commit, activation, publication or human acceptance recorded",
+    "No full UI or whole Clear completion while mandatory methods remain open",
+    "Helper/config/plugin mutation batch assessed by separate evidence reviewer",
+    "Current installed.spec.ts strengthened font/user-file assertions were read but not executed",
+    "Test counts are observations, not contract coverage or efficiency percentages"
+  ],
+  "original_report_hashes": {
+    "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/run.log": "c73bc018e42cb160ae1f8c0e846eb5877a2e6ea45bab669033037b79578c80ae",
+    "target/highgrade/runs/clear-browser-final-dec74301f796489aacf1938795f5e776/playwright/report.json": "99ff7b5c0f1ac7ad93111092843e335c33a0a0c22f34b7a6d365b4c752ffed98",
+    "target/highgrade/runs/clear-native-quiet-final-bf44a30a2fe14836b91d7141cbd43887/run.log": "05b8c152b4d5eb5546d9c8f70fd2e40b298bd8d28f52112bd5cea483d82773da",
+    "target/highgrade/runs/clear-native-quiet-final-bf44a30a2fe14836b91d7141cbd43887/playwright/report.json": "5665d4244bf8c8633456414e808cdb787f3cfc14db28f5340fedc6fb1870847a",
+    "target/highgrade/runs/clear-api-wait-final-5b0669cbacf64d53a310eb1940cdb269/run.log": "811ad7823dae029f8a5effa74a8bf5fe51eda696b500da060e8cbb44b0003d6e",
+    "target/highgrade/runs/clear-api-wait-final-5b0669cbacf64d53a310eb1940cdb269/playwright/report.json": "4772753eb84e782009699981b4a96780ea5cafb381a3837a51cf5f2bc58a1175",
+    "target/highgrade/runs/clear-ui-rust-142ab1cd5fa94c8b8cfd85f4cf10a790/run.log": "f184f9e60c6bf94481e218eaeadc32e0b4f7c1fdcab5bab5d5c7e2db870c178f",
+    "target/highgrade/runs/clear-attention-final-cfa0cb3ca3ec48368dc4d18a9bbf5854/run.log": "877436f12f1cf229e339e1b7c02980d4257d866b13c20237bdba69f6b3c719a1",
+    "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/run.log": "eead7f05dc97b0683aae5d5e19fe6e72715a5fece4b63e6abd434baf4c7b2361",
+    "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/nextest/junit.xml": "7a720cd267886b21d9c03d6dabbe8058732fa11ddf2ce6bb47626eb7094375ab",
+    "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/nextest/list.json": "04d505571649568315bdee7e04e48676c3c917ee08f51778d974c7085f5df9e2",
+    "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/nextest/attempt.json": "0ee3324d6468d36288b8e972d6816efcd4da173de31279549e1034563721d63c",
+    "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/nextest/completion.json": "b4a469a1bfb82abc89bc3f9b9197e7b43060dcdfaff3118b11cf1f8e0bf1af39",
+    "target/highgrade/runs/clear-storybook-final-d9b9ecab91a8450b95ea3f5fe2009b49/run.log": "0fd7dbfc1862a31bf02c962aeb6dbb11a04e6341bc5b7d2427b9b7914a9285cb"
+  }
+}

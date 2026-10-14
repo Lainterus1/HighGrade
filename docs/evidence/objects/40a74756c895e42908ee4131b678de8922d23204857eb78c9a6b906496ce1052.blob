@@ -1,0 +1,28 @@
+{
+  "id": "occupied_goal",
+  "request": "Пользователь выбрал новый Goal для несвязанной цепочки; прочитай существующий Goal и подготовь дальнейшее действие.",
+  "capability_input": {
+    "kind": "controlled occupied state",
+    "goal": {
+      "objective": "different unfinished work",
+      "status": "active"
+    }
+  },
+  "capability_provenance": "controlled fixture input; not a live API observation",
+  "coordination_mode": "goal_required_but_conflicting",
+  "goal_action": "none; controlled existing state preserved",
+  "implementation_actions": [],
+  "implementation_files": [],
+  "status": "dependent_execution_waiting",
+  "next": "Получить решение пользователя о занятом Goal.",
+  "independent_preparation": "Identified the mismatch between the supplied existing objective and the requested unrelated chain; prepared a conflict-resolution decision.",
+  "existing_goal": {
+    "objective": "different unfinished work",
+    "status": "active"
+  },
+  "existing_goal_source": "controlled fixture input, not live tool output",
+  "observation_artifacts": [
+    "response.md",
+    "case-observation.json"
+  ]
+}

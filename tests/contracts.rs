@@ -54,6 +54,22 @@ fn cli_command_help_is_available_without_a_project() {
             let detail = &result["measurements"][0];
             assert!(detail["options"].is_array());
             assert_eq!(detail["command"], command);
+            if command == "spec-validate" {
+                assert!(
+                    !detail["required"]
+                        .as_array()
+                        .unwrap()
+                        .contains(&json!("--id"))
+                );
+            }
+            if command == "spec-read" {
+                assert!(
+                    detail["conditions"]
+                        .as_str()
+                        .unwrap()
+                        .contains("--view requirements without --id")
+                );
+            }
             if command == "ui" {
                 assert!(
                     !detail["required"]

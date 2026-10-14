@@ -1,0 +1,78 @@
+{
+  "status": "awaiting_current_original_reports",
+  "scope": "Addressed UI polling/security/browser-failure/counters and related changed test setup; early 31/69 audit reused",
+  "source_review": "no_blocking_findings_in_current_diff",
+  "same_repro_verdict": "go",
+  "combined_execution_verdict": null,
+  "captured_at": "2026-10-14T14:35:20.367948+00:00",
+  "source_sha256": {
+    "ui/src/features/specs/NativeWorkspace.tsx": "e2803c427dac6eb52f1aa5bf8c853ead806a3e4765bdd0271679bb8b1ae6803a",
+    "ui/src/api/client.ts": "6d7865193a9e73fa8c675691a617f30ee97f122947da7099c8f622bd3bc8989c",
+    "ui/tests/native.spec.ts": "d6ac3dceefb168f566ff6a3c45a3484135ea9bee819a82cde4579d1ad7aca994",
+    "ui/tests/native-fixture.ts": "9ae620214389e426e909730017a7d38585439c36b9ffd1859af42ae9e2a59edd",
+    "ui/tests/decision.spec.ts": "78c1eb33e9d5e318763209e88d42c3b48db9efa1776b03bcceefe2c2001b61cd",
+    "ui/tests/installed.spec.ts": "a2fc0e7aeb4cb32f4f22ff1858dde76cb1628abf68270df691817812560f047a",
+    "tests/ui_contracts.rs": "e61a11fc66fc6e46101167bf3a1b342f7312267f5a5b01176f1c1ad99c3fd9fe",
+    "src/ui.rs": "a0d1b091355ef6353179330fa1ef02f1edf52b5816f759f954734f1fd28e3b09"
+  },
+  "observations": [
+    {
+      "case": "obsolete_background_poll_blocks_new_selection",
+      "before": "meaningful_red",
+      "after": "passed_before_release_A",
+      "originals": [
+        "poll-repro-red/",
+        "poll-repro-fixed/",
+        "poll-repro-final/"
+      ]
+    },
+    {
+      "case": "late_background_callback",
+      "source": "AbortSignal+serial guards read; permanent test waits handled then B/no-alert/catalog",
+      "execution": "current permanent original report not yet supplied; same repro does not await handled"
+    },
+    {
+      "case": "security_S3",
+      "source": "Real sibling outside root; all forbidden responses assert no session token and no sentinel bytes; catalog original-byte hashes and outside bytes compared",
+      "execution": "current original report not yet supplied"
+    },
+    {
+      "case": "Unix_BrowserFailure_S2",
+      "source": "Actual opener spawn with PATH empty, bounded diagnostic assertion, exact manual URL, live GET, graceful shutdown, catalog hashes",
+      "execution": "current original report not yet supplied"
+    },
+    {
+      "case": "UI_counters_S1",
+      "source": "Displayed count compared with native CLI projection for each category",
+      "execution": "current original report not yet supplied"
+    },
+    {
+      "case": "decision_revision",
+      "source": "Each changed causal request/read input must change revision; unrelated store SHA remains same revision",
+      "execution": "current original report not yet supplied"
+    },
+    {
+      "case": "installed_fonts_and_preservation",
+      "source": "Both Lora and Manrope loaded/provenance/license delivery assertions plus unrelated project-file sentinels",
+      "execution": "required-mode current exact-SHA Linux/Windows original not supplied"
+    }
+  ],
+  "closed_structural_findings": [
+    "No invented HG55-S10 label; case now names R4",
+    "All rejection branches check absence of token/private bytes",
+    "Diagnostic wait bounded to yield assertion",
+    "Permanent poll case waits old route handling before post-release assertions"
+  ],
+  "required_next": [
+    "Read current original native/api-client/decision and HTTP reports, per-case selectors/status/skips, source identity",
+    "Read chosen mutation baseline/mutant/restoration/final originals; classify assertion/survivor/invalid/unexecuted equally",
+    "Preserve external exact-SHA installed/Windows and manual visual methods as open unless truly observed"
+  ],
+  "limits": [
+    "No product/catalog edits by reviewer",
+    "No Goal created",
+    "Linux local repro only; not exact-SHA installed E2E, Windows, activation or acceptance",
+    "Catalog byte hashes and selected sentinels are not whole project inventory",
+    "No combined execution GO yet"
+  ]
+}

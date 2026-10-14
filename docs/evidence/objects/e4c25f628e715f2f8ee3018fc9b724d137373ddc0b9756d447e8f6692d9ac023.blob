@@ -1,0 +1,16 @@
+{
+  "prepared_before_helper_implementation": true,
+  "runtime": "Python stdlib, subprocess; Linux observed, Windows portability requires platform execution or an explicit limit",
+  "adapter": "highgrade-clear-v1 JSON produced by the project's real test command, with selected test outcomes and hashes of sources actually compiled/loaded",
+  "checks": [
+    "standalone installed helper on copied minimal project; common baseline, one mutation, exact restore, common final",
+    "actual unittest assertion failure, weak assertion survivor, stronger assertion against identical mutation",
+    "baseline failure, compilation/setup failure, timeout, skipped and empty selection, unsupported report, stale executable witness",
+    "unknown edit during restoration; preserve foreign sentinel and live project; existing output/shared worker resource rejection",
+    "compact summary references original reports and one input snapshot, verify hashes",
+    "reuse matching complete inputs; rerun after contract/helper/test/fixture/dependency/environment drift or unknown scope",
+    "manual control 3N commands against N+2 batch commands on identical selected checks and mutations; compare actual counts, outcomes, durations and bytes; tokens unavailable",
+    "independent Clear exercise on a green stale contract, unlinked invariant and mandatory before/after method; record sources read and completion decision"
+  ],
+  "limits": ["copy isolation is not a security sandbox", "no universal compiler/test framework", "no mandatory parallel workers", "no token or monetary estimate without telemetry"]
+}

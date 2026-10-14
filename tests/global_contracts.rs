@@ -60,6 +60,60 @@ fn change_candidate_skill(next: &Path) -> Vec<u8> {
     bytes
 }
 
+// Additional Unix preservation coverage for HG-0027-S1/S2, outside automatic trace.
+#[cfg(unix)]
+#[test]
+fn update_preserves_foreign_pointer_and_router_temporary_files() {
+    let mut failures = Vec::new();
+    for relative in [
+        ".highgrade/global/active.next",
+        ".agents/skills/highgrade-work/SKILL.next",
+    ] {
+        for linked in [false, true] {
+            let profile = temp();
+            global::install(&profile, &source(), &exe()).unwrap();
+            let next = candidate();
+            change_candidate_skill(&next);
+            let pointer = profile.join(".highgrade/global/active.json");
+            let router = profile.join(".agents/skills/highgrade-work/SKILL.md");
+            let before_pointer = fs::read(&pointer).unwrap();
+            let before_router = fs::read(&router).unwrap();
+            let foreign = temp();
+            let sentinel = foreign.join("sentinel");
+            write(&sentinel, b"foreign temporary bytes");
+            let blocker = profile.join(relative);
+            if linked {
+                std::os::unix::fs::symlink(&sentinel, &blocker).unwrap();
+            } else {
+                write(&blocker, b"foreign temporary bytes");
+            }
+            let preview = global::update(&profile, Some(&next), Some(&exe()), false, None).unwrap();
+            let outcome = global::update(
+                &profile,
+                Some(&next),
+                Some(&exe()),
+                true,
+                preview.measurements[0]["candidate_sha256"].as_str(),
+            );
+            let preserved = outcome.is_err()
+                && fs::read(&pointer).ok().as_deref() == Some(before_pointer.as_slice())
+                && fs::read(&router).ok().as_deref() == Some(before_router.as_slice())
+                && fs::read(&sentinel).ok().as_deref()
+                    == Some(b"foreign temporary bytes".as_slice())
+                && fs::read(&blocker).ok().as_deref()
+                    == Some(b"foreign temporary bytes".as_slice())
+                && (!linked || fs::read_link(&blocker).ok().as_ref() == Some(&sentinel));
+            if !preserved {
+                failures.push(format!("{relative} linked={linked}: error={}, pointer/router/foreign preservation={preserved}", outcome.is_err()));
+            }
+        }
+    }
+    assert!(
+        failures.is_empty(),
+        "foreign temporary paths must be preserved: {failures:?}"
+    );
+}
+
 // highgrade: HG-0027-S1
 #[test]
 fn update_replaces_owned_skill_and_preserves_user_edit() {
@@ -235,6 +289,20 @@ fn release_without_documentation_reference_can_update() {
         .remove(&notes)
         .unwrap();
     fs::remove_file(profile.join(notes)).unwrap();
+    for clear in ["references/clear-batches.md", "tools/clear_batch.py"] {
+        let old = format!(".highgrade/global/releases/{}/{clear}", current_release());
+        journal["files"]
+            .as_object_mut()
+            .unwrap()
+            .remove(&old)
+            .unwrap();
+        fs::remove_file(profile.join(old)).unwrap();
+    }
+    fs::remove_dir(profile.join(format!(
+        ".highgrade/global/releases/{}/tools",
+        current_release()
+    )))
+    .unwrap();
     let bytes = serde_json::to_vec_pretty(&journal).unwrap();
     write(&journal_path, &bytes);
     let active_path = profile.join(".highgrade/global/active.json");
@@ -310,6 +378,100 @@ fn installed_runtime_references_survive_removal_of_source_copy() {
             }
         }
     }
+    assert_eq!(global::status(&profile).unwrap().status, "passed");
+}
+
+// highgrade: HG-0076-S5
+#[test]
+fn installed_clear_helper_runs_after_candidate_sources_are_removed() {
+    let copied = temp();
+    copy_tree(&source(), &copied);
+    let profile = temp();
+    global::install(&profile, &copied, &exe()).unwrap();
+    fs::remove_dir_all(&copied).unwrap();
+    let helper = profile.join(format!(
+        ".highgrade/global/releases/{}/tools/clear_batch.py",
+        current_release()
+    ));
+    let project = temp();
+    write(&project.join("calc.py"), b"def number(): return 2\r\n");
+    write(&project.join("contract.txt"), b"number equals 2");
+    write(&project.join("sentinel"), b"foreign\0\r\n");
+    write(&project.join("adapter.py"), br#"import hashlib,json,os,sys,unittest
+from pathlib import Path
+raw=Path('calc.py').read_bytes();namespace={};exec(compile(raw,'calc.py','exec'),namespace)
+class Case(unittest.TestCase):
+ def test_number(self): self.assertEqual(namespace['number'](),2,'number contract')
+result=unittest.TestResult();unittest.defaultTestLoader.loadTestsFromTestCase(Case).run(result)
+message=str(result.failures[0][1]) if result.failures else ''
+Path(os.environ['HG_CLEAR_REPORT']).write_text(json.dumps({'format':'highgrade-clear-v1','tests':[{'id':'test_number','outcome':'assertion' if result.failures else 'passed','message':message}],'source_hashes':{'calc.py':hashlib.sha256(raw).hexdigest()}}))
+sys.exit(1 if result.failures else 0)
+"#);
+    let plan = json!({"schema":1,"inputs":["calc.py","adapter.py","contract.txt","sentinel"],"tests":["adapter.py"],"contracts":["contract.txt"],"scope_complete":false,"runtime_probes":[["python","--version"]],"checks":[{"id":"number","command":["python","-B","adapter.py"],"expected_tests":["test_number"],"sources":["calc.py"]}],"mutations":[{"id":"m1","path":"calc.py","before":"return 2","after":"return 0","checks":["number"],"failures":[{"test":"test_number","contains":"number contract"}],"requirement":"fixture-R1","scenario":"fixture-S1"}]});
+    write(
+        &project.join("plan.json"),
+        &serde_json::to_vec(&plan).unwrap(),
+    );
+    let output = Command::new("python")
+        .args([
+            helper.to_str().unwrap(),
+            "--root",
+            project.to_str().unwrap(),
+            "--plan",
+            "plan.json",
+            "--output",
+            "batch",
+        ])
+        .output()
+        .unwrap();
+    assert!(
+        output.status.success(),
+        "{}",
+        String::from_utf8_lossy(&output.stderr)
+    );
+    let result: Value =
+        serde_json::from_slice(&fs::read(project.join("batch/summary.json")).unwrap()).unwrap();
+    assert_eq!(result["mutations"][0]["outcome"], "detected");
+    assert_eq!(result["metrics"]["commands"], 3);
+    assert_eq!(result["restored"], true);
+    assert_eq!(
+        fs::read(project.join("batch/subject/calc.py")).unwrap(),
+        fs::read(project.join("calc.py")).unwrap()
+    );
+    assert_eq!(
+        fs::read(project.join("sentinel")).unwrap(),
+        b"foreign\0\r\n"
+    );
+}
+
+#[test]
+fn damaged_clear_material_rejects_candidate_and_old_commit_shape_stays_readable() {
+    let profile = temp();
+    global::install(&profile, &source(), &exe()).unwrap();
+    let active = fs::read(profile.join(".highgrade/global/active.json")).unwrap();
+    let next = candidate();
+    write(&next.join("tools/clear_batch.py"), b"corrupt helper");
+    assert!(global::update(&profile, Some(&next), Some(&exe()), false, None).is_err());
+    assert_eq!(
+        fs::read(profile.join(".highgrade/global/active.json")).unwrap(),
+        active
+    );
+    let release = profile.join(format!(".highgrade/global/releases/{}", current_release()));
+    let journal_path = release.join("journal.json");
+    let mut journal: Value = serde_json::from_slice(&fs::read(&journal_path).unwrap()).unwrap();
+    for rel in ["references/clear-batches.md", "tools/clear_batch.py"] {
+        journal["files"].as_object_mut().unwrap().remove(&format!(
+            ".highgrade/global/releases/{}/{rel}",
+            current_release()
+        ));
+        fs::remove_file(release.join(rel)).unwrap();
+    }
+    let bytes = serde_json::to_vec(&journal).unwrap();
+    write(&journal_path, &bytes);
+    let active_path = profile.join(".highgrade/global/active.json");
+    let mut state: Value = serde_json::from_slice(&fs::read(&active_path).unwrap()).unwrap();
+    state["journal_sha256"] = json!(hash(&bytes));
+    write(&active_path, &serde_json::to_vec(&state).unwrap());
     assert_eq!(global::status(&profile).unwrap().status, "passed");
 }
 
@@ -1199,7 +1361,9 @@ fn approve_release_profile(planner: bool, tools: bool, complete: bool) -> TestDi
         serde_json::from_slice(&fs::read(source().join("manifest.json")).unwrap()).unwrap();
     let mut checksums = BTreeMap::new();
     for (rel, _) in manifest["files"].as_object().unwrap() {
-        if rel == "references/documentation.md"
+        if rel == "references/clear-batches.md"
+            || rel == "tools/clear_batch.py"
+            || rel == "references/documentation.md"
             || rel == highgrade::release_notes::PATH
             || (!tools && rel.starts_with("references/tools/"))
             || (!complete
@@ -1289,7 +1453,9 @@ fn six_skill_profile() -> TestDir {
             .as_object()
             .unwrap()
     {
-        if rel == "references/documentation.md"
+        if rel == "references/clear-batches.md"
+            || rel == "tools/clear_batch.py"
+            || rel == "references/documentation.md"
             || rel == highgrade::release_notes::PATH
             || rel.starts_with("references/tools/")
             || rel == "procedures/fix.md"
@@ -1364,7 +1530,9 @@ fn old_deploy_profile(release: &str, skill_name: &str) -> TestDir {
     let manifest_bytes = fs::read(source().join("manifest.json")).unwrap();
     let manifest: Value = serde_json::from_slice(&manifest_bytes).unwrap();
     for (rel, _) in manifest["files"].as_object().unwrap() {
-        if rel == "references/documentation.md"
+        if rel == "references/clear-batches.md"
+            || rel == "tools/clear_batch.py"
+            || rel == "references/documentation.md"
             || rel == highgrade::release_notes::PATH
             || rel.starts_with("references/tools/")
             || rel == "procedures/fix.md"
@@ -1981,6 +2149,20 @@ fn update_reports_notes_without_switching_and_keeps_them_offline() {
         .remove(&rel)
         .unwrap();
     fs::remove_file(profile.join(rel)).unwrap();
+    for clear in ["references/clear-batches.md", "tools/clear_batch.py"] {
+        let old = format!(".highgrade/global/releases/{}/{clear}", current_release());
+        journal["files"]
+            .as_object_mut()
+            .unwrap()
+            .remove(&old)
+            .unwrap();
+        fs::remove_file(profile.join(old)).unwrap();
+    }
+    fs::remove_dir(profile.join(format!(
+        ".highgrade/global/releases/{}/tools",
+        current_release()
+    )))
+    .unwrap();
     let bytes = serde_json::to_vec_pretty(&journal).unwrap();
     write(&journal_path, &bytes);
     let active_path = profile.join(".highgrade/global/active.json");

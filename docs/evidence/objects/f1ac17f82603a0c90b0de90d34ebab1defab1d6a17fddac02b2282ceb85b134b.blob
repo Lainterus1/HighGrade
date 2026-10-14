@@ -1,0 +1,90 @@
+"""Remove only reviewed task scratch after immutable export; preserve shared caches."""
+from pathlib import Path
+from datetime import datetime, timezone
+import hashlib
+import importlib.util
+import json
+import os
+import subprocess
+
+root = Path.cwd()
+local = root / '.highgrade/local/project-refresh-2026-10-14'
+prefix = 'target/highgrade/tmp/'
+names = ['project-refresh-python-mutations', 'project-refresh-real-mutations',
+         'project-refresh-real-mutations-final', 'project-refresh-real-mutations-rebuilt',
+         'project-refresh-predecessor', 'project-refresh-native-census',
+         'plugin-review-2026-10-14-clear-forward']
+expected_links = {prefix + name + '/subject/ui/node_modules' for name in names if 'real-mutations' in name}
+for package in ['audit', 'svg']:
+    expected_links |= {prefix + names[-1] + '/' + package + '/.venv/' + end
+                       for end in ['bin/python', 'bin/python3', 'bin/python3.12', 'lib64']}
+expected_links.add(prefix + names[-1] + '/svg/node_modules/.bin/svgo')
+module = importlib.util.spec_from_file_location('storage', root / 'scripts/evidence_store.py')
+storage = importlib.util.module_from_spec(module)
+module.loader.exec_module(storage)
+preserved = json.loads((local / 'preservation-receipt.json').read_text())
+storage.verify(root, preserved['originals_manifest'])
+assert len(preserved['managed_runs']) == 9
+for run in preserved['managed_runs']:
+    storage.verify(root, run['manifest'])
+ack = local / 'plugin-checks/scratch-cleanup-review.json'
+assert ack.is_file()
+extras = [str(path.relative_to(root)) for path in (local / 'plugin-checks').rglob('*')
+          if path.is_file() and not path.is_symlink()]
+extras += [str((local / name).relative_to(root)) for name in [
+    'rust-review-records-supplement.md', 'rust-review-records-supplement-inputs.json',
+    'review-registration-receipt.json', 'preservation-receipt.json', 'cleanup_owned.py']]
+for name in names:
+    directory = root / prefix / name
+    assert directory.is_dir() and not directory.is_symlink()
+    owner = directory / 'owner.json'
+    if owner.exists():
+        value = json.loads(owner.read_text())
+        assert value['owner'] in {'project-refresh-2026-10-14', 'clear_forward-plugin-package-review-v1'}
+        extras.append(str(owner.relative_to(root)))
+    else:
+        assert name == 'project-refresh-python-mutations'
+        assert set(path.name for path in directory.iterdir()) == {
+            'P1-same-size-corruption', 'P2-foreign-scratch', 'P3-active-cargo',
+            'P4-unknown-validation', 'P1-strengthened', 'P4-without-bytecode-cache'}
+extras.append(prefix + 'project-refresh-native-census/test-temp/foreign-sentinel/keep.txt')
+manifest = storage.export(root, sorted(set(extras)), {
+    'purpose': 'Final review, scratch ownership, links and all plugin originals before cleanup',
+    'captured_at': datetime.now(timezone.utc).isoformat()})
+before = json.loads(subprocess.check_output(['python', 'scripts/target-maintenance.py']))
+assert set(before['before']['links']) == expected_links
+links = {path: os.readlink(root / path) for path in sorted(expected_links)}
+for path in expected_links:
+    assert (root / path).is_symlink()
+gitignore = hashlib.sha256((root / '.gitignore').read_bytes()).hexdigest()
+assert gitignore == '9b3ded5f615f6e5fe70d8ed7273571c7b3c9b66805d62c6dad61a2a7d722bea8'
+record = {'manifest': manifest, 'before': before, 'selected': names, 'links_unlinked_only': links,
+          'ownership': 'Exact owner files and original mutation controllers; plugin reviewer ack. No unknown scratch or shared cache selected.',
+          'state': 'prepared'}
+path = local / 'cleanup-receipt.json'
+path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
+# These are links created inside the selected disposable copies. Unlink the
+# entries only; never delete or modify their external targets.
+for name in sorted(expected_links):
+    (root / name).unlink()
+argv = ['python', 'scripts/target-maintenance.py', '--apply']
+for name in names:
+    argv += ['--scratch', name]
+result = subprocess.run(argv, capture_output=True, text=True)
+record.update(argv=argv, exit_code=result.returncode, stdout=result.stdout, stderr=result.stderr)
+assert result.returncode == 0, result.stdout + result.stderr
+assert all(not (root / prefix / name).exists() for name in names)
+assert hashlib.sha256((root / '.gitignore').read_bytes()).hexdigest() == gitignore
+argv = ['python', 'scripts/target-maintenance.py', '--sweep', '--apply']
+result = subprocess.run(argv, capture_output=True, text=True)
+record['managed_sweep'] = {'argv': argv, 'exit_code': result.returncode,
+                           'stdout': result.stdout, 'stderr': result.stderr}
+assert result.returncode == 0, result.stdout + result.stderr
+record['remaining_owned_runs'] = [item['run'] for item in preserved['managed_runs'] if (root / item['run']).exists()]
+assert not record['remaining_owned_runs']
+record['state'] = 'completed'
+record['after'] = json.loads(subprocess.check_output(['python', 'scripts/target-maintenance.py']))
+path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
+print(json.dumps({'removed_owned_scratch': len(names), 'remaining_owned_runs': 0,
+                  'mib_before': before['before']['mib'], 'mib_after': record['after']['before']['mib'],
+                  'preserved_scratch': record['after']['before']['scratch'], 'manifest': manifest}))

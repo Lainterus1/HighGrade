@@ -1,0 +1,27 @@
+# Независимое ревью HG-0063-T10
+
+Вердикт: **NO_GO узкой задачи** до исправления одного расхождения. Это не ревью всего HG-0063.
+
+Блокирующее замечание: pending HG-0020-R3 запрещает Goal при просьбе только о плане **без отдельного явного запроса Goal**. В planner.md безусловно записано `Plan mode and plan-only requests authorize neither a Goal nor edits`; в task.md — `A plan-only request authorizes neither a Goal nor implementation`. Те же утверждения входят в generated skills. Поэтому отдельное явное поручение Goal для подготовки только плана допустимо по контракту и create_goal, но отвергается источниками. Нужно выразить условие одинаково: plan-only сам по себе не даёт Goal; отдельный явно выбранный Goal может ограничиваться подготовкой плана, если фактические условия инструмента/платформы это разрешают. Он не даёт прав на реализацию. Затем обновить generated skills/manifest и адресно перепроверить эту ветвь.
+
+В остальном правила однозначны: автоматический/прямой Planner не создаёт Goal без выбора пользователя; известный выбор не спрашивается повторно; занятый Goal не заменяется; отклонённый или недоступный Goal не выдаётся за созданный; зависимая цепочка с обязательным Goal сохраняет конкретный Next.
+
+Проверены pending HG-0020-R1/R3, HG-0063-S12/S13, релевантный diff, reference review, original root goal-observation, requests/ответы/observations независимого акторного упражнения и реальные case-файлы. В execute_without_goal действительно существуют note.txt со словом done и summary.txt с прочитанным результатом. Plan-only и occupied/refused не имеют файлов реализации. Sentinel сохранил SHA256 4422d358c3fab6a2556fff79f79ab09c08a31b0138e514d8c5fe8b3cff80b3d4. Хеши двух прочитанных кандидатных процедур в observations соответствуют текущим.
+
+Пределы: occupied/refused — явно заданные controlled capability inputs. Они подтверждают решения независимого агента на этих входах, не фактический отказ живого Goal API. Положительный Goal root зафиксирован оригинальным get_goal наблюдением; мой собственный get_goal в subagent-контексте вернул null и не является независимым чтением Goal root. Ни один новый Goal не создавался. Четыре упражнения не доказывают всё будущее поведение агента и не закрывают отдельный ещё непроверенный plan-only+явный Goal случай.
+
+Проверка сохранности: десять остальных операций HG-0063 и девять прежних задач полностью совпадают с HG-0063-before-source.json. Прежние checks сохранены. T10 пока done=false. Git diff HG-0063/results.json, HG-0075 и current HG-0020-R1/R3 пуст. Прежние результаты, решения и барьеры HG-0063 не закрывались.
+
+Мои проверки: python scripts/render-skills.py --check PASS; все 40 manifest hashes соответствуют файлам. Эти проверки подтверждают генерацию и целостность, не смысловую согласованность обнаруженного условия. Каталоговые CLI, spec-review, acceptance, commit, activation, push и правка root sources не выполнялись.
+
+Проверенная область причинных входов:
+
+{
+  "kit/procedures/planner.md": "64dc6cbe0b7f159495a82e5376c143328815678f101e5bdd533498d108b43ecb",
+  "kit/procedures/task.md": "7c0ae4040cf12d4337a237bb087461e520735ee2dd56258f5329a49bb80a68d8",
+  ".highgrade/project/INSTRUCTIONS.md": "0c71a844982c327d8ad874d6779252dbaeed152c7f4b33167f07977914714836",
+  "kit/skills/highgrade-planner/SKILL.md": "0622520a8850cbdb0d9329e895a910657679feedbcd6880c9266a51735bee26a",
+  "kit/skills/highgrade-task/SKILL.md": "6bd2b92bd0a7e35ee9f6b9022c51ded9252025a0573b271c59b9dfa4a6ebea40",
+  "kit/manifest.json": "2e53439b775e8be7ab6847f38c48f4b5c24d5ceba6ddc21dc5d6c8f6d27416e4",
+  "specs/changes/HG-0063/spec.json": "3b66d351da11ca815a3985f8ee9a444d9c425caf642e3c25ed86ded7e9d3e973"
+}

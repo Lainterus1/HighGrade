@@ -1,0 +1,300 @@
+{
+  "exercise": "HG-0076 bounded independent candidate Clear actor exercise",
+  "recorded_at": "2026-10-14T09:18:22.812900+00:00",
+  "time_field_meaning": "Record creation time only; no exercise duration or cost measurement is inferred.",
+  "method": "Independent agent read supplied project contents and candidate procedures, then recorded actual semantic decisions. Project test execution and live Goal APIs were forbidden. Recording artifacts is separately authorized by the exercise instruction.",
+  "candidate_sources_read": [
+    {
+      "path": "kit/procedures/clear.md",
+      "sha256": "a3e44e3eb9452a69680930060b6e4e3d17a17c22c9a0b3ebe4d8ae356846c452",
+      "read": "full contents"
+    },
+    {
+      "path": "kit/procedures/planner.md",
+      "sha256": "64dc6cbe0b7f159495a82e5376c143328815678f101e5bdd533498d108b43ecb",
+      "read": "full contents"
+    },
+    {
+      "path": "kit/references/review.md",
+      "sha256": "647ab5b9a513171aadde4a460cbb20ad13c12ecd82fd55f98615f4c947d4e2f6",
+      "read": "full contents"
+    },
+    {
+      "path": "kit/references/audit.md",
+      "sha256": "f4d187f5053ad7f16a8b38f6ee311b824084460fab55e24f16881d499a014eeb",
+      "read": "full contents"
+    },
+    {
+      "path": "kit/references/documentation.md",
+      "sha256": "bf235992df204e9019e2a81a7d4392022c742d01b9214f4833910267fea6017b",
+      "read": "full contents"
+    }
+  ],
+  "fixture_instructions_read": [
+    "AGENTS.md",
+    "requests.json",
+    "initial-hashes.json"
+  ],
+  "test_commands_executed": [],
+  "live_goal_api_calls": [],
+  "project_files_modified": [],
+  "cases": [
+    {
+      "id": "semantic_all",
+      "request": "Используй candidate Clear. Проанализируй документацию и тесты всего этого проекта по основным каталогам. Только анализ: исходники не менять, тесты не запускать. Goal не выбран. Определи полноту контракта и дальнейший достаточный маршрут.",
+      "coordination": {
+        "planner_applied": true,
+        "mode": "ordinary_plan",
+        "goal_authority": "not chosen in case request",
+        "root_goal_authority_inherited": false,
+        "goal_tool_actions": []
+      },
+      "sources_read": [
+        {
+          "path": "README.md",
+          "read_kind": "semantic content",
+          "observed": "requirements.json owns behavior; engineering owns methods; src/tests/docs/.config are main areas."
+        },
+        {
+          "path": "requirements.json",
+          "read_kind": "semantic content",
+          "observed": "F-R1 requires number() == 2 and attaches test_number; F-R2 requires rejected updates to preserve original data and attaches test_preservation."
+        },
+        {
+          "path": "docs/engineering.md",
+          "read_kind": "semantic content",
+          "observed": "Engineering owns roundtrip invariants. A future behavior fix requires a meaningful failing test before implementation and passing result after it."
+        },
+        {
+          "path": "docs/usage.md",
+          "read_kind": "semantic content",
+          "observed": "The document says number() returns 1; this conflicts with F-R1."
+        },
+        {
+          "path": "src/calc.py",
+          "read_kind": "semantic content",
+          "observed": "number returns literal 1. reject returns the same data without modifying it in its body."
+        },
+        {
+          "path": "tests/test_calc.py",
+          "read_kind": "semantic content",
+          "observed": "test_number expects 1 despite F-R1. test_preservation checks both returned value and unchanged input list. test_roundtrip has no spec ID but its comment assigns the engineering invariant; it checks a fixed list using built-in reversal."
+        },
+        {
+          "path": ".config/tests.json",
+          "read_kind": "semantic content",
+          "observed": "The declared unittest discovery command uses python -B; mutation_scope is src/calc.py. This command was read, not executed."
+        },
+        {
+          "path": "sentinel",
+          "read_kind": "bytes for preservation only",
+          "observed": "Preservation sentinel; not a project behavior contract."
+        }
+      ],
+      "coverage": {
+        "areas": [
+          {
+            "area": "src",
+            "source": "src/calc.py",
+            "status": "read and compared"
+          },
+          {
+            "area": "tests",
+            "source": "tests/test_calc.py",
+            "status": "read assertions and contract links"
+          },
+          {
+            "area": "docs",
+            "sources": [
+              "docs/usage.md",
+              "docs/engineering.md"
+            ],
+            "status": "read current statements and required methods"
+          },
+          {
+            "area": ".config",
+            "source": ".config/tests.json",
+            "status": "read selected command and mutation source scope"
+          }
+        ],
+        "current_requirements": [
+          {
+            "id": "F-R1",
+            "status": "read and semantically audited",
+            "test": "Cases.test_number",
+            "required": "number returns exactly 2",
+            "implementation": "returns 1",
+            "assertion": "expects 1",
+            "documentation": "returns 1",
+            "verdict": "Confirmed contract mismatch in implementation, assertion and usage; no observed test result."
+          },
+          {
+            "id": "F-R2",
+            "status": "read and semantically audited",
+            "test": "Cases.test_preservation",
+            "required": "Rejected updates preserve original data",
+            "implementation": "reject returns data unchanged in its function body",
+            "assertions": [
+              "returned value equals original sample",
+              "original sample remains unchanged"
+            ],
+            "verdict": "Assertions align for the inspected sample; execution unobserved."
+          }
+        ],
+        "unlinked_tests": [
+          {
+            "test": "Cases.test_roundtrip",
+            "owner": "docs/engineering.md",
+            "owned_rule": "roundtrip invariant",
+            "disposition": "Retain pending usefulness/domain assessment; no automatic retirement because missing spec ID.",
+            "limit": "The test exercises built-in reversal on a fixed list; it does not execute a project roundtrip implementation."
+          }
+        ],
+        "found_file_count": 8,
+        "semantically_read_source_count": 7,
+        "preservation_only_file_count": 1,
+        "unread_project_sources": [],
+        "absent_areas": {
+          "build_ci_operations_dependency_manifests": "No such files were present in this supplied minimal-project inventory; this does not assert absence outside fixture."
+        }
+      },
+      "mandatory_methods_extracted_before_baseline": [
+        {
+          "owner": "docs/engineering.md",
+          "method": "Meaningful failing test before future behavior implementation fix; passing result after.",
+          "performed": false,
+          "reason": "The request forbids tests and source changes."
+        }
+      ],
+      "declared_test_command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "gaps": [
+        {
+          "id": "F-R1-conflict",
+          "kind": "confirmed defect",
+          "detail": "Three sources agree on 1 but current F-R1 requires exactly 2."
+        },
+        {
+          "id": "required-red-after-pass",
+          "kind": "future execution gap",
+          "detail": "Meaningful RED before and PASS after a future behavior fix are unperformed within analysis-only scope."
+        },
+        {
+          "id": "test-and-mutation-execution",
+          "kind": "execution outside authority",
+          "detail": "No baseline, mutation, strengthened-test recheck or final result was run."
+        },
+        {
+          "id": "roundtrip-domain",
+          "kind": "bounded contract ambiguity",
+          "detail": "Engineering owns the invariant but does not describe its full domain or a project implementation."
+        }
+      ],
+      "future_route": "Direct Work under current F-R1 for the existing expectation; Spec only for changed normative behavior.",
+      "action_scope_complete": true,
+      "analysis_contract_coverage_complete": true,
+      "test_maintenance_readiness": false,
+      "next": "После запроса на исправление получить meaningful RED для F-R1 до изменения number().",
+      "limits": [
+        "Static content audit, not observed green tests.",
+        "No source writes, native catalog operations, tests or live Goal API.",
+        "The response records the plan/coverage/continuation; fixture response files are authorized observation records.",
+        "Coverage is complete only for this supplied minimal project."
+      ]
+    },
+    {
+      "id": "closure_gap",
+      "request": "Заверши оценку готовности комплексного Clear по этим наблюдениям и сформулируй продолжение. Не меняй проект и не вызывай Goal API.",
+      "controlled_inputs": {
+        "initial_scope": "All selected docs and test-linked contracts; mandatory deployed after-observation",
+        "mutations": "3 selected actual violations detected; restore and final passed",
+        "semantic_coverage": "F-R1 read; F-R2 not read",
+        "mandatory_deployed_after_observation": "unavailable",
+        "coordination_mode": "explicitly chosen Goal, already active as controlled input"
+      },
+      "controlled_input_provenance": "Supplied fixture input; not independently observed execution or Goal API output.",
+      "coordination": {
+        "planner_applied": true,
+        "mode": "Goal explicitly chosen and active as controlled input",
+        "new_goal_required": false,
+        "mode_question_repeated": false,
+        "goal_tool_actions": [],
+        "root_goal_authority_inherited": false
+      },
+      "sources_read": [
+        {
+          "path": "requests.json: closure_gap.controlled_inputs",
+          "read": "All supplied observations considered independently of semantic_all case."
+        }
+      ],
+      "coverage": {
+        "initial_scope_preserved": true,
+        "F-R1": "read only according to controlled input",
+        "F-R2": "unread according to controlled input",
+        "selected_mutations": "3 violations detected, restore/final passed according to controlled input; original reports not available",
+        "mandatory_deployed_after_observation": "unavailable according to controlled input"
+      },
+      "gaps": [
+        {
+          "id": "F-R2",
+          "kind": "unread mandatory contract"
+        },
+        {
+          "id": "mandatory_deployed_after_observation",
+          "kind": "unperformed mandatory observation"
+        },
+        {
+          "id": "original-reports",
+          "kind": "review limit",
+          "detail": "No raw reports or causal inputs were supplied to independently confirm the claimed mutation outcomes."
+        }
+      ],
+      "result": "partial",
+      "goal_completion_allowed": false,
+      "goal_status_written": null,
+      "next": "Прочитать F-R2 и провести смысловую сверку со связанными тестами.",
+      "remaining_stages": [
+        "Audit F-R2 content and linked assertions.",
+        "Determine availability, inputs and authority for mandatory deployed after-observation.",
+        "Perform the mandatory observation when authorized and available.",
+        "Reconcile initial full scope and original reports before completion."
+      ],
+      "limits": [
+        "No live Goal operation.",
+        "No original project identity or F-R2 source was supplied for this case; first-case reading does not transfer into its controlled history.",
+        "No three-turn blocked audit exists; no actual Goal blocked transition is justified.",
+        "Three mutation outcomes are not complete semantic or method coverage."
+      ]
+    }
+  ],
+  "scenario_observation_limits": {
+    "HG76S1": "Coordination mode and existing controlled Goal handling exercised; actual Goal creation/reuse API was not exercised here.",
+    "HG76S3": "Both test-linked requirements and the unlinked owned invariant were read; the outdated expectation and mandatory before/after method were identified without executing tests.",
+    "HG76S4": "A controlled successful mutation subset with unread contract and unavailable mandatory observation was kept partial with concrete Next and full scope."
+  },
+  "preservation": {
+    "initial_hashes_source": "initial-hashes.json",
+    "all_source_hashes_match_initial": true,
+    "current_hashes": {
+      ".config/tests.json": "3e5eb4a6ef500a8fcbdb8bf21b2b5729929cfa741116b73113a39aec843fe1a5",
+      "README.md": "bb9eafb9767cfd4043cb30638171471bd0ae4cf9b147f4641db5f741df2a8ee7",
+      "docs/engineering.md": "9e59b40c3ea3aec863608e18ef538f38f1a4ff6194f98385488a0ab0a2bebf2b",
+      "docs/usage.md": "69ae311cd7044eee457024f842c2cc53c0ff119f41621dcabafb6bfe473d7e8e",
+      "requirements.json": "27da12a70672dbd00c2e892672c06eb026579522471c458a954dc9bbbe150145",
+      "sentinel": "6200d9ecb97fbe34a1fc8dfd9688e75affcc99dd591c46ef431cb77104cc2afc",
+      "src/calc.py": "35a4bb51626a51cfb601e7e659bae6a88e0cc5dbfdece9c7420631c941ed9c55",
+      "tests/test_calc.py": "a466dbecf29964bfb6e08965f0da4bffdc7d2e63001573861a38a32502ba3290"
+    },
+    "sentinel_sha256": "6200d9ecb97fbe34a1fc8dfd9688e75affcc99dd591c46ef431cb77104cc2afc",
+    "sentinel_preserved": true
+  },
+  "substantive_instruction_findings": []
+}

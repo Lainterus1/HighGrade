@@ -7,7 +7,7 @@ test('reading, font and real visual reference',async({page,baseURL})=>{
  await page.goto(screen('approval'));await expect(page.getByRole('heading',{name:'Интерфейс спецификаций',exact:true})).toBeVisible();await page.evaluate(()=>document.fonts.ready);expect(await page.locator('.document').evaluate(e=>!!(e.querySelector('.eyebrow')!.compareDocumentPosition(e.querySelector('h1')!) & Node.DOCUMENT_POSITION_FOLLOWING))).toBeTruthy();
  expect(await page.evaluate(()=>document.fonts.check('16px Manrope','Требования HighGrade'))).toBeTruthy();
  expect(await page.evaluate(()=>[...document.fonts].some(f=>f.family==='Manrope'&&f.status==='loaded'))).toBeTruthy();
- await page.screenshot({path:'../target/highgrade/tmp/hg58/desktop.png',fullPage:true});
+ await page.screenshot({path:test.info().outputPath('desktop.png'),fullPage:true});
  expect((await new AxeBuilder({page}).include('.workspace').analyze()).violations).toEqual([]);
  expect(external).toEqual([]);expect(errors).toEqual([]);
 });
@@ -23,10 +23,10 @@ test('editing, validation, discard and decision dialog are keyboard usable',asyn
 test('narrow and 200 percent layout preserve controls and focus',async({page})=>{
  await page.setViewportSize({width:720,height:900});await page.goto(screen('long'));await page.getByRole('button',{name:'Открыть список спецификаций'}).click();await page.getByLabel('Поиск по спецификациям').fill('zzzz');await expect(page.getByRole('status')).toContainText('Ничего не найдено');await page.getByRole('button',{name:'Открыть список спецификаций'}).click();
  await expect(page.locator('.mobile-context')).toContainText('Демонстрационные данные');await expect(page.locator('.mobile-context')).toContainText('Projects/MyCodex');
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();await page.screenshot({path:'../target/highgrade/tmp/hg58/narrow.png',fullPage:true});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();await page.screenshot({path:test.info().outputPath('narrow.png'),fullPage:true});
  // Browser zoom 200% has half the CSS viewport at the same physical pixel size.
  const cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setDeviceMetricsOverride',{width:720,height:450,deviceScaleFactor:2,mobile:false});await page.goto(screen('approval'));
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();await page.getByRole('button',{name:'Редактировать',exact:true}).click();await expect(page.getByLabel('Цель',{exact:true})).toBeFocused();await page.screenshot({path:'../target/highgrade/tmp/hg58/zoom-200.png',fullPage:true});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();await page.getByRole('button',{name:'Редактировать',exact:true}).click();await expect(page.getByLabel('Цель',{exact:true})).toBeFocused();await page.screenshot({path:test.info().outputPath('zoom-200.png'),fullPage:true});
 });
 test('selecting a specification changes its content and required action',async({page})=>{
  await page.goto(screen('approval'));
@@ -49,7 +49,7 @@ test('every documented state renders without accessibility violations or backend
   await page.goto(`/iframe.html?id=${encodeURIComponent(entry.id)}&viewMode=story`);await page.locator('#storybook-root').waitFor();await expect(page.locator('#storybook-root > *').first(),entry.id).toBeVisible();
   const violations=(await new AxeBuilder({page}).include('#storybook-root').analyze()).violations;
   expect(violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})),entry.id).toEqual([]);
-  for(const name of ['editing','conflict','icons','brand'])if(entry.id.endsWith('--'+name))await page.screenshot({path:`../target/highgrade/tmp/hg58/${name}.png`,fullPage:true});
+  for(const name of ['editing','conflict','icons','brand'])if(entry.id.endsWith('--'+name))await page.screenshot({path:test.info().outputPath(`${name}.png`),fullPage:true});
  }
  expect(writes).toEqual([]);
 });
@@ -62,5 +62,5 @@ test('catalog manager navigation and component controls work',async({page})=>{
  await page.goto('/?path=/story/'+encodeURIComponent('компоненты-кнопка--primary'));
  await expect(page.getByRole('button',{name:'Controls'})).toBeVisible();
  const control=page.getByRole('row').filter({has:page.getByText('children',{exact:true})}).getByRole('textbox');await expect(control).toBeVisible();await control.fill('Проверить требования');await expect(page.frameLocator('#storybook-preview-iframe').getByRole('button',{name:'Проверить требования'})).toBeVisible();
- await page.screenshot({path:'../target/highgrade/tmp/hg58/storybook.png',fullPage:true});
+ await page.screenshot({path:test.info().outputPath('storybook.png'),fullPage:true});
 });

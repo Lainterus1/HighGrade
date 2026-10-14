@@ -1,0 +1,35 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import subprocess,hashlib,json,shutil,difflib,sys
+ROOT=Path.cwd(); LOCAL=ROOT/'.highgrade/local/project-refresh-2026-10-14'; SCRATCH=ROOT/'target/highgrade/tmp/project-refresh-python-mutations'
+SCRATCH.mkdir(parents=True,exist_ok=True)
+files=['scripts/evidence_store.py','scripts/target-maintenance.py','scripts/verify.py','scripts/tests/test_evidence_store.py','scripts/tests/test_target_maintenance.py','scripts/tests/test_verify.py']
+mutations=[
+ ('P1-same-size-corruption','scripts/evidence_store.py','if len(content) != item[\'bytes\'] or digest(content) != sha:','if len(content) != item[\'bytes\']:','scripts.tests.test_evidence_store','Same-length byte corruption of stored evidence must be rejected by SHA256'),
+ ('P2-foreign-scratch','scripts/evidence_store.py',"if inventory != state.get('inventory'):",'if False:','scripts.tests.test_evidence_store','Files/directories added after sealing must remain, even with valid export'),
+ ('P3-active-cargo','scripts/target-maintenance.py','if running:','if False:','scripts.tests.test_target_maintenance','Active build must reject deletion and preserve selected scratch'),
+ ('P4-unknown-validation','scripts/verify.py',"if validation['status'] != 'passed':","if validation['status'] == 'failed':",'scripts.tests.test_verify','Unknown specification validation must not be treated as successful verification')
+]
+report={'purpose':'real implementation mutations in isolated selected Python sources','source_revision':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'mutations':[]}
+def snapshot(base):return {p:hashlib.sha256((base/p).read_bytes()).hexdigest() for p in files}
+def run(base,module,stage):
+ argv=[sys.executable,'-m','unittest',module,'-v']; start=datetime.now(timezone.utc).isoformat()
+ r=subprocess.run(argv,cwd=base,capture_output=True,text=True)
+ result={'stage':stage,'argv':argv,'cwd':str(base),'started_at':start,'ended_at':datetime.now(timezone.utc).isoformat(),'exit_code':r.returncode,'input_hashes':snapshot(base),'stdout':r.stdout,'stderr':r.stderr}
+ return result
+for name,path,before,after,module,violation in mutations:
+ base=SCRATCH/name; assert not base.exists(),name; base.mkdir()
+ for f in files:
+  dst=base/f; dst.parent.mkdir(parents=True,exist_ok=True); shutil.copyfile(ROOT/f,dst)
+ original=(base/path).read_text(); assert original.count(before)==1,(name,original.count(before))
+ baseline=run(base,module,'baseline'); assert baseline['exit_code']==0,name
+ (base/path).write_text(original.replace(before,after))
+ diff=''.join(difflib.unified_diff(original.splitlines(True),(base/path).read_text().splitlines(True),fromfile=path,tofile=path))
+ mutant=run(base,module,'mutant')
+ (base/path).write_text(original)
+ restored=run(base,module,'restored'); assert restored['exit_code']==0,name
+ item={'id':name,'subject':path,'intended_violation':violation,'mutation_diff':diff,'classification':'survived' if mutant['exit_code']==0 else 'inspect-failure-cause','baseline':baseline,'mutant':mutant,'restored':restored}
+ report['mutations'].append(item)
+ (LOCAL/'python-mutations-initial.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+ print(json.dumps({'id':name,'baseline':baseline['exit_code'],'mutant':mutant['exit_code'],'restored':restored['exit_code'],'failure_tail':mutant['stderr'][-1800:]},ensure_ascii=False),flush=True)
+assert snapshot(ROOT)==snapshot(SCRATCH/mutations[0][0])

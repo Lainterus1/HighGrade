@@ -1,0 +1,67 @@
+<a id="метод-независимого-ревью"></a>
+
+# Independent review method
+
+A separate reviewer reads this method when [Work](../procedures/work.md#evidence-and-review) calls it. Work owns the trigger and readiness barrier. Review does not replace tests or a human decision.
+
+<a id="вход-и-область"></a>
+
+## Input and scope
+
+Obtain requirements and scenarios, the relevant diff, original reports, declared inputs, limits and readiness criteria. Identify the result revision and material untracked files. For an import, compare original_text. Mark an unavailable necessary input as a gap; do not confirm the dependent conclusion.
+
+Check independently. The executor's summary does not replace the original result. Expand scope for a specific risk or contradiction. Preserve unrelated changes.
+
+<a id="сверка"></a>
+
+## Checks
+
+1. Compare each mandatory outcome with the changed implementation and actual product boundary.
+2. Compare setup, selector, executed branch and test assertions with the required outcome. Identify the material violation the check detects and whether expectations follow the contract. If expectations changed, check the grounds: correcting a faulty test is valid; changing a normative outcome requires Spec. Weaker assertions for a green result do not confirm a requirement. This belongs to final review; no mandatory early reviewer or universal mutation tool is required. For selected Clear test maintenance, assess the actual [mutation results and limits](#test-currency-and-effectiveness). Check the original report, skips, time and revision. Exit code, ID and file alone do not prove execution. A script or browser test is still automatic outside `trace`. In a shared run, check each scenario outcome.
+3. Check completeness and freshness of causal inputs: code, test, data, configuration, shared modules and important dependencies. A shared report or the whole repository is not automatically an input of each scenario. Do not exclude an unknown dependency by guesswork.
+4. Assess regressions, boundary outcomes, data preservation and unrelated changes by risk. For normative text, compare meaning and the decision table. Reading instructions does not prove agent actions.
+
+Read the [verification reference](tools/verification.md) for `runs`, `trace` or evidence formats when needed.
+
+<a id="вердикт"></a>
+
+## Verdict
+
+Return **GO** only with current confirmation of mandatory outcomes and no blocking gaps. Otherwise return **NO_GO**. For a finding, state scenario, location, observation, consequence and required fix or check. State review limits. Missing evidence cannot become GO.
+
+After a material fix, review the new revision and affected evidence. The main agent records the verdict. The reviewer does not record human acceptance or run commit/push.
+
+<a id="актуальность-и-сила-тестов"></a>
+
+## Test currency and effectiveness
+
+Read this method when [Clear](../procedures/clear.md) selects test maintenance. It adds checks for that scope; it does not require mutation tooling for every Work task. [Work](../procedures/work.md#substantive-checks) owns sufficient evidence and mandatory project barriers. The independent review method above remains the final assessment.
+
+<a id="область-проверки"></a>
+
+### Select the checks
+
+Read and audit every current requirement tied to selected tests, including unchanged contracts. Map it to executed behavior, assertions, fixtures, selectors, configuration and important dependencies. Check its meaning against project goals and related normative sources. Extract required methods before baseline execution, including required before/after observations. IDs, valid links and green tests prove neither meaning nor currency. Locate the owner of unlinked tests or record a contract gap; absence of a spec link does not make a test obsolete. Separate unsupported or retired expectations from current contracts. Do not update snapshots or weaken assertions merely to obtain a green result. Use Spec for a changed normative outcome; a faulty test may be corrected under its existing contract.
+
+For each important outcome, identify a material violation the test must detect. Derive the expected result independently from the contract. Check observable results and required side effects, including unchanged data after rejection. Mocks must not replace the behavior being assessed. Consider missing negative/boundary cases, fixture drift, skipped tests and dependence on previous tests or external state.
+
+Choose further methods for a concrete risk: branch coverage to locate unexercised decisions; property checks for invariants such as round-trip, idempotence or preservation; compatibility comparisons for supported formats; repeat/order checks for observed instability. These methods do not establish a universal quota or percentage. Reuse suitable current results only after checking their causal inputs and actual scope.
+
+<a id="мутационные-проверки"></a>
+
+### Mutation checks
+
+Before mutations, record selected important implementation areas, intended violations, baseline command and execution limits. Select by consequence, changed behavior and suspected weak assertions. Account for important areas outside the selection with a reason or explicit gap. Use a suitable project tool or controlled edits in an isolated copy. Never mutate live project data or leave a deliberate defect in working sources. Follow project commands and environment rules; choosing this method does not authorize external services or a global installation.
+
+For compatible cases, use the project's mutation tool or the supplied [batch helper](clear-batches.md). Share baseline/final only for an unchanged causal set; restore exact bytes after each mutation. Changed tests, contracts, environment or uncertain dependencies require affected checks again. Parallel workers are optional and need separate sources, caches, reports and other shared resources within budget. Keep catalog writes serial. Read compact summaries first; preserve original reports and one common snapshot through existing project storage. Verify causal inputs and originals before reuse; never transfer an unknown result as PASS.
+
+1. Execute a suitable baseline on the selected inputs. Confirm the intended tests ran and passed. If the baseline is faulty or unexecuted, resolve or record it before assessing mutation sensitivity.
+2. Change one behavior in the isolated subject so it violates the agreed outcome. Mutate implementation, not the expected result or a test assertion. Preserve the original inputs and mutation diff.
+3. Execute the applicable tests against that mutation. Check the original result and failure cause; an unrelated failure does not show detection.
+4. Classify each result. A relevant assertion failure detects the violation. A passing run may expose a test gap or a semantically equivalent change. Support equivalence from the contract and behavior; an unsupported assertion of equivalence stays unresolved. Build/setup failure, skip, empty selection and execution timeout do not establish detection.
+5. For a missed real violation, improve the test within authority and repeat that check. Confirm that the strengthened test fails on the same violation and passes on the restored subject. Keep the initial result as history.
+6. Restore isolated inputs and confirm the final unmutated check. Record command, tested revision/input hashes, mutation, observed outcomes and limits under Work. Preserve the necessary original reports with the project's storage method.
+
+An intrinsically inapplicable method needs a concrete reason and an appropriate alternative observation where possible. An unavailable tool, environment or required outcome is an execution gap, not inapplicability or PASS. Continue independent authorized work; leave the dependent completion criterion open. Do not claim full test maintenance while selected mandatory checks remain unperformed.
+
+Report important missed violations and their disposition separately from equivalent, unresolved and unexecuted cases. A mutation score alone cannot certify a contract. The final result is confirmation of the selected risks with explicit limits.

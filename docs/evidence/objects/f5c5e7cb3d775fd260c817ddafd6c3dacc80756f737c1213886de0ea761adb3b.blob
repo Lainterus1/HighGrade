@@ -1,0 +1,58 @@
+"""Select this task's originals explicitly; never export administrative run tokens."""
+from pathlib import Path
+from datetime import datetime, timezone
+import importlib.util
+import json
+import subprocess
+
+root = Path.cwd()
+local = root / '.highgrade/local/project-refresh-2026-10-14'
+spec = importlib.util.spec_from_file_location('storage', root / 'scripts/evidence_store.py')
+storage = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(storage)
+excluded = {'state.json', 'catalog-summary.json', 'rust-status-read.json', 'supplement-current-read.json'}
+selected = [str(path.relative_to(root)) for path in sorted(local.rglob('*'))
+            if path.is_file() and not path.is_symlink() and '__pycache__' not in path.parts
+            and path.name not in excluded and path.suffix in {'.json', '.md', '.py', '.mjs', '.stdout', '.stderr', '.png', '.svg'}]
+manifest = storage.export(root, selected, {
+    'task': 'project-refresh-2026-10-14', 'captured_at': datetime.now(timezone.utc).isoformat(),
+    'purpose': 'Original successes, failed baselines, invalid mutation executions, corrected mutations, read coverage and independent reviews',
+    'interpretation': 'Use verification.md and individual observations. Not every exported exit is PASS; setup errors are not mutation detections.',
+    'scope': 'Documentation and tests of main High Grade areas; presentation explicitly excluded'})
+receipt = {'originals_manifest': manifest, 'selected_files': len(selected), 'managed_runs': []}
+(local / 'preservation-receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+runs = [
+    'rust-f0d31c2279094a20ae61bcf2ca3e59b2',
+    'rust-151c3da49eb5462db459e5628a0895ec',
+    'rust-ed62931af2d249898adc78cd77b5c44a',
+    'clear-ui-53fa5f6052f849028991e863996cbdc2',
+    'clear-ui-21e320bb223b47e6b944d4a0805c76b9',
+    'clear-installed-5203abae4b38417099027aa841cefbcb',
+    'clear-scenarios-3d2a1028fed147e28b8e783675c64884',
+    'clear-scenarios-final-1afb694de5fb4e09b0a893450c054f90',
+    'clear-scenarios-census-4f501a0f76c646dbbac78c7ea9679f0c',
+]
+for name in runs:
+    run = 'target/highgrade/runs/' + name
+    directory = root / run
+    assert directory.is_dir(), run
+    state = json.loads((directory / 'run.json').read_text())
+    assert state['state'] == 'awaiting_export' and not storage.alive(state.get('owner_pid')), run
+    files = [str(path.relative_to(directory)) for path in sorted(directory.rglob('*'))
+             if path.is_file() and path != directory / 'run.json']
+    argv = ['python', 'scripts/evidence_store.py', 'finish', '--run', run]
+    for path in files:
+        argv += ['--file', path]
+    result = subprocess.run(argv, capture_output=True, text=True)
+    # Completion may retain sealed scratch while unrelated links exist. This is
+    # expected preservation, not permission to bypass the maintenance guard.
+    assert result.returncode == 0, result.stdout + result.stderr
+    recorded = json.loads((directory / 'run.json').read_text()) if directory.exists() else None
+    saved_manifest = recorded['bundle'] if recorded else json.loads(result.stdout.splitlines()[-1])['manifest']
+    storage.verify(root, saved_manifest)
+    receipt['managed_runs'].append({'run': run, 'manifest': saved_manifest,
+                                    'argv': argv, 'exit_code': result.returncode,
+                                    'stdout': result.stdout, 'stderr': result.stderr})
+    (local / 'preservation-receipt.json').write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n')
+    print(json.dumps({'sealed': run, 'files': len(files), 'manifest': saved_manifest}), flush=True)
+print(json.dumps({'originals_manifest': manifest, 'selected_files': len(selected)}))

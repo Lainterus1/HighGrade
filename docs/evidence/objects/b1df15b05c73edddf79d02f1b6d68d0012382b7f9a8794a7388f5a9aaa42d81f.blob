@@ -1,0 +1,15 @@
+{
+  "method": "manual keyboard UI exercise availability check",
+  "actual_observation": {
+    "cua_getState": {
+      "apps": [],
+      "browsers": []
+    },
+    "cua_createBrowserTab_iab": "Browser is not available: iab",
+    "native_API": "disabled in tool instructions",
+    "open_in_codex": "queued, no observed browser page"
+  },
+  "outcome": "unperformed_unavailable",
+  "classification": "local execution gap, not PASS, not inapplicable, not real human acceptance",
+  "required_next": "Expose an available browser/native control surface for the current Storybook build. With keyboard, traverse catalog/navigation, open editor, trigger validation, visit conflict/unsaved dialog, cancel/Escape and return to reading. Record each resulting focus, screenshot/AX state, readable error/unique primary action, narrow layout and demo no-write boundary. Do not relabel automatic script PASS as manual or user approval."
+}

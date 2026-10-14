@@ -1,0 +1,38 @@
+# Итоговое независимое ревью evidence/build/helpers
+
+**GO для проверенных локальных guard исправлений, Python regressions и четырёх selected mutations.** Это не GO всему Clear, текущему полному Rust barrier, новому исполнению плагинов, Windows или remote CI.
+
+Предыдущий смысловой audit охватил 34 требования и 64 сценария. Здесь дополнительно прочитаны current guards/assertions, actual commands, raw reports, loaded-byte receipts, nested results и восстановленные входы.
+
+## Подтверждено
+
+- Python: 81 реально названный case, 81 уникальный ID, итог OK, 37.430 с. Три новые регрессии Cargo config и aliases прошли.
+- Helper: baseline/final passed, три material нарушения detected по relevant assertions.
+- Cargo config: baseline/final passed, omitted-config нарушение detected по actual Node prepare/test assertion.
+- Summary/original hashes проверены. Все declared subject bytes/modes равны original snapshot после восстановления.
+- Начальные RED сохранены; они не переименованы в PASS. EVID-01/02/03 закрыты в указанном локальном охвате.
+
+| Мутация | Наблюдённая причина отказа |
+|---|---|
+| source-witness | Stale nested result ошибочно стал detected; real assertion требует invalid. |
+| foreign-restore | Worker продолжил три нарушения вместо остановки после одного и затёр unknown bytes в isolated copy. Live fixture/sentinel сохранены. |
+| causal-reuse | Changed contract/data/dependency/adapter/helper ошибочно reused; real assertions требуют fresh execution. |
+| omit-cargo-config | Actual Node prepare ошибочно принял появившуюся config; real assertion требует отказ. |
+
+## Rust boundary
+
+Исходный Nextest/JUnit/inventory содержит 241 case, 0 failures/errors/skips. Attempt/completion и хеши совпадают. Однако после прогона изменён tests/attention_contracts.rs. Этот original run теперь не доказывает итоговый current-input Rust barrier. Root уведомлён. Требуется применимый повтор после правки. Trace также не выводится из Nextest-only отчёта.
+
+## Observer и стоимость
+
+Python witness compile/exec использует те же raw bytes реальной subprocess-копии. Node hook записывает фактически загруженный source-scenarios. Есть 5 fresh helper и 3 fresh config receipt groups с соответствующими mutant SHA. Receipts агрегированы на command, а не каждый subtest. Receipt пишется до exec и сам не доказывает успешное завершение; вывод подкреплён actual unittest/nested/final results. Baseline/final имеют один source SHA и разные groups; один hash не обозначает фазу.
+
+Оба внешних батча: scope_complete=false, reused=false. Local Cargo config проверена; ancestor/home/env completeness не заявлена. Счётчик верхних adapter-команд — 5 + 3, probes — 4; внутри есть другие subprocess. Контрольный unbatched процесс для этих трёх текущих guard нарушений не выполнен. Tokens/money неизвестны. Экономия не объявлена.
+
+Среда: Linux, Python 3.14.7, Node 26.8.2. Не выдавать за Node24 CI/Windows.
+
+## Плагины и сохранение
+
+Исходники плагинов не менялись. Docs/tests и owners прочитаны: SVG 34, CHA 59. Новое package execution не выполнено: прошлое exact-pinned venv удалено, доступный bundled runtime не содержит vtracer/analyzers. Исторические PASS не перенесены в нынешний результат.
+
+Перед cleanup явно сохранить receipts и необходимые .framework-artifacts вместе с summary/snapshot/diffs/raw reports. Side artifacts не входят автоматически в batch originals. Ссылки/хеши и все пределы находятся в final-evidence-review.json. Storage/cleanup reviewer не исполнял.

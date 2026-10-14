@@ -1,0 +1,2396 @@
+{
+  "kind": "independent early semantic UI audit",
+  "status": "analysis_complete; execution GO not issued",
+  "scope": {
+    "assigned_requirements": 31,
+    "assigned_scenarios": 69,
+    "requirements_read": 31,
+    "scenarios_read": 69,
+    "pending_operations_additionally_read": 6,
+    "presentation_excluded": true,
+    "installed_plugins_excluded": true,
+    "baseline_by_reviewer": false,
+    "one_addressed_repro_executed": true
+  },
+  "source_requirements_snapshot": "ui-requirements.json",
+  "checks_snapshot": "checks.json",
+  "declared_UI_checks": 0,
+  "requirements": [
+    {
+      "id": "HG-0052-R1",
+      "read": true,
+      "judgment": "Структурный профиль согласован с attention::supported; возраст и accepted status не фильтруются. Коррупция отделена от legacy.",
+      "owner": [
+        "src/specs/attention.rs",
+        "src/specs.rs",
+        "tests/attention_contracts.rs"
+      ],
+      "test": [
+        "projection_preserves_bytes_excludes_legacy_and_reports_corruption",
+        "result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement"
+      ],
+      "method": [
+        "Контрактный тест реальной операции проекции; fixture смешанных структур, сравнение ID/причин и хешей файлов.",
+        "Отрицательный контрактный тест: наблюдать отдельную диагностику повреждения и отсутствие записи выдуманного решения."
+      ],
+      "gap": "При baseline дополнить строгий смешанный fixture: старый по created_at current и принятый current. Текущий первый тест проверяет число, не точный набор ID/возрастные границы.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S1",
+          "read": true,
+          "required_method": "Контрактный тест реальной операции проекции; fixture смешанных структур, сравнение ID/причин и хешей файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S2",
+          "read": true,
+          "required_method": "Отрицательный контрактный тест: наблюдать отдельную диагностику повреждения и отсутствие записи выдуманного решения.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0052-R2",
+      "read": true,
+      "judgment": "Согласие и принятие раздельны; optional version и пустой result-return comment реализованы. Решение не вызывает executor.",
+      "owner": [
+        "src/specs/attention.rs",
+        "src/specs/progress.rs",
+        "ui/src/features/specs/DecisionDialog.tsx"
+      ],
+      "test": [
+        "explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_request",
+        "result_status_without_build_id_keeps_snapshot_history_and_replay_gates",
+        "ui/tests/edit.spec.ts"
+      ],
+      "method": [
+        "Контрактный тест операции решения и смысловая сверка процедуры полномочий; наблюдать историю, неизменные результаты и отсутствие побочных запусков.",
+        "Отрицательные тесты реальных команд и сравнение сохранённого состояния до/после."
+      ],
+      "gap": "Новый прогон с byte-preservation до/после отказа и неизменными tasks/evidence; не выдавать UI fixture acceptance за приёмку проекта.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S3",
+          "read": true,
+          "required_method": "Контрактный тест операции решения и смысловая сверка процедуры полномочий; наблюдать историю, неизменные результаты и отсутствие побочных запусков.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S4",
+          "read": true,
+          "required_method": "Отрицательные тесты реальных команд и сравнение сохранённого состояния до/после.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0052-R3",
+      "read": true,
+      "judgment": "Очередь возникает из явной передачи, одного question и актуальных snapshots; другой вопрос не закрывается ответом.",
+      "owner": [
+        "src/specs/attention.rs",
+        "tests/attention_contracts.rs"
+      ],
+      "test": [
+        "explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_request",
+        "answers_in_reverse_request_order_use_recorded_sequence",
+        "repeated_requests_recheck_readiness_and_preserve_unrelated_questions"
+      ],
+      "method": [
+        "Табличный контрактный тест на изолированных записях с точным ожидаемым набором ID и действий.",
+        "Контрактный тест переходов с двумя вопросами одной спеки и повтором операции; наблюдать очередь и историю."
+      ],
+      "gap": "Нужен фактический baseline выбранных переходов; source listing не есть execution.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S5",
+          "read": true,
+          "required_method": "Табличный контрактный тест на изолированных записях с точным ожидаемым набором ID и действий.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S6",
+          "read": true,
+          "required_method": "Контрактный тест переходов с двумя вопросами одной спеки и повтором операции; наблюдать очередь и историю.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0052-R4",
+      "read": true,
+      "judgment": "Deterministic content snapshot исключает done/служебные результаты; CAS и история сохранены.",
+      "owner": [
+        "src/specs/attention.rs",
+        "src/specs/progress.rs",
+        "tests/attention_contracts.rs",
+        "ui/tests/edit.spec.ts"
+      ],
+      "test": [
+        "content_snapshots_metadata_and_stale_writes_are_distinct",
+        "result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement",
+        "HG56 S6 S7"
+      ],
+      "method": [
+        "Контрактный тест сохранения редакций, детерминированного diff и переходов до/после передачи.",
+        "Контрактный тест по отдельности для метаданных и повторного evidence.",
+        "Негативный CAS-тест реальной команды с хешами A/B."
+      ],
+      "gap": "Новый baseline и сравнение exact bytes при отрицательных CAS/устарелых решениях.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S7",
+          "read": true,
+          "required_method": "Контрактный тест сохранения редакций, детерминированного diff и переходов до/после передачи.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S8",
+          "read": true,
+          "required_method": "Контрактный тест по отдельности для метаданных и повторного evidence.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0052-S9",
+          "read": true,
+          "required_method": "Негативный CAS-тест реальной команды с хешами A/B.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0052-R5",
+      "read": true,
+      "judgment": "Категории current/historical/unknown и API2 согласованы; сервер владеет readiness. Date/ID порядок реализован.",
+      "owner": [
+        "src/specs/attention.rs",
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "tests/attention_contracts.rs",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "queue_priority_categories_and_counts_are_deterministic",
+        "integrated_history_is_not_current_work_or_current_acceptance",
+        "HG59 S3 S4"
+      ],
+      "method": [
+        "Табличный тест проекции на точных данных и проверка единственного членства в рабочих категориях.",
+        "Табличный Rust-тест реальной проекции на временном каталоге: точные категории, флаг интеграции, счётчики, повторяемость и неизменность файлов.",
+        "Контрактный HTTP-тест API версии и браузерный тест совместимой страницы; сравнение каталога до и после чтения."
+      ],
+      "gap": "Queue test не задаёт разные at для одинакового kind: обратный date sort может пройти. Добавить или выбрать точную старый→новый+ID negative boundary. UI counts также требуют прямых assertions.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0052-S10",
+          "read": true,
+          "required_method": "Табличный тест проекции на точных данных и проверка единственного членства в рабочих категориях.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0059-S1",
+          "read": true,
+          "required_method": "Табличный Rust-тест реальной проекции на временном каталоге: точные категории, флаг интеграции, счётчики, повторяемость и неизменность файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0059-S2",
+          "read": true,
+          "required_method": "Контрактный HTTP-тест API версии и браузерный тест совместимой страницы; сравнение каталога до и после чтения.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0053-R1",
+      "read": true,
+      "judgment": "Корень канонический, port0 loopback, изолированные процессы и штатный shutdown реализованы. Отказ opener не покрыт существующим S2-tagged тестом.",
+      "owner": [
+        "src/ui.rs",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "isolated_servers_share_cli_cas_and_run_without_node"
+      ],
+      "method": [
+        "Интеграционный тест запусков CLI/HTTP с двумя временными каталогами и сверкой файлов.",
+        "Интеграционное наблюдение порта/выхода процесса с контролируемой недоступностью браузера."
+      ],
+      "gap": "HG53S2: Server::start всегда --no-open true и stderr=null. Нужен Unix реальный spawn-error xdg-open через PATH empty с stderr+URL+живым сервером+shutdown. Windows отдельно; fake opener exit1 не является spawn-error.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0053-S1",
+          "read": true,
+          "required_method": "Интеграционный тест запусков CLI/HTTP с двумя временными каталогами и сверкой файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0053-S2",
+          "read": true,
+          "required_method": "Интеграционное наблюдение порта/выхода процесса с контролируемой недоступностью браузера.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0053-R2",
+      "read": true,
+      "judgment": "Boundary проверяет Host/Origin/Fetch-Site/token; typed payload не принимает root/path/command. Основной код согласован, assertions не полностью подтверждают внешний sentinel/token hygiene.",
+      "owner": [
+        "src/ui.rs",
+        "src/specs.rs",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "hostile_origins_tokens_paths_and_extra_fields_never_mutate",
+        "unsupported_record_cannot_be_read_or_edited_by_direct_url"
+      ],
+      "method": [
+        "Негативные HTTP-тесты с Origin/Host/path/token вариантами и сравнением байтов.",
+        "Интеграционный тест API против результата эквивалентной CLI-операции."
+      ],
+      "gap": "HG53S3: outside.txt находится внутри root, traversal адресует sibling вне root. Нужен настоящий внешний sentinel; для каждого отказа проверить body не содержит session token и bytes обоих каталогов.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0053-S3",
+          "read": true,
+          "required_method": "Негативные HTTP-тесты с Origin/Host/path/token вариантами и сравнением байтов.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0053-S4",
+          "read": true,
+          "required_method": "Интеграционный тест API против результата эквивалентной CLI-операции.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0053-R3",
+      "read": true,
+      "judgment": "CLI/HTTP входят в общий lock/CAS/readiness; readonly GET проверяет ту же locked snapshot. Отсутствие/пустота/порча/recovery различимы.",
+      "owner": [
+        "src/ui.rs",
+        "src/specs.rs",
+        "ui/src/api/client.ts",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "missing_empty_corrupt_and_interrupted_catalogs_remain_distinct",
+        "read_endpoints_recheck_catalog_state_and_external_edits",
+        "isolated_servers_share_cli_cas_and_run_without_node"
+      ],
+      "method": [
+        "Интеграционный тест CLI/HTTP с копиями fixtures и сравнением дерева до/после.",
+        "Перекрёстный CLI/HTTP-тест одной записи."
+      ],
+      "gap": "Baseline должен выполнять real HTTP/CLI и внешнюю запись, не только schema check. Запрет автоматического init/recover проверять деревом до/после.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0053-S5",
+          "read": true,
+          "required_method": "Интеграционный тест CLI/HTTP с копиями fixtures и сравнением дерева до/после.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0053-S6",
+          "read": true,
+          "required_method": "Перекрёстный CLI/HTTP-тест одной записи.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0053-R4",
+      "read": true,
+      "judgment": "Embedded статика, API2, CSP и graceful drain согласованы; запись не объявляется до подтверждения.",
+      "owner": [
+        "src/ui.rs",
+        "src/ui/bundle.rs",
+        "ui/src/api/client.ts",
+        "tests/ui_contracts.rs"
+      ],
+      "test": [
+        "server_shutdown_during_write_request_never_reports_false_success",
+        "isolated_servers_share_cli_cas_and_run_without_node"
+      ],
+      "method": [
+        "Интеграционный тест кандидата и жизненного цикла, результат записи проверяется повторным чтением."
+      ],
+      "gap": "Нужны две реальные ветви: abrupt incomplete body без write и graceful accepted request с подтверждённым сохранением; baseline ещё не выполнен мной.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0053-S7",
+          "read": true,
+          "required_method": "Интеграционный тест кандидата и жизненного цикла, результат записи проверяется повторным чтением.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R1",
+      "read": true,
+      "judgment": "CURRENT Manrope/24–30px отличается от source, но PENDING HG-0067 прямо задаёт Lora600/28–36px и допустимую лёгкую тень. Candidate соответствует pending; новый дизайн не выдумывается.",
+      "owner": [
+        "specs/changes/HG-0067/spec.json",
+        "ui/src/styles/theme.css",
+        "ui/src/components/ui",
+        "docs/UI.md",
+        "ui/README.md"
+      ],
+      "test": [
+        "ui/tests/editorial.spec.ts",
+        "ui/tests/hg58.spec.ts",
+        "ui/tests/visual.spec.ts"
+      ],
+      "method": [
+        "Playwright-снимки фиксированных viewport и ручная визуальная сверка с референсом; отдельно наблюдать масштаб и фокус.",
+        "Смысловое ревью структуры/README и импортов реальных компонентов; это проверка сопровождаемости, не поведения агента.",
+        "Наблюдение реального UI на 1440 и 390 px и общих компонентов Storybook; сравнить исходный текст и снимки, включая focus/reduced motion. Прежние elements-* отчёты — ориентир, не PASS новой редакции."
+      ],
+      "gap": "HG67 evidence unknown и 4–22 drifted inputs по каждому current наблюдению. Нужны current screenshots 1440/390/zoom200, ручная визуальная сверка, focus/reduced-motion. Исторические картинки не current PASS.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S1",
+          "read": true,
+          "required_method": "Playwright-снимки фиксированных viewport и ручная визуальная сверка с референсом; отдельно наблюдать масштаб и фокус.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0054-S2",
+          "read": true,
+          "required_method": "Смысловое ревью структуры/README и импортов реальных компонентов; это проверка сопровождаемости, не поведения агента.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0058-S1",
+          "read": true,
+          "required_method": "Наблюдение реального UI на 1440 и 390 px и общих компонентов Storybook; сравнить исходный текст и снимки, включая focus/reduced motion. Прежние elements-* отчёты — ориентир, не PASS новой редакции.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R2",
+      "read": true,
+      "judgment": "Логотип сохранён как traced vector; происхождение и plugin runtime boundary документированы. SVG regenerating не назначается данным audit.",
+      "owner": [
+        "ui/src/assets/brand",
+        "ui/licenses/README.md",
+        "docs/evidence/specification-ui/brand-tracing.md",
+        "ui/src/components/Foundations.stories.tsx"
+      ],
+      "test": [
+        "ui/tests/visual.spec.ts: brand is vector-only and adapted icons render at their real sizes"
+      ],
+      "method": [
+        "Фактический отчёт SVG Vectorizer, разбор SVG и визуальные renders 16/32/48; при сбое не объявлять SVG готовым."
+      ],
+      "gap": "Обязателен XML + реальные renders 16/32/48 и сравнение исходного варианта10. Существующий traced report можно reuse при совпавших причинных bytes; новый вызов installed SVG plugin вне scope. Automatic SVG no-raster assertion не подтверждает узнаваемость.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S3",
+          "read": true,
+          "required_method": "Фактический отчёт SVG Vectorizer, разбор SVG и визуальные renders 16/32/48; при сбое не объявлять SVG готовым.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R3",
+      "read": true,
+      "judgment": "PENDING HG67 согласует Editorial/Lora, tokens берутся из theme variables, stories явно synthetic и сохраняют common components.",
+      "owner": [
+        "specs/changes/HG-0067/spec.json",
+        "ui/.storybook",
+        "ui/src/components/Foundations.stories.tsx",
+        "ui/src/app/Welcome.stories.tsx",
+        "ui/README.md"
+      ],
+      "test": [
+        "ui/tests/visual.spec.ts: catalog manager navigation and component controls work",
+        "every documented state renders without accessibility violations or backend writes"
+      ],
+      "method": [
+        "Сборка Storybook и браузерный проход по разделам с наблюдением компонентов и отсутствия запросов записи в backend."
+      ],
+      "gap": "Нужны build static Storybook и browser traversal/controls с network GET-only. SpecWorkspace demo не доказывает реальные POST/DecisionDialog/SpecEditor действия; это проверяются native отдельно.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S4",
+          "read": true,
+          "required_method": "Сборка Storybook и браузерный проход по разделам с наблюдением компонентов и отсутствия запросов записи в backend.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R4",
+      "read": true,
+      "judgment": "Демонстрационные state fixtures покрывают назначенные состояния; actual editor/decision flows дополнительно покрыты native tests.",
+      "owner": [
+        "ui/src/features/specs/States.stories.tsx",
+        "ui/src/features/specs/SpecWorkspace.tsx",
+        "ui/src/features/specs/SpecEditor.stories.tsx",
+        "ui/src/components/ui"
+      ],
+      "test": [
+        "ui/tests/visual.spec.ts: editing validation discard",
+        "every documented state",
+        "ui/tests/decision.spec.ts",
+        "ui/tests/edit.spec.ts"
+      ],
+      "method": [
+        "Storybook interaction/a11y проверки и ручная клавиатурная проверка экранов; результаты по состояниям отдельно."
+      ],
+      "gap": "Обязательны state-by-state a11y + ручная keyboard/focus и narrow observation. Только story count>=25 или Axe zero не доказывает semantic completeness.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S5",
+          "read": true,
+          "required_method": "Storybook interaction/a11y проверки и ручная клавиатурная проверка экранов; результаты по состояниям отдельно.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R5",
+      "read": true,
+      "judgment": "Одноразовый исторический S3 handoff/pause сохраняется. CURRENT ссылка docs/plans/specification-ui-sequence.md устарела: владелец в docs/archive/plans. Это не новый pause текущего Clear.",
+      "owner": [
+        "specs/requirements/HG-0054-R5.json",
+        "docs/UI.md",
+        "docs/archive/plans/specification-ui-sequence.md"
+      ],
+      "test": [
+        "Смысловая адресная сверка historical barrier и оригинального handoff/authority"
+      ],
+      "method": [
+        "Смысловая сверка барьера при подготовке; при исполнении — наблюдение фактической передачи, состояния Planner и отсутствия начала S4."
+      ],
+      "gap": "Исправление ссылки через отдельное modify/current Spec, без переписывания HG54 history и без снятия прежней паузы. Не объявлять новое human visual acceptance из нынешних screenshots/GO.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S6",
+          "read": true,
+          "required_method": "Смысловая сверка барьера при подготовке; при исполнении — наблюдение фактической передачи, состояния Planner и отсутствия начала S4.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "historical handoff"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0054-R6",
+      "read": true,
+      "judgment": "CURRENT Manrope-only и PENDING HG67 Lora+Manrope различены. Local faces, custom Lucide geometry, aria labels/operation icons исходно согласованы.",
+      "owner": [
+        "specs/changes/HG-0067/spec.json",
+        "ui/src/components/icons.tsx",
+        "ui/src/components/StatusBadge.tsx",
+        "ui/src/styles/theme.css",
+        "ui/licenses/README.md"
+      ],
+      "test": [
+        "ui/tests/editorial.spec.ts",
+        "ui/tests/hg58-keyboard.spec.ts",
+        "ui/tests/hg58.spec.ts",
+        "ui/tests/edit.spec.ts: HG56 S6 S7"
+      ],
+      "method": [
+        "Браузерная проверка FontFaceSet/загруженного локального face и сетевых запросов, визуальная сверка кириллицы и размеров при масштабе 100/200%.",
+        "Визуальная сверка оригинал→адаптация и малых размеров, проверка SVG/имён в accessibility tree и состояний с клавиатуры.",
+        "Браузер/Storybook: три операции, accessibility tree и before/after с разными ID; сверить ui/tests/edit.spec.ts сценарий HG56 S6 S7."
+      ],
+      "gap": "Нужны FontFaceSet loaded+network absence+licenses/provenance и визуальное сравнение original→adaptation 16/20/24. Один CSS fontFamily/asset existence не подтверждает реальный face или малую читаемость.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S7",
+          "read": true,
+          "required_method": "Браузерная проверка FontFaceSet/загруженного локального face и сетевых запросов, визуальная сверка кириллицы и размеров при масштабе 100/200%.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0054-S8",
+          "read": true,
+          "required_method": "Визуальная сверка оригинал→адаптация и малых размеров, проверка SVG/имён в accessibility tree и состояний с клавиатуры.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0058-S2",
+          "read": true,
+          "required_method": "Браузер/Storybook: три операции, accessibility tree и before/after с разными ID; сверить ui/tests/edit.spec.ts сценарий HG56 S6 S7.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0055-R1",
+      "read": true,
+      "judgment": "Список/filters/search/initial category/current selection согласованы с backend projection. Счётчики рисуются прямо, но тест counts не утверждает их числа.",
+      "owner": [
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "src/specs/attention.rs",
+        "ui/tests/native.spec.ts"
+      ],
+      "test": [
+        "HG55 S1 S2: real catalog filters counts",
+        "HG59 S3 S4: integrated history"
+      ],
+      "method": [
+        "Playwright с реальным локальным API на временном каталоге, проверка точного набора строк и файловых хешей.",
+        "Браузерный сценарий двух пустых состояний.",
+        "Playwright с реальным локальным API и временным каталогом: вкладки, видимый выбор, поиск, счётчики и хеши файлов.",
+        "Браузерное наблюдение точного текста и статусов на подготовленных данных плюс проверка отсутствия записей."
+      ],
+      "gap": "Нужны exact row IDs и visible .count по той же projection в каждой category; cancellation/excluded/integrated buckets не дублируются. Существующий count assertion только о числе .spec-row.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0055-S1",
+          "read": true,
+          "required_method": "Playwright с реальным локальным API на временном каталоге, проверка точного набора строк и файловых хешей.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0055-S2",
+          "read": true,
+          "required_method": "Браузерный сценарий двух пустых состояний.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0059-S3",
+          "read": true,
+          "required_method": "Playwright с реальным локальным API и временным каталогом: вкладки, видимый выбор, поиск, счётчики и хеши файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0059-S4",
+          "read": true,
+          "required_method": "Браузерное наблюдение точного текста и статусов на подготовленных данных плюс проверка отсутствия записей.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0055-R2",
+      "read": true,
+      "judgment": "Карточка использует raw React text, все then открыты/dedup, remove reason/questions/diff доступны; service fields скрыты, HTML inert.",
+      "owner": [
+        "ui/src/features/specs/NativeDocument.tsx",
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "ui/tests/native.spec.ts"
+      ],
+      "test": [
+        "HG55 S3 S4: full source operations and hostile text remain inert",
+        "HG55 S3 S6: compact source view"
+      ],
+      "method": [
+        "ui/tests/native.spec.ts: HG55 S3 S4 и HG55 S3 S6; сверить текст с fixture, отсутствие скрытых разделов, все условия и хеши файлов.",
+        "Негативный браузерный тест с перехватом сети и проверкой отсутствия побочного исполнения."
+      ],
+      "gap": "Нужны source text exact equality, все уникальные then, arbitrary hostile script/image/link network observation и unchanged catalog. Baseline ещё не запущен мной.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0055-S3",
+          "read": true,
+          "required_method": "ui/tests/native.spec.ts: HG55 S3 S4 и HG55 S3 S6; сверить текст с fixture, отсутствие скрытых разделов, все условия и хеши файлов.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0055-S4",
+          "read": true,
+          "required_method": "Негативный браузерный тест с перехватом сети и проверкой отсутствия побочного исполнения.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0055-R3",
+      "read": true,
+      "judgment": "Primary action/quiet state/status wording и technical-reference extraction согласованы; оригинал result reason сохраняется в раскрытии.",
+      "owner": [
+        "ui/src/features/specs/DecisionReason.tsx",
+        "ui/src/features/specs/decisionCopy.ts",
+        "ui/src/components/StatusBadge.tsx",
+        "NativeWorkspace"
+      ],
+      "test": [
+        "HG55 S5: one actual handoff action or quiet reading",
+        "ui/scripts/tests/decision-copy.test.mjs",
+        "HG70 S1 S2 S4"
+      ],
+      "method": [
+        "Playwright/визуальная сверка четырёх состояний на реальном API."
+      ],
+      "gap": "Тесты result reason с route-modified payload оценивают rendering, не backend provenance. Нужны все4actual action states и сохранение useful constraints/source text; no extra LLM/network.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0055-S5",
+          "read": true,
+          "required_method": "Playwright/визуальная сверка четырёх состояний на реальном API.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0055-R4",
+      "read": true,
+      "judgment": "CONFIRMED RED: background poll read A не имеет AbortSignal и блокирует global api pending queue. Новый выбор B появляется лишь после release A. Selected-read cancellation уже есть и тестируется отдельно.",
+      "owner": [
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "ui/src/api/client.ts",
+        "ui/tests/native.spec.ts"
+      ],
+      "test": [
+        "Latest selection does not wait for an obsolete read",
+        "HG55 S6 context",
+        "poll-repro.spec.ts real native independent reproduction"
+      ],
+      "method": [
+        "Браузерный тест с реальной CLI-записью и наблюдением scroll/содержания до явного обновления.",
+        "Браузерный тест прерывания связи и восстановления.",
+        "ui/tests/native.spec.ts: Latest selection does not wait for an obsolete read и HG55 S3 S6. Удерживать B до утверждения о C; не подменять проверку обычным быстрым ответом."
+      ],
+      "gap": "Блокер current boundary: отменять obsolete poll read без ошибки нового выбора и без отмены/retry POST. Нужен GREEN того же repro, сохранённые RED originals; равноправно удерживать A до утверждения B, затем проверить restoration/error absence.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0055-S6",
+          "read": true,
+          "required_method": "Браузерный тест с реальной CLI-записью и наблюдением scroll/содержания до явного обновления.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0055-S7",
+          "read": true,
+          "required_method": "Браузерный тест прерывания связи и восстановления.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0058-S3",
+          "read": true,
+          "required_method": "ui/tests/native.spec.ts: Latest selection does not wait for an obsolete read и HG55 S3 S6. Удерживать B до утверждения о C; не подменять проверку обычным быстрым ответом.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0056-R1",
+      "read": true,
+      "judgment": "Editor реализует shallow immutable drafts, explicit changed-field patch, then-only fields и сохранение hidden fields. Backend защищает archived/contracts.",
+      "owner": [
+        "ui/src/features/specs/SpecEditor.tsx",
+        "src/specs.rs",
+        "ui/tests/edit.spec.ts"
+      ],
+      "test": [
+        "HG56 S1 S2",
+        "HG56 S3 integrated/protected",
+        "delayed write locks fields",
+        "memoized requirement fields retain validation"
+      ],
+      "method": [
+        "Playwright с реальным API и проверкой файла/CLI-read после перезапуска страницы.",
+        "Браузерный тест валидации/отмены/навигации и сравнение байтов.",
+        "Негативный API-тест и браузерная проверка режима чтения.",
+        "ui/tests/edit.spec.ts: HG56 S1 S2 сравнивает всю структуру operations с единственным ожидаемым изменением then; остальные сценарии проверяют CAS и отмену."
+      ],
+      "gap": "Обязательны real API + CLI/file/reload, full operations diff, negative validation/Cancel/beforeunload. Client validation-only case не заменяет backend protected-field reject.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0056-S1",
+          "read": true,
+          "required_method": "Playwright с реальным API и проверкой файла/CLI-read после перезапуска страницы.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S2",
+          "read": true,
+          "required_method": "Браузерный тест валидации/отмены/навигации и сравнение байтов.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S3",
+          "read": true,
+          "required_method": "Негативный API-тест и браузерная проверка режима чтения.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0058-S4",
+          "read": true,
+          "required_method": "ui/tests/edit.spec.ts: HG56 S1 S2 сравнивает всю структуру operations с единственным ожидаемым изменением then; остальные сценарии проверяют CAS и отмену.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0056-R2",
+      "read": true,
+      "judgment": "Local CAS допускает независимую запись; конфликт/uncertain outcome требует explicit read/new base. Blind POST retry запрещён client и form.",
+      "owner": [
+        "ui/src/features/specs/SpecEditor.tsx",
+        "ui/src/api/client.ts",
+        "src/specs.rs",
+        "ui/tests/edit.spec.ts"
+      ],
+      "test": [
+        "HG56 S4 S5 local CAS conflict and lost response",
+        "api-client POST StoreBusy rejects after one request"
+      ],
+      "method": [
+        "Сквозной тест Playwright плюс параллельная CLI-запись; проверить ввод и файловую версию.",
+        "Интеграционный тест локального CAS и браузерный тест потерянного ответа с контролем числа записей."
+      ],
+      "gap": "Нужны read-only recovery и write count для committed/unwritten lost response, оба catalog/input variants сохранны. Полная свежая boundary execution требуется после изменений client/poll.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0056-S4",
+          "read": true,
+          "required_method": "Сквозной тест Playwright плюс параллельная CLI-запись; проверить ввод и файловую версию.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S5",
+          "read": true,
+          "required_method": "Интеграционный тест локального CAS и браузерный тест потерянного ответа с контролем числа записей.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0056-R3",
+      "read": true,
+      "judgment": "Согласование visible content/diff, unsaved/stale guards и task authority согласованы; protected agreement не запускает work.",
+      "owner": [
+        "NativeWorkspace",
+        "DecisionDialog",
+        "src/specs/attention.rs",
+        "ui/tests/edit.spec.ts"
+      ],
+      "test": [
+        "HG56 S6 S7",
+        "changed visible revision cannot be agreed through open dialog"
+      ],
+      "method": [
+        "Браузерный сценарий с CLI-read истории и отсутствием побочных процессов.",
+        "Отрицательные UI/API-тесты несохранённого ввода и конкурентного изменения."
+      ],
+      "gap": "Нужны exact before/after original HG IDs, real history two agreements, stale CAS rejection и no agent/Git side-effect; UI demo не storage observation.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0056-S6",
+          "read": true,
+          "required_method": "Браузерный сценарий с CLI-read истории и отсутствием побочных процессов.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S7",
+          "read": true,
+          "required_method": "Отрицательные UI/API-тесты несохранённого ввода и конкурентного изменения.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0056-R4",
+      "read": true,
+      "judgment": "Status-only acceptance, system source/time, automatic optional version, separate question text, remaining queue и no executor реализованы.",
+      "owner": [
+        "DecisionDialog",
+        "ResultStatusSelect",
+        "decisionDrafts",
+        "src/specs/attention.rs",
+        "src/specs/progress.rs"
+      ],
+      "test": [
+        "HG56 S8 S10",
+        "HG56 S8 S9",
+        "HG70 S1 S2 S4",
+        "ui/tests/decision.spec.ts"
+      ],
+      "method": [
+        "Playwright плюс CLI-read и проверка привязки решения/счётчиков.",
+        "Негативные UI/API-тесты дрейфа доказательств и пустого комментария.",
+        "Сквозной сценарий ответов/возврата и сверка истории обращений."
+      ],
+      "gap": "Baseline real catalog reload/CLI equality for acceptance+return+two questions и rejected stale result. Источник synthetic fixture decision не human acceptance этого проекта.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0056-S8",
+          "read": true,
+          "required_method": "Playwright плюс CLI-read и проверка привязки решения/счётчиков.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S9",
+          "read": true,
+          "required_method": "Негативные UI/API-тесты дрейфа доказательств и пустого комментария.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0056-S10",
+          "read": true,
+          "required_method": "Сквозной сценарий ответов/возврата и сверка истории обращений.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0057-R1",
+      "read": true,
+      "judgment": "Builder использует git archive exact SHA и probes actual Cargo binary; bundle includes local fonts/icons/licenses. Debug without dist не пользовательский installed route.",
+      "owner": [
+        "build.rs",
+        "src/ui/bundle.rs",
+        "ui/scripts/bundle.mjs",
+        "scripts/build-release.py",
+        "ui/licenses/README.md"
+      ],
+      "test": [
+        "installed.spec.ts HG57 S1–S7",
+        "scripts/tests/test_ui_build.py",
+        "bundle.test.mjs",
+        "ui_bundle_contracts"
+      ],
+      "method": [
+        "Интеграционный smoke установленного кандидата плюс Playwright и наблюдение сети/реальной записи.",
+        "Негативный тест временного выпуска и сравнение каталога.",
+        "Проверка состава кандидата и смысловая сверка конкретных лицензий с фактически включёнными assets; один файл NOTICE без сопоставления состава недостаточен."
+      ],
+      "gap": "Нужны exact candidate+predecessor identities, real installed UI offline/PATH without Node/Cargo, every manifest asset/hash и конкретные license↔asset origins. Старые кандидаты не подтверждают dirtytree.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0057-S1",
+          "read": true,
+          "required_method": "Интеграционный smoke установленного кандидата плюс Playwright и наблюдение сети/реальной записи.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0057-S2",
+          "read": true,
+          "required_method": "Негативный тест временного выпуска и сравнение каталога.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0057-S7",
+          "read": true,
+          "required_method": "Проверка состава кандидата и смысловая сверка конкретных лицензий с фактически включёнными assets; один файл NOTICE без сопоставления состава недостаточен.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0057-R2",
+      "read": true,
+      "judgment": "Global candidate/installer precheck и postcheck/recovery сохраняют project roots; synthetic faults используются для updater behavior, не имитируют сам UI.",
+      "owner": [
+        "src/global.rs candidate/install/update",
+        "src/package.rs::verify_ui",
+        "tests/global_contracts.rs",
+        "installed.spec.ts"
+      ],
+      "test": [
+        "global_install_does_not_touch_project_and_checks_adapter",
+        "global_update_preview_switch_and_cleanup_keep_unrelated_files",
+        "interrupted_skill_update_recovers_without_overwriting_user_edit",
+        "installed.spec.ts"
+      ],
+      "method": [
+        "Контракт установки/обновления на временных профилях с хешами и браузерным smoke.",
+        "Регрессионный контрактный тест установки с контролируемым сбоем; не запускать в реальном профиле."
+      ],
+      "gap": "Нужен new/current installed fixture two-root inventory and recovery; real profile activation не назначена и не требуется для этих isolated assertions.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0057-S3",
+          "read": true,
+          "required_method": "Контракт установки/обновления на временных профилях с хешами и браузерным smoke.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0057-S4",
+          "read": true,
+          "required_method": "Регрессионный контрактный тест установки с контролируемым сбоем; не запускать в реальном профиле.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0057-R3",
+      "read": true,
+      "judgment": "docs/UI и ui/README согласованы с current+pending UI; DEVELOPMENT/BUILD являются владельцами commands. Все pipeline stages требуют настоящего installed observation, а не mock screenshots.",
+      "owner": [
+        "README",
+        "docs/UI.md",
+        "ui/README.md",
+        "docs/DEVELOPMENT.md",
+        "docs/BUILD.md"
+      ],
+      "test": [
+        "installed.spec.ts",
+        "normative docs review + run documented commands"
+      ],
+      "method": [
+        "Единый сквозной Playwright/CLI прогон с раздельными наблюдениями сценариев и актуальными входами, независимое ревью.",
+        "Смысловая сверка документации плюс фактический запуск документированных команд в тестовой среде."
+      ],
+      "gap": "Единый current exact candidate launch→edit→conflict→agree→accept scoped exercise остаётся обязательным. Historical visual handoff/human acceptance сохраняются отдельно. Rootless ui --check не доказывает workflow.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0057-S5",
+          "read": true,
+          "required_method": "Единый сквозной Playwright/CLI прогон с раздельными наблюдениями сценариев и актуальными входами, независимое ревью.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0057-S6",
+          "read": true,
+          "required_method": "Смысловая сверка документации плюс фактический запуск документированных команд в тестовой среде.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0060-R1",
+      "read": true,
+      "judgment": "Unix permissions/profile paths и platform-selected browser paths согласованы; broken exec bit и neighbour skill сохранность реально asserted.",
+      "owner": [
+        "src/global.rs",
+        "src/install.rs interface",
+        "src/ui.rs",
+        "tests/global_contracts.rs"
+      ],
+      "test": [
+        "unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills",
+        "ui installed/native",
+        "ui check"
+      ],
+      "method": [
+        "Rust global_contracts, установленный Playwright и isolated global-status",
+        "UI и Storybook builds, Playwright native и installed, проверка URL и ресурсов"
+      ],
+      "gap": "Local Unix и external Windows outcomes показывать отдельно. Test не должен заявлять Windows PASS из cfg(unix) или изменить реальную installation.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0060-S1",
+          "read": true,
+          "required_method": "Rust global_contracts, установленный Playwright и isolated global-status",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0060-S2",
+          "read": true,
+          "required_method": "UI и Storybook builds, Playwright native и installed, проверка URL и ресурсов",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0061-R1",
+      "read": true,
+      "judgment": "Draft key включает canonical root/spec/request/kind; status/text/uncertain guard сохраняются. Optional version берётся из target handoff без ручного поля.",
+      "owner": [
+        "DecisionDialog",
+        "decisionDrafts",
+        "ui/tests/decision.spec.ts"
+      ],
+      "test": [
+        "Close close icon Escape navigation",
+        "lost unwritten/committed",
+        "stale/lost result",
+        "pending write blocks repeated actions",
+        "scope/revision unit cases"
+      ],
+      "method": [
+        "Реальный Playwright сценарий Close/Escape/unmount плюс проверки изоляции хранилища.",
+        "Playwright/API с контролируемым ответом и дрейфом, проверкой числа POST и настоящего каталога."
+      ],
+      "gap": "Нужны обе lost-response branches и drift, verified optional metadata boundary. Current source больше не имеет manual version field — нельзя требовать устаревший field selector из старого then без учёта HG70 modification.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0061-S1",
+          "read": true,
+          "required_method": "Реальный Playwright сценарий Close/Escape/unmount плюс проверки изоляции хранилища.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0061-S2",
+          "read": true,
+          "required_method": "Playwright/API с контролируемым ответом и дрейфом, проверкой числа POST и настоящего каталога.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0061-R2",
+      "read": true,
+      "judgment": "Release/debug/check/install guards and required-mode no-skip согласованы. CI pins real current+predecessor with Linux/Windows matrix.",
+      "owner": [
+        "src/ui/bundle.rs",
+        "build.rs",
+        "ui_bundle_contracts",
+        "installed-config.mjs",
+        "installed.spec.ts",
+        ".github/workflows/verify.yml"
+      ],
+      "test": [
+        "incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes",
+        "ui_check_is_rootless_read_only",
+        "incompatible_ui_candidate...",
+        "installed-config tests"
+      ],
+      "method": [
+        "Тесты сборочного валидатора, установщика и read-only CLI probe с проверкой неизменности профиля.",
+        "Проверки required-mode и installed.spec.ts; exact-commit Windows/Linux CI после отдельно разрешённой публикации."
+      ],
+      "gap": "HG61S4 external exact current SHA Windows/Linux CI и installed E2E обязательны этому сценарию; missing fixture/skip != PASS. При отсутствии publication authority оставить явный external remainder, не активировать release.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0061-S3",
+          "read": true,
+          "required_method": "Тесты сборочного валидатора, установщика и read-only CLI probe с проверкой неизменности профиля.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0061-S4",
+          "read": true,
+          "required_method": "Проверки required-mode и installed.spec.ts; exact-commit Windows/Linux CI после отдельно разрешённой публикации.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "external exact SHA Windows/Linux"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0061-R3",
+      "read": true,
+      "judgment": "Payload/revision/readiness replay rules и legacy ambiguity реализованы и проверяются real CLI/bytes; несовместимые writers нельзя использовать после нового поля.",
+      "owner": [
+        "src/specs/attention.rs",
+        "src/specs/progress.rs",
+        "tests/attention_contracts.rs"
+      ],
+      "test": [
+        "repeated_result_requests_recheck_inputs_revision_and_readiness",
+        "repeated_result_responses_preserve_exact_revision_and_recheck_gates",
+        "legacy_result_responses_require_unambiguous_acceptance_revision"
+      ],
+      "method": [
+        "Rust attention_contracts на реальных CLI/storage границах.",
+        "Rust контрактные тесты совместимости и истории принятия."
+      ],
+      "gap": "Нужен current Rust baseline с exact no-write inventory, old-format fixture и actual input/report drift; dates/hashes сами не authenticity.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0061-S5",
+          "read": true,
+          "required_method": "Rust attention_contracts на реальных CLI/storage границах.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0061-S6",
+          "read": true,
+          "required_method": "Rust контрактные тесты совместимости и истории принятия.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    },
+    {
+      "id": "HG-0070-R1",
+      "read": true,
+      "judgment": "Форма использует status+optional comment, сохраняет system source, exact source reason+disclosed refs; no LLM or manual technical requirements.",
+      "owner": [
+        "DecisionDialog",
+        "ResultStatusSelect",
+        "DecisionReason",
+        "decisionCopy",
+        "src/specs/attention.rs",
+        "progress.rs"
+      ],
+      "test": [
+        "HG70 S1 S2 S4 status needs no manual fields",
+        "HG70 S3 lost/stale flows",
+        "result_status_without_build_id...",
+        "known/ambiguous version Rust contracts"
+      ],
+      "method": [
+        "Playwright с реальным API и CLI-read принятия/возврата; контрактный Rust-тест новой записи без версии.",
+        "Rust attention/decision contracts и Playwright автоматического использования версии обращения.",
+        "Rust CAS/readiness/replay contracts и Playwright lost-response/reopen/recovery.",
+        "Playwright точного отображения исходной строки, сохранности ограничений/данных и отсутствия внешних запросов; смысловая сверка правил Work."
+      ],
+      "gap": "Нужны current no-build accepted/return, unique/ambiguous known version, lost answer counts, raw reason equality и no external requests. Один truthy snapshot hash не доказывает весь independent causal scope.",
+      "scenario_reviews": [
+        {
+          "id": "HG-0070-S1",
+          "read": true,
+          "required_method": "Playwright с реальным API и CLI-read принятия/возврата; контрактный Rust-тест новой записи без версии.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0070-S2",
+          "read": true,
+          "required_method": "Rust attention/decision contracts и Playwright автоматического использования версии обращения.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0070-S3",
+          "read": true,
+          "required_method": "Rust CAS/readiness/replay contracts и Playwright lost-response/reopen/recovery.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        },
+        {
+          "id": "HG-0070-S4",
+          "read": true,
+          "required_method": "Playwright точного отображения исходной строки, сохранности ограничений/данных и отсутствия внешних запросов; смысловая сверка правил Work.",
+          "method_selected_before_baseline": true,
+          "outcome": "not_claimed",
+          "boundary": "planned real observation"
+        }
+      ],
+      "declared_check_refs": [],
+      "execution": "early audit; no whole-baseline PASS claimed"
+    }
+  ],
+  "pending_requirements": [
+    {
+      "change": "HG-0067",
+      "id": "HG-0054-R1",
+      "action": "modify",
+      "read": true,
+      "judgment": "candidate norm already agreed; no new design decision inferred",
+      "owner": [
+        "specs/changes/HG-0067/spec.json",
+        "ui/README.md"
+      ],
+      "test": [
+        "ui/tests/editorial.spec.ts",
+        "ui/tests/visual.spec.ts",
+        "ui/tests/hg58.spec.ts"
+      ],
+      "method": [
+        "Playwright-снимки фиксированных viewport и ручная визуальная сверка с референсом; отдельно наблюдать масштаб и фокус.",
+        "Смысловое ревью структуры/README и импортов реальных компонентов; это проверка сопровождаемости, не поведения агента.",
+        "Наблюдение реального UI на 1440 и 390 px и общих компонентов Storybook; сравнить исходный текст и снимки, включая focus/reduced motion. Прежние elements-* отчёты — ориентир, не PASS новой редакции."
+      ],
+      "gap": "fresh evidence/semantic visual independent GO; old blanket CI/activation claim is outside these scenarios",
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S1",
+          "read": true,
+          "required_method": "Playwright-снимки фиксированных viewport и ручная визуальная сверка с референсом; отдельно наблюдать масштаб и фокус.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            "ui/playwright.config.ts",
+            "ui/src/api/client.ts",
+            "ui/src/features/specs/DecisionDialog.tsx",
+            "ui/src/features/specs/NativeWorkspace.tsx",
+            "ui/src/features/specs/SpecWorkspace.tsx",
+            "ui/src/features/specs/decisionCopy.ts",
+            "ui/src/features/specs/decisionDrafts.ts",
+            "ui/src/styles/theme.css",
+            "ui/tests/hg58-keyboard.spec.ts",
+            "ui/tests/visual.spec.ts"
+          ]
+        },
+        {
+          "id": "HG-0054-S2",
+          "read": true,
+          "required_method": "Смысловое ревью структуры/README и импортов реальных компонентов; это проверка сопровождаемости, не поведения агента.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            "ui/README.md",
+            "ui/src/features/specs/NativeWorkspace.tsx",
+            "ui/src/features/specs/SpecWorkspace.tsx",
+            "ui/src/styles/theme.css"
+          ]
+        },
+        {
+          "id": "HG-0058-S1",
+          "read": true,
+          "required_method": "Наблюдение реального UI на 1440 и 390 px и общих компонентов Storybook; сравнить исходный текст и снимки, включая focus/reduced motion. Прежние elements-* отчёты — ориентир, не PASS новой редакции.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/lib.rs",
+            "src/main.rs",
+            "src/specs.rs",
+            "src/specs/attention.rs",
+            "src/specs/progress.rs",
+            "src/ui/bundle.rs",
+            "ui/playwright.config.ts",
+            "ui/src/api/client.ts",
+            "ui/src/features/specs/DecisionDialog.tsx",
+            "ui/src/features/specs/NativeWorkspace.tsx",
+            "ui/src/features/specs/SpecWorkspace.tsx",
+            "ui/src/features/specs/decisionCopy.ts",
+            "ui/src/features/specs/decisionDrafts.ts",
+            "ui/src/styles/theme.css",
+            "ui/tests/decision.spec.ts",
+            "ui/tests/edit.spec.ts",
+            "ui/tests/hg58-keyboard.spec.ts",
+            "ui/tests/native-fixture.ts",
+            "ui/tests/native.spec.ts",
+            "ui/tests/visual.spec.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "change": "HG-0067",
+      "id": "HG-0054-R3",
+      "action": "modify",
+      "read": true,
+      "judgment": "candidate norm already agreed; no new design decision inferred",
+      "owner": [
+        "specs/changes/HG-0067/spec.json",
+        "ui/README.md"
+      ],
+      "test": [
+        "ui/tests/editorial.spec.ts",
+        "ui/tests/visual.spec.ts",
+        "ui/tests/hg58.spec.ts"
+      ],
+      "method": [
+        "Сборка Storybook и браузерный проход по разделам с наблюдением компонентов и отсутствия запросов записи в backend."
+      ],
+      "gap": "fresh evidence/semantic visual independent GO; old blanket CI/activation claim is outside these scenarios",
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S4",
+          "read": true,
+          "required_method": "Сборка Storybook и браузерный проход по разделам с наблюдением компонентов и отсутствия запросов записи в backend.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            "ui/playwright.config.ts",
+            "ui/src/api/client.ts",
+            "ui/src/features/specs/DecisionDialog.tsx",
+            "ui/src/features/specs/NativeWorkspace.tsx",
+            "ui/src/features/specs/SpecWorkspace.tsx",
+            "ui/src/features/specs/decisionCopy.ts",
+            "ui/src/features/specs/decisionDrafts.ts",
+            "ui/src/styles/theme.css",
+            "ui/tests/hg58-keyboard.spec.ts",
+            "ui/tests/visual.spec.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "change": "HG-0067",
+      "id": "HG-0054-R6",
+      "action": "modify",
+      "read": true,
+      "judgment": "candidate norm already agreed; no new design decision inferred",
+      "owner": [
+        "specs/changes/HG-0067/spec.json",
+        "ui/README.md"
+      ],
+      "test": [
+        "ui/tests/editorial.spec.ts",
+        "ui/tests/visual.spec.ts",
+        "ui/tests/hg58.spec.ts"
+      ],
+      "method": [
+        "Браузерная проверка FontFaceSet/загруженного локального face и сетевых запросов, визуальная сверка кириллицы и размеров при масштабе 100/200%.",
+        "Визуальная сверка оригинал→адаптация и малых размеров, проверка SVG/имён в accessibility tree и состояний с клавиатуры.",
+        "Браузер/Storybook: три операции, accessibility tree и before/after с разными ID; сверить ui/tests/edit.spec.ts сценарий HG56 S6 S7."
+      ],
+      "gap": "fresh evidence/semantic visual independent GO; old blanket CI/activation claim is outside these scenarios",
+      "scenario_reviews": [
+        {
+          "id": "HG-0054-S7",
+          "read": true,
+          "required_method": "Браузерная проверка FontFaceSet/загруженного локального face и сетевых запросов, визуальная сверка кириллицы и размеров при масштабе 100/200%.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/lib.rs",
+            "src/main.rs",
+            "src/specs.rs",
+            "src/specs/attention.rs",
+            "src/specs/progress.rs",
+            "src/ui/bundle.rs",
+            "ui/playwright.config.ts",
+            "ui/src/api/client.ts",
+            "ui/src/features/specs/DecisionDialog.tsx",
+            "ui/src/features/specs/NativeWorkspace.tsx",
+            "ui/src/features/specs/SpecWorkspace.tsx",
+            "ui/src/features/specs/decisionCopy.ts",
+            "ui/src/features/specs/decisionDrafts.ts",
+            "ui/src/styles/theme.css",
+            "ui/tests/decision.spec.ts",
+            "ui/tests/edit.spec.ts",
+            "ui/tests/hg58-keyboard.spec.ts",
+            "ui/tests/native-fixture.ts",
+            "ui/tests/native.spec.ts",
+            "ui/tests/visual.spec.ts"
+          ]
+        },
+        {
+          "id": "HG-0054-S8",
+          "read": true,
+          "required_method": "Визуальная сверка оригинал→адаптация и малых размеров, проверка SVG/имён в accessibility tree и состояний с клавиатуры.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            "ui/playwright.config.ts",
+            "ui/src/styles/theme.css",
+            "ui/tests/hg58-keyboard.spec.ts",
+            "ui/tests/visual.spec.ts"
+          ]
+        },
+        {
+          "id": "HG-0058-S2",
+          "read": true,
+          "required_method": "Браузер/Storybook: три операции, accessibility tree и before/after с разными ID; сверить ui/tests/edit.spec.ts сценарий HG56 S6 S7.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            "Cargo.lock",
+            "Cargo.toml",
+            "src/lib.rs",
+            "src/main.rs",
+            "src/specs.rs",
+            "src/specs/attention.rs",
+            "src/specs/progress.rs",
+            "src/ui/bundle.rs",
+            "ui/playwright.config.ts",
+            "ui/src/api/client.ts",
+            "ui/src/features/specs/DecisionDialog.tsx",
+            "ui/src/features/specs/NativeWorkspace.tsx",
+            "ui/src/features/specs/SpecWorkspace.tsx",
+            "ui/src/features/specs/decisionCopy.ts",
+            "ui/src/features/specs/decisionDrafts.ts",
+            "ui/src/styles/theme.css",
+            "ui/tests/decision.spec.ts",
+            "ui/tests/edit.spec.ts",
+            "ui/tests/hg58-keyboard.spec.ts",
+            "ui/tests/native-fixture.ts",
+            "ui/tests/native.spec.ts",
+            "ui/tests/visual.spec.ts"
+          ]
+        }
+      ]
+    },
+    {
+      "change": "HG-0068",
+      "id": "HG-0068-R1",
+      "action": "add",
+      "read": true,
+      "judgment": "portable launcher current source; complete cross-platform method still open",
+      "owner": [
+        "specs/changes/HG-0068/spec.json",
+        "src/launcher.rs"
+      ],
+      "test": [
+        "tests/launcher_contracts.rs"
+      ],
+      "method": [
+        "Контрактный тест реальной CLI/запускателя в изолированном проекте; Windows через точный CI, независимое ревью."
+      ],
+      "gap": "HG68T3 false; unknown evidence; Windows exact CI not proved by Linux",
+      "scenario_reviews": [
+        {
+          "id": "HG-0068-S1",
+          "read": true,
+          "required_method": "Контрактный тест реальной CLI/запускателя в изолированном проекте; Windows через точный CI, независимое ревью.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            ".gitattributes",
+            "Cargo.lock",
+            "Cargo.toml",
+            "HighGrade UI.cmd",
+            "docs/UI.md",
+            "kit/manifest.json",
+            "kit/procedures/archive.md",
+            "kit/procedures/clear.md",
+            "kit/procedures/commit.md",
+            "kit/procedures/fix.md",
+            "kit/procedures/init.md",
+            "kit/procedures/planner.md",
+            "kit/procedures/push.md",
+            "kit/procedures/spec.md",
+            "kit/procedures/task.md",
+            "kit/procedures/update.md",
+            "kit/procedures/work.md",
+            "kit/references/audit.md",
+            "kit/references/cli.md",
+            "kit/references/review.md",
+            "kit/references/tools/diagnostics.md",
+            "kit/references/tools/installation.md",
+            "kit/references/tools/issues.md",
+            "kit/references/tools/specifications.md",
+            "kit/references/tools/survey.md",
+            "kit/references/tools/verification.md",
+            "kit/rules.md",
+            "kit/skills/highgrade-clear/SKILL.md",
+            "kit/skills/highgrade-commit/SKILL.md",
+            "kit/skills/highgrade-init/SKILL.md",
+            "kit/skills/highgrade-planner/SKILL.md",
+            "kit/skills/highgrade-push/SKILL.md",
+            "kit/skills/highgrade-spec/SKILL.md",
+            "kit/skills/highgrade-task/SKILL.md",
+            "kit/skills/highgrade-update/SKILL.md",
+            "kit/skills/highgrade-work/SKILL.md",
+            "kit/templates/AGENTS.md",
+            "kit/templates/ARCHITECTURE.md",
+            "kit/templates/DEVELOPMENT.md",
+            "kit/templates/ENGINEERING.md",
+            "kit/templates/INSTRUCTIONS.md",
+            "kit/templates/README.md",
+            "scripts/source-scenarios.mjs",
+            "scripts/verify.py",
+            "src/global.rs",
+            "src/launcher/ui.cmd",
+            "src/lib.rs",
+            "src/main.rs",
+            "src/package.rs",
+            "src/specs.rs",
+            "src/specs/attention.rs",
+            "src/specs/progress.rs",
+            "src/trace.rs",
+            "src/ui/bundle.rs",
+            "tests/launcher_contracts.rs",
+            "tests/spec_contracts.rs",
+            "ui/dist/highgrade-ui.json"
+          ]
+        }
+      ]
+    },
+    {
+      "change": "HG-0068",
+      "id": "HG-0068-R2",
+      "action": "add",
+      "read": true,
+      "judgment": "portable launcher current source; complete cross-platform method still open",
+      "owner": [
+        "specs/changes/HG-0068/spec.json",
+        "src/launcher.rs"
+      ],
+      "test": [
+        "tests/launcher_contracts.rs"
+      ],
+      "method": [
+        "Контрактный тест реальной CLI/запускателя в изолированном проекте; Windows через точный CI, независимое ревью."
+      ],
+      "gap": "HG68T3 false; unknown evidence; Windows exact CI not proved by Linux",
+      "scenario_reviews": [
+        {
+          "id": "HG-0068-S2",
+          "read": true,
+          "required_method": "Контрактный тест реальной CLI/запускателя в изолированном проекте; Windows через точный CI, независимое ревью.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            ".gitattributes",
+            "Cargo.lock",
+            "Cargo.toml",
+            "HighGrade UI.cmd",
+            "docs/UI.md",
+            "kit/manifest.json",
+            "kit/procedures/archive.md",
+            "kit/procedures/clear.md",
+            "kit/procedures/commit.md",
+            "kit/procedures/fix.md",
+            "kit/procedures/init.md",
+            "kit/procedures/planner.md",
+            "kit/procedures/push.md",
+            "kit/procedures/spec.md",
+            "kit/procedures/task.md",
+            "kit/procedures/update.md",
+            "kit/procedures/work.md",
+            "kit/references/audit.md",
+            "kit/references/cli.md",
+            "kit/references/review.md",
+            "kit/references/tools/diagnostics.md",
+            "kit/references/tools/installation.md",
+            "kit/references/tools/issues.md",
+            "kit/references/tools/specifications.md",
+            "kit/references/tools/survey.md",
+            "kit/references/tools/verification.md",
+            "kit/rules.md",
+            "kit/skills/highgrade-clear/SKILL.md",
+            "kit/skills/highgrade-commit/SKILL.md",
+            "kit/skills/highgrade-init/SKILL.md",
+            "kit/skills/highgrade-planner/SKILL.md",
+            "kit/skills/highgrade-push/SKILL.md",
+            "kit/skills/highgrade-spec/SKILL.md",
+            "kit/skills/highgrade-task/SKILL.md",
+            "kit/skills/highgrade-update/SKILL.md",
+            "kit/skills/highgrade-work/SKILL.md",
+            "kit/templates/AGENTS.md",
+            "kit/templates/ARCHITECTURE.md",
+            "kit/templates/DEVELOPMENT.md",
+            "kit/templates/ENGINEERING.md",
+            "kit/templates/INSTRUCTIONS.md",
+            "kit/templates/README.md",
+            "scripts/source-scenarios.mjs",
+            "scripts/verify.py",
+            "src/global.rs",
+            "src/launcher/ui.cmd",
+            "src/lib.rs",
+            "src/main.rs",
+            "src/package.rs",
+            "src/specs.rs",
+            "src/specs/attention.rs",
+            "src/specs/progress.rs",
+            "src/trace.rs",
+            "src/ui/bundle.rs",
+            "tests/launcher_contracts.rs",
+            "tests/spec_contracts.rs",
+            "ui/dist/highgrade-ui.json"
+          ]
+        }
+      ]
+    },
+    {
+      "change": "HG-0068",
+      "id": "HG-0068-R3",
+      "action": "add",
+      "read": true,
+      "judgment": "portable launcher current source; complete cross-platform method still open",
+      "owner": [
+        "specs/changes/HG-0068/spec.json",
+        "src/launcher.rs"
+      ],
+      "test": [
+        "tests/launcher_contracts.rs"
+      ],
+      "method": [
+        "Контрактный тест реальной CLI/запускателя в изолированном проекте; Windows через точный CI, независимое ревью."
+      ],
+      "gap": "HG68T3 false; unknown evidence; Windows exact CI not proved by Linux",
+      "scenario_reviews": [
+        {
+          "id": "HG-0068-S3",
+          "read": true,
+          "required_method": "Контрактный тест реальной CLI/запускателя в изолированном проекте; Windows через точный CI, независимое ревью.",
+          "method_selected_before_baseline": true,
+          "recorded_outcome": "unknown",
+          "changed_inputs": [
+            ".gitattributes",
+            "Cargo.lock",
+            "Cargo.toml",
+            "HighGrade UI.cmd",
+            "docs/UI.md",
+            "kit/manifest.json",
+            "kit/procedures/archive.md",
+            "kit/procedures/clear.md",
+            "kit/procedures/commit.md",
+            "kit/procedures/fix.md",
+            "kit/procedures/init.md",
+            "kit/procedures/planner.md",
+            "kit/procedures/push.md",
+            "kit/procedures/spec.md",
+            "kit/procedures/task.md",
+            "kit/procedures/update.md",
+            "kit/procedures/work.md",
+            "kit/references/audit.md",
+            "kit/references/cli.md",
+            "kit/references/review.md",
+            "kit/references/tools/diagnostics.md",
+            "kit/references/tools/installation.md",
+            "kit/references/tools/issues.md",
+            "kit/references/tools/specifications.md",
+            "kit/references/tools/survey.md",
+            "kit/references/tools/verification.md",
+            "kit/rules.md",
+            "kit/skills/highgrade-clear/SKILL.md",
+            "kit/skills/highgrade-commit/SKILL.md",
+            "kit/skills/highgrade-init/SKILL.md",
+            "kit/skills/highgrade-planner/SKILL.md",
+            "kit/skills/highgrade-push/SKILL.md",
+            "kit/skills/highgrade-spec/SKILL.md",
+            "kit/skills/highgrade-task/SKILL.md",
+            "kit/skills/highgrade-update/SKILL.md",
+            "kit/skills/highgrade-work/SKILL.md",
+            "kit/templates/AGENTS.md",
+            "kit/templates/ARCHITECTURE.md",
+            "kit/templates/DEVELOPMENT.md",
+            "kit/templates/ENGINEERING.md",
+            "kit/templates/INSTRUCTIONS.md",
+            "kit/templates/README.md",
+            "scripts/source-scenarios.mjs",
+            "scripts/verify.py",
+            "src/global.rs",
+            "src/launcher/ui.cmd",
+            "src/lib.rs",
+            "src/main.rs",
+            "src/package.rs",
+            "src/specs.rs",
+            "src/specs/attention.rs",
+            "src/specs/progress.rs",
+            "src/trace.rs",
+            "src/ui/bundle.rs",
+            "tests/launcher_contracts.rs",
+            "tests/spec_contracts.rs",
+            "ui/dist/highgrade-ui.json"
+          ]
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "UI-F1",
+      "severity": "blocking confirmed defect",
+      "requirement": "HG-0055-R4",
+      "observation": "Real native poll repro RED: B request starts only after releasing obsolete background A",
+      "fix": "Cancel obsolete poll reads and suppress their cancellation errors, preserving serialized non-retried writes; same repro GREEN",
+      "originals": "poll-repro-red/"
+    },
+    {
+      "id": "UI-F2",
+      "severity": "mandatory method gap",
+      "requirement": "HG-0053-R1",
+      "scenario": "HG-0053-S2",
+      "observation": "Existing tagged test disables browser opening and discards stderr",
+      "fix": "Actual isolated Unix opener spawn-error with PATH empty, stderr reason+URL, HTTP alive+shutdown+unchanged files; Windows separately"
+    },
+    {
+      "id": "UI-F3",
+      "severity": "test strength gap",
+      "requirement": "HG-0053-R2",
+      "scenario": "HG-0053-S3",
+      "observation": "Control file inside root is not the sibling targeted by traversal; no error-body token assertion",
+      "fix": "Real sibling sentinel outside root, token hygiene and exact bytes after each refusal"
+    },
+    {
+      "id": "UI-F4",
+      "severity": "test strength gap",
+      "requirement": "HG-0055-R1",
+      "scenario": "HG-0055-S1",
+      "observation": "UI test name mentions counters; .count values never asserted",
+      "fix": "Assert exact projected numbers/visible rows for all categories, cancel/excluded/history"
+    },
+    {
+      "id": "UI-F5",
+      "severity": "normative link drift",
+      "requirement": "HG-0054-R5",
+      "observation": "Current contract points to missing docs/plans path; historical owner now docs/archive/plans",
+      "fix": "Separate scoped Spec modify link; preserve original historical pause and acceptance history"
+    },
+    {
+      "id": "UI-F6",
+      "severity": "pending evidence stale/unknown",
+      "requirement": "HG-0054-R1/R3/R6",
+      "observation": "Lora is already pending HG67; all7 evidence unknown with material changed inputs",
+      "fix": "Fresh local required observations and independent scoped GO under existing HG67; do not ask design again"
+    },
+    {
+      "id": "UI-F7",
+      "severity": "external criterion open",
+      "requirement": "HG-0061-R2 and HG-0068-R1/R2/R3",
+      "observation": "Methods name current exact-SHA Linux/Windows installedE2E/launcher; local old candidate or Unix run insufficient",
+      "fix": "Show scoped local result and explicit external remainder; no publication/activation authority inferred"
+    },
+    {
+      "id": "UI-F8",
+      "severity": "selected optional negative coverage",
+      "requirement": "HG-0052-R1/R5",
+      "observation": "Structural/profile test checks number not older current exact IDs; queue date ordering lacks controlled distinct timestamps",
+      "fix": "Use exact mixed-age/accepted fixture and same-kind distinct at + ID table when assessing these specific risks"
+    }
+  ],
+  "unlinked_tests": [
+    {
+      "test": "ui/tests/api-client.spec.ts: POST StoreBusy; abort GET retry waiting",
+      "owner": "HG-0055-R4 / HG-0056-R2; docs/UI API read/write retry",
+      "disposition": "retain; meaningful client boundaries, no forced new requirement"
+    },
+    {
+      "test": "ui/tests/native.spec.ts: document cache evicts LRU",
+      "owner": "ui/README current NativeWorkspace LRU=10 architecture rule; HG-0055-R4 context preservation",
+      "disposition": "retain; finite cache/draft/search contract, not orphan"
+    },
+    {
+      "test": "ui/tests/edit.spec.ts: memoized requirement fields retain validation/clean reversion",
+      "owner": "HG-0056-R1 immutable draft/change-only patch/clean reversion",
+      "disposition": "retain; actual group validation and saved operations assertions"
+    },
+    {
+      "test": "ui/tests/editorial.spec.ts",
+      "owner": "pending HG-0067 modifies HG-0054-R1/R3/R6",
+      "disposition": "retain under candidate norm; do not weaken to old current font"
+    },
+    {
+      "test": "ui/tests/visual.spec.ts and hg58-keyboard/hg58",
+      "owner": "HG-0054 R1–R4/R6 + HG-0058 S1–S4 + pending HG67",
+      "disposition": "retain; real frames/a11y/network, manual visual outcome separate"
+    },
+    {
+      "test": "src/ui/bundle.rs: embedded_bundle_rejects_missing_changed_and_incompatible_resources",
+      "owner": "HG-0057-R1/S2; HG-0061-R2/S3",
+      "disposition": "retain; this untagged test is a real bundle contract"
+    },
+    {
+      "test": "tests/global_contracts.rs: unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills",
+      "owner": "HG-0060-R1; installation preservation contract",
+      "disposition": "retain; cfg(unix) scope must remain explicit"
+    },
+    {
+      "test": "ui/scripts/tests/bundle, installed-config, decision-copy, playwright-output",
+      "owner": "HG-0057-R1 provenance; HG-0061-R2 no-skip; HG-0070-R1 source text; HG-0069 managed-report ownership",
+      "disposition": "retain; Node tests have real engineering/storage contracts without trace labels"
+    },
+    {
+      "test": "scripts/tests/test_ui_build.py",
+      "owner": "HG-0061-R2/S3 and HG-0057-R1/S2",
+      "disposition": "retain; actually compiles build.rs in offline fixture; setup failure is not product rejection"
+    }
+  ],
+  "source_scope": {
+    ".github/workflows/verify.yml": {
+      "initial_sha256": "072076d58723a58c2b0a61609043538dbd9aaa1d150b4badbd6ea67db44fd885",
+      "now_sha256": "072076d58723a58c2b0a61609043538dbd9aaa1d150b4badbd6ea67db44fd885",
+      "read_scope": "full textual source"
+    },
+    "build.rs": {
+      "initial_sha256": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+      "now_sha256": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+      "read_scope": "full textual source"
+    },
+    "docs/BUILD.md": {
+      "initial_sha256": "2b3d12d74941e30903a5191bb650e841b614c4df89a1cc4b138bdafa8b032d3b",
+      "now_sha256": "2b3d12d74941e30903a5191bb650e841b614c4df89a1cc4b138bdafa8b032d3b",
+      "read_scope": "full textual source"
+    },
+    "docs/DEVELOPMENT.md": {
+      "initial_sha256": "c2f821c0ca963024b47e38d14848cfe1074be1805d0a031d3c49402653e37cdf",
+      "now_sha256": "c2f821c0ca963024b47e38d14848cfe1074be1805d0a031d3c49402653e37cdf",
+      "read_scope": "full textual source"
+    },
+    "docs/UI.md": {
+      "initial_sha256": "451a29dfca3ee2df9c84500c06c2859bbac64789af14e277e56d4ab7910de7cc",
+      "now_sha256": "451a29dfca3ee2df9c84500c06c2859bbac64789af14e277e56d4ab7910de7cc",
+      "read_scope": "full textual source"
+    },
+    "docs/evidence/specification-ui/brand-tracing.md": {
+      "initial_sha256": "239917e3c5493111b3fbcda2b66eb1933178cd7c44e45b2bf5531f7555fab0fd",
+      "now_sha256": "239917e3c5493111b3fbcda2b66eb1933178cd7c44e45b2bf5531f7555fab0fd",
+      "read_scope": "full textual source"
+    },
+    "scripts/build-release.py": {
+      "initial_sha256": "5aefbed904a490ceec1f01ba79fb6b99acb42eab98025d0af30a4c3db3c96e0b",
+      "now_sha256": "5aefbed904a490ceec1f01ba79fb6b99acb42eab98025d0af30a4c3db3c96e0b",
+      "read_scope": "UI source/test/config full; src/specs/global/progress/package/build-release and global tests only material referenced boundaries"
+    },
+    "scripts/tests/test_ui_build.py": {
+      "initial_sha256": "5e6c1c576ccd3e3dc3f867dafbfb3b4cc258f7859ea2afe4189fda19a7f8e6b1",
+      "now_sha256": "5e6c1c576ccd3e3dc3f867dafbfb3b4cc258f7859ea2afe4189fda19a7f8e6b1",
+      "read_scope": "full textual source"
+    },
+    "src/global.rs": {
+      "initial_sha256": "74a54e5ffd7d0e62b3f640ea89f87d6cf0f8970821f0129227cfa35ec5a052d9",
+      "now_sha256": "74a54e5ffd7d0e62b3f640ea89f87d6cf0f8970821f0129227cfa35ec5a052d9",
+      "read_scope": "UI source/test/config full; src/specs/global/progress/package/build-release and global tests only material referenced boundaries"
+    },
+    "src/launcher.rs": {
+      "initial_sha256": "39bb3241b0066df78c3d951fbefb14b2d8104b72c99e7aff6fe85c71aa37ac37",
+      "now_sha256": "39bb3241b0066df78c3d951fbefb14b2d8104b72c99e7aff6fe85c71aa37ac37",
+      "read_scope": "full textual source"
+    },
+    "src/launcher/ui.cmd": {
+      "initial_sha256": "c31c2718e548db8d087b9488b09d42f3e4fe5b8256935d19c3787ee4f15c5156",
+      "now_sha256": "c31c2718e548db8d087b9488b09d42f3e4fe5b8256935d19c3787ee4f15c5156",
+      "read_scope": "full textual source"
+    },
+    "src/launcher/ui.sh": {
+      "initial_sha256": "8645eb427ca8d404645241e6f78c878d850c81f15b41cf87b3a867c9bf0b158b",
+      "now_sha256": "8645eb427ca8d404645241e6f78c878d850c81f15b41cf87b3a867c9bf0b158b",
+      "read_scope": "full textual source"
+    },
+    "src/package.rs": {
+      "initial_sha256": "11e184cc9925e1637014ea6af7e54191c74830dd0607c4d4890d33532dba2c09",
+      "now_sha256": "7188f9454a074a626ee025bd042a6117f9ff2c05b970ff04e39a24bc190cc292",
+      "read_scope": "UI source/test/config full; src/specs/global/progress/package/build-release and global tests only material referenced boundaries"
+    },
+    "src/specs.rs": {
+      "initial_sha256": "9ef2a437e9af9a4dffd7b080c5107e801c9a1ea31b30d4cb3e3186eaed64802b",
+      "now_sha256": "9ef2a437e9af9a4dffd7b080c5107e801c9a1ea31b30d4cb3e3186eaed64802b",
+      "read_scope": "UI source/test/config full; src/specs/global/progress/package/build-release and global tests only material referenced boundaries"
+    },
+    "src/specs/attention.rs": {
+      "initial_sha256": "e2197ccda6227f07ac5778f7cadf681d93be6568d4520985d14277ab23301de6",
+      "now_sha256": "e2197ccda6227f07ac5778f7cadf681d93be6568d4520985d14277ab23301de6",
+      "read_scope": "UI source/test/config full; src/specs/global/progress/package/build-release and global tests only material referenced boundaries"
+    },
+    "src/specs/presentation.rs": {
+      "initial_sha256": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+      "now_sha256": "995e8943d6924f0c10c74dee9d6a2c46d76ad4fc8ce92fff46cc2badd93c9d7f",
+      "read_scope": "UI source/test/config full; src/specs/global/progress/package/build-release and global tests only material referenced boundaries"
+    },
+    "src/specs/progress.rs": {
+      "initial_sha256": "bd76ef681653b51a10126bf1705171853d0fdfb0f63f06a0f0b15f265b9ad449",
+      "now_sha256": "bd76ef681653b51a10126bf1705171853d0fdfb0f63f06a0f0b15f265b9ad449",
+      "read_scope": "UI source/test/config full; src/specs/global/progress/package/build-release and global tests only material referenced boundaries"
+    },
+    "src/ui.rs": {
+      "initial_sha256": "a0d1b091355ef6353179330fa1ef02f1edf52b5816f759f954734f1fd28e3b09",
+      "now_sha256": "a0d1b091355ef6353179330fa1ef02f1edf52b5816f759f954734f1fd28e3b09",
+      "read_scope": "full textual source"
+    },
+    "src/ui/bundle.rs": {
+      "initial_sha256": "6caa17bfae762c66f8e870cd2a35b977d349299b1a726c1399d04103b8b7df3d",
+      "now_sha256": "6caa17bfae762c66f8e870cd2a35b977d349299b1a726c1399d04103b8b7df3d",
+      "read_scope": "full textual source"
+    },
+    "tests/attention_contracts.rs": {
+      "initial_sha256": "910a1cb026c4671e4aef57c36f0bb802524df8868d3c68ad923bfcad153f8f5a",
+      "now_sha256": "910a1cb026c4671e4aef57c36f0bb802524df8868d3c68ad923bfcad153f8f5a",
+      "read_scope": "full textual source"
+    },
+    "tests/global_contracts.rs": {
+      "initial_sha256": "18fc109e06d3fb2a310920437a51cafeebb83e637940880e18c8c25a2b7f124d",
+      "now_sha256": "80989f291b4699145fc875c2984fdbe485cd20f9061659587ba516132feb140b",
+      "read_scope": "UI source/test/config full; src/specs/global/progress/package/build-release and global tests only material referenced boundaries"
+    },
+    "tests/launcher_contracts.rs": {
+      "initial_sha256": "04e8d078e971eced4eca062ab4a9262ed37b839ee44e9776ca4602bac33f37de",
+      "now_sha256": "04e8d078e971eced4eca062ab4a9262ed37b839ee44e9776ca4602bac33f37de",
+      "read_scope": "full textual source"
+    },
+    "tests/ui_bundle_contracts.rs": {
+      "initial_sha256": "f90e9870b66b05d5e38d53d753e25de8bcb8387ac15ef13b62fcdf1a28fc7ee4",
+      "now_sha256": "f90e9870b66b05d5e38d53d753e25de8bcb8387ac15ef13b62fcdf1a28fc7ee4",
+      "read_scope": "full textual source"
+    },
+    "tests/ui_contracts.rs": {
+      "initial_sha256": "b0ef567e6b6c8ab7d1db124b8407a47eb25d643872e7840ba4951cc041786176",
+      "now_sha256": "f34a5a5a6ed5ad6b5f0ef046d395d34f749aa3982d9ff2cd721f6fa037448704",
+      "read_scope": "full textual source"
+    },
+    "ui/.storybook/main.ts": {
+      "initial_sha256": "1d012180eac09e004852f7240db27f9ff6366c186767011f8b483a51c619fada",
+      "now_sha256": "1d012180eac09e004852f7240db27f9ff6366c186767011f8b483a51c619fada",
+      "read_scope": "full textual source"
+    },
+    "ui/.storybook/manager-head.html": {
+      "initial_sha256": "fb00dc5cb61d91e3b1a4167c27dd0aeb98ce91e061bfd5d7f3f4587b77596753",
+      "now_sha256": "fb00dc5cb61d91e3b1a4167c27dd0aeb98ce91e061bfd5d7f3f4587b77596753",
+      "read_scope": "full textual source"
+    },
+    "ui/.storybook/manager.ts": {
+      "initial_sha256": "9943889c7d744048f79a62a7d769cf566c288527d563830e7d56a5f23646d48e",
+      "now_sha256": "9943889c7d744048f79a62a7d769cf566c288527d563830e7d56a5f23646d48e",
+      "read_scope": "full textual source"
+    },
+    "ui/.storybook/preview.ts": {
+      "initial_sha256": "d603c681e0b9c4386b0e04021c17b5980fb2c4fef051c9c661c2d8aa8c0691e6",
+      "now_sha256": "d603c681e0b9c4386b0e04021c17b5980fb2c4fef051c9c661c2d8aa8c0691e6",
+      "read_scope": "full textual source"
+    },
+    "ui/README.md": {
+      "initial_sha256": "488fbb96f70e87685523361a9c07d4eb432edb51a43714b03945391f76ab746f",
+      "now_sha256": "488fbb96f70e87685523361a9c07d4eb432edb51a43714b03945391f76ab746f",
+      "read_scope": "full textual source"
+    },
+    "ui/index.html": {
+      "initial_sha256": "61da5f511a6b8eafc0a4f3e80d777f5f4e1de72817f98f8f94db8c42949cee98",
+      "now_sha256": "61da5f511a6b8eafc0a4f3e80d777f5f4e1de72817f98f8f94db8c42949cee98",
+      "read_scope": "full textual source"
+    },
+    "ui/licenses/README.md": {
+      "initial_sha256": "924b72d2cea56f57e0a1ff2a77e1579ce902e8673637f99c94f7f49c3dd9ee8c",
+      "now_sha256": "924b72d2cea56f57e0a1ff2a77e1579ce902e8673637f99c94f7f49c3dd9ee8c",
+      "read_scope": "full textual source"
+    },
+    "ui/package.json": {
+      "initial_sha256": "37c542795eefd37bd7066af6e8a3d8eb7fa559ac2d27160b4d0d4b83779ab6b1",
+      "now_sha256": "37c542795eefd37bd7066af6e8a3d8eb7fa559ac2d27160b4d0d4b83779ab6b1",
+      "read_scope": "full textual source"
+    },
+    "ui/playwright.config.ts": {
+      "initial_sha256": "e5a7485b0cf57762e9edc34708f2c75dccbedfdb81f63f12a839edd78754495c",
+      "now_sha256": "e5a7485b0cf57762e9edc34708f2c75dccbedfdb81f63f12a839edd78754495c",
+      "read_scope": "full textual source"
+    },
+    "ui/scripts/bundle.mjs": {
+      "initial_sha256": "ee1e9e8fce12abe731316985382841ec09bac1c9d1e936882011408509051976",
+      "now_sha256": "ee1e9e8fce12abe731316985382841ec09bac1c9d1e936882011408509051976",
+      "read_scope": "full textual source"
+    },
+    "ui/scripts/installed-config.mjs": {
+      "initial_sha256": "9c84f8976234d30bff5525bd74995e8d49b0dbf2d7bde114cafccbb01df157d6",
+      "now_sha256": "9c84f8976234d30bff5525bd74995e8d49b0dbf2d7bde114cafccbb01df157d6",
+      "read_scope": "full textual source"
+    },
+    "ui/scripts/tests/bundle.test.mjs": {
+      "initial_sha256": "802382c88343685375d645dd97500c8ff747f0ad1ccfb6e2ffdcad9b2daab342",
+      "now_sha256": "802382c88343685375d645dd97500c8ff747f0ad1ccfb6e2ffdcad9b2daab342",
+      "read_scope": "full textual source"
+    },
+    "ui/scripts/tests/decision-copy.test.mjs": {
+      "initial_sha256": "4969823d191e2a516ff093100932a88aaecd46153137ba2a6943a4dd0e4bc02c",
+      "now_sha256": "4969823d191e2a516ff093100932a88aaecd46153137ba2a6943a4dd0e4bc02c",
+      "read_scope": "full textual source"
+    },
+    "ui/scripts/tests/installed-config.test.mjs": {
+      "initial_sha256": "a7df7b3bad5d804e73bfaa23a63b87d66e4cbf9030753b1a8b1db268c20f3921",
+      "now_sha256": "a7df7b3bad5d804e73bfaa23a63b87d66e4cbf9030753b1a8b1db268c20f3921",
+      "read_scope": "full textual source"
+    },
+    "ui/scripts/tests/playwright-output.test.mjs": {
+      "initial_sha256": "f299fe937396a85fa523974f45c0644b285127af86077cc3b6a950f0ae150698",
+      "now_sha256": "f299fe937396a85fa523974f45c0644b285127af86077cc3b6a950f0ae150698",
+      "read_scope": "full textual source"
+    },
+    "ui/src/api/client.ts": {
+      "initial_sha256": "6d7865193a9e73fa8c675691a617f30ee97f122947da7099c8f622bd3bc8989c",
+      "now_sha256": "6d7865193a9e73fa8c675691a617f30ee97f122947da7099c8f622bd3bc8989c",
+      "read_scope": "full textual source"
+    },
+    "ui/src/api/types.ts": {
+      "initial_sha256": "0ddfda454acc2bbc0149c76b4b2e52164a5589c97bc379fe9e2f2527d94df17b",
+      "now_sha256": "0ddfda454acc2bbc0149c76b4b2e52164a5589c97bc379fe9e2f2527d94df17b",
+      "read_scope": "full textual source"
+    },
+    "ui/src/app/Welcome.stories.tsx": {
+      "initial_sha256": "b0f53584311d453edd1894f9645c22accb12e39f232eabdaee722646233cf540",
+      "now_sha256": "b0f53584311d453edd1894f9645c22accb12e39f232eabdaee722646233cf540",
+      "read_scope": "full textual source"
+    },
+    "ui/src/app/main.tsx": {
+      "initial_sha256": "5bb921f882d3aeab711da75fb19bc9bc562204e28b2194a2be77582c8a04a922",
+      "now_sha256": "5bb921f882d3aeab711da75fb19bc9bc562204e28b2194a2be77582c8a04a922",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/Foundations.stories.tsx": {
+      "initial_sha256": "1e81407cc8b9ee68bdb11c8de4ace444afb3bb7855b5f501762a1c7cdd72ae98",
+      "now_sha256": "1e81407cc8b9ee68bdb11c8de4ace444afb3bb7855b5f501762a1c7cdd72ae98",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/StatusBadge.stories.tsx": {
+      "initial_sha256": "5a2d151e67ca7662a10cb6926cd9b3829d2ce8205370d6ebc405e71975f29feb",
+      "now_sha256": "5a2d151e67ca7662a10cb6926cd9b3829d2ce8205370d6ebc405e71975f29feb",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/StatusBadge.tsx": {
+      "initial_sha256": "775bb5f880dae4840dbf8e81f52e0745c4704e2677b850558f8f50266ae65e08",
+      "now_sha256": "775bb5f880dae4840dbf8e81f52e0745c4704e2677b850558f8f50266ae65e08",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/icons.tsx": {
+      "initial_sha256": "1f6755c8e50a72446fa3e84d70dea9b9b04f4f090de9fe16f24ccb0eb4dec639",
+      "now_sha256": "1f6755c8e50a72446fa3e84d70dea9b9b04f4f090de9fe16f24ccb0eb4dec639",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/ui/Button.stories.tsx": {
+      "initial_sha256": "6fa0309ec41df734180bb656c6b63fa83e7aabe00f03d9acc88a6effe8badb91",
+      "now_sha256": "6fa0309ec41df734180bb656c6b63fa83e7aabe00f03d9acc88a6effe8badb91",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/ui/accordion.tsx": {
+      "initial_sha256": "cf031829f396f0cbc75456b11ddac514b8a885613ec350196048bda70f9c0311",
+      "now_sha256": "cf031829f396f0cbc75456b11ddac514b8a885613ec350196048bda70f9c0311",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/ui/badge.tsx": {
+      "initial_sha256": "1cea23b5dbeb31fa82fb94a515d470d8190e661a86defff2e39c0a5f643bfb2a",
+      "now_sha256": "1cea23b5dbeb31fa82fb94a515d470d8190e661a86defff2e39c0a5f643bfb2a",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/ui/button.tsx": {
+      "initial_sha256": "134045d5c96697e844b472bcdd02a979173d3cd4531d766f8b2f6fd5b1a59a87",
+      "now_sha256": "134045d5c96697e844b472bcdd02a979173d3cd4531d766f8b2f6fd5b1a59a87",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/ui/dialog.tsx": {
+      "initial_sha256": "5b006905698b4d24b0acd810a1268ab666b789bc19d63b1c909a04fb69690909",
+      "now_sha256": "5b006905698b4d24b0acd810a1268ab666b789bc19d63b1c909a04fb69690909",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/ui/input.tsx": {
+      "initial_sha256": "7a755bf51f24f0ed866bb3de95d6fd639211ade2d7f69b502697ea38244f32d6",
+      "now_sha256": "7a755bf51f24f0ed866bb3de95d6fd639211ade2d7f69b502697ea38244f32d6",
+      "read_scope": "full textual source"
+    },
+    "ui/src/components/ui/textarea.tsx": {
+      "initial_sha256": "237e4eaf9372b360cc2049724a04a86f79b990c4b4546c62e378e70f5669116c",
+      "now_sha256": "237e4eaf9372b360cc2049724a04a86f79b990c4b4546c62e378e70f5669116c",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/DecisionDialog.tsx": {
+      "initial_sha256": "f6d5ced535799f5bbe0a0eae4401bc35383165b681f45db26eb40476a6dff79d",
+      "now_sha256": "f6d5ced535799f5bbe0a0eae4401bc35383165b681f45db26eb40476a6dff79d",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/DecisionReason.tsx": {
+      "initial_sha256": "8f5eb74d1864a34fa81a1b997e413635c87bac0fe397161c854fc7ac2e9cb5ce",
+      "now_sha256": "8f5eb74d1864a34fa81a1b997e413635c87bac0fe397161c854fc7ac2e9cb5ce",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/NativeDocument.stories.tsx": {
+      "initial_sha256": "747fda05706118dd935ca6cea9a6fba38e99f744b166d153d1b2a1eacaf3aad4",
+      "now_sha256": "747fda05706118dd935ca6cea9a6fba38e99f744b166d153d1b2a1eacaf3aad4",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/NativeDocument.tsx": {
+      "initial_sha256": "54aba9c7606c09f30619a46d0e6397ef3722d8c720a95384d75125fe7247fc8e",
+      "now_sha256": "54aba9c7606c09f30619a46d0e6397ef3722d8c720a95384d75125fe7247fc8e",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/NativeWorkspace.tsx": {
+      "initial_sha256": "2ed43952216611589b31173151c0046e9859f3122a9f29edfef65f5aaf3d8437",
+      "now_sha256": "e2803c427dac6eb52f1aa5bf8c853ead806a3e4765bdd0271679bb8b1ae6803a",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/ResultStatusSelect.tsx": {
+      "initial_sha256": "7104ae73901c4276281ee7a948dfd1380bf7f90947f4d22917a4b592bb4080bc",
+      "now_sha256": "7104ae73901c4276281ee7a948dfd1380bf7f90947f4d22917a4b592bb4080bc",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/SpecEditor.stories.tsx": {
+      "initial_sha256": "d49dc92582bcd19dd9daf05b033d522830ad4bdf27b8b378b2ad55f4d90960ba",
+      "now_sha256": "d49dc92582bcd19dd9daf05b033d522830ad4bdf27b8b378b2ad55f4d90960ba",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/SpecEditor.tsx": {
+      "initial_sha256": "689a8124f6a4b72255da0914c0412cea8dc618416ac9184035652f384a596ae8",
+      "now_sha256": "689a8124f6a4b72255da0914c0412cea8dc618416ac9184035652f384a596ae8",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/SpecWorkspace.stories.tsx": {
+      "initial_sha256": "1b267a8db48d3744bb461f095efba5b5b61c5764cbc9957e01f12f3521527e9c",
+      "now_sha256": "1b267a8db48d3744bb461f095efba5b5b61c5764cbc9957e01f12f3521527e9c",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/SpecWorkspace.tsx": {
+      "initial_sha256": "ca2bdca2567e1fdc9a7f657af664b3873bf1f1adee8604808c3e189ea981a961",
+      "now_sha256": "ca2bdca2567e1fdc9a7f657af664b3873bf1f1adee8604808c3e189ea981a961",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/States.stories.tsx": {
+      "initial_sha256": "f1bb8127e8c0df12f21fee5d72e272c658d02c2d9386cffe4c68d8cd36631e80",
+      "now_sha256": "f1bb8127e8c0df12f21fee5d72e272c658d02c2d9386cffe4c68d8cd36631e80",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/decisionCopy.ts": {
+      "initial_sha256": "209c00588be3511719d8d8b2a3211699d2ee2f819b46a8f7ce435a89b57b2d36",
+      "now_sha256": "209c00588be3511719d8d8b2a3211699d2ee2f819b46a8f7ce435a89b57b2d36",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/decisionDrafts.ts": {
+      "initial_sha256": "573826419e65f3d4042d130f5b274f9a6d919cc19558c4f239f04e2e51e886b5",
+      "now_sha256": "573826419e65f3d4042d130f5b274f9a6d919cc19558c4f239f04e2e51e886b5",
+      "read_scope": "full textual source"
+    },
+    "ui/src/features/specs/fixtures.ts": {
+      "initial_sha256": "5bf3e8aca227cbee91bcb0356bbce445a5a55431acb292a9422665dbc94fac59",
+      "now_sha256": "5bf3e8aca227cbee91bcb0356bbce445a5a55431acb292a9422665dbc94fac59",
+      "read_scope": "full textual source"
+    },
+    "ui/src/lib/utils.ts": {
+      "initial_sha256": "0c97f5ec0478867d5369a4369f811e1b779c7f2548f671ef252f1503a6392d9d",
+      "now_sha256": "0c97f5ec0478867d5369a4369f811e1b779c7f2548f671ef252f1503a6392d9d",
+      "read_scope": "full textual source"
+    },
+    "ui/src/styles/theme.css": {
+      "initial_sha256": "c12e1f9c7110eda5fd23f1482f7db133af7b94ceb66b091607008877454d3ec7",
+      "now_sha256": "c12e1f9c7110eda5fd23f1482f7db133af7b94ceb66b091607008877454d3ec7",
+      "read_scope": "full textual source"
+    },
+    "ui/src/vite-env.d.ts": {
+      "initial_sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+      "now_sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/api-client.spec.ts": {
+      "initial_sha256": "69450c83e572d9b1db2bb970b62c2ed7b4e8ae42cf1ec4f08c1aa4073fed4198",
+      "now_sha256": "69450c83e572d9b1db2bb970b62c2ed7b4e8ae42cf1ec4f08c1aa4073fed4198",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/decision.spec.ts": {
+      "initial_sha256": "78c1eb33e9d5e318763209e88d42c3b48db9efa1776b03bcceefe2c2001b61cd",
+      "now_sha256": "78c1eb33e9d5e318763209e88d42c3b48db9efa1776b03bcceefe2c2001b61cd",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/edit.spec.ts": {
+      "initial_sha256": "0a0ab798f7d39312c1c1bc2f92587fec796580bd021e25b3079707948aa81bc4",
+      "now_sha256": "0a0ab798f7d39312c1c1bc2f92587fec796580bd021e25b3079707948aa81bc4",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/editorial.spec.ts": {
+      "initial_sha256": "a746a37d6019bbb7cda685d057027b5dbb7823e8f8516a214ab0a18cfbd23304",
+      "now_sha256": "a746a37d6019bbb7cda685d057027b5dbb7823e8f8516a214ab0a18cfbd23304",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/hg58-keyboard.spec.ts": {
+      "initial_sha256": "70d62bf130549fa12177f62eac6e46c63bb4f3fcff45ad7f352c72a40d8e4bf1",
+      "now_sha256": "70d62bf130549fa12177f62eac6e46c63bb4f3fcff45ad7f352c72a40d8e4bf1",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/hg58.spec.ts": {
+      "initial_sha256": "4d4571870a1ff825a05b8dae3e9bbd8a184832bad9a69e25f26480afe9932b3e",
+      "now_sha256": "4d4571870a1ff825a05b8dae3e9bbd8a184832bad9a69e25f26480afe9932b3e",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/installed.spec.ts": {
+      "initial_sha256": "a2fc0e7aeb4cb32f4f22ff1858dde76cb1628abf68270df691817812560f047a",
+      "now_sha256": "a2fc0e7aeb4cb32f4f22ff1858dde76cb1628abf68270df691817812560f047a",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/native-fixture.ts": {
+      "initial_sha256": "9ae620214389e426e909730017a7d38585439c36b9ffd1859af42ae9e2a59edd",
+      "now_sha256": "9ae620214389e426e909730017a7d38585439c36b9ffd1859af42ae9e2a59edd",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/native.spec.ts": {
+      "initial_sha256": "8b0f0adf907465718bf0dc9712af726ca9dafd741847af218a69b40820ef759b",
+      "now_sha256": "8b0f0adf907465718bf0dc9712af726ca9dafd741847af218a69b40820ef759b",
+      "read_scope": "full textual source"
+    },
+    "ui/tests/visual.spec.ts": {
+      "initial_sha256": "729a7703e014e0fc4adc266626bf66caed41080d62eb1769288e85bd8c4431e1",
+      "now_sha256": "729a7703e014e0fc4adc266626bf66caed41080d62eb1769288e85bd8c4431e1",
+      "read_scope": "full textual source"
+    },
+    "ui/tsconfig.json": {
+      "initial_sha256": "1bbd38c71c8730c90e3f4cef7f36d53327cfcf9dd759d66babbabd7341c7c881",
+      "now_sha256": "1bbd38c71c8730c90e3f4cef7f36d53327cfcf9dd759d66babbabd7341c7c881",
+      "read_scope": "full textual source"
+    },
+    "ui/vite.config.ts": {
+      "initial_sha256": "11783c3dca3484387859e409fb6ba85f08987b67ac8dfa0f58da6bd7a16238c6",
+      "now_sha256": "11783c3dca3484387859e409fb6ba85f08987b67ac8dfa0f58da6bd7a16238c6",
+      "read_scope": "full textual source"
+    },
+    "README.md": {
+      "initial_sha256": "0969df4f93ffdafac8c89f13fa4bac0e4f6177090d8db7ed80a89633899bf808",
+      "now_sha256": "0969df4f93ffdafac8c89f13fa4bac0e4f6177090d8db7ed80a89633899bf808",
+      "read_scope": "goal, decision principles, product/Delivery boundaries"
+    }
+  },
+  "before_baseline_methods": [
+    "Fresh UI + static Storybook builds before Cargo/UI source assertions; served bundle must equal rebuilt dist.",
+    "Rust real CLI/HTTP/bytes tests with controlled fixtures; actual selector/list/inventory, no empty or skipped result as PASS.",
+    "Native Playwright real API/file/reload flows, lost committed/unwritten response counts, held obsolete reads asserted before release.",
+    "Manual visual/reference + keyboard/font/network/provenance observation at 1440/390/200%, focus and reduced motion; automatic Axe/asset existence only partial.",
+    "Logo original trace provenance reuse only under matching bytes; renders 16/32/48 + XML; no installed plugin invocation assigned.",
+    "Current exact SHA + authentic previous release installedE2E on Linux/Windows under existing authority; absence is explicit open method, not applicability exception.",
+    "Historic S3 user handoff/pause scoped to its original chain; current audit may not forge a new or retroactive human decision."
+  ],
+  "limits": [
+    "All judgments distinguish current normative catalog from agreed pending HG67/HG68.",
+    "No product/catalog/source edits; no human acceptance, commit, activation or push.",
+    "Prior evidence is not made current from its dates/IDs or broad old GO/NO_GO.",
+    "The only executed product observation by this reviewer is the scoped poll repro; preliminary setup failures remain invalid."
+  ],
+  "project_goal_review": {
+    "read": true,
+    "owner": "README.md#цель-проекта / #принципы-принятия-решений",
+    "judgment": "UI contracts support readable source data, one explicit decision, exact preservation and honest evidence. The reproduced obsolete poll blocks the path to result and conflicts with reliability/convenience. Preserve agreed pending design and reuse only confirmed scoped observations; no blanket activation/CI gate is invented for local visual contracts."
+  },
+  "poll_repro": {
+    "source_snapshot": "poll-repro-red/poll-repro-command.json",
+    "report": "poll-repro-red/poll-repro-report.json",
+    "events": "poll-repro-red/poll-repro-events.json",
+    "status": "confirmed relevant assertion RED before product correction",
+    "observed": "HG-0002 selected and loading without heading while background HG-0001 read held; its GET starts only after A release; B then opens; fixture catalog unchanged",
+    "setup_failures_preserved": [
+      "poll-repro-attempt-1.json",
+      "poll-repro-attempt-2-sandbox/",
+      "poll-repro-attempt-3-selector/"
+    ],
+    "claim_scope": "synthetic project using actual rebuilt native UI/API. Served bundle equals dist. No current exact-SHA installed release proof."
+  }
+}

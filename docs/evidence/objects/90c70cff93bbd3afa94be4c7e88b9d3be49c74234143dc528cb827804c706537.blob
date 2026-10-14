@@ -1,0 +1,143 @@
+{
+  "exercise": "HG-0063-T10 independent candidate Planner actor exercise",
+  "started_at": "2026-10-14T08:53:14.547102+00:00",
+  "method": "An independent agent applied candidate instructions to each supplied request. The case artifacts record responses and real fixture file actions. No live Goal API was invoked.",
+  "limits": [
+    "This is a bounded agent exercise, not an automated parser or a live Goal-tool failure test.",
+    "occupied_goal and goal_refused capabilities are controlled inputs supplied by requests.json.",
+    "Observation artifacts are written under the exercise instruction; plan-only authorizes no implementation edits.",
+    "Each case uses its own supplied authority; the root session's explicit Goal authority is not inherited as a case choice."
+  ],
+  "candidate_sources": {
+    "kit/procedures/planner.md": "ce9926913f5b06a17e44f0ee3913bf38da2f403b35ef468b15768d773d98bf18",
+    "kit/procedures/task.md": "9e0255f27559a9b42f8ebd73e286c30f89a8861e3df8f140d24e8a1160f9f509"
+  },
+  "cases": [
+    {
+      "id": "plan_only",
+      "request": "Используй Planner. Только составь план двух шагов. Реализацию не начинай.",
+      "capability_input": "not assigned by user",
+      "capability_provenance": "controlled fixture input; not a live API observation",
+      "coordination_mode": "ordinary_plan",
+      "goal_action": "none",
+      "implementation_actions": [],
+      "implementation_files": [],
+      "status": "plan_response_complete",
+      "next": "none",
+      "uncertainty": "The request supplies the number of steps but no intended technical result; the response is only a two-step order template.",
+      "observation_artifacts": [
+        "response.md",
+        "case-observation.json"
+      ]
+    },
+    {
+      "id": "execute_without_goal",
+      "request": "Используй Planner и выполни два шага в этой папке: создай note.txt со словом done, затем summary.txt с результатом первого шага. Goal не поручен.",
+      "capability_input": "no Goal choice",
+      "capability_provenance": "controlled fixture input; not a live API observation",
+      "coordination_mode": "ordinary_plan",
+      "goal_action": "none",
+      "implementation_actions": [
+        {
+          "operation": "write",
+          "path": "note.txt",
+          "value": "done"
+        },
+        {
+          "operation": "read",
+          "path": "note.txt",
+          "observed_value": "done"
+        },
+        {
+          "operation": "write",
+          "path": "summary.txt",
+          "derived_from": "observed note.txt content"
+        },
+        {
+          "operation": "read",
+          "path": "summary.txt",
+          "observed_value": "note.txt содержит: done\n"
+        }
+      ],
+      "implementation_files": [
+        "note.txt",
+        "summary.txt"
+      ],
+      "status": "completed",
+      "next": "none",
+      "file_sha256": {
+        "note.txt": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+        "summary.txt": "33fb238ccc332ceaf8a1f3e1af1fb2f388019f99075b7dee3e80df6ea149dbf2"
+      },
+      "observation_artifacts": [
+        "response.md",
+        "case-observation.json"
+      ]
+    },
+    {
+      "id": "occupied_goal",
+      "request": "Пользователь выбрал новый Goal для несвязанной цепочки; прочитай существующий Goal и подготовь дальнейшее действие.",
+      "capability_input": {
+        "kind": "controlled occupied state",
+        "goal": {
+          "objective": "different unfinished work",
+          "status": "active"
+        }
+      },
+      "capability_provenance": "controlled fixture input; not a live API observation",
+      "coordination_mode": "goal_required_but_conflicting",
+      "goal_action": "none; controlled existing state preserved",
+      "implementation_actions": [],
+      "implementation_files": [],
+      "status": "dependent_execution_waiting",
+      "next": "Получить решение пользователя о занятом Goal.",
+      "independent_preparation": "Identified the mismatch between the supplied existing objective and the requested unrelated chain; prepared a conflict-resolution decision.",
+      "existing_goal": {
+        "objective": "different unfinished work",
+        "status": "active"
+      },
+      "existing_goal_source": "controlled fixture input, not live tool output",
+      "observation_artifacts": [
+        "response.md",
+        "case-observation.json"
+      ]
+    },
+    {
+      "id": "goal_refused",
+      "request": "Пользователь выбрал Goal; инструмент вернул отказ создания. Начни зависимую реализацию только если маршрут это допускает.",
+      "capability_input": {
+        "kind": "controlled tool failure",
+        "operation": "create_goal",
+        "result": {
+          "isError": true,
+          "reason": "test capability denied"
+        }
+      },
+      "capability_provenance": "controlled fixture input; not a live API observation",
+      "coordination_mode": "goal_required_but_unavailable",
+      "goal_action": "none; no fictitious Goal state",
+      "implementation_actions": [],
+      "implementation_files": [],
+      "status": "dependent_execution_waiting",
+      "next": "Устранить test capability denied и успешно создать требуемый Goal.",
+      "observed_failure": {
+        "operation": "create_goal",
+        "reason": "test capability denied",
+        "source": "controlled fixture input, not live tool output"
+      },
+      "independent_preparation": "Prepared the reason for waiting and the first required next action.",
+      "observation_artifacts": [
+        "response.md",
+        "case-observation.json"
+      ]
+    }
+  ],
+  "live_goal_api_calls": [],
+  "sentinel": {
+    "before_sha256": "4422d358c3fab6a2556fff79f79ab09c08a31b0138e514d8c5fe8b3cff80b3d4",
+    "after_sha256": "4422d358c3fab6a2556fff79f79ab09c08a31b0138e514d8c5fe8b3cff80b3d4",
+    "bytes_equal": true,
+    "size": 25
+  },
+  "finished_at": "2026-10-14T08:53:14.547806+00:00"
+}

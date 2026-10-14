@@ -1,0 +1,40 @@
+from pathlib import Path
+base=Path('plugins/code-health-audit/skills/code-health-audit/scripts/tests')
+p=base/'test_workflows.py';s=p.read_text();s=s.replace('import os\n','import os\nimport platform\n',1)
+s=s.replace('PINS = json.loads((SCRIPTS / \'data/toolchain.json\').read_text())["tools"]','''TOOLCHAIN = json.loads((SCRIPTS / 'data/toolchain.json').read_text())
+PINS = TOOLCHAIN["tools"]
+ACTUAL_RUNTIME = {'python':platform.python_version(),'implementation':platform.python_implementation(),
+                  'system':platform.system(),'machine':platform.machine()}
+SUPPORTED_RUNTIME = any(all(ACTUAL_RUNTIME.get(key) == value for key,value in tested.items())
+                        for tested in TOOLCHAIN['tested_runtimes'])
+UNVERIFIED_PLATFORM = 'This Python/platform combination has not been validated for this release' ''')
+s=s.replace('def audit(self, extra=(), expected=0):','''def audit(self, extra=(), expected=None):
+        runtime_only_limit = expected is None
+        if runtime_only_limit:
+            expected = 0 if SUPPORTED_RUNTIME else 2''')
+s=s.replace("        return json.loads((output / 'code-health-audit.json').read_text(encoding='utf-8'))",'''        report = json.loads((output / 'code-health-audit.json').read_text(encoding='utf-8'))
+        if runtime_only_limit:
+            self.assertEqual(report['runtime']['validated'], SUPPORTED_RUNTIME)
+            self.assertEqual(report['runtime']['problems'], [] if SUPPORTED_RUNTIME else [UNVERIFIED_PLATFORM])
+            self.assertEqual(report['audit']['completeness'], 'COMPLETE' if SUPPORTED_RUNTIME else 'INCOMPLETE')
+            self.assertEqual(report['errors'], [] if SUPPORTED_RUNTIME else [{'code':'RUNTIME_UNVERIFIED','message':UNVERIFIED_PLATFORM}])
+        return report''')
+s=s.replace("self.assertEqual(first['audit']['verdict'], 'HEALTHY')", "self.assertEqual(first['audit']['verdict'], 'HEALTHY' if SUPPORTED_RUNTIME else 'INCOMPLETE')")
+p.write_text(s)
+p=base/'test_preflight.py';s=p.read_text()
+s=s.replace('def preflight(self,*extra,expected=0):','''def preflight(self,*extra,expected=None):
+        if expected is None:
+            expected = 0 if test_workflows.SUPPORTED_RUNTIME else 2''')
+s=s.replace('        self.assertEqual(found,declared)','''        self.assertTrue(set(found).issubset(declared), 'active dependencies must all have reviewed pins')
+        for name, version in found.items():
+            self.assertEqual(version, declared[name], name)
+        # Inactive platform dependencies remain pinned and installed; markers do not remove their declaration.
+        for name, version in declared.items():
+            self.assertEqual(importlib.metadata.version(name), version, name)''')
+s=s.replace("        self.assertTrue(result['ready'])", """        self.assertEqual(result['ready'], test_workflows.SUPPORTED_RUNTIME)
+        self.assertEqual(result['runtime']['validated'], test_workflows.SUPPORTED_RUNTIME)
+        self.assertEqual(result['runtime']['problems'], [] if test_workflows.SUPPORTED_RUNTIME else [test_workflows.UNVERIFIED_PLATFORM])
+        self.assertEqual(result['errors'], [])""")
+s=s.replace("self.assertEqual(first['audit']['completeness'],'COMPLETE')", "self.assertEqual(first['audit']['completeness'],'COMPLETE' if test_workflows.SUPPORTED_RUNTIME else 'INCOMPLETE')")
+s=s.replace("self.assertEqual(report['audit']['completeness'],'COMPLETE')", "self.assertEqual(report['audit']['completeness'],'COMPLETE' if test_workflows.SUPPORTED_RUNTIME else 'INCOMPLETE')\n        self.assertTrue(any(m['metric']=='line_coverage' and m['value']==100 for m in report['measurements']))\n        self.assertFalse(any(e['code']=='COVERAGE_PROVENANCE_UNVERIFIED' for e in report['errors']))")
+p.write_text(s)

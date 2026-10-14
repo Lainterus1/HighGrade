@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "inputs": [
+    "kit/tools/clear_batch.py",
+    "scripts/tests/test_clear_batch.py",
+    "scripts/tests/test_source_scenarios.py",
+    "scripts/source-scenarios.mjs",
+    "scripts/verify.py",
+    "scripts/evidence_store.py",
+    "scripts/target-maintenance.py",
+    "specs/requirements/HG-0076-R1.json",
+    "specs/requirements/HG-0076-R2.json",
+    "specs/requirements/HG-0025-R1.json",
+    "docs/BUILD.md",
+    "docs/EVIDENCE-STORAGE.md",
+    "kit/references/review.md",
+    "kit/references/clear-batches.md",
+    "python_adapter.py",
+    "python_witness.py",
+    "node_witness.mjs"
+  ],
+  "tests": [
+    "scripts/tests/test_clear_batch.py",
+    "scripts/tests/test_source_scenarios.py",
+    "python_adapter.py",
+    "python_witness.py",
+    "node_witness.mjs"
+  ],
+  "contracts": [
+    "specs/requirements/HG-0076-R1.json",
+    "specs/requirements/HG-0076-R2.json",
+    "specs/requirements/HG-0025-R1.json",
+    "docs/BUILD.md",
+    "docs/EVIDENCE-STORAGE.md",
+    "kit/references/review.md",
+    "kit/references/clear-batches.md"
+  ],
+  "scope_complete": false,
+  "timeout_seconds": 60,
+  "runtime_probes": [
+    [
+      "/usr/bin/python",
+      "--version"
+    ],
+    [
+      "node",
+      "--version"
+    ]
+  ],
+  "checks": [
+    {
+      "id": "cargo-config",
+      "command": [
+        "/usr/bin/python",
+        "-B",
+        "python_adapter.py",
+        "scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse"
+      ],
+      "expected_tests": [
+        "scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse"
+      ],
+      "sources": [
+        "scripts/source-scenarios.mjs"
+      ]
+    }
+  ],
+  "mutations": [
+    {
+      "id": "omit-cargo-config",
+      "path": "scripts/source-scenarios.mjs",
+      "before": "    ...['.cargo/config.toml', '.cargo/config'].filter((file) => existsSync(abs(file))),",
+      "after": "    // Mutant omits project Cargo configuration.",
+      "checks": [
+        "cargo-config"
+      ],
+      "failures": [
+        {
+          "test": "scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse",
+          "contains": "True != False"
+        }
+      ],
+      "requirement": "HG-0025-R1",
+      "scenario": "HG-0025-S1"
+    }
+  ]
+}

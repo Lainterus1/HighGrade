@@ -1,0 +1,90 @@
+# Финальное независимое ревью UI и JS
+
+**REVIEW_GO для текущих локальных UI/JS исправлений и документации.** Блокирующих замечаний в выбранном diff не осталось. Шесть первоначальных findings закрыты конкретными проверками. Это вывод по изменённому коду и тестам, а не подтверждение exact-SHA CI, выпуска, активации или приёмки всех текущих незакоммиченных изменений.
+
+Дата: 2026-10-14. Ревьюер: `clear_forward`. Предыдущее чтение и контрактные основания: [ui-review-initial.md](ui-review-initial.md). Проверенные текущие SHA-256 и сверка оригинальных результатов: [ui-review-final-inputs.json](ui-review-final-inputs.json). Этот файл охватывает 17 исходных файлов. Ревьюер не изменял tracked файлы, не повторял дорогие suites и не запускал реальный UI. Он прочитал оригинальные результаты основного исполнителя и отдельно выполнил небольшой startup probe без дочернего UI/CLI процесса.
+
+## Закрытие первоначальных findings
+
+Нумерация initial findings отличается от номеров выполненных мутаций. В таблице они указаны отдельно.
+
+| Initial finding | Фактическое исправление и проверка | Вывод |
+|---|---|---|
+| U1: отсутствие обязательной Lora/OFL в раннем валидаторе | `src/ui/bundle.rs` требует `fonts/Lora.ttf` и `licenses/Lora-OFL.txt`. Негативный тест удаляет все delivered copies Lora по одному font hash из assets и manifest. R6 реально выбирает 1 library test: PASS → отказ `missing fonts/Lora.ttf` при удалении guard → PASS после восстановления. В current Nextest присутствуют оба bundle tests | Закрыто в текущем production source. Это не только удаление дублированной public copy |
+| U2: revision expectation вычислен той же функцией | Для каждого причинного изменения добавлено независимое `next !== revision`; текст, статус и retry guard остаются проверены. Мутация U1 удаляет `request.verified_revision`; один выбранный тест падает именно на `.not.toBe(revision)` | Закрыто. Expected revision не изменён вместе с mutant |
+| U3: нет POST StoreBusy negative | Новый `api-client.spec.ts` требует один POST и исходный `StoreBusy`/409; GET отдельно делает два запроса и завершается успешно. Второй тест прерывает GET retry через AbortController. Мутация U2 убирает POST guard и вызывает отказ: promise неожиданно resolved `{saved:true}` | Закрыто. POST не получает разрешение на автоматический повтор |
+| U4: owner/link/version guards не упражняются | Полный synthetic artifact содержит настоящий доступный CLI и согласованные hashes. Проверяются успех, foreign owner, другой executable version при согласованных manifest/hashes, junction/symlink с сохранением bytes. U3 удаляет CI-required; U4 удаляет owner guard. Expanded output показывает `Missing expected exception` в нужных assertions | Закрыто в выбранных local checks. Version probe действительно выполняет CLI, а не падает на ENOENT |
+| U5: managed report negatives слишком узкие | Добавлены wrong schema/state/pid, dead owner, unknown location и linked output. Ожидаются конкретные причины; контрольные report bytes неизменны. U5 удаляет schema/state guard: `Missing expected rejection` в соответствующем тесте | Закрыто. `kill(pid,0)` только проверяет существование процесса |
+| U6: сохранность ограничена specs hash | Installed test создаёт notes и settings вне specs в обоих временных проектах. Их точные bytes проверяются после install/recovery/update и после UI workflow/shutdown. Реальный installed selector PASS без skip | Закрыто для выбранных контрольных файлов. Это не snapshot каждого возможного файла проекта и не отдельная mutation proof глобальной установки |
+
+Дополнительно `bundle.test.mjs` запускает реальную manifest-ветвь `bundle.mjs` в минимальном isolated dist. Оба font fixtures имеют разные bytes; тест независимо вычисляет SHA, проверяет exact delivered path и собственный OFL path. Мутация U6 убирает Lora source: отказ `missing Lora provenance`. Тест не начинает manifest поверх старого `highgrade-ui.json`.
+
+## Прочитанные оригинальные проверки
+
+| Проверка | Первичный результат | Что он подтверждает |
+|---|---|---|
+| Текущий Native UI/Storybook Playwright | **41 PASS**, skipped=0, unexpected=0, flaky=0; все результаты `passed`, retry=0; errors=[] | native 10, decision 9, edit 10, api-client 2, editorial 1, hg58 1, hg58-keyboard 1, visual 7. Текущий fixture/helper использован до этого запуска |
+| Installed Playwright | **1 PASS**, skipped=0, unexpected=0, flaky=0; retry=0; errors=[] | Новые font/provenance/OFL/protected-file assertions на двух настоящих кандидатах и прежнем installation/update/recovery pipeline |
+| Current Rust Nextest | **237 PASS**, skipped=0, failures=0, errors=0 | В JUnit реально присутствует `ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes`. Completion report/inventory hashes и attempt ID проверены; bundle source hash текущий |
+| Node 24 guard suite | Четыре выбранных test files PASS, exit 0, no skips | bundle, installed-config, playwright-output и decision-copy. File aggregation не выдана за точное число внутренних assertions |
+| R6 и U1–U6 | У каждого baseline=0, mutant≠0, restored=0 | Один намеренный source defect, неизменённые tests и полный возврат captured inputs после мутации |
+
+Первичные machine reports:
+
+- `/home/lainterus/Projects/High Grade/target/highgrade/runs/clear-ui-21e320bb223b47e6b944d4a0805c76b9/playwright/report.json`, SHA-256 `65838e094dca8698189421df66dd5a9b94f5fa2ae037b973bb662edb4df16c36`.
+- `/home/lainterus/Projects/High Grade/target/highgrade/runs/clear-installed-5203abae4b38417099027aa841cefbcb/playwright/report.json`, SHA-256 `d6c83541c917cc2701a2b0944a7bdc2e354cbdf0b60e17fa6c2a28de4a76981e`.
+- `/home/lainterus/Projects/High Grade/target/highgrade/runs/rust-151c3da49eb5462db459e5628a0895ec/nextest/junit.xml`, SHA-256 `803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d`; рядом `completion.json`, `attempt.json`, `list.json`.
+
+Полные argv/runtime/input snapshots основного исполнителя: `browser-final-permitted.json`, `installed-current-fixture.json`, `nextest-final-permitted.json`, `node-guards-node24.json` в этом local-каталоге. Relevant files в wrappers сверены с текущими hashes. Более ранний Node run содержит прежний `native-fixture.ts`; он не импортируется этими Node tests. Текущий helper подтверждают именно более поздние browser/installed wrappers.
+
+## Причинность мутаций
+
+Проверены полные строки diff и первичные stdout/stderr выбранных R6/U1–U6 в [mutations-results-rebuilt.json](mutations-results-rebuilt.json). Между baseline и mutant менялся только заявленный subject; captured tests оставались теми же. Restored captured input map полностью равен baseline. Для Node U3–U6 дополнительно прочитан [node-mutations-expanded.json](node-mutations-expanded.json), где `--test-isolation=none` раскрывает внутреннюю причину assertion failure. Ошибки компиляции, setup и test selection не приравниваются к обнаружению нарушения.
+
+| Mutation ID | Нарушение | Проверенная причина отказа |
+|---|---|---|
+| R6 | Убрано требование `fonts/Lora.ttf` | 1 test selected, panic `missing fonts/Lora.ttf` после удаления всех font copies при согласованном manifest |
+| U1 | Убрана сохранённая verified_revision из decisionRevision | Revision перестал отличаться; `.not.toBe` обнаруживает равенство |
+| U2 | POST получает GET retry | Ожидалось rejection StoreBusy; promise resolved `saved:true` |
+| U3 | CI перестаёт требовать installed inputs | `Missing expected exception` для CI без candidate |
+| U4 | Убрана проверка owner | `Missing expected exception` для foreign owner с согласованными hashes |
+| U5 | Убрана проверка schema/state managed run | `Missing expected rejection`, ожидается `run is not active` |
+| U6 | Убрана Lora из manifest provenance sources | `missing Lora provenance` |
+
+U2 имеет явную byte-оговорку: mutation baseline/restored `client.ts` SHA `fdc8aa2ee1eaa632a833aab112ff1ba9a08fd9abedfc2b4106bd131c98a59c38` отличается от repository SHA `6d7865193a9e73fa8c675691a617f30ee97f122947da7099c8f622bd3bc8989c` только переводом 34 CRLF в LF. Normalized bytes полностью равны сохранённой restored copy; логика и tests совпадают. Current 41-test run использует текущие repository bytes. Raw equality U2 не заявлена.
+
+Старый R6 через `--bin` выбрал ноль tests; он не доказательство PASS или detection. Ранее спорное наблюдение Cargo-cache также исключено. Здесь засчитан только актуальный `--lib ... --exact` с одним реально исполненным тестом и повторной compilation во всех трёх стадиях. Не утверждается мутационная проверка каждого соседнего guard: например, U5 упражняет schema/state removal, а baseline negatives дополнительно проверяют liveness/links.
+
+## Robustness startup fixture
+
+Исправленный `start()` собирает JSON из нескольких stdout chunks, а не парсит только первую строку. Он сохраняет bounded stderr, отвергает JSON без ui_url, обрабатывает `error`/ранний `exit`, ограничивает ожидание 10 секундами и отменяет таймер после единственного settlement. Это полезное исправление самого test helper после реального sandbox error.
+
+Самостоятельный [ui-startup-probe.json](ui-startup-probe.json) содержит original argv/runtime/hashes; [stdout](ui-startup-probe.stdout) содержит пять PASS observations: split multiline success JSON; multiline failure JSON; early exit со stdout/stderr; spawn error; timeout с bounded stderr. Probe извлекает точный текущий function source и только удаляет TS types встроенным Node 24 API; child events моделируются, UI/CLI не выполняется. Его область — parser/lifecycle handling, а не ОС certification. Helper SHA `9ae620214389e426e909730017a7d38585439c36b9ffd1859af42ae9e2a59edd` совпадает с wrapper текущих 41 PASS.
+
+Первоначальная ошибка probe harness (VM не понимает TS annotations) сохранена как `ui-startup-probe-initial.*`; это не отказ helper. После штатного type strip probe PASS. В stderr остаётся стандартное Node предупреждение об experimental type-strip API.
+
+Первый реальный browser run `browser-final.json` сохранён отдельно: 5 expected, 36 unexpected, 0 skips/flaky. Среди причин — sandbox browser/socket environment и SyntaxError прежнего fixture parser на многострочном JSON. Его helper hash `d83e5197413da32d372576573a073a1619f5eb825071bf3cf5a75cbf8dd65626` отличается от исправленного. Эти отказы не скрыты и не переименованы в skips; финальные 41 PASS получены после изменения причинных входов и scoped permission.
+
+## Installed и exact-SHA граница
+
+Installed selector запущен с подлинным candidate **ea6d14ab1babcbe4e29e23b31fb9b42f76074c5c / 0.4.0** и подлинным predecessor **fda4117312ca4c5af4388c960081dac94c10ea8f / 0.3.4**. Он не использовал грязный текущий binary под видом exact-SHA выпуска. `verifyArtifact` проверил owner, полный file set/hashes и реальный executable version обоих. Дополнительное read-only чтение candidate metadata и binary hashes сохранено в [ui-installed-identities-review.json](ui-installed-identities-review.json).
+
+Такой installed run подтверждает новые assertions, оба локальных шрифта/OFL, выбранные protected files и unchanged installation pipeline на этих конкретных кандидатах. Он **не подтверждает**, что uncommitted Lora validator/trace fixes уже присутствуют в exact-SHA установленном release. Текущий production Lora guard отдельно подтверждён current Rust 237 и R6; текущий Native UI — 41 tests через `target/debug`. Семантический review trace принадлежит другой области; это заключение его не подменяет.
+
+Исходный CI SHA 591dcb1 ранее прошёл обе ОС по сообщению основного агента. Новые незакоммиченные fixes не получили от этого будущую exact-SHA CI/installed-release аттестацию. Новый Windows запуск текущих fixtures здесь не выполнен.
+
+## Документация и CI
+
+`docs/UI.md` точно перечисляет четыре read hashes и источник expected_local; отсутствие служебных разделов описано как «не выводятся в форме». `ui/README.md` указывает оба шрифта, scripts ownership, границу demo React state и копирование assets без обещания mirror cleanup. BUILD использует то же точное слово «copies», описывает managed/unmanaged report paths и реальный target/debug dependency executable probe. Требования и пользовательские полномочия не расширены.
+
+CI native selector включает `api-client.spec.ts`. Node wildcard выбирает новый bundle test и остальные guards. Installed selector с required inputs остаётся обязательным на обеих ОС; его assertions теперь проверяют Manrope и Lora с собственными OFL. `editorial.spec.ts` не добавлен в обычный native CI selector; local current run действительно исполнил его, а installed проверяет необходимые fonts/provenance отдельно. Нельзя утверждать, что все восемь local Playwright files теперь запускаются в CI.
+
+Снимки и DOM/font checks не объявлены автоматическим сравнением с принятой эталонной картинкой. Текущая документация не обещает такую visual acceptance.
+
+## Покрытие и сохранность
+
+Прочитаны полный текущий `src/ui/bundle.rs`, изменённые тесты/fixture, новый API-client test, три JS guard tests и их production helpers; соответствующие API/decisionDrafts guards, CI selections и affected docs. Использованы ранее прочитанные контракты HG-0055/0057/0061/0067/0070 из initial review. Полная история, все backend/security исходники и все screenshots повторно не ревьюились.
+
+Ничего tracked не изменено этим ревью. Unrelated `.gitignore` сохранён: SHA `9b3ded5f615f6e5fe70d8ed7273571c7b3c9b66805d62c6dad61a2a7d722bea8`. Временные среды и оригинальные результаты оставлены по точному поручению основного агента. Cleanup не выполнен. Отдельное plugin GO и его npm/runtime remainder находятся в [plugins-review.md](plugins-review.md); они не расширяются этим UI GO.
+
+Финальный предел: локальный UI/JS diff пригоден для следующего проектного шага. Commit, exact-SHA CI candidate, активация, push и человеческая приёмка остаются отдельными действиями и решениями основного маршрута.

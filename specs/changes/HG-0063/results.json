@@ -133,6 +133,17 @@
       "scenario": "HG-0011-S8",
       "scenario_sha256": "a4ced6c016c586baee08dbf70a497de158d4afdf291c5bc6e016a2fbf196710d"
     },
+    "HG-0020-S2": {
+      "captured_at": "2026-10-14T10:10:49.886811+00:00",
+      "command": "actual create_goal and get_goal observations on the user-authorized HG-0063-T10 -> HG-0076 chain",
+      "input_manifest_sha256": "a4568fcadc0da95d5a3b32f40f8e862d2fc9726621ff1b11ff4c8f99fb15d39a",
+      "method": "manual",
+      "observation": "One real root Goal created before dependent work and reused across both stages. HG-0076 integrated; no second Goal or repeated authority question. Root actual tool observations are distinct from controlled conflict/refusal cases. Other HG-0063 tasks remain outside scope.",
+      "outcome": "passed",
+      "report": "docs/evidence/clear-batches-2026-10-14/hg63.md",
+      "scenario": "HG-0020-S2",
+      "scenario_sha256": "95ff0be4e9e7763ea76060866769050f9ccd018935bd7317559d9cc9c63eb152"
+    },
     "HG-0020-S6": {
       "captured_at": "2026-10-01T08:23:19.475496+00:00",
       "command": "Проверка доступных инструментов Goal и границ текущих наблюдений; без вызова настоящего Goal",
@@ -264,6 +275,28 @@
       "report": "docs/evidence/combined-workflows/revalidation/native/junit.xml",
       "scenario": "HG-0063-S11",
       "scenario_sha256": "9cbf763989138a9a61cd4aeedaaab9a526b096c7476a00fd4442c9acebbe960a"
+    },
+    "HG-0063-S12": {
+      "captured_at": "2026-10-14T09:00:33.201796+00:00",
+      "command": "independent candidate Planner actor exercise; independent semantic review",
+      "input_manifest_sha256": "177696a15395cf15bbc329fc19f8a4bce2ffdaa8aa0863612aefa8dbc8cb303c",
+      "method": "manual",
+      "observation": "Four bounded actor decisions and actual execute_without_goal files; controlled conflict/refusal, not live API events; current rule independently GO. See original limits.",
+      "outcome": "passed",
+      "report": "docs/evidence/clear-batches-2026-10-14/hg63.md",
+      "scenario": "HG-0063-S12",
+      "scenario_sha256": "ca9c7ba089a96480b6dd9a39cdd4e84321d39006844fa32864bc7204a5085ccb"
+    },
+    "HG-0063-S13": {
+      "captured_at": "2026-10-14T09:00:33.201871+00:00",
+      "command": "independent candidate Planner actor exercise; independent semantic review",
+      "input_manifest_sha256": "177696a15395cf15bbc329fc19f8a4bce2ffdaa8aa0863612aefa8dbc8cb303c",
+      "method": "manual",
+      "observation": "Four bounded actor decisions and actual execute_without_goal files; controlled conflict/refusal, not live API events; current rule independently GO. See original limits.",
+      "outcome": "passed",
+      "report": "docs/evidence/clear-batches-2026-10-14/hg63.md",
+      "scenario": "HG-0063-S13",
+      "scenario_sha256": "1da5eb00154da768e25157059875bfd54d43c01a3d5ceddf059afd6a46d4d91e"
     },
     "HG-0063-S2": {
       "captured_at": "2026-10-01T08:23:19.475496+00:00",
@@ -564,6 +597,84 @@
         },
         "recorded_at": 1790844201,
         "review": "d1d3423e215ce07e0f19d966a4bb15eac715467fa653cf0242d9b08641afdea2"
+      },
+      {
+        "evidence": {
+          "HG-0004-S3": "6d3a70b7bfaf2e8054a39c7752f2ebfdc8d43b125f9ea3107e3821cefa0a37ef",
+          "HG-0010-S1": "fd58ac1aa6c32716d1aa64c21bd219a16f49c02a41d067d12ef5d2e4d8a27b19",
+          "HG-0011-S1": "485f55840d2cdd1e768311b6bf4488b4396de0a0899d069a1d7263ff2e6802a1",
+          "HG-0011-S11": "d88c68ac9b39c6f7009f18f59cd8d776361f8466db3242b1655d5a866b4ee8f3",
+          "HG-0011-S12": "67c8b927ec071a4a7ab0668479ea95e09d8e66816f21179461797d749e13f6c3",
+          "HG-0011-S2": "b704683e154e04c6c5cfe64ec2c36cabf08a2cd494c47347e3a4e36f5193a375",
+          "HG-0011-S3": "3890ec8402d8dd9da2764da346712eff6b146415a242f9c90144d3dd1eb94014",
+          "HG-0011-S4": "5e9c37d0ad5899d91e35f033982b7a85fea9c4076cf910696ed4d79481176acb",
+          "HG-0011-S5": "8a0245c32c204722a21b59aeb109a6e84b87b0b7df07ff68012a79cbc8acfca5",
+          "HG-0011-S6": "18d5bd05803250990404fb352397b65ea6f17b0e4693d80b7082a5d0a2ecc1ca",
+          "HG-0011-S7": "5050cb8155d0d8e505f9cf918925d5bafc73ae5071b81101eac909be6e268cdb",
+          "HG-0011-S8": "e8820bc953cf52421ef7991536a380739255ba675063938301e7619a5445009a",
+          "HG-0020-S6": "a387a0be7ac0d8b57758f55d899c43ab7b6da232c6e9b2c8fc2a7d1fa4dfc7ab",
+          "HG-0020-S7": "20457024b449634f9d888e211915905765454f610136d404ad3e23a82d29e8dc",
+          "HG-0020-S8": "43681e3f641e37afb66e9af7152627884e081a9ed18d398ea34c1491d7996073",
+          "HG-0022-S4": "e33b9b7c2f747f95f2c5b7262cecd5bed9b314c497bafd52e19a4d75a577bd66",
+          "HG-0027-S1": "2b17a556153155aa4f49b93b57573a1b96ec2835c684e87a0bbdef770de94028",
+          "HG-0027-S2": "8f243feb91c8025e6e6b038752fa65c661c2ba3cb0345aa7f37e324a4f4cc9cf",
+          "HG-0027-S3": "b6aa9b62fee0a3945f9741e2c88201cd5d1688e3d8d1e99c55f042758d8ef8d3",
+          "HG-0031-S1": "5c60c68b56520acff3cca1cde50fbb176db4a7bae96bef99f1ad81d6b2f54b3e",
+          "HG-0048-S2": "05c553f3f4e2f4e9ab4f124943a96a41629854169f856732f29e5581899109e3",
+          "HG-0063-S1": "33b7fbe0b4ed6c03ce25f5c07544c9522c6c035e78d28ae965c6f54574065ae8",
+          "HG-0063-S10": "0d92a6d8d6c70b0790ae91509db49c735c6064fd8bfa522b18d30c14cb2e6360",
+          "HG-0063-S11": "3124b928eb8812f8a2bb48dae0a542ba583bab3a41461cb192027018bd57b403",
+          "HG-0063-S2": "8dd6f689dddb66c55432639cd80cadadb40e709bf5abd219e5f94ed1f9f75df0",
+          "HG-0063-S3": "5f5548663f3dd630bb231b5e874a19920949bcfd3e6ff73f68a25e8d64915f45",
+          "HG-0063-S4": "c14ce3e4ed7fd38e0b208b0afd002d5924a90d43eaa80e551217a92235d08cae",
+          "HG-0063-S5": "71b34d4ba8b9d98d9177a3638633d801c6e35013c4ccb13321da5a81c4f07564",
+          "HG-0063-S6": "ee73e61a058f346a4b68b846baafaa3d66650ed851d01a11cbf624a769551ae8",
+          "HG-0063-S7": "effaacce72ef8befe22fc42c1c73ee6fe9ded5356bd7cacc69ff2dd428878f2e",
+          "HG-0063-S8": "5bf2654456f3acc6339d98cd0dc01e9c08648a27a1a995959e3c55e904f9f348",
+          "HG-0063-S9": "fd008444d530fc7131302d0ca5246353e48f47b514052a6c00aa0ebacc6fa830"
+        },
+        "recorded_at": 1791968455,
+        "review": "dc79e59034da39906453fcfe1c19dae889d4f0955320bcb6a090f4b7ea402e42"
+      },
+      {
+        "evidence": {
+          "HG-0004-S3": "6d3a70b7bfaf2e8054a39c7752f2ebfdc8d43b125f9ea3107e3821cefa0a37ef",
+          "HG-0010-S1": "fd58ac1aa6c32716d1aa64c21bd219a16f49c02a41d067d12ef5d2e4d8a27b19",
+          "HG-0011-S1": "485f55840d2cdd1e768311b6bf4488b4396de0a0899d069a1d7263ff2e6802a1",
+          "HG-0011-S11": "d88c68ac9b39c6f7009f18f59cd8d776361f8466db3242b1655d5a866b4ee8f3",
+          "HG-0011-S12": "67c8b927ec071a4a7ab0668479ea95e09d8e66816f21179461797d749e13f6c3",
+          "HG-0011-S2": "b704683e154e04c6c5cfe64ec2c36cabf08a2cd494c47347e3a4e36f5193a375",
+          "HG-0011-S3": "3890ec8402d8dd9da2764da346712eff6b146415a242f9c90144d3dd1eb94014",
+          "HG-0011-S4": "5e9c37d0ad5899d91e35f033982b7a85fea9c4076cf910696ed4d79481176acb",
+          "HG-0011-S5": "8a0245c32c204722a21b59aeb109a6e84b87b0b7df07ff68012a79cbc8acfca5",
+          "HG-0011-S6": "18d5bd05803250990404fb352397b65ea6f17b0e4693d80b7082a5d0a2ecc1ca",
+          "HG-0011-S7": "5050cb8155d0d8e505f9cf918925d5bafc73ae5071b81101eac909be6e268cdb",
+          "HG-0011-S8": "e8820bc953cf52421ef7991536a380739255ba675063938301e7619a5445009a",
+          "HG-0020-S6": "a387a0be7ac0d8b57758f55d899c43ab7b6da232c6e9b2c8fc2a7d1fa4dfc7ab",
+          "HG-0020-S7": "20457024b449634f9d888e211915905765454f610136d404ad3e23a82d29e8dc",
+          "HG-0020-S8": "43681e3f641e37afb66e9af7152627884e081a9ed18d398ea34c1491d7996073",
+          "HG-0022-S4": "e33b9b7c2f747f95f2c5b7262cecd5bed9b314c497bafd52e19a4d75a577bd66",
+          "HG-0027-S1": "2b17a556153155aa4f49b93b57573a1b96ec2835c684e87a0bbdef770de94028",
+          "HG-0027-S2": "8f243feb91c8025e6e6b038752fa65c661c2ba3cb0345aa7f37e324a4f4cc9cf",
+          "HG-0027-S3": "b6aa9b62fee0a3945f9741e2c88201cd5d1688e3d8d1e99c55f042758d8ef8d3",
+          "HG-0031-S1": "5c60c68b56520acff3cca1cde50fbb176db4a7bae96bef99f1ad81d6b2f54b3e",
+          "HG-0048-S2": "05c553f3f4e2f4e9ab4f124943a96a41629854169f856732f29e5581899109e3",
+          "HG-0063-S1": "33b7fbe0b4ed6c03ce25f5c07544c9522c6c035e78d28ae965c6f54574065ae8",
+          "HG-0063-S10": "0d92a6d8d6c70b0790ae91509db49c735c6064fd8bfa522b18d30c14cb2e6360",
+          "HG-0063-S11": "3124b928eb8812f8a2bb48dae0a542ba583bab3a41461cb192027018bd57b403",
+          "HG-0063-S12": "e77eaec924c101ce509e303b6e0306bb0ef613b76f18282e1cdafc262439e194",
+          "HG-0063-S13": "b6072d54758dbc236773aa62b22f97f361915090f40f8e990541f8169725897b",
+          "HG-0063-S2": "8dd6f689dddb66c55432639cd80cadadb40e709bf5abd219e5f94ed1f9f75df0",
+          "HG-0063-S3": "5f5548663f3dd630bb231b5e874a19920949bcfd3e6ff73f68a25e8d64915f45",
+          "HG-0063-S4": "c14ce3e4ed7fd38e0b208b0afd002d5924a90d43eaa80e551217a92235d08cae",
+          "HG-0063-S5": "71b34d4ba8b9d98d9177a3638633d801c6e35013c4ccb13321da5a81c4f07564",
+          "HG-0063-S6": "ee73e61a058f346a4b68b846baafaa3d66650ed851d01a11cbf624a769551ae8",
+          "HG-0063-S7": "effaacce72ef8befe22fc42c1c73ee6fe9ded5356bd7cacc69ff2dd428878f2e",
+          "HG-0063-S8": "5bf2654456f3acc6339d98cd0dc01e9c08648a27a1a995959e3c55e904f9f348",
+          "HG-0063-S9": "fd008444d530fc7131302d0ca5246353e48f47b514052a6c00aa0ebacc6fa830"
+        },
+        "recorded_at": 1791972652,
+        "review": "dc79e59034da39906453fcfe1c19dae889d4f0955320bcb6a090f4b7ea402e42"
       }
     ],
     "objects": {
@@ -1360,6 +1471,17 @@
         "scenario": "HG-0011-S1",
         "scenario_sha256": "3a251cec5334a9d72eefe81f117a350063a784950569d0843712efc997348a6e"
       },
+      "b6072d54758dbc236773aa62b22f97f361915090f40f8e990541f8169725897b": {
+        "captured_at": "2026-10-14T09:00:33.201871+00:00",
+        "command": "independent candidate Planner actor exercise; independent semantic review",
+        "input_manifest_sha256": "177696a15395cf15bbc329fc19f8a4bce2ffdaa8aa0863612aefa8dbc8cb303c",
+        "method": "manual",
+        "observation": "Four bounded actor decisions and actual execute_without_goal files; controlled conflict/refusal, not live API events; current rule independently GO. See original limits.",
+        "outcome": "passed",
+        "report": "docs/evidence/clear-batches-2026-10-14/hg63.md",
+        "scenario": "HG-0063-S13",
+        "scenario_sha256": "1da5eb00154da768e25157059875bfd54d43c01a3d5ceddf059afd6a46d4d91e"
+      },
       "b6aa9b62fee0a3945f9741e2c88201cd5d1688e3d8d1e99c55f042758d8ef8d3": {
         "captured_at": "2026-10-01T08:23:19.475496+00:00",
         "command": "python scripts/verify.py tests (завершённый объединённый прогон); python docs/evidence/combined-workflows/revalidation/verify_observations.py (сверка source/completion/JUnit и selectors)",
@@ -1476,6 +1598,12 @@
         "scenario": "HG-0011-S11",
         "scenario_sha256": "07be3ddef9dd75d012221127c3b8db7f7bd09d31f1dfbfb0e6431200f2836565"
       },
+      "dc79e59034da39906453fcfe1c19dae889d4f0955320bcb6a090f4b7ea402e42": {
+        "change_sha256": "af7f869980f38316256b6351844ca88dffacc807c469ccc58e2542dc093a527d",
+        "conclusion": "NO_GO для полной готовности: обязательные HG-0020-S6/S7/S8 остаются unknown, конфликт plan-only Goal в S7 не разрешён. Разрешён только опубликованный кандидат и exact-head CI; 29 ограниченных наблюдений подтверждены, независимый чистый контекст не заявляется. docs/evidence/combined-workflows/independent-review.md.",
+        "reviewer": "Независимое инженерное ревью объединения",
+        "verdict": "no_go"
+      },
       "dfe4ec804cb02a200759adab78b19a80b3b91ffadf0db2315ba670b81f6d6721": {
         "captured_at": "2026-10-01T06:21:06.586079+00:00",
         "command": "Независимое чтение изменённых процедур и сценарной таблицы HG-0063-S4",
@@ -1552,6 +1680,17 @@
         "report": "docs/evidence/commit-push/decision-matrix.md",
         "scenario": "HG-0063-S6",
         "scenario_sha256": "19a3d7ab3ed00c51f32831da0b39e9b782d298f9f86603c8547ab9092d747045"
+      },
+      "e77eaec924c101ce509e303b6e0306bb0ef613b76f18282e1cdafc262439e194": {
+        "captured_at": "2026-10-14T09:00:33.201796+00:00",
+        "command": "independent candidate Planner actor exercise; independent semantic review",
+        "input_manifest_sha256": "177696a15395cf15bbc329fc19f8a4bce2ffdaa8aa0863612aefa8dbc8cb303c",
+        "method": "manual",
+        "observation": "Four bounded actor decisions and actual execute_without_goal files; controlled conflict/refusal, not live API events; current rule independently GO. See original limits.",
+        "outcome": "passed",
+        "report": "docs/evidence/clear-batches-2026-10-14/hg63.md",
+        "scenario": "HG-0063-S12",
+        "scenario_sha256": "ca9c7ba089a96480b6dd9a39cdd4e84321d39006844fa32864bc7204a5085ccb"
       },
       "e8820bc953cf52421ef7991536a380739255ba675063938301e7619a5445009a": {
         "captured_at": "2026-10-01T08:23:19.475496+00:00",
@@ -2729,6 +2868,23 @@
         "tests/trace_contracts.rs",
         "tests/ui_bundle_contracts.rs",
         "tests/ui_contracts.rs"
+      ]
+    },
+    "177696a15395cf15bbc329fc19f8a4bce2ffdaa8aa0863612aefa8dbc8cb303c": {
+      "files": {
+        ".highgrade/project/INSTRUCTIONS.md": "0c71a844982c327d8ad874d6779252dbaeed152c7f4b33167f07977914714836",
+        "docs/evidence/clear-batches-2026-10-14/hg63.md": "e4bfabec99a37a0f8a79afcfe4663b2cc69277371191cba00af0ae3164d5eaeb",
+        "docs/evidence/objects/6efdf827bbe90e2e07c941f46348d3cf8c169e1b4b8a8e8c5313bb2d0d2a543f.json": "6efdf827bbe90e2e07c941f46348d3cf8c169e1b4b8a8e8c5313bb2d0d2a543f",
+        "docs/evidence/objects/7dfecf078b296ccfb823d75e9882b18bc262fed1955b574dc7cc3349128b69d4.json": "7dfecf078b296ccfb823d75e9882b18bc262fed1955b574dc7cc3349128b69d4",
+        "kit/procedures/planner.md": "64dc6cbe0b7f159495a82e5376c143328815678f101e5bdd533498d108b43ecb",
+        "kit/procedures/task.md": "7c0ae4040cf12d4337a237bb087461e520735ee2dd56258f5329a49bb80a68d8"
+      },
+      "input_paths": [
+        ".highgrade/project/INSTRUCTIONS.md",
+        "docs/evidence/objects/6efdf827bbe90e2e07c941f46348d3cf8c169e1b4b8a8e8c5313bb2d0d2a543f.json",
+        "docs/evidence/objects/7dfecf078b296ccfb823d75e9882b18bc262fed1955b574dc7cc3349128b69d4.json",
+        "kit/procedures/planner.md",
+        "kit/procedures/task.md"
       ]
     },
     "1894957a528a5f64cd957a4445df01a307ba958364266dd1333b9d03e371cd74": {
@@ -8224,6 +8380,21 @@
         "specs/changes/HG-0063/spec.json",
         "specs/requirements/HG-0020-R1.json",
         "specs/requirements/HG-0020-R3.json"
+      ]
+    },
+    "a4568fcadc0da95d5a3b32f40f8e862d2fc9726621ff1b11ff4c8f99fb15d39a": {
+      "files": {
+        "docs/evidence/clear-batches-2026-10-14/hg63.md": "e4bfabec99a37a0f8a79afcfe4663b2cc69277371191cba00af0ae3164d5eaeb",
+        "docs/evidence/objects/6a17ccfa2dcfb1cae22d1af63710c1c90eddf0a7dc915846fcc026f27d203eb8.json": "6a17ccfa2dcfb1cae22d1af63710c1c90eddf0a7dc915846fcc026f27d203eb8",
+        "docs/evidence/objects/6efdf827bbe90e2e07c941f46348d3cf8c169e1b4b8a8e8c5313bb2d0d2a543f.json": "6efdf827bbe90e2e07c941f46348d3cf8c169e1b4b8a8e8c5313bb2d0d2a543f",
+        "kit/procedures/planner.md": "64dc6cbe0b7f159495a82e5376c143328815678f101e5bdd533498d108b43ecb",
+        "kit/procedures/task.md": "7c0ae4040cf12d4337a237bb087461e520735ee2dd56258f5329a49bb80a68d8"
+      },
+      "input_paths": [
+        "docs/evidence/objects/6a17ccfa2dcfb1cae22d1af63710c1c90eddf0a7dc915846fcc026f27d203eb8.json",
+        "docs/evidence/objects/6efdf827bbe90e2e07c941f46348d3cf8c169e1b4b8a8e8c5313bb2d0d2a543f.json",
+        "kit/procedures/planner.md",
+        "kit/procedures/task.md"
       ]
     },
     "a995aac3cb7ca50a840a18fd7769196f189a2b5746c143de6fe0e563b080ffa8": {

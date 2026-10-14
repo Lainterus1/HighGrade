@@ -1,0 +1,15 @@
+# HG-0076: дополнение независимого ревью метаданных
+
+**GO текущей metadata revision HG-0076.** Дополнение причинных prerequisites C1/S5 не изменило реализацию или смысл проверяемого поведения. Предыдущее GO реализации остаётся применимым. Это отдельный оригинал; прежнее ревью и verification.md сохранены.
+
+Прочитаны актуальный C1 binding, новый native run, все 17 scenario records, S5 shared input manifest, verification.md и prerequisites.md. Проверены immutable manifests `6a17ccfa2dcfb1cae22d1af63710c1c90eddf0a7dc915846fcc026f27d203eb8` (912 entries) и `adcc7ee95bfe0853f39ea17509a93b15faf994c3a78894d4bd837e02ce97d52d` (2 entries): self/blob hashes и размеры совпадают. Это проверка сохранённой копии уже прочитанных originals, без повторного общего аудита.
+
+Добавлены `src/main.rs`, `src/lib.rs`, `src/ui.rs`, `src/ui/bundle.rs`, `build.rs`, `ui/dist/highgrade-ui.json`. Они участвуют в actual candidate CLI --version / embedded UI validation перед установкой fixture. Все шесть уже имели causal pins в исходном sealed Rust attempt и сейчас совпадают. Их позднее добавление к metadata не называется новым или ретроспективным pre-run snapshot.
+
+Последний C1 — `specs/changes/HG-0076/evidence/HG-0076-C1-1791971268314611804.log`: actual exact test 1 PASS, 37 filtered. Новый check binding `fbf9726b2a3e90adf124deb83ceb056055f9045864966cd8d416d9e0a96113df`. Все native before/after/current pins равны. S5 теперь ссылается на отдельный `prerequisites.md`, original verification, оба proof manifests и последний native report; текущие pinned bytes совпадают. Во всех 17 scenario records passed и input drift отсутствует. Эти records не объявлены 17 новыми исполнениями: их исходные manual/native методы и ограничения сохранены.
+
+Добавлены известные causal prerequisites; это не новая сертификация произвольного CLI dependency graph. Поведение подтверждено прежними sealed9/239 и новым адресным C1. Windows, broader pilot, live API refusal, deployed/human acceptance и общий storage PASS остаются вне подтверждённого исхода. Root ещё выполняет назначенные post-integration serial prepare/trace/verify и guarded cleanup; этим GO эти следующие действия не закрыты.
+
+Адресный proof: `hg76-metadata-review-proof.json`, SHA256 `64b69e055fa24e600d5bcb7c9614f2b5c4919652023bbb8d08e44d04a08bfbcc`.
+Текущая spec file SHA256: `f890699ba72ad56b6ce042446177852ffa5211619a0534a0e21b35389d485e64`.
+Текущий S5 report SHA256: `8a56215caff312e16f40795f519b6f6b832cecb5aa103a256176159787f39b30`.

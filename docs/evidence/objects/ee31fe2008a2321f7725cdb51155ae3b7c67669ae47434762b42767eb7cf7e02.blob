@@ -1,0 +1,18 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import json,subprocess,os,hashlib
+root=Path.cwd();local=root/'.highgrade/local/project-refresh-2026-10-14';base=root/'target/highgrade/tmp/project-refresh-predecessor'
+assert not base.exists();base.mkdir();(base/'owner.json').write_text(json.dumps({'owner':'project-refresh-2026-10-14','purpose':'authentic predecessor build for installed fixture','pid':os.getpid()}))
+repository=base/'repository';sha='fda4117312ca4c5af4388c960081dac94c10ea8f';runs=[]
+def run(args,cwd):
+ start=datetime.now(timezone.utc).isoformat();r=subprocess.run(args,cwd=cwd,capture_output=True,text=True)
+ runs.append({'argv':args,'cwd':str(cwd),'started_at':start,'ended_at':datetime.now(timezone.utc).isoformat(),'exit_code':r.returncode,'stdout':r.stdout,'stderr':r.stderr})
+ (local/'predecessor-build.json').write_text(json.dumps({'sha':sha,'runs':runs},indent=2)+'\n')
+ print(json.dumps({'argv':args,'exit_code':r.returncode,'tail':(r.stdout+r.stderr)[-1200:]}),flush=True)
+ assert r.returncode==0
+run(['git','clone','--quiet','--shared','--no-checkout',str(root),str(repository)],root)
+run(['git','checkout','--detach',sha],repository)
+run(['python','scripts/build-release.py',sha],repository)
+# candidate.json is the authentic historical builder record, not reconstructed metadata.
+record=json.loads((repository/'target/highgrade/candidate/candidate.json').read_text());assert record['source_sha']==sha
+print(json.dumps({'candidate':str(repository/'target/highgrade/candidate'),'sha':sha,'owner':record['owner']}),flush=True)

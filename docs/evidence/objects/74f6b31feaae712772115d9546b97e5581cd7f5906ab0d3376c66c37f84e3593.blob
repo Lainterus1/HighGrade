@@ -1,0 +1,120 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: poll-repro.spec.ts >> HG55 R4: selection B finishes before an obsolete background poll A is released
+- Location: ../.highgrade/local/clear-audit-2026-10-14/poll-repro.spec.ts:6:1
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator: locator('.document h1')
+Expected: "Спецификация 2"
+Timeout: 3500ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toHaveText" locator('.document h1') with timeout 3500ms
+  - waiting for locator('.document h1')
+
+```
+
+```yaml
+- complementary "Навигация проекта":
+  - img "HighGrade"
+  - text: native-ui-82kVXn
+  - textbox "Поиск по спецификациям":
+    - /placeholder: Поиск по спекам
+  - text: Ctrl K
+  - navigation "Категории спецификаций":
+    - button "Все спецификации 6" [pressed]
+    - button "Нужно решение 2"
+    - button "В работе 2"
+    - button "Завершены 1"
+  - text: Тема
+  - combobox "Тема":
+    - option "Все темы" [selected]
+    - option "interface"
+  - text: Порядок
+  - combobox "Порядок":
+    - option "По вниманию" [selected]
+    - option "Сначала новые"
+  - checkbox "Показать отменённые"
+  - text: Показать отменённые
+  - button "HG-0001 Спецификация 1 Нужно решение"
+  - button "HG-0003 Спецификация 3 Нужно решение"
+  - button "HG-0002 Спецификация 2 В работе"
+  - button "HG-0004 Спецификация 4 Результат принят"
+  - button "HG-0005 Спецификация 5 В работе"
+  - group: "Прежний формат: 1"
+  - paragraph: /home/lainterus/Projects/High Grade/target/highgrade/tmp/native-ui-82kVXn
+- separator "Ширина списка спецификаций"
+- main:
+  - text: Спецификации HG-0001
+  - button "Обновить" [disabled]
+  - button "Редактировать" [disabled]
+  - status: Открываем HG-0002…
+  - heading "Открываем спецификации…" [level=1]
+```
+
+# Test source
+
+```ts
+  1  | import {test,expect} from '../../../ui/node_modules/@playwright/test/index.mjs';
+  2  | import {fixture} from '../../../ui/tests/native-fixture';
+  3  | import {readFileSync} from 'node:fs';
+  4  | import path from 'node:path';
+  5  | 
+  6  | test('HG55 R4: selection B finishes before an obsolete background poll A is released',async({page,request},info)=>{
+  7  |  const f=fixture();const events:{at:number;kind:string;path?:string;detail?:unknown}[]=[];
+  8  |  let release!:()=>void,reached!:()=>void;
+  9  |  const gate=new Promise<void>(r=>release=r),started=new Promise<void>(r=>reached=r);
+  10 |  let assertionsBeforeRelease=false,subjectStarted=false;
+  11 |  page.on('request',r=>{const u=new URL(r.url());if(u.pathname.startsWith('/api/'))events.push({at:Date.now(),kind:'request',path:u.pathname,detail:r.method()})});
+  12 |  page.on('response',r=>{const u=new URL(r.url());if(u.pathname.startsWith('/api/'))events.push({at:Date.now(),kind:'response',path:u.pathname,detail:r.status()})});
+  13 |  try{
+  14 |   const url=await f.start();subjectStarted=true;
+  15 |   const served=await(await request.get(url+'/highgrade-ui.json')).json();
+  16 |   const dist=JSON.parse(readFileSync(path.resolve('dist/highgrade-ui.json'),'utf8'));
+  17 |   expect(served.files,'served native bundle must match current dist').toEqual(dist.files);
+  18 |   await info.attach('bundle-identity',{body:JSON.stringify({served:served.source_sha,dist:dist.source_sha,cli_version:served.cli_version,files:served.files},null,2),contentType:'application/json'});
+  19 |   await page.goto(url);await expect(page.locator('.document h1')).toHaveText('Спецификация 1');
+  20 |   await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeEnabled();
+  21 |   await page.getByRole('button',{name:'Все спецификации'}).click();
+  22 |   f.edit('HG-0002',{goal:'Unrelated CLI edit causes a newer catalog snapshot'});
+  23 |   const before=f.hash();
+  24 |   await page.route('**/api/specs/HG-0001',async route=>{
+  25 |    events.push({at:Date.now(),kind:'poll_A_held'});reached();await gate;
+  26 |    events.push({at:Date.now(),kind:'poll_A_released'});
+  27 |    try{await route.fulfill({response:await route.fetch()})}catch(error){events.push({at:Date.now(),kind:'poll_A_route_error',detail:String(error)})}
+  28 |   });
+  29 |   await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await started;
+  30 |   await page.locator('.spec-row').filter({hasText:'HG-0002'}).click();
+  31 |   events.push({at:Date.now(),kind:'selected_B'});
+  32 |   try{
+> 33 |    await expect(page.locator('.document h1')).toHaveText('Спецификация 2',{timeout:3500});
+     |                                               ^ Error: expect(locator).toHaveText(expected) failed
+  34 |    assertionsBeforeRelease=true;
+  35 |    await expect(page.getByRole('alert')).toHaveCount(0);
+  36 |   }finally{
+  37 |    events.push({at:Date.now(),kind:'dom_before_release',detail:{heading:await page.locator('.document h1').allTextContents(),loading:await page.locator('.loading-notice').allTextContents(),selected:await page.locator('.spec-row[aria-current="true"]').allTextContents(),assertionsBeforeRelease}});
+  38 |    await page.screenshot({path:info.outputPath('before-release.png'),fullPage:true});
+  39 |    release();
+  40 |    await expect(page.locator('.document h1')).toHaveText('Спецификация 2',{timeout:10000});
+  41 |    events.push({at:Date.now(),kind:'B_visible_after_release'});
+  42 |    expect(f.hash(),'read-only interaction must preserve prepared fixture catalog').toEqual(before);
+  43 |   }
+  44 |  }finally{
+  45 |   release?.();
+  46 |   await info.attach('route-events',{body:JSON.stringify({subjectStarted,assertionsBeforeRelease,events},null,2),contentType:'application/json'});
+  47 |   await f.close();
+  48 |  }
+  49 | });
+  50 | 
+```

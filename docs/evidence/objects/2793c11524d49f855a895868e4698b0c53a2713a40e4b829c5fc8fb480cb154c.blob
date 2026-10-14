@@ -1,0 +1,344 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "Cargo.lock",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "Cargo.lock",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "Cargo.toml",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "Cargo.toml",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "tests/catalog_contracts.rs",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "tests/catalog_contracts.rs",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "tests/global_contracts.rs",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "tests/global_contracts.rs",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "tests/spec_contracts.rs",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "tests/spec_contracts.rs",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "tests/trace_contracts.rs",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "tests/trace_contracts.rs",
+      "message": "index_differs",
+      "status": "unknown"
+    }
+  ],
+  "limitations": [
+    "Проверены локальные файлы и выбранный состав; внешняя доступность, срок хранения, отправка и приёмка не подтверждаются. Bundle — JSON-массив относительных путей, не загрузка. Все закреплённые входы проверяются консервативно; воспроизводимость не угадывается. Байты blob в Git index должны совпасть с закреплёнными хешами; фильтры не запускаются. Различие нормализации остаётся явным index_differs."
+  ],
+  "measurements": [
+    {
+      "id": "HG-0024",
+      "action": "spec-delivery",
+      "composition": "git_index",
+      "delivery_ready": false,
+      "files": [
+        {
+          "composition": "selected",
+          "current": true,
+          "path": ".config/nextest.toml"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "Cargo.lock"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "Cargo.toml"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/diff-cleanup-2026-10-14/checks.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/1a78a86416a16e7e8bf35ea07c866f7dcc06d555911408273fcbca127df2532b.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/1b44841c60ddb02dd4e60ace727262e897d3dbf883b3682e9c2e5ce83a66b4b9.json"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/704b9345a483af7d63199c7deb52b5ec9faf6ed04f4fa2351df28881b6279900.json"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/739aea4ca65157466807eec2a7c39de52603498a0572418928b80634c19b6b11.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "rust-toolchain.toml"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "scripts/source-scenarios.mjs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "specs/runners.json"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/lib.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/paths.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/trace.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "tests/bootstrap_contracts.rs"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "tests/catalog_contracts.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "tests/contracts.rs"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "tests/global_contracts.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "tests/package_contracts.rs"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "tests/spec_contracts.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "tests/support/mod.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "tests/temp_contracts.rs"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "tests/trace_contracts.rs"
+        }
+      ],
+      "human_acceptance": "unchanged",
+      "technical_readiness": "use_spec_check"
+    }
+  ],
+  "operation": "doctor",
+  "result": {
+    "id": "HG-0024",
+    "action": "spec-delivery",
+    "composition": "git_index",
+    "delivery_ready": false,
+    "files": [
+      {
+        "composition": "selected",
+        "current": true,
+        "path": ".config/nextest.toml"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "Cargo.lock"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "Cargo.toml"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/diff-cleanup-2026-10-14/checks.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/1a78a86416a16e7e8bf35ea07c866f7dcc06d555911408273fcbca127df2532b.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/1b44841c60ddb02dd4e60ace727262e897d3dbf883b3682e9c2e5ce83a66b4b9.json"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/704b9345a483af7d63199c7deb52b5ec9faf6ed04f4fa2351df28881b6279900.json"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/739aea4ca65157466807eec2a7c39de52603498a0572418928b80634c19b6b11.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "rust-toolchain.toml"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "scripts/source-scenarios.mjs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "specs/runners.json"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/lib.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/paths.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/trace.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "tests/bootstrap_contracts.rs"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "tests/catalog_contracts.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "tests/contracts.rs"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "tests/global_contracts.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "tests/package_contracts.rs"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "tests/spec_contracts.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "tests/support/mod.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "tests/temp_contracts.rs"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "tests/trace_contracts.rs"
+      }
+    ],
+    "human_acceptance": "unchanged",
+    "technical_readiness": "use_spec_check"
+  },
+  "status": "failed"
+}

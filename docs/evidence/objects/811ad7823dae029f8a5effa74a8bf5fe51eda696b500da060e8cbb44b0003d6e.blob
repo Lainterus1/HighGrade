@@ -1,0 +1,13 @@
+
+> highgrade-ui@0.1.0 test
+> playwright test api-client.spec.ts
+
+
+Running 2 tests using 1 worker
+
+(node:1266434) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/api-client.spec.ts:4:1 › POST StoreBusy rejects after one request; GET may retry (207ms)
+  ✓  2 tests/api-client.spec.ts:22:1 › abort interrupts GET retry waiting (22ms)
+
+  2 passed (607ms)

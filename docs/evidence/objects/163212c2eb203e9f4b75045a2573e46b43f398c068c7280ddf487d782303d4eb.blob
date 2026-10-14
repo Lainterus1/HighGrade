@@ -1,0 +1,837 @@
+{
+  "scope": "41 selected current catalog contracts / 56 scenarios",
+  "phase": "required methods extracted after full contract reading, before requested execution review",
+  "captured_at": "2026-10-14T13:29:45.544383+00:00",
+  "inputs": {
+    ".highgrade/local/clear-audit-2026-10-14/catalog-requirements.json": "69cb7f2d6793337944b6b30e75a6de75ad2189d015f5bbafce4ea30bf1d36f3b",
+    ".highgrade/local/clear-audit-2026-10-14/checks.json": "4d9005afeaf4d7ecb241222d66ac789314a9c1268fcaf7527eec610953bbcc2f"
+  },
+  "mandatory_cross_cutting": [
+    "Real isolated filesystem/CLI/process tests; preserve pre/post bytes on rejection and meaningful actual assertions.",
+    "Supported v1/v2/directory3/compact4/shared-inputs5 compatibility must be assessed by current owner, not inferred from one legacy fixture.",
+    "Required independent/installed-agent route needs its own source snapshot/actions/outcomes; static checks do not execute it.",
+    "Evidence/code/report drift and sibling preservation; exact selectors and selected raw cases.",
+    "Scoped performance claim HG-0037 needs comparable measurements, not only output shape.",
+    "Selected mutations must violate current outcome, use isolated subjects, relevant assertion failure, exact restore and preserved originals; invalid setup/compile/timeout/skip/empty is not detected."
+  ],
+  "rows": [
+    {
+      "requirement": "HG-0002-R1",
+      "contract_read": true,
+      "statement": "Новые спеки принадлежат проектному каталогу specs либо явно выбранному пути, отдельно от установки High Grade. Каждое изменение имеет spec.json и отдельные результаты; требования доступны по ID.",
+      "scenarios": [
+        {
+          "id": "HG-0002-S1",
+          "required_method": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+          "expected_outcome_from_contract": "Отдельные файлы читаются без установки; чужое содержимое не присваивается, соседняя спека не переписывается"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "project_catalog_survives_service_removal_and_preserves_siblings",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "foreign_structured_files_are_not_deleted",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "selected_directory_is_project_owned_and_self_contained",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0002-R2",
+      "contract_read": true,
+      "statement": "Явная миграция v1/v2 сохраняет точную исходную копию, ID, требования, результаты и человеческие решения. Записи сериализуются, сбой не выдаёт смешанное состояние как валидное; восстановление проверяет конфликт.",
+      "scenarios": [
+        {
+          "id": "HG-0002-S2",
+          "required_method": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+          "expected_outcome_from_contract": "Старые данные сохранены, конфликт обнаружен, читатель не получает частичное обновление; удаление .highgrade не удаляет specs"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "explicit_migration_preserves_all_data_and_detects_legacy_writer",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "interrupted_transaction_refuses_reads_and_recovers_only_observed_targets",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "recovery_reconstructs_partial_staging_and_missing_first_document",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "recovery_cannot_delete_a_required_specification",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "malformed_recovery_never_unblocks_catalog",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "two_catalog_writers_cannot_allocate_the_same_number",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0002-R3",
+      "contract_read": true,
+      "statement": "Результаты повторных проверок сохраняются историей для той же спеки, включая включённую; прежняя приёмка не переносится на новую проверенную редакцию автоматически.",
+      "scenarios": [
+        {
+          "id": "HG-0002-S3",
+          "required_method": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+          "expected_outcome_from_contract": "История сохранена, новые доказательства можно получить без новой спеки; требования остаются неизменными"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "integrated_recheck_retains_history_and_invalidates_old_acceptance",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0003-R1",
+      "contract_read": true,
+      "statement": "depends_on и related_to содержат ID и причину; зависимости проверяются на существование и циклы. Наследования полей нет; цепочка контекста не разворачивается автоматически.",
+      "scenarios": [
+        {
+          "id": "HG-0003-S1",
+          "required_method": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+          "expected_outcome_from_contract": "Допустимые связи доступны, ошибочные отвергнуты без записи; зависимость влияет на готовность, related_to её не блокирует"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "explicit_links_reject_missing_cycles_and_do_not_inherit_content",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0003-R2",
+      "contract_read": true,
+      "statement": "Реестр тегов хранит устойчивый ID, название и назначение. Спеки используют ID; удаление используемого тега запрещено, объединение обновляет ссылки атомарно.",
+      "scenarios": [
+        {
+          "id": "HG-0003-S2",
+          "required_method": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+          "expected_outcome_from_contract": "Ссылки согласованы, теги не дублируют статусы и не требуют иерархии"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "tags_merge_atomically_and_filters_keep_dependencies_discoverable",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0003-R3",
+      "contract_read": true,
+      "statement": "spec-list вычисляет JSON со статусами, тегами, связями и фильтрами; фильтр показывает отобранное и общий объём, а зависимости остаются обнаружимыми без загрузки полных соседних спек.",
+      "scenarios": [
+        {
+          "id": "HG-0003-S3",
+          "required_method": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+          "expected_outcome_from_contract": "Возвращён верный набор и количества; краткие связи сохранены, неизвестные фильтры не выдают ложный успех"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "tags_merge_atomically_and_filters_keep_dependencies_discoverable",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0004-R1",
+      "contract_read": true,
+      "statement": "Спека связывает сценарии с проектным раннером, относительным файлом и селектором теста; один тест может относиться к нескольким сценариям, ручная проверка допустима.",
+      "scenarios": [
+        {
+          "id": "HG-0004-S1",
+          "required_method": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+          "expected_outcome_from_contract": "Неверные ссылки обнаружены; чтение каталога ничего не запускает, выбранные тесты реально исполняются"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "cargo_runner_requires_a_real_exact_test",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0004-R2",
+      "contract_read": true,
+      "statement": "Запуск проверок фиксирует команду, входы до/после, фактический результат и отчёт. Пустой набор, skip, сбой раннера, таймаут и дрейф не означают успешное доказательство.",
+      "scenarios": [
+        {
+          "id": "HG-0004-S2",
+          "required_method": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+          "expected_outcome_from_contract": "Исходы различимы и связаны со сценариями; результаты сохраняются отдельно; команда чтения не выполняет код"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "batch_failure_keeps_prior_results_and_each_scenario_owns_its_report",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/catalog_contracts.rs",
+          "selector": "cargo_runner_requires_a_real_exact_test",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0004-R3",
+      "contract_read": true,
+      "statement": "Поставка и init/task/spec/work/clear/approve/update используют проектный каталог, язык проекта, связи, теги и проверки; миграция конкретного проекта явная, установка не переносит данные молча.",
+      "scenarios": [
+        {
+          "id": "HG-0004-S3",
+          "required_method": "Изолированный тест настоящего CLI/файловой системы/процесса; воспроизвести подготовку, действие и исход. Для процедур — независимое ревью и сквозной маршрут.",
+          "expected_outcome_from_contract": "Данные доступны, результат объясним, структура и ссылки согласованы; актуальный русский пример и документация показывают реальный формат"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0008-R1",
+      "contract_read": true,
+      "statement": "CLI SHALL предоставлять явный перенос выбранного импортированного требования в нативный каталог без объявления поведения проверенным. Перенос SHALL допускать только add-изменение с точным исходным путём и хешем, сохранёнными ID сценариев, завершёнными задачами переноса и свежим независимым GO. Он SHALL атомарно сохранить требование и происхождение; отсутствие сценарного доказательства SHALL оставлять техническую готовность и человеческое решение неподтверждёнными. Обычный spec-integrate SHALL по-прежнему требовать доказательства сценариев. После переноса `trace` SHALL считать нативное требование единственным владельцем его ID; другие прежние требования того же исходного файла SHALL оставаться доступными.",
+      "scenarios": [
+        {
+          "id": "HG-0008-S1",
+          "required_method": "Изолированный Rust-тест CLI и файловой системы; проверить каталог, происхождение, статусы и байты источника",
+          "expected_outcome_from_contract": "Требование читается по ID, происхождение закреплено, исходный файл неизменен; изменение остаётся технически in_progress и без человеческой приёмки"
+        },
+        {
+          "id": "HG-0008-S2",
+          "required_method": "Изолированный Rust-тест отрицательных случаев с точным снимком каталога до и после каждого отказа",
+          "expected_outcome_from_contract": "Перенос и обычное включение отклоняются без частичной записи; незатронутые данные остаются прежними"
+        },
+        {
+          "id": "HG-0008-S3",
+          "required_method": "Запустить cargo test --locked --test trace_contracts reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor -- --exact; проверить оба ID в отчёте trace и отсутствие дубля",
+          "expected_outcome_from_contract": "перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/trace_contracts.rs",
+          "selector": "reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0012-R1",
+      "contract_read": true,
+      "statement": "CLI атомарно назначает следующий HG-номер, created_at и шаблон; title редактируется независимо. Старые ID сохраняются, использованные не переиспользуются.",
+      "scenarios": [
+        {
+          "id": "HG-0012-S1",
+          "required_method": "Запустить cargo test --locked --test spec_contracts automatic_numbers_survive_abandon_failure_and_competing_cli_writers -- --exact; проверить фактические утверждения о результате и границах сценария",
+          "expected_outcome_from_contract": "Успешные создания имеют разные последовательные ID; конфликт/сбой сохраняет целый store и счётчик; отменённый номер не используется вновь"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/spec_contracts.rs",
+          "selector": "automatic_numbers_survive_abandon_failure_and_competing_cli_writers",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0012-R2",
+      "contract_read": true,
+      "statement": "Версия 1 читается без записи; явная атомарная миграция сохраняет точную исходную копию, ID, доказательства и историю; неизвестное не выдумывается.",
+      "scenarios": [
+        {
+          "id": "HG-0012-S2",
+          "required_method": "Запустить cargo test --locked --test spec_contracts v1_migration_preserves_exact_backup_ids_evidence_and_review_digest -- --exact; проверить фактические утверждения о результате и границах сценария",
+          "expected_outcome_from_contract": "Чтение не меняет байты; запись требует миграции; резервная копия точна; повтор безопасен; старые данные и валидность ревью сохранены"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/spec_contracts.rs",
+          "selector": "v1_migration_preserves_exact_backup_ids_evidence_and_review_digest",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0012-R3",
+      "contract_read": true,
+      "statement": "Приёмка результата записывается только после явного решения человека с временем инструмента и снимком спецификации, доказательств и проверенных входов. Автор либо источник решения сохраняется; локальный UI записывает источник «Локальный интерфейс» без обязательного имени. Git SHA или неизменяемый build ID — необязательное дополнение из уже известных данных, не обязательное условие приёмки и не замена снимка входов. При отсутствии версии она остаётся неизвестной, текущий HEAD не угадывается. Комментарий при принятии и возврате результата необязателен. История защищена от обычного редактирования; новая существенная редакция не наследует принятие.",
+      "scenarios": [
+        {
+          "id": "HG-0012-S3",
+          "required_method": "Запустить cargo test --locked --test spec_contracts human_history_is_atomic_protected_and_bound_to_spec_and_implementation -- --exact; проверить фактические утверждения о результате и границах сценария",
+          "expected_outcome_from_contract": "Полная запись сохраняется, неверные не меняют store; история остаётся, новая версия не наследует принятие"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/spec_contracts.rs",
+          "selector": "human_history_is_atomic_protected_and_bound_to_spec_and_implementation",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0012-R4",
+      "contract_read": true,
+      "statement": "spec-list вычисляет готовность из задач, сценариев, доказательств и ревью; человеческая приёмка и техническая готовность различаются. Сводка JSON содержит количества без процентов.",
+      "scenarios": [
+        {
+          "id": "HG-0012-S4",
+          "required_method": "Запустить cargo test --locked --test spec_contracts json_progress_rejects_missing_skipped_unknown_and_negative_review -- --exact; проверить фактические утверждения о результате и границах сценария",
+          "expected_outcome_from_contract": "ID/title и счётчики верны; failed/skipped/unknown/stale/no_go не дают ready; отсутствие решения pending; включение не означает принятие"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/spec_contracts.rs",
+          "selector": "json_progress_rejects_missing_skipped_unknown_and_negative_review",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0012-R5",
+      "contract_read": true,
+      "statement": "Явно выбранный пакет решений связан с каждым проверенным снимком и записывается целиком либо отклоняется. Work передаёт уже доступные итог, проверки и ограничения. Отдельные объяснения ради формы приёмки не требуются. Известный Git SHA/build ID можно сохранить при передаче автоматически для человека; его отсутствие не блокирует локальную приёмку. Work не принимает результат за человека, не создаёт commit, сборку или вызов LLM ради заполнения формы.",
+      "scenarios": [
+        {
+          "id": "HG-0012-S5",
+          "required_method": "Запустить cargo test --locked --test spec_contracts isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work -- --exact; проверить фактические утверждения о результате и границах сценария",
+          "expected_outcome_from_contract": "История и JSON-сводка показывают точные решения по версиям; неверный элемент пакета не записывает остальные; процедуры сохраняют отдельные полномочия"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/spec_contracts.rs",
+          "selector": "isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0013-R1",
+      "contract_read": true,
+      "statement": "Инструмент SHALL создавать JSON-заготовку с версией формата и устойчивыми ID; структурная схема SHALL иметь один источник с типами инструмента. Пустое содержание SHALL оставаться черновиком, неизвестные версии/поля SHALL отвергаться без записи.",
+      "scenarios": [
+        {
+          "id": "HG-0013-S1",
+          "required_method": "Запустить cargo test --locked --test spec_contracts drafts_are_readable_but_unknown_versions_and_fields_never_write -- --exact; проверить фактические утверждения о результате и границах сценария",
+          "expected_outcome_from_contract": "заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/spec_contracts.rs",
+          "selector": "drafts_are_readable_but_unknown_versions_and_fields_never_write",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0013-R2",
+      "contract_read": true,
+      "statement": "Сохранение SHALL проверять ожидаемый хеш под блокировкой и атомарно заменять документ; конфликт или сбой SHALL сохранять прежний полный документ. Включение изменения SHALL проверять исходные редакции затронутых требований, выполнять явные add/modify/remove и сохранять историю вместе с новым действующим состоянием.",
+      "scenarios": [
+        {
+          "id": "HG-0013-S2",
+          "required_method": "Запустить cargo test --locked --test spec_contracts competing_processes_and_failed_replace_preserve_whole_store -- --exact; проверить фактические утверждения о результате и границах сценария",
+          "expected_outcome_from_contract": "не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно"
+        },
+        {
+          "id": "HG-0013-S3",
+          "required_method": "Запустить cargo test --locked --test spec_contracts integration_rejects_stale_base_and_requires_removal_reason -- --exact; проверить фактические утверждения о результате и границах сценария",
+          "expected_outcome_from_contract": "включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/spec_contracts.rs",
+          "selector": "competing_processes_and_failed_replace_preserve_whole_store",
+          "runner": "rust-contracts"
+        },
+        {
+          "file": "tests/spec_contracts.rs",
+          "selector": "integration_rejects_stale_base_and_requires_removal_reason",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0013-R3",
+      "contract_read": true,
+      "statement": "Доказательство SHALL ссылаться на сценарий, его редакцию, требование и значимые входы/отчёт. Изменение связанного содержания, входов или отчёта SHALL требовать пересмотра; skipped/failed/unknown SHALL не закрывать сценарий. Неизменённые независимые доказательства SHALL переиспользоваться. Структурная валидность SHALL не означать смысловую готовность, приёмку или достоверность утверждений автора записи.",
+      "scenarios": [
+        {
+          "id": "HG-0013-S4",
+          "required_method": "Запустить cargo test --locked --test spec_contracts evidence_and_review_go_stale_without_losing_unaffected_observations -- --exact; проверить фактические утверждения о результате и границах сценария",
+          "expected_outcome_from_contract": "завершение блокируется, а незатронутое доказательство сохраняет актуальность"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/spec_contracts.rs",
+          "selector": "evidence_and_review_go_stale_without_losing_unaffected_observations",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0013-R4",
+      "contract_read": true,
+      "statement": "Новая задача SHALL проходить через установленный инструмент и навыки без внешнего инструмента спецификаций: от цели и заготовки до реального теста, ревью, продолжения и включения требований. Команды SHALL возвращать выборочные данные и понятные ошибки. Спецификация SHALL описывать исходное состояние, действие, наблюдаемые результаты и воспроизводимую проверку, без обязательного исполняемого GWT.",
+      "scenarios": [
+        {
+          "id": "HG-0013-S5",
+          "required_method": "Локальное упражнение: сохранить входной снимок, журнал фактических действий, diff и наблюдаемый исход; до исполнения оставить неподтверждённым",
+          "expected_outcome_from_contract": "он находит следующий шаг, сохраняет решения, выполняет настоящую проверку поведения и заканчивает разрешённый scope без исходников High Grade и внешнего инструмента спецификаций"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "",
+          "selector": "",
+          "runner": null
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0018-R2",
+      "contract_read": true,
+      "statement": "При поиске реестра проекта без явного --registry команда inspect SHALL использовать только .highgrade/project/documents.json. Прежний каталог SHALL не служить вторым значением по умолчанию и не исключаться из структурного обзора только из-за старого имени; явный --registry REL SHALL сохранять возможность проверить выбранный пользователем путь.",
+      "scenarios": [
+        {
+          "id": "HG-0018-S3",
+          "required_method": "Запустить cargo test --locked --test contracts default_inspect_uses_only_highgrade_registry -- --exact и проверить выбранный путь и обнаружение постороннего каталога",
+          "expected_outcome_from_contract": "Команда выбирает реестр High Grade без неоднозначности, а посторонний каталог не скрывается автоматически"
+        },
+        {
+          "id": "HG-0018-S4",
+          "required_method": "Запустить cargo test --locked --test contracts default_inspect_uses_only_highgrade_registry -- --exact и проверить отказ до явного выбора",
+          "expected_outcome_from_contract": "Команда сообщает об отсутствии стандартного реестра, не выбирая сторонний каталог"
+        }
+      ],
+      "declared_tests": [
+        {
+          "file": "tests/contracts.rs",
+          "selector": "default_inspect_uses_only_highgrade_registry",
+          "runner": "rust-contracts"
+        }
+      ],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0029-R1",
+      "contract_read": true,
+      "statement": "CLI различает отпечаток контракта, существенную редакцию доказательств и текущие входы. Повтор с теми же исходами, определениями проверок и входами сохраняет актуальность нового ревью и решения, несмотря на новое время, длительность или путь отчёта. Последняя неуспешная попытка, изменение сценария, состава проверок, проверенного входа или существенного наблюдения снимает готовность. Исходные отчёты остаются проверяемыми и история не переписывается. Прежние отпечатки читаются по прежнему алгоритму без автоматического переноса принятия на другой контракт; после обновления доказательств старой редакции может потребоваться новое ревью. Сокращение контекста не ослабляет проверку файлов отчёта.",
+      "scenarios": [
+        {
+          "id": "HG-0029-S1",
+          "required_method": "Контрактный тест spec lifecycle.",
+          "expected_outcome_from_contract": "При неизменных входах и существенном наблюдении готовность, ревью и приёмка сохраняются; история пополнена."
+        },
+        {
+          "id": "HG-0029-S2",
+          "required_method": "Контрактные тесты изменения входов, миграции и повторов.",
+          "expected_outcome_from_contract": "Затронутые результаты становятся stale, чужие результаты сохраняются; прежние данные не переписываются и не получают необоснованную новую приёмку."
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0030-R1",
+      "contract_read": true,
+      "statement": "spec-read предоставляет full, summary, editable и requirements; редактируемое представление не содержит истории и защищённых полей. Выборка требований по тегу строится по явным связям изменений и не гарантирует полноту домена. spec-edit с CAS применяет только разрешённые поля; опциональная проверка полноты выполняется до записи и при ошибке сохраняет прежний каталог. spec-integrate уже объединяет проверку готовности и включение; brief возвращает компактный результат. shared_inputs изменения дополняют inputs каждой проверки, их состав и содержимое участвуют в актуальности. Чтение и редактирование не запускают тесты и не записывают приёмку.",
+      "scenarios": [
+        {
+          "id": "HG-0030-S1",
+          "required_method": "Контрактные тесты spec-read/edit.",
+          "expected_outcome_from_contract": "История не дублируется, защищённые поля и устаревший CAS отвергаются, неверная полная проверка не записывает каталог."
+        },
+        {
+          "id": "HG-0030-S2",
+          "required_method": "Контрактные тесты реального runner и интеграции.",
+          "expected_outcome_from_contract": "Изменение обнаруживается и результат становится stale; компактная интеграция сохраняет стандартные барьеры."
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0035-R1",
+      "contract_read": true,
+      "statement": "Каждая публичная команда поддерживает help без доступа к проекту, перечисляет допустимые и обязательные параметры и пример. Входные JSON-схемы доступны через CLI. Справка и разбор аргументов используют единое описание параметров. Ошибка указывает способ получить корректный вызов. Legacy-команды выделены как совместимость; global-recover доступен в справке.",
+      "scenarios": [
+        {
+          "id": "HG-0035-S1",
+          "required_method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+          "expected_outcome_from_contract": "Успешный ответ содержит параметры и пример без записи или диагностики проекта."
+        },
+        {
+          "id": "HG-0035-S2",
+          "required_method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+          "expected_outcome_from_contract": "Понятная ошибка и путь к справке; неподдерживаемые параметры не принимаются."
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0036-R1",
+      "contract_read": true,
+      "statement": "Предварительная проверка показывает технический результат, необходимость решения или адаптации и факт применения раздельно. Bootstrap различает отсутствие стандартной структуры и техническую ошибку. Doctor для выбранного действия проверяет только относящиеся к нему предпосылки, объясняет препятствия и не запускает проектный код. Старый вызов остаётся совместимым; изменения статусов документируются.",
+      "scenarios": [
+        {
+          "id": "HG-0036-S1",
+          "required_method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+          "expected_outcome_from_contract": "Проверка успешна, решение требуется, применение не выполнено."
+        },
+        {
+          "id": "HG-0036-S2",
+          "required_method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+          "expected_outcome_from_contract": "Необходимая адаптация отделена от ошибки чтения или повреждения."
+        },
+        {
+          "id": "HG-0036-S3",
+          "required_method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+          "expected_outcome_from_contract": "Не возникает ложного блокера; отсутствующая нужная зависимость названа с действием восстановления."
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0037-R1",
+      "contract_read": true,
+      "statement": "Выборочные операции ограничивают чтение или вычисление готовности выбранной областью и явно показывают область результата. Изменение независимой спеки не препятствует записи с проверенной локальной редакцией; изменение затронутого контракта или зависимости обнаруживается. Общий CAS остаётся доступным. Выгода проверяется сопоставимыми измерениями; новая база данных не требуется.",
+      "scenarios": [
+        {
+          "id": "HG-0037-S1",
+          "required_method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+          "expected_outcome_from_contract": "Вывод ограничен выборкой, лишние вычисления сокращены, проверки не запускаются."
+        },
+        {
+          "id": "HG-0037-S2",
+          "required_method": "Контрактные тесты реальных команд CLI в существующем тестовом наборе; исходный отчёт и адресное ревью.",
+          "expected_outcome_from_contract": "Независимая правка допускается, существенный конфликт отвергается без потери данных."
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0038-R1",
+      "contract_read": true,
+      "statement": "Назначение тегов разрешено для черновиков и интегрированных спек отдельной атомарной операцией с предварительным просмотром и CAS. Теги не входят в содержательную редакцию. Старые действующие ревью и решения сохраняют актуальность, устаревшие не становятся действующими. Контракт и история решений при разметке не переписываются. Неизвестные теги и ошибочные элементы отклоняют весь пакет. Плоский словарь отражает предметные области; существующие спеки размечаются по содержанию.",
+      "scenarios": [
+        {
+          "id": "HG-0038-S1",
+          "required_method": "Адресные контрактные тесты CLI; для документации — проверка ссылок/генерации и независимое смысловое ревью.",
+          "expected_outcome_from_contract": "Preview ничего не пишет; актуальные решения сохранены, stale не оживает; повтор не изменяет историю."
+        },
+        {
+          "id": "HG-0038-S2",
+          "required_method": "Адресные контрактные тесты CLI; для документации — проверка ссылок/генерации и независимое смысловое ревью.",
+          "expected_outcome_from_contract": "Пакет полностью отклонён, контракт и метаданные сохранены."
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0039-R1",
+      "contract_read": true,
+      "statement": "Новая спека не копирует отпечатки всего каталога. При первом выборе modify/remove фиксируется текущая редакция соответствующего требования в согласованном снимке CAS. Повторное редактирование, удаление и возвращение операции не обновляют исходный отпечаток молча. Дрейф блокирует готовность. Старые полные baseline читаются без преобразования и сохраняют прежний смысл.",
+      "scenarios": [
+        {
+          "id": "HG-0039-S1",
+          "required_method": "Адресные контрактные тесты CLI; для документации — проверка ссылок/генерации и независимое смысловое ревью.",
+          "expected_outcome_from_contract": "Baseline первоначально пуст и фиксирует только выбранное требование; чужие изменения не блокируют готовность."
+        },
+        {
+          "id": "HG-0039-S2",
+          "required_method": "Адресные контрактные тесты CLI; для документации — проверка ссылок/генерации и независимое смысловое ревью.",
+          "expected_outcome_from_contract": "Исходный baseline не освежается; BaseDrift обнаружен, исторические данные не изменены."
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0040-R1",
+      "contract_read": true,
+      "statement": "Поля спеки представлены в порядке идентификация, намерение, контракт, выполнение, служебные данные; сценарий читается given/when/then/verification. Обычный навык использует компактное чтение и spec-edit. Документация разделяет правила, процедуры, инструменты и проектные шаблоны. CLI-указатель ведёт к четырём тематическим справочникам; установленные ссылки работают без исходного репозитория. Общие правила не дублируются в шаблонах; задачи описывают конкретные результаты, проверки — наблюдаемые исходы. Старые завершённые контракты редакционно не переписываются.",
+      "scenarios": [
+        {
+          "id": "HG-0040-S1",
+          "required_method": "Адресные контрактные тесты CLI; для документации — проверка ссылок/генерации и независимое смысловое ревью.",
+          "expected_outcome_from_contract": "Идентификация и смысл идут раньше baseline, given предшествует when и then; семантика и отпечатки не изменены перестановкой."
+        },
+        {
+          "id": "HG-0040-S2",
+          "required_method": "Адресные контрактные тесты CLI; для документации — проверка ссылок/генерации и независимое смысловое ревью.",
+          "expected_outcome_from_contract": "Доступны четыре справочника, единые владельцы правил и компактный маршрут; дубли/противоречия исправлены. Структурная проверка не объявляется доказательством поведения модели."
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0041-R1",
+      "contract_read": true,
+      "statement": "Проблемы хранятся в необязательном проектном issues/catalog.json и entries/ISS-ID.json. CLI предоставляет создание с автоматическим ID, поиск по тексту/тегам/состоянию, компактное и полное чтение, patch, validate и record. JSON Schema и help доступны. Данные остаются при удалении Поставки. Чтение не исполняет рецепты.",
+      "scenarios": [
+        {
+          "id": "HG-0041-S1",
+          "required_method": "Адресные контрактные тесты CLI; для нормативной процедуры — смысловое ревью и проверка установленных ссылок, без утверждения о поведении модели.",
+          "expected_outcome_from_contract": "Запись доступна по ID, тексту и фильтрам; чтение не запускает команды"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0041-R2",
+      "contract_read": true,
+      "statement": "Записи защищены общим CAS и lock; некорректный ввод не меняет данные. Прерывание не допускает чтения смешанного состояния; явное восстановление сверяет ожидаемый журнал и файлы. Повтор случая с тем же ключом и данными не создаёт запись и не увеличивает счётчик; повтор ключа с иными данными отклоняется.",
+      "scenarios": [
+        {
+          "id": "HG-0041-S2",
+          "required_method": "Адресные контрактные тесты CLI; для нормативной процедуры — смысловое ревью и проверка установленных ссылок, без утверждения о поведении модели.",
+          "expected_outcome_from_contract": "Отклонённая операция не меняет каталог"
+        },
+        {
+          "id": "HG-0041-S3",
+          "required_method": "Адресные контрактные тесты CLI; для нормативной процедуры — смысловое ревью и проверка установленных ссылок, без утверждения о поведении модели.",
+          "expected_outcome_from_contract": "Точный повтор пуст, конфликт отвергнут, счётчик не увеличен"
+        },
+        {
+          "id": "HG-0041-S4",
+          "required_method": "Адресные контрактные тесты CLI; для нормативной процедуры — смысловое ревью и проверка установленных ссылок, без утверждения о поведении модели.",
+          "expected_outcome_from_contract": "Чтение заблокировано; восстановление завершается только при совпадении ожидаемых файлов"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0041-R3",
+      "contract_read": true,
+      "statement": "Запись различает открытую проблему, временный обход, устранение и устаревшее решение. Неизвестная причина допустима. Проверенное состояние требует актуальной записи успешного наблюдения; устранение требует описанной подтверждённой причины. Изменённая существенная информация или отрицательное наблюдение снимают подтверждение. Рецепты не исполняются; доказательства и применимость оценивает агент.",
+      "scenarios": [
+        {
+          "id": "HG-0041-S5",
+          "required_method": "Адресные контрактные тесты CLI; для нормативной процедуры — смысловое ревью и проверка установленных ссылок, без утверждения о поведении модели.",
+          "expected_outcome_from_contract": "Возможен подтверждённый обход, но не ложное устранение; прежнее подтверждение становится устаревшим"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0045-R1",
+      "contract_read": true,
+      "statement": "JSON с версией схемы — единственный источник обследования; содержит область, решения/гарантии, компоненты, источники знаний, процессы, навыки, наблюдения, находки, адаптацию и продолжение. Читаемое представление производится из него. Работа не требует specs/реестра.",
+      "scenarios": [
+        {
+          "id": "HG-0045-S1",
+          "required_method": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели.",
+          "expected_outcome_from_contract": "Есть честный черновик и схема без выдуманных фактов; чтение не меняет файлы"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0045-R2",
+      "contract_read": true,
+      "statement": "Факты имеют источник и состояние; неизвестные связываются с зависимыми действиями. Структура, текущие входы, записанное смысловое ревью и человеческое решение различаются. Готовность плана, адаптации и завершения определяется контрактом HG-0049-R1; сохранение плана не требует разрешить блокеры независимого выполнения.",
+      "scenarios": [
+        {
+          "id": "HG-0045-S2",
+          "required_method": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели.",
+          "expected_outcome_from_contract": "Структура корректна, но переход не готов; CLI не подтверждает смысл за агента"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0045-R3",
+      "contract_read": true,
+      "statement": "Повторное обследование сохраняет предыдущий завершённый снимок и решения, начинает новую явно указанную редакцию. Историческое завершение не отменяется дрейфом, текущая пригодность показывается отдельно. Следующий шаг обязателен для незавершённой работы.",
+      "scenarios": [
+        {
+          "id": "HG-0045-S3",
+          "required_method": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели.",
+          "expected_outcome_from_contract": "Прежний снимок сохранён; новое чтение не превращает старое ревью в актуальное"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0046-R1",
+      "contract_read": true,
+      "statement": "Новый режим inventory structure не читает содержимое всех файлов, ограничивает обход и вывод, показывает частичность и исключения, не проходит ссылки, закрытые/генерируемые области; .highgrade/project доступен. Прежний inventory и legacy сохраняют контракт.",
+      "scenarios": [
+        {
+          "id": "HG-0046-S1",
+          "required_method": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели.",
+          "expected_outcome_from_contract": "Настройки видимы, содержимое закрытых файлов не раскрыто, неполнота явна; старый режим не изменён"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0046-R2",
+      "contract_read": true,
+      "statement": "Снимок фиксирует хеши выбранных обычных источников и состав выбранных областей; не читает собственные survey/history/выводы как входы. Небезопасный путь отвергается; локальная недоступность представляется явно.",
+      "scenarios": [
+        {
+          "id": "HG-0046-S2",
+          "required_method": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели.",
+          "expected_outcome_from_contract": "Первые изменения видимы, постороннее не обесценивает снимок; служебная запись не вызывает дрейф"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0046-R3",
+      "contract_read": true,
+      "statement": "Создание не перезаписывает существующий документ; редактирование использует CAS, строгую схему и атомарную замену. При конфликте, неверной версии/поле/пути прежние данные сохраняются.",
+      "scenarios": [
+        {
+          "id": "HG-0046-S3",
+          "required_method": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели.",
+          "expected_outcome_from_contract": "Первый результат сохранён, второй отклонён; чужие файлы и история целы"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0046-R4",
+      "contract_read": true,
+      "statement": "CLI предоставляет схему, создание, выборочное чтение/представление, редактирование, снимок и проверку актуальности без запуска проектного кода/сети. Метаданные проверки не являются разрешением адаптации.",
+      "scenarios": [
+        {
+          "id": "HG-0046-S4",
+          "required_method": "Для JSON/CLI — реальные контрактные тесты survey_contracts; для нормативного маршрута — смысловое ревью и таблица решений. Структурная проверка не доказывает поведение модели.",
+          "expected_outcome_from_contract": "Команда не выполнена, статусы объясняют конкретные пробелы"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0050-R1",
+      "contract_read": true,
+      "statement": "Ответ сохраняет measurements и коды завершения, дополнительно предоставляет однозначный именованный доступ к результатам без знания индекса. CAS именуется по области, неоднозначные ключи не выбираются молча. Создание каталога возвращает действительные пути; ошибка отсутствующего значения называет параметр.",
+      "scenarios": [
+        {
+          "id": "HG-0050-S1",
+          "required_method": "Адресные контрактные тесты для исполняемого поведения; нормативная таблица решений для инструкций. Область входов и предел наблюдения фиксируются в evidence.",
+          "expected_outcome_from_contract": "Не требуется индекс measurements; store и survey хеши различимы; реальные пути и конкретная ошибка доступны"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0050-R2",
+      "contract_read": true,
+      "statement": "Необязательный launch_selector определяет подстановку {selector} в аргументы; selector сохраняет точный идентификатор в отчёте. Без поля прежний контракт и хеши неизменны. Аргументы передаются отдельно без shell; регулярное выражение при необходимости готовится владельцем runner, CLI не угадывает синтаксис.",
+      "scenarios": [
+        {
+          "id": "HG-0050-S2",
+          "required_method": "Адресные контрактные тесты для исполняемого поведения; нормативная таблица решений для инструкций. Область входов и предел наблюдения фиксируются в evidence.",
+          "expected_outcome_from_contract": "Выбранный тест однозначно подтверждён; старые checks читаются без изменения смысла/хешей; изменение launch_selector инвалидирует снимок"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    },
+    {
+      "requirement": "HG-0050-R3",
+      "contract_read": true,
+      "statement": "Первое необходимое подключение проверяет фактический результат через существующие spec-run/import и снимки. Missing, duplicate, skipped, failed не являются passed даже при exit 0. Не создаются фиктивные продуктовые спеки, обязательный адаптер конкретной библиотеки или запуск во время каждого init.",
+      "scenarios": [
+        {
+          "id": "HG-0050-S3",
+          "required_method": "Адресные контрактные тесты для исполняемого поведения; нормативная таблица решений для инструкций. Область входов и предел наблюдения фиксируются в evidence.",
+          "expected_outcome_from_contract": "Только единственный исполненный успех подтверждает check; ошибки отбора видимы"
+        }
+      ],
+      "declared_tests": [],
+      "execution_confirmed": false
+    }
+  ]
+}

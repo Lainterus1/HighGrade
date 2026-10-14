@@ -121,17 +121,34 @@ fn response(
 #[test]
 fn projection_preserves_bytes_excludes_legacy_and_reports_corruption() {
     let p = setup();
+    let accepted = integrated_fixture(&p, 4);
+    accept_fixture(&p, &accepted);
+    // Old creation time is still a current structural profile.
+    let old = p.join("specs/changes/HG-0001/spec.json");
+    let mut old_value: Value = serde_json::from_slice(&fs::read(&old).unwrap()).unwrap();
+    old_value["created_at"] = json!(1);
+    fs::write(old, serde_json::to_vec(&old_value).unwrap()).unwrap();
     // Fixture mutation deliberately models a valid previous structural profile.
     let file = p.join("specs/changes/HG-0003/spec.json");
     let mut v: Value = serde_json::from_slice(&fs::read(&file).unwrap()).unwrap();
     v.as_object_mut().unwrap().remove("scoped_baseline");
     fs::write(&file, serde_json::to_vec(&v).unwrap()).unwrap();
-    let before = sha(&p);
+    let before = catalog_bytes(&p);
     let view = ui(&p);
     assert_eq!(view["excluded_count"], 1);
-    assert_eq!(view["changes"].as_array().unwrap().len(), 2);
+    let mut ids: Vec<_> = view["changes"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|r| r["id"].as_str().unwrap())
+        .collect();
+    ids.sort();
+    assert_eq!(ids, ["HG-0001", "HG-0002", "HG-0004"]);
+    assert_eq!(view["excluded"][0]["id"], "HG-0003");
+    assert!(!view["excluded"][0]["reason"].as_str().unwrap().is_empty());
     assert_eq!(row(&p, "HG-0001")["requirements_agreement"], "pending");
-    assert_eq!(sha(&p), before);
+    assert_eq!(row(&p, &accepted)["category"], "completed");
+    assert_eq!(catalog_bytes(&p), before);
     fs::write(file, b"{invalid").unwrap();
     assert!(call(&p, "spec-ui", &[]).is_err());
 }
@@ -256,6 +273,61 @@ fn queue_priority_categories_and_counts_are_deterministic() {
     assert_eq!(a["counts"]["cancelled"], 1);
     assert_eq!(a["counts"]["completed"], 0);
     assert_eq!(row(&p, "HG-0002")["primary_action"]["kind"], "question");
+    request(&p, "HG-0001", "q-z", "question");
+    request(&p, "HG-0001", "q-b", "question");
+    request(&p, "HG-0001", "q-a", "question");
+    // Fixture timestamps make date order oppose ID/insertion order.
+    let set_time = |id: &str, key: &str, at: u64| {
+        let file = p.join(format!("specs/changes/{id}/spec.json"));
+        let mut value: Value = serde_json::from_slice(&fs::read(&file).unwrap()).unwrap();
+        let request = value["attention"]["requests"]
+            .as_array_mut()
+            .unwrap()
+            .iter_mut()
+            .find(|r| r["id"] == key)
+            .unwrap();
+        request["at"] = json!(at);
+        fs::write(file, serde_json::to_vec(&value).unwrap()).unwrap();
+    };
+    set_time("HG-0001", "q-z", 300);
+    set_time("HG-0001", "q-b", 200);
+    set_time("HG-0001", "q-a", 200);
+    set_time("HG-0002", "b", 100);
+    let before = catalog_bytes(&p);
+    let ordered = ui(&p);
+    assert_eq!(
+        ordered["changes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|r| r["id"].as_str().unwrap())
+            .collect::<Vec<_>>(),
+        ["HG-0002", "HG-0001", "HG-0003"]
+    );
+    let first = row(&p, "HG-0001");
+    assert_eq!(first["primary_action"]["id"], "q-a");
+    assert_eq!(
+        first["requests"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|r| r["id"].as_str().unwrap())
+            .collect::<Vec<_>>(),
+        ["q-a", "q-b", "q-z", "a"]
+    );
+    assert_eq!(catalog_bytes(&p), before);
+    set_time("HG-0001", "q-a", 100);
+    let before = catalog_bytes(&p);
+    assert_eq!(
+        ui(&p)["changes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|r| r["id"].as_str().unwrap())
+            .collect::<Vec<_>>(),
+        ["HG-0001", "HG-0002", "HG-0003"]
+    );
+    assert_eq!(catalog_bytes(&p), before);
 }
 
 fn evidence(p: &Path, id: &str, time: &str) {

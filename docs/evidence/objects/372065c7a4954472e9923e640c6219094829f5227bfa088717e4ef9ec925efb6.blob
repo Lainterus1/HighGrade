@@ -1,0 +1,23 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import os,json,hashlib,subprocess
+root=Path.cwd();local=root/'.highgrade/local/project-refresh-2026-10-14';base=root/'target/highgrade/tmp/project-refresh-native-census'
+assert not base.exists();base.mkdir();(base/'owner.json').write_text(json.dumps({'owner':'project-refresh-2026-10-14','purpose':'HG-0024-S4 scoped before-after test directory census','pid':os.getpid()}))
+scratch=base/'test-temp';scratch.mkdir();foreign=scratch/'foreign-sentinel';foreign.mkdir();(foreign/'keep.txt').write_bytes(b'Foreign sentinel; test and maintenance must preserve exact bytes.\n')
+def snapshot():
+ result={}
+ for p in sorted(scratch.rglob('*')):
+  assert not p.is_symlink()
+  result[p.relative_to(scratch).as_posix()]={'kind':'directory'} if p.is_dir() else {'kind':'file','sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+ return result
+before=snapshot();report={'source':'HG-0024-R2/HG-0024-S4 requirement and independent final review','purpose':'Before/after only this task-owned TMPDIR; never scans presentation, home, another project or global temp','cwd':str(root),'temporary_root':str(scratch),'environment':{'TMPDIR':str(scratch),'TEMP':str(scratch),'TMP':str(scratch)},'before':before,'before_at':datetime.now(timezone.utc).isoformat(),'state':'running'}
+(local/'native-census-original.json').write_text(json.dumps(report,indent=2)+'\n')
+argv=['python',str(local/'capture.py'),'nextest-final-census.json','python','scripts/verify.py','tests']
+r=subprocess.run(argv,cwd=root,env={**os.environ,**report['environment']},capture_output=True,text=True)
+report.update(argv=argv,exit_code=r.returncode,stdout=r.stdout,stderr=r.stderr,after=snapshot(),after_at=datetime.now(timezone.utc).isoformat(),state='completed')
+report['directories_and_files_unchanged']=report['before']==report['after']
+report['foreign_bytes_preserved']=(foreign/'keep.txt').read_bytes()==b'Foreign sentinel; test and maintenance must preserve exact bytes.\n'
+(local/'native-census-original.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps({'exit_code':r.returncode,'directories_and_files_unchanged':report['directories_and_files_unchanged'],'foreign_bytes_preserved':report['foreign_bytes_preserved'],'after_entries':len(report['after'])}),flush=True)
+assert r.returncode==0,r.stdout+r.stderr
+assert report['directories_and_files_unchanged'] and report['foreign_bytes_preserved'],report['after']

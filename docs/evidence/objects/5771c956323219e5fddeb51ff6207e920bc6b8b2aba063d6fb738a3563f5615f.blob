@@ -1,0 +1,9 @@
+import {defineConfig} from '../../../ui/node_modules/@playwright/test/index.mjs';
+import path from 'node:path';
+export default defineConfig({
+ testDir:'.', testMatch:'poll-repro.spec.ts', timeout:60000, workers:1,
+ reporter:[['list'],['json',{outputFile:path.join(import.meta.dirname,'poll-repro-report.json')}]],
+ outputDir:path.join(import.meta.dirname,'poll-repro-artifacts'),
+ use:{headless:true, viewport:{width:1440,height:900},
+ launchOptions:process.env.HIGHGRADE_CHROME?{executablePath:process.env.HIGHGRADE_CHROME}:undefined}
+});

@@ -1,0 +1,35 @@
+{
+  "phase": "independent current fix diff review; final execution freshness pending",
+  "conclusion": "No new blocking finding in reviewed corrections. Local code/assertion gaps resolved; final GO not issued.",
+  "captured_at": "2026-10-14T14:15:08.256290+00:00",
+  "source_sha256_at_review": {
+    "src/package.rs": "7188f9454a074a626ee025bd042a6117f9ff2c05b970ff04e39a24bc190cc292",
+    "tests/global_contracts.rs": "2cb7807755b68bb12ba98cc5dc6281b4eb7565c66d7f82e30cba422bb147683e",
+    "tests/catalog_contracts.rs": "2a0cc46ee28c7521901339eb996f964c15f57e10a5a572fe892fee91ccd6f8e7",
+    "tests/spec_contracts.rs": "363996936afc37e77ad09002ca9cd3dec67dd36edb5f26a9e6bdbed0a27c7daf",
+    "specs/changes/HG-0063/spec.json": "427fe8f7f80213ae722240fbd1a23e7c03374a05c2a17d438be6a5bf53c355d5"
+  },
+  "original_sha256": {
+    "initial-foreign-temp.json": "bf759f712f91ab34528418221b54240b781aed6cdde2b1765be3ac9b5b4bb92b",
+    "initial-foreign-temp.log": "8817d406aaf0bbfbd0cf6de0addc4582a83a8b706ef7fac03a533ad7c932c429",
+    "fixed-foreign-temp.json": "247078245c0a4b07255c5887465eabd25f1429fa31e59f881c3bcc81f395b340",
+    "fixed-foreign-temp.log": "18c97077f7c2fc3881f0d338a35ac456a94028072f9248e1beb60718b6a4988c"
+  },
+  "assessed": {
+    "C-PRESERVE-1": "create_new rejects occupied regular/link temp on Unix; write_all/sync_all then rename new owned regular file. Four-case regression observes error and exact pointer/router/foreign/blocker bytes and link target.",
+    "C-ASSERT-1": "Diagnostic marker absent and unchanged store; actual spec-run positive control proves marker observable.",
+    "C-ASSERT-2": "Every failed transfer closure checks store, original source and selected requirement bytes; history lies in exact store bytes.",
+    "C-NORM-1": "Current HG63R1S4/S5 optional external ID plus mandatory snapshot/readiness/explicit human. Current HG20R1 allows explicitly assigned plan-only Goal without authorizing implementation; automatic Planner/analysis alone no Goal."
+  },
+  "observed_original_results": {
+    "initial-foreign-temp": "exit101; 1 actual test failed; four regular/link pointer/router preservation failures; 0 ignored. Genuine assertion RED, not invalid setup.",
+    "fixed-foreign-temp": "exit0; same exact selector; 1 actual test passed, 0 ignored."
+  },
+  "limits": [
+    "Original red/green receipt has command/exit/time and stdout/stderr; no full pre-run causal snapshot. Current review hashes do not retroactively supply it.",
+    "Expanded causal freshness and final global/test execution require upcoming pre-run/post-run snapshots and raw final Nextest/import/batch receipts.",
+    "ArchivedChange is a correct frozen-history barrier. Do not rewrite archived definitions; preserve old evidence and record fresh actual observations with explicit expanded causal inputs.",
+    "Unix-only additional preservation regression belongs to HG27 S1/S2 explicitly; absence of automatic marker prevents an invented Windows trace PASS.",
+    "No test/source/catalog edit or execution done by reviewer; existing original reports read only."
+  ]
+}

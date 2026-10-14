@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "2.0.0",
+  "watch_hotspot_limit": 20,
+  "include_pyi_loc": false,
+  "excluded_directories": [
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "site-packages",
+    "venv"
+  ],
+  "metrics": {
+    "branch_coverage": {
+      "direction": "low",
+      "watch": 80,
+      "refactor": 70,
+      "critical": 50,
+      "unit": "percent"
+    },
+    "cognitive_complexity": {
+      "direction": "high",
+      "watch": 11,
+      "refactor": 16,
+      "critical": 26,
+      "unit": "count"
+    },
+    "cyclomatic_complexity": {
+      "direction": "high",
+      "watch": 11,
+      "refactor": 16,
+      "critical": 26,
+      "unit": "count"
+    },
+    "dependency_cycle": {
+      "direction": "high",
+      "watch": 2,
+      "refactor": 2,
+      "critical": 4,
+      "unit": "modules"
+    },
+    "duplication_block_lines": {
+      "direction": "high",
+      "watch": 10,
+      "refactor": 30,
+      "critical": 100,
+      "unit": "lines"
+    },
+    "duplication_percent": {
+      "direction": "high",
+      "watch": 3.000001,
+      "refactor": 5.000001,
+      "critical": 10.000001,
+      "unit": "percent"
+    },
+    "file_nloc": {
+      "direction": "high",
+      "watch": 401,
+      "refactor": 701,
+      "critical": 1201,
+      "unit": "lines"
+    },
+    "function_nloc": {
+      "direction": "high",
+      "watch": 51,
+      "refactor": 81,
+      "critical": 151,
+      "unit": "lines"
+    },
+    "line_coverage": {
+      "direction": "low",
+      "watch": 80,
+      "refactor": 70,
+      "critical": 50,
+      "unit": "percent"
+    },
+    "nesting_depth": {
+      "direction": "high",
+      "watch": 4,
+      "refactor": 5,
+      "critical": 7,
+      "unit": "levels"
+    },
+    "suppression": {
+      "direction": "high",
+      "watch": 1,
+      "refactor": 1,
+      "critical": 999999,
+      "unit": "count"
+    }
+  },
+  "include_paths": [
+    "."
+  ],
+  "excluded_paths": [],
+  "source_roots": [
+    ".",
+    "src"
+  ],
+  "test_paths": [
+    "tests",
+    "test",
+    "**/tests/**",
+    "**/test/**",
+    "test_*.py",
+    "**/test_*.py",
+    "*_test.py",
+    "**/*_test.py"
+  ],
+  "analyzer_timeout_seconds": 120,
+  "subprocess_timeout_seconds": 60
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "plan_only",
+    "request": "Используй Planner. Только составь план двух шагов. Реализацию не начинай.",
+    "goal_capability": "not assigned by user"
+  },
+  {
+    "id": "execute_without_goal",
+    "request": "Используй Planner и выполни два шага в этой папке: создай note.txt со словом done, затем summary.txt с результатом первого шага. Goal не поручен.",
+    "goal_capability": "no Goal choice"
+  },
+  {
+    "id": "occupied_goal",
+    "request": "Пользователь выбрал новый Goal для несвязанной цепочки; прочитай существующий Goal и подготовь дальнейшее действие.",
+    "goal_capability": {
+      "kind": "controlled occupied state",
+      "goal": {
+        "objective": "different unfinished work",
+        "status": "active"
+      }
+    }
+  },
+  {
+    "id": "goal_refused",
+    "request": "Пользователь выбрал Goal; инструмент вернул отказ создания. Начни зависимую реализацию только если маршрут это допускает.",
+    "goal_capability": {
+      "kind": "controlled tool failure",
+      "operation": "create_goal",
+      "result": {
+        "isError": true,
+        "reason": "test capability denied"
+      }
+    }
+  }
+]

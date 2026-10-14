@@ -1,0 +1,25 @@
+   Compiling highgrade v0.4.0 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 0.98s
+     Running tests/attention_contracts.rs (target/debug/deps/attention_contracts-4e4857ce177a251b)
+
+running 17 tests
+test repeated_result_requests_recheck_inputs_revision_and_readiness ... ok
+test answers_in_reverse_request_order_use_recorded_sequence ... ok
+test repeated_requests_recheck_readiness_and_preserve_unrelated_questions ... ok
+test repeated_result_responses_preserve_exact_revision_and_recheck_gates ... ok
+test legacy_result_responses_require_unambiguous_acceptance_revision ... ok
+test content_snapshots_metadata_and_stale_writes_are_distinct ... ok
+test result_responses_keep_their_revision_when_later_decisions_share_snapshot ... ok
+test queue_priority_categories_and_counts_are_deterministic ... ok
+test projection_preserves_bytes_excludes_legacy_and_reports_corruption ... ok
+test direct_decision_reuses_the_saved_build_and_closes_the_result_request ... ok
+test explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_request ... ok
+test saved_result_build_id_is_optional_and_reused_without_user_input ... ok
+test result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement ... ok
+test result_status_without_build_id_keeps_snapshot_history_and_replay_gates ... ok
+test ambiguous_saved_build_rejects_the_whole_direct_decision_batch ... ok
+test unknown_result_reuses_unique_saved_metadata_and_closes_the_same_snapshot ... ok
+test integrated_history_is_not_current_work_or_current_acceptance ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.43s
+

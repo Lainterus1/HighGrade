@@ -1,0 +1,69 @@
+0 verbose cli /home/lainterus/.local/share/mise/installs/node/26.8.2/bin/node /home/lainterus/.local/share/mise/installs/node/26.8.2/bin/npm
+1 info using npm@11.19.1
+2 info using node@v26.8.2
+3 silly config load:file:/home/lainterus/.local/share/mise/installs/node/26.8.2/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/svg/.npmrc
+5 silly config load:file:/home/lainterus/.npmrc
+6 silly config load:file:/home/lainterus/.local/share/mise/installs/node/26.8.2/etc/npmrc
+7 verbose title npm audit
+8 verbose argv "audit" "--json" "--fetch-retries" "0" "--fetch-timeout" "15000"
+9 verbose logfile logs-max:10 dir:/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/cache/npm/_logs/2026-10-14T06_22_46_869Z-
+10 verbose logfile /home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/cache/npm/_logs/2026-10-14T06_22_46_869Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4395630592 maxSize:1098907648 maxEntrySize:549453824
+13 silly audit bulk request {
+13 silly audit   '@resvg/resvg-js': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-android-arm-eabi': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-android-arm64': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-darwin-arm64': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-darwin-x64': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-arm-gnueabihf': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-arm64-gnu': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-arm64-musl': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-x64-gnu': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-x64-musl': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-win32-arm64-msvc': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-win32-ia32-msvc': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-win32-x64-msvc': [ '2.6.2' ],
+13 silly audit   boolbase: [ '1.0.0' ],
+13 silly audit   commander: [ '11.1.0' ],
+13 silly audit   'css-select': [ '6.0.0' ],
+13 silly audit   'css-tree': [ '3.2.1', '2.2.1' ],
+13 silly audit   'css-what': [ '7.0.0' ],
+13 silly audit   csso: [ '5.0.5' ],
+13 silly audit   'mdn-data': [ '2.0.28', '2.27.1' ],
+13 silly audit   'dom-serializer': [ '2.0.0' ],
+13 silly audit   domelementtype: [ '2.3.0' ],
+13 silly audit   domhandler: [ '5.0.3' ],
+13 silly audit   domutils: [ '3.2.2' ],
+13 silly audit   entities: [ '4.5.0' ],
+13 silly audit   'nth-check': [ '2.1.1' ],
+13 silly audit   picocolors: [ '1.1.1' ],
+13 silly audit   sax: [ '1.6.1' ],
+13 silly audit   'source-map-js': [ '1.2.1' ],
+13 silly audit   svgo: [ '4.1.0' ]
+13 silly audit }
+14 verbose audit error FetchError: request to https://registry.npmjs.org/-/npm/v1/security/advisories/bulk failed, reason: getaddrinfo EAI_AGAIN registry.npmjs.org
+14 verbose audit error     at ClientRequest.<anonymous> (/home/lainterus/.local/share/mise/installs/node/26.8.2/lib/node_modules/npm/node_modules/minipass-fetch/lib/index.js:130:14)
+14 verbose audit error     at ClientRequest.emit (node:events:514:20)
+14 verbose audit error     at emitErrorEvent (node:_http_client:114:11)
+14 verbose audit error     at _destroy (node:_http_client:1169:9)
+14 verbose audit error     at onSocketNT (node:_http_client:1190:5)
+14 verbose audit error     at process.processTicksAndRejections (node:internal/process/task_queues:91:21) {
+14 verbose audit error   code: 'EAI_AGAIN',
+14 verbose audit error   errno: 'EAI_AGAIN',
+14 verbose audit error   syscall: 'getaddrinfo',
+14 verbose audit error   hostname: 'registry.npmjs.org',
+14 verbose audit error   type: 'system'
+14 verbose audit error }
+15 silly audit error undefined
+16 silly audit report null
+17 warn audit request to https://registry.npmjs.org/-/npm/v1/security/advisories/bulk failed, reason: getaddrinfo EAI_AGAIN registry.npmjs.org
+18 error audit endpoint returned an error
+19 verbose cwd /home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/svg
+20 verbose os Linux 7.2.5-3-omarchy
+21 verbose node v26.8.2
+22 verbose npm  v11.19.1
+23 verbose exit 1
+24 verbose code 1
+25 error A complete log of this run can be found in: /home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/cache/npm/_logs/2026-10-14T06_22_46_869Z-debug-0.log

@@ -1,0 +1,486 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "Cargo.lock",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "Cargo.lock",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "Cargo.toml",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "Cargo.toml",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "kit/manifest.json",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "kit/manifest.json",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "kit/procedures/clear.md",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "kit/procedures/clear.md",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "kit/procedures/planner.md",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "kit/procedures/planner.md",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "kit/procedures/task.md",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "kit/procedures/task.md",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "kit/references/clear-batches.md",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "kit/references/clear-batches.md",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "kit/references/review.md",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "kit/references/review.md",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "kit/templates/AGENTS.md",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "kit/templates/AGENTS.md",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "kit/tools/clear_batch.py",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "kit/tools/clear_batch.py",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "scripts/tests/test_clear_batch.py",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "scripts/tests/test_clear_batch.py",
+      "message": "index_differs",
+      "status": "unknown"
+    },
+    {
+      "code": "DeliveryInputChangedOrMissing",
+      "location": "ui/dist/highgrade-ui.json",
+      "message": "Файл отсутствует, недоступен либо отличается от обязательного доказательства.",
+      "status": "failed"
+    },
+    {
+      "code": "DeliveryNotSelected",
+      "location": "ui/dist/highgrade-ui.json",
+      "message": "ignored",
+      "status": "unknown"
+    }
+  ],
+  "limitations": [
+    "Проверены локальные файлы и выбранный состав; внешняя доступность, срок хранения, отправка и приёмка не подтверждаются. Bundle — JSON-массив относительных путей, не загрузка. Все закреплённые входы проверяются консервативно; воспроизводимость не угадывается. Байты blob в Git index должны совпасть с закреплёнными хешами; фильтры не запускаются. Различие нормализации остаётся явным index_differs."
+  ],
+  "measurements": [
+    {
+      "id": "HG-0076",
+      "action": "spec-delivery",
+      "composition": "git_index",
+      "delivery_ready": false,
+      "files": [
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "Cargo.lock"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "Cargo.toml"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "build.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/clear-batches-2026-10-14/verification.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/diff-cleanup-2026-10-14/checks.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/1b44841c60ddb02dd4e60ace727262e897d3dbf883b3682e9c2e5ce83a66b4b9.json"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/6a17ccfa2dcfb1cae22d1af63710c1c90eddf0a7dc915846fcc026f27d203eb8.json"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "kit/manifest.json"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "kit/procedures/clear.md"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "kit/procedures/planner.md"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "kit/procedures/task.md"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "kit/references/clear-batches.md"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "kit/references/review.md"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "kit/templates/AGENTS.md"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "kit/tools/clear_batch.py"
+        },
+        {
+          "composition": "index_differs",
+          "current": false,
+          "path": "scripts/tests/test_clear_batch.py"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "specs/changes/HG-0076/evidence/HG-0076-C1-1791996182258140850.log"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "specs/requirements/HG-0076-R1.json"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "specs/requirements/HG-0076-R2.json"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "specs/runners.json"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/global.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/lib.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/main.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/package.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/paths.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/release_notes.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/ui.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "src/ui/bundle.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "tests/global_contracts.rs"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "tests/support/mod.rs"
+        },
+        {
+          "composition": "ignored",
+          "current": false,
+          "path": "ui/dist/highgrade-ui.json"
+        }
+      ],
+      "human_acceptance": "unchanged",
+      "technical_readiness": "use_spec_check"
+    }
+  ],
+  "operation": "doctor",
+  "result": {
+    "id": "HG-0076",
+    "action": "spec-delivery",
+    "composition": "git_index",
+    "delivery_ready": false,
+    "files": [
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "Cargo.lock"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "Cargo.toml"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "build.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/clear-batches-2026-10-14/verification.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/diff-cleanup-2026-10-14/checks.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/1b44841c60ddb02dd4e60ace727262e897d3dbf883b3682e9c2e5ce83a66b4b9.json"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/6a17ccfa2dcfb1cae22d1af63710c1c90eddf0a7dc915846fcc026f27d203eb8.json"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "kit/manifest.json"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "kit/procedures/clear.md"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "kit/procedures/planner.md"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "kit/procedures/task.md"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "kit/references/clear-batches.md"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "kit/references/review.md"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "kit/templates/AGENTS.md"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "kit/tools/clear_batch.py"
+      },
+      {
+        "composition": "index_differs",
+        "current": false,
+        "path": "scripts/tests/test_clear_batch.py"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "specs/changes/HG-0076/evidence/HG-0076-C1-1791996182258140850.log"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "specs/requirements/HG-0076-R1.json"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "specs/requirements/HG-0076-R2.json"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "specs/runners.json"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/global.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/lib.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/main.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/package.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/paths.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/release_notes.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/ui.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "src/ui/bundle.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "tests/global_contracts.rs"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "tests/support/mod.rs"
+      },
+      {
+        "composition": "ignored",
+        "current": false,
+        "path": "ui/dist/highgrade-ui.json"
+      }
+    ],
+    "human_acceptance": "unchanged",
+    "technical_readiness": "use_spec_check"
+  },
+  "status": "failed"
+}

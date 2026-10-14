@@ -1,0 +1,29 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import sys,json,subprocess,os,hashlib
+ROOT=Path(__file__).resolve().parents[3]
+LOCAL=Path(__file__).resolve().parent
+name,*argv=sys.argv[1:]
+assert name and argv and '/' not in name and '..' not in name
+def snapshot():
+    paths=set(json.loads((LOCAL/'current-check-inputs.json').read_text()))
+    paths.update(p.relative_to(ROOT).as_posix() for p in (ROOT/'ui/scripts/tests').glob('*.mjs'))
+    paths.update(p.relative_to(ROOT).as_posix() for p in (ROOT/'ui/tests').glob('*.ts'))
+    paths.update(p.relative_to(ROOT).as_posix() for p in (ROOT/'scripts').rglob('*') if p.suffix in ['.py','.mjs'] and '__pycache__' not in p.parts)
+    paths.update(['Cargo.toml','Cargo.lock','build.rs','rust-toolchain.toml','.config/nextest.toml',
+                  'ui/package.json','ui/package-lock.json','ui/playwright.config.ts','.github/workflows/verify.yml'])
+    return {p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() if (ROOT/p).is_file() else None for p in sorted(paths)}
+inputs=snapshot()
+started=datetime.now(timezone.utc).isoformat()
+r=subprocess.run(argv,cwd=ROOT,capture_output=True,text=True,env=os.environ)
+after=snapshot()
+record={'argv':argv,'cwd':str(ROOT),'started_at':started,'ended_at':datetime.now(timezone.utc).isoformat(),'exit_code':r.returncode,'stdout':r.stdout,'stderr':r.stderr,
+        'inputs_before':inputs,'inputs_after':after,'inputs_unchanged':inputs==after,
+        'python':sys.version,'environment':{k:os.environ[k] for k in ['HIGHGRADE_CHROME','HIGHGRADE_UI_CANDIDATE','HIGHGRADE_UI_SOURCE_SHA','HIGHGRADE_UI_VERSION','HIGHGRADE_OLD_SOURCE','HIGHGRADE_OLD_EXE','HIGHGRADE_OLD_SOURCE_SHA','HIGHGRADE_OLD_VERSION','HIGHGRADE_UI_REQUIRED','HIGHGRADE_UI_REPORT'] if k in os.environ}}
+(LOCAL/name).write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
+try:
+ value=json.loads(r.stdout)
+ result={k:value[k] for k in ['status','conclusion','headSha','url'] if k in value} if isinstance(value,dict) else value
+except json.JSONDecodeError:result={'tail':(r.stdout+r.stderr)[-1400:]}
+print(json.dumps({'record':str((LOCAL/name).relative_to(ROOT)),'exit_code':r.returncode,'result':result},ensure_ascii=False),flush=True)
+sys.exit(r.returncode)

@@ -2,14 +2,13 @@ use crate::{Report, Result, hash, install, paths, read_json};
 use serde_json::{Value, json};
 use std::{
     collections::BTreeMap,
-    fs::{self, File},
+    fs::{self, File, OpenOptions},
+    io::Write,
     path::Path,
     process::{Command, Stdio},
     thread,
     time::{Duration, Instant},
 };
-#[cfg(windows)]
-use std::{fs::OpenOptions, io::Write};
 
 const ACTIVE: &str = ".highgrade/active.json";
 const LOCK: &str = ".highgrade/install.lock";
@@ -476,7 +475,15 @@ pub(crate) fn replace_active(dest: &Path, new_data: &[u8]) -> Result<()> {
 #[cfg(not(windows))]
 pub(crate) fn replace_active(dest: &Path, new_data: &[u8]) -> Result<()> {
     let temp = dest.with_extension("next");
-    fs::write(&temp, new_data).map_err(|e| e.to_string())?;
+    // A fixed temporary name can already belong to the user or be a link.
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&temp)
+        .map_err(|e| e.to_string())?;
+    file.write_all(new_data).map_err(|e| e.to_string())?;
+    file.sync_all().map_err(|e| e.to_string())?;
+    drop(file);
     fs::rename(temp, dest).map_err(|e| e.to_string())
 }
 pub fn update(

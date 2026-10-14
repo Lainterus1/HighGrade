@@ -24,13 +24,16 @@ impl Drop for Server {
 }
 impl Server {
     fn start(root: &Path, explicit: bool) -> Self {
+        Self::start_with_open(root, explicit, false)
+    }
+    fn start_with_open(root: &Path, explicit: bool, open: bool) -> Self {
         let mut cmd = Command::new(env!("CARGO_BIN_EXE_highgrade"));
         cmd.arg("ui")
-            .args(["--no-open", "true"])
+            .args(["--no-open", if open { "false" } else { "true" }])
             .current_dir(root)
             .env("PATH", "")
             .stdout(Stdio::piped())
-            .stderr(Stdio::null());
+            .stderr(Stdio::piped());
         if explicit {
             cmd.arg("--root").arg(root);
         }
@@ -227,90 +230,145 @@ fn isolated_servers_share_cli_cas_and_run_without_node() {
 // highgrade: HG-0053-S3
 #[test]
 fn hostile_origins_tokens_paths_and_extra_fields_never_mutate() {
-    let p = TestDir::new("hg-http-security-");
+    let fixture = TestDir::new("hg-http-security-");
+    let p = fixture.join("project");
+    fs::create_dir(&p).unwrap();
     create(&p);
-    fs::write(p.join("outside.txt"), "control").unwrap();
+    let outside = fixture.join("outside.txt");
+    let private_bytes = "CLEAR_PRIVATE_OUTSIDE_SENTINEL";
+    fs::write(&outside, private_bytes).unwrap();
     let mut s = Server::start(&p, true);
     let before = sha(&p);
-    assert_eq!(
-        s.http("GET", "/api/session", None, &[("Host", "attacker.example")])
-            .0,
-        403
+    let forbidden = |method, path, body, headers: &[(&str, &str)]| {
+        let (status, response) = s.http(method, path, body, headers);
+        assert_eq!(status, 403);
+        assert!(
+            !response.contains(&s.token),
+            "error body must not leak session token"
+        );
+        assert!(
+            !response.contains(private_bytes),
+            "outside bytes must not leak"
+        );
+    };
+    forbidden("GET", "/api/session", None, &[("Host", "attacker.example")]);
+    forbidden(
+        "GET",
+        "/api/session",
+        None,
+        &[("Origin", "https://attacker.example")],
     );
-    assert_eq!(
-        s.http(
-            "GET",
-            "/api/session",
-            None,
-            &[("Origin", "https://attacker.example")]
-        )
-        .0,
-        403
+    forbidden(
+        "GET",
+        "/api/session",
+        None,
+        &[("Sec-Fetch-Site", "cross-site")],
     );
-    assert_eq!(
-        s.http(
-            "GET",
-            "/api/session",
-            None,
-            &[("Sec-Fetch-Site", "cross-site")]
-        )
-        .0,
-        403
-    );
+    let origin = format!("http://{}", s.host);
     let body = json!({"expected":before,"input":{"goal":"bad"}});
-    assert_eq!(
-        s.http(
-            "POST",
-            "/api/specs/HG-0001/edit",
-            Some(body.clone()),
-            &[("Origin", &format!("http://{}", s.host))]
-        )
-        .0,
-        403
+    forbidden(
+        "POST",
+        "/api/specs/HG-0001/edit",
+        Some(body.clone()),
+        &[("Origin", &origin)],
     );
-    assert_eq!(
-        s.http(
-            "POST",
-            "/api/specs/HG-0001/edit",
-            Some(body),
-            &[
-                ("Origin", "https://attacker.example"),
-                ("X-HighGrade-Token", &s.token)
-            ]
-        )
-        .0,
-        403
+    forbidden(
+        "POST",
+        "/api/specs/HG-0001/edit",
+        Some(body.clone()),
+        &[("Origin", &origin), ("X-HighGrade-Token", "wrong-token")],
     );
-    assert_ne!(
-        s.post(
+    forbidden(
+        "POST",
+        "/api/specs/HG-0001/edit",
+        Some(body),
+        &[
+            ("Origin", "https://attacker.example"),
+            ("X-HighGrade-Token", &s.token),
+        ],
+    );
+    for path in [
+        "/../outside.txt",
+        "/%2e%2e/outside.txt",
+        "/..%2Foutside.txt",
+    ] {
+        let (status, response) = s.http("GET", path, None, &[]);
+        assert_ne!(status, 200, "outside path must be rejected");
+        assert!(
+            !response.contains(private_bytes),
+            "outside bytes must not leak"
+        );
+        assert!(
+            !response.contains(&s.token),
+            "error body must not leak session token"
+        );
+    }
+    for (path, body) in [
+        (
             "/api/specs/..%2Foutside.txt/edit",
-            json!({"expected":before,"input":{"goal":"bad"}})
-        )
-        .0,
-        200
-    );
-    assert_ne!(
-        s.post(
+            json!({"expected":before,"input":{"goal":"bad"}}),
+        ),
+        (
             "/api/specs/HG-0001/run",
-            json!({"expected":before,"input":{}})
-        )
-        .0,
-        200
-    );
-    assert_ne!(
-        s.post(
+            json!({"expected":before,"input":{}}),
+        ),
+        (
             "/api/specs/HG-0001/edit",
-            json!({"expected":before,"input":{},"root":".."})
-        )
-        .0,
-        200
-    );
+            json!({"expected":before,"input":{},"root":".."}),
+        ),
+    ] {
+        let (status, response) = s.post(path, body);
+        assert_ne!(status, 200);
+        assert!(
+            !response.contains(&s.token),
+            "error body must not leak session token"
+        );
+        assert!(
+            !response.contains(private_bytes),
+            "outside bytes must not leak"
+        );
+    }
     assert_eq!(sha(&p), before);
-    assert_eq!(
-        fs::read_to_string(p.join("outside.txt")).unwrap(),
-        "control"
-    );
+    assert_eq!(fs::read_to_string(outside).unwrap(), private_bytes);
     s.stop();
+}
+// Additional Unix browser-failure coverage for HG-0053-S2, outside automatic trace.
+#[cfg(unix)]
+#[test]
+fn browser_spawn_failure_keeps_url_and_server_usable_without_node() {
+    let p = TestDir::new("hg-http-browser-failure-");
+    create(&p);
+    let before = sha(&p);
+    let mut server = Server::start_with_open(&p, true, true);
+    let mut diagnostic = String::new();
+    let stderr = server.child.stderr.take().unwrap();
+    let (sender, receiver) = std::sync::mpsc::channel();
+    let reader = std::thread::spawn(move || {
+        let mut line = String::new();
+        let result = BufReader::new(stderr).read_line(&mut line);
+        let _ = sender.send((result, line));
+    });
+    let (read, line) = receiver
+        .recv_timeout(Duration::from_secs(2))
+        .expect("browser failure diagnostic must arrive within two seconds");
+    read.unwrap();
+    diagnostic.push_str(&line);
+    reader.join().unwrap();
+    assert!(
+        diagnostic.contains("Браузер не открыт"),
+        "browser failure must be reported: {diagnostic}"
+    );
+    assert!(
+        diagnostic.contains(&format!("http://{}", server.host)),
+        "manual URL must remain available: {diagnostic}"
+    );
+    assert!(
+        !diagnostic.contains(&server.token),
+        "diagnostic must not leak token"
+    );
+    assert_eq!(server.http("GET", "/", None, &[]).0, 200);
+    server.stop();
+    assert_eq!(sha(&p), before);
 }
 // highgrade: HG-0053-S5
 #[test]

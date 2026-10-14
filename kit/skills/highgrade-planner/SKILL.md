@@ -9,7 +9,7 @@ Profile comes from `<profile>/.agents/skills/highgrade-planner/SKILL.md`; projec
 
 <a id="зависимая-работа-под-goal"></a>
 
-# Dependent work under one Goal
+# Coordinate dependent work
 
 Planner coordinates sequential work; requirements and tasks remain in their primary sources. Use it when explicitly called or when an accepted project rule assigns it to a dependent chain: technical stages, one specification's tasks or related specifications. File count, complexity or independent tasks alone do not trigger it. Apply route selection (`procedures/task.md#choose-a-sufficient-route` in the active release): requirements through spec, implementation and checks through work. A plan-only request limits the result to a plan.
 
@@ -21,7 +21,7 @@ Clear (`procedures/clear.md#scope-and-plan` in the active release) assigns Plann
 
 Identify the final result, scope, criteria and actual dependencies. Locate relevant changes through `spec-list`. Read needed `spec-read` and current requirements, including short dependencies. A tag or link does not establish completeness. If a material outcome is unknown, clarify it through task before creating a Goal.
 
-Creating a Goal requires an explicit user request for a Goal or an explicit Planner call to execute a chain. Automatic routing alone does not authorize it. Read the current Goal first. Continue a matching unfinished Goal; do not replace a different one. On conflict, finish independent preparation and clarify only the occupied Goal decision. If the tool is unavailable or creation is rejected, report the actual status; do not write fictitious state. If the request requires a Goal, dependent work waits for it. Otherwise use an ordinary plan within authority. Plan mode and plan-only requests authorize neither a Goal nor edits.
+Creating or continuing a Goal requires the user's explicit choice of Goal mode. A direct Planner call to execute a chain, automatic routing and accepted project routing alone do not supply that choice. Reuse an already known choice without asking again. Before dependent execution, state whether this chain uses a real Goal or an ordinary plan. Read the current Goal when Goal mode is assigned. Continue a matching unfinished Goal; do not replace a different one. On conflict, finish independent preparation and clarify only the occupied Goal decision. If the tool is unavailable or creation is rejected, report the actual status; do not write fictitious state. If the request requires a Goal, dependent work waits for it with one concrete Next. Otherwise use an ordinary plan within authority. Plan mode and plan-only requests do not themselves authorize a Goal or implementation. A separate explicit Goal choice may assign a Goal limited to preparing the plan; it does not permit implementation or override mode restrictions.
 
 With authority, create **one Goal for the entire chain** before dependent execution. Describe the final result, short stages, verifiable completion condition, scope and blocking condition. Link the primary source and continuation state. Do not assign a token budget without an explicit user number. A new stage does not create a new Goal. Follow actual tool conditions for pause, blocked and complete.
 

@@ -1,0 +1,29 @@
+{
+  "run": "target/highgrade/runs/clear-scenarios-closure-b7072670ba024cb392b5ddaef5109f40",
+  "manifest": "docs/evidence/objects/66d50cba3029e6fa0040ec947caa1e0af2faac123fd416fd3224d16d0f313db8.json",
+  "argv": [
+    "python",
+    "scripts/evidence_store.py",
+    "finish",
+    "--run",
+    "target/highgrade/runs/clear-scenarios-closure-b7072670ba024cb392b5ddaef5109f40",
+    "--file",
+    "nextest/attempt.json",
+    "--file",
+    "nextest/completion.json",
+    "--file",
+    "nextest/junit.xml",
+    "--file",
+    "nextest/list.json",
+    "--file",
+    "nextest/run.json",
+    "--file",
+    "nextest/trace.json",
+    "--file",
+    "run.log"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"applied\", \"before_mib\": 1448.58, \"after_mib\": 1448.31, \"removed_count\": 1, \"eligible_count\": 1, \"retained_count\": 6, \"removed\": [\"target/highgrade/runs/clear-scenarios-closure-b7072670ba024cb392b5ddaef5109f40\"], \"eligible\": [\"target/highgrade/runs/clear-scenarios-closure-b7072670ba024cb392b5ddaef5109f40\"], \"retained\": [{\"path\": \"target/highgrade/runs/node-9779e7abee2b410ebcbda5f8b1a2d011\", \"reason\": \"unexported or interrupted run\"}, {\"path\": \"target/highgrade/runs/python-5c13146add2440e19622c4fcfa1cdb89\", \"reason\": \"active owner\"}, {\"path\": \"target/highgrade/runs/python-c1416fc6460842a88bd5efd65e83db69\", \"reason\": \"active owner\"}, {\"path\": \"target/highgrade/runs/python-c9374f5b8ecc4711b5caee66d1dd160d\", \"reason\": \"active owner\"}, {\"path\": \"target/highgrade/runs/rust-51cefeccd6b548a998a23a46a4eb4f31\", \"reason\": \"unexported or interrupted run\"}, {\"path\": \"target/highgrade/runs/scenarios-7a25d7a71f364abdb249fd503470e43a\", \"reason\": \"active owner\"}], \"detail\": \"first 10 per group; plain invocation shows inventory\"}\n{\"manifest\": \"docs/evidence/objects/66d50cba3029e6fa0040ec947caa1e0af2faac123fd416fd3224d16d0f313db8.json\"}\n",
+  "stderr": "",
+  "source_removed": true
+}

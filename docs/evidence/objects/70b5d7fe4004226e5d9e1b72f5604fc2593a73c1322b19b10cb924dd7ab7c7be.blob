@@ -1,0 +1,11 @@
+# Независимое ревью адресных исправлений
+
+Новых блокирующих замечаний в прочитанном diff нет. Подтверждённый Unix `.next` clobber устранён через `create_new`, `write_all`, `sync_all` и последующий rename. Исходный RED действительно содержит четыре assertion failures: regular file/symlink для pointer/router. Исправленный exact selector дал 1 PASS, 0 ignored. Это отдельная Unix coverage HG27S1/S2, без выдуманного Windows automatic PASS.
+
+Doctor test теперь наблюдает отсутствие marker после диагностики и его появление после настоящего `spec-run`. Transfer test сохраняет exact store, legacy source и requirement bytes до каждого вызова и сравнивает их после каждого failed refusal. Эти изменения закрывают два найденных observation gaps.
+
+Текущие HG63R1S4/S5 соответствуют действующим optional external ID правилам. Exact snapshots, текущая readiness и явное человеческое решение обязательны. Уточнение HG20R1 допускает отдельно назначенный Goal только для подготовки плана; оно не разрешает реализацию. Автоматический Planner/анализ сами не создают Goal.
+
+Старые archived check definitions защищены корректно. Их нельзя менять обходом ArchivedChange. Свежие actual runs и дополнительное evidence с расширенными причинными входами можно записать отдельно с сохранением истории.
+
+Финальный GO ожидает общего отчёта и causal freshness. Исходные red/green JSON содержат command/exit/time, но не полный pre-run source snapshot. Хеши текущего ревью не превращаются в такой снимок задним числом. Источники, каталог и исходные отчёты reviewer не менял; новых запусков не выполнял.

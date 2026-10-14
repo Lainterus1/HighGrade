@@ -41,7 +41,7 @@ Read this method when [Clear](../procedures/clear.md) selects test maintenance. 
 
 ### Select the checks
 
-Map current requirements to executed behavior, assertions, fixtures, selectors, configuration and important dependencies. Separate unsupported or retired expectations from current contracts. Do not update snapshots or weaken assertions merely to obtain a green result. Use Spec for a changed normative outcome; a faulty test may be corrected under its existing contract.
+Read and audit every current requirement tied to selected tests, including unchanged contracts. Map it to executed behavior, assertions, fixtures, selectors, configuration and important dependencies. Check its meaning against project goals and related normative sources. Extract required methods before baseline execution, including required before/after observations. IDs, valid links and green tests prove neither meaning nor currency. Locate the owner of unlinked tests or record a contract gap; absence of a spec link does not make a test obsolete. Separate unsupported or retired expectations from current contracts. Do not update snapshots or weaken assertions merely to obtain a green result. Use Spec for a changed normative outcome; a faulty test may be corrected under its existing contract.
 
 For each important outcome, identify a material violation the test must detect. Derive the expected result independently from the contract. Check observable results and required side effects, including unchanged data after rejection. Mocks must not replace the behavior being assessed. Consider missing negative/boundary cases, fixture drift, skipped tests and dependence on previous tests or external state.
 
@@ -52,6 +52,8 @@ Choose further methods for a concrete risk: branch coverage to locate unexercise
 ### Mutation checks
 
 Before mutations, record selected important implementation areas, intended violations, baseline command and execution limits. Select by consequence, changed behavior and suspected weak assertions. Account for important areas outside the selection with a reason or explicit gap. Use a suitable project tool or controlled edits in an isolated copy. Never mutate live project data or leave a deliberate defect in working sources. Follow project commands and environment rules; choosing this method does not authorize external services or a global installation.
+
+For compatible cases, use the project's mutation tool or supplied [batch helper](clear-batches.md). Share baseline/final only for unchanged causal inputs; restore exact bytes after each mutation. Changed or unknown inputs require affected checks again. Optional parallel workers need separate sources, caches, reports and resources within budget; catalog writes stay serial. Read summaries first. Preserve necessary original reports and one shared snapshot through project storage; verify inputs and originals before reuse. Unknown never becomes PASS.
 
 1. Execute a suitable baseline on the selected inputs. Confirm the intended tests ran and passed. If the baseline is faulty or unexecuted, resolve or record it before assessing mutation sensitivity.
 2. Change one behavior in the isolated subject so it violates the agreed outcome. Mutate implementation, not the expected result or a test assertion. Preserve the original inputs and mutation diff.

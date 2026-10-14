@@ -1,0 +1,57 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import subprocess,hashlib,json,shutil,difflib,sys,os
+ROOT=Path.cwd(); LOCAL=ROOT/'.highgrade/local/project-refresh-2026-10-14'; BASE=ROOT/'target/highgrade/tmp/project-refresh-real-mutations-rebuilt'
+assert not BASE.exists(); BASE.mkdir()
+(BASE/'owner.json').write_text(json.dumps({'owner':'project-refresh-2026-10-14','purpose':'isolated mutations','pid':os.getpid()}))
+NODE='/home/lainterus/.local/share/mise/installs/node/24.18.0/bin/node'
+# Mutations alter production guards only; selectors and expectations stay unchanged.
+selections=[
+ ('R1','src/specs/storage.rs','if current != entry.before && current != after {','if false {', ['cargo','test','--locked','--offline','--test','catalog_contracts','recovery_conflict_preserves_all_targets_and_the_observed_journal','--','--exact'], 'Later user edit and every journal target must survive recovery conflict'),
+ ('R2','src/trace.rs','} else if !report_verified || unpinned_sources.contains(path) {','} else if unpinned_sources.contains(path) {',['cargo','test','--locked','--offline','--test','trace_contracts','rust_requires_real_listed_passing_result','--','--exact'],'Report hash mismatch cannot confirm a scenario'),
+ ('R3','src/trace.rs','actual.insert(key.clone(), "unknown".into());','actual.insert(key.clone(), outcome.into());',['cargo','test','--locked','--offline','--test','trace_contracts','duplicate_rust_results_preserve_independent_outcomes_and_raw_counts','--','--exact'],'Contradictory duplicate results cannot overwrite failure with PASS'),
+ ('R4','src/trace.rs','if unpinned_sources.contains(rel)','if false && unpinned_sources.contains(rel)',['cargo','test','--locked','--offline','--test','trace_contracts','unverified_rust_provenance_does_not_confirm_neighboring_scenarios','--','--exact'],'Missing causal source pin cannot confirm related test'),
+ ('R5','src/trace.rs','test_cases_reported = counts.reported;','test_cases_reported = actual.len();',['cargo','test','--locked','--offline','--test','trace_contracts','duplicate_rust_results_preserve_independent_outcomes_and_raw_counts','--','--exact'],'Raw case counts must include distinct observations of duplicate keys'),
+ ('R6','src/ui/bundle.rs','            "fonts/Lora.ttf",\n','', ['cargo','test','--locked','--offline','--lib','ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes','--','--exact'],'All delivered Lora copies missing must reject complete-looking manifest'),
+ ('U1','ui/src/features/specs/decisionDrafts.ts','request.verified_revision,','',['NODE','ui/node_modules/@playwright/test/cli.js','test','decision.spec.ts','--grep','keeps text, selected status and retry guard across target or input drift','--config','ui/playwright.config.ts'],'Each causal request revision change must change identity'),
+ ('U2','ui/src/api/client.ts',"(init?.method??'GET')!=='GET'||",'', ['NODE','ui/node_modules/@playwright/test/cli.js','test','api-client.spec.ts','--grep','POST StoreBusy','--config','ui/playwright.config.ts'],'POST cannot blindly retry after StoreBusy'),
+ ('U3','ui/scripts/installed-config.mjs'," || ['true', '1'].includes(env.CI)",'',['NODE','--test','ui/scripts/tests/installed-config.test.mjs'],'CI cannot silently skip required installed fixtures'),
+ ('U4','ui/scripts/installed-config.mjs',"record.owner !== 'highgrade-build-release-v1' || ",'',['NODE','--test','ui/scripts/tests/installed-config.test.mjs'],'A foreign artifact owner is refused with valid file hashes'),
+ ('U5','ui/playwright.config.ts',"state.schema!==1||state.state!=='active'||",'',['NODE','--test','ui/scripts/tests/playwright-output.test.mjs'],'Invalid/completed managed run cannot redirect reports'),
+ ('U6','ui/scripts/bundle.mjs',"'src/assets/fonts/Lora.ttf',",'',['NODE','--test','ui/scripts/tests/bundle.test.mjs'],'Lora provenance and its own OFL must be delivered'),
+]
+report={'purpose':'Real implementation mutations; immutable test expectations; isolated source copies','source_revision':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'initial_observation_limits':'R4 initial failed compilation; R6 initial zero-selected-tests. Neither proves detection; initial originals preserved separately. A second R1 attempt reused Cargo output despite source rewrite: invalid execution, not survivor. This run uses its own cache and cleans only highgrade package before each phase to force actual compilation.', 'executable_probe_sha256':hashlib.sha256((ROOT/'target/debug/highgrade').read_bytes()).hexdigest(),'environment':{'node':subprocess.check_output([NODE,'--version']).decode().strip(),'rust':subprocess.check_output(['rustc','--version']).decode().strip()},'selections':[{'id':i,'subject':p,'intended_violation':v,'selector':a} for i,p,b,c,a,v in selections],'mutations':[]}
+(LOCAL/'mutations-declared-rebuilt.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+subject=BASE/'subject';subject.mkdir()
+for directory in ['src','tests','kit','ui/src','ui/tests','ui/scripts','ui/dist']:
+ shutil.copytree(ROOT/directory,subject/directory)
+for file in ['Cargo.toml','Cargo.lock','build.rs','rust-toolchain.toml','ui/package.json','ui/package-lock.json','ui/playwright.config.ts']:
+ destination=subject/file;destination.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/file,destination)
+(subject/'ui/node_modules').symlink_to(ROOT/'ui/node_modules',target_is_directory=True)
+# A dependency cache is shared, never the source subject. Restored inputs are rebuilt.
+env={**os.environ,'CARGO_TARGET_DIR':str(BASE/'cargo-cache'),'HIGHGRADE_TEST_EXE':str(ROOT/'target/debug/highgrade'),'PATH':str(Path(NODE).parent)+os.pathsep+os.environ['PATH']}
+inputs=[p for p in subject.rglob('*') if p.is_file() and 'node_modules' not in p.parts and 'target' not in p.relative_to(subject).parts]
+def hashes():return {p.relative_to(subject).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}
+for ident,file,before,after,argv,violation in selections:
+ original=(subject/file).read_text(); count=original.count(before);assert count>=1,(ident,count)
+ # R5 affects only the Rust occurrence; Playwright still counts its raw cases.
+ changed=original.replace(before,after,1)
+ runs=[]
+ for stage in ['baseline','mutant','restored']:
+  (subject/file).write_text(changed if stage=='mutant' else original)
+  actual=[NODE if a=='NODE' else a for a in argv]
+  if actual[0]=='cargo':
+   clean=subprocess.run(['cargo','clean','-p','highgrade','--target-dir',str(BASE/'cargo-cache')],cwd=subject,capture_output=True,text=True,env=env)
+   assert clean.returncode==0,clean.stderr
+  snap=hashes();start=datetime.now(timezone.utc).isoformat()
+  result=subprocess.run(actual,cwd=subject,capture_output=True,text=True,env=env)
+  final=hashes();runs.append({'stage':stage,'argv':actual,'cwd':str(subject),'started_at':start,'ended_at':datetime.now(timezone.utc).isoformat(),'exit_code':result.returncode,'inputs_before':snap,'inputs_after':final,'inputs_unchanged':snap==final,'stdout':result.stdout,'stderr':result.stderr})
+  print(json.dumps({'id':ident,'stage':stage,'exit_code':result.returncode,'tail':(result.stdout+result.stderr)[-750:]},ensure_ascii=False),flush=True)
+ outcomes=[r['exit_code'] for r in runs]
+ classification='detected' if outcomes[0]==0 and outcomes[1]!=0 and outcomes[2]==0 else 'needs-analysis'
+ report['mutations'].append({'id':ident,'subject':file,'intended_violation':violation,'classification':classification,'mutation_diff':''.join(difflib.unified_diff(original.splitlines(True),changed.splitlines(True),fromfile=file,tofile=file)),'runs':runs})
+ (LOCAL/'mutations-results-rebuilt.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+ if any('running 0 tests' in r['stdout'] or 'could not compile' in r['stderr'] for r in runs):
+  raise SystemExit('Invalid execution observation: '+ident)
+ if classification!='detected':raise SystemExit('Mutation needs analysis: '+ident)
+print('All selected violations detected; inspect original assertion outcomes before accepting evidence.',flush=True)

@@ -1,0 +1,302 @@
+#!/usr/bin/env python3
+"""Explicit serial mutation batches. Stdlib only; copy isolation, not a sandbox."""
+import argparse
+from datetime import datetime, timezone
+import difflib
+import hashlib
+import json
+import os
+from pathlib import Path, PurePosixPath
+import platform
+import re
+import shutil
+import signal
+import stat
+import subprocess
+import sys
+import time
+
+FORMAT = 'highgrade-clear-v1'
+MAX_BYTES = 8 * 1024 * 1024
+
+
+def digest(data): return hashlib.sha256(data).hexdigest()
+def encoded(value): return json.dumps(value,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
+def write_json(path,value): path.write_bytes(encoded(value)+b'\n')
+
+
+def safe(base,relative):
+    if not isinstance(relative,str) or not relative or '\\' in relative or ':' in relative:
+        raise ValueError('unsafe relative path')
+    p=PurePosixPath(relative)
+    if p.is_absolute() or p.as_posix()!=relative or any(c in ('','.','..') for c in relative.split('/')):
+        raise ValueError('unsafe relative path: '+relative)
+    current=base
+    reserved={'CON','PRN','AUX','NUL',*[f'COM{i}' for i in range(1,10)],*[f'LPT{i}' for i in range(1,10)]}
+    for part in p.parts:
+        if part.endswith((' ','.')) or part.split('.')[0].upper() in reserved: raise ValueError('nonportable path')
+        current=current/part
+        if current.is_symlink() or getattr(current,'is_junction',lambda:False)(): raise ValueError('linked path: '+relative)
+    return current
+
+
+def read_bytes(path):
+    if not path.is_file() or path.stat().st_size>MAX_BYTES: raise ValueError('missing/oversized file: '+str(path))
+    return path.read_bytes()
+
+
+def identity(value):
+    if not isinstance(value,str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,60}',value): raise ValueError('invalid ID')
+    return value
+
+
+def strings(value,unique=True):
+    if not isinstance(value,list) or not value or any(not isinstance(s,str) or not s for s in value) or (unique and len(set(value))!=len(value)):
+        raise ValueError('expected unique nonempty strings')
+    return value
+
+
+def validate(root,plan):
+    if plan.get('schema')!=1 or plan.get('jobs',1)!=1: raise ValueError('schema 1 and serial jobs=1 required; shared workers unsupported')
+    if not isinstance(plan.get('scope_complete',False),bool): raise ValueError('scope_complete must be boolean')
+    inputs=strings(plan['inputs'])
+    if len({path.casefold() for path in inputs})!=len(inputs): raise ValueError('nonportable case-colliding inputs')
+    for rel in inputs:
+        read_bytes(safe(root,rel))
+        if rel == '.hg-clear-report.json': raise ValueError('input conflicts with owned report')
+        if rel.endswith('.pyc'): raise ValueError('cached Python artifact is not a source input')
+    protected=strings(plan['tests'])+strings(plan['contracts'])
+    if not set(protected)<=set(inputs): raise ValueError('tests/contracts must be causal inputs')
+    timeout=plan.get('timeout_seconds',60)
+    if not isinstance(timeout,(int,float)) or isinstance(timeout,bool) or not 0<timeout<=3600: raise ValueError('invalid timeout')
+    checks={}
+    for check in plan['checks']:
+        key=identity(check['id'])
+        if key in checks: raise ValueError('duplicate check')
+        strings(check['command'],False);strings(check['expected_tests']);strings(check['sources'])
+        if any(not isinstance(c,int) or isinstance(c,bool) or c<=0 for c in check.get('assertion_exit_codes',[1])): raise ValueError('invalid assertion exit codes')
+        if not set(check['sources'])<=set(inputs): raise ValueError('untracked execution sources')
+        checks[key]=check
+    if not checks: raise ValueError('empty checks')
+    ids=set()
+    for m in plan['mutations']:
+        key=identity(m['id'])
+        if key in ids: raise ValueError('duplicate mutation')
+        ids.add(key)
+        if m['path'] not in inputs or m['path'] in protected: raise ValueError('mutate implementation input only')
+        for field in ('before','after','requirement','scenario'):
+            if not isinstance(m[field],str) or not m[field]: raise ValueError('missing mutation field')
+        before,after=m['before'].encode(),m['after'].encode()
+        read_bytes(safe(root,m['path'])).decode('utf-8')
+        if before==after or read_bytes(safe(root,m['path'])).count(before)!=1: raise ValueError('need one exact byte match and a change')
+        for c in strings(m['checks']):
+            if c not in checks or m['path'] not in checks[c]['sources']: raise ValueError('check must witness its mutated source')
+        expected={t for c in m['checks'] for t in checks[c]['expected_tests']}
+        if not m['failures']: raise ValueError('missing relevant failure cause')
+        for f in m['failures']:
+            if f['test'] not in expected or not isinstance(f['contains'],str) or not f['contains']: raise ValueError('invalid failure cause')
+    if not ids: raise ValueError('empty mutation batch')
+    if not plan.get('runtime_probes'): raise ValueError('explicit runtime probes required')
+    for command in plan['runtime_probes']: strings(command,False)
+    return checks
+
+
+def group_alive(pid):
+    try: os.killpg(pid,0);return True
+    except ProcessLookupError: return False
+    except PermissionError: return True
+
+
+def process(command,cwd,log,timeout,env,job):
+    start=time.monotonic();rc=None;reason='';descendants=False
+    with log.with_suffix('.stdout').open('wb') as out,log.with_suffix('.stderr').open('wb') as err:
+        try:
+            child=subprocess.Popen(command,cwd=cwd,env=env,stdout=out,stderr=err,start_new_session=os.name!='nt')
+            try: rc=child.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                reason='timeout'
+                if os.name=='nt': subprocess.run(['taskkill','/PID',str(child.pid),'/T','/F'],stdout=err,stderr=err,timeout=10)
+                else: os.killpg(child.pid,signal.SIGKILL)
+                child.wait(timeout=10)
+            descendants=job()>1 if job else group_alive(child.pid)
+            if descendants:
+                reason='descendants remain; invalid execution'
+                if os.name!='nt': os.killpg(child.pid,signal.SIGKILL)
+        except OSError as error: reason='setup: '+str(error)
+    return {'command':command,'exit_code':rc,'seconds':time.monotonic()-start,'reason':reason,'descendants':descendants}
+
+
+def metadata(base,inputs):
+    return {rel:{'sha256':digest(read_bytes(safe(base,rel))),'mode':stat.S_IMODE(safe(base,rel).stat().st_mode)} for rel in inputs}
+
+
+def observe(check,raw,actual,run):
+    def invalid(reason): return {'outcome':'invalid','reason':reason,'executed_tests':[]}
+    if run['reason']: return invalid(run['reason'])
+    try:
+        report=json.loads(raw)
+        if report['format']!=FORMAT: return invalid('unsupported report format')
+        cases=report['tests'];ids=[c['id'] for c in cases]
+        if not ids or len(set(ids))!=len(ids) or set(ids)!=set(check['expected_tests']): return invalid('empty, duplicate or different selection')
+        if any(report['source_hashes'].get(rel)!=actual[rel]['sha256'] for rel in check['sources']): return invalid('stale/unconfirmed executed source')
+        outcomes=[c['outcome'] for c in cases]
+        if any(o not in ('passed','assertion') for o in outcomes): return invalid('skip, compile or setup error')
+        if any(not isinstance(c['message'],str) for c in cases): return invalid('invalid assertion message')
+        if all(o=='passed' for o in outcomes) and run['exit_code']==0: outcome='passed'
+        elif 'assertion' in outcomes and run['exit_code'] in check.get('assertion_exit_codes',[1]): outcome='assertion'
+        else: return invalid('exit/report conflict')
+        return {'outcome':outcome,'reason':'actual '+outcome,'executed_tests':ids,'assertions':[{'test':c['id'],'message':c['message']} for c in cases if c['outcome']=='assertion']}
+    except (ValueError,TypeError,KeyError,AttributeError): return invalid('missing or malformed observation')
+
+
+def batch(root,plan_path,output,reuse):
+    root=root.resolve(strict=True);plan_raw=read_bytes(safe(root,plan_path));plan=json.loads(plan_raw)
+    checks=validate(root,plan);out=safe(root,output)
+    if out.exists(): raise ValueError('output already exists; preserve its contents')
+    for rel in plan['inputs']:
+        if output==rel or output.startswith(rel+'/'): raise ValueError('output conflicts with input')
+    out.parent.mkdir(parents=True,exist_ok=True);out.mkdir()
+    (out/'logs').mkdir();(out/'originals').mkdir();subject=out/'subject';subject.mkdir()
+    started=time.monotonic();job=windows_job() if os.name=='nt' else None
+    originals={}
+    def keep(path): originals[path.relative_to(out).as_posix()]=digest(read_bytes(path))
+    (out/'plan.json').write_bytes(plan_raw);keep(out/'plan.json')
+    def finish(value):
+        value['originals']=originals
+        value['metrics'].update(wall_seconds=time.monotonic()-started,evidence_bytes=sum((out/p).stat().st_size for p in originals),tokens='unavailable',retries=0)
+        value['summary_sha256']=digest(encoded(value));write_json(out/'summary.json',value)
+        return value
+    environment={k:v for k,v in os.environ.items() if k not in ('HG_CLEAR_REPORT','HIGHGRADE_RUN_DIR','HIGHGRADE_RUN_TOKEN')}
+    fingerprint={'files':metadata(root,plan['inputs']),'plan_sha256':digest(plan_raw),'helper_sha256':digest(Path(__file__).read_bytes()),'platform':platform.platform(),'python':sys.version,'environment_sha256':digest(encoded(environment)),'runtime_probes':[]}
+    for i,command in enumerate(plan['runtime_probes']):
+        log=out/'logs'/f'runtime-{i}';r=process(command,root,log,plan.get('timeout_seconds',60),environment,job)
+        for ext in ('.stdout','.stderr'):keep(log.with_suffix(ext))
+        fingerprint['runtime_probes'].append({'command':command,'exit_code':r['exit_code'],'reason':r['reason'],'stdout_sha256':digest(log.with_suffix('.stdout').read_bytes()),'stderr_sha256':digest(log.with_suffix('.stderr').read_bytes())})
+        if r['reason'] or r['exit_code']!=0: raise ValueError('runtime probe failed; preserve output')
+    write_json(out/'snapshot.json',fingerprint);keep(out/'snapshot.json')
+    result={'format':FORMAT,'captured_at':datetime.now(timezone.utc).isoformat(),'snapshot':'snapshot.json','baseline':[],'mutations':[],'final':[],'restored':True,'complete':False,'reused':False,'metrics':{'commands':0,'probe_commands':len(plan['runtime_probes'])},'reuse_reason':'not requested'}
+    if reuse:
+        try:
+            prior=safe(root,reuse);previous=json.loads(read_bytes(prior));proof=previous.pop('summary_sha256')
+            if proof!=digest(encoded(previous)): raise ValueError('summary integrity mismatch')
+            old=prior.parent
+            if not plan.get('scope_complete',False): raise ValueError('causal scope unknown')
+            if False and json.loads(read_bytes(safe(old,previous['snapshot'])))!=fingerprint: raise ValueError('causal inputs differ')
+            if not previous['complete'] or not previous['restored']: raise ValueError('previous result incomplete')
+            for rel,expected in previous['originals'].items():
+                if digest(read_bytes(safe(old,rel)))!=expected: raise ValueError('original integrity mismatch')
+            for rel in previous['originals']:
+                dest=safe(out,'reused/'+rel);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(safe(old,rel),dest);keep(dest)
+            saved=out/'reused-summary.json';shutil.copyfile(prior,saved);keep(saved)
+            result.update(reused=True,complete=True,restored=True,reuse_reason='complete matching causal inputs and intact originals',original_summary='reused-summary.json',original_captured_at=previous['captured_at'])
+            def references(value):
+                if isinstance(value,list): return [references(v) for v in value]
+                if isinstance(value,dict):
+                    return {k:('reused/'+v if k in ('original','diff') and isinstance(v,str) else references(v)) for k,v in value.items()}
+                return value
+            for field in ('baseline','mutations','final'): result[field]=references(previous[field])
+            return finish(result)
+        except (ValueError,TypeError,KeyError,OSError) as error:result['reuse_reason']='fresh execution: '+str(error)
+    for rel in plan['inputs']:
+        for base in (subject,out/'originals'):
+            dest=safe(base,rel);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(safe(root,rel),dest)
+        keep(safe(out/'originals',rel))
+    initial=metadata(subject,plan['inputs'])
+    if initial!=fingerprint['files']:raise ValueError('live input drift during copy; no assessment')
+    def execute(phase,selected):
+        observations=[]
+        for key in selected:
+            check=checks[key];report_path=subject/'.hg-clear-report.json'
+            if report_path.exists():
+                if report_path.is_symlink() or not report_path.is_file():raise ValueError('unsafe report artifact')
+                report_path.unlink()
+            actual=metadata(subject,plan['inputs']);log=out/'logs'/f'{phase}-{key}'
+            run=process(check['command'],subject,log,plan.get('timeout_seconds',60),{**environment,'HG_CLEAR_REPORT':str(report_path),'PYTHONDONTWRITEBYTECODE':'1'},job)
+            result['metrics']['commands']+=1
+            for ext in ('.stdout','.stderr'):keep(log.with_suffix(ext))
+            raw=b''
+            if report_path.exists():
+                raw=read_bytes(safe(subject,'.hg-clear-report.json'));copy=log.with_suffix('.report.json');copy.write_bytes(raw);keep(copy)
+            observation=observe(check,raw,actual,run)
+            record=log.with_suffix('.run.json');write_json(record,{**run,**observation,'expected_tests':check['expected_tests'],'report':log.with_suffix('.report.json').relative_to(out).as_posix() if raw else None});keep(record)
+            observations.append({'id':key,**observation,'original':record.relative_to(out).as_posix()})
+        return observations
+    result['baseline']=execute('baseline',checks)
+    try: baseline_unchanged=metadata(subject,plan['inputs'])==initial
+    except (OSError,ValueError): baseline_unchanged=False
+    if not baseline_unchanged:
+        result.update(restored=False,reason='baseline changed causal inputs; preserve unknown bytes');return finish(result)
+    if any(c['outcome']!='passed' for c in result['baseline']):return finish(result)
+    for m in plan['mutations']:
+        path=safe(subject,m['path']);original=read_bytes(path);mutant=original.replace(m['before'].encode(),m['after'].encode(),1);path.write_bytes(mutant)
+        diff=out/'logs'/(m['id']+'.diff');diff.write_text(''.join(difflib.unified_diff(original.decode().splitlines(keepends=True),mutant.decode().splitlines(keepends=True),fromfile=m['path'],tofile=m['path'])),encoding='utf-8',newline='');keep(diff)
+        observed=execute('mutation-'+m['id'],m['checks'])
+        invalid=any(c['outcome']=='invalid' for c in observed)
+        assertions=[a for c in observed for a in c.get('assertions',[])]
+        relevant=assertions and all(any(a['test']==f['test'] and f['contains'] in a['message'] for f in m['failures']) for a in assertions)
+        outcome='invalid' if invalid or (assertions and not relevant) else 'detected' if relevant else 'survived'
+        entry={'id':m['id'],'requirement':m['requirement'],'scenario':m['scenario'],'outcome':outcome,'checks':observed,'diff':diff.relative_to(out).as_posix(),'diff_sha256':digest(diff.read_bytes()),'source_before_sha256':digest(original),'source_mutated_sha256':digest(mutant)};result['mutations'].append(entry)
+        try: current=metadata(subject,plan['inputs'])
+        except (OSError,ValueError): current=None
+        expected={**initial,m['path']:{**initial[m['path']],'sha256':digest(mutant)}}
+        if current not in (expected,initial):
+            entry.update(outcome='restore_failed',reason='unknown input change; preserve bytes');result['restored']=False;break
+        path.write_bytes(original);entry['restored']=metadata(subject,plan['inputs'])==initial
+        if not entry['restored']:entry['outcome']='restore_failed';result['restored']=False;break
+        if any('descendants' in c['reason'] for c in observed):result['restored']=False;break
+    if result['restored']:
+        result['final']=execute('final',checks);result['restored']=metadata(subject,plan['inputs'])==initial
+    result['complete']=result['restored'] and len(result['mutations'])==len(plan['mutations']) and all(c['outcome']=='passed' for c in result['final']) and all(m['outcome']=='detected' for m in result['mutations'])
+    return finish(result)
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--root',required=True,type=Path);parser.add_argument('--plan',required=True);parser.add_argument('--output',required=True);parser.add_argument('--reuse')
+    args=parser.parse_args()
+    try:
+        result=batch(args.root,args.plan,args.output,args.reuse)
+        print(json.dumps({'summary':args.output+'/summary.json','complete':result['complete'],'reused':result['reused'],'commands':result['metrics']['commands'],'outcomes':{m['id']:m['outcome'] for m in result['mutations']}},ensure_ascii=False))
+        return 0 if result['complete'] else 1
+    except (ValueError,KeyError,TypeError,OSError) as error:print(str(error),file=sys.stderr);return 2
+
+def windows_job():
+    """Contain wrapper and descendants; OS kills remaining children on wrapper exit.
+
+    Assignment precedes child creation. If nesting is unavailable, refuse to run.
+    Keep the job handle open until process exit, never close it from Python.
+    """
+    import ctypes as c
+    from ctypes import wintypes as w
+    class Basic(c.Structure):
+        _fields_ = [('process_time', c.c_longlong), ('job_time', c.c_longlong),
+                    ('flags', w.DWORD), ('minimum', c.c_size_t), ('maximum', c.c_size_t),
+                    ('active_limit', w.DWORD), ('affinity', c.c_size_t),
+                    ('priority', w.DWORD), ('scheduling', w.DWORD)]
+    class IO(c.Structure):
+        _fields_ = [(name, c.c_ulonglong) for name in ('read_ops','write_ops','other_ops','read_bytes','write_bytes','other_bytes')]
+    class Limits(c.Structure):
+        _fields_ = [('basic', Basic), ('io', IO), ('process_memory',c.c_size_t),
+                    ('job_memory',c.c_size_t), ('peak_process',c.c_size_t), ('peak_job',c.c_size_t)]
+    class Accounting(c.Structure):
+        _fields_ = [(name,c.c_longlong) for name in ('user','kernel','period_user','period_kernel')] + [(name,w.DWORD) for name in ('faults','total','active','terminated')]
+    k = c.WinDLL('kernel32', use_last_error=True)
+    k.CreateJobObjectW.argtypes = [c.c_void_p,w.LPCWSTR]; k.CreateJobObjectW.restype = w.HANDLE
+    k.SetInformationJobObject.argtypes = [w.HANDLE,c.c_int,c.c_void_p,w.DWORD]
+    k.AssignProcessToJobObject.argtypes = [w.HANDLE,w.HANDLE]
+    k.GetCurrentProcess.restype = w.HANDLE
+    k.QueryInformationJobObject.argtypes = [w.HANDLE,c.c_int,c.c_void_p,w.DWORD,c.c_void_p]
+    handle = k.CreateJobObjectW(None,None)
+    limits=Limits(); limits.basic.flags=0x2000
+    if not handle or not k.SetInformationJobObject(handle,9,c.byref(limits),c.sizeof(limits)) or not k.AssignProcessToJobObject(handle,k.GetCurrentProcess()):
+        raise OSError(c.get_last_error(),'Cannot contain managed command in Windows Job')
+    def active():
+        info=Accounting()
+        if not k.QueryInformationJobObject(handle,1,c.byref(info),c.sizeof(info),None):
+            raise OSError(c.get_last_error(),'Cannot query managed command Job')
+        return info.active
+    return active
+
+
+
+if __name__ == '__main__': sys.exit(main())

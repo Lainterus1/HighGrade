@@ -1,0 +1,49 @@
+import {test,expect} from '../../../ui/node_modules/@playwright/test/index.mjs';
+import {fixture} from '../../../ui/tests/native-fixture';
+import {readFileSync} from 'node:fs';
+import path from 'node:path';
+
+test('HG55 R4: selection B finishes before an obsolete background poll A is released',async({page,request},info)=>{
+ const f=fixture();const events:{at:number;kind:string;path?:string;detail?:unknown}[]=[];
+ let release!:()=>void,reached!:()=>void;
+ const gate=new Promise<void>(r=>release=r),started=new Promise<void>(r=>reached=r);
+ let assertionsBeforeRelease=false,subjectStarted=false;
+ page.on('request',r=>{const u=new URL(r.url());if(u.pathname.startsWith('/api/'))events.push({at:Date.now(),kind:'request',path:u.pathname,detail:r.method()})});
+ page.on('response',r=>{const u=new URL(r.url());if(u.pathname.startsWith('/api/'))events.push({at:Date.now(),kind:'response',path:u.pathname,detail:r.status()})});
+ try{
+  const url=await f.start();subjectStarted=true;
+  const served=await(await request.get(url+'/highgrade-ui.json')).json();
+  const dist=JSON.parse(readFileSync(path.resolve('dist/highgrade-ui.json'),'utf8'));
+  expect(served.files,'served native bundle must match current dist').toEqual(dist.files);
+  await info.attach('bundle-identity',{body:JSON.stringify({served:served.source_sha,dist:dist.source_sha,cli_version:served.cli_version,files:served.files},null,2),contentType:'application/json'});
+  await page.goto(url);await expect(page.locator('.document h1')).toHaveText('Спецификация 1');
+  await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeEnabled();
+  await page.getByRole('button',{name:'Все спецификации'}).click();
+  f.edit('HG-0002',{goal:'Unrelated CLI edit causes a newer catalog snapshot'});
+  const before=f.hash();
+  await page.route('**/api/specs/HG-0001',async route=>{
+   events.push({at:Date.now(),kind:'poll_A_held'});reached();await gate;
+   events.push({at:Date.now(),kind:'poll_A_released'});
+   try{await route.fulfill({response:await route.fetch()})}catch(error){events.push({at:Date.now(),kind:'poll_A_route_error',detail:String(error)})}
+  });
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await started;
+  await page.locator('.spec-row').filter({hasText:'HG-0002'}).click();
+  events.push({at:Date.now(),kind:'selected_B'});
+  try{
+   await expect(page.locator('.document h1')).toHaveText('Спецификация 2',{timeout:3500});
+   assertionsBeforeRelease=true;
+   await expect(page.getByRole('alert')).toHaveCount(0);
+  }finally{
+   events.push({at:Date.now(),kind:'dom_before_release',detail:{heading:await page.locator('.document h1').allTextContents(),loading:await page.locator('.loading-notice').allTextContents(),selected:await page.locator('.spec-row[aria-current="true"]').allTextContents(),assertionsBeforeRelease}});
+   await page.screenshot({path:info.outputPath('before-release.png'),fullPage:true});
+   release();
+   await expect(page.locator('.document h1')).toHaveText('Спецификация 2',{timeout:10000});
+   events.push({at:Date.now(),kind:'B_visible_after_release'});
+   expect(f.hash(),'read-only interaction must preserve prepared fixture catalog').toEqual(before);
+  }
+ }finally{
+  release?.();
+  await info.attach('route-events',{body:JSON.stringify({subjectStarted,assertionsBeforeRelease,events},null,2),contentType:'application/json'});
+  await f.close();
+ }
+});

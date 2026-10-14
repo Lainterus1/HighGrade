@@ -39,22 +39,32 @@ try {
   const activeScenarioIds = new Set(activeRequirements.flatMap((item) => item.scenarios.map((scenario) => scenario.id)));
   const retiredRequirements = new Set(mapping.retired_requirements);
   const retiredScenarios = new Set(mapping.retired_scenarios);
+  // The migration receipt is immutable. Later explicit catalog retirements
+  // do not alter it and must not look like unexplained loss of migrated data.
+  const currentRetired = new Set(json('specs/catalog.json').retired_ids ?? []);
+  let laterRetirements = 0;
   for (const oldId of oldRequirementIds) {
     const target = mapping.requirements[oldId] ?? oldId;
-    if (retiredRequirements.has(oldId) === activeRequirementIds.has(target)) throw new Error(`requirement fate: ${oldId}`);
+    const retired = retiredRequirements.has(oldId) || currentRetired.has(target);
+    if (retired === activeRequirementIds.has(target)) throw new Error(`requirement fate: ${oldId}`);
+    if (!retiredRequirements.has(oldId) && currentRetired.has(target)) laterRetirements++;
   }
   for (const oldId of oldScenarioIds) {
     const target = mapping.scenarios[oldId] ?? oldId;
     const owner = archivedRequirements.find((item) => item.scenarios.some((scenario) => scenario.id === oldId)).id;
-    const retired = retiredRequirements.has(owner) || retiredScenarios.has(oldId);
+    const targetOwner = mapping.requirements[owner] ?? owner;
+    const retired = retiredRequirements.has(owner) || retiredScenarios.has(oldId)
+      || currentRetired.has(targetOwner) || currentRetired.has(target);
     if (retired === activeScenarioIds.has(target)) throw new Error(`scenario fate: ${oldId}`);
+    if (!retiredRequirements.has(owner) && !retiredScenarios.has(oldId)
+        && (currentRetired.has(targetOwner) || currentRetired.has(target))) laterRetirements++;
   }
   for (const oldId of Object.keys(mapping.requirements)) if (!oldRequirementIds.has(oldId)) throw new Error(`unknown old requirement: ${oldId}`);
   for (const oldId of Object.keys(mapping.scenarios)) if (!oldScenarioIds.has(oldId)) throw new Error(`unknown old scenario: ${oldId}`);
   if (activeRequirementIds.size !== activeRequirements.length || activeScenarioIds.size !== activeRequirements.flatMap((item) => item.scenarios).length) {
     throw new Error('duplicate canonical ID');
   }
-  console.log(JSON.stringify({ status: 'passed', openspec_files: old.source_files.length, native_files: Object.keys(files).length, mapped_requirements: 36, mapped_scenarios: 68 }));
+  console.log(JSON.stringify({ status: 'passed', openspec_files: old.source_files.length, native_files: Object.keys(files).length, mapped_requirements: 36, mapped_scenarios: 68, later_retirements: laterRetirements }));
 } catch (error) {
   console.error(JSON.stringify({ status: 'failed', message: String(error.message ?? error) }));
   process.exitCode = 1;

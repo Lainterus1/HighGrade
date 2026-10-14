@@ -1,0 +1,81 @@
+{
+  "scope": "Selected defects, evidence selection and duplicate instruction cleanup",
+  "selection": {
+    "outcome": "selected-and-preserved",
+    "removed_new_objects": 22,
+    "excluded_wrapper_bytes": 174221961,
+    "replaced_manifests": {
+      "docs/evidence/objects/76fa10a75accb0507d8cef5264402b3f1dc0708b7001bbabc3f671c7933e79d7.json": "docs/evidence/objects/cf474fdeb77516987ba2b9e67913bd67bea24e53b83f746671211bb0dd36b635.json",
+      "docs/evidence/objects/83380aca784281d64913a18a16458484a12b5ea227e1fcbfeb6cb377fdd5b849.json": "docs/evidence/objects/8fcfaeb9790cdf4c1a4c172e1ee3fd5e8fb895d64b4d0d8d8230a2321c29901d.json"
+    },
+    "selection_receipts": "docs/evidence/objects/71b125c03a48cc6dae5559e46fa279933c065bf5ea0ccbd6fad53a7eeb5bee6d.json",
+    "retained_task_definition_manifest": "docs/evidence/objects/8fcfaeb9790cdf4c1a4c172e1ee3fd5e8fb895d64b4d0d8d8230a2321c29901d.json",
+    "recovery": ".highgrade/local/diff-cleanup-2026-10-14/recovery",
+    "limits": "Only the 22 named new wrappers and their two superseded selections. Exact originals survive outside Git; history inventories are unchanged. No general orphan collection, history rewrite or scenario execution."
+  },
+  "checks": {
+    "run_selections": [
+      "docs/evidence/objects/5b0f158f2d1e7abc883d98147130c410f5c3898d23afe552fe4e9a535d937c43.json",
+      "docs/evidence/objects/5346242ce4af5a91eebc0ada927796066e11829dba320cf3b69eb0ac41c05f8e.json",
+      "docs/evidence/objects/79fcabf789fdc5f12ee0ccdcd84129332344eebf1e66f68e7755c0a887ff904b.json",
+      "docs/evidence/objects/5f3b73127becca215b5b7a8c9e396a0e8ab30b5dd5d49b190867c9a0c06c97c8.json",
+      "docs/evidence/objects/704b9345a483af7d63199c7deb52b5ec9faf6ed04f4fa2351df28881b6279900.json"
+    ],
+    "checks_manifest": "docs/evidence/objects/1b44841c60ddb02dd4e60ace727262e897d3dbf883b3682e9c2e5ce83a66b4b9.json",
+    "helper_selection_files": 817
+  },
+  "final_independent_review": "docs/evidence/objects/edb9c70955b33bd8763d9031cc4fc2dc9ae83a385b10c25bf70fdef7450daacf.json",
+  "preservation": "docs/evidence/objects/b8c8a3abdf8cb981b6ae1908faeafd44517c0972ca32dba2f2f1a9260e0eeb47.json",
+  "limits": [
+    "Not completion of earlier comprehensive Clear",
+    "No new actor replay or Windows execution",
+    "No commit, activation, push or human acceptance"
+  ],
+  "final_checks": "docs/evidence/objects/9c97ea2609dcf304a2093608bc66315b65147fc157ae4a1332b3773dea801c66.json",
+  "final_check_report": "final-checks.md",
+  "current_outcomes": {
+    "rust_pass": 242,
+    "python_pass": 82,
+    "helper_pass": 12,
+    "node_cases_pass": 14,
+    "trace_automatic_pass": 145,
+    "trace_outside": 187,
+    "scale": "passed",
+    "reuse": "passed",
+    "route_bytes": 95346,
+    "target_mib": 365.07,
+    "maintenance_check": "exit 2: unrelated hg58 preserved; target 365.07 MiB below 600",
+    "rust_final_run": "rust-39620c4801a64de88cc49ba4b10b4f3a",
+    "scenarios_final_run": "scenarios-0409c481b56746d7abecde93a66d9c7d",
+    "rust_new_cases": 1,
+    "python_new_cases": 1,
+    "useful_cases_removed": 0
+  },
+  "cas_selection": {
+    "initial_new_objects": 1508,
+    "initial_new_bytes": 205762568,
+    "current_new_objects": 1722,
+    "current_new_bytes": 33008208,
+    "excluded_wrappers": 22,
+    "excluded_wrapper_bytes": 174221961,
+    "limits": "Uncompressed file bytes, not Gitpack or token savings. New final proof is included."
+  },
+  "node24_final_execution": {
+    "rust_run": "target/highgrade/runs/rust-39620c4801a64de88cc49ba4b10b4f3a",
+    "rust_manifest": "docs/evidence/objects/ba46e6684cf4036288213d80408a2ebbb1d0576a1a7855f023138e7a9fe937d5.json",
+    "runtime_identity_limit": "Node24 selected via PATH, not sealed in earlier attempt metadata",
+    "scenarios_run": "target/highgrade/runs/scenarios-0409c481b56746d7abecde93a66d9c7d",
+    "scenarios_manifest": "docs/evidence/objects/4a9a0a2eb0e6d6027f04bbf1feed2f67f0f4f4f9614e658ae6d8105c1f026129.json"
+  },
+  "closure_report": "closure.md",
+  "runtime_identity_limit": "Node24 driver selected via PATH; current execPath/version confirmed. Earlier attempt did not seal Node runtime identity. Actual Node14 case outputs, scale and reuse are separate raw proof.",
+  "preservation_closure_local": ".highgrade/local/diff-cleanup-2026-10-14/preservation-closure.json",
+  "closure_evidence": "docs/evidence/objects/dba9ccce0dc4c12d3b72c0b9c2484870da99a1d091a4167002b2a079221d5bbf.json",
+  "runtime_independent_review": "docs/evidence/objects/dba9ccce0dc4c12d3b72c0b9c2484870da99a1d091a4167002b2a079221d5bbf.json",
+  "status": "local-scope-complete",
+  "remainder": [
+    "Earlier comprehensive Clear actor/manual/Windows methods remain separate",
+    "Unrelated hg58 and seven old unexported/unknown runs preserved",
+    "No commit, activation, push or new human acceptance"
+  ]
+}

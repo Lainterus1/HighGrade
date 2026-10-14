@@ -1,0 +1,15 @@
+test_case_colliding_inputs_cannot_alias_protected_tests (scripts.tests.test_clear_batch.ClearBatchTests.test_case_colliding_inputs_cannot_alias_protected_tests) ... FAIL
+
+======================================================================
+FAIL: test_case_colliding_inputs_cannot_alias_protected_tests (scripts.tests.test_clear_batch.ClearBatchTests.test_case_colliding_inputs_cannot_alias_protected_tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_clear_batch.py", line 206, in test_case_colliding_inputs_cannot_alias_protected_tests
+    self.assertEqual(2, process.returncode, process.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : 
+
+----------------------------------------------------------------------
+Ran 1 test in 0.380s
+
+FAILED (failures=1)

@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.codex/code-health-audit/report.schema.json",
+  "title": "Code Health Audit Report",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "audit",
+    "toolchain",
+    "scope",
+    "summary",
+    "measurements",
+    "findings",
+    "hotspots",
+    "accepted_findings",
+    "errors"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "audit": {
+      "type": "object",
+      "required": [
+        "mode",
+        "root",
+        "completeness",
+        "health",
+        "verdict",
+        "policy_version",
+        "policy_sha256",
+        "content_digest",
+        "read_only_verified"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "full",
+            "diff"
+          ]
+        },
+        "root": {
+          "type": "string"
+        },
+        "completeness": {
+          "enum": [
+            "COMPLETE",
+            "INCOMPLETE",
+            "FAILED"
+          ]
+        },
+        "health": {
+          "enum": [
+            "OK",
+            "WATCH",
+            "REFACTOR",
+            "CRITICAL"
+          ]
+        },
+        "verdict": {
+          "enum": [
+            "HEALTHY",
+            "ATTENTION",
+            "ACTION_REQUIRED",
+            "CRITICAL",
+            "INCOMPLETE",
+            "FAILED"
+          ]
+        },
+        "policy_version": {
+          "type": "string"
+        },
+        "policy_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "content_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "read_only_verified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "toolchain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "expected_version",
+          "status"
+        ]
+      }
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "python_files",
+        "changed_lines"
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "classification_counts",
+        "active_hotspots",
+        "accepted_count"
+      ]
+    },
+    "measurements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/measurement"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "hotspots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "hotspot_id",
+          "classification",
+          "path",
+          "symbol",
+          "finding_ids"
+        ]
+      }
+    },
+    "accepted_findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "measurement": {
+      "type": "object",
+      "required": [
+        "measurement_id",
+        "metric",
+        "classification",
+        "value",
+        "unit",
+        "path",
+        "symbol",
+        "analyzer",
+        "evidence_fingerprint",
+        "policy_sha256",
+        "thresholds",
+        "source_kind",
+        "runtime_sha256"
+      ],
+      "properties": {
+        "classification": {
+          "enum": [
+            "OK",
+            "WATCH",
+            "REFACTOR",
+            "CRITICAL"
+          ]
+        },
+        "value": {
+          "type": "number"
+        },
+        "measurement_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "symbol": {
+          "type": "string",
+          "minLength": 1
+        },
+        "metric": {
+          "enum": [
+            "branch_coverage",
+            "cognitive_complexity",
+            "cyclomatic_complexity",
+            "dependency_cycle",
+            "duplication_block_lines",
+            "duplication_percent",
+            "file_nloc",
+            "function_nloc",
+            "line_coverage",
+            "nesting_depth",
+            "suppression"
+          ]
+        },
+        "policy_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "evidence_fingerprint": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_kind": {
+          "enum": [
+            "production",
+            "test"
+          ]
+        },
+        "analyzer": {
+          "type": "object",
+          "required": [
+            "name",
+            "version"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "start_line": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "end_line": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "thresholds": {
+          "type": "object",
+          "required": [
+            "direction",
+            "watch",
+            "refactor",
+            "critical"
+          ]
+        },
+        "runtime_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "finding": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/measurement"
+        },
+        {
+          "type": "object",
+          "required": [
+            "finding_id",
+            "active",
+            "disposition"
+          ],
+          "properties": {
+            "active": {
+              "type": "boolean"
+            },
+            "disposition": {
+              "enum": [
+                "ACTIVE",
+                "ACCEPTED",
+                "REOPENED"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

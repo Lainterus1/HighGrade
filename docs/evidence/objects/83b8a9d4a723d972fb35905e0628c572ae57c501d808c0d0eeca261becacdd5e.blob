@@ -1,0 +1,11 @@
+"""Compile the actual subprocess helper bytes; keep the load receipt."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import sys
+import uuid
+source = Path(sys.argv[1]); raw = source.read_bytes()
+Path(os.environ['CLEAR_EXECUTION_RECEIPTS'], uuid.uuid4().hex+'.json').write_text(json.dumps({'source':'kit/tools/clear_batch.py', 'artifact':str(source), 'sha256':hashlib.sha256(raw).hexdigest()}))
+sys.argv = sys.argv[1:]
+exec(compile(raw, str(source), 'exec'), {'__name__':'__main__','__file__':str(source)})

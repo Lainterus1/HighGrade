@@ -1,0 +1,19 @@
+
+running 1 test
+test update_preserves_foreign_pointer_and_router_temporary_files ... FAILED
+
+failures:
+
+failures:
+    update_preserves_foreign_pointer_and_router_temporary_files
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 38 filtered out; finished in 23.83s
+
+   Compiling highgrade v0.4.0 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 1.06s
+     Running tests/global_contracts.rs (target/debug/deps/global_contracts-3feb587a83d0bef4)
+
+thread 'update_preserves_foreign_pointer_and_router_temporary_files' panicked at tests/global_contracts.rs:111:5:
+foreign temporary paths must be preserved: [".highgrade/global/active.next linked=false: error=false, pointer/router/foreign preservation=false", ".highgrade/global/active.next linked=true: error=true, pointer/router/foreign preservation=false", ".agents/skills/highgrade-work/SKILL.next linked=false: error=false, pointer/router/foreign preservation=false", ".agents/skills/highgrade-work/SKILL.next linked=true: error=true, pointer/router/foreign preservation=false"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+error: test failed, to rerun pass `--test global_contracts`

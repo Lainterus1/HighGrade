@@ -1,0 +1,30 @@
+{
+  "verdict": "go",
+  "scope": "same isolated poll repro only",
+  "event_order": [
+    "poll_A_held",
+    "request_B",
+    "dom_before_release_B",
+    "poll_A_released"
+  ],
+  "event_times": {
+    "poll_A_held": 1791987147141,
+    "request": 1791987147176,
+    "dom_before_release": 1791987147207,
+    "poll_A_released": 1791987147264
+  },
+  "limits": [
+    "Linux local debug candidate",
+    "No exact-SHA installed E2E or Windows result",
+    "No route completion wait in same repro",
+    "No whole Clear GO"
+  ],
+  "original_hashes": {
+    "poll-repro-report.json": "39b660896e11ee2546ed0beb63e21f6c959a03b775a8b71181bf11b442e08d38",
+    "poll-repro-command.json": "127a8351f3ef7cad6363bce422020b71b7ce8153dca6b131c6c7ee427fae2095",
+    "poll-repro-run.log": "325ddaff76296b4987f5eda0cd87116316708a7719600b37698f5d18b6060af9",
+    "poll-repro-events.json": "4711dbbcfb3a36720e434f66d851e20308fb5cefa8b67f3d35be2f04f409b129",
+    "poll-repro-artifacts/.last-run.json": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+    "poll-repro-artifacts/poll-repro-HG55-R4-selecti-1712e-ckground-poll-A-is-released/before-release.png": "c105ec2b3994952079af95a6fce366ba7d9751d22c86b1e7be4ae5c10c8791f2"
+  }
+}

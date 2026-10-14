@@ -1,0 +1,82 @@
+"""Observe real selected unittest results and the bytes actually executed."""
+import hashlib
+import importlib.machinery
+import importlib.util
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import unittest
+import uuid
+
+ROOT = Path.cwd()
+RECEIPTS = ROOT / '.execution-receipts' / uuid.uuid4().hex
+RECEIPTS.mkdir(parents=True)
+os.environ['CLEAR_EXECUTION_RECEIPTS'] = str(RECEIPTS)
+os.environ['HG_CLEAR_ARTIFACTS'] = str(ROOT / '.framework-artifacts' / uuid.uuid4().hex)
+hashes = {}
+original_get_code = importlib.machinery.SourceFileLoader.get_code
+
+def loaded_code(loader, fullname):
+    path = Path(loader.path).resolve()
+    if path.is_relative_to(ROOT) and path.suffix == '.py':
+        raw = path.read_bytes()
+        hashes[path.relative_to(ROOT).as_posix()] = hashlib.sha256(raw).hexdigest()
+        return compile(raw, str(path), 'exec')
+    return original_get_code(loader, fullname)
+
+importlib.machinery.SourceFileLoader.get_code = loaded_code
+original_run = subprocess.run
+
+def audited_run(command, *args, **kwargs):
+    if isinstance(command, list):
+        if len(command) > 1 and command[0] == sys.executable and str(command[1]).endswith('clear_batch.py'):
+            command = [sys.executable, '-B', str(ROOT/'python_witness.py'), *command[1:]]
+        elif command and command[0] == 'node':
+            command = ['node', '--import', (ROOT/'node_witness.mjs').as_uri(), *command[1:]]
+    return original_run(command, *args, **kwargs)
+
+subprocess.run = audited_run
+cases = []
+class Result(unittest.TestResult):
+    def addSuccess(self, test):
+        super().addSuccess(test); cases.append({'id': test.id(), 'outcome': 'passed', 'message': ''})
+    def addFailure(self, test, err):
+        super().addFailure(test, err); cases.append({'id': test.id(), 'outcome': 'assertion', 'message': self._exc_info_to_string(err, test)})
+    def addError(self, test, err):
+        super().addError(test, err); cases.append({'id': test.id(), 'outcome': 'error', 'message': self._exc_info_to_string(err, test)})
+    def addSkip(self, test, reason):
+        super().addSkip(test, reason); cases.append({'id': test.id(), 'outcome': 'skipped', 'message': reason})
+    def addSubTest(self, test, subtest, err):
+        if err is not None:
+            # unittest reports subtest failures through this hook, not addFailure.
+            if issubclass(err[0], test.failureException): self.addFailure(test, err)
+            else: self.addError(test, err)
+
+suite = unittest.TestSuite()
+for selector in sys.argv[1:]:
+    module_name, class_name, method = selector.rsplit('.', 2)
+    if module_name not in sys.modules:
+        path = ROOT / (module_name.replace('.', '/') + '.py')
+        spec = importlib.util.spec_from_file_location(module_name, path)
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[module_name] = module
+        spec.loader.exec_module(module)
+    suite.addTest(getattr(sys.modules[module_name], class_name)(method))
+result = Result(); suite.run(result)
+for file in RECEIPTS.glob('*.json'):
+    witness = json.loads(file.read_text())
+    expected = ROOT/witness['source']
+    if expected.is_file() and hashlib.sha256(expected.read_bytes()).hexdigest() == witness['sha256']:
+        hashes[witness['source']] = witness['sha256']
+# Collapse multiple failures of one subtest-bearing case without inventing cases.
+unique = {}
+for case in cases:
+    old = unique.get(case['id'])
+    if old:
+        old['message'] += '\n' + case['message']
+        if case['outcome'] != 'passed': old['outcome'] = case['outcome']
+    else: unique[case['id']] = case
+Path(os.environ['HG_CLEAR_REPORT']).write_text(json.dumps({'format':'highgrade-clear-v1', 'tests':list(unique.values()), 'source_hashes':hashes}))
+sys.exit(0 if result.wasSuccessful() else 1)

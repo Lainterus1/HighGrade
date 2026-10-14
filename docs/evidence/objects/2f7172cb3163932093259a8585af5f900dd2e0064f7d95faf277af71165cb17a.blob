@@ -1,0 +1,478 @@
+{
+  "scope": "independent read-only checks of current sealed helper originals and Rust native run",
+  "source_sha256": {
+    "kit/tools/clear_batch.py": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+    "scripts/tests/test_clear_batch.py": "4aa3c52893fb2a8871a79c308f93f495f4fbc490afd9a75057486cc3921d7c16",
+    "kit/manifest.json": "1d6df82468baa67beb21f4abb2ed2d58adfedea3762a26839af0038e56c028b1",
+    "src/global.rs": "74a54e5ffd7d0e62b3f640ea89f87d6cf0f8970821f0129227cfa35ec5a052d9",
+    "tests/global_contracts.rs": "18fc109e06d3fb2a310920437a51cafeebb83e637940880e18c8c25a2b7f124d",
+    "kit/procedures/clear.md": "a3e44e3eb9452a69680930060b6e4e3d17a17c22c9a0b3ebe4d8ae356846c452",
+    "kit/references/review.md": "647ab5b9a513171aadde4a460cbb20ad13c12ecd82fd55f98615f4c947d4e2f6",
+    "kit/references/clear-batches.md": "6730ed440d1586c9037b457cd27dcef5b215062139e0cbc008e34b2a8d2caa08"
+  },
+  "helper_summaries": [
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_descendants_cannot_turn_a_failure_into_detection_or_continue_worker/project/batch/summary.json",
+      "summary_sha256": "ac1285fb0a0b0e199f3124d46ef27b4bf644ba5726ecfcb2ad8016ea3b6c1767",
+      "complete": false,
+      "reused": false,
+      "restored": false,
+      "outcomes": [
+        "invalid"
+      ],
+      "commands": 2,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 19
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_invalid_baseline_does_not_assess_mutations/project/badbaseline/summary.json",
+      "summary_sha256": "6b6c4b1db833a10ee227acdf00fc2213849d0f5ab34060c66d4e6a2ee6a70b73",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [],
+      "commands": 1,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 14
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_invalid_baseline_does_not_assess_mutations/project/empty/summary.json",
+      "summary_sha256": "d2b491af94203f60ecee052eb19be71b7824dbf5af98d699ce18ed2b06868d93",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [],
+      "commands": 1,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 14
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_invalid_baseline_does_not_assess_mutations/project/skip/summary.json",
+      "summary_sha256": "08e3988df6a4eb6cca29ee828c501294bff0a12709dd888f3f88cd54f749def2",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [],
+      "commands": 1,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 14
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_measured_control_and_batch_preserve_same_outcomes/project/batch/summary.json",
+      "summary_sha256": "63a2560a24ae639477f2858712abd0be49a5d6df9afb0c2c15371e98ebf5f048",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_measured_control_and_batch_preserve_same_outcomes/project/control-0/summary.json",
+      "summary_sha256": "bf039c598f35c4833ab453c24747cca1a55d854dc9a8c2481f303ab553c5257f",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected"
+      ],
+      "commands": 3,
+      "plan_sha256": "6562c6fbb547517bfe6911317485e202815517472e056a65df1accddc904257d",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_measured_control_and_batch_preserve_same_outcomes/project/control-1/summary.json",
+      "summary_sha256": "d5d2a3b7637fdff159ba59e94a8115580d0df1e084d3847f7a6dcd11211ecd7a",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected"
+      ],
+      "commands": 3,
+      "plan_sha256": "8adcecc491544b4ff39b88d8042852d1612051646bba2ab81fefeceed8b28cdd",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_measured_control_and_batch_preserve_same_outcomes/project/control-2/summary.json",
+      "summary_sha256": "89b770ad46cdb1b9f1fc18f9adf298df23ee778d4c76ff476613ba464a8bfb7c",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected"
+      ],
+      "commands": 3,
+      "plan_sha256": "f26d54de4b8b97122c9da4de86f6b86834db77cfb786f44876086d08ceb1c1c0",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_non_assertion_failures_never_detect/project/compile/summary.json",
+      "summary_sha256": "8bf2398aba13978793f444ceff0571503e71ae6e297b982bcca39fdbeee3ad88",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "invalid"
+      ],
+      "commands": 3,
+      "plan_sha256": "1d6dcc806a5836681fac2c7494ac5d46af12b07fe9bc86622c196c9b739c0ba9",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_non_assertion_failures_never_detect/project/emptymutant/summary.json",
+      "summary_sha256": "16bfdf1e9006380a027ec7527f852695efd6d83cbabbb396d99c57dfd14ddce5",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "invalid"
+      ],
+      "commands": 3,
+      "plan_sha256": "6562c6fbb547517bfe6911317485e202815517472e056a65df1accddc904257d",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_non_assertion_failures_never_detect/project/setup/summary.json",
+      "summary_sha256": "4b9ea769f87504bbf0c5262510492f4ea366bd2e33ab3567127d89e9331872b7",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "invalid"
+      ],
+      "commands": 3,
+      "plan_sha256": "6562c6fbb547517bfe6911317485e202815517472e056a65df1accddc904257d",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_non_assertion_failures_never_detect/project/skipmutant/summary.json",
+      "summary_sha256": "f42eaf59e6ce7961df1c8e65b5a709c7aa04deb4ebf901f5532cbc5be6604e7c",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "invalid"
+      ],
+      "commands": 3,
+      "plan_sha256": "6562c6fbb547517bfe6911317485e202815517472e056a65df1accddc904257d",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_non_assertion_failures_never_detect/project/stale/summary.json",
+      "summary_sha256": "68ff5ea2ccaa53be03ec125dbb0bbd846deb528639e7fa3fdc8734d966aaf03e",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "invalid"
+      ],
+      "commands": 3,
+      "plan_sha256": "6562c6fbb547517bfe6911317485e202815517472e056a65df1accddc904257d",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_non_assertion_failures_never_detect/project/timeout/summary.json",
+      "summary_sha256": "c8d9d072a8c55946d55fed8db274e016117bf65dc948260f3f6b2bc5a90c15e9",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "invalid"
+      ],
+      "commands": 3,
+      "plan_sha256": "6562c6fbb547517bfe6911317485e202815517472e056a65df1accddc904257d",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 22
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_non_assertion_failures_never_detect/project/unsupported/summary.json",
+      "summary_sha256": "8fb9d2a631ff79fb7592bedb33ec9584141b2edbc5efa8dbd5dd3ed438ed51e6",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "invalid"
+      ],
+      "commands": 3,
+      "plan_sha256": "6562c6fbb547517bfe6911317485e202815517472e056a65df1accddc904257d",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/adapter-py/summary.json",
+      "summary_sha256": "cf12692aea19a2b86017fea7332f15ddc126cf51e5b76169ba6b44ee45ff1ac0",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/batch/summary.json",
+      "summary_sha256": "e3b8f50f09881fb0854bc4f932940125833b450e3e6a9ea3bc6ec1f969f5ddeb",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/contract-txt/summary.json",
+      "summary_sha256": "c505cda8e3ca2a1bd61874c341e9cb2c8f70d5de6d60df95fae794718f9af6b3",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/corrupt/summary.json",
+      "summary_sha256": "b91a3e2673f8c217fde985d50a1adc829519c63aeb3f1ae37607aa0b7655bddd",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/data-txt/summary.json",
+      "summary_sha256": "5e6e83b8a2663f81c9211085214f5f63ab3fb6098ec3dc882a5f3645aa7b0296",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/dependency-txt/summary.json",
+      "summary_sha256": "823261b7986283140f2d3374eba59ba3a87219fd9b562dd7338d21709f1820a2",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/env/summary.json",
+      "summary_sha256": "ac00c1455a0a80a6f8d6f5b4fe08470fb43dc8d47d8fd11bee9bd48612817f5d",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/helper/summary.json",
+      "summary_sha256": "fa0b90cd0d08aea818cf8ac7dba9dd7c052ce1a64a10b302cc554350d6c8cdaa",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "845dc28d0f18f394499468044cd7ebda6a289f32a49dde157bc0b24d89aebed5",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/same/summary.json",
+      "summary_sha256": "4f9e3df575cecf7bee9bf07ea6194cd46deb20b87262ed7b3508a553cca8fd40",
+      "complete": true,
+      "reused": true,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 0,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 38
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/unknown/summary.json",
+      "summary_sha256": "3c4274e4d82f503f93e0b3d5ad9e8fe06fc2a4da199ae90d170fa1e07308a088",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "0a18cb43a6b9cc67ef3d8db075a3c8ef13922ae7783b62f427e8441d1d793d8a",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_standalone_batch_restores_exact_bytes_and_detects_actual_assertions/project/batch/summary.json",
+      "summary_sha256": "364662018701e23a270dc0aaa3b84884ed1b0d1455209e7d14342577f792e15c",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected",
+        "detected",
+        "detected"
+      ],
+      "commands": 5,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 33
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_survivor_then_stronger_assertion_keeps_initial_history/project/batch/summary.json",
+      "summary_sha256": "dc5ef9ae833d608e41825f9074aa90106e3ca1ff4e8fdb6df45c05e7d1684f02",
+      "complete": false,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "survived"
+      ],
+      "commands": 3,
+      "plan_sha256": "6562c6fbb547517bfe6911317485e202815517472e056a65df1accddc904257d",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_survivor_then_stronger_assertion_keeps_initial_history/project/strong/summary.json",
+      "summary_sha256": "d6f5632a932e30081ffaa6fc4ec1cee5f5c5a259b2c397568437d8ffef016aec",
+      "complete": true,
+      "reused": false,
+      "restored": true,
+      "outcomes": [
+        "detected"
+      ],
+      "commands": 3,
+      "plan_sha256": "6562c6fbb547517bfe6911317485e202815517472e056a65df1accddc904257d",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 23
+    },
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign/project/batch/summary.json",
+      "summary_sha256": "dda20dfe129a198dbe5cc36c03d4c4580029d4ea4c6ec7cdd8217d5c6e415cc1",
+      "complete": false,
+      "reused": false,
+      "restored": false,
+      "outcomes": [
+        "restore_failed"
+      ],
+      "commands": 2,
+      "plan_sha256": "8ca6bfd21a96b7e4b3327d3578601fb423ac5277f54d3a5f8a1598204ba89d9b",
+      "helper_sha256": "8ab257dc46f22b1411ffe0621c90796d05f56692b21a3c0afdbe00c185e57e34",
+      "original_count": 19
+    }
+  ],
+  "expected_corruption_counterexample": [
+    {
+      "summary": "target/highgrade/tmp/hg76-helper-sealed/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/batch/summary.json",
+      "corrupted": [
+        "logs/baseline-number.report.json"
+      ],
+      "explicit_fixture": "ref=next(iter(first['originals'])); write_bytes(b'corrupt')"
+    }
+  ],
+  "comparison_raw_metrics": {
+    "control_commands": 9,
+    "batch_commands": 5,
+    "control_probe_commands": 3,
+    "batch_probe_commands": 1,
+    "control_bytes": 18376,
+    "batch_bytes": 7901,
+    "outcomes": [
+      "detected",
+      "detected",
+      "detected"
+    ]
+  },
+  "reuse_plan_exact_bytes": true,
+  "rust": {
+    "root": "target/highgrade/runs/rust-ad90492a22ed4d009f389c38438b2518/nextest",
+    "attempt_id": "a9a6e4bcd09f4306a51127591dd74274",
+    "cases": 239,
+    "bad": [],
+    "source_input_count": 480,
+    "source_drift": [],
+    "report_sha256_ok": true,
+    "inventory_sha256_ok": true,
+    "attempt_matches": true
+  },
+  "issues": [],
+  "limits": [
+    "Checks establish integrity and concrete observed outcomes; not adapter authenticity in arbitrary projects or causal scope outside declared inputs.",
+    "Deliberate damaged original is preserved as the S9 counterexample; intact reused originals and fresh corrupt output were separately verified."
+  ]
+}

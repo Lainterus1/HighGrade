@@ -45,3 +45,32 @@ test('explicit native report destination remains supported',async()=>{
  const destination=path.resolve('target/highgrade/reports/explicit.json');
  assert.equal((await read({HIGHGRADE_UI_REPORT:destination})).reporter[1][1].outputFile,destination);
 });
+
+test('invalid managed state and dead owner refuse without changing the report',async()=>{
+ const {run,token}=ownedRun();
+ const stateFile=path.join(run,'run.json'),report=path.join(run,'playwright/report.json');
+ const initial=JSON.parse(fs.readFileSync(stateFile,'utf8'));
+ fs.mkdirSync(path.dirname(report));fs.writeFileSync(report,'preserve report bytes');
+ // kill(pid, 0) only queries existence; it never terminates a process.
+ const deadPid=2147483647;
+ assert.throws(()=>process.kill(deadPid,0),{code:'ESRCH'});
+ try{
+  for(const patch of [{schema:99},{state:'completed'},{owner_pid:0},{owner_pid:1.5},{owner_pid:deadPid}]){
+   fs.writeFileSync(stateFile,JSON.stringify({...initial,...patch}));
+   await assert.rejects(read({HIGHGRADE_RUN_DIR:run,HIGHGRADE_RUN_TOKEN:token}),patch.owner_pid===deadPid?/owner is not active/:/run is not active/);
+   assert.equal(fs.readFileSync(report,'utf8'),'preserve report bytes');
+  }
+ }finally{fs.rmSync(run,{recursive:true});}
+});
+
+test('unknown managed location and linked output preserve their targets',async()=>{
+ const {run,token}=ownedRun();
+ const target=path.join(run,'protected'),output=path.join(run,'playwright');
+ fs.mkdirSync(target);fs.writeFileSync(path.join(target,'report.json'),'protected target');
+ try{
+  await assert.rejects(read({HIGHGRADE_RUN_DIR:target,HIGHGRADE_RUN_TOKEN:token}),/Unknown managed report run/);
+  fs.symlinkSync(target,output,process.platform==='win32'?'junction':'dir');
+  await assert.rejects(read({HIGHGRADE_RUN_DIR:run,HIGHGRADE_RUN_TOKEN:token}),/Linked managed report output/);
+  assert.equal(fs.readFileSync(path.join(target,'report.json'),'utf8'),'protected target');
+ }finally{fs.rmSync(run,{recursive:true});}
+});

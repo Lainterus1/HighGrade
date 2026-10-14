@@ -1,7 +1,5 @@
 import {test,expect} from '@playwright/test';
 import {fixture} from './native-fixture';
-import path from 'node:path';
-const out=path.resolve('../target/highgrade/tmp/hg58');
 test('HG58 typography operations and compact reading at desktop mobile and reduced motion',async({page})=>{
  const f=fixture();try{
   const c=f.cli('spec-read','--id','HG-0005').change;
@@ -14,7 +12,7 @@ test('HG58 typography operations and compact reading at desktop mobile and reduc
    await page.setViewportSize({width,height});await page.evaluate(()=>document.fonts.ready);
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
    expect(await page.evaluate(()=>[...document.fonts].some(f=>f.family==='Manrope'&&f.status==='loaded'))).toBeTruthy();
-   await page.screenshot({path:path.join(out,`native-${width}.png`),fullPage:true});
+   await page.screenshot({path:test.info().outputPath(`native-${width}.png`),fullPage:true});
   }
   await page.emulateMedia({reducedMotion:'reduce'});
   expect(await page.locator('.spec-changes [data-slot="accordion-trigger"]').first().evaluate(e=>getComputedStyle(e).transitionDuration)).toBe('0s');

@@ -1,0 +1,2589 @@
+[
+  {
+    "change": "HG-0002",
+    "id": "check-1",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S1"
+    ],
+    "selector": "project_catalog_survives_service_removal_and_preserves_siblings"
+  },
+  {
+    "change": "HG-0002",
+    "id": "check-2",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S1"
+    ],
+    "selector": "foreign_structured_files_are_not_deleted"
+  },
+  {
+    "change": "HG-0002",
+    "id": "check-3",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S1"
+    ],
+    "selector": "selected_directory_is_project_owned_and_self_contained"
+  },
+  {
+    "change": "HG-0002",
+    "id": "check-4",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S2"
+    ],
+    "selector": "explicit_migration_preserves_all_data_and_detects_legacy_writer"
+  },
+  {
+    "change": "HG-0002",
+    "id": "check-5",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S2"
+    ],
+    "selector": "interrupted_transaction_refuses_reads_and_recovers_only_observed_targets"
+  },
+  {
+    "change": "HG-0002",
+    "id": "check-6",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S2"
+    ],
+    "selector": "recovery_reconstructs_partial_staging_and_missing_first_document"
+  },
+  {
+    "change": "HG-0002",
+    "id": "check-7",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S2"
+    ],
+    "selector": "recovery_cannot_delete_a_required_specification"
+  },
+  {
+    "change": "HG-0002",
+    "id": "check-8",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S2"
+    ],
+    "selector": "malformed_recovery_never_unblocks_catalog"
+  },
+  {
+    "change": "HG-0002",
+    "id": "check-9",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S2"
+    ],
+    "selector": "two_catalog_writers_cannot_allocate_the_same_number"
+  },
+  {
+    "change": "HG-0002",
+    "id": "check-10",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0002-S3"
+    ],
+    "selector": "integrated_recheck_retains_history_and_invalidates_old_acceptance"
+  },
+  {
+    "change": "HG-0003",
+    "id": "check-1",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0003-S1"
+    ],
+    "selector": "explicit_links_reject_missing_cycles_and_do_not_inherit_content"
+  },
+  {
+    "change": "HG-0003",
+    "id": "check-2",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0003-S2",
+      "HG-0003-S3"
+    ],
+    "selector": "tags_merge_atomically_and_filters_keep_dependencies_discoverable"
+  },
+  {
+    "change": "HG-0004",
+    "id": "check-1",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0004-S1"
+    ],
+    "selector": "multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit"
+  },
+  {
+    "change": "HG-0004",
+    "id": "check-2",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0004-S2"
+    ],
+    "selector": "explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift"
+  },
+  {
+    "change": "HG-0004",
+    "id": "check-3",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0004-S2"
+    ],
+    "selector": "batch_failure_keeps_prior_results_and_each_scenario_owns_its_report"
+  },
+  {
+    "change": "HG-0004",
+    "id": "check-4",
+    "action": "Выполнить соответствующий контрактный тест штатным Cargo",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/bootstrap.rs",
+      "src/global.rs",
+      "src/inspect.rs",
+      "src/install.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "src/specs/relations.rs",
+      "src/specs/storage.rs",
+      "src/trace.rs",
+      "tests/catalog_contracts.rs",
+      "tests/fixtures/native-v1/store.json"
+    ],
+    "observation": "Проверяемое поведение и отрицательные случаи подтверждены assertions; тест не пропущен",
+    "preparation": "Изолированный временный проект и явно заданные входы сценария",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0004-S1",
+      "HG-0004-S2"
+    ],
+    "selector": "cargo_runner_requires_a_real_exact_test"
+  },
+  {
+    "change": "HG-0008",
+    "id": "HG-0008-C1",
+    "action": "Выполнить `spec-transfer` и `trace` с действующим нативным каталогом и прежним источником",
+    "file": "tests/trace_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/specs.rs",
+      "src/trace.rs",
+      "tests/trace_contracts.rs"
+    ],
+    "observation": "перенесённый сценарий имеет одного нативного владельца, а соседний прежний сценарий остаётся доступным для проверки",
+    "preparation": "Один прежний источник содержит выбранное требование и независимое соседнее требование; выборочный импорт сверен и готов к переносу",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0008-S3"
+    ],
+    "selector": "reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C1",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "план адаптации предусматривает перенос или переименование к каноническому пути с исправлением входящих ссылок и записи реестра",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: при инициализации агент находит документ, выполняющий обязательную роль, по другому пути",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C2",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "агент разделяет содержание по соответствующим каноническим документам, сохраняя смысл, основания и действующие связи",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: существующий документ содержит действующее содержание двух или более обязательных ролей",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C3",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "он может остаться отдельным действующим источником с явной ответственностью и ссылкой из применимого основного документа",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: проекту нужна отдельная стратегия тестов, эксплуатационная инструкция или другой профильный документ",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C4",
+    "action": "команда вызвана в доступном проекте без `.highgrade/project/documents.json`",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "она возвращает семь ожидаемых путей и фактические структурные пробелы без ошибки `RegistryMissingOrAmbiguous`",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::bootstrap_reports_all_slots_before_registry_exists создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S4"
+    ],
+    "selector": "bootstrap_reports_all_slots_before_registry_exists"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C5",
+    "action": "канонического `docs/ARCHITECTURE.md` нет, а в области сканирования есть правдоподобный документ с другим именем или явная ссылка на него",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "отчёт показывает путь и основание как кандидата, не утверждая, что его содержание уже выполняет роль архитектуры",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::alternative_name_is_candidate_but_never_accepted_as_role создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S5"
+    ],
+    "selector": "alternative_name_is_candidate_but_never_accepted_as_role"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C6",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "отчёт указывает `not_found_in_scan` и необходимость самостоятельного поиска агентом перед созданием документа",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: ограниченный обход не выявил кандидата для обязательной роли",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S6"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C7",
+    "action": "`docs/ENGINEERING.md` существует, но `README.md` не ссылается на него",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "отчёт показывает файл как существующий и отдельно отмечает отсутствующую обязательную связь",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::complete_project_still_reports_missing_navigation_without_candidate_walk создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S7"
+    ],
+    "selector": "complete_project_still_reports_missing_navigation_without_candidate_walk"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C8",
+    "action": "документ перенесён на канонический путь, а ссылка указывает на прежний путь",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "проверка отмечает неразрешимую либо неканоническую связь до исправления навигации",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::migrated_architecture_with_old_readme_link_is_reported создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S8"
+    ],
+    "selector": "migrated_architecture_with_old_readme_link_is_reported"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C9",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "отчёт показывает соответствующую границу и не выдаёт отсутствие документа в нём за доказанный факт",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: каталог нельзя прочитать либо он объявлен исключением",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S9"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C10",
+    "action": "проектный список исключений некорректен или содержит небезопасный путь",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "непроверенные исключения не применяются, а результат отмечает неполноту как `unknown`",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::exclusions_are_safe_and_bad_registry_does_not_hide_candidates создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S10"
+    ],
+    "selector": "exclusions_are_safe_and_bad_registry_does_not_hide_candidates"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C11",
+    "action": "разрешённый к ограниченному чтению документ содержит секрет или другую произвольную строку",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "отчёт содержит только фиксированные состояния, счётчики и относительные пути-основания, без этой строки",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::alternative_name_is_candidate_but_never_accepted_as_role создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S11"
+    ],
+    "selector": "alternative_name_is_candidate_but_never_accepted_as_role"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C12",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "агент использует найденное содержание при адаптации, а не создаёт независимую пустую архитектуру",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: предварительная проверка не нашла архитектурного кандидата, но агент обнаружил описание устройства в другом документе",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S12"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C13",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "план адаптации включает создание содержательного документа, а при выполнении согласованного плана агент встраивает его в навигацию и реестр",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: после поиска и оценки применимых источников обязательной роли не хватает",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S13"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C14",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "init перечисляет их в обзоре и отмечает непрочитанное, проверяет нужное для подключения и не блокирует его только из-за непрочитанных независимых компонентов",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: проект содержит независимые компоненты за пределами области адаптации",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S14"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C15",
+    "action": "реестр назначает `current-architecture` файлу вне `docs/ARCHITECTURE.md`",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "`inspect` сообщает о нарушении канонического пути, даже если файл существует и бюджет соблюдён",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::missing_link_is_distinct_from_missing_file_and_registry_path_mismatch создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S15"
+    ],
+    "selector": "missing_link_is_distinct_from_missing_file_and_registry_path_mismatch"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C16",
+    "action": "все обязательные файлы, роли и связи на канонических путях согласованы, а остальные проверки `inspect` проходят",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "структура не даёт замечаний и результат сохраняет ограничение «структурная проверка, не смысловой аудит»",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::canonical_project_has_separate_path_and_link_evidence создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S16"
+    ],
+    "selector": "canonical_project_has_separate_path_and_link_evidence"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C17",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "init продолжает аудит и включает эти пробелы в таблицу адаптации, не считая проект подключённым",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: bootstrap вернул `failed` из-за отсутствующих файлов или ссылок в доступном проекте",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S17"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C18",
+    "action": "Запустить highgrade-init, проверить найденные документы и выполнить разрешённую адаптацию",
+    "file": "",
+    "inputs": [],
+    "observation": "агент записывает отклонение кандидата и найденный вручную источник, затем планирует перенос или разделение по содержанию",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: имя файла дало ложного кандидата, а содержание обязательной роли найдено в файле с необычным именем",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0009-S18"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C19",
+    "action": "все семь точных путей существуют",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "bootstrap показывает `candidate_scan=not_needed`, не обходит дерево ради кандидатов и отдельно проверяет шесть связей",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::canonical_project_has_separate_path_and_link_evidence создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S19"
+    ],
+    "selector": "canonical_project_has_separate_path_and_link_evidence"
+  },
+  {
+    "change": "HG-0009",
+    "id": "HG-0009-C20",
+    "action": "хотя бы один обязательный путь не подтверждён",
+    "file": "tests/bootstrap_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/bootstrap_contracts.rs"
+    ],
+    "observation": "bootstrap выполняет ограниченный поиск кандидатов и отмечает непросмотренные области по действующему контракту",
+    "preparation": "Временная фикстура теста tests/bootstrap_contracts.rs::bootstrap_reports_multiple_unvisited_locations_with_a_count содержит несколько обязательных путей за пределом глубины обхода",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0009-S20"
+    ],
+    "selector": "bootstrap_reports_multiple_unvisited_locations_with_a_count"
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C1",
+    "action": "пакет установлен в отдельный профиль и исходная копия пакета удалена",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "все материалы манифеста и локальные Markdown-ссылки установленного выпуска доступны, а global-status подтверждает установку",
+    "preparation": "Временная фикстура теста tests/global_contracts.rs::installed_runtime_references_survive_removal_of_source_copy создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0010-S1"
+    ],
+    "selector": "installed_runtime_references_survive_removal_of_source_copy"
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C2",
+    "action": "Выполнить highgrade-init по разрешённому плану адаптации",
+    "file": "",
+    "inputs": [],
+    "observation": "он использует доступные источники, сохраняет предметные правила, обозначает неизвестные команды и не выдаёт шаблон за принятую инструкцию",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: агент адаптирует пустой проект и проект с собственной документацией",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C3",
+    "action": "Выполнить highgrade-init по разрешённому плану адаптации",
+    "file": "",
+    "inputs": [],
+    "observation": "агент использует его без повторного вопроса и останавливает только действие с новым существенным конфликтом",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: проект содержит принятое исключение, применимое к текущей задаче",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C4",
+    "action": "агент берёт начальный JSON реестра из установленного справочника и создаёт обязательные документы",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "inspect принимает структуру реестра, сохраняя несогласованные бюджеты как unknown",
+    "preparation": "Временная фикстура теста tests/global_contracts.rs::shipped_registry_example_is_accepted_without_inventing_budgets создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0010-S4"
+    ],
+    "selector": "shipped_registry_example_is_accepted_without_inventing_budgets"
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C5",
+    "action": "Выполнить highgrade-approve с заданной проектом активацией",
+    "file": "",
+    "inputs": [],
+    "observation": "агент соответственно завершает локальным коммитом либо сообщает отдельно коммит, ошибку и установленное состояние восстановления, не запуская global-update по предположению",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: активация неприменима либо назначенная команда завершилась ошибкой",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S5"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C6",
+    "action": "Выполнить соответствующий маршрут task/spec/work по проектной инструкции и проверить фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "сценарий описывает отказ и неизменность состояния, а проверка вызывает настоящую логику, изолируя только необходимые внешние границы",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: задача требует сохранять прежнее состояние при невалидном вводе",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S6"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C7",
+    "action": "Выполнить соответствующий маршрут task/spec/work по проектной инструкции и проверить фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "агент использует фактический native-результат с границами доказательства, не выдавая его за trace PASS и не переводя автоматический тест в ручной",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: содержательный native-тест выполнен и его отчёт не поддерживается trace",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S7"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C8",
+    "action": "Выполнить соответствующий маршрут task/spec/work по проектной инструкции и проверить фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "сценарий остаётся пробелом до подходящей актуальной проверки; общий нулевой код команды не закрывает пропущенный сценарий",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: один тест пропущен либо после успешного запуска изменена затронутая логика",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S8"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C9",
+    "action": "Продолжить незавершённую задачу через текущий навык и сверить сохранённое состояние с файлами",
+    "file": "",
+    "inputs": [],
+    "observation": "агент сохраняет принятые решения, выполняет следующий незавершённый шаг и повторяет только утратившие актуальность проверки",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: новая сессия получает основной артефакт и неизменные результаты части задачи",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S9"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C10",
+    "action": "инструкция имеет поддерживаемый заголовок и незаполненные местные решения",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "диагностика указывает schema-only и semantic not-assessed, не утверждая готовность проекта",
+    "preparation": "Временная фикстура теста tests/global_contracts.rs::supported_adapter_does_not_claim_semantic_readiness создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0010-S10"
+    ],
+    "selector": "supported_adapter_does_not_claim_semantic_readiness"
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C11",
+    "action": "инструкция имеет неизвестную схему",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "doctor сообщает ProjectInstructionSchemaUnsupported, а её байты остаются неизменными",
+    "preparation": "Временная фикстура теста tests/global_contracts.rs::unsupported_project_adapter_is_a_failure создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0010-S11"
+    ],
+    "selector": "unsupported_project_adapter_is_a_failure"
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C12",
+    "action": "пользовательский профиль обновлён, а внутри него существует подключаемый проект с исключением",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "активная Поставка обновлена, но проектная инструкция сохранена побайтно",
+    "preparation": "Временная фикстура теста tests/global_contracts.rs::global_update_preserves_project_adaptation_in_profile создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0010-S12"
+    ],
+    "selector": "global_update_preserves_project_adaptation_in_profile"
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C13",
+    "action": "Выполнить соответствующий маршрут task/spec/work по проектной инструкции и проверить фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "он не объявляет проект полностью совместимым, сохраняет принятое исключение, называет зависимое действие и конкретное исправление без неразрешённой записи",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: агент входит в проект с поддерживаемой схемой, но необходимая команда отсутствует или обнаружен неразрешённый конфликт обязанностей навыков",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S13"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C14",
+    "action": "Выполнить highgrade-update на изолированном профиле и проверить состояние через global-status",
+    "file": "",
+    "inputs": [],
+    "observation": "агент фиксирует SHA либо происхождение и отпечаток пакета, использует соответствующий CLI, связывает preview/apply одним отпечатком и подтверждает активный выпуск",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: разрешено обновление из выбранного Git SHA или переданного готового пакета",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S14"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C15",
+    "action": "Выполнить highgrade-update на изолированном профиле и проверить состояние через global-status",
+    "file": "",
+    "inputs": [],
+    "observation": "совпадающие манифест и CLI при исправной установке дают ответ «уже установлено» без записи; различие состава либо недостаток доказательств не объявляются успехом, ID самовольно не меняется",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: CLI возвращает GlobalSameRelease",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S15"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0010",
+    "id": "HG-0010-C16",
+    "action": "Выполнить highgrade-update на изолированном профиле и проверить состояние через global-status",
+    "file": "",
+    "inputs": [],
+    "observation": "агент проверяет status прежним заведомо рабочим CLI, сообщает наблюдаемую версию или неизвестное состояние, сохраняет данные ошибки и не продолжает изменяющие действия при неподтверждённом восстановлении",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: обновление завершилось ошибкой",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0010-S16"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C1",
+    "action": "Выполнить highgrade-approve по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "approve создаёт коммит и сообщает SHA без выдуманной команды активации",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: задача проверена, а проект не задаёт местный маршрут активации",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C2",
+    "action": "Выполнить highgrade-approve по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "коммит сохраняется, задача не объявляется полностью активной, а отчёт указывает ошибку, наблюдаемое состояние прежнего выпуска и результат доступного восстановления без неподтверждённых гарантий",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: коммит создан, но назначенная проектом активация из его SHA не прошла",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C3",
+    "action": "Выполнить highgrade-approve по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "approve сверяет запись и staged diff без повторного полного запуска уже успешных проверок",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: после work состав, тесты и значимые зависимости не изменились",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C4",
+    "action": "Выполнить highgrade-approve по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "approve коммитит только принятый состав и сохраняет остальные изменения",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: рядом с принятой задачей лежат посторонние и неоднозначные изменения",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S4"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C5",
+    "action": "Выполнить highgrade-push по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "push проверяет границы, удалённую ветку и последствия, но не повторяет полный локальный набор тестов",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: готовый коммит уже проверен и не изменился",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S5"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C6",
+    "action": "Выполнить highgrade-push по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "push сверяет все коммиты и цель, отправляет диапазон и проверяет итоговый удалённый SHA",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: автор поручает отправить проверенный диапазон с несколькими локально принятыми задачами",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S6"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C7",
+    "action": "Выполнить highgrade-push по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "агент не отправляет диапазон и показывает конкретный коммит для решения",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: выбранный диапазон содержит коммит без доказанной принадлежности пакету",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S7"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C8",
+    "action": "Выполнить highgrade-push по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [],
+    "observation": "агент раскрывает следствие до отправки и действует только при разрешении на это следствие",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: runbook указывает, что отправка запустит эксплуатационную активацию",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S8"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C9",
+    "action": "Выполнить preview и применение global-update по одному отпечатку кандидата",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "новый выпуск активен после postcheck, собственные файлы прежнего выпуска очищены, чужие файлы сохранены",
+    "preparation": "В изолированном профиле установлен прежний выпуск и подготовлен валидный кандидат с другим release ID",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0011-S9"
+    ],
+    "selector": "global_update_preview_switch_and_cleanup_keep_unrelated_files"
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C10",
+    "action": "после успешного переключения в каталоге прежнего выпуска есть неизвестный файл",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "CLI удаляет только проверенные собственные файлы, сохраняет чужой файл и журнал для повторной очистки, сообщает ограничение; после удаления чужого файла следующее обновление завершает очистку",
+    "preparation": "Временная фикстура теста tests/global_contracts.rs::update_preserves_foreign_file_in_old_release создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0011-S10"
+    ],
+    "selector": "update_preserves_foreign_file_in_old_release"
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C11",
+    "action": "Завершить соответствующий маршрут и проверить переданный пользователю результат",
+    "file": "",
+    "inputs": [],
+    "observation": "ответ кратко называет результат и подтверждающие проверки со ссылкой на основное доказательство при необходимости",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: задача завершена без существенных открытых вопросов",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S11"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0011",
+    "id": "HG-0011-C12",
+    "action": "Завершить соответствующий маршрут и проверить переданный пользователю результат",
+    "file": "",
+    "inputs": [],
+    "observation": "выпуск указан как локально активный и неопубликованный",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: локальная активация из коммита прошла, а push ещё не поручен",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S12"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0012",
+    "id": "HG-0012-C1",
+    "action": "Создать изменения, одновременно повторить создание от одного снимка и вызвать сбой записи",
+    "file": "tests/spec_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/spec_contracts.rs"
+    ],
+    "observation": "Успешные создания имеют разные последовательные ID; конфликт/сбой сохраняет целый store и счётчик; отменённый номер не используется вновь",
+    "preparation": "Временная фикстура теста tests/spec_contracts.rs::automatic_numbers_survive_abandon_failure_and_competing_cli_writers создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0012-S1"
+    ],
+    "selector": "automatic_numbers_survive_abandon_failure_and_competing_cli_writers"
+  },
+  {
+    "change": "HG-0012",
+    "id": "HG-0012-C2",
+    "action": "Прочитать, попытаться записать без миграции, затем выполнить миграцию и повтор/конфликт",
+    "file": "tests/spec_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/spec_contracts.rs"
+    ],
+    "observation": "Чтение не меняет байты; запись требует миграции; резервная копия точна; повтор безопасен; старые данные и валидность ревью сохранены",
+    "preparation": "Временная фикстура теста tests/spec_contracts.rs::v1_migration_preserves_exact_backup_ids_evidence_and_review_digest создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0012-S2"
+    ],
+    "selector": "v1_migration_preserves_exact_backup_ids_evidence_and_review_digest"
+  },
+  {
+    "change": "HG-0012",
+    "id": "HG-0012-C3",
+    "action": "Записать решение, попробовать неполные/устаревшие/поддельные входы и затем изменить контракт или проверенный код",
+    "file": "tests/spec_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/spec_contracts.rs"
+    ],
+    "observation": "Полная запись сохраняется, неверные не меняют store; история остаётся, новая версия не наследует принятие",
+    "preparation": "Временная фикстура теста tests/spec_contracts.rs::human_history_is_atomic_protected_and_bound_to_spec_and_implementation создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0012-S3"
+    ],
+    "selector": "human_history_is_atomic_protected_and_bound_to_spec_and_implementation"
+  },
+  {
+    "change": "HG-0012",
+    "id": "HG-0012-C4",
+    "action": "Запросить список до и после изменений и удаления отчёта",
+    "file": "tests/spec_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/spec_contracts.rs"
+    ],
+    "observation": "ID/title и счётчики верны; failed/skipped/unknown/stale/no_go не дают ready; отсутствие решения pending; включение не означает принятие",
+    "preparation": "Временная фикстура теста tests/spec_contracts.rs::json_progress_rejects_missing_skipped_unknown_and_negative_review создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0012-S4"
+    ],
+    "selector": "json_progress_rejects_missing_skipped_unknown_and_negative_review"
+  },
+  {
+    "change": "HG-0012",
+    "id": "HG-0012-C5",
+    "action": "Принять две, вернуть одну, изменить и проверить последнюю, записать новое решение",
+    "file": "tests/spec_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/spec_contracts.rs"
+    ],
+    "observation": "История и JSON-сводка показывают точные решения по версиям; неверный элемент пакета не записывает остальные; процедуры сохраняют отдельные полномочия",
+    "preparation": "Временная фикстура теста tests/spec_contracts.rs::isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0012-S5"
+    ],
+    "selector": "isolated_three_spec_lifecycle_keeps_exact_decisions_and_pending_work"
+  },
+  {
+    "change": "HG-0013",
+    "id": "HG-0013-C1",
+    "action": "создана заготовка либо передан документ с неизвестной схемой/полем",
+    "file": "tests/spec_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/spec_contracts.rs"
+    ],
+    "observation": "заготовка читается и показывает незавершённость, неподдерживаемое отклоняется без повреждения сохранённого документа",
+    "preparation": "Временная фикстура теста tests/spec_contracts.rs::drafts_are_readable_but_unknown_versions_and_fields_never_write создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0013-S1"
+    ],
+    "selector": "drafts_are_readable_but_unknown_versions_and_fields_never_write"
+  },
+  {
+    "change": "HG-0013",
+    "id": "HG-0013-C2",
+    "action": "два писателя сохраняют от одного хеша либо запись прерывается до замены",
+    "file": "tests/spec_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/spec_contracts.rs"
+    ],
+    "observation": "не теряются изменения, сохраняется полный старый либо новый документ, конфликт сообщается явно",
+    "preparation": "Временная фикстура теста tests/spec_contracts.rs::competing_processes_and_failed_replace_preserve_whole_store создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0013-S2"
+    ],
+    "selector": "competing_processes_and_failed_replace_preserve_whole_store"
+  },
+  {
+    "change": "HG-0013",
+    "id": "HG-0013-C3",
+    "action": "подготовлено изменение существующего требования или удаление с причиной, но действующая редакция уже изменилась",
+    "file": "tests/spec_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/spec_contracts.rs"
+    ],
+    "observation": "включение отклоняется; на актуальной базе изменение включается вместе с архивной записью, отсутствующая причина удаления не проходит",
+    "preparation": "Временная фикстура теста tests/spec_contracts.rs::integration_rejects_stale_base_and_requires_removal_reason создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0013-S3"
+    ],
+    "selector": "integration_rejects_stale_base_and_requires_removal_reason"
+  },
+  {
+    "change": "HG-0013",
+    "id": "HG-0013-C4",
+    "action": "связанный сценарий/код/отчёт изменён либо результат skipped",
+    "file": "tests/spec_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/spec_contracts.rs"
+    ],
+    "observation": "завершение блокируется, а незатронутое доказательство сохраняет актуальность",
+    "preparation": "Временная фикстура теста tests/spec_contracts.rs::evidence_and_review_go_stale_without_losing_unaffected_observations создана с исходными данными указанного случая",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0013-S4"
+    ],
+    "selector": "evidence_and_review_go_stale_without_losing_unaffected_observations"
+  },
+  {
+    "change": "HG-0013",
+    "id": "HG-0013-C5",
+    "action": "Продолжить разрешённую задачу через установленную Поставку и проверить результат",
+    "file": "",
+    "inputs": [],
+    "observation": "он находит следующий шаг, сохраняет решения, выполняет настоящую проверку поведения и заканчивает разрешённый scope без исходников High Grade и внешнего инструмента спецификаций",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: отдельный агент получает установленную Поставку, проект, разрешённую задачу и сохранённое незавершённое изменение",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0013-S5"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0014",
+    "id": "HG-0014-C1",
+    "action": "Запустить соответствующий навык High Grade и проверить выбор маршрута",
+    "file": "",
+    "inputs": [],
+    "observation": "агент использует общий маршрут проработки задачи и создаёт нативное изменение требований до реализации после согласования результата",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: автор поручает изменить требование или нормативный сценарий High Grade без готовой спеки",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0014-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0014",
+    "id": "HG-0014-C2",
+    "action": "Запустить соответствующий навык High Grade и проверить выбор маршрута",
+    "file": "",
+    "inputs": [],
+    "observation": "агент выполняет её через `highgrade-work` по существующему контракту или как техническую работу без фиктивной новой спеки",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: задача не меняет требование или нормативный сценарий, включая исправление по существующему контракту",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0014-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0015",
+    "id": "HG-0015-C1",
+    "action": "Вызвать doctor и прочитать запись доступности Cargo",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "отчёт показывает только ограничение обнаружения, executed=false и version=null, не выдавая неизвестную версию за проверенную",
+    "preparation": "В изолированном проекте PATH процесса не содержит Cargo, а doctor не запускал этот инструмент",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0015-S1"
+    ],
+    "selector": "doctor_reports_unavailable_tool_without_claiming_version"
+  },
+  {
+    "change": "HG-0016",
+    "id": "HG-0016-C1",
+    "action": "Выполнить highgrade-task с заданными исходными условиями и проверить вопросы и переход к работе",
+    "file": "",
+    "inputs": [],
+    "observation": "task передаёт результат в spec или work без повторного запроса того же разрешения",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: автор указал цель, границы и разрешил работу, а новых вопросов не обнаружено",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0016-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0016",
+    "id": "HG-0016-C2",
+    "action": "Выполнить highgrade-task с заданными исходными условиями и проверить вопросы и переход к работе",
+    "file": "",
+    "inputs": [],
+    "observation": "агент показывает карточку с последствиями и ожидает решение автора до зависимого действия",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: существенный вариант меняет поведение или последствия задачи",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0016-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0016",
+    "id": "HG-0016-C3",
+    "action": "Выполнить highgrade-task с заданными исходными условиями и проверить вопросы и переход к работе",
+    "file": "",
+    "inputs": [],
+    "observation": "агент представляет их одним коротким раундом с вариантами и последствиями, не растягивая задачу на два ожидания",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: два нерешённых решения не зависят друг от друга",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0016-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0017",
+    "id": "HG-0017-C1",
+    "action": "Выполнить highgrade-spec и highgrade-work для заданного сценария и проверить доказательства",
+    "file": "",
+    "inputs": [],
+    "observation": "сценарий имеет устойчивый ID, тест ссылается на него, а итоговое доказательство называет исполненный тест и результат",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: согласованное изменение поведения получает сценарий, для которого подходит штатный автоматический тест",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0017-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0017",
+    "id": "HG-0017-C2",
+    "action": "Выполнить highgrade-spec и highgrade-work для заданного сценария и проверить доказательства",
+    "file": "",
+    "inputs": [],
+    "observation": "доказательство называет выполненное действие, наблюдаемый результат и состояние исходника, а `trace` не выдумывает автоматический успех",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: сценарий касается процедуры агента или внешнего наблюдения, которое нельзя достоверно подтвердить поддерживаемым автоматическим отчётом",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0017-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0017",
+    "id": "HG-0017-C3",
+    "action": "Выполнить highgrade-spec и highgrade-work для заданного сценария и проверить доказательства",
+    "file": "",
+    "inputs": [],
+    "observation": "сценарий явно остаётся неподтверждённым, а задача не объявляется полностью покрытой",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: ссылка, исходный результат или ручное наблюдение отсутствует либо устарело",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0017-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0018",
+    "id": "HG-0018-C1",
+    "action": "Поручить ревью отдельному субагенту и повторить после исправлений",
+    "file": "",
+    "inputs": [
+      ".highgrade/project/INSTRUCTIONS.md",
+      "kit/procedures/work.md",
+      "kit/rules.md"
+    ],
+    "observation": "Есть GO или NO_GO с охватом требований и доказательств",
+    "preparation": "Сохранить требования, полный diff и исходные отчёты",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0018-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0018",
+    "id": "HG-0018-C3",
+    "action": "Запустить inspect без --registry и с явным --registry для отдельной проверки",
+    "file": "tests/contracts.rs",
+    "inputs": [
+      "src/inspect.rs",
+      "tests/contracts.rs"
+    ],
+    "observation": "Выбирается только стандартный реестр; посторонний каталог не скрыт; без стандартного реестра команда отказывает",
+    "preparation": "Создать два изолированных временных проекта: с реестром High Grade и старым каталогом, затем только со сторонним каталогом",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0018-S3",
+      "HG-0018-S4"
+    ],
+    "selector": "default_inspect_uses_only_highgrade_registry"
+  },
+  {
+    "change": "HG-0019",
+    "id": "HG-0019-C1",
+    "action": "python -m unittest discover -s scripts/tests -v",
+    "file": "scripts/tests/test_build_release.py",
+    "inputs": [
+      "scripts/build-release.py",
+      "scripts/tests/test_build_release.py"
+    ],
+    "observation": "Кандидат построен из зафиксированного SHA в target/highgrade; временные исходники удалены; сбой следующей сборки сохраняет кандидата",
+    "preparation": "Временный Git/Cargo-проект с зафиксированным SHA, грязным рабочим деревом и рабочим кандидатом",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0019-S1"
+    ],
+    "selector": "test_exact_revision_repeat_and_failed_build_preserve_candidate"
+  },
+  {
+    "change": "HG-0019",
+    "id": "HG-0019-C2",
+    "action": "python -m unittest discover -s scripts/tests -v",
+    "file": "scripts/tests/test_target_maintenance.py",
+    "inputs": [
+      "scripts/target-maintenance.py",
+      "scripts/tests/test_target_maintenance.py"
+    ],
+    "observation": "Просмотр ничего не меняет; применение удаляет выбранное и сохраняет кандидата и неизвестное",
+    "preparation": "Временный target с пробой, кандидатом и неизвестным файлом",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0019-S2"
+    ],
+    "selector": "test_preview_is_read_only_and_apply_preserves_candidate_and_unknown,test_cache_cleanup_requires_explicit_selection"
+  },
+  {
+    "change": "HG-0019",
+    "id": "HG-0019-C3",
+    "action": "python -m unittest discover -s scripts/tests -v",
+    "file": "scripts/tests/test_target_maintenance.py",
+    "inputs": [
+      "scripts/target-maintenance.py",
+      "scripts/tests/test_target_maintenance.py"
+    ],
+    "observation": "Отказ до удаления; внешние данные, кандидат и проба сохраняются",
+    "preparation": "Временный target с внешним sentinel, junction, кандидатом и признаком работающего Cargo",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0019-S3"
+    ],
+    "selector": "test_active_build_and_recovery_state_refuse_without_changes,test_link_outside_root_refuses_and_preserves_sentinel"
+  },
+  {
+    "change": "HG-0020",
+    "id": "HG-0020-C1",
+    "action": "Запустить агента с установленной Поставкой и наблюдать создание Goal и первый этап",
+    "file": "",
+    "inputs": [
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/procedures/work.md",
+      "kit/rules.md",
+      "kit/skills/highgrade-planner/SKILL.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Один Goal на цепочку, этапы и один Next; задачи остаются у владельцев",
+    "preparation": "Создать изолированные проекты и явные поручения для технической цепочки и цепочки спек",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0020-S1",
+      "HG-0020-S2",
+      "HG-0020-S4"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0020",
+    "id": "HG-0020-C2",
+    "action": "Запустить выбор маршрута и явный Planner",
+    "file": "",
+    "inputs": [
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/procedures/work.md",
+      "kit/rules.md",
+      "kit/skills/highgrade-planner/SKILL.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Для разовой задачи нет автоматического Goal; Goal планирования не запускает реализацию",
+    "preparation": "Подготовить одношаговый запрос и отдельный запрос только на план",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0020-S3",
+      "HG-0020-S7"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0020",
+    "id": "HG-0020-C3",
+    "action": "Возобновить и завершить разрешённую часть",
+    "file": "",
+    "inputs": [
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/procedures/work.md",
+      "kit/rules.md",
+      "kit/skills/highgrade-planner/SKILL.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Нет ложного завершения, замены Goal или неподтверждённых внешних действий",
+    "preparation": "Подготовить сохранённое состояние после этапа, неуспешную проверку и занятый Goal",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0020-S5",
+      "HG-0020-S6",
+      "HG-0020-S8"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0020",
+    "id": "HG-0020-C4",
+    "action": "Установить kit через global-install и прочитать установленный маршрутизатор и процедуру",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "kit/manifest.json",
+      "kit/procedures/planner.md",
+      "kit/skills/highgrade-planner/SKILL.md",
+      "src/global.rs",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "Активный выпуск содержит оба файла с ожидаемыми хешами; исходный проект не нужен",
+    "preparation": "Собрать CLI из исходников и создать пустой временный профиль",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0020-S9"
+    ],
+    "selector": "planner_router_is_portable"
+  },
+  {
+    "change": "HG-0021",
+    "id": "HG-0021-C1",
+    "action": "Записать evidence, убрать временные материалы, проверить неизменность отчётов; изменить только зависимый вход и обновить нужное доказательство",
+    "file": "",
+    "inputs": [
+      "kit/procedures/work.md"
+    ],
+    "observation": "Отчёты не меняются от очистки; затронутое доказательство устаревает и обновляется адресно; все актуальные записи готовы до итогового ревью",
+    "preparation": "Сохранить два независимых отчёта и входы до записи evidence; подготовить служебную очистку и адресную правку одного входа",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0021-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0021",
+    "id": "HG-0021-C2",
+    "action": "Выбрать сценарии и выполнить общий тестовый прогон",
+    "file": "",
+    "inputs": [
+      "kit/procedures/spec.md"
+    ],
+    "observation": "Эквивалентные примеры не создают лишний сценарий; обязательные исходы наблюдаются отдельно, один прогон покрывает оба",
+    "preparation": "В изолированном упражнении задать два эквивалентных примера сложения и отдельный исход ошибки типа",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0021-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0021",
+    "id": "HG-0021-C3",
+    "action": "Выполнить необходимые команды, исправить причину сбоя и перепроверить затронутое",
+    "file": "",
+    "inputs": [
+      "docs/DEVELOPMENT.md",
+      "kit/procedures/work.md",
+      "kit/templates/DEVELOPMENT.md"
+    ],
+    "observation": "Нет повторного полного прогона без причины; дополнительное покрытие сохранено; после сбоя выполнена адресная перепроверка",
+    "preparation": "Подготовить фокусную, полную, дублирующую и независимую проверки; предусмотреть контролируемый сбой",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0021-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0021",
+    "id": "HG-0021-C4",
+    "action": "Отклонить неверную подготовку, затем выполнить допустимый агентный прогон с сохранённым журналом",
+    "file": "",
+    "inputs": [
+      "kit/procedures/work.md"
+    ],
+    "observation": "Недопустимый запуск не состоялся; реальный каталог изолирован; полный исходный журнал и краткий итог доступны проверяющему",
+    "preparation": "Проверить неверный и допустимый cwd, режим сеанса и входы до запуска изолированного упражнения",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0021-S4"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0022",
+    "id": "HG-0022-C1",
+    "action": "Изменить значимый и затем незаявленный служебный вход; вызвать spec-check --brief true.",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/main.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "tests/catalog_contracts.rs"
+    ],
+    "observation": "Назван только реально изменённый вход и затронутый сценарий; незаявленный файл не обесценивает результат.",
+    "preparation": "Создать временный нативный каталог с двумя сценариями и успешными доказательствами.",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0022-S1",
+      "HG-0022-S2"
+    ],
+    "selector": "spec_check_brief_reports_affected_inputs"
+  },
+  {
+    "change": "HG-0022",
+    "id": "HG-0022-C2",
+    "action": "Изменить проверенный вход run; вызвать spec-check --brief true.",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/main.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "tests/catalog_contracts.rs"
+    ],
+    "observation": "Названы ID проверки и изменённый путь; старый run не считается актуальным.",
+    "preparation": "Создать временный каталог с прошедшим автоматическим run.",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0022-S3"
+    ],
+    "selector": "spec_check_brief_reports_stale_run"
+  },
+  {
+    "change": "HG-0022",
+    "id": "HG-0022-C3",
+    "action": "Дважды вызвать spec-check --brief true и сравнить с spec-read и spec-list.",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "src/main.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "src/specs/progress.rs",
+      "tests/catalog_contracts.rs"
+    ],
+    "observation": "Краткий вывод содержит точные статусы и отпечатки без истории и записи новых файлов.",
+    "preparation": "Создать временный готовый change с актуальным ревью и человеческим решением.",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0022-S4"
+    ],
+    "selector": "spec_check_brief_returns_stable_handoff"
+  },
+  {
+    "change": "HG-0023",
+    "id": "HG-0023-C1",
+    "action": "Запустить выборку и прочитать статистику; сравнить снимок каталога",
+    "file": "tests/catalog_contracts.rs",
+    "inputs": [
+      "src/main.rs",
+      "src/specs.rs",
+      "src/specs/checks.rs",
+      "tests/catalog_contracts.rs"
+    ],
+    "observation": "Длительности и исходы правдивы, чтение ничего не запускает и не пишет",
+    "preparation": "Изолированный каталог и настоящий тестовый раннер с коротким успешным и ошибочным процессами; старый результат без длительности",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0023-S1",
+      "HG-0023-S2"
+    ],
+    "selector": "run_statistics_track_attempts_without_execution"
+  },
+  {
+    "change": "HG-0023",
+    "id": "HG-0023-C2",
+    "action": "Выполнить минимальный достаточный маршрут и сохранить журнал выбора и запусков",
+    "file": "",
+    "inputs": [
+      "docs/DEVELOPMENT.md",
+      "kit/procedures/work.md",
+      "kit/templates/DEVELOPMENT.md",
+      "tests/catalog_contracts.rs"
+    ],
+    "observation": "Нет лишнего прогона и нет пропуска независимого покрытия",
+    "preparation": "Подготовить фокус, барьер, дубликат и независимое покрытие в изолированном примере",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0023-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0023",
+    "id": "HG-0023-C3",
+    "action": "Записать ручное evidence и затем изменить значимый вход",
+    "file": "",
+    "inputs": [
+      "kit/procedures/work.md",
+      "kit/templates/DEVELOPMENT.md",
+      "src/specs.rs"
+    ],
+    "observation": "Атрибуция сохраняется, повторного запуска нет, прежнее доказательство становится stale",
+    "preparation": "Подготовить учебное подтверждение чата для конкретной версии и ручной сценарий в изолированном каталоге",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0023-S4"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0024",
+    "id": "HG-0024-C1",
+    "action": "Запустить тест и прочитать trace",
+    "file": "tests/trace_contracts.rs",
+    "inputs": [
+      "scripts/source-scenarios.mjs",
+      "src/trace.rs",
+      "tests/support/mod.rs",
+      "tests/trace_contracts.rs"
+    ],
+    "observation": "Счётчики согласованы, несвязанное вне автоматической области, сбой и пропуск не становятся PASS",
+    "preparation": "Изолированный каталог с несколькими Rust-тестами, ручным сценарием и отчётами с разными исходами",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0024-S1",
+      "HG-0024-S2",
+      "HG-0024-S3"
+    ],
+    "selector": "automatic_trace_keeps_scope_and_outcomes_distinct"
+  },
+  {
+    "change": "HG-0024",
+    "id": "HG-0024-C2",
+    "action": "Выполнить полный Nextest и пробу ошибочного завершения фикстуры",
+    "file": "",
+    "inputs": [
+      "tests/bootstrap_contracts.rs",
+      "tests/catalog_contracts.rs",
+      "tests/contracts.rs",
+      "tests/global_contracts.rs",
+      "tests/package_contracts.rs",
+      "tests/spec_contracts.rs",
+      "tests/support/mod.rs",
+      "tests/temp_contracts.rs",
+      "tests/trace_contracts.rs"
+    ],
+    "observation": "Новые test-owned каталоги очищены; чужой каталог сохранён, исход ошибки доступен",
+    "preparation": "Зафиксировать test-owned каталоги и отдельный посторонний каталог перед прогоном",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0024-S4"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0025",
+    "id": "HG-0025-C1",
+    "action": "В изолированной копии изменить только метаданные спеки, затем исход сценария и Rust-файл",
+    "file": "",
+    "inputs": [
+      ".github/workflows/verify.yml",
+      ".highgrade/project/INSTRUCTIONS.md",
+      "docs/DEVELOPMENT.md",
+      "scripts/check-scenario-reuse.mjs",
+      "scripts/source-scenarios.mjs",
+      "specs/changes/HG-0025/spec.json"
+    ],
+    "observation": "Эквивалентный каталог переиспользует отчёт, семантическое или исходное изменение отвергается",
+    "preparation": "Есть свежий полный Nextest/JUnit и записанный run.json",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0025-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0025",
+    "id": "HG-0025-C2",
+    "action": "Сверить команды проекта с кодом, тестами сборки и исходным журналом выпуска",
+    "file": "",
+    "inputs": [
+      ".highgrade/project/INSTRUCTIONS.md",
+      "docs/BUILD.md",
+      "docs/DEVELOPMENT.md",
+      "docs/ENGINEERING.md",
+      "scripts/build-release.py",
+      "scripts/tests/test_build_release.py"
+    ],
+    "observation": "Указана одна release-сборка, защита точного SHA и все барьеры применения сохранены",
+    "preparation": "Имеются build-release.py и подтверждённый выпуск из точного SHA",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0025-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0025",
+    "id": "HG-0025-C3",
+    "action": "Разобрать два этапа цепочки по действующей проектной инструкции",
+    "file": "",
+    "inputs": [
+      ".highgrade/project/INSTRUCTIONS.md",
+      "docs/BUILD.md",
+      "docs/DEVELOPMENT.md"
+    ],
+    "observation": "Правило однозначно откладывает промежуточный выпуск, сохраняет исключение для необходимой активной CLI и отдельный push",
+    "preparation": "Пример цепочки с промежуточным и последним коммитом",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0025-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0027",
+    "id": "HG-0027-C1",
+    "action": "Вызов настоящей CLI/библиотеки установки и проверка файлов",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "kit/manifest.json",
+      "scripts/render-skills.py",
+      "src/global.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "Утверждения теста проверяют контракт сценария и сохранность данных",
+    "preparation": "Изолированный профиль штатной тестовой фикстуры",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0027-S1"
+    ],
+    "selector": "update_replaces_owned_skill_and_preserves_user_edit"
+  },
+  {
+    "change": "HG-0027",
+    "id": "HG-0027-C2",
+    "action": "Вызов настоящей CLI/библиотеки установки и проверка файлов",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "kit/manifest.json",
+      "scripts/render-skills.py",
+      "src/global.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "Утверждения теста проверяют контракт сценария и сохранность данных",
+    "preparation": "Изолированный профиль штатной тестовой фикстуры",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0027-S2"
+    ],
+    "selector": "interrupted_skill_update_recovers_without_overwriting_user_edit"
+  },
+  {
+    "change": "HG-0027",
+    "id": "HG-0027-C3",
+    "action": "Вызов настоящей CLI/библиотеки установки и проверка файлов",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "kit/manifest.json",
+      "scripts/render-skills.py",
+      "src/global.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "Утверждения теста проверяют контракт сценария и сохранность данных",
+    "preparation": "Изолированный профиль штатной тестовой фикстуры",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0027-S2"
+    ],
+    "selector": "failed_candidate_stage_restores_changed_skill"
+  },
+  {
+    "change": "HG-0027",
+    "id": "HG-0027-C4",
+    "action": "Вызов настоящей CLI/библиотеки установки и проверка файлов",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "kit/manifest.json",
+      "scripts/render-skills.py",
+      "src/global.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "tests/global_contracts.rs"
+    ],
+    "observation": "Утверждения теста проверяют контракт сценария и сохранность данных",
+    "preparation": "Изолированный профиль штатной тестовой фикстуры",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0027-S3"
+    ],
+    "selector": "planner_router_is_portable"
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C1",
+    "action": "Смыслово проследить разрешённые шаги, обязательные барьеры, ожидающие/ошибочные исходы, источник точной идентичности результата и сохранённую адаптацию.",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "Для каждого сценария отдельно сверены разрешённые и запрещённые следствия; доказано содержание правил, но не будущее поведение агента.",
+    "preparation": "Подготовить таблицу решений с исходными условиями каждого сценария и указать нормативные источники; не выполнять реальные внешние действия.",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0031-S1",
+      "HG-0063-S1",
+      "HG-0063-S2",
+      "HG-0063-S3",
+      "HG-0063-S4",
+      "HG-0063-S5",
+      "HG-0063-S6",
+      "HG-0063-S7"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S1",
+    "action": "Выполнить highgrade-commit по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "commit создаёт коммит и сообщает SHA без выдуманной команды активации Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: задача проверена, а проект не задаёт местный маршрут активации",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S2",
+    "action": "Выполнить highgrade-commit по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "коммит сохраняется, задача не объявляется полностью активной, а отчёт указывает ошибку, наблюдаемое состояние прежнего выпуска и результат доступного восстановления без неподтверждённых гарантий Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: коммит создан, но назначенная проектом активация из его SHA не прошла",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S3",
+    "action": "Выполнить highgrade-commit по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "commit сверяет запись и staged diff без повторного полного запуска уже успешных проверок Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: после work состав, тесты и значимые зависимости не изменились",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S4",
+    "action": "Выполнить highgrade-commit по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "commit коммитит только выбранный состав и сохраняет остальные изменения Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: рядом с выбранной задачей лежат посторонние и неоднозначные изменения",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S4"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S5",
+    "action": "Выполнить highgrade-push по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "push проверяет границы, удалённую ветку и последствия, но не повторяет полный локальный набор тестов Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: готовый коммит уже проверен и не изменился",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S5"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S6",
+    "action": "Выполнить highgrade-push по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "push сверяет все коммиты и цель, отправляет диапазон и проверяет итоговый удалённый SHA Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: автор поручает отправить проверенный диапазон с несколькими локально закоммиченными задачами",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S6"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S7",
+    "action": "Выполнить highgrade-push по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "агент не отправляет диапазон и показывает конкретный коммит для решения Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: выбранный диапазон содержит коммит без доказанной принадлежности пакету",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S7"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S8",
+    "action": "Выполнить highgrade-push по заданной области и сохранить его фактические действия",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "агент раскрывает следствие до отправки и действует только при разрешении на это следствие Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: runbook указывает, что отправка запустит эксплуатационную активацию",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S8"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S11",
+    "action": "Завершить соответствующий маршрут и проверить переданный пользователю результат",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "ответ кратко называет результат и подтверждающие проверки со ссылкой на основное доказательство при необходимости Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: задача завершена без существенных открытых вопросов",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S11"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0011-S12",
+    "action": "Завершить соответствующий маршрут и проверить переданный пользователю результат",
+    "file": "",
+    "inputs": [
+      "kit/procedures/commit.md",
+      "kit/procedures/init.md",
+      "kit/procedures/push.md",
+      "kit/procedures/work.md",
+      "kit/references/tools/specifications.md",
+      "kit/templates/INSTRUCTIONS.md"
+    ],
+    "observation": "выпуск указан как локально активный и неопубликованный Смысловая сверка текста не заменяет этот фактический агентный пилот.",
+    "preparation": "В изолированном временном проекте сохранены исходные файлы, версия Поставки и разрешение; исходное условие: локальная активация из коммита прошла, а push ещё не поручен",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0011-S12"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0020-S1",
+    "action": "Начать выполнение",
+    "file": "",
+    "inputs": [
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/rules.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Выбран Planner и один технический план; Goal не создаётся из проектного правила, разрешённая работа не блокируется ожиданием непорученного Goal, новая спека не выдумана Реальные действия наблюдаются отдельно от смысловой сверки инструкции.",
+    "preparation": "В подключённом проекте принят автоматический маршрут Planner; пользователь разрешил зависимый технический рефакторинг без изменения контракта, но не поручал Goal и не вызывал Planner явно",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0020-S1"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0020-S2",
+    "action": "Начать и продолжить цепочку",
+    "file": "",
+    "inputs": [
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/rules.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Planner создаёт или продолжает один совпадающий Goal на всю цепочку, ссылаясь на задачи и ID спек без второго backlog и без нового Goal на каждом этапе Реальные действия наблюдаются отдельно от смысловой сверки инструкции.",
+    "preparation": "Пользователь явно вызвал Planner для выполнения зависимых задач одной спеки и затем связанной второй спеки; Goal API доступен, конфликтующего Goal нет",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0020-S2"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0020-S3",
+    "action": "Выбрать маршрут",
+    "file": "",
+    "inputs": [
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/rules.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Planner и Goal не включаются автоматически; задача идёт прямым маршрутом Реальные действия наблюдаются отдельно от смысловой сверки инструкции.",
+    "preparation": "Поступила ясная независимая правка, проверяемая за один проход",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0020-S3"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0020-S6",
+    "action": "Вызвать Planner для новой цепочки",
+    "file": "",
+    "inputs": [
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/rules.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Прежний Goal не заменён; зависимое выполнение остановлено до решения конфликта, независимая подготовка сохранена Реальные действия наблюдаются отдельно от смысловой сверки инструкции.",
+    "preparation": "В текущей задаче уже действует другой незавершённый Goal",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0020-S6"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0020-S7",
+    "action": "Выполнить запрос через Planner",
+    "file": "",
+    "inputs": [
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/rules.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Подготовлен проверяемый план; Goal не создан, реализация, commit, активация, публикация и человеческая приёмка не выполнялись Реальные действия наблюдаются отдельно от смысловой сверки инструкции.",
+    "preparation": "Автор явно просит только план и вызывает Planner",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0020-S7"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0063",
+    "id": "HG-0063-C-PILOT-HG-0020-S8",
+    "action": "Завершить техническую работу",
+    "file": "",
+    "inputs": [
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/rules.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Переданы результат и проверки; коммит, активация, публикация и приёмка не объявлены выполненными Реальные действия наблюдаются отдельно от смысловой сверки инструкции.",
+    "preparation": "Технические этапы цепочки проверены, но commit, локальная активация, push и человеческое решение не поручены",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0020-S8"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0076",
+    "id": "HG-0076-C1",
+    "action": "Run actual installed helper against a meaningful mutation",
+    "file": "tests/global_contracts.rs",
+    "inputs": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "build.rs",
+      "kit/manifest.json",
+      "kit/references/clear-batches.md",
+      "kit/tools/clear_batch.py",
+      "src/global.rs",
+      "src/lib.rs",
+      "src/main.rs",
+      "src/package.rs",
+      "src/paths.rs",
+      "src/release_notes.rs",
+      "src/ui.rs",
+      "src/ui/bundle.rs",
+      "tests/global_contracts.rs",
+      "tests/support/mod.rs",
+      "ui/dist/highgrade-ui.json"
+    ],
+    "observation": "Actual relevant assertion, baseline/final execution, exact restore, live sentinel preserved",
+    "preparation": "Install candidate kit in isolated profile; remove source copy; prepare tiny Python project",
+    "runner": "rust-contracts",
+    "scenario_ids": [
+      "HG-0076-S5"
+    ],
+    "selector": "installed_clear_helper_runs_after_candidate_sources_are_removed"
+  },
+  {
+    "change": "HG-0076",
+    "id": "HG-0076-C2",
+    "action": "Compare source content, real actions, reads, completion decisions and declared limits",
+    "file": "",
+    "inputs": [
+      "kit/procedures/clear.md",
+      "kit/procedures/planner.md",
+      "kit/procedures/task.md",
+      "kit/references/review.md",
+      "kit/templates/AGENTS.md"
+    ],
+    "observation": "Full selected semantic coverage and early methods; no fictitious Goal or false closure; authority preserved",
+    "preparation": "Independent semantic review, selected controlled actor requests, actual root Goal observation",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0075-S1",
+      "HG-0075-S2",
+      "HG-0075-S3",
+      "HG-0075-S4",
+      "HG-0075-S7",
+      "HG-0075-S8",
+      "HG-0076-S1",
+      "HG-0076-S3",
+      "HG-0076-S4"
+    ],
+    "selector": ""
+  },
+  {
+    "change": "HG-0076",
+    "id": "HG-0076-C3",
+    "action": "Run real unittest suite and inspect per-case raw reports, snapshot, diffs and measured comparison",
+    "file": "scripts/tests/test_clear_batch.py",
+    "inputs": [
+      "kit/references/clear-batches.md",
+      "kit/tools/clear_batch.py",
+      "scripts/tests/test_clear_batch.py"
+    ],
+    "observation": "Detected/survived/invalid/restoration/provenance/reuse differ by actual cause; comparison keeps mandatory outcomes; no token estimate",
+    "preparation": "Prepare fixtures/methods before implementation; preserve real subprocess originals",
+    "runner": null,
+    "scenario_ids": [
+      "HG-0075-S5",
+      "HG-0075-S6",
+      "HG-0076-S10",
+      "HG-0076-S5",
+      "HG-0076-S6",
+      "HG-0076-S7",
+      "HG-0076-S8",
+      "HG-0076-S9"
+    ],
+    "selector": ""
+  }
+]

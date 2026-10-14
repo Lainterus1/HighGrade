@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--test",
+    "trace_contracts"
+  ],
+  "cwd": "/home/lainterus/Projects/High Grade",
+  "started_at": "2026-10-14T05:39:35.692278+00:00",
+  "ended_at": "2026-10-14T05:39:40.763810+00:00",
+  "exit_code": 101,
+  "stdout": "\nrunning 11 tests\ntest playwright_resolves_source_relative_to_report_root ... ok\ntest active_modified_requirement_replaces_base_for_trace ... ok\ntest duplicate_rust_results_preserve_independent_outcomes_and_raw_counts ... FAILED\ntest duplicate_and_unknown_scenario_ids_do_not_pass ... ok\ntest rust_requires_real_listed_passing_result ... FAILED\ntest native_reports_remain_readable_after_checkout_moves ... ok\ntest playwright_uses_annotation_and_result_not_just_link ... ok\ntest automatic_trace_keeps_scope_and_outcomes_distinct ... ok\ntest rust_skip_failure_unknown_and_empty_are_unconfirmed ... ok\ntest native_owner_replaces_only_imported_markdown_and_ignores_evidence_metadata ... ok\ntest reviewed_transfer_trace_selects_one_owner_and_preserves_neighbor ... ok\n\nfailures:\n\n---- duplicate_rust_results_preserve_independent_outcomes_and_raw_counts stdout ----\n\nthread 'duplicate_rust_results_preserve_independent_outcomes_and_raw_counts' panicked at tests/trace_contracts.rs:312:9:\nassertion failed: traced.measurements.iter().any(|row|\n        row[\"scenario_id\"] == \"HG-MATH-001\" && row[\"status\"] != \"passed\")\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n---- rust_requires_real_listed_passing_result stdout ----\n\nthread 'rust_requires_real_listed_passing_result' panicked at tests/trace_contracts.rs:281:5:\nassertion failed: invalid.measurements.iter().any(|row|\n        row[\"scenario_id\"] == \"HG-MATH-001\" && row[\"status\"] != \"passed\")\n\n\nfailures:\n    duplicate_rust_results_preserve_independent_outcomes_and_raw_counts\n    rust_requires_real_listed_passing_result\n\ntest result: FAILED. 9 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s\n\n",
+  "stderr": "   Compiling highgrade v0.4.0 (/home/lainterus/Projects/High Grade)\n    Finished `test` profile [unoptimized] target(s) in 5.03s\n     Running tests/trace_contracts.rs (target/debug/deps/trace_contracts-b17b384cb963249e)\nerror: test failed, to rerun pass `--test trace_contracts`\n"
+}

@@ -1,0 +1,138 @@
+[
+  {
+    "id": "HG-0002",
+    "evidence": {
+      "scenario": "HG-0002-S1",
+      "method": "native_report",
+      "command": "cargo nextest run --locked --profile highgrade; spec-run --id HG-0002 --check all",
+      "captured_at": "2026-10-14T07:08:56.059616+00:00",
+      "outcome": "passed",
+      "inputs": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "specs/runners.json",
+        "src/bootstrap.rs",
+        "src/global.rs",
+        "src/inspect.rs",
+        "src/install.rs",
+        "src/lib.rs",
+        "src/main.rs",
+        "src/package.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/trace.rs",
+        "tests/catalog_contracts.rs",
+        "tests/fixtures/native-v1/store.json",
+        "tests/support/mod.rs"
+      ],
+      "report": "docs/evidence/objects/14b954bd01dafbefa0a02968bb4dc50fd196b05e0d54232b10fe4a020aa09193.blob",
+      "observation": "Real catalog/CLI cases preserve a foreign catalog and independent sibling specification after service removal. Original full 237-case JUnit and all 10 selected spec-run checks passed. tests/support/mod.rs is explicitly pinned from unchanged pre/post source snapshots. Native execution receipts are preserved in docs/evidence/objects/681d622ca9a4f1fc2f1d4e86001c978e3b15f820317b7b4ed4062c2db22ae08e.json. Existing check definitions and human decisions remain unchanged."
+    }
+  },
+  {
+    "id": "HG-0002",
+    "evidence": {
+      "scenario": "HG-0002-S2",
+      "method": "native_report",
+      "command": "cargo nextest run --locked --profile highgrade; spec-run --id HG-0002 --check all",
+      "captured_at": "2026-10-14T07:08:56.059616+00:00",
+      "outcome": "passed",
+      "inputs": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "specs/runners.json",
+        "src/bootstrap.rs",
+        "src/global.rs",
+        "src/inspect.rs",
+        "src/install.rs",
+        "src/lib.rs",
+        "src/main.rs",
+        "src/package.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/trace.rs",
+        "tests/catalog_contracts.rs",
+        "tests/fixtures/native-v1/store.json",
+        "tests/support/mod.rs"
+      ],
+      "report": "docs/evidence/objects/14b954bd01dafbefa0a02968bb4dc50fd196b05e0d54232b10fe4a020aa09193.blob",
+      "observation": "Real migrations retain exact backups and decisions; transaction interruption and conflict preserve affected files. New two-target recovery conflict regression also passed. Original full 237-case JUnit and all 10 selected spec-run checks passed. tests/support/mod.rs is explicitly pinned from unchanged pre/post source snapshots. Native execution receipts are preserved in docs/evidence/objects/681d622ca9a4f1fc2f1d4e86001c978e3b15f820317b7b4ed4062c2db22ae08e.json. Existing check definitions and human decisions remain unchanged."
+    }
+  },
+  {
+    "id": "HG-0002",
+    "evidence": {
+      "scenario": "HG-0002-S3",
+      "method": "native_report",
+      "command": "cargo nextest run --locked --profile highgrade; spec-run --id HG-0002 --check all",
+      "captured_at": "2026-10-14T07:08:56.059616+00:00",
+      "outcome": "passed",
+      "inputs": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "specs/runners.json",
+        "src/bootstrap.rs",
+        "src/global.rs",
+        "src/inspect.rs",
+        "src/install.rs",
+        "src/lib.rs",
+        "src/main.rs",
+        "src/package.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/trace.rs",
+        "tests/catalog_contracts.rs",
+        "tests/fixtures/native-v1/store.json",
+        "tests/support/mod.rs"
+      ],
+      "report": "docs/evidence/objects/14b954bd01dafbefa0a02968bb4dc50fd196b05e0d54232b10fe4a020aa09193.blob",
+      "observation": "Real reconfirmation preserves prior evidence/review history and requirements, and does not carry human acceptance to changed inputs. Original full 237-case JUnit and all 10 selected spec-run checks passed. tests/support/mod.rs is explicitly pinned from unchanged pre/post source snapshots. Native execution receipts are preserved in docs/evidence/objects/681d622ca9a4f1fc2f1d4e86001c978e3b15f820317b7b4ed4062c2db22ae08e.json. Existing check definitions and human decisions remain unchanged."
+    }
+  },
+  {
+    "id": "HG-0024",
+    "evidence": {
+      "scenario": "HG-0024-S4",
+      "method": "native_report",
+      "command": "python .highgrade/local/project-refresh-2026-10-14/native_census.py",
+      "captured_at": "2026-10-14T07:08:56.059616+00:00",
+      "outcome": "passed",
+      "inputs": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "tests/bootstrap_contracts.rs",
+        "tests/catalog_contracts.rs",
+        "tests/contracts.rs",
+        "tests/global_contracts.rs",
+        "tests/package_contracts.rs",
+        "tests/spec_contracts.rs",
+        "tests/support/mod.rs",
+        "tests/temp_contracts.rs",
+        "tests/trace_contracts.rs"
+      ],
+      "report": "docs/evidence/objects/1a78a86416a16e7e8bf35ea07c866f7dcc06d555911408273fcbca127df2532b.blob",
+      "observation": "Full actual Nextest 237/237 passed with TMPDIR/TEMP/TMP directed to one owned test root. Before/after directory and file maps are identical; foreign sentinel bytes are unchanged. The panic cleanup regression passed in that run. Original JUnit and capture are preserved in docs/evidence/objects/681d622ca9a4f1fc2f1d4e86001c978e3b15f820317b7b4ed4062c2db22ae08e.json. Earlier regression-only S4 record was incomplete for the mandatory census method and is retained as partial historical evidence. No global temp scan or deletion of unknown data is claimed."
+    }
+  }
+]

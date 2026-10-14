@@ -1,0 +1,34 @@
+[
+  {
+    "id": "HG-0002",
+    "argv": [
+      "target/debug/highgrade",
+      "spec-check",
+      "--root",
+      "/home/lainterus/Projects/High Grade",
+      "--id",
+      "HG-0002",
+      "--brief",
+      "true"
+    ],
+    "exit_code": 1,
+    "stdout": "{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [\n    {\n      \"code\": \"ReviewMissingOrStale\",\n      \"location\": \"/review\",\n      \"message\": \"Change is not ready for integration.\",\n      \"status\": \"failed\"\n    }\n  ],\n  \"limitations\": [\n    \"Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage.\"\n  ],\n  \"measurements\": [\n    {\n      \"brief\": {\n        \"id\": \"HG-0002\",\n        \"blockers\": [\n          {\n            \"kind\": \"review\",\n            \"next\": \"repeat_review\",\n            \"reason\": \"stale\"\n          }\n        ],\n        \"change_sha256\": \"20d63bf4a9ecef46cc217770ea41ce66bfb4fe3502ae5c0f486c002feb105085\",\n        \"contract_sha256\": \"f90be5be4279edf79d21ecc83b6e6e2a3c3eeba3f230b2a2ad73743c76b0efd5\",\n        \"human\": \"stale\",\n        \"inputs_sha256\": \"5b5ac9a20965b3908a17dca42c06028ab72a1f781a0376eede7784b06c4f67ec\",\n        \"technical\": \"in_progress\",\n        \"verified_revision\": null,\n        \"review\": \"stale\"\n      }\n    },\n    {\n      \"schema_version\": 3,\n      \"store_sha256\": \"40c6d586729384a9b97745b5e5b1be2d2f004f2fe2c6dfe9e37a535eada15531\"\n    }\n  ],\n  \"operation\": \"spec-check\",\n  \"result\": {\n    \"brief\": {\n      \"id\": \"HG-0002\",\n      \"blockers\": [\n        {\n          \"kind\": \"review\",\n          \"next\": \"repeat_review\",\n          \"reason\": \"stale\"\n        }\n      ],\n      \"change_sha256\": \"20d63bf4a9ecef46cc217770ea41ce66bfb4fe3502ae5c0f486c002feb105085\",\n      \"contract_sha256\": \"f90be5be4279edf79d21ecc83b6e6e2a3c3eeba3f230b2a2ad73743c76b0efd5\",\n      \"human\": \"stale\",\n      \"inputs_sha256\": \"5b5ac9a20965b3908a17dca42c06028ab72a1f781a0376eede7784b06c4f67ec\",\n      \"technical\": \"in_progress\",\n      \"verified_revision\": null,\n      \"review\": \"stale\"\n    },\n    \"schema_version\": 3,\n    \"store_sha256\": \"40c6d586729384a9b97745b5e5b1be2d2f004f2fe2c6dfe9e37a535eada15531\"\n  },\n  \"status\": \"failed\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "id": "HG-0024",
+    "argv": [
+      "target/debug/highgrade",
+      "spec-check",
+      "--root",
+      "/home/lainterus/Projects/High Grade",
+      "--id",
+      "HG-0024",
+      "--brief",
+      "true"
+    ],
+    "exit_code": 1,
+    "stdout": "{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [\n    {\n      \"code\": \"ReviewMissingOrStale\",\n      \"location\": \"/review\",\n      \"message\": \"Change is not ready for integration.\",\n      \"status\": \"failed\"\n    }\n  ],\n  \"limitations\": [\n    \"Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage.\"\n  ],\n  \"measurements\": [\n    {\n      \"brief\": {\n        \"id\": \"HG-0024\",\n        \"blockers\": [\n          {\n            \"kind\": \"review\",\n            \"next\": \"repeat_review\",\n            \"reason\": \"stale\"\n          }\n        ],\n        \"change_sha256\": \"77aa41c9eca2147589cf0d252dba489cc6f3c64abc9ca1066a43e1e955c01651\",\n        \"contract_sha256\": \"91062b45df950522b30352fd73cf55c9c7eaa6b2f0167d325a9f717ba0a0b5e6\",\n        \"human\": \"pending\",\n        \"inputs_sha256\": \"88f28f5bf4670558ac80c7cc3fc877f343fa7cd4de6eb765bd2d8b11669dcf85\",\n        \"technical\": \"in_progress\",\n        \"verified_revision\": null,\n        \"review\": \"stale\"\n      }\n    },\n    {\n      \"schema_version\": 3,\n      \"store_sha256\": \"40c6d586729384a9b97745b5e5b1be2d2f004f2fe2c6dfe9e37a535eada15531\"\n    }\n  ],\n  \"operation\": \"spec-check\",\n  \"result\": {\n    \"brief\": {\n      \"id\": \"HG-0024\",\n      \"blockers\": [\n        {\n          \"kind\": \"review\",\n          \"next\": \"repeat_review\",\n          \"reason\": \"stale\"\n        }\n      ],\n      \"change_sha256\": \"77aa41c9eca2147589cf0d252dba489cc6f3c64abc9ca1066a43e1e955c01651\",\n      \"contract_sha256\": \"91062b45df950522b30352fd73cf55c9c7eaa6b2f0167d325a9f717ba0a0b5e6\",\n      \"human\": \"pending\",\n      \"inputs_sha256\": \"88f28f5bf4670558ac80c7cc3fc877f343fa7cd4de6eb765bd2d8b11669dcf85\",\n      \"technical\": \"in_progress\",\n      \"verified_revision\": null,\n      \"review\": \"stale\"\n    },\n    \"schema_version\": 3,\n    \"store_sha256\": \"40c6d586729384a9b97745b5e5b1be2d2f004f2fe2c6dfe9e37a535eada15531\"\n  },\n  \"status\": \"failed\"\n}\n",
+    "stderr": ""
+  }
+]

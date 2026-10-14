@@ -1,0 +1,80 @@
+[
+  {
+    "name": "specs",
+    "command": [
+      "python",
+      "scripts/verify.py",
+      "specs"
+    ],
+    "exit": 0,
+    "time": "2026-10-14T15:02:49.138829+00:00"
+  },
+  {
+    "name": "inspect",
+    "command": [
+      "python",
+      "scripts/verify.py",
+      "inspect"
+    ],
+    "exit": 0,
+    "time": "2026-10-14T15:02:49.224607+00:00"
+  },
+  {
+    "name": "format",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "exit": 0,
+    "time": "2026-10-14T15:02:49.467561+00:00"
+  },
+  {
+    "name": "render",
+    "command": [
+      "python",
+      "scripts/render-skills.py",
+      "--check"
+    ],
+    "exit": 0,
+    "time": "2026-10-14T15:02:49.515053+00:00"
+  },
+  {
+    "name": "structure",
+    "command": [
+      "node",
+      "scripts/check-repository.mjs"
+    ],
+    "exit": 0,
+    "time": "2026-10-14T15:02:49.547043+00:00"
+  },
+  {
+    "name": "diff",
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "scripts/source-scenarios.mjs",
+      "scripts/tests/test_source_scenarios.py",
+      "kit/tools/clear_batch.py",
+      "scripts/tests/test_clear_batch.py",
+      "src/package.rs",
+      "tests/catalog_contracts.rs",
+      "tests/spec_contracts.rs",
+      "tests/global_contracts.rs",
+      "tests/ui_contracts.rs",
+      "tests/attention_contracts.rs",
+      "ui/src/features/specs/NativeWorkspace.tsx",
+      "ui/tests/native.spec.ts",
+      "ui/tests/api-client.spec.ts",
+      "ui/tests/visual.spec.ts",
+      "ui/tests/hg58.spec.ts",
+      "ui/tests/hg58-keyboard.spec.ts"
+    ],
+    "exit": 0,
+    "time": "2026-10-14T15:02:49.552564+00:00"
+  }
+]

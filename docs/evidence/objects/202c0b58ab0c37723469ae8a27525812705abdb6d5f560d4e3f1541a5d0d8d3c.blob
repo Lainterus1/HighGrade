@@ -1,0 +1,81 @@
+# Раннее ревью Rust: контракты и сила тестов
+
+2026-10-14. Исходный HEAD: 591dcb1ece4739d27a2e00cd702657ed6c9e70e3. Требуется адресное исправление trace и усиление проверок. Финальный GO не выполнялся. Код, требования и прежние результаты reviewer не изменял; полные suites не запускались.
+
+## Прочитанная область
+
+| Область | Прочитанные первичные источники и границы |
+|---|---|
+| Контракты | HG-0002-R1/R2/R3, HG-0004-R1/R2, HG-0010-R1, HG-0011-R4, HG-0013-R2/R3, HG-0017-R1, HG-0024-R1, HG-0029-R1, HG-0033-R1, HG-0034-R1, HG-0043-R2, HG-0048-R1/R2, HG-0057-R2; scope/checks выбранных HG-0002/0013/0029/0033/0043/0064/0075 |
+| Каталог и общие входы | src/specs/storage.rs: snapshot, decode_snapshot, recover; storage/shared_inputs.rs; specs.rs: readiness/evidence_reason/brief; checks.rs: stale_reason/parse/inputs/import_report. Адресно прочитаны соответствующие cases catalog_contracts, spec_contracts, shared_inputs_contracts и evidence_scope_contracts; не объявлено чтение всех строк этих больших файлов |
+| Trace | src/trace.rs: Rust inventory/JUnit, pw_walk, hashes, links, статусы и счётчики; тесты real listed result, scope/counts, skip/failure/empty, Playwright annotation, перенос checkout |
+| Установка и сохранность | src/global.rs: update с preview/fingerprint/router ownership/postcheck/cleanup; src/paths.rs целиком. Прочитаны соответствующие global_contracts и адресные recovery cases launcher_contracts; legacy install/package покрытие изучено по роли и именам, не заявлено полным аудитом каждого case |
+| Правила и fixtures | AGENTS, местная инструкция, DEVELOPMENT, ENGINEERING, QUALITY, review method, verification reference; tests/support/mod.rs и native-v1 helpers. План/продолжение прочитаны; новый Goal не создавался |
+
+Сильные имеющиеся проверки: точная сохранность миграций и sibling файлов; fail-closed повреждённых v5 manifests; проверка полной prospective snapshot до recovery; независимые causal scopes и shared membership; реальные pass/fail/skip/empty/timeout/drift runners; импорт не допускает failure/error/flaky; preview fingerprint, foreign router/old-release сохранность; postcheck rollback через реальный fault executable в launcher_contracts. Legacy fixtures с OpenSpec/approve осмысленно проверяют совместимость; сами по себе они не устаревшие assertions.
+
+## Существенные находки
+
+**F1. Trace сообщает ложное подтверждение сценария при невалидном отчёте.** HG-0013-R3 и HG-0024-R1/S3 запрещают PASS для устаревшего/неподтверждённого результата. В src/trace.rs ReportHashMismatch меняет общий r.status, но не учитывается при вычислении scenario status. tests/trace_contracts.rs::rust_requires_real_listed_passing_result проверяет лишь общий failed. Ограниченная runtime-проба через установленный v0-4-0: неверный report_sha256 даёт общий failed, но scenario status=passed и automatic_passed=1. Нужна проверка обоих уровней и нулевого числа подтверждений.
+
+**F2. Дубликат JUnit заменяет прежний исход и скрывает число случаев.** src/trace.rs::rust_results использует actual.insert: поздний pass заменяет failure; DuplicateTestResult отражён только общим failed. Проба с двумя testcase одинакового classname/name, failure затем pass, даёт scenario passed, automatic_passed=1 и test_cases_reported=1. Это реальное противоречие контракту, а не предположение о слабом тесте. Аналогичный overwrite есть в pw_walk; там также теряются annotations первой записи. Тесты не содержат этого негативного fixture.
+
+**F3. Нет адресного теста третьего состояния при восстановлении каталога.** Guard src/specs/storage.rs:301-303 требует current == before либо current == after. Прочитанные tests/catalog_contracts проверяют нормальное/частично применённое восстановление, плохой JSON, неправильную цель и удаление обязательного файла, но не валидную позднюю пользовательскую правку, отличную от обоих хешей. RecoveryConflict в issue_contracts относится к иному recovery. Нужен многоключевой journal: первая цель применима, вторая конфликтует; отказ должен сохранить все цели и journal побайтно. Текущий guard исправен по чтению; отсутствие теста не названо повреждением данных.
+
+Оригинал трёх дешёвых trace-проб с точными искусственными входами, argv, stdout/stderr и SHA256 CLI: [rust-trace-probe.json](rust-trace-probe.json). Baseline прошёл. Эти пробы проверяют reader отчётов; они не являются мутацией реализации или заменой штатного baseline. Временный fixture удалён после сохранения оригинала.
+
+## Адресное исправление и новые fixtures
+
+1. Неверный хеш report лишает подтверждения все сценарии, связанные с этим report. Несвязанные сценарии остаются outside_automatic_trace. Не переносить все остальные глобальные findings в blanket отказ независимых валидных результатов.
+2. Duplicate test key остаётся неоднозначным/неуспешным независимо от порядка записей. Rust сохраняет независимые keys. Playwright объединяет annotations обеих дублированных записей, чтобы первая связь не исчезла. Любой сценарий с этой связкой не получает PASS.
+3. HG-0024-R1/S1 прямо различает «число случаев в исходном отчёте» и уникальные связанные тесты. reported для Rust считает testcase XML; для PW — объекты test, а не попытки в results. linked остаётся мощностью множества keys. Для unlinked сохранить прежний уникальный знаменатель actual.keys минус linked keys; после введения raw reported выражение reported-linked смешает разные множества. QUALITY:27 уже требует разные знаменатели. Категории native исходов не выводить из общей ошибки отчёта.
+
+Rust fixture: два известных keys `math::adds` и `math::other`, каждый связан с отдельным сценарием. XML: `<testsuites><testcase classname="math" name="adds"><failure/></testcase><testcase classname="math" name="adds"/><testcase classname="math" name="other"/></testsuites>`. Повторить с обратным порядком первых двух записей. Ожидания: DuplicateTestResult; adds не passed; other passed; reported=3; linked unique=2; unlinked unique=0; automatic_passed=1. Отдельный fixture с неверным report hash и двумя валидными keys: ни один связанный сценарий не passed, automatic_passed=0. Обязательно восстановить валидный hash и подтвердить исходный PASS.
+
+PW fixture: два объекта spec с одинаковым id, projectName и индексом test, но разными HG annotations; первый failed, второй passed. Добавить независимый spec/test с третьей annotation и passed. Ожидания: обе первые связи unconfirmed, третья passed; duplicate finding; reported считает три объекта test. Один test с несколькими results остаётся одним случаем. Это защитит соседнюю ветку общего checker.
+
+## Предложения мутаций
+
+Все ниже **не исполнялись**. Перед каждой нужен пригодный baseline в изолированной копии; после — restored PASS. Меняется реализация, assertions/ожидания внутри мутанта сохраняются. Команды: `cargo test --locked --test BIN NAME -- --exact`.
+
+| Риск и мутация | BIN / NAME | Контрактный детектор |
+|---|---|---|
+| Recovery: удалить отказ при current != before && current != after | catalog_contracts / новый recovery_rejects_conflicting_target_without_partial_apply | RecoveryConflict, сохранность обеих целей и journal; существующий набор предположительно пропустит этот guard, это надо проверить |
+| Report hash: после исправления убрать влияние mismatch на подтверждение | trace_contracts / новый report_hash_mismatch_never_confirms_bound_scenarios | Общий failed плюс ни одной карточки passed и automatic_passed=0 |
+| Duplicate: после исправления вернуть last-write-wins либо утратить duplicate annotations | trace_contracts / новые rust_duplicate_results_preserve_independent_outcomes и playwright_duplicate_results_preserve_all_bound_ids | Затронутые связи unconfirmed в обоих порядках; независимая связь подтверждена; reported/unique различимы |
+| v5: убрать проверку digest(value) != manifest key | shared_inputs_contracts / shared_inputs_fail_closed_on_corrupt_missing_or_ambiguous_data | Изменённый payload с прежним key отвергнут; исходные байты и отсутствие transaction сохранены |
+| Свежесть: убрать сравнение текущего input set с inputs_after | catalog_contracts / shared_inputs_track_content_and_membership | После снятия shared input остаётся конкретный check blocker; восстановленный состав снимает его |
+| Update: разрешить apply с неверным candidate_sha256 | global_contracts / global_update_preview_switch_and_cleanup_keep_unrelated_files | GlobalCandidateChanged до переключения; добавить немедленную сверку active pointer/owned routers, чтобы причиной не стал поздний каскад |
+| Пути: пропустить reject_reparse для управляемого target | contracts / новый unix_symlink_target_is_rejected_and_outside_bytes_preserved; Windows junction_is_not_followed остаётся | Отказ paths::safe/root, сохранность внешнего fixture; дополнительно global install не активирует профиль с linked owned target |
+
+Чтение показало Windows junction case и Linux сохранность постороннего symlink-соседа. Они проверяют разные исходы. Для отказа от Linux symlink управляемой цели нужен адресный case; это пробел теста, не установленный обход текущей защиты. Остальные области вне выбранных мутаций сохраняют стандартные барьеры и пределы текущего ревью; универсальный процент не назначен.
+
+## 71 in_progress: отдельная оценка
+
+Текущее spec-list: 72 изменения, 71 in_progress, 1 ready. Из этих 71 уже archived=68. Последовательно прочитаны spec-check --brief для всех 71 без запуска checks; оригиналы: [rust-status-read.json](rust-status-read.json). input_changed есть у 68 разных спек; это 400 отдельных blockers, не 400 неисправностей. Часто первый сообщённый изменённый вход — Cargo.lock (231 blocker); также прежние .gitattributes, инструкции, workflow и сохранённые pilot inputs. Brief показывает первый различимый изменённый вход, не полный анализ причинной независимости.
+
+Три неинтегрированных изменения: HG-0063, HG-0067, HG-0068. HG-0063 имеет неизвестные обязательные наблюдения/исторический конфликт plan-only и no_go. У HG-0067/HG-0068 сохранённый review разрешал кандидат, но оставлял полную готовность до тогда ещё отсутствовавших CI/активации. Текущий exact-head CI PASS, сообщённый основным агентом, не переписывает эти исходные записи автоматически и не заменяет соответствующее новое наблюдение/review.
+
+Массового заключения «71 дефект кода» нет. Архивирование означает историческую интеграцию; in_progress здесь часто означает потерю текущей подтверждённости. Не сужать старые входы задним числом и не переписывать все прежние спеки ради зелёного списка. Новые проверенные результаты записывать адресно по согласованному охвату; незакрытые исторические наблюдения и приёмка остаются отдельными пределами.
+
+Остаток: основной агент исправляет trace и выполняет выбранные baseline/мутации; затем требуется независимое ревью новых исходных результатов. Пользовательский .gitignore, installed plugins, прочие проекты и действия доставки не затронуты.
+
+## Дополнение: доказанная граница trace fix
+
+По адресному поручению выполнены ещё девять дешёвых reader-проб: valid Rust/PW baseline и семь нарушений. Все негативные случаи дали общий failed/unknown, но обе карточки оставались passed. Оригинал со всеми искусственными входами: [rust-trace-scope-probe.json](rust-trace-scope-probe.json). Исходники checker не мутировались; читался установленный v0-4-0, SHA256 которого закреплён в оригинале. Пробы не удостоверяют фактический запуск native test runner.
+
+| Проверенная ветка | Строгое условие будущей проверки |
+|---|---|
+| Rust TestNotInInventory для math::adds | Только math::adds unconfirmed; other::other из проверенного inventory остаётся passed |
+| SourceUnpinned tests/math.rs | Все keys, связанные с этим source, unconfirmed; независимый tests/other.rs остаётся passed |
+| SourceUnpinned Rust inventory | Все Rust keys этого record unconfirmed: их фактическая принадлежность набору не подтверждена |
+| SourceUnpinned spec source | Не подтверждать сценарии, чей владелец — этот source; проверенный независимый владелец не теряет подтверждение |
+| SourceUnpinned web/a.spec.ts | Затронутый PW key unconfirmed; key проверенного web/b.spec.ts остаётся passed |
+| PlaywrightSourceUnpinned: фактический file вне test_sources | Затронутый объект test unconfirmed; сохранить его annotations для правильной карточки; независимый выбранный source остаётся passed |
+| PlaywrightRunErrors: глобальная ошибка setup в report | Этот report не подтверждает связанные сценарии; глобальный runner fault не объявляется успешным evidence по HG-0004-R2 |
+
+ReportHashMismatch также имеет область всего данного report. Duplicate имеет область затронутого key и объединённых связей. Эти конкретные сведения должны участвовать в расчёте карточек; общий r.status не является достаточным графом причинности. Отказ соседнего теста или любая посторонняя finding сами по себе не снимают PASS независимой проверенной связки. outside_automatic_trace остаётся областью отчёта, а не новым отрицательным исходом.
+
+Минимальное расширение fixture для новых тестов: две независимые source/key/annotation связки, плюс общий явно закреплённый spec и Rust inventory. Убирать fingerprint только одного test source, только inventory либо только spec; не менять остальные байты. Для unlisted key менять только список testcases соответствующего binary и обновлять его законный fingerprint. Для PW source mismatch менять фактический file одного spec на существующий, но не выбранный source и корректно обновлять report hash. Это отделяет выбранное нарушение от stale/setup ошибки. Для global errors сохранять остальные валидные source pins и results; bad report не даёт ни одного подтверждения.
+
+Scope ограничен обнаруженными ветками reader и счётчиками HG-0024. Ревью не назначает общую переделку trace, смену формата record, новый контракт или массовое обновление прежних evidence.

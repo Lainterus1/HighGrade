@@ -1,0 +1,20 @@
+import json,pathlib,subprocess,hashlib,datetime,sys
+root=pathlib.Path.cwd(); out=root/'.highgrade/local/clear-audit-2026-10-14/native-checks';out.mkdir(exist_ok=False)
+base=json.loads((out.parent/'checks.json').read_text()); proposals=json.loads((out.parent/'catalog-check-input-proposals.json').read_text()); extra={(r['change'],r['checkId']):r['add_inputs'] for r in proposals['rows']+proposals.get('expanded_rows',[])}
+cli=root/'target/debug/highgrade'; groups={}
+for c in base:groups.setdefault(c['change'],[]).append(c)
+summary=[]
+for change,checks in groups.items():
+ auto=[c for c in checks if c.get('runner')]
+ jobs=[('all',auto)] if auto and len(auto)==len(checks) else [(c['id'],[c]) for c in auto]
+ for selected,items in jobs:
+  key=change+'-'+selected; paths=set()
+  for c in items:paths.update(c['inputs']);paths.add(c['file']);paths.update(extra.get((change,c['id']),[]))
+  def hashes():return {n:hashlib.sha256((root/n).read_bytes()).hexdigest() for n in sorted(paths) if (root/n).is_file()}
+  before=hashes();started=datetime.datetime.now(datetime.timezone.utc).isoformat();cmd=[str(cli),'spec-run','--root',str(root),'--id',change,'--check',selected]
+  (out/(key+'-before.json')).write_text(json.dumps({'paths':sorted(paths),'hashes':before,'started':started,'command':cmd,'checks':[c['id'] for c in items]},ensure_ascii=False,indent=2)+'\n')
+  r=subprocess.run(cmd,capture_output=True);(out/(key+'.stdout')).write_bytes(r.stdout);(out/(key+'.stderr')).write_bytes(r.stderr)
+  after=hashes();v=json.loads(r.stdout);record={'change':change,'selected':selected,'checks':[c['id'] for c in items],'command':cmd,'started':started,'finished':datetime.datetime.now(datetime.timezone.utc).isoformat(),'exit':r.returncode,'status':v['status'],'inputs_unchanged':before==after,'stdout':str((out/(key+'.stdout')).relative_to(root)),'before':str((out/(key+'-before.json')).relative_to(root))}
+  summary.append(record);(out/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(change,selected,r.returncode,v['status'],flush=True)
+  if r.returncode or v['status']!='passed' or before!=after:sys.exit(1)
+print('completed',sum(len(r['checks']) for r in summary),flush=True)

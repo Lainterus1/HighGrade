@@ -1,0 +1,13 @@
+# Закрытие проверенного локального охвата
+
+**GO для подтверждённых действий локальной актуализации и их evidence/storage с явным остатком.** Это не GO всего Work/проекта и не PASS бюджетного барьера.
+
+Проверены исходные cleanup/preservation receipts, controller, ownership/ack, 12 выбранных manifest и SHA256/размер каждого связанного объекта. Нужные originals, ранние отказы, pending NO_GO и исправленные GO сохранены. После экспорта удалены семь точных owned scratch и девять sealed runs; финальный trace run отдельно экспортирован и удалён. Двенадцать собственных symlinks только разлинкованы. Их внешние цели, шесть унаследованных runs и `hg58` сохранены. Выбранных незавершённых own runs не осталось.
+
+HG-0002/HG-0024 после записи независимого review имеют ready/go без blockers. Human отдельно: stale/pending. Прежние решения не перенесены. Финальный serial trace из неизменяемого manifest `66d50cba3029e6fa0040ec947caa1e0af2faac123fd416fd3224d16d0f313db8` подтверждает 144 automatic и 237 executed, 0 skipped/unknown/missing; 177 scenarios остаются outside. Completion hashes и source pins текущие. Doctor, native validation, fmt, generator и structure прошли; inspect имеет только 11 ExternalLinkUnchecked. Два StoreBusy отказа во время concurrent read сохранены как отказы; успешные повторы выполнены serial.
+
+Финальный штатный storage --check реально вернул **exit 2**: target **1448,31 МиБ > 600 МиБ**, сохранены общий cache и неизвестные данные. Лимит не повышен; HG-0069-S4 не подтверждён. HG-0061-S4 также не подтверждён для нового exact release/Windows CI. Сохраняются пределы Linux CHA UNVERIFIED и известный SVG npm advisory без утверждения о reachability. Не заявлен GO всех 72 спецификаций.
+
+Итоговый `docs/evidence/project-refresh-2026-10-14/verification.md` честно разделяет прочитанный охват, фактические проверки и эти остатки. Presentation исключена пользователем и не исследовалась. Пользовательская .gitignore сохранена. Новые тесты в этом дополнении не запускались. Коммит, активация, push и приёмка не выполнялись и этим GO не разрешены.
+
+Точные SHA256 просмотренных receipts, итогового отчёта и manifest: `rust-review-closure-inputs.json`. После получения этого дополнения основной агент завершает его финальное сохранение и continuation; дополнительных проверок неизменного кода для этого не требуется.

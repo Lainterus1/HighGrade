@@ -13,24 +13,24 @@
       "scenario_sha256": "18344379ad86f32e48658d249ebefdec42f4cee5302c8c1d79269ddd6487fab0"
     },
     "HG-0018-S3": {
-      "captured_at": "1790318108",
-      "command": "spec-run --id HG-0018 --check HG-0018-C3",
-      "input_manifest_sha256": "3cedee244dd71fc68ac31582c226636e0a4fa2b538d7b7ba979d98966845f3ff",
+      "captured_at": "2026-10-14T14:50:15.596602+00:00",
+      "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0018 --check HG-0018-C3 --expected d4568458968a6fd9f880a867400da53323dd924f52a0e99049469a94bc0ca21f",
+      "input_manifest_sha256": "2acc0746ac396aa38b2c7e6b57f1fa2de35d523b233d79c010101ab2d0e1c9c1",
       "method": "native_report",
-      "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+      "observation": "Фактические объявленные проверки HG-0018-C3 прошли без пропусков; исходные native reports и расширенные pre-run hashes сохранены; фактическая after сверка дала inputs_unchanged=true, native declared inputs_after и текущая независимая сверка подтверждают байты. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
       "outcome": "passed",
-      "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
+      "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log",
       "scenario": "HG-0018-S3",
       "scenario_sha256": "875e05ea93d283305701f0b035ccf0c681e10f48230ae7a09eccedee2589bce1"
     },
     "HG-0018-S4": {
-      "captured_at": "1790318108",
-      "command": "spec-run --id HG-0018 --check HG-0018-C3",
-      "input_manifest_sha256": "3cedee244dd71fc68ac31582c226636e0a4fa2b538d7b7ba979d98966845f3ff",
+      "captured_at": "2026-10-14T14:50:15.596602+00:00",
+      "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0018 --check HG-0018-C3 --expected d4568458968a6fd9f880a867400da53323dd924f52a0e99049469a94bc0ca21f",
+      "input_manifest_sha256": "2acc0746ac396aa38b2c7e6b57f1fa2de35d523b233d79c010101ab2d0e1c9c1",
       "method": "native_report",
-      "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+      "observation": "Фактические объявленные проверки HG-0018-C3 прошли без пропусков; исходные native reports и расширенные pre-run hashes сохранены; фактическая after сверка дала inputs_unchanged=true, native declared inputs_after и текущая независимая сверка подтверждают байты. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
       "outcome": "passed",
-      "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
+      "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log",
       "scenario": "HG-0018-S4",
       "scenario_sha256": "3d3d7e301f45fcb7e89f0fd9298e36d5a3ff8db9914b9fb9846e541bdecdb8d4"
     }
@@ -66,6 +66,33 @@
         },
         "recorded_at": 1790318280,
         "review": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+        "evidence": {
+          "HG-0018-S1": "7f645b1ef30cc515e344bf6babb7def212affbcfaa957605292fa9c6609fa573",
+          "HG-0018-S3": "61ff1085630ff1a0c2583c3cd6cdaff5d2b48aa16c88fddab04f9b8a338dec97",
+          "HG-0018-S4": "fc2f4834ed233568a292e0a373e8edb77a87f8ded0b68f3e97dca985975776d6"
+        },
+        "recorded_at": 1791989403,
+        "review": "f8e2b27949395c2fa8e83d04c5c45ec92a5290130bc1baf002229eb85cca459d"
+      },
+      {
+        "evidence": {
+          "HG-0018-S1": "7f645b1ef30cc515e344bf6babb7def212affbcfaa957605292fa9c6609fa573",
+          "HG-0018-S3": "8189c33a79f7490ef48e251beb1a44d020deba559738664e83195cfd612b78a0",
+          "HG-0018-S4": "23c1b3568c74b4308104e9ba1cc03743d156b74bf6d55cd49feda36b40515534"
+        },
+        "recorded_at": 1791989815,
+        "review": "f8e2b27949395c2fa8e83d04c5c45ec92a5290130bc1baf002229eb85cca459d"
+      },
+      {
+        "evidence": {
+          "HG-0018-S1": "7f645b1ef30cc515e344bf6babb7def212affbcfaa957605292fa9c6609fa573",
+          "HG-0018-S3": "2e706c6dcd7352371398996741216a87fccc8c9d49f7b4c141e620163060ff63",
+          "HG-0018-S4": "cb73a4b0a4c22ba546826c166f7802968576ac473903839d061fe229a12fcc39"
+        },
+        "recorded_at": 1791990302,
+        "review": "f8e2b27949395c2fa8e83d04c5c45ec92a5290130bc1baf002229eb85cca459d"
       }
     ],
     "objects": {
@@ -79,6 +106,28 @@
         "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790317744595451100.log",
         "scenario": "HG-0018-S4",
         "scenario_sha256": "3d3d7e301f45fcb7e89f0fd9298e36d5a3ff8db9914b9fb9846e541bdecdb8d4"
+      },
+      "23c1b3568c74b4308104e9ba1cc03743d156b74bf6d55cd49feda36b40515534": {
+        "captured_at": "1791989403",
+        "command": "spec-run --id HG-0018 --check HG-0018-C3",
+        "input_manifest_sha256": "7c11a18162b45086e51c01a5282e003ed035a0a1b80ef78da0e5f780918f0c4c",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log",
+        "scenario": "HG-0018-S4",
+        "scenario_sha256": "3d3d7e301f45fcb7e89f0fd9298e36d5a3ff8db9914b9fb9846e541bdecdb8d4"
+      },
+      "2e706c6dcd7352371398996741216a87fccc8c9d49f7b4c141e620163060ff63": {
+        "captured_at": "2026-10-14T14:50:15.596602+00:00",
+        "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0018 --check HG-0018-C3 --expected d4568458968a6fd9f880a867400da53323dd924f52a0e99049469a94bc0ca21f",
+        "input_manifest_sha256": "2acc0746ac396aa38b2c7e6b57f1fa2de35d523b233d79c010101ab2d0e1c9c1",
+        "method": "native_report",
+        "observation": "Фактические объявленные проверки HG-0018-C3 прошли без пропусков; исходные native reports и расширенные pre-run/after hashes сохранены. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log",
+        "scenario": "HG-0018-S3",
+        "scenario_sha256": "875e05ea93d283305701f0b035ccf0c681e10f48230ae7a09eccedee2589bce1"
       },
       "61ff1085630ff1a0c2583c3cd6cdaff5d2b48aa16c88fddab04f9b8a338dec97": {
         "captured_at": "1790318108",
@@ -114,6 +163,34 @@
         "scenario": "HG-0018-S1",
         "scenario_sha256": "18344379ad86f32e48658d249ebefdec42f4cee5302c8c1d79269ddd6487fab0"
       },
+      "8189c33a79f7490ef48e251beb1a44d020deba559738664e83195cfd612b78a0": {
+        "captured_at": "1791989403",
+        "command": "spec-run --id HG-0018 --check HG-0018-C3",
+        "input_manifest_sha256": "7c11a18162b45086e51c01a5282e003ed035a0a1b80ef78da0e5f780918f0c4c",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log",
+        "scenario": "HG-0018-S3",
+        "scenario_sha256": "875e05ea93d283305701f0b035ccf0c681e10f48230ae7a09eccedee2589bce1"
+      },
+      "cb73a4b0a4c22ba546826c166f7802968576ac473903839d061fe229a12fcc39": {
+        "captured_at": "2026-10-14T14:50:15.596602+00:00",
+        "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0018 --check HG-0018-C3 --expected d4568458968a6fd9f880a867400da53323dd924f52a0e99049469a94bc0ca21f",
+        "input_manifest_sha256": "2acc0746ac396aa38b2c7e6b57f1fa2de35d523b233d79c010101ab2d0e1c9c1",
+        "method": "native_report",
+        "observation": "Фактические объявленные проверки HG-0018-C3 прошли без пропусков; исходные native reports и расширенные pre-run/after hashes сохранены. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log",
+        "scenario": "HG-0018-S4",
+        "scenario_sha256": "3d3d7e301f45fcb7e89f0fd9298e36d5a3ff8db9914b9fb9846e541bdecdb8d4"
+      },
+      "f8e2b27949395c2fa8e83d04c5c45ec92a5290130bc1baf002229eb85cca459d": {
+        "change_sha256": "232de5bc5e91edcc16002c43a65bd246152d4f76da79a484c2b8324099cc7105",
+        "conclusion": "REVIEW_GO после исправления CI-валидации JSON и фикстуры .mycodex; подробности в evidence/manual-review.md",
+        "reviewer": "highgrade_task_review",
+        "verdict": "go"
+      },
       "fc2f4834ed233568a292e0a373e8edb77a87f8ded0b68f3e97dca985975776d6": {
         "captured_at": "1790318108",
         "command": "spec-run --id HG-0018 --check HG-0018-C3",
@@ -136,6 +213,28 @@
         "tests/contracts.rs": "f43878e2381bfba60a7b4b766efe292aac1687f7a077e9f21c200986234f8379"
       }
     },
+    "2acc0746ac396aa38b2c7e6b57f1fa2de35d523b233d79c010101ab2d0e1c9c1": {
+      "files": {
+        "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log": "fe048ff759d02b88072decc74c80df09a0f5852846cd05de36f390587152ba32",
+        "src/bootstrap.rs": "4f8bcc7361edae1785c64fe47477ef7206a07f47aab7be9df570f407c0b0751f",
+        "src/inspect.rs": "78f3d435c2a34ee57fe61a78fa0eb2fc0225f8cbade53c6d11f93011aefb07bd",
+        "src/install.rs": "c428d9e11258e0f35da2b3c1b9b2be790d7b36b1b2f34166e038e68286662c7a",
+        "src/lib.rs": "d48544fe69585080d1288c14dca4520f7d648b889b18e1556a9e3b105f668a2b",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "tests/contracts.rs": "bc137d179cb38f7496e33d6325c23370fb492d44613b0a4ea7eb6e9eba174c46",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log",
+        "src/bootstrap.rs",
+        "src/inspect.rs",
+        "src/install.rs",
+        "src/lib.rs",
+        "src/paths.rs",
+        "tests/contracts.rs",
+        "tests/support/mod.rs"
+      ]
+    },
     "3cedee244dd71fc68ac31582c226636e0a4fa2b538d7b7ba979d98966845f3ff": {
       "files": {
         "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log": "bade0e8cc889aa74eeff9fd32a4a068e6b153df13423d55fc43eaeb3d4683158",
@@ -143,6 +242,19 @@
         "src/inspect.rs": "73bf4cfa595ab10a65c3e443df111bbff7c55baf617f9044cc33e140f41f155b",
         "tests/contracts.rs": "d8cc93844803f53fa17b0fb83c605b390c8e22acd52b42220154d3058baa5867"
       }
+    },
+    "7c11a18162b45086e51c01a5282e003ed035a0a1b80ef78da0e5f780918f0c4c": {
+      "files": {
+        "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log": "fe048ff759d02b88072decc74c80df09a0f5852846cd05de36f390587152ba32",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/inspect.rs": "78f3d435c2a34ee57fe61a78fa0eb2fc0225f8cbade53c6d11f93011aefb07bd",
+        "tests/contracts.rs": "bc137d179cb38f7496e33d6325c23370fb492d44613b0a4ea7eb6e9eba174c46"
+      },
+      "input_paths": [
+        "specs/runners.json",
+        "src/inspect.rs",
+        "tests/contracts.rs"
+      ]
     },
     "fd5b85cd424a7bf8643a6edd4ccc13fc1b30933c730a8ca1711e43a579c29f47": {
       "files": {
@@ -227,6 +339,37 @@
       "outcome": "passed",
       "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1790318108936906400.log",
       "started_at": 1790318108
+    },
+    {
+      "check": "HG-0018-C3",
+      "check_sha256": "df6416e96b0d2e7b27f7e7d6030ce3fffd1cef75447eb83cff53715cb56c0a27",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "contracts",
+        "default_inspect_uses_only_highgrade_registry",
+        "--",
+        "--exact"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "duration_ms": 81,
+      "files": {
+        "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log": "fe048ff759d02b88072decc74c80df09a0f5852846cd05de36f390587152ba32",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/inspect.rs": "78f3d435c2a34ee57fe61a78fa0eb2fc0225f8cbade53c6d11f93011aefb07bd",
+        "tests/contracts.rs": "bc137d179cb38f7496e33d6325c23370fb492d44613b0a4ea7eb6e9eba174c46"
+      },
+      "inputs_after": {
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/inspect.rs": "78f3d435c2a34ee57fe61a78fa0eb2fc0225f8cbade53c6d11f93011aefb07bd",
+        "tests/contracts.rs": "bc137d179cb38f7496e33d6325c23370fb492d44613b0a4ea7eb6e9eba174c46"
+      },
+      "observation": "Process status: Some(ExitStatus(unix_wait_status(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0018/evidence/HG-0018-C3-1791989403417596722.log",
+      "started_at": 1791989403
     }
   ]
 }

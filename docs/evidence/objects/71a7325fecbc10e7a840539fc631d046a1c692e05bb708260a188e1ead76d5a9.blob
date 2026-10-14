@@ -1,0 +1,17 @@
+test_number (test_calc.Cases.test_number) ... FAIL
+test_preservation (test_calc.Cases.test_preservation) ... ok
+test_roundtrip (test_calc.Cases.test_roundtrip) ... ok
+
+======================================================================
+FAIL: test_number (test_calc.Cases.test_number)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/target/highgrade/tmp/hg76-clear-execution/project/tests/test_calc.py", line 5, in test_number
+    def test_number(self): self.assertEqual(number(),2)
+                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: 1 != 2
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+FAILED (failures=1)

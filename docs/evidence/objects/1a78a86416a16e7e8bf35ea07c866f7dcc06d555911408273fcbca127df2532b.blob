@@ -1,0 +1,45 @@
+{
+  "source": "HG-0024-R2/HG-0024-S4 requirement and independent final review",
+  "purpose": "Before/after only this task-owned TMPDIR; never scans presentation, home, another project or global temp",
+  "cwd": "/home/lainterus/Projects/High Grade",
+  "temporary_root": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-native-census/test-temp",
+  "environment": {
+    "TMPDIR": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-native-census/test-temp",
+    "TEMP": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-native-census/test-temp",
+    "TMP": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-native-census/test-temp"
+  },
+  "before": {
+    "foreign-sentinel": {
+      "kind": "directory"
+    },
+    "foreign-sentinel/keep.txt": {
+      "kind": "file",
+      "sha256": "be4d4547f351c0f05890fb5fbfba4efc041134b4292a3260dab8ede48d6ba48e"
+    }
+  },
+  "before_at": "2026-10-14T07:00:57.248584+00:00",
+  "state": "completed",
+  "argv": [
+    "python",
+    "/home/lainterus/Projects/High Grade/.highgrade/local/project-refresh-2026-10-14/capture.py",
+    "nextest-final-census.json",
+    "python",
+    "scripts/verify.py",
+    "tests"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"record\": \".highgrade/local/project-refresh-2026-10-14/nextest-final-census.json\", \"exit_code\": 0, \"result\": {\"tail\": \" {\\\"path\\\": \\\"target/highgrade/runs/clear-scenarios-final-1afb694de5fb4e09b0a893450c054f90\\\", \\\"reason\\\": \\\"unexported or interrupted run\\\"}, {\\\"path\\\": \\\"target/highgrade/runs/clear-ui-21e320bb223b47e6b944d4a0805c76b9\\\", \\\"reason\\\": \\\"unexported or interrupted run\\\"}, {\\\"path\\\": \\\"target/highgrade/runs/clear-ui-53fa5f6052f849028991e863996cbdc2\\\", \\\"reason\\\": \\\"unexported or interrupted run\\\"}, {\\\"path\\\": \\\"target/highgrade/runs/node-9779e7abee2b410ebcbda5f8b1a2d011\\\", \\\"reason\\\": \\\"unexported or interrupted run\\\"}, {\\\"path\\\": \\\"target/highgrade/runs/python-5c13146add2440e19622c4fcfa1cdb89\\\", \\\"reason\\\": \\\"active owner\\\"}, {\\\"path\\\": \\\"target/highgrade/runs/python-c1416fc6460842a88bd5efd65e83db69\\\", \\\"reason\\\": \\\"active owner\\\"}, {\\\"path\\\": \\\"target/highgrade/runs/python-c9374f5b8ecc4711b5caee66d1dd160d\\\", \\\"reason\\\": \\\"active owner\\\"}, {\\\"path\\\": \\\"target/highgrade/runs/rust-151c3da49eb5462db459e5628a0895ec\\\", \\\"reason\\\": \\\"unexported or interrupted run\\\"}], \\\"detail\\\": \\\"first 10 per group; plain invocation shows inventory\\\"}\\n{\\\"run\\\": \\\"target/highgrade/runs/rust-ed62931af2d249898adc78cd77b5c44a\\\", \\\"exit_code\\\": 0, \\\"next\\\": \\\"review outputs, then finish with explicitly selected files\\\"}\\n{\\\"storage_preflight\\\": [{\\\"destination\\\": \\\"/home/lainterus/Projects/High Grade\\\", \\\"free_bytes\\\": 870779039744, \\\"minimum_free_bytes\\\": 1073741824}, {\\\"destination\\\": \\\"/home/lainterus/Projects/High Grade/target\\\", \\\"free_bytes\\\": 870779039744, \\\"minimum_free_bytes\\\": 1073741824}]}\\n\"}}\n",
+  "stderr": "",
+  "after": {
+    "foreign-sentinel": {
+      "kind": "directory"
+    },
+    "foreign-sentinel/keep.txt": {
+      "kind": "file",
+      "sha256": "be4d4547f351c0f05890fb5fbfba4efc041134b4292a3260dab8ede48d6ba48e"
+    }
+  },
+  "after_at": "2026-10-14T07:01:25.791841+00:00",
+  "directories_and_files_unchanged": true,
+  "foreign_bytes_preserved": true
+}

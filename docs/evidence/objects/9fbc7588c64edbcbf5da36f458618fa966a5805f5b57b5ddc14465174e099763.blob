@@ -1,0 +1,332 @@
+{"status": "applied", "before_mib": 1449.57, "after_mib": 1449.57, "removed_count": 0, "eligible_count": 0, "retained_count": 7, "removed": [], "eligible": [], "retained": [{"path": "target/highgrade/runs/node-9779e7abee2b410ebcbda5f8b1a2d011", "reason": "unexported or interrupted run"}, {"path": "target/highgrade/runs/python-5c13146add2440e19622c4fcfa1cdb89", "reason": "active owner"}, {"path": "target/highgrade/runs/python-c1416fc6460842a88bd5efd65e83db69", "reason": "unexported or interrupted run"}, {"path": "target/highgrade/runs/python-c9374f5b8ecc4711b5caee66d1dd160d", "reason": "unexported or interrupted run"}, {"path": "target/highgrade/runs/rust-51cefeccd6b548a998a23a46a4eb4f31", "reason": "unexported or interrupted run"}, {"path": "target/highgrade/runs/rust-5767ce512d6f4191978f3ad21a3a0f0f", "reason": "active owner"}, {"path": "target/highgrade/runs/scenarios-7a25d7a71f364abdb249fd503470e43a", "reason": "unexported or interrupted run"}], "detail": "first 10 per group; plain invocation shows inventory"}
+{
+  "status": "passed",
+  "requirements": 171,
+  "scenarios": 332,
+  "automatic": 145,
+  "manual_check_scenarios": 79,
+  "no_declared_check_scenarios": 108,
+  "no_declared_check_ids": [
+    "HG-0004-S3",
+    "HG-0006-S1",
+    "HG-0006-S2",
+    "HG-0006-S3",
+    "HG-0006-S4",
+    "HG-0006-S5",
+    "HG-0006-S6",
+    "HG-0006-S7",
+    "HG-0008-S1",
+    "HG-0008-S2",
+    "HG-0026-S1",
+    "HG-0026-S2",
+    "HG-0026-S3",
+    "HG-0026-S4",
+    "HG-0028-S3",
+    "HG-0032-S1",
+    "HG-0042-S1",
+    "HG-0043-S1",
+    "HG-0043-S2",
+    "HG-0043-S3",
+    "HG-0044-S1",
+    "HG-0044-S2",
+    "HG-0044-S3",
+    "HG-0047-S1",
+    "HG-0047-S2",
+    "HG-0048-S2",
+    "HG-0048-S3",
+    "HG-0051-S1",
+    "HG-0051-S2",
+    "HG-0051-S3",
+    "HG-0051-S4",
+    "HG-0051-S5",
+    "HG-0054-S1",
+    "HG-0054-S2",
+    "HG-0054-S3",
+    "HG-0054-S4",
+    "HG-0054-S5",
+    "HG-0054-S6",
+    "HG-0054-S7",
+    "HG-0054-S8",
+    "HG-0055-S1",
+    "HG-0055-S2",
+    "HG-0055-S3",
+    "HG-0055-S4",
+    "HG-0055-S5",
+    "HG-0055-S7",
+    "HG-0056-S1",
+    "HG-0056-S10",
+    "HG-0056-S2",
+    "HG-0056-S3",
+    "HG-0056-S4",
+    "HG-0056-S5",
+    "HG-0056-S6",
+    "HG-0056-S7",
+    "HG-0056-S8",
+    "HG-0056-S9",
+    "HG-0057-S1",
+    "HG-0057-S2",
+    "HG-0057-S3",
+    "HG-0057-S4",
+    "HG-0057-S5",
+    "HG-0057-S6",
+    "HG-0057-S7",
+    "HG-0058-S1",
+    "HG-0058-S2",
+    "HG-0058-S3",
+    "HG-0058-S4",
+    "HG-0059-S3",
+    "HG-0059-S4",
+    "HG-0060-S1",
+    "HG-0060-S2",
+    "HG-0061-S1",
+    "HG-0061-S2",
+    "HG-0061-S4",
+    "HG-0062-S1",
+    "HG-0062-S2",
+    "HG-0062-S3",
+    "HG-0062-S4",
+    "HG-0062-S5",
+    "HG-0063-S12",
+    "HG-0063-S13",
+    "HG-0065-S1",
+    "HG-0065-S2",
+    "HG-0065-S3",
+    "HG-0065-S4",
+    "HG-0066-S1",
+    "HG-0066-S2",
+    "HG-0066-S3",
+    "HG-0066-S4",
+    "HG-0066-S5",
+    "HG-0066-S6",
+    "HG-0066-S7",
+    "HG-0066-S8",
+    "HG-0069-S2",
+    "HG-0069-S3",
+    "HG-0069-S4",
+    "HG-0070-S4",
+    "HG-0071-S1",
+    "HG-0071-S2",
+    "HG-0071-S3",
+    "HG-0072-S1",
+    "HG-0072-S2",
+    "HG-0072-S3",
+    "HG-0073-S1",
+    "HG-0073-S2",
+    "HG-0073-S3",
+    "HG-0073-S4",
+    "HG-0074-S7"
+  ],
+  "attempt": "target/nextest/highgrade/attempt.json",
+  "state": "running"
+}
+   Compiling highgrade v0.4.0 (/home/lainterus/Projects/High Grade)
+    Finished `test` profile [unoptimized] target(s) in 4.58s
+    Finished `test` profile [unoptimized] target(s) in 0.03s
+────────────
+ Nextest run ID 28a1b2f3-93bf-4eac-aa33-db85d592ea4f with nextest profile: highgrade
+    Starting 239 tests across 19 binaries
+        PASS [   0.009s] (  1/239) highgrade specs::progress::metadata_compatibility::old_tagged_revision_survives_metadata_but_not_material_drift
+        PASS [   0.009s] (  2/239) highgrade trace::id_tests::accepts_project_ids_and_rejects_malformed_ids
+        PASS [   0.017s] (  3/239) highgrade ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes
+        PASS [   0.061s] (  4/239) highgrade::attention_contracts projection_preserves_bytes_excludes_legacy_and_reports_corruption
+        PASS [   0.111s] (  5/239) highgrade::attention_contracts repeated_result_requests_recheck_inputs_revision_and_readiness
+        PASS [   0.113s] (  6/239) highgrade::attention_contracts repeated_result_responses_preserve_exact_revision_and_recheck_gates
+        PASS [   0.121s] (  7/239) highgrade::attention_contracts queue_priority_categories_and_counts_are_deterministic
+        PASS [   0.012s] (  8/239) highgrade::bootstrap_contracts alternative_name_is_candidate_but_never_accepted_as_role
+        PASS [   0.009s] (  9/239) highgrade::bootstrap_contracts bootstrap_does_not_read_excluded_sources_or_offer_excluded_link_targets
+        PASS [   0.135s] ( 10/239) highgrade::attention_contracts legacy_result_responses_require_unambiguous_acceptance_revision
+        PASS [   0.017s] ( 11/239) highgrade::bootstrap_contracts bootstrap_distinguishes_adaptation_from_technical_failure
+        PASS [   0.142s] ( 12/239) highgrade::attention_contracts repeated_requests_recheck_readiness_and_preserve_unrelated_questions
+        PASS [   0.011s] ( 13/239) highgrade::bootstrap_contracts bootstrap_skips_generated_skill_outputs
+        PASS [   0.016s] ( 14/239) highgrade::bootstrap_contracts bootstrap_reports_all_slots_before_registry_exists
+        PASS [   0.151s] ( 15/239) highgrade ui::bundle::tests::embedded_bundle_rejects_missing_changed_and_incompatible_resources
+        PASS [   0.024s] ( 16/239) highgrade::bootstrap_contracts bootstrap_reports_multiple_unvisited_locations_with_a_count
+        PASS [   0.018s] ( 17/239) highgrade::bootstrap_contracts bundled_templates_match_the_canonical_bootstrap_contract
+        PASS [   0.164s] ( 18/239) highgrade::attention_contracts answers_in_reverse_request_order_use_recorded_sequence
+        PASS [   0.168s] ( 19/239) highgrade::attention_contracts content_snapshots_metadata_and_stale_writes_are_distinct
+        PASS [   0.019s] ( 20/239) highgrade::bootstrap_contracts candidate_and_input_limits_keep_partial_evidence
+        PASS [   0.019s] ( 21/239) highgrade::bootstrap_contracts canonical_project_has_separate_path_and_link_evidence
+        PASS [   0.020s] ( 22/239) highgrade::bootstrap_contracts cli_accepts_bootstrap_without_registry_and_rejects_map_and_conflicts
+        PASS [   0.010s] ( 23/239) highgrade::bootstrap_contracts complete_project_still_checks_exclusion_input_without_walking_tree
+        PASS [   0.015s] ( 24/239) highgrade::bootstrap_contracts combined_roles_are_counted_once_and_invalid_assignments_fail
+        PASS [   0.009s] ( 25/239) highgrade::bootstrap_contracts exclusions_are_safe_and_bad_registry_does_not_hide_candidates
+        PASS [   0.016s] ( 26/239) highgrade::bootstrap_contracts complete_project_still_reports_missing_navigation_without_candidate_walk
+        PASS [   0.014s] ( 27/239) highgrade::bootstrap_contracts connected_project_uses_registered_existing_path
+        PASS [   0.012s] ( 28/239) highgrade::bootstrap_contracts migrated_architecture_with_old_readme_link_is_reported
+        PASS [   0.172s] ( 29/239) highgrade::attention_contracts result_responses_keep_their_revision_when_later_decisions_share_snapshot
+        PASS [   0.015s] ( 30/239) highgrade::bootstrap_contracts missing_link_is_distinct_from_missing_file_and_registry_path_mismatch
+        PASS [   0.024s] ( 31/239) highgrade::catalog_contracts compact_catalog_accepts_empty_changes_and_new_changes
+        PASS [   0.043s] ( 32/239) highgrade::catalog_contracts action_diagnostics_check_runner_without_execution
+        PASS [   0.034s] ( 33/239) highgrade::catalog_contracts compact_views_and_atomic_edit_protect_results_and_cas
+        PASS [   0.228s] ( 34/239) highgrade::attention_contracts direct_decision_reuses_the_saved_build_and_closes_the_result_request
+        PASS [   0.040s] ( 35/239) highgrade::catalog_contracts evidence_batch_is_atomic_and_exact_repeat_is_noop
+        PASS [   0.246s] ( 36/239) highgrade::attention_contracts result_status_without_build_id_keeps_snapshot_history_and_replay_gates
+        PASS [   0.021s] ( 37/239) highgrade::catalog_contracts explicit_migration_preserves_all_data_and_detects_legacy_writer
+        PASS [   0.296s] ( 38/239) highgrade::attention_contracts explicit_handoffs_do_not_grant_execution_and_responses_close_only_selected_request
+        PASS [   0.078s] ( 39/239) highgrade::catalog_contracts explicit_links_reject_missing_cycles_and_do_not_inherit_content
+        PASS [   0.018s] ( 40/239) highgrade::catalog_contracts foreign_directory_and_unknown_fields_are_not_adopted
+        PASS [   0.013s] ( 41/239) highgrade::catalog_contracts foreign_structured_files_are_not_deleted
+        PASS [   0.340s] ( 42/239) highgrade::attention_contracts ambiguous_saved_build_rejects_the_whole_direct_decision_batch
+        PASS [   0.026s] ( 43/239) highgrade::catalog_contracts interrupted_transaction_refuses_reads_and_recovers_only_observed_targets
+        PASS [   0.341s] ( 44/239) highgrade::attention_contracts result_decisions_reuse_evidence_gates_and_equivalent_reruns_keep_agreement
+        PASS [   0.293s] ( 45/239) highgrade::attention_contracts saved_result_build_id_is_optional_and_reused_without_user_input
+        PASS [   0.077s] ( 46/239) highgrade::catalog_contracts first_baseline_capture_rejects_local_cas_after_target_changed
+        PASS [   0.012s] ( 47/239) highgrade::catalog_contracts malformed_recovery_never_unblocks_catalog
+        PASS [   0.092s] ( 48/239) highgrade::catalog_contracts integrated_recheck_retains_history_and_invalidates_old_acceptance
+        PASS [   0.064s] ( 49/239) highgrade::catalog_contracts local_edit_rejects_dependency_runner_drift
+        PASS [   0.314s] ( 50/239) highgrade::attention_contracts unknown_result_reuses_unique_saved_metadata_and_closes_the_same_snapshot
+        PASS [   0.023s] ( 51/239) highgrade::catalog_contracts readable_presentation_preserves_values_and_puts_service_fields_last
+        PASS [   0.012s] ( 52/239) highgrade::catalog_contracts recovery_cannot_delete_a_required_specification
+        PASS [   0.059s] ( 53/239) highgrade::catalog_contracts project_catalog_survives_service_removal_and_preserves_siblings
+        PASS [   0.027s] ( 54/239) highgrade::catalog_contracts recovery_conflict_preserves_all_targets_and_the_observed_journal
+        PASS [   0.020s] ( 55/239) highgrade::catalog_contracts recovery_reconstructs_partial_staging_and_missing_first_document
+        PASS [   0.144s] ( 56/239) highgrade::catalog_contracts metadata_batch_preserves_integrated_history_and_rejects_invalid_batches
+        PASS [   0.116s] ( 57/239) highgrade::catalog_contracts native_report_import_reuses_suite_and_rejects_stale_or_missing_results
+        PASS [   0.031s] ( 58/239) highgrade::catalog_contracts selected_directory_is_project_owned_and_self_contained
+        PASS [   0.350s] ( 59/239) highgrade::catalog_contracts compact_history_preserves_observations_and_rejects_corruption
+        PASS [   0.369s] ( 60/239) highgrade::catalog_contracts delivery_audits_bundle_and_git_index_without_changing_readiness
+        PASS [   0.343s] ( 61/239) highgrade::catalog_contracts equivalent_native_runs_keep_material_revision_and_append_history
+        PASS [   0.212s] ( 62/239) highgrade::catalog_contracts launch_selector_is_literal_and_distinct_from_strict_report_identity
+        PASS [   0.049s] ( 63/239) highgrade::catalog_contracts selected_list_and_local_edit_preserve_independent_work
+        PASS [   0.059s] ( 64/239) highgrade::catalog_contracts spec_check_brief_reports_affected_inputs
+        PASS [   0.028s] ( 65/239) highgrade::catalog_contracts two_catalog_writers_cannot_allocate_the_same_number
+        PASS [   0.011s] ( 66/239) highgrade::contracts broken_links_and_anchors_are_failures
+        PASS [   0.011s] ( 67/239) highgrade::contracts budget_history_cannot_skip_or_exceed_ceiling
+        PASS [   0.056s] ( 68/239) highgrade::catalog_contracts spec_check_brief_returns_stable_handoff
+        PASS [   0.010s] ( 69/239) highgrade::contracts colocated_document_does_not_cover_its_parent
+        PASS [   0.018s] ( 70/239) highgrade::contracts cli_errors_keep_the_report_contract
+        PASS [   0.481s] ( 71/239) highgrade::catalog_contracts batch_failure_keeps_prior_results_and_each_scenario_owns_its_report
+        PASS [   0.012s] ( 72/239) highgrade::contracts default_inspect_uses_only_highgrade_registry
+        PASS [   0.495s] ( 73/239) highgrade::catalog_contracts compact_transaction_limit_and_recovery_preserve_catalog
+        PASS [   0.183s] ( 74/239) highgrade::catalog_contracts scoped_baseline_captures_only_selected_requirements_and_never_refreshes
+        PASS [   0.011s] ( 75/239) highgrade::contracts diagnostic_summary_keeps_unknown_and_errors_separate
+        PASS [   0.010s] ( 76/239) highgrade::contracts exceeding_agreed_budget_warns_without_raising_it
+        PASS [   0.695s] ( 77/239) highgrade::attention_contracts integrated_history_is_not_current_work_or_current_acceptance
+        PASS [   0.018s] ( 78/239) highgrade::contracts entry_does_not_hide_unmapped_sibling
+        PASS [   0.144s] ( 79/239) highgrade::catalog_contracts tags_merge_atomically_and_filters_keep_dependencies_discoverable
+        PASS [   0.011s] ( 80/239) highgrade::contracts install_rejects_stale_audit
+        PASS [   0.012s] ( 81/239) highgrade::contracts install_requires_audit_before_writes
+        PASS [   0.511s] ( 82/239) highgrade::catalog_contracts delivery_reads_index_bytes_without_filters_or_index_flag_shortcuts
+        PASS [   0.009s] ( 83/239) highgrade::contracts links_support_reference_unicode_parent_and_code_exclusion
+        PASS [   0.190s] ( 84/239) highgrade::catalog_contracts shared_inputs_track_content_and_membership
+        PASS [   0.010s] ( 85/239) highgrade::contracts measures_utf8_crlf_and_does_not_modify_inputs
+        PASS [   0.009s] ( 86/239) highgrade::contracts missing_budget_is_unknown_not_success
+        PASS [   0.172s] ( 87/239) highgrade::catalog_contracts spec_check_brief_reports_stale_run
+        PASS [   0.008s] ( 88/239) highgrade::contracts missing_roles_duplicates_and_files_are_reported
+        PASS [   0.010s] ( 89/239) highgrade::contracts named_results_preserve_legacy_and_do_not_pick_ambiguous_values
+        PASS [   0.009s] ( 90/239) highgrade::contracts new_area_is_unknown
+        PASS [   0.008s] ( 91/239) highgrade::contracts package_hash_failure_writes_nothing
+        PASS [   0.010s] ( 92/239) highgrade::contracts parent_scope_reads_child_documents
+        PASS [   0.010s] ( 93/239) highgrade::contracts scenario_ids_in_headings_are_not_broken_markdown_links
+        PASS [   0.006s] ( 94/239) highgrade::contracts source_inventory_is_case_sensitive_and_stable
+        PASS [   0.010s] ( 95/239) highgrade::contracts scoped_inspection_selects_sources_and_reports_unmapped_scope
+        PASS [   0.008s] ( 96/239) highgrade::contracts task_checkboxes_and_inline_code_are_not_references
+        PASS [   0.006s] ( 97/239) highgrade::contracts traversal_and_ads_are_rejected
+        PASS [   0.008s] ( 98/239) highgrade::contracts unresolved_reference_is_not_silent
+        PASS [   0.010s] ( 99/239) highgrade::contracts valid_budget_history_passes
+        PASS [   0.147s] (100/239) highgrade::contracts conflicting_skill_is_not_adopted_even_if_equal
+        PASS [   0.644s] (101/239) highgrade::catalog_contracts cargo_runner_requires_a_real_exact_test
+        PASS [   0.015s] (102/239) highgrade::global_contracts doctor_reports_unavailable_tool_without_claiming_version
+        PASS [   0.489s] (103/239) highgrade::catalog_contracts multiple_checks_cannot_hide_failed_sibling_and_manual_is_explicit
+        PASS [   0.329s] (104/239) highgrade::contracts cli_command_help_is_available_without_a_project
+        PASS [   0.259s] (105/239) highgrade::contracts incomplete_temp_is_preserved_and_not_activated
+        PASS [   0.253s] (106/239) highgrade::contracts recovery_does_not_overwrite_foreign_edit
+        PASS [   0.400s] (107/239) highgrade::contracts legacy_install_detects_lost_executable_permission
+        PASS [   0.399s] (108/239) highgrade::contracts modified_installed_file_is_detected
+        PASS [   0.504s] (109/239) highgrade::contracts complete_temp_can_resume_publication
+        PASS [   0.842s] (110/239) highgrade::catalog_contracts junit_failure_attempts_cannot_pass_even_when_runner_exits_zero
+        PASS [   0.015s] (111/239) highgrade::global_contracts global_update_rejects_manual_rollback_option
+        PASS [   0.442s] (112/239) highgrade::evidence_scope_contracts causal_runner_scopes_preserve_siblings_but_invalidate_real_dependencies
+        PASS [   0.615s] (113/239) highgrade::contracts install_preserves_agents_and_repeats_without_duplicates
+        PASS [   1.372s] (114/239) highgrade::catalog_contracts run_statistics_track_attempts_without_execution
+        PASS [   1.514s] (115/239) highgrade::global_contracts global_install_rejects_hash_and_foreign_router_without_activation
+        PASS [   1.964s] (116/239) highgrade::contracts interruption_at_each_publication_boundary_resumes
+        PASS [   1.807s] (117/239) highgrade::global_contracts interrupted_approve_era_transaction_remains_recoverable
+        PASS [   0.025s] (118/239) highgrade::global_contracts kit_manifest_uses_stable_lf_bytes
+        PASS [   1.896s] (119/239) highgrade::global_contracts interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route
+        PASS [   4.084s] (120/239) highgrade::catalog_contracts explicit_runner_records_real_pass_fail_skip_empty_timeout_and_drift
+        PASS [   3.373s] (121/239) highgrade::global_contracts installed_runtime_references_survive_removal_of_source_copy
+        PASS [   3.428s] (122/239) highgrade::global_contracts installed_clear_helper_runs_after_candidate_sources_are_removed
+        PASS [   4.082s] (123/239) highgrade::global_contracts damaged_clear_material_rejects_candidate_and_old_commit_shape_stays_readable
+        PASS [   5.511s] (124/239) highgrade::global_contracts global_install_does_not_touch_project_and_checks_adapter
+        PASS [   4.201s] (125/239) highgrade::global_contracts interrupted_skill_update_recovers_without_overwriting_user_edit
+        PASS [   4.362s] (126/239) highgrade::global_contracts invalid_candidate_notes_preserve_active_profile
+        PASS [   0.015s] (127/239) highgrade::global_contracts shipped_tool_references_resolve_without_repository_files
+        PASS [   6.569s] (128/239) highgrade::global_contracts failed_stage_preserves_foreign_candidate_journal
+        PASS [   3.803s] (129/239) highgrade::global_contracts planner_router_is_portable
+        PASS [   0.014s] (130/239) highgrade::global_contracts supported_adapter_does_not_claim_semantic_readiness
+        PASS [   3.122s] (131/239) highgrade::global_contracts shipped_registry_example_is_accepted_without_inventing_budgets
+        PASS [   9.574s] (132/239) highgrade::global_contracts approve_migration_preserves_modified_managed_and_foreign_paths
+        PASS [   0.008s] (133/239) highgrade::global_contracts unsupported_project_adapter_is_a_failure
+        PASS [   9.758s] (134/239) highgrade::global_contracts failed_candidate_stage_restores_changed_skill
+        PASS [  10.791s] (135/239) highgrade::global_contracts global_update_preserves_project_adaptation_in_profile
+        PASS [   9.332s] (136/239) highgrade::global_contracts legacy_deploy_migrates_to_commit_push_and_cleans_old_release
+        PASS [   9.392s] (137/239) highgrade::global_contracts managed_approve_migrates_to_commit_without_aliases
+        PASS [   0.008s] (138/239) highgrade::issue_contracts foreign_catalog_versions_and_unsafe_recovery_are_rejected
+        PASS [   0.013s] (139/239) highgrade::issue_contracts interrupted_issue_transaction_requires_explicit_safe_recovery
+        PASS [   0.028s] (140/239) highgrade::issue_contracts invalid_edits_and_concurrent_writers_leave_whole_catalog
+        PASS [   0.033s] (141/239) highgrade::issue_contracts issue_catalog_search_and_read_never_execute_recipes
+        PASS [   0.022s] (142/239) highgrade::issue_contracts issue_evidence_rejects_case_variants_of_owned_paths
+        PASS [   0.046s] (143/239) highgrade::issue_contracts occurrence_receipts_are_idempotent_and_verification_is_material
+        PASS [   0.020s] (144/239) highgrade::launcher_contracts launcher_preparation_is_explicit_idempotent_and_preserves_foreign_files
+        PASS [   0.019s] (145/239) highgrade::launcher_contracts launcher_rejects_links_and_reports_missing_installation
+        PASS [   3.654s] (146/239) highgrade::global_contracts unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills
+        PASS [   0.027s] (147/239) highgrade::package_contracts bundled_skill_frontmatter_uses_safe_scalars
+        PASS [   9.873s] (148/239) highgrade::global_contracts nine_skill_release_upgrades_to_thematic_tool_references
+        PASS [  10.236s] (149/239) highgrade::global_contracts planner_update_accepts_prior_eight_skill_release
+        PASS [   0.773s] (150/239) highgrade::package_contracts full_install_keeps_project_files_and_repeats
+        PASS [   0.176s] (151/239) highgrade::package_contracts full_install_rejects_pending_audit_and_foreign_skill
+        PASS [  14.207s] (152/239) highgrade::global_contracts failed_stage_does_not_leave_new_routers
+        PASS [   0.475s] (153/239) highgrade::package_contracts project_exclusions_require_an_explicit_reason_and_fresh_audit
+        PASS [   1.851s] (154/239) highgrade::package_contracts candidate_conflict_never_changes_active_release
+        PASS [   0.009s] (155/239) highgrade::release_notes_contracts absent_history_and_cycles_outside_transition_are_explicit
+        PASS [   0.007s] (156/239) highgrade::release_notes_contracts empty_complete_transition_retains_all_required_information
+        PASS [   0.005s] (157/239) highgrade::release_notes_contracts malformed_history_is_rejected_instead_of_invented
+        PASS [   0.006s] (158/239) highgrade::release_notes_contracts summary_covers_skipped_releases_and_keeps_all_actions
+        PASS [   0.005s] (159/239) highgrade::release_notes_contracts summary_states_gaps_unknown_reverse_and_empty_changes
+        PASS [  10.777s] (160/239) highgrade::global_contracts post_switch_commit_recovery_retires_only_unchanged_owned_approve
+        PASS [   0.725s] (161/239) highgrade::shared_inputs_contracts shared_inputs_fail_closed_on_corrupt_missing_or_ambiguous_data
+        PASS [  15.769s] (162/239) highgrade::global_contracts global_update_preview_switch_and_cleanup_keep_unrelated_files
+        PASS [   1.289s] (163/239) highgrade::shared_inputs_contracts shared_inputs_limits_fail_before_any_catalog_write
+        PASS [   1.965s] (164/239) highgrade::package_contracts update_rejects_manifest_cli_version_mismatch
+        FAIL [   3.970s] (165/239) highgrade::launcher_contracts same_project_launchers_survive_move_and_global_update
+  stdout ───
+
+    running 1 test
+    test same_project_launchers_survive_move_and_global_update ... FAILED
+
+    failures:
+
+    failures:
+        same_project_launchers_survive_move_and_global_update
+
+    test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 2 filtered out; finished in 3.96s
+
+  stderr ───
+
+    thread 'same_project_launchers_survive_move_and_global_update' panicked at tests/launcher_contracts.rs:126:9:
+    launcher did not start UI: {"ambiguous_result_keys":[],"findings":[{"code":"OperationFailed","location":"arguments-or-input","message":"Operation not permitted (os error 1)","status":"failed"}],"limitations":[],"measurements":[{"input_schema":"highgrade spec-schema --root PATH","next":"highgrade <command> --help"}],"operation":"error","result":{"input_schema":"highgrade spec-schema --root PATH","next":"highgrade <command> --help"},"status":"failed"}; 
+    note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+  Cancelling due to test failure: 15 tests still running
+        PASS [   0.642s] (166/239) highgrade::shared_inputs_contracts shared_inputs_schema_exposes_exact_versioned_storage_shape
+        PASS [   0.836s] (167/239) highgrade::shared_inputs_contracts shared_inputs_preserve_fingerprints_and_stale_detection
+        PASS [  10.734s] (168/239) highgrade::global_contracts six_skill_release_preserves_owned_crlf_routers
+        PASS [   0.983s] (169/239) highgrade::shared_inputs_contracts shared_inputs_migration_recovery_validates_complete_prospective_snapshot
+        PASS [   1.947s] (170/239) highgrade::shared_inputs_contracts shared_inputs_migrate_v3_and_v4_losslessly_and_idempotently
+        PASS [  11.687s] (171/239) highgrade::global_contracts release_without_documentation_reference_can_update
+        PASS [  10.257s] (172/239) highgrade::global_contracts thematic_tools_release_upgrades_to_fixer_materials
+        PASS [  11.506s] (173/239) highgrade::global_contracts six_skill_release_updates_to_commit_push_and_cleans_old_release
+        PASS [   4.251s] (174/239) highgrade::shared_inputs_contracts shared_inputs_append_reuses_manifests_with_bounded_growth
+        PASS [  18.912s] (175/239) highgrade::global_contracts failed_approve_migration_preserves_old_route_and_can_retry
+        PASS [   8.160s] (176/239) highgrade::global_contracts v026_deploy_migrates_to_two_routes_and_removes_old_release
+        PASS [  10.394s] (177/239) highgrade::global_contracts update_replaces_owned_skill_and_preserves_user_edit
+        PASS [  10.282s] (178/239) highgrade::global_contracts update_reports_notes_without_switching_and_keeps_them_offline
+        PASS [   8.832s] (179/239) highgrade::package_contracts update_requires_fresh_explicit_decision_and_preserves_adaptation
+        PASS [  14.294s] (180/239) highgrade::global_contracts update_preserves_foreign_file_in_old_release
+────────────
+     Summary [  24.650s] 180/239 tests run: 179 passed, 1 failed, 0 skipped
+        FAIL [   3.970s] (165/239) highgrade::launcher_contracts same_project_launchers_survive_move_and_global_update
+warning: 59/239 tests were not run due to test failure (run with --no-fail-fast to run all tests, or run with --max-fail)
+error: test run failed
+{"storage_preflight": [{"destination": "/home/lainterus/Projects/High Grade", "free_bytes": 870404689920, "minimum_free_bytes": 1073741824}, {"destination": "/home/lainterus/Projects/High Grade/target", "free_bytes": 870404689920, "minimum_free_bytes": 1073741824}]}

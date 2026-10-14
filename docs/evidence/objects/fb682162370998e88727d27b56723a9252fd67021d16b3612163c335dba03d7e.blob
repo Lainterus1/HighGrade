@@ -1,0 +1,37 @@
+# Финальное независимое ревью Rust / CLI / документов
+
+**GO — локальная готовность выбранных исправлений подтверждена.** Блокирующих дефектов в проверенном diff не найдено. Это не общий PASS проекта, всех 72 спецификаций, Windows нового diff или установленной Поставки.
+
+Проверена рабочая версия относительно `591dcb1ece4739d27a2e00cd702657ed6c9e70e3`. Точные SHA256 выбранных входов и использованных оригиналов сохранены в [rust-review-final-inputs.json](rust-review-final-inputs.json). Код, тесты, спеки, установку и исходные отчёты reviewer не менял. Временные исходники и материалы сохранены.
+
+## Смысл и границы исправлений
+
+- `trace.rs`: неверный hash отчёта и общая ошибка Playwright лишают подтверждения связанные сценарии этого отчёта. Пропущенный causal pin, неизвестный тест и duplicate лишают подтверждения затронутые связи. Независимые валидные результаты остаются. Manual/outside_automatic_trace не превращается ни в PASS, ни в автоматический отказ. Счётчики raw XML testcase / Playwright test objects отделены от уникальных ключей; retries не становятся новыми случаями. Это следует из HG-0024-R1 и HG-0013-R3, а не из желаемого результата теста.
+- `catalog_contracts.rs`: recovery regression проверяет два реальных journal target, позднюю пользовательскую правку, неизменность первого target, пользовательских bytes и самого журнала. Отказ сохраняет заблокированное чтение. Ожидание соответствует HG-0002-R2; production recovery guard не изменялся.
+- `ui/bundle.rs`: обязательные Lora и собственный OFL проверяются до работы с неполным UI. Негативный fixture удаляет все доставленные копии Lora и согласованно пересчитывает manifest, поэтому отказ не вызван случайным mismatch hashes. Полный комплект сохраняет успех. Это исправление существующего completeness contract HG-0061-R2 и поставляемого состава, а не изменение требований.
+- `main.rs` и contracts: справка теперь верно описывает batch validate без ID и current requirements read без ID. Исходный fail и последующий PASS прочитаны. Поддерживаемый dispatch не менялся.
+- `check-spec-archive.mjs`: поздние explicit retired IDs учитываются отдельно от неизменённого migration receipt. Новый реальный isolated fixture отвергает потерю сценария без retirement и reuse retired ID. Ни архив, ни mapping под текущий код не переписывались. Текущая проверка подтвердила 86 OpenSpec/124 native originals и 5 поздних retirements.
+
+## Проверенные оригинальные результаты
+
+1. `nextest-final-permitted.json` и исходный `rust-151c3da49eb5462db459e5628a0895ec/nextest`: самостоятельно разобраны 237 уникальных testcase, 0 skipped/failure/error. Inventory содержит те же 237 случаев. attempt_id и report/inventory SHA256 совпали с completion; все 477 attempt source pins совпали с текущими файлами. Новые trace, recovery, bundle и help tests реально присутствуют в XML.
+2. `final-scenarios.json` и raw `clear-scenarios-3d2a1028fed147e28b8e783675c64884/nextest/trace.json`: PASS без findings. 144 автоматических сценария подтверждены через 153 уникальных связанных теста; 177 сценариев вне автоматической области. 84 уникальных теста не имеют scenario links. Missing/skipped/unknown равны 0. Подписи исходных отчётов и pins проверены. Это не доказательство 321 сценария и не spec-check readiness всего каталога.
+3. `mutations-results-rebuilt.json`: R1–R6 имеют исходы `[0,101,0]`, один реально исполненный выбранный тест и новую компиляцию highgrade на каждой фазе. Внутри фаз входы неизменны; baseline/restored snapshots равны, mutant отличается ровно предметным source. Содержательные отказы: recovery ошибочно вернул Ok; неверный report/source получил PASS; duplicate потерял unknown; raw count стал 2 вместо 3; неполный Lora комплект был принят. Ошибки ранней компиляции/selector/cache отдельно сохранены и не засчитаны.
+4. Прочитаны `python-mutations-initial/final`, `node-mutations-expanded`, SVG mutation originals и потоки. P1 — реальный survivor прежних тестов, затем same-size corruption обнаружена. SVG — 33 прежних теста пропустили guard removal; усиленная проверка поймала разницу 3/255, восстановленная полная suite из 34 прошла. P4 initial с возможным stale pyc классифицирован как invalid setup; новый `-B` запуск обнаружил нарушение. JS expanded failures содержат точные assertions требуемых отказов, не только nonzero.
+5. Текущие `python-final-with-archive.json`: 69 PASS; `fmt-final.json`: PASS. Все заявленные before/after inputs совпали и текущие. Archive и help адресные проверки тоже PASS. Исходные неудачные результаты не переименованы.
+
+## Документы и свежесть
+
+Повторно проверен финальный diff ARCHITECTURE, ENGINEERING, BUILD, DEVELOPMENT, UI, ui README и Linux CI selection. Изменения устраняют расхождения с существующей структурой, assets, API hashes и командами. Новых полномочий, миграции каталогов, требований к приёмке или снятия проверок не введено. [Раннее ревью kit](kit-review-initial.md) и [полный read coverage](kit-read-coverage.json) переиспользованы: все 31 первичных kit источника сохранили SHA256. Тела девяти generated skills не читались повторно после проверки происхождения/генератора.
+
+Шесть Rust mutations предшествовали правкам help/contracts и helper `native-fixture.ts`. Эти файлы не являются причинными для выбранных прямых library selectors; новая full Nextest проверяет текущие Rust inputs. Только в изолированном U2 subject Python нормализовал `client.ts` CRLF→LF перед baseline. Baseline/restored равны; декодированный текст равен root. Это явно ограничивает утверждение об одинаковых bytes копии и root, но не показывает изменение поведения или запись в root.
+
+Общий inspect сохранил прежний `UNKNOWN AreaUnclassified:presentation`: ошибок нет, 11 warnings об unchecked external links, budget warnings нет. Wrapper `verify.py inspect` вышел с 1 из-за этого unknown. Он не объявляется общим PASS и не скрывается косметическим изменением реестра.
+
+## Пределы GO
+
+Этот GO относится к выбранным локальным Rust/CLI/checker/document fixes и силе просмотренных тестов. Он не объявляет 71 исторический in_progress дефектом кода, не требует переписать старые спеки и не подтверждает их текущую полную готовность. Не сертифицированы новый Windows запуск, Linux CHA runtime, installed plugins, другие проекты, будущая надёжность действий агента, активация, push или приёмка.
+
+Регистрация только реально повторённых scenario/check results и сохранение обязательных оригиналов остаются работой основного агента. `native-import-receipts-final.json` содержит `ReportImportRequiresJUnit`; этот отказ не считается успешным импортом или исполнением обязательного bound check. Если заявляется готовность конкретных спецификаций, нужны действительные совместимые runner records и точечная сверка spec-check после записи. Сам GO реализации не заменяет эту регистрацию. Финальное закрытие storage/continuation также не подтверждено этим отзывом.
+
+Прежняя пользовательская .gitignore сохранена: `9b3ded5f615f6e5fe70d8ed7273571c7b3c9b66805d62c6dad61a2a7d722bea8`. После материального изменения проверенных source/tests нужен адресный новый review.

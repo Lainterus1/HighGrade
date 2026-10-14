@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.codex/code-health-audit/accepted-findings.schema.json",
+  "title": "Accepted Code Health Findings",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "finding_id",
+          "metric",
+          "path",
+          "symbol",
+          "accepted_value",
+          "ceiling",
+          "reason",
+          "evidence_fingerprint",
+          "policy_version",
+          "analyzer"
+        ],
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "metric": {
+            "enum": [
+              "branch_coverage",
+              "cognitive_complexity",
+              "cyclomatic_complexity",
+              "dependency_cycle",
+              "duplication_block_lines",
+              "duplication_percent",
+              "file_nloc",
+              "function_nloc",
+              "line_coverage",
+              "nesting_depth",
+              "suppression"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "symbol": {
+            "type": "string",
+            "minLength": 1
+          },
+          "accepted_value": {
+            "type": "number"
+          },
+          "ceiling": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 10
+          },
+          "evidence_fingerprint": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "policy_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "analyzer": {
+            "type": "object",
+            "required": [
+              "name",
+              "version"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "guard_files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "review_after": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "policy_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "runtime_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

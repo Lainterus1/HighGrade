@@ -15,6 +15,8 @@ target/
     candidate/                   Last candidate: CLI, kit, candidate.json
     candidate.previous/          Emergency recovery only
     reports/                     Last candidate-build log
+    runs/<name>-<UUID>/           Managed checks awaiting review/export
+    ui-playwright/               Unmanaged local browser results
     tools/                       Local tools
     work/                        Lock/temp sources; empty after build
     tmp/<run>/                   Short-lived probes; clean after task
@@ -42,7 +44,7 @@ Before capture/Cargo, verify.py tests requires at least 1 GiB free for project/e
 
 ### Interface assets
 
-Before Cargo, the builder runs npm ci --no-audit --no-fund and npm run build in exported ui/. Build developers need Node 24/npm; installed users need only CLI/browser. Lockfile pins dependencies. bundle.mjs synchronizes assets/licenses and records CLI/API versions, source SHA, asset hashes and font/icon origins. build.rs checks hashes/versions/required assets and embeds them. Incomplete release UI rejects. Builder calls ui --check true and checks SHA/version before replacing candidates. Installer checks UI before profile writes. CLI checks before listening; absent/corrupt/incompatible assets yield UiBundleInvalid, with no remote fallback. Local /licenses/ exposes licenses; /highgrade-ui.json lists assets. Storybook is not shipped.
+Before Cargo, the builder runs npm ci --no-audit --no-fund and npm run build in exported ui/. Build developers need Node 24/npm; installed users need only CLI/browser. Lockfile pins dependencies. bundle.mjs copies assets/licenses and records CLI/API versions, source SHA, asset hashes and font/icon origins. build.rs checks hashes/versions/required assets and embeds them. Incomplete release UI rejects. Builder calls ui --check true and checks SHA/version before replacing candidates. Installer checks UI before profile writes. CLI checks before listening; absent/corrupt/incompatible assets yield UiBundleInvalid, with no remote fallback. Local /licenses/ exposes licenses; /highgrade-ui.json lists assets. Storybook is not shipped.
 
 Ordinary development: npm ci/npm run build in ui/, then cargo build --locked at root. Debug without dist is allowed for non-UI commands, but not UI/installation. An existing incomplete dist rejects even debug. Frontend edits need both builds.
 
@@ -91,7 +93,7 @@ Playwright uses its Chromium or HIGHGRADE_CHROME executable.
 
 Windows/Linux CI builds exact PR head, or github.sha on push, through the standard builder. Platform-specific old releases use pinned SHAs below. Cache miss builds through their historical builders; hit reuses the same OS/architecture/SHA candidate. Both verify candidate.json, file set/hashes, version and CLI execution identically. Cache is not installation evidence. Install only in temporary profiles. Never relabel current binaries as older versions.
 
-For local npx playwright test installed.spec.ts in ui/, set HIGHGRADE_UI_REQUIRED=true, HIGHGRADE_UI_CANDIDATE, HIGHGRADE_UI_SOURCE_SHA, HIGHGRADE_UI_VERSION, HIGHGRADE_OLD_SOURCE, HIGHGRADE_OLD_EXE, HIGHGRADE_OLD_SOURCE_SHA and HIGHGRADE_OLD_VERSION. Paths identify two candidates/kit/CLI; SHAs/versions come from their source commits. Verify candidate.json, hashes and both binary versions, then installation/update/recovery and two-project UI. CI always requires inputs; absent/partial/mismatched values fail. Only local nonrequired runs without configured inputs may skip. node --test ui/scripts/tests/installed-config.test.mjs checks this barrier without releases.
+For local npx playwright test installed.spec.ts in ui/, set HIGHGRADE_UI_REQUIRED=true, HIGHGRADE_UI_CANDIDATE, HIGHGRADE_UI_SOURCE_SHA, HIGHGRADE_UI_VERSION, HIGHGRADE_OLD_SOURCE, HIGHGRADE_OLD_EXE, HIGHGRADE_OLD_SOURCE_SHA and HIGHGRADE_OLD_VERSION. Paths identify two candidates/kit/CLI; SHAs/versions come from their source commits. Verify candidate.json, hashes and both binary versions, then installation/update/recovery and two-project UI. CI always requires inputs; absent/partial/mismatched values fail. Only local nonrequired runs without configured inputs may skip. node --test ui/scripts/tests/installed-config.test.mjs checks this barrier without releases, using target/debug CLI for the executable probe.
 
 Previous platform fixtures: Windows e60b6d4d4c3631c7140b037581f0bcdb2573befd (0.3.5); Linux fda4117312ca4c5af4388c960081dac94c10ea8f (0.3.4). These pre-0.3.6 source branches differ: Windows 0.3.5 installer loses Unix execute-bit. Never fix historical sources/binaries for a test.
 

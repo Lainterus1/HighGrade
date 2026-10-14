@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "inputs": [
+    "kit/tools/clear_batch.py",
+    "scripts/tests/test_clear_batch.py",
+    "scripts/tests/test_source_scenarios.py",
+    "scripts/source-scenarios.mjs",
+    "scripts/verify.py",
+    "scripts/evidence_store.py",
+    "scripts/target-maintenance.py",
+    "specs/requirements/HG-0076-R1.json",
+    "specs/requirements/HG-0076-R2.json",
+    "specs/requirements/HG-0025-R1.json",
+    "docs/BUILD.md",
+    "docs/EVIDENCE-STORAGE.md",
+    "kit/references/review.md",
+    "kit/references/clear-batches.md",
+    "python_adapter.py",
+    "python_witness.py",
+    "node_witness.mjs"
+  ],
+  "tests": [
+    "scripts/tests/test_clear_batch.py",
+    "scripts/tests/test_source_scenarios.py",
+    "python_adapter.py",
+    "python_witness.py",
+    "node_witness.mjs"
+  ],
+  "contracts": [
+    "specs/requirements/HG-0076-R1.json",
+    "specs/requirements/HG-0076-R2.json",
+    "specs/requirements/HG-0025-R1.json",
+    "docs/BUILD.md",
+    "docs/EVIDENCE-STORAGE.md",
+    "kit/references/review.md",
+    "kit/references/clear-batches.md"
+  ],
+  "scope_complete": false,
+  "timeout_seconds": 60,
+  "runtime_probes": [
+    [
+      "/usr/bin/python",
+      "--version"
+    ],
+    [
+      "node",
+      "--version"
+    ]
+  ],
+  "checks": [
+    {
+      "id": "helper",
+      "command": [
+        "/usr/bin/python",
+        "-B",
+        "python_adapter.py",
+        "scripts.tests.test_clear_batch.ClearBatchTests.test_non_assertion_failures_never_detect",
+        "scripts.tests.test_clear_batch.ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+        "scripts.tests.test_clear_batch.ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals"
+      ],
+      "expected_tests": [
+        "scripts.tests.test_clear_batch.ClearBatchTests.test_non_assertion_failures_never_detect",
+        "scripts.tests.test_clear_batch.ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+        "scripts.tests.test_clear_batch.ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals"
+      ],
+      "sources": [
+        "kit/tools/clear_batch.py"
+      ]
+    }
+  ],
+  "mutations": [
+    {
+      "id": "source-witness",
+      "path": "kit/tools/clear_batch.py",
+      "before": "if any(report['source_hashes'].get(rel)!=actual[rel]['sha256'] for rel in check['sources']):",
+      "after": "if False and any(report['source_hashes'].get(rel)!=actual[rel]['sha256'] for rel in check['sources']):",
+      "checks": [
+        "helper"
+      ],
+      "failures": [
+        {
+          "test": "scripts.tests.test_clear_batch.ClearBatchTests.test_non_assertion_failures_never_detect",
+          "contains": "'invalid' != 'detected'"
+        }
+      ],
+      "requirement": "HG-0076-R1",
+      "scenario": "HG-0076-S6"
+    },
+    {
+      "id": "foreign-restore",
+      "path": "kit/tools/clear_batch.py",
+      "before": "if current not in (expected,initial):",
+      "after": "if False and current not in (expected,initial):",
+      "checks": [
+        "helper"
+      ],
+      "failures": [
+        {
+          "test": "scripts.tests.test_clear_batch.ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+          "contains": "1 != 3"
+        }
+      ],
+      "requirement": "HG-0076-R1",
+      "scenario": "HG-0076-S7"
+    },
+    {
+      "id": "causal-reuse",
+      "path": "kit/tools/clear_batch.py",
+      "before": "if json.loads(read_bytes(safe(old,previous['snapshot'])))!=fingerprint:",
+      "after": "if False and json.loads(read_bytes(safe(old,previous['snapshot'])))!=fingerprint:",
+      "checks": [
+        "helper"
+      ],
+      "failures": [
+        {
+          "test": "scripts.tests.test_clear_batch.ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "contains": "True is not false"
+        }
+      ],
+      "requirement": "HG-0076-R2",
+      "scenario": "HG-0076-S9"
+    }
+  ]
+}

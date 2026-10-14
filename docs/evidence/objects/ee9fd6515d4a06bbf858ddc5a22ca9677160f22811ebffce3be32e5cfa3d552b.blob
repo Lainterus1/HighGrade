@@ -1,0 +1,31 @@
+# Rust: отзыв до окончательных мутаций
+
+2026-10-14. Прочитан diff src/trace.rs, tests/trace_contracts.rs и tests/catalog_contracts.rs относительно 591dcb1. В согласованных причинных ветках нового дефекта реализации не найдено. Перед итоговой оценкой нужны адресные усиления тестов ниже, реальные мутации и оригинальные финальные результаты. Это не финальный GO.
+
+## Реализация и оригинальные исходы
+
+ReportHashMismatch и глобальный PlaywrightRunErrors снимают подтверждение связанных сценариев данного report. Непроверенный source, отсутствующий pin владельца/spec или Rust inventory учитываются отдельно. TestNotInInventory и duplicate ограничивают затронутый key. PW duplicate сохраняет объединение annotations. Последний pass не заменяет неоднозначный исход. При пустой связке состояние остаётся outside_automatic_trace; независимые проверенные keys сохраняют свой PASS.
+
+CaseCounts считает исходные наблюдения до дедупликации и до оценки provenance. Rust считает testcase, PW — объекты test. Unique linked/unlinked считают множества keys. Это соответствует HG-0024-R1/S1 и сохраняет разные знаменатели. Число native наблюдений не представлено как удостоверение их подлинности. Проверка карточки отдельно от общего r.status нужна по HG-0013-R3/HG-0024-S3.
+
+RecoveryConflict regression использует два валидных документа и observed journal hash. Вторая цель отличается от обоих допустимых состояний. Проверяются конкретный RecoveryConflict, первая неизменённая цель, поздняя пользовательская правка, точный journal и сохранение CatalogRecoveryRequired. Такой setup не подменяет нарушение ошибкой подготовки; он также обнаруживает частичное применение до отказа. Основание — HG-0002-R2/S2.
+
+Прочитаны неизменённые оригиналы: trace-before-fix.json — 9 PASS и 2 релевантных assertion failures; trace-after-fix-first.json — 41 catalog и 11 trace PASS; trace-after-fix-scoped.json — 14 trace PASS, 0 ignored/filtered. Они подтверждают реально исполненный выбранный набор. Сила тестов ещё не подтверждена мутациями; новые source/test изменения требуют соответствующих новых результатов.
+
+## Адресные усиления ожиданий
+
+1. Для уже распознанной automatic связки `status != passed` недостаточно. Удаление bad links и ложный перевод в outside_automatic_trace может пройти новые отрицательные assertions и automatic_passed=0. В report hash/source/inventory/unlisted fixtures проверять unknown либо как минимум явный unconfirmed status, отсутствие outside_automatic_trace и сохранённую test binding. Manual scenario при этом остаётся outside. Это проверка области/смысла статуса, а не зеркалирование реализации.
+2. В spec-source fixture оба сценария имеют одного владельца. Такой case не обнаружит blanket снятие подтверждения всех spec_files. Добавить второй независимый spec owner/file, убрать fingerprint только первого: первый linked scenario unconfirmed, второй passed. В текущем коде guard по path имеет правильную область; нужна проверка этой границы.
+3. Добавить PW case с одним test и несколькими results/attempts. reported должен остаться 1; попытки не становятся разными test objects. Отдельный независимый test сохраняет свой исход. Это прямое различие из HG-0024-R1, которое существующие single-attempt duplicate fixtures не проверяют.
+
+Минимальные команды после правок: `cargo test --locked --test trace_contracts` и адресный `cargo test --locked --test catalog_contracts recovery_conflict_preserves_all_targets_and_the_observed_journal -- --exact`. Для окончательных мутаций сохранять прежние причинные входы, mutation diff, причину assertion failure и restored baseline. Полные suites reviewer здесь не повторял.
+
+## Сверка действующих документов
+
+Прочитаны полностью README.md, AGENTS.md, docs/ARCHITECTURE.md, docs/ENGINEERING.md, docs/workflow/QUALITY.md и docs/workflow/GLOBAL.md; адресно EVIDENCE-STORAGE и справочник формата спецификаций. README/AGENTS/GLOBAL согласуют технический fix по текущему контракту, полномочия и владельцев. QUALITY прямо запрещает PASS для skipped/failed/stale/unknown links, сохраняет отдельную ручную область и разные знаменатели. Эти документы соответствуют выбранной инфраструктуре; они не обещают сертификат смысла, подлинности или общей готовности каталога.
+
+В ARCHITECTURE отсутствует действующий format 5 и src/specs/storage/shared_inputs.rs: описан format 4, тогда как инструкция и основной справочник уже задают v3/v4/v5. Нужна короткая адресная запись об интернировании input_manifests и сохранении прежних форматов. Поле shared_inputs для checks и модуль хранения общих manifests имеют разные роли; их не следует смешивать.
+
+В ENGINEERING формулировка `Never publish ... local logs` слишком широка для штатного хранения выбранного исходного run.log. EVIDENCE-STORAGE прямо разрешает его экспорт в постоянный content-addressed набор после review. Рекомендуется уточнить запрет для рабочих временных журналов и сослаться на владельца выбранных evidence. Это устранит двусмысленность без назначения нового хранения/публикации.
+
+Рассмотренные hashes: src/trace.rs bf0ce763766d4a939403270e00f7820d3af3ab3e5088831c101e362852f35bc4; tests/trace_contracts.rs 63dbc515c280fa244f2d67e81285d72226f14e3e6f01f7edbce1767bad0b11d1; tests/catalog_contracts.rs 3a8b7059347b9e749c37a7630ac06b411a2ae5690a71bbe6159b68c446e59a6d. Источники reviewer не редактировал. Другие текущие UI/Python изменения и installed plugins этим отзывом не рассмотрены.

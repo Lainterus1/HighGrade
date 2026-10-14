@@ -49,7 +49,7 @@ test.describe('HG61 S1 S2: decision draft scope and revision',()=>{
    decisionRevision(read,{...request,reason:'Другой вопрос'}),
    decisionRevision(read,{...request,verified_revision:'saved-build-b'}),
   ];
-  for(const next of revisions){writeDecisionDraft(key,draft);expect(readDecisionDraft(key,next)).toMatchObject({revision:next,author:'Автор',comment:'Пояснение',status:'needs_changes',uncertain:true})}
+  for(const next of revisions){expect(next).not.toBe(revision);writeDecisionDraft(key,draft);expect(readDecisionDraft(key,next)).toMatchObject({revision:next,author:'Автор',comment:'Пояснение',status:'needs_changes',uncertain:true})}
   expect(decisionRevision({...read,store_sha256:'unrelated-store'},request)).toBe(revision);
   clearDecisionDraft(key);
  });

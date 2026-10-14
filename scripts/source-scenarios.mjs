@@ -127,6 +127,8 @@ function inputHashes(source) {
     ...files('src').filter((item) => /\.(rs|html|js)$/.test(item)), 'build.rs', ...files('ui/dist'),
     ...files('kit'), ...files('bundle'), ...files('tests/fixtures'),
     'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', '.config/nextest.toml', '.gitattributes',
+    // Optional project configuration is causal too, including creation/deletion.
+    ...['.cargo/config.toml', '.cargo/config'].filter((file) => existsSync(abs(file))),
     'scripts/source-scenarios.mjs', 'scripts/verify.py'];
   return Object.fromEntries(pinned.sort().map((file) => [file, sha(file)]));
 }

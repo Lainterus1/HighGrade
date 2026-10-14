@@ -1,0 +1,5 @@
+# Ошибка подготовки запуска
+
+Первый запуск Python installation wrapper неверно экранировал пробел в `High Grade`. Полученный executable argv[0] был `/home/lainterus/Projects/High`, а следующий аргумент начинался с `Grade/target/...`. Python зависимости ни одного пакета тогда не устанавливались; package tests не запускались. Это ошибка исполнителя, не дефект плагинов.
+
+Фактический исход tool-call: wrapper exit 1, `FileNotFoundError: [Errno 2] No such file or directory: '/home/lainterus/Projects/High'`. Первоначальный wrapper не перехватывал OSError, поэтому отдельные stdout/stderr artifacts для этой ошибки не были созданы. Полный оригинальный traceback остаётся в исходном tool-result текущего чата. После исправления quoting все дальнейшие команды сохраняют реальные argv и оригинальные потоки; wrapper также фиксирует OSError и timeout как самостоятельный исход.

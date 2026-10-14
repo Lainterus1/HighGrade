@@ -1,0 +1,2083 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-14T14:55:37.261457+00:00",
+  "verdict": "GO",
+  "scope": "Проверенные локальные guard исправления, Python regressions и четыре реальные selected mutations. Не итоговая готовность всего Clear/Rust barrier/плагинов/Windows/CI.",
+  "semantic_audit": {
+    "requirements_read": 34,
+    "scenarios_read": 64,
+    "source": "evidence-review.json",
+    "partial_source_read_limits_retained": true
+  },
+  "source_fingerprints": {
+    "kit/tools/clear_batch.py": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+    "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+    "scripts/tests/test_clear_batch.py": "6b0938627829b1b1952bd68636df797d16993cda34c3228a7294fc5593d69a71",
+    "scripts/tests/test_source_scenarios.py": "a4265ec47c7c2435fe8bb858eec5a8fd1bb59b38669df2ca4153c7f9fd077671",
+    "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+    "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+    "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+    "kit/references/clear-batches.md": "9c43b3aacc234f75a144467e74cff4ddc7374bfc2dfca25b19861937526dbfbd",
+    "kit/references/review.md": "647ab5b9a513171aadde4a460cbb20ad13c12ecd82fd55f98615f4c947d4e2f6"
+  },
+  "findings": [
+    {
+      "id": "EVID-01",
+      "state": "closed_local",
+      "observation": "Optional local Cargo config creation/change/deletion rejects reuse; actual RED/PASS and same omitted-config mutation detected."
+    },
+    {
+      "id": "EVID-02",
+      "state": "closed_local",
+      "observation": "Trailing-dot/space components and case-colliding inputs reject before output; old tests failed, final 81-case suite passes. Windows-specific runtime not claimed."
+    },
+    {
+      "id": "EVID-03",
+      "state": "closed_local",
+      "observation": "Invalid classification/reasons and strengthened-survivor complete/final assertions strengthened; actual final suite and selected violations checked."
+    }
+  ],
+  "python_suite": {
+    "original": "target/highgrade/runs/clear-python-final-fe7d5c3946d64576b52095817c0d06ac/run.log",
+    "sha256": "1c67c40d35a1b9f5f1a654047822e53da6bdbeb67555ac00ced1852ba8a2b10e",
+    "tests": 81,
+    "unique_case_ids": 81,
+    "outcome": "passed",
+    "reported_seconds": 37.43,
+    "case_ids": [
+      "test_build_release.ReleaseBuildTests.test_developer_release_does_not_replace_candidate_artifact",
+      "test_build_release.ReleaseBuildTests.test_double_rename_failure_keeps_recovery_candidate",
+      "test_build_release.ReleaseBuildTests.test_exact_revision_repeat_and_failed_build_preserve_candidate",
+      "test_build_release.ReleaseBuildTests.test_foreign_candidate_data_is_preserved",
+      "test_build_release.ReleaseBuildTests.test_linked_target_is_refused",
+      "test_build_release.ReleaseBuildTests.test_missing_ui_sources_and_failed_probe_preserve_candidate",
+      "test_build_release.ReleaseBuildTests.test_nested_cache_junction_is_refused_before_cargo_writes",
+      "test_build_release.ReleaseBuildTests.test_target_override_uses_artifact_from_current_build",
+      "test_build_release.ReleaseBuildTests.test_wrong_embedded_source_is_not_promoted",
+      "test_clear_batch.ClearBatchTests.test_case_colliding_inputs_cannot_alias_protected_tests",
+      "test_clear_batch.ClearBatchTests.test_descendants_cannot_turn_a_failure_into_detection_or_continue_worker",
+      "test_clear_batch.ClearBatchTests.test_existing_output_and_unsafe_inputs_do_not_overwrite",
+      "test_clear_batch.ClearBatchTests.test_invalid_baseline_does_not_assess_mutations",
+      "test_clear_batch.ClearBatchTests.test_measured_control_and_batch_preserve_same_outcomes",
+      "test_clear_batch.ClearBatchTests.test_non_assertion_failures_never_detect",
+      "test_clear_batch.ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+      "test_clear_batch.ClearBatchTests.test_standalone_batch_restores_exact_bytes_and_detects_actual_assertions",
+      "test_clear_batch.ClearBatchTests.test_survivor_then_stronger_assertion_keeps_initial_history",
+      "test_clear_batch.ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+      "test_clear_batch.ClearBatchTests.test_windows_trailing_path_aliases_are_rejected_before_output",
+      "test_document_budget.DocumentBudgetTests.test_development_budget_survives_git_checkout_line_endings",
+      "test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection",
+      "test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source",
+      "test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export",
+      "test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing",
+      "test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption",
+      "test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch",
+      "test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish",
+      "test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not",
+      "test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report",
+      "test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported",
+      "test_render_skills.RenderSkillsTests.test_other_skills_keep_their_project_entry",
+      "test_render_skills.RenderSkillsTests.test_update_body_and_metadata_come_from_their_editable_sources",
+      "test_render_skills.RenderSkillsTests.test_update_entry_does_not_require_a_project",
+      "test_source_scenarios.SourceFreshnessTests.test_capture_between_complete_read_and_write_cannot_inherit_success",
+      "test_source_scenarios.SourceFreshnessTests.test_capture_parse_error_invalidates_prior_success",
+      "test_source_scenarios.SourceFreshnessTests.test_changed_inputs_and_deleted_files_rejected_without_timestamp_drift",
+      "test_source_scenarios.SourceFreshnessTests.test_failed_partial_and_interrupted_attempts_cannot_inherit_success",
+      "test_source_scenarios.SourceFreshnessTests.test_final_gate_rejects_capture_and_source_drift_while_reading_trace",
+      "test_source_scenarios.SourceFreshnessTests.test_final_gate_rejects_unbound_record_and_mismatched_trace_provenance",
+      "test_source_scenarios.SourceFreshnessTests.test_final_identity_check_rejects_capture_after_source_freshness_reads",
+      "test_source_scenarios.SourceFreshnessTests.test_first_run_drift_rejected_and_new_successful_run_is_accepted",
+      "test_source_scenarios.SourceFreshnessTests.test_older_attempt_cannot_complete_a_newer_capture",
+      "test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse",
+      "test_source_scenarios.SourceFreshnessTests.test_real_failed_and_interrupted_processes_leave_attempt_incomplete",
+      "test_source_scenarios.SourceFreshnessTests.test_relocated_completed_attempt_keeps_original_capture_and_rejects_drift",
+      "test_source_scenarios.SourceFreshnessTests.test_report_inventory_and_missing_snapshot_are_rejected",
+      "test_source_scenarios.SourceFreshnessTests.test_running_attempt_cannot_complete_after_relocation",
+      "test_source_scenarios.SourceFreshnessTests.test_same_report_and_equivalent_spec_metadata_are_reusable",
+      "test_source_scenarios.SourceFreshnessTests.test_semantic_change_rejected_even_with_restored_timestamp",
+      "test_source_scenarios.SourceFreshnessTests.test_superseded_prepare_cannot_publish_current_evidence",
+      "test_source_scenarios.SourceFreshnessTests.test_verify_orchestration_completes_only_after_success",
+      "test_spec_archive.ArchiveCurrencyTests.test_later_retirement_is_distinct_from_loss_or_reused_retired_id",
+      "test_target_maintenance.TargetMaintenanceTests.test_active_build_and_recovery_state_refuse_without_changes",
+      "test_target_maintenance.TargetMaintenanceTests.test_budget_check_counts_hardlinked_payload_once",
+      "test_target_maintenance.TargetMaintenanceTests.test_cache_cleanup_requires_explicit_selection",
+      "test_target_maintenance.TargetMaintenanceTests.test_cache_file_refuses_before_removing_selected_scratch",
+      "test_target_maintenance.TargetMaintenanceTests.test_invalid_mixed_selection_refuses_before_deleting_scratch",
+      "test_target_maintenance.TargetMaintenanceTests.test_inventory_deduplicates_hardlinks_and_reports_each_area",
+      "test_target_maintenance.TargetMaintenanceTests.test_inventory_does_not_deduplicate_unavailable_inode_ids",
+      "test_target_maintenance.TargetMaintenanceTests.test_inventory_without_allocated_size_reports_unknown_not_estimate",
+      "test_target_maintenance.TargetMaintenanceTests.test_link_outside_root_refuses_and_preserves_sentinel",
+      "test_target_maintenance.TargetMaintenanceTests.test_missing_target_has_empty_measurements",
+      "test_target_maintenance.TargetMaintenanceTests.test_preview_is_read_only_and_apply_preserves_candidate_and_unknown",
+      "test_target_maintenance.TargetMaintenanceTests.test_scratch_path_escape_is_refused",
+      "test_target_maintenance.TargetMaintenanceTests.test_selected_preview_and_real_build_cache_cleanup",
+      "test_target_maintenance.TargetMaintenanceTests.test_windows_direntry_zero_identity_uses_real_path_stat",
+      "test_ui_build.UiBuildTests.test_release_requires_complete_bundle_but_debug_allows_absent_dist",
+      "test_verify.VerifyOutputTests.test_default_test_command_enters_the_owned_run_wrapper",
+      "test_verify.VerifyOutputTests.test_foreign_active_context_cannot_replace_another_runs_reports",
+      "test_verify.VerifyOutputTests.test_foreign_or_finished_report_folder_refuses_before_running_checks",
+      "test_verify.VerifyOutputTests.test_headroom_uses_cargo_target_and_accepts_exact_boundary",
+      "test_verify.VerifyOutputTests.test_inspect_report_round_trips_on_windows_legacy_console",
+      "test_verify.VerifyOutputTests.test_low_configured_target_refuses_even_when_project_has_space",
+      "test_verify.VerifyOutputTests.test_low_space_refuses_before_capture_or_report_replacement",
+      "test_verify.VerifyOutputTests.test_managed_test_attempt_keeps_native_outputs_even_on_failure",
+      "test_verify.VerifyOutputTests.test_spec_validation_propagates_batch_failure_without_reloading_ids",
+      "test_workflow_contract.WorkflowContractTests.test_all_current_kit_markdown_links_resolve_after_the_rename",
+      "test_workflow_contract.WorkflowContractTests.test_canonical_commit_skill_is_rendered_without_a_second_approve_route",
+      "test_workflow_contract.WorkflowContractTests.test_init_links_the_adaptation_that_commit_and_push_consume",
+      "test_workflow_contract.WorkflowContractTests.test_planner_route_links_one_primary_procedure"
+    ]
+  },
+  "rust_original_run": {
+    "directory": "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/nextest",
+    "reported_cases": 241,
+    "inventory_cases": 241,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "completion_and_original_integrity": true,
+    "current_non_spec_drift": [
+      "tests/attention_contracts.rs"
+    ],
+    "current_final_barrier_confirmed": false,
+    "trace_confirmation": "не выводится из Nextest-only report"
+  },
+  "batches": [
+    {
+      "name": "helper-batch",
+      "summary": "target/highgrade/tmp/clear-audit-python/helper-batch/summary.json",
+      "summary_sha256": "8274cc973113aac96f2dd6cb06984a4eb8fdf91f80edbdbeb573466ef5bc0a40",
+      "snapshot": "target/highgrade/tmp/clear-audit-python/helper-batch/snapshot.json",
+      "snapshot_sha256": "f39bb57c0b85e5c45da6ac9ed074c073500583b91f306824fbcd687699c8e5a8",
+      "complete": true,
+      "scope_complete": false,
+      "reused": false,
+      "restored": true,
+      "metrics": {
+        "commands": 5,
+        "evidence_bytes": 190691,
+        "probe_commands": 2,
+        "retries": 0,
+        "tokens": "unavailable",
+        "wall_seconds": 30.73139109800104
+      },
+      "commands": [
+        {
+          "phase": "baseline",
+          "run": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/baseline-helper.run.json",
+          "run_sha256": "cbdaca50d4fb575215325b19b658bc9511bb55636bca8baf23d8e9d943f41aaa",
+          "raw_report": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/baseline-helper.report.json",
+          "report_sha256": "15cdcafb3553ee098d039d9bc670c8fe1fd94e119085fb2ad037c93791ce586d",
+          "exit_code": 0,
+          "outcome": "passed",
+          "executed_tests": [
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_non_assertion_failures_never_detect",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals"
+          ],
+          "matching_fresh_receipt_groups": [
+            "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/43d7935108644b61b2dd56133fe550ac",
+            "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/907752ea37cb4f3b889a301146045714"
+          ],
+          "loaded_source_hashes": {
+            "scripts/tests/test_clear_batch.py": "6b0938627829b1b1952bd68636df797d16993cda34c3228a7294fc5593d69a71",
+            "kit/tools/clear_batch.py": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a"
+          }
+        },
+        {
+          "phase": "mutations",
+          "run": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/mutation-source-witness-helper.run.json",
+          "run_sha256": "c09dc1f738bd76728d08976391b9429b3570ba3568801a0dd150fcad7be28275",
+          "raw_report": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/mutation-source-witness-helper.report.json",
+          "report_sha256": "09b78d9a4151712c78ee60a0a4a6600e16153a9f07ede567495736033cb4ce33",
+          "exit_code": 1,
+          "outcome": "assertion",
+          "executed_tests": [
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_non_assertion_failures_never_detect",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals"
+          ],
+          "matching_fresh_receipt_groups": [
+            "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/b56fe38fe9694e59ac4aa4fcdf3cafb5"
+          ],
+          "loaded_source_hashes": {
+            "scripts/tests/test_clear_batch.py": "6b0938627829b1b1952bd68636df797d16993cda34c3228a7294fc5593d69a71",
+            "kit/tools/clear_batch.py": "aa8cfccb06246dbc726729e206de447695218d63625ab79210a03dc43218e52b"
+          }
+        },
+        {
+          "phase": "mutations",
+          "run": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/mutation-foreign-restore-helper.run.json",
+          "run_sha256": "79e23a82e14c6f64814af2fd7856aa8f99a3388002ea490d1dfc9749cad342cc",
+          "raw_report": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/mutation-foreign-restore-helper.report.json",
+          "report_sha256": "890a7c6cb046e2941bcbe5dfa7bd81170cbc5a08744805ab465fec7fd18f07f1",
+          "exit_code": 1,
+          "outcome": "assertion",
+          "executed_tests": [
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_non_assertion_failures_never_detect",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals"
+          ],
+          "matching_fresh_receipt_groups": [
+            "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/f8b3a5252656428c9f98ba5039e41f61"
+          ],
+          "loaded_source_hashes": {
+            "scripts/tests/test_clear_batch.py": "6b0938627829b1b1952bd68636df797d16993cda34c3228a7294fc5593d69a71",
+            "kit/tools/clear_batch.py": "13692f2194a75cffd0561737f105162330d1504fcca8fb49ffae77344cd8546d"
+          }
+        },
+        {
+          "phase": "mutations",
+          "run": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/mutation-causal-reuse-helper.run.json",
+          "run_sha256": "55989c254db7bafe823960dc62bdc7b62070bb13717b287b15c50adc0b0e2aff",
+          "raw_report": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/mutation-causal-reuse-helper.report.json",
+          "report_sha256": "ce9ce2fe6cf334aa2ff998b3499731114fc795cca3ccf000cf9abb3e7b40790e",
+          "exit_code": 1,
+          "outcome": "assertion",
+          "executed_tests": [
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_non_assertion_failures_never_detect",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals"
+          ],
+          "matching_fresh_receipt_groups": [
+            "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/68d4e48000174cefbd9ebacee258048c"
+          ],
+          "loaded_source_hashes": {
+            "scripts/tests/test_clear_batch.py": "6b0938627829b1b1952bd68636df797d16993cda34c3228a7294fc5593d69a71",
+            "kit/tools/clear_batch.py": "df47c1b97c4e62408655110b5af4ba903af5c3adad7b37e0690fbb655f48965f"
+          }
+        },
+        {
+          "phase": "final",
+          "run": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/final-helper.run.json",
+          "run_sha256": "932db04636d6b62db6adde2a5ddc3c8400cf49251b92fb77110d19e8b58a976a",
+          "raw_report": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/final-helper.report.json",
+          "report_sha256": "15cdcafb3553ee098d039d9bc670c8fe1fd94e119085fb2ad037c93791ce586d",
+          "exit_code": 0,
+          "outcome": "passed",
+          "executed_tests": [
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_non_assertion_failures_never_detect",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+            "scripts.tests.test_clear_batch.ClearBatchTests.test_reuse_requires_complete_matching_causal_set_and_intact_originals"
+          ],
+          "matching_fresh_receipt_groups": [
+            "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/43d7935108644b61b2dd56133fe550ac",
+            "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/907752ea37cb4f3b889a301146045714"
+          ],
+          "loaded_source_hashes": {
+            "scripts/tests/test_clear_batch.py": "6b0938627829b1b1952bd68636df797d16993cda34c3228a7294fc5593d69a71",
+            "kit/tools/clear_batch.py": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a"
+          }
+        }
+      ],
+      "mutations": [
+        {
+          "id": "source-witness",
+          "requirement": "HG-0076-R1",
+          "scenario": "HG-0076-S6",
+          "outcome": "detected",
+          "diff": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/source-witness.diff",
+          "diff_sha256": "8471328a1cb0d359614bc892206b5854743168603e661b6d700fb10190b409f4",
+          "before_sha256": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+          "mutated_sha256": "aa8cfccb06246dbc726729e206de447695218d63625ab79210a03dc43218e52b",
+          "restored": true
+        },
+        {
+          "id": "foreign-restore",
+          "requirement": "HG-0076-R1",
+          "scenario": "HG-0076-S7",
+          "outcome": "detected",
+          "diff": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/foreign-restore.diff",
+          "diff_sha256": "5e0b4cb40e2965208f05a7b600b90ec126372bd104d96af7a3452106189c8b4b",
+          "before_sha256": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+          "mutated_sha256": "13692f2194a75cffd0561737f105162330d1504fcca8fb49ffae77344cd8546d",
+          "restored": true
+        },
+        {
+          "id": "causal-reuse",
+          "requirement": "HG-0076-R2",
+          "scenario": "HG-0076-S9",
+          "outcome": "detected",
+          "diff": "target/highgrade/tmp/clear-audit-python/helper-batch/logs/causal-reuse.diff",
+          "diff_sha256": "e0c11914fee191ddb958e053272df3196b3143aab8d30d157cf11b1f89adbbbf",
+          "before_sha256": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+          "mutated_sha256": "df47c1b97c4e62408655110b5af4ba903af5c3adad7b37e0690fbb655f48965f",
+          "restored": true
+        }
+      ],
+      "declared_originals_integrity": true,
+      "restored_inputs": [
+        {
+          "path": "docs/BUILD.md",
+          "sha256": "2b3d12d74941e30903a5191bb650e841b614c4df89a1cc4b138bdafa8b032d3b",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "docs/EVIDENCE-STORAGE.md",
+          "sha256": "8a03605d4714b19de8d8af708f0379bcf72eca0b754028cbbbd92b6d041bfaa9",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "kit/references/clear-batches.md",
+          "sha256": "9c43b3aacc234f75a144467e74cff4ddc7374bfc2dfca25b19861937526dbfbd",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "kit/references/review.md",
+          "sha256": "647ab5b9a513171aadde4a460cbb20ad13c12ecd82fd55f98615f4c947d4e2f6",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "kit/tools/clear_batch.py",
+          "sha256": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "node_witness.mjs",
+          "sha256": "ed2755c47300c8e78837b26fc576e9d2236456e5f4c6c5de9fa2dd7438d6741a",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "python_adapter.py",
+          "sha256": "b815f1c4092ff9f182d982c79bf796b656d378b5e291b0b39a91797fe259c267",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "python_witness.py",
+          "sha256": "83b8a9d4a723d972fb35905e0628c572ae57c501d808c0d0eeca261becacdd5e",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/evidence_store.py",
+          "sha256": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/source-scenarios.mjs",
+          "sha256": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/target-maintenance.py",
+          "sha256": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/tests/test_clear_batch.py",
+          "sha256": "6b0938627829b1b1952bd68636df797d16993cda34c3228a7294fc5593d69a71",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/tests/test_source_scenarios.py",
+          "sha256": "a4265ec47c7c2435fe8bb858eec5a8fd1bb59b38669df2ca4153c7f9fd077671",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/verify.py",
+          "sha256": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "specs/requirements/HG-0025-R1.json",
+          "sha256": "5569a2fdb03e1dbade6b6f92cdbd4f07ce7c754852c475317862f7a0ec72dd60",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "specs/requirements/HG-0076-R1.json",
+          "sha256": "e690a262439f610134a1070986fba546326347169c8d8a4ce3ef3b4cb72dc099",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "specs/requirements/HG-0076-R2.json",
+          "sha256": "7654cc284f38b486dee47a3e394e264d80ec38b4afe61504512303457c8e8c04",
+          "exact_bytes_and_mode_restored": true
+        }
+      ],
+      "receipt_groups": [
+        {
+          "directory": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/43d7935108644b61b2dd56133fe550ac",
+          "records": 18,
+          "loaded_hash_groups": [
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "a96d5eb21528e452d52539a721cde313b948ef50bd7d4b2147b14a05a7612a0b",
+              "count": 1
+            },
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+              "count": 17
+            }
+          ],
+          "records_inventory_sha256": "d8c89b25413ec513ea41e08ceb10940217e5d98b3b27f41cf8032f14f77c1199"
+        },
+        {
+          "directory": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/68d4e48000174cefbd9ebacee258048c",
+          "records": 15,
+          "loaded_hash_groups": [
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "7403e4f2467b442038e8b280704539634ed5265fc0afd7ce88fb1b1f3d3ca699",
+              "count": 1
+            },
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "df47c1b97c4e62408655110b5af4ba903af5c3adad7b37e0690fbb655f48965f",
+              "count": 14
+            }
+          ],
+          "records_inventory_sha256": "6922614a08394a3d739168243e7da4b2c2856e294804fbf74cc28ff31ef4aca8"
+        },
+        {
+          "directory": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/907752ea37cb4f3b889a301146045714",
+          "records": 18,
+          "loaded_hash_groups": [
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "a96d5eb21528e452d52539a721cde313b948ef50bd7d4b2147b14a05a7612a0b",
+              "count": 1
+            },
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+              "count": 17
+            }
+          ],
+          "records_inventory_sha256": "d97eaee8547f84df1e48b3b8b3339f3e0e0cb30f78d6109951b94f103c12cc34"
+        },
+        {
+          "directory": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/b56fe38fe9694e59ac4aa4fcdf3cafb5",
+          "records": 18,
+          "loaded_hash_groups": [
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "6f56fdd868e34f27149be79583fb447ed0f5e8778dab09f02d3e5e4170c52bff",
+              "count": 1
+            },
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "aa8cfccb06246dbc726729e206de447695218d63625ab79210a03dc43218e52b",
+              "count": 17
+            }
+          ],
+          "records_inventory_sha256": "34fd9da1cd0882238462cfde3ecfa346796b131b0c08b92050ce0de062d2101e"
+        },
+        {
+          "directory": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.execution-receipts/f8b3a5252656428c9f98ba5039e41f61",
+          "records": 18,
+          "loaded_hash_groups": [
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "13692f2194a75cffd0561737f105162330d1504fcca8fb49ffae77344cd8546d",
+              "count": 17
+            },
+            {
+              "source": "kit/tools/clear_batch.py",
+              "sha256": "e3fc80a2154d4d30e8685fdf3435df2fa0b49f32ed9f1a1144ac1c255160a65b",
+              "count": 1
+            }
+          ],
+          "records_inventory_sha256": "06bdfafbfecb7c293413cb0dde8c93e09a788052c8f49736d54065596e7d4aba"
+        }
+      ]
+    },
+    {
+      "name": "config-batch",
+      "summary": "target/highgrade/tmp/clear-audit-python/config-batch/summary.json",
+      "summary_sha256": "c9ee63abf473588cac104ab74a632f19fd654efa768790edeb499b56549be13b",
+      "snapshot": "target/highgrade/tmp/clear-audit-python/config-batch/snapshot.json",
+      "snapshot_sha256": "b673bcd38e7649ceb533ed96b4da26f8370a527864304d1ab0748fbdc76a4414",
+      "complete": true,
+      "scope_complete": false,
+      "reused": false,
+      "restored": true,
+      "metrics": {
+        "commands": 3,
+        "evidence_bytes": 179245,
+        "probe_commands": 2,
+        "retries": 0,
+        "tokens": "unavailable",
+        "wall_seconds": 2.086677999999665
+      },
+      "commands": [
+        {
+          "phase": "baseline",
+          "run": "target/highgrade/tmp/clear-audit-python/config-batch/logs/baseline-cargo-config.run.json",
+          "run_sha256": "9f5048a13b59114f84de391f9dbd80a8b54122d609d25136395916bb46491535",
+          "raw_report": "target/highgrade/tmp/clear-audit-python/config-batch/logs/baseline-cargo-config.report.json",
+          "report_sha256": "b69976d4125b38cefe6cf07e5a19255015a23001a7a79235f8cdf0a29d47b1b5",
+          "exit_code": 0,
+          "outcome": "passed",
+          "executed_tests": [
+            "scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse"
+          ],
+          "matching_fresh_receipt_groups": [
+            "target/highgrade/tmp/clear-audit-python/config-batch/subject/.execution-receipts/0c387b32cce74ad79459d78ea82b9d28",
+            "target/highgrade/tmp/clear-audit-python/config-batch/subject/.execution-receipts/f95b978003794ac3bb935dacb0e1a5ee"
+          ],
+          "loaded_source_hashes": {
+            "scripts/tests/test_source_scenarios.py": "a4265ec47c7c2435fe8bb858eec5a8fd1bb59b38669df2ca4153c7f9fd077671",
+            "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+            "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775"
+          }
+        },
+        {
+          "phase": "mutations",
+          "run": "target/highgrade/tmp/clear-audit-python/config-batch/logs/mutation-omit-cargo-config-cargo-config.run.json",
+          "run_sha256": "12e2ba16fa1d3732ce94dd5d880bba504a9fabe06e3afb312b7679758e205db0",
+          "raw_report": "target/highgrade/tmp/clear-audit-python/config-batch/logs/mutation-omit-cargo-config-cargo-config.report.json",
+          "report_sha256": "1b2c8f5758f5626d556f8818c5d3c8fcb9140b9d2b56d384692cec3656fa89fd",
+          "exit_code": 1,
+          "outcome": "assertion",
+          "executed_tests": [
+            "scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse"
+          ],
+          "matching_fresh_receipt_groups": [
+            "target/highgrade/tmp/clear-audit-python/config-batch/subject/.execution-receipts/265bd81b7eed4e67aa215f54c86e9de0"
+          ],
+          "loaded_source_hashes": {
+            "scripts/tests/test_source_scenarios.py": "a4265ec47c7c2435fe8bb858eec5a8fd1bb59b38669df2ca4153c7f9fd077671",
+            "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+            "scripts/source-scenarios.mjs": "ede50253711c9b7a401fe6d438cd1bb7b556af008fec3c6051988d9d70232ea9"
+          }
+        },
+        {
+          "phase": "final",
+          "run": "target/highgrade/tmp/clear-audit-python/config-batch/logs/final-cargo-config.run.json",
+          "run_sha256": "a6367356f7a64cd31f6580b19e4cad769d2f8f4b843395bba47467040af4369f",
+          "raw_report": "target/highgrade/tmp/clear-audit-python/config-batch/logs/final-cargo-config.report.json",
+          "report_sha256": "b69976d4125b38cefe6cf07e5a19255015a23001a7a79235f8cdf0a29d47b1b5",
+          "exit_code": 0,
+          "outcome": "passed",
+          "executed_tests": [
+            "scripts.tests.test_source_scenarios.SourceFreshnessTests.test_project_cargo_config_creation_change_and_deletion_reject_reuse"
+          ],
+          "matching_fresh_receipt_groups": [
+            "target/highgrade/tmp/clear-audit-python/config-batch/subject/.execution-receipts/0c387b32cce74ad79459d78ea82b9d28",
+            "target/highgrade/tmp/clear-audit-python/config-batch/subject/.execution-receipts/f95b978003794ac3bb935dacb0e1a5ee"
+          ],
+          "loaded_source_hashes": {
+            "scripts/tests/test_source_scenarios.py": "a4265ec47c7c2435fe8bb858eec5a8fd1bb59b38669df2ca4153c7f9fd077671",
+            "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+            "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775"
+          }
+        }
+      ],
+      "mutations": [
+        {
+          "id": "omit-cargo-config",
+          "requirement": "HG-0025-R1",
+          "scenario": "HG-0025-S1",
+          "outcome": "detected",
+          "diff": "target/highgrade/tmp/clear-audit-python/config-batch/logs/omit-cargo-config.diff",
+          "diff_sha256": "a1959285c9bae34436321ff898ea7243dc8c8bbbbaf18b1d3c36893b4014843f",
+          "before_sha256": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+          "mutated_sha256": "ede50253711c9b7a401fe6d438cd1bb7b556af008fec3c6051988d9d70232ea9",
+          "restored": true
+        }
+      ],
+      "declared_originals_integrity": true,
+      "restored_inputs": [
+        {
+          "path": "docs/BUILD.md",
+          "sha256": "2b3d12d74941e30903a5191bb650e841b614c4df89a1cc4b138bdafa8b032d3b",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "docs/EVIDENCE-STORAGE.md",
+          "sha256": "8a03605d4714b19de8d8af708f0379bcf72eca0b754028cbbbd92b6d041bfaa9",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "kit/references/clear-batches.md",
+          "sha256": "9c43b3aacc234f75a144467e74cff4ddc7374bfc2dfca25b19861937526dbfbd",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "kit/references/review.md",
+          "sha256": "647ab5b9a513171aadde4a460cbb20ad13c12ecd82fd55f98615f4c947d4e2f6",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "kit/tools/clear_batch.py",
+          "sha256": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "node_witness.mjs",
+          "sha256": "ed2755c47300c8e78837b26fc576e9d2236456e5f4c6c5de9fa2dd7438d6741a",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "python_adapter.py",
+          "sha256": "b815f1c4092ff9f182d982c79bf796b656d378b5e291b0b39a91797fe259c267",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "python_witness.py",
+          "sha256": "83b8a9d4a723d972fb35905e0628c572ae57c501d808c0d0eeca261becacdd5e",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/evidence_store.py",
+          "sha256": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/source-scenarios.mjs",
+          "sha256": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/target-maintenance.py",
+          "sha256": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/tests/test_clear_batch.py",
+          "sha256": "6b0938627829b1b1952bd68636df797d16993cda34c3228a7294fc5593d69a71",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/tests/test_source_scenarios.py",
+          "sha256": "a4265ec47c7c2435fe8bb858eec5a8fd1bb59b38669df2ca4153c7f9fd077671",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "scripts/verify.py",
+          "sha256": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "specs/requirements/HG-0025-R1.json",
+          "sha256": "5569a2fdb03e1dbade6b6f92cdbd4f07ce7c754852c475317862f7a0ec72dd60",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "specs/requirements/HG-0076-R1.json",
+          "sha256": "e690a262439f610134a1070986fba546326347169c8d8a4ce3ef3b4cb72dc099",
+          "exact_bytes_and_mode_restored": true
+        },
+        {
+          "path": "specs/requirements/HG-0076-R2.json",
+          "sha256": "7654cc284f38b486dee47a3e394e264d80ec38b4afe61504512303457c8e8c04",
+          "exact_bytes_and_mode_restored": true
+        }
+      ],
+      "receipt_groups": [
+        {
+          "directory": "target/highgrade/tmp/clear-audit-python/config-batch/subject/.execution-receipts/0c387b32cce74ad79459d78ea82b9d28",
+          "records": 20,
+          "loaded_hash_groups": [
+            {
+              "source": "scripts/source-scenarios.mjs",
+              "sha256": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+              "count": 20
+            }
+          ],
+          "records_inventory_sha256": "258a0e7afedf0448b6d9f2e11261365db8385b5ab1fa67265a86f51abcefaa3b"
+        },
+        {
+          "directory": "target/highgrade/tmp/clear-audit-python/config-batch/subject/.execution-receipts/265bd81b7eed4e67aa215f54c86e9de0",
+          "records": 8,
+          "loaded_hash_groups": [
+            {
+              "source": "scripts/source-scenarios.mjs",
+              "sha256": "ede50253711c9b7a401fe6d438cd1bb7b556af008fec3c6051988d9d70232ea9",
+              "count": 8
+            }
+          ],
+          "records_inventory_sha256": "988f950c0d8ccc7f74336466249444d74d8ac238a67d8a233536368cc24ee0a0"
+        },
+        {
+          "directory": "target/highgrade/tmp/clear-audit-python/config-batch/subject/.execution-receipts/f95b978003794ac3bb935dacb0e1a5ee",
+          "records": 20,
+          "loaded_hash_groups": [
+            {
+              "source": "scripts/source-scenarios.mjs",
+              "sha256": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+              "count": 20
+            }
+          ],
+          "records_inventory_sha256": "d21bd01923508809dec9c8045dd7b899028a4d6198c14d2aab51d843338d6b6d"
+        }
+      ]
+    }
+  ],
+  "nested_framework_results": [
+    {
+      "invocation": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d",
+      "phase_type": "source-witness",
+      "helper_sha256": "aa8cfccb06246dbc726729e206de447695218d63625ab79210a03dc43218e52b",
+      "live_fixture_and_sentinel_preserved": true,
+      "unknown_bytes_preserved": true,
+      "results": [
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "compile",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_non_assertion_failures_never_detect/project/compile/summary.json",
+          "sha256": "1f169dfe6e1587b6daf59a9ae6a440896b4cec044a80c722b6782c4f6a8af4cd",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "emptymutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_non_assertion_failures_never_detect/project/emptymutant/summary.json",
+          "sha256": "3ec0f49b4e5aea0595d77dec749e31e9a8ed25a2900d5747f1df82ceb33cab74",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "setup",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_non_assertion_failures_never_detect/project/setup/summary.json",
+          "sha256": "9b288062d03e13b4301f696ea51ec2fffe4134d3190ef3b56868b403714e6f13",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "skipmutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_non_assertion_failures_never_detect/project/skipmutant/summary.json",
+          "sha256": "d94a9d4817b3877f38e1de55df00f0efbabef9409da58b82d93b38a09d7d0cbc",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "stale",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_non_assertion_failures_never_detect/project/stale/summary.json",
+          "sha256": "c4cad9d45f7988694c893533aa975b185be0b8c0cc59f14d468130c604c7116c",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "detected"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "timeout",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_non_assertion_failures_never_detect/project/timeout/summary.json",
+          "sha256": "b7ffc8a6cd28c6155e21631e88070ff7c48cfa6c8c547650bcaebf1f93c9e06a",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "unsupported",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_non_assertion_failures_never_detect/project/unsupported/summary.json",
+          "sha256": "184ed4884ae0b50490b73112422ae1dde2928942eb6826258307dcd4f6cd135d",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "adapter-py",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/adapter-py/summary.json",
+          "sha256": "c5eac08d802f49c7e78f2f28e837f676bfccce7fac5acc4b1a3397abaf300958",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/batch/summary.json",
+          "sha256": "3a554ac1efadcea7180b1d78feeeaf23f9ea35aad0cdf58f781765693913ce98",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "contract-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/contract-txt/summary.json",
+          "sha256": "00c710fc3ac90e0941b637a68941ca5c25a531dd1824a2c26f6afe8b66bc3b6b",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "corrupt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/corrupt/summary.json",
+          "sha256": "5af10831652480bfea770600cad36331075a3ec934db645235616086829976a4",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "data-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/data-txt/summary.json",
+          "sha256": "c39be77fabe0e500bb3c03be64f6d1e5ed65139c5fbb42068d67f2698fb173f6",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "dependency-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/dependency-txt/summary.json",
+          "sha256": "ca3402d21effc526e70d31779319aaf4db6fbd437459203563447aa7538d4908",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "env",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/env/summary.json",
+          "sha256": "295e59b25e292f9948578da5e6e70397e4247cfa532febfe7fbfd227c4c575b6",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "helper",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/helper/summary.json",
+          "sha256": "3a15abf47f4974807d3b6255ab272b9a309201b19d34868b4c3b138c37f4432b",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "same",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/same/summary.json",
+          "sha256": "96159ddf2d3d9490a9480ce3c325c52805f761f91a2934da1372af179088e7f9",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "unknown",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/unknown/summary.json",
+          "sha256": "e52fb948bd2b662a133366b1ac29acbae7e31eec2c453917a49f7c2209b9a03d",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/03b2f8ac62084aa4bb525e33b696340d/test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign/project/batch/summary.json",
+          "sha256": "62e298e2288941dd8d9c4bfb2fc5b9a8af709984d6564dee43d8f01611e08e80",
+          "complete": false,
+          "restored": false,
+          "reused": false,
+          "commands": 2,
+          "outcomes": [
+            "restore_failed"
+          ]
+        }
+      ]
+    },
+    {
+      "invocation": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14",
+      "phase_type": "baseline_or_final",
+      "helper_sha256": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+      "live_fixture_and_sentinel_preserved": true,
+      "unknown_bytes_preserved": true,
+      "results": [
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "compile",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_non_assertion_failures_never_detect/project/compile/summary.json",
+          "sha256": "fe33f058b061a596b0621c34ae76ee75291a906dfb034a1721d8531e0517cfd5",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "emptymutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_non_assertion_failures_never_detect/project/emptymutant/summary.json",
+          "sha256": "5922e0ddf094d6531bcd74bf8a9b7c91285c319df0199d2f0a72d96aed69640c",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "setup",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_non_assertion_failures_never_detect/project/setup/summary.json",
+          "sha256": "c2bd97fdd45a1ef6e3ba05a157d4a1e93ed6f7448615e432d91a58efc8fce33b",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "skipmutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_non_assertion_failures_never_detect/project/skipmutant/summary.json",
+          "sha256": "5adab00f0a47cbaf7f951b656a8c1f0f3be012ede31f5d3f4d7f2735fcb635f3",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "stale",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_non_assertion_failures_never_detect/project/stale/summary.json",
+          "sha256": "3595c810d2f2cf85963055e406779bbea191de8832ee1fc366732622f7929112",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "timeout",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_non_assertion_failures_never_detect/project/timeout/summary.json",
+          "sha256": "b20ef1a994277d1185bb6bf67216b1703bae6a737c35437b75c003fad50f805b",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "unsupported",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_non_assertion_failures_never_detect/project/unsupported/summary.json",
+          "sha256": "7663c45af8a31ad9c95eb590c1bf8ce17214074df55c12db7ca406f65cd7c412",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "adapter-py",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/adapter-py/summary.json",
+          "sha256": "ba9169abbd0be8e7f5ec9c9e37361ae7fd2a4eec38fd4e0390d561cfded4135d",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/batch/summary.json",
+          "sha256": "6aaeb8b240aa169da7add04fca421c599bf8b8374dc60e36203cd20b3e88f28c",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "contract-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/contract-txt/summary.json",
+          "sha256": "f776f0e97c1c632e7074f294ccaf36b1c253f0be80a038991d37139d0d5c2a2f",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "corrupt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/corrupt/summary.json",
+          "sha256": "8336dac18d109e78fbb7627fc86b0c86b54ee9f415f4738f7dd60c2178623d12",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "data-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/data-txt/summary.json",
+          "sha256": "e18aae4e076c13ca5c17ccd075859db1ef81794dc5eb2dfac04a4a369f08506a",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "dependency-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/dependency-txt/summary.json",
+          "sha256": "dfcf47b857e20bf806e641cddb9daa5b89968f3a4a0683f2dd2d231e70d429ac",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "env",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/env/summary.json",
+          "sha256": "0fe11d3fa3c81e76a51af1a2f8d1742cf14940ec9e9669c1e52923c5f022ccfb",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "helper",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/helper/summary.json",
+          "sha256": "2fb67d46126edfb59ca3cc8a2071a1d718124d90d85e422da8599c28bea10c2c",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "same",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/same/summary.json",
+          "sha256": "d878735677b53ee4fffa6af9eae397648e220063a0cc25e6f82c576a0391a543",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "unknown",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/unknown/summary.json",
+          "sha256": "10d3643cc38021d51cee22a7f7fe9e68fe3a1367fe3838b31f6f98dc7949676b",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/b2a0e3cdb8d24ca3b6e9dfc243f1db14/test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign/project/batch/summary.json",
+          "sha256": "2d0afed70fbee289b38d8851005da35fac64748cc5137b0b3dfe142ef4a9426b",
+          "complete": false,
+          "restored": false,
+          "reused": false,
+          "commands": 2,
+          "outcomes": [
+            "restore_failed"
+          ]
+        }
+      ]
+    },
+    {
+      "invocation": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2",
+      "phase_type": "foreign-restore",
+      "helper_sha256": "13692f2194a75cffd0561737f105162330d1504fcca8fb49ffae77344cd8546d",
+      "live_fixture_and_sentinel_preserved": true,
+      "unknown_bytes_preserved": false,
+      "results": [
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "compile",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_non_assertion_failures_never_detect/project/compile/summary.json",
+          "sha256": "3e9fe8d46285a2173e4840cae0e54c12c9ee33874f94e247e017dea402c066ad",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "emptymutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_non_assertion_failures_never_detect/project/emptymutant/summary.json",
+          "sha256": "955de3ae6b2e2d2773d71aee34a0f270407d0e1ec1906f034c5af5428e3552a9",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "setup",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_non_assertion_failures_never_detect/project/setup/summary.json",
+          "sha256": "e42651e8972d72242490b54e3fce4e37a18cac782c71099a36571827c3172737",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "skipmutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_non_assertion_failures_never_detect/project/skipmutant/summary.json",
+          "sha256": "5108bf9bff64262a8fd923cf73c453433bdca9fd90ce6556ec7baecb530d87f2",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "stale",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_non_assertion_failures_never_detect/project/stale/summary.json",
+          "sha256": "a58d4c219e0e2f105e6b04a4c8e99135bb9d0d9bb6a083107f5c5e080c91abd2",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "timeout",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_non_assertion_failures_never_detect/project/timeout/summary.json",
+          "sha256": "851df75379382f381b6d2cd95facdb51ca716c482bb82db788bf0378c64535ed",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "unsupported",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_non_assertion_failures_never_detect/project/unsupported/summary.json",
+          "sha256": "681559aac869420b69a408b156c42d2b0308b44aeccfc9c407736dc78f2839cc",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "adapter-py",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/adapter-py/summary.json",
+          "sha256": "0e06488a7c8830375a00e2e939a2e3b13f1d7ebe662ce386d6ce6673bd26f1a3",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/batch/summary.json",
+          "sha256": "870326a35d81924b94d0515e90e0767a14350aba237d0c244f459654afff69af",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "contract-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/contract-txt/summary.json",
+          "sha256": "0a8c964a01518f8234946e1e77f6de294f333f746ed072ca5745a7d35392ade3",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "corrupt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/corrupt/summary.json",
+          "sha256": "dd2ab359636e47fe72cac8b6b5b1044f5885a319658be66ab92b8ad0869b78ec",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "data-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/data-txt/summary.json",
+          "sha256": "5549e619a9d3e04078dab08ac5f75bc2ea427c0c8e90f7dc5e8ee17881f54055",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "dependency-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/dependency-txt/summary.json",
+          "sha256": "d9bf3ff42e060c9deafb0c8ff101f1f527508c95194f6ed208197596f668c9c3",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "env",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/env/summary.json",
+          "sha256": "c15c16d8c016461fd24ea722a4d51f8ad878cf71e7ec2d79fbc1aea08d06b74f",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "helper",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/helper/summary.json",
+          "sha256": "34b1ac545d959f84600e3620140143238672b10f4ea6f056b882f677b73c41c6",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "same",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/same/summary.json",
+          "sha256": "822385f423db00d6f65d8fbca6aaeb7a557745474a2d1fe41dfa57693de425b9",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "unknown",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/unknown/summary.json",
+          "sha256": "ed2c772bb105dc753e41007e5c3b0524b662b31102453d56bd3d92ebb400c8a7",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/c3ec6f03ab5f4fda8bfd9b863e5388e2/test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign/project/batch/summary.json",
+          "sha256": "5faa6eb91416e15aa9077a3c4991347ad170b5c6ad3c06b8074c6c1d61f86a89",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        }
+      ]
+    },
+    {
+      "invocation": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7",
+      "phase_type": "causal-reuse",
+      "helper_sha256": "df47c1b97c4e62408655110b5af4ba903af5c3adad7b37e0690fbb655f48965f",
+      "live_fixture_and_sentinel_preserved": true,
+      "unknown_bytes_preserved": true,
+      "results": [
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "compile",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_non_assertion_failures_never_detect/project/compile/summary.json",
+          "sha256": "5880b1884267ad11db2a747d539b13b38793f7887bdcb15c1faab9c93be264ba",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "emptymutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_non_assertion_failures_never_detect/project/emptymutant/summary.json",
+          "sha256": "dda2e2168501d29056b316e203a2725cb606bef6610d3d79f143b2ade60b128a",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "setup",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_non_assertion_failures_never_detect/project/setup/summary.json",
+          "sha256": "444c5e016092401fbc3fdafeec7bf0f2d87b7b224a21e07930c8cfde508fa1b4",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "skipmutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_non_assertion_failures_never_detect/project/skipmutant/summary.json",
+          "sha256": "96c68129f02fb92aa2fe2128acd193b0dc57b6fc24d0c3590fabc692f4763c2a",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "stale",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_non_assertion_failures_never_detect/project/stale/summary.json",
+          "sha256": "dd5729ecbf0e5de59d2f20a572cc73699edc0ec920aff9788b4c204a8fb160a1",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "timeout",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_non_assertion_failures_never_detect/project/timeout/summary.json",
+          "sha256": "aa6fe0a40da13141481c3e18d122a2169d4aed69ff7feae9580fdd942f5f6349",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "unsupported",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_non_assertion_failures_never_detect/project/unsupported/summary.json",
+          "sha256": "69117a39099c5ee35e16d3abf94f5a369acbabfbaf78bf64703d01f28baee0d7",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "adapter-py",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/adapter-py/summary.json",
+          "sha256": "15b9a72b4052e0f2824133c45b3820609512888bcb990de6a254b945ee512972",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/batch/summary.json",
+          "sha256": "7657ae669ac7ef9de809545ffc8f304d02b6d927acb582091d1d4d2c058f55b9",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "contract-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/contract-txt/summary.json",
+          "sha256": "3e23a93bb5851e83cef6876b9075593cae7ad67a8ba8f47cb935747c60ae7a14",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "data-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/data-txt/summary.json",
+          "sha256": "9badcac6922933fa1295a9a2fedda81c5a932d0a5512c663c0e91f55bc009c5e",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "dependency-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/dependency-txt/summary.json",
+          "sha256": "f401d10c02093dc465d526555bbbd23ea2d753d24a52ca4a31b4a1486ff06353",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "helper",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/helper/summary.json",
+          "sha256": "e3afbe742684d599c32084853c0faa066016350e8a9ef1fded0f90836dc294be",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "same",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/same/summary.json",
+          "sha256": "e7e255fea27ef69ef9ab6e1dace07da7eba617027970900bce4abf51efd9fd89",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/dd52ba180592422194d69aacedd2c4c7/test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign/project/batch/summary.json",
+          "sha256": "a12bdb0d2a58e4779bd4f51eb51151c861816f2d6a576be5c890b28129fc8996",
+          "complete": false,
+          "restored": false,
+          "reused": false,
+          "commands": 2,
+          "outcomes": [
+            "restore_failed"
+          ]
+        }
+      ]
+    },
+    {
+      "invocation": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f",
+      "phase_type": "baseline_or_final",
+      "helper_sha256": "b885e32824475f20eba64693de77ae094ff18efff607b60bd521f237143ab24a",
+      "live_fixture_and_sentinel_preserved": true,
+      "unknown_bytes_preserved": true,
+      "results": [
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "compile",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_non_assertion_failures_never_detect/project/compile/summary.json",
+          "sha256": "7aa10dedd527447262dd4d0ce7210b0be664f27c9c939028a9727d74f35d487b",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "emptymutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_non_assertion_failures_never_detect/project/emptymutant/summary.json",
+          "sha256": "ee313cf7186beb95fcba2d7e78c235e8c480bb14e2140df64612ec85e140b11a",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "setup",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_non_assertion_failures_never_detect/project/setup/summary.json",
+          "sha256": "24e06fc68a7d99fe45b7aa92a9760071338ce1b337d9288c21c55abb0f612666",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "skipmutant",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_non_assertion_failures_never_detect/project/skipmutant/summary.json",
+          "sha256": "bd7bc78b891ee275d6ca6bd499228fddd27f799db8d94be0d67dfd7dfdf7f035",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "stale",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_non_assertion_failures_never_detect/project/stale/summary.json",
+          "sha256": "0ace8d8837e8785d7520d0927f2ccca8588201681cb774ff8221327de1a113c2",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "timeout",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_non_assertion_failures_never_detect/project/timeout/summary.json",
+          "sha256": "4e8f25c8bf81d07b83652cc4263cc7d9e9843eb083c3dfd24ddc7daec750ad63",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_non_assertion_failures_never_detect",
+          "name": "unsupported",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_non_assertion_failures_never_detect/project/unsupported/summary.json",
+          "sha256": "6cf7a2913106831c4ace73f51853e3b49579c53a126a2963cbcd9401cc4152ea",
+          "complete": false,
+          "restored": true,
+          "reused": false,
+          "commands": 3,
+          "outcomes": [
+            "invalid"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "adapter-py",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/adapter-py/summary.json",
+          "sha256": "c5496c23b7d6bf1acaa716c24a7f096c3d3161c5782773e666cbe013f775be78",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/batch/summary.json",
+          "sha256": "fe4db976d893cf3194b68e8e4f7633776802b0f6841e552bb95382e031de6c60",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "contract-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/contract-txt/summary.json",
+          "sha256": "46de64475a6fb1095fe547ae20cc53de358230486867448e0eb9f2c9c87afcad",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "corrupt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/corrupt/summary.json",
+          "sha256": "b077e45d2c04cbe00e0e8f97ec1f4a80623b2b727be717ba95c71b112b301fc1",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "data-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/data-txt/summary.json",
+          "sha256": "850f246b6376464b8e1c12ebebd5e5d380a53a600a4210a816a4db20dba2b87e",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "dependency-txt",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/dependency-txt/summary.json",
+          "sha256": "c6470f7bb78fd7a4ae10d45d2671b4a4416d57e33b1d656a53efc38f2f157f2e",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "env",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/env/summary.json",
+          "sha256": "b70413b14b6fec498145705d4c8a547b01742db1f7b5228743f3229984152bb7",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "helper",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/helper/summary.json",
+          "sha256": "aa363093182a46e0c1a87734b40c910302d8f2ebbcd54e706b4302bfb9a3bfa6",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "same",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/same/summary.json",
+          "sha256": "960f889f9e73d7c6e488c3c1dfea241883d12a90f0401a97814e83bfce8ddbe4",
+          "complete": true,
+          "restored": true,
+          "reused": true,
+          "commands": 0,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_reuse_requires_complete_matching_causal_set_and_intact_originals",
+          "name": "unknown",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_reuse_requires_complete_matching_causal_set_and_intact_originals/project/unknown/summary.json",
+          "sha256": "41056beeb5308ee36a592e90c427aa90a7d62ce5dd800a653cce90b49aa7b876",
+          "complete": true,
+          "restored": true,
+          "reused": false,
+          "commands": 5,
+          "outcomes": [
+            "detected",
+            "detected",
+            "detected"
+          ]
+        },
+        {
+          "case": "test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign",
+          "name": "batch",
+          "path": "target/highgrade/tmp/clear-audit-python/helper-batch/subject/.framework-artifacts/fbf2daa7241a4c63b7e7e656eb7de13f/test_unknown_restore_edit_stops_worker_and_preserves_live_and_foreign/project/batch/summary.json",
+          "sha256": "29471d05852e1d186c05190f50063cfdd6ed0eeca2ca1dd69bfc991b78ebd2e5",
+          "complete": false,
+          "restored": false,
+          "reused": false,
+          "commands": 2,
+          "outcomes": [
+            "restore_failed"
+          ]
+        }
+      ]
+    }
+  ],
+  "observer_judgment": {
+    "actual_selection": "Настоящие unittest TestCase по явным selectors; реальные success/assertion/error/skip callbacks; subtest failures агрегируются к parent ID.",
+    "python_witness": "Raw bytes фактически переданной subprocess-копии читаются, compile/exec используют тот же raw buffer. Receipt hash берётся из этого raw.",
+    "node_witness": "Реальный module-loader hook записывает loaded source bytes; config-mutant SHA совпадает с raw report и receipts.",
+    "freshness": "Пять helper и три config commands имеют свежие UUID receipt groups. Mutant hashes различимы; baseline/final имеют одинаковый source SHA и разные groups. Reuse внешних батчей отсутствует.",
+    "limits": "Receipt создан до exec и сам не доказывает завершение. Вывод подтверждён case assertions/nested originals/final. Receipt identity агрегирована на command, не каждый subtest; один SHA не различает baseline/final группы.",
+    "preservation": "Declared bytes/modes восстановлены; правильный nested guard сохраняет unknown bytes, guard mutant перезаписывает только isolated copy и пойман assertion. Live fixture/sentinel сохранены."
+  },
+  "cost": {
+    "outer_adapter_commands": {
+      "helper": 5,
+      "config": 3
+    },
+    "runtime_probe_commands": 4,
+    "count_limit": "Внутри выполняются дополнительные subprocess; это не полная стоимость.",
+    "helper_seconds": 30.73139109800104,
+    "config_seconds": 2.086677999999665,
+    "matched_unbatched_control_for_current_guard_violations": "не выполнен",
+    "tokens": "нет данных",
+    "money": "нет данных",
+    "current_savings_claim": "не подтверждена"
+  },
+  "observed_runtime": {
+    "platform": "локальный Linux",
+    "python": "3.14.7",
+    "node": "26.8.2",
+    "not_confirmed": [
+      "Node24 CI",
+      "Windows",
+      "CHA validated runtime"
+    ]
+  },
+  "plugin_limit": {
+    "source_edits_in_current_Clear": false,
+    "semantic_docs_tests_reviewed": {
+      "SVG": 34,
+      "CHA": 59
+    },
+    "new_package_execution": "не выполнено",
+    "reason": "Прежнее exact-pinned venv удалено; доступный bundled runtime не содержит vtracer/analyzers.",
+    "historical_PASS_reused_as_current": false
+  },
+  "preserve_before_cleanup": {
+    "originals": [
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/initial-regressions.json",
+        "sha256": "4886e79dfc81d042c69b92089bb0fed28ed7589094d6cee6a90ca83943559148"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/initial-regressions.log",
+        "sha256": "75e9fca2576c873859fce021d6be96b229dd79d0cf9ff151b9b9ad26eebce2fa"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/fixed-regressions.json",
+        "sha256": "08b6a3487b2c0263aa954ccace4307ab0636de35689b5e3f610eb0546e9fb606"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/fixed-regressions.log",
+        "sha256": "5b7548a212f77060584c488caeaefba186b7349c4e9cfb4774d92078506d5c5a"
+      },
+      {
+        "path": ".highgrade/local/clear-audit-2026-10-14/initial-case-alias.log",
+        "sha256": "476559eb508c169043a3ead99d7762d716aa8691b503ef5f80f76d670aca0183"
+      },
+      {
+        "path": "target/highgrade/runs/clear-python-final-fe7d5c3946d64576b52095817c0d06ac/run.log",
+        "sha256": "1c67c40d35a1b9f5f1a654047822e53da6bdbeb67555ac00ced1852ba8a2b10e"
+      },
+      {
+        "path": "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/nextest/attempt.json",
+        "sha256": "0ee3324d6468d36288b8e972d6816efcd4da173de31279549e1034563721d63c"
+      },
+      {
+        "path": "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/nextest/completion.json",
+        "sha256": "b4a469a1bfb82abc89bc3f9b9197e7b43060dcdfaff3118b11cf1f8e0bf1af39"
+      },
+      {
+        "path": "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/nextest/junit.xml",
+        "sha256": "7a720cd267886b21d9c03d6dabbe8058732fa11ddf2ce6bb47626eb7094375ab"
+      },
+      {
+        "path": "target/highgrade/runs/rust-1922a3d1fbc34f36b0f116b13975c166/nextest/list.json",
+        "sha256": "04d505571649568315bdee7e04e48676c3c917ee08f51778d974c7085f5df9e2"
+      }
+    ],
+    "also_required": [
+      "each batch summary/snapshot/plan/diffs/run/raw reports",
+      "helper-batch/subject/.execution-receipts",
+      "helper-batch/subject/.framework-artifacts",
+      "config-batch/subject/.execution-receipts"
+    ],
+    "note": "Receipts/nested artifacts не включены автоматически в summary.originals. Сохранить явно существующим storage route перед cleanup.",
+    "storage_cleanup_performed_by_reviewer": false
+  },
+  "open_limits": [
+    "Новый package execution плагинов отсутствует; исторические отчёты не стали current PASS.",
+    "Новый current Rust barrier после изменившихся tests/attention_contracts.rs остаётся ответственностью root; 241 original outcomes сохранены.",
+    "HG65 pinned-profile comparison, manual/remote methods и чужие UI/catalog области не подтверждены этим review.",
+    "scope_complete=false и fresh-only — не универсальная completeness среды или Cargo ancestor/home/env конфигурации.",
+    "Все выбранные guard mutations detected, но это не полное mutation/branch coverage и не экономия токенов."
+  ],
+  "reviewer_edits": "Только final-evidence-review.md/json; код, каталог, установки, live Goal и исходные отчёты не менялись."
+}

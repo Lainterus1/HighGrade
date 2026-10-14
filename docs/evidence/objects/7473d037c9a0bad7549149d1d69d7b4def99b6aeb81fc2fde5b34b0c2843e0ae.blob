@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--lib",
+    "ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes",
+    "--",
+    "--exact"
+  ],
+  "cwd": "/home/lainterus/Projects/High Grade",
+  "started_at": "2026-10-14T05:39:36.852237+00:00",
+  "ended_at": "2026-10-14T05:39:43.317985+00:00",
+  "exit_code": 101,
+  "stdout": "\nrunning 1 test\ntest ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes ... FAILED\n\nfailures:\n\n---- ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes stdout ----\n\nthread 'ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes' panicked at src/ui/bundle.rs:125:13:\nmissing fonts/Lora.ttf\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n\nfailures:\n    ui::bundle::tests::incomplete_bundle_is_rejected_even_with_consistent_manifest_hashes\n\ntest result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.03s\n\n",
+  "stderr": "    Blocking waiting for file lock on build directory\n   Compiling highgrade v0.4.0 (/home/lainterus/Projects/High Grade)\n    Finished `test` profile [unoptimized] target(s) in 6.40s\n     Running unittests src/lib.rs (target/debug/deps/highgrade-b45280eeb5cde2cd)\nerror: test failed, to rerun pass `--lib`\n"
+}

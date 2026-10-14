@@ -1,0 +1,12 @@
+import { registerHooks } from 'node:module';
+import { createHash, randomUUID } from 'node:crypto';
+import { writeFileSync } from 'node:fs';
+import path from 'node:path';
+registerHooks({load(url, context, nextLoad) {
+  const loaded = nextLoad(url, context);
+  if (url.endsWith('/scripts/source-scenarios.mjs') && loaded.source != null) {
+    const hash = createHash('sha256').update(loaded.source).digest('hex');
+    writeFileSync(path.join(process.env.CLEAR_EXECUTION_RECEIPTS, randomUUID()+'.json'), JSON.stringify({source:'scripts/source-scenarios.mjs', artifact:url, sha256:hash}));
+  }
+  return loaded;
+}});

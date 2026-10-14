@@ -15,6 +15,10 @@ This release is tested on Windows AMD64, CPython 3.12.10. Other Python/platform 
 
 The analyzer boundary isolates each tool in a bounded process. Defaults: 120 seconds per analyzer and 60 seconds for a nested Pylint process; policy overrides are capped at 3600 seconds. Missing, failed, suppressed or timed-out global evidence does not become zero/OK. Relevant suppression comments are reported; unrelated disabled lint messages and text inside strings are not required-tool suppressions.
 
+## Package tests
+
+From the plugin root, run `<pinned-python> -B -m unittest discover -s skills/code-health-audit/scripts/tests -v` with the exact analyzer pins installed. Missing pins skip dependent tests; report that gap. On an unvalidated runtime, workflow tests require `RUNTIME_UNVERIFIED`, exit 2 and incomplete audit while still checking measurements, coverage, digests and preservation. A passing package suite does not certify that runtime or replace an actual project audit.
+
 ## Preflight and project policy
 
 `audit.py --root <root> --mode full|diff --preflight` prints JSON and exits 0 when the runtime, scope and required local base are ready, otherwise 2. It does not certify coverage or execute analyzers/tests. Run normal audit for diagnostic artifacts if evidence remains unavailable.

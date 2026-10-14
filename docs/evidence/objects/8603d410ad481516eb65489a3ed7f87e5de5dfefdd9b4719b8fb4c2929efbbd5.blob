@@ -1,0 +1,40 @@
+import hashlib, json, os, sys, unittest
+from pathlib import Path
+MODE = 'emptymutant'
+raw = Path('calc.py').read_bytes()
+hashes = {'calc.py': hashlib.sha256(raw).hexdigest()}
+namespace = {}
+cases = []
+try:
+    exec(compile(raw, 'calc.py', 'exec'), namespace)
+    class Test(unittest.TestCase):
+        def test_number(self):
+            if MODE == 'badbaseline': self.fail('broken baseline fixture')
+            if MODE == 'skip' or (MODE == 'skipmutant' and b'return 0' in raw): self.skipTest('unavailable')
+            if MODE == 'weak': self.assertGreaterEqual(namespace['number'](), 0)
+            else: self.assertEqual(namespace['number'](), 2, 'number contract')
+    class Result(unittest.TestResult):
+        def addSuccess(self, test):
+            super().addSuccess(test); cases.append({'id':'test_number','outcome':'passed','message':''})
+        def addFailure(self, test, err):
+            super().addFailure(test,err); cases.append({'id':'test_number','outcome':'assertion','message':str(err[1])})
+        def addError(self, test, err):
+            super().addError(test,err); cases.append({'id':'test_number','outcome':'error','message':str(err[1])})
+        def addSkip(self, test, reason):
+            super().addSkip(test,reason); cases.append({'id':'test_number','outcome':'skipped','message':reason})
+    result = Result()
+    if MODE != 'empty' and not (MODE == 'emptymutant' and b'return 0' in raw): unittest.defaultTestLoader.loadTestsFromTestCase(Test).run(result)
+    if MODE == 'timeout' and b'return 0' in raw:
+        import time; time.sleep(4)
+    if MODE == 'setup' and b'return 0' in raw: raise RuntimeError('setup unavailable')
+    if MODE == 'restore' and b'return 0' in raw: Path('calc.py').write_bytes(b'foreign edit\x00')
+    if MODE == 'stale' and b'return 0' in raw:
+        hashes['calc.py'] = hashlib.sha256(raw.replace(b'return 0', b'return 2')).hexdigest()
+    report = {'format':'highgrade-clear-v1','tests':cases,'source_hashes':hashes}
+    if MODE == 'unsupported' and b'return 0' in raw: report['format'] = 'other'
+    if MODE == 'descendant' and b'return 0' in raw:
+        import subprocess; subprocess.Popen([sys.executable,'-c','import time; time.sleep(4)'])
+except BaseException as error:
+    report = {'format':'highgrade-clear-v1','tests':[{'id':'test_number','outcome':'error','message':str(error)}],'source_hashes':hashes}
+Path(os.environ['HG_CLEAR_REPORT']).write_text(json.dumps(report))
+sys.exit(0 if all(c['outcome']=='passed' for c in report['tests']) else 1)

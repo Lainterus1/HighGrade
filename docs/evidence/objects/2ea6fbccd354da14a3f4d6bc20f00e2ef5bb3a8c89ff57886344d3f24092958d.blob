@@ -1,0 +1,32 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 ../.highgrade/local/clear-audit-2026-10-14/poll-repro.spec.ts:6:1 › HG55 R4: selection B finishes before an obsolete background poll A is released (1.0m)
+
+
+  1) ../.highgrade/local/clear-audit-2026-10-14/poll-repro.spec.ts:6:1 › HG55 R4: selection B finishes before an obsolete background poll A is released 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Все спецификации', exact: true })
+
+
+      19 |   await page.goto(url);await expect(page.locator('.document h1')).toHaveText('Спецификация 1');
+      20 |   await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeEnabled();
+    > 21 |   await page.getByRole('button',{name:'Все спецификации',exact:true}).click();
+         |                                                                       ^
+      22 |   f.edit('HG-0002',{goal:'Unrelated CLI edit causes a newer catalog snapshot'});
+      23 |   const before=f.hash();
+      24 |   await page.route('**/api/specs/HG-0001',async route=>{
+        at /home/lainterus/Projects/High Grade/.highgrade/local/clear-audit-2026-10-14/poll-repro.spec.ts:21:71
+
+    Error Context: ../.highgrade/local/clear-audit-2026-10-14/poll-repro-artifacts/poll-repro-HG55-R4-selecti-1712e-ckground-poll-A-is-released/error-context.md
+
+  1 failed
+    ../.highgrade/local/clear-audit-2026-10-14/poll-repro.spec.ts:6:1 › HG55 R4: selection B finishes before an obsolete background poll A is released 
+
+STDERR
+(node:886643) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

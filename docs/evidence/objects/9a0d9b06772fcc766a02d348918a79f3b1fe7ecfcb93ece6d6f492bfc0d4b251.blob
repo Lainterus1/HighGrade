@@ -1,0 +1,15 @@
+# Дополнение к независимому evidence review
+
+**GO для текущего локального Rust run, automatic trace и сохранения выбранных мутационных оригиналов в CAS.** Прежний final-evidence-review не изменён. Его остальные ограничения сохраняются.
+
+Новый Rust run `rust-fb3f004e7e67416888f65a58154a488a` содержит 241 case, 0 failures/errors/skips. Inventory также содержит 241. Attempt/completion IDs, хеши JUnit и inventory совпадают. Проверены 481 ordinary source pin и 3 native manifest/inventory pin; текущего drift нет. `tests/attention_contracts.rs` совпадает с новым snapshot. Поэтому ранее отмеченный current-Rust gap закрыт новым наблюдением, а не исправлением старого отчёта.
+
+Serial trace связан с тем же новым JUnit/inventory/attempt/completion. Header status passed, findings отсутствуют. Все 332 scenario rows уникальны: **145 automatic PASS**, **187 outside_automatic_trace**. Missing/skipped/unknown test cases — 0. Outside означает предел этого отчёта; это не manual/external PASS.
+
+CAS manifest `700ed77fd30aca2a9162d1c72a3a0611391b76268b890fb7d162a1f9ca78c760.json` проверен по своему content hash. Проверены размер и SHA каждого из 3513 selected files. Экспорт покрывает весь текущий helper-batch и config-batch: 3408 + 103 files, плюс два plan-файла. Все live selected bytes совпадают с экспортом. Включены 135 receipt files и 3256 nested framework files. Ранее отмеченный риск удаления необходимых side artifacts без сохранения закрыт этим проверенным комплектом.
+
+Проверка CAS подтверждает сохранность bytes, включая намеренно invalid/corrupt истории тестов. Она не приписывает каждой записи PASS или authenticity. Логический объём выбранных bytes — 2 428 797; это не дополнительный физический объём CAS после deduplication.
+
+Runtime/ancestor-config/Windows/CI/plugin limits прежние. Новое package execution плагинов не выполнено. Токены и денежная стоимость неизвестны; для текущих трёх helper guard violations matched unbatched control отсутствует. Экономия не объявлена. Cleanup reviewer не выполнял; это дополнение не закрывает все внешние и manual критерии Clear.
+
+Точные пути, hashes и counts сохранены в final-evidence-review-addendum.json.

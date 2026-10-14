@@ -1,0 +1,60 @@
+"""Capture original package check commands and outputs in assigned local storage."""
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+BASE = Path(__file__).resolve().parent
+WORK = Path('/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward')
+
+
+def run(name, cwd, argv):
+    report = BASE / f'{name}.json'
+    if report.exists():
+        raise FileExistsError(report)
+    scope = WORK / ('svg' if cwd == 'svg' else 'audit')
+    if cwd == 'work':
+        scope = WORK
+    inputs = {}
+    if cwd in ('svg', 'audit'):
+        for path in scope.rglob('*'):
+            if path.is_file() and not path.is_symlink() and not any(
+                    part in {'.venv', 'node_modules', '__pycache__'} for part in path.relative_to(scope).parts):
+                inputs[str(path.relative_to(scope))] = hashlib.sha256(path.read_bytes()).hexdigest()
+    env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', PYTHONUTF8='1',
+               TMPDIR=str(WORK / 'scratch'), TEMP=str(WORK / 'scratch'), TMP=str(WORK / 'scratch'),
+               GIT_CEILING_DIRECTORIES=str(WORK / 'scratch'),
+               PIP_CACHE_DIR=str(WORK / 'cache/pip'), UV_CACHE_DIR=str(WORK / 'cache/uv'),
+               npm_config_cache=str(WORK / 'cache/npm'), npm_config_update_notifier='false')
+    start = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    error = None
+    try:
+        result = subprocess.run(argv, cwd=scope, env=env, capture_output=True, timeout=300)
+        output, errors, code = result.stdout, result.stderr, result.returncode
+    except OSError as failure:
+        error = repr(failure)
+        output, errors, code = b'', str(failure).encode(), 127
+    except subprocess.TimeoutExpired as failure:
+        error = repr(failure)
+        output, errors, code = failure.stdout or b'', failure.stderr or b'', 124
+    (BASE / f'{name}.stdout').write_bytes(output)
+    (BASE / f'{name}.stderr').write_bytes(errors)
+    record = {'argv':argv, 'cwd':str(scope), 'started_at':start,
+              'finished_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'runner_python':sys.version, 'runner_executable':sys.executable,
+              'exit_code':code, 'execution_error':error, 'source_snapshot_sha256':inputs,
+              'stdout_file':f'{name}.stdout', 'stderr_file':f'{name}.stderr',
+              'stdout_sha256':hashlib.sha256(output).hexdigest(),
+              'stderr_sha256':hashlib.sha256(errors).hexdigest(),
+              'environment_overrides':{k:env[k] for k in ['PYTHONDONTWRITEBYTECODE','PYTHONUTF8','TMPDIR','GIT_CEILING_DIRECTORIES','PIP_CACHE_DIR','UV_CACHE_DIR','npm_config_cache']}}
+    report.write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
+    print(json.dumps({'report':str(report),'exit_code':code,
+                      'stdout_tail':output.decode('utf-8',errors='replace')[-1800:],
+                      'stderr_tail':errors.decode('utf-8',errors='replace')[-1800:]},ensure_ascii=False))
+
+
+if __name__ == '__main__':
+    run(sys.argv[1], sys.argv[2], sys.argv[3:])

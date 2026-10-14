@@ -2,46 +2,46 @@
   "acceptance": [],
   "evidence": {
     "HG-0024-S1": {
-      "captured_at": "1790403026",
+      "captured_at": "1791996162",
       "command": "spec-run --id HG-0024 --check HG-0024-C1",
-      "input_manifest_sha256": "2e51992ae0a940935759e261c5eca1ef3fb3eaf0e82cd3970afc3a74bb5ea304",
+      "input_manifest_sha256": "62f83b81ecb05352e88e7df5b5468d00fea25870f6b53c6c4be70add92c4c70f",
       "method": "native_report",
       "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
       "outcome": "passed",
-      "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1790403026640217800.log",
+      "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log",
       "scenario": "HG-0024-S1",
       "scenario_sha256": "04bb9ba3f2b54d76d119b6e33e23e3ac3d19b56edddbcc942392e525b087d5bf"
     },
     "HG-0024-S2": {
-      "captured_at": "1790403026",
+      "captured_at": "1791996162",
       "command": "spec-run --id HG-0024 --check HG-0024-C1",
-      "input_manifest_sha256": "2e51992ae0a940935759e261c5eca1ef3fb3eaf0e82cd3970afc3a74bb5ea304",
+      "input_manifest_sha256": "62f83b81ecb05352e88e7df5b5468d00fea25870f6b53c6c4be70add92c4c70f",
       "method": "native_report",
       "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
       "outcome": "passed",
-      "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1790403026640217800.log",
+      "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log",
       "scenario": "HG-0024-S2",
       "scenario_sha256": "f94d9f87b3575d9f7f59f7a3dc899f30a4ee26600161fb529521fe8d8a1e3869"
     },
     "HG-0024-S3": {
-      "captured_at": "1790403026",
-      "command": "spec-run --id HG-0024 --check HG-0024-C1",
-      "input_manifest_sha256": "2e51992ae0a940935759e261c5eca1ef3fb3eaf0e82cd3970afc3a74bb5ea304",
+      "captured_at": "2026-10-14T16:54:28.389118+00:00",
+      "command": "python -B scripts/verify.py tests; highgrade spec-run HG-0024-C1; isolated RED/PASS ambiguity regression",
+      "input_manifest_sha256": "605b277751c36e16a7d8f1ada52d254e40ab5cd8edf905914f4f3daff52b507c",
       "method": "native_report",
-      "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+      "observation": "New ambiguity regression actually ran in final Nextest242 and separately RED/PASS. It requires unknown after3 suites, independent PASS and manual outside. Historical C1 selector ran separately and is not represented as the new test. Final145/145 trace has no invalid provenance. Linux only.",
       "outcome": "passed",
-      "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1790403026640217800.log",
+      "report": "docs/evidence/diff-cleanup-2026-10-14/checks.md",
       "scenario": "HG-0024-S3",
       "scenario_sha256": "8c7aadd4f55502651bb860e6ec5146dec0959e538198fba16c5419c7bc1ef8c8"
     },
     "HG-0024-S4": {
-      "captured_at": "2026-09-26T06:12:47.883825+00:00",
-      "command": "cargo-nextest nextest run --locked --profile highgrade; temp directory snapshot; cargo test --test temp_contracts",
-      "input_manifest_sha256": "47f02776396a159c2efb911dcac52c61c499029bc407c44af95fb79480352732",
-      "method": "manual",
-      "observation": "After HG-0024 integration: 124/124 passed in 11.960 s; 48/48 automatic scenarios passed; zero new test-owned temp directories; panic cleanup kept an independent directory; old cleanup removed only 10541 verified directories and preserved 2162 uncertain directories.",
+      "captured_at": "2026-10-14T07:08:56.059616+00:00",
+      "command": "python .highgrade/local/project-refresh-2026-10-14/native_census.py",
+      "input_manifest_sha256": "ca61d41a0be305e6119f89c293a67d90d97b58c6e8e5836c308a1aebced76125",
+      "method": "native_report",
+      "observation": "Full actual Nextest 237/237 passed with TMPDIR/TEMP/TMP directed to one owned test root. Before/after directory and file maps are identical; foreign sentinel bytes are unchanged. The panic cleanup regression passed in that run. Original JUnit and capture are preserved in docs/evidence/objects/681d622ca9a4f1fc2f1d4e86001c978e3b15f820317b7b4ed4062c2db22ae08e.json. Earlier regression-only S4 record was incomplete for the mandatory census method and is retained as partial historical evidence. No global temp scan or deletion of unknown data is claimed.",
       "outcome": "passed",
-      "report": "docs/evidence/spec-verification/HG-0024-test-audit.md",
+      "report": "docs/evidence/objects/1a78a86416a16e7e8bf35ea07c866f7dcc06d555911408273fcbca127df2532b.blob",
       "scenario": "HG-0024-S4",
       "scenario_sha256": "0e5fbf2c09dfbeb879f918bf142701b4142578c97c1a99fedc4e9f9f52263e61"
     }
@@ -121,9 +121,153 @@
         },
         "recorded_at": 1790403172,
         "review": "153148bf2adbd69379a32a3af08c4161836e2e181f93c0a0501f740d0db99c81"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "fb5817fdd559c4ba58659a8174727358f814c8f863893586c9d44cc4565898c5",
+          "HG-0024-S2": "d7fa9d10f28447cc90e9e292050cde964418480c9ca6b8c51165a18ab46d9578",
+          "HG-0024-S3": "a50d3a044b6ea060264993d775e494dc94105d2dbbcdcfec3c94c9957dca4cac",
+          "HG-0024-S4": "16fbc63761022275c3993d1c4b5bcea12a1e97693a93a2913761ff6d4580d30d"
+        },
+        "recorded_at": 1791960024,
+        "review": "2e9b1e02c7bd7703146068e9a78e38eda29e948a92235433e764bf64f9e647ee"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "01ef0e9dfbc9d3d360d18ba46a99d1178d2f3976202c65b2aa442fe4a15dc013",
+          "HG-0024-S2": "9e780612a353ca2b977d5a4cfcbdf383a37b1fabc1f8267b6226128037544dbe",
+          "HG-0024-S3": "23470643e4d009de2a2c18c19c70484a4fb9be462eba26499ae3cc51c296c63f",
+          "HG-0024-S4": "16fbc63761022275c3993d1c4b5bcea12a1e97693a93a2913761ff6d4580d30d"
+        },
+        "recorded_at": 1791960106,
+        "review": "2e9b1e02c7bd7703146068e9a78e38eda29e948a92235433e764bf64f9e647ee"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "01ef0e9dfbc9d3d360d18ba46a99d1178d2f3976202c65b2aa442fe4a15dc013",
+          "HG-0024-S2": "9e780612a353ca2b977d5a4cfcbdf383a37b1fabc1f8267b6226128037544dbe",
+          "HG-0024-S3": "23470643e4d009de2a2c18c19c70484a4fb9be462eba26499ae3cc51c296c63f",
+          "HG-0024-S4": "c53429140096055253ac989580c2fd1559eaae7b27449b261e46189b3540d77a"
+        },
+        "recorded_at": 1791961742,
+        "review": "2e9b1e02c7bd7703146068e9a78e38eda29e948a92235433e764bf64f9e647ee"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "01ef0e9dfbc9d3d360d18ba46a99d1178d2f3976202c65b2aa442fe4a15dc013",
+          "HG-0024-S2": "9e780612a353ca2b977d5a4cfcbdf383a37b1fabc1f8267b6226128037544dbe",
+          "HG-0024-S3": "23470643e4d009de2a2c18c19c70484a4fb9be462eba26499ae3cc51c296c63f",
+          "HG-0024-S4": "6ef05ccabc7298d4e591d60d703709daa215b82a6d29a4248e38ed72d4aa6a5a"
+        },
+        "recorded_at": 1791962005,
+        "review": "2e9b1e02c7bd7703146068e9a78e38eda29e948a92235433e764bf64f9e647ee"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "01ef0e9dfbc9d3d360d18ba46a99d1178d2f3976202c65b2aa442fe4a15dc013",
+          "HG-0024-S2": "9e780612a353ca2b977d5a4cfcbdf383a37b1fabc1f8267b6226128037544dbe",
+          "HG-0024-S3": "23470643e4d009de2a2c18c19c70484a4fb9be462eba26499ae3cc51c296c63f",
+          "HG-0024-S4": "6ef05ccabc7298d4e591d60d703709daa215b82a6d29a4248e38ed72d4aa6a5a"
+        },
+        "recorded_at": 1791989484,
+        "review": "621c95ee72b9b54d0d2370100cf67982bcaaca8bcfee42a9b43de620d2890453"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "1307bed8e0e4aa3f471c62fba70b1617abba0575e29fc8c0b20ac2aded4eee56",
+          "HG-0024-S2": "91e422ce8bbce63c4a841c49c863e844822db438d0fe491c4c69249802fc50d3",
+          "HG-0024-S3": "cbf3d06d26f7c194d9b808729127f68d268c79a53ae780548a2b3e0a7b851cce",
+          "HG-0024-S4": "6ef05ccabc7298d4e591d60d703709daa215b82a6d29a4248e38ed72d4aa6a5a"
+        },
+        "recorded_at": 1791989815,
+        "review": "621c95ee72b9b54d0d2370100cf67982bcaaca8bcfee42a9b43de620d2890453"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "856209ef62413c76079ddc52edf81a7fa4be74ef665759036453c1d36ec66a3b",
+          "HG-0024-S2": "ef70b4ee6d733c6ff9a4a390774c03be220beb0142d44e7844a8bde8610c52e2",
+          "HG-0024-S3": "b2a3127185cb6042c63bd4c18b03639f63f0652dd74ea44c2322c10f95b4b0fd",
+          "HG-0024-S4": "6ef05ccabc7298d4e591d60d703709daa215b82a6d29a4248e38ed72d4aa6a5a"
+        },
+        "recorded_at": 1791990302,
+        "review": "621c95ee72b9b54d0d2370100cf67982bcaaca8bcfee42a9b43de620d2890453"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "23f90bbbe5b70623d920ebe127502864ec13572db5be0f94fafc1edbc1190eeb",
+          "HG-0024-S2": "4316ad05e0c30f840ed16039b748a6fe28356292eb0e3a2b7ea7f914befecd86",
+          "HG-0024-S3": "14a14b939247dd12c74af12270e4182e171f97b28593307e283f746b1468640c",
+          "HG-0024-S4": "6ef05ccabc7298d4e591d60d703709daa215b82a6d29a4248e38ed72d4aa6a5a"
+        },
+        "recorded_at": 1791996162,
+        "review": "621c95ee72b9b54d0d2370100cf67982bcaaca8bcfee42a9b43de620d2890453"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "268ef4d772a299778ef16f3919d73134eeb2e5ac3ccca7079239925230e075cf",
+          "HG-0024-S2": "071c5099e562e7b86334aa34b3fe5e98c687c9cc4d9d735d0c898603aab11773",
+          "HG-0024-S3": "0847bf09b49c0349e2c3c2aa680262782ff8804817e1a17da4b0f9321f91dab4",
+          "HG-0024-S4": "6ef05ccabc7298d4e591d60d703709daa215b82a6d29a4248e38ed72d4aa6a5a"
+        },
+        "recorded_at": 1791997047,
+        "review": "621c95ee72b9b54d0d2370100cf67982bcaaca8bcfee42a9b43de620d2890453"
+      },
+      {
+        "evidence": {
+          "HG-0024-S1": "268ef4d772a299778ef16f3919d73134eeb2e5ac3ccca7079239925230e075cf",
+          "HG-0024-S2": "071c5099e562e7b86334aa34b3fe5e98c687c9cc4d9d735d0c898603aab11773",
+          "HG-0024-S3": "7818214796525cce896d887401151c3d1b6a314a99734e38f17be331d95cbd65",
+          "HG-0024-S4": "6ef05ccabc7298d4e591d60d703709daa215b82a6d29a4248e38ed72d4aa6a5a"
+        },
+        "recorded_at": 1791997477,
+        "review": "621c95ee72b9b54d0d2370100cf67982bcaaca8bcfee42a9b43de620d2890453"
       }
     ],
     "objects": {
+      "01ef0e9dfbc9d3d360d18ba46a99d1178d2f3976202c65b2aa442fe4a15dc013": {
+        "captured_at": "1791960024",
+        "command": "spec-run --id HG-0024 --check HG-0024-C1",
+        "input_manifest_sha256": "622a6e8ee7edb7699cbdaf402149fb0338448a9c2d5606cb8bc9769217fa8a4e",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791960024812476047.log",
+        "scenario": "HG-0024-S1",
+        "scenario_sha256": "04bb9ba3f2b54d76d119b6e33e23e3ac3d19b56edddbcc942392e525b087d5bf"
+      },
+      "071c5099e562e7b86334aa34b3fe5e98c687c9cc4d9d735d0c898603aab11773": {
+        "captured_at": "1791996162",
+        "command": "spec-run --id HG-0024 --check HG-0024-C1",
+        "input_manifest_sha256": "62f83b81ecb05352e88e7df5b5468d00fea25870f6b53c6c4be70add92c4c70f",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log",
+        "scenario": "HG-0024-S2",
+        "scenario_sha256": "f94d9f87b3575d9f7f59f7a3dc899f30a4ee26600161fb529521fe8d8a1e3869"
+      },
+      "0847bf09b49c0349e2c3c2aa680262782ff8804817e1a17da4b0f9321f91dab4": {
+        "captured_at": "1791996162",
+        "command": "spec-run --id HG-0024 --check HG-0024-C1",
+        "input_manifest_sha256": "62f83b81ecb05352e88e7df5b5468d00fea25870f6b53c6c4be70add92c4c70f",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log",
+        "scenario": "HG-0024-S3",
+        "scenario_sha256": "8c7aadd4f55502651bb860e6ec5146dec0959e538198fba16c5419c7bc1ef8c8"
+      },
+      "1307bed8e0e4aa3f471c62fba70b1617abba0575e29fc8c0b20ac2aded4eee56": {
+        "captured_at": "1791989484",
+        "command": "spec-run --id HG-0024 --check HG-0024-C1",
+        "input_manifest_sha256": "b586ce0359982e06db1172f49c5252a3e0172f8f6396a04a74d70148db7fa43e",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "scenario": "HG-0024-S1",
+        "scenario_sha256": "04bb9ba3f2b54d76d119b6e33e23e3ac3d19b56edddbcc942392e525b087d5bf"
+      },
       "144d870a2566c579dad1371b8cbfdc7d0b7e9503c3e4b30d832d48766806eb76": {
         "captured_at": "2026-09-26T06:10:30.063824+00:00",
         "command": "cargo-nextest nextest run --locked --profile highgrade; temp directory snapshot; cargo test --test temp_contracts",
@@ -134,6 +278,17 @@
         "report": "docs/evidence/spec-verification/HG-0024-test-audit.md",
         "scenario": "HG-0024-S4",
         "scenario_sha256": "0e5fbf2c09dfbeb879f918bf142701b4142578c97c1a99fedc4e9f9f52263e61"
+      },
+      "14a14b939247dd12c74af12270e4182e171f97b28593307e283f746b1468640c": {
+        "captured_at": "2026-10-14T14:51:36.610078+00:00",
+        "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0024 --check HG-0024-C1 --expected 1cb1b49dccd65dead0b692f37edd845e9644915a6c883258e709d8f6ad62cee0",
+        "input_manifest_sha256": "6d1bbb337afb8ff7427fe84db5feb7397d1b1ca26acdb82a9bb94f68a9849ce8",
+        "method": "native_report",
+        "observation": "Фактические объявленные проверки HG-0024-C1 прошли без пропусков; исходные native reports и расширенные pre-run hashes сохранены; фактическая after сверка дала inputs_unchanged=true, native declared inputs_after и текущая независимая сверка подтверждают байты. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "scenario": "HG-0024-S3",
+        "scenario_sha256": "8c7aadd4f55502651bb860e6ec5146dec0959e538198fba16c5419c7bc1ef8c8"
       },
       "153148bf2adbd69379a32a3af08c4161836e2e181f93c0a0501f740d0db99c81": {
         "change_sha256": "f61eb18dde65fd2c40ce17e1746ed04b36632f67364492d38f2a4938290c7555",
@@ -152,6 +307,56 @@
         "scenario": "HG-0024-S4",
         "scenario_sha256": "0e5fbf2c09dfbeb879f918bf142701b4142578c97c1a99fedc4e9f9f52263e61"
       },
+      "23470643e4d009de2a2c18c19c70484a4fb9be462eba26499ae3cc51c296c63f": {
+        "captured_at": "1791960024",
+        "command": "spec-run --id HG-0024 --check HG-0024-C1",
+        "input_manifest_sha256": "622a6e8ee7edb7699cbdaf402149fb0338448a9c2d5606cb8bc9769217fa8a4e",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791960024812476047.log",
+        "scenario": "HG-0024-S3",
+        "scenario_sha256": "8c7aadd4f55502651bb860e6ec5146dec0959e538198fba16c5419c7bc1ef8c8"
+      },
+      "23f90bbbe5b70623d920ebe127502864ec13572db5be0f94fafc1edbc1190eeb": {
+        "captured_at": "2026-10-14T14:51:36.610078+00:00",
+        "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0024 --check HG-0024-C1 --expected 1cb1b49dccd65dead0b692f37edd845e9644915a6c883258e709d8f6ad62cee0",
+        "input_manifest_sha256": "6d1bbb337afb8ff7427fe84db5feb7397d1b1ca26acdb82a9bb94f68a9849ce8",
+        "method": "native_report",
+        "observation": "Фактические объявленные проверки HG-0024-C1 прошли без пропусков; исходные native reports и расширенные pre-run hashes сохранены; фактическая after сверка дала inputs_unchanged=true, native declared inputs_after и текущая независимая сверка подтверждают байты. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "scenario": "HG-0024-S1",
+        "scenario_sha256": "04bb9ba3f2b54d76d119b6e33e23e3ac3d19b56edddbcc942392e525b087d5bf"
+      },
+      "268ef4d772a299778ef16f3919d73134eeb2e5ac3ccca7079239925230e075cf": {
+        "captured_at": "1791996162",
+        "command": "spec-run --id HG-0024 --check HG-0024-C1",
+        "input_manifest_sha256": "62f83b81ecb05352e88e7df5b5468d00fea25870f6b53c6c4be70add92c4c70f",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log",
+        "scenario": "HG-0024-S1",
+        "scenario_sha256": "04bb9ba3f2b54d76d119b6e33e23e3ac3d19b56edddbcc942392e525b087d5bf"
+      },
+      "2e9b1e02c7bd7703146068e9a78e38eda29e948a92235433e764bf64f9e647ee": {
+        "change_sha256": "24ef3fdba1036ff905cae2540face00f146ed8944532479aa0f1bee4dc6b27ca",
+        "conclusion": "Независимое ревью GO: три найденные неоднозначности исправлены; адресные тесты, интегрированный Nextest 124/124, trace 48/48, нулевой прирост temp и обновлённые доказательства проверены. RAII не покрывает kill/abort.",
+        "reviewer": "subagent-hg0024_review",
+        "verdict": "go"
+      },
+      "4316ad05e0c30f840ed16039b748a6fe28356292eb0e3a2b7ea7f914befecd86": {
+        "captured_at": "2026-10-14T14:51:36.610078+00:00",
+        "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0024 --check HG-0024-C1 --expected 1cb1b49dccd65dead0b692f37edd845e9644915a6c883258e709d8f6ad62cee0",
+        "input_manifest_sha256": "6d1bbb337afb8ff7427fe84db5feb7397d1b1ca26acdb82a9bb94f68a9849ce8",
+        "method": "native_report",
+        "observation": "Фактические объявленные проверки HG-0024-C1 прошли без пропусков; исходные native reports и расширенные pre-run hashes сохранены; фактическая after сверка дала inputs_unchanged=true, native declared inputs_after и текущая независимая сверка подтверждают байты. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "scenario": "HG-0024-S2",
+        "scenario_sha256": "f94d9f87b3575d9f7f59f7a3dc899f30a4ee26600161fb529521fe8d8a1e3869"
+      },
       "5640a55dc6875d2bb991813e7a1cd2d7440367e4ff2088e1b21e9dd51ba71918": {
         "captured_at": "2026-09-26T05:59:46.434738+00:00",
         "command": "cargo-nextest nextest run --locked --profile highgrade; temp directory snapshot; cargo test --test temp_contracts",
@@ -162,6 +367,12 @@
         "report": "docs/evidence/spec-verification/HG-0024-test-audit.md",
         "scenario": "HG-0024-S4",
         "scenario_sha256": "0e5fbf2c09dfbeb879f918bf142701b4142578c97c1a99fedc4e9f9f52263e61"
+      },
+      "621c95ee72b9b54d0d2370100cf67982bcaaca8bcfee42a9b43de620d2890453": {
+        "change_sha256": "7060dc4cc7af071c820a42fca6040e533e4d1a49253193d1c69c80cedd4a97bd",
+        "conclusion": "Независимый GO реализации и адресных доказательств: rust-review-final.md и rust-review-records-supplement.md. Проверены оригиналы 237 Nextest, causal inputs включая tests/support/mod.rs, HG-0024-S4 census до/после и сохранность чужого файла. Не означает human acceptance, storage GO, Windows CI или выпуск текущих правок.",
+        "reviewer": "subagent-clear_review",
+        "verdict": "go"
       },
       "6cdedb93ce4169e5f98ec6cbcc050ea3d5248c2f943a94e00751daf40642d4ac": {
         "captured_at": "1790402400",
@@ -174,7 +385,29 @@
         "scenario": "HG-0024-S3",
         "scenario_sha256": "fa6dbff1b0d84b3c2dfb7d3d0b4d14a4539ea0585d7ed463aac486571d5c8129"
       },
+      "6ef05ccabc7298d4e591d60d703709daa215b82a6d29a4248e38ed72d4aa6a5a": {
+        "captured_at": "2026-10-14T07:08:56.059616+00:00",
+        "command": "python .highgrade/local/project-refresh-2026-10-14/native_census.py",
+        "input_manifest_sha256": "ca61d41a0be305e6119f89c293a67d90d97b58c6e8e5836c308a1aebced76125",
+        "method": "native_report",
+        "observation": "Full actual Nextest 237/237 passed with TMPDIR/TEMP/TMP directed to one owned test root. Before/after directory and file maps are identical; foreign sentinel bytes are unchanged. The panic cleanup regression passed in that run. Original JUnit and capture are preserved in docs/evidence/objects/681d622ca9a4f1fc2f1d4e86001c978e3b15f820317b7b4ed4062c2db22ae08e.json. Earlier regression-only S4 record was incomplete for the mandatory census method and is retained as partial historical evidence. No global temp scan or deletion of unknown data is claimed.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/1a78a86416a16e7e8bf35ea07c866f7dcc06d555911408273fcbca127df2532b.blob",
+        "scenario": "HG-0024-S4",
+        "scenario_sha256": "0e5fbf2c09dfbeb879f918bf142701b4142578c97c1a99fedc4e9f9f52263e61"
+      },
       "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
+      "7818214796525cce896d887401151c3d1b6a314a99734e38f17be331d95cbd65": {
+        "captured_at": "2026-10-14T16:54:28.389118+00:00",
+        "command": "python -B scripts/verify.py tests; highgrade spec-run HG-0024-C1; isolated RED/PASS ambiguity regression",
+        "input_manifest_sha256": "605b277751c36e16a7d8f1ada52d254e40ab5cd8edf905914f4f3daff52b507c",
+        "method": "native_report",
+        "observation": "New ambiguity regression actually ran in final Nextest242 and separately RED/PASS. It requires unknown after3 suites, independent PASS and manual outside. Historical C1 selector ran separately and is not represented as the new test. Final145/145 trace has no invalid provenance. Linux only.",
+        "outcome": "passed",
+        "report": "docs/evidence/diff-cleanup-2026-10-14/checks.md",
+        "scenario": "HG-0024-S3",
+        "scenario_sha256": "8c7aadd4f55502651bb860e6ec5146dec0959e538198fba16c5419c7bc1ef8c8"
+      },
       "7b74883e72285adde7bfdd35f05c5c62a079b793b6ef0041cd6d9ef0e7c1fa13": {
         "captured_at": "1790402232",
         "command": "spec-run --id HG-0024 --check HG-0024-C1",
@@ -196,6 +429,39 @@
         "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1790402232687367200.log",
         "scenario": "HG-0024-S1",
         "scenario_sha256": "27668f28fd1568cc98a57b8064e3df7923c1dcb33837fa4ab6562236b7e86b0f"
+      },
+      "856209ef62413c76079ddc52edf81a7fa4be74ef665759036453c1d36ec66a3b": {
+        "captured_at": "2026-10-14T14:51:36.610078+00:00",
+        "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0024 --check HG-0024-C1 --expected 1cb1b49dccd65dead0b692f37edd845e9644915a6c883258e709d8f6ad62cee0",
+        "input_manifest_sha256": "6d1bbb337afb8ff7427fe84db5feb7397d1b1ca26acdb82a9bb94f68a9849ce8",
+        "method": "native_report",
+        "observation": "Фактические объявленные проверки HG-0024-C1 прошли без пропусков; исходные native reports и расширенные pre-run/after hashes сохранены. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "scenario": "HG-0024-S1",
+        "scenario_sha256": "04bb9ba3f2b54d76d119b6e33e23e3ac3d19b56edddbcc942392e525b087d5bf"
+      },
+      "91e422ce8bbce63c4a841c49c863e844822db438d0fe491c4c69249802fc50d3": {
+        "captured_at": "1791989484",
+        "command": "spec-run --id HG-0024 --check HG-0024-C1",
+        "input_manifest_sha256": "b586ce0359982e06db1172f49c5252a3e0172f8f6396a04a74d70148db7fa43e",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "scenario": "HG-0024-S2",
+        "scenario_sha256": "f94d9f87b3575d9f7f59f7a3dc899f30a4ee26600161fb529521fe8d8a1e3869"
+      },
+      "9e780612a353ca2b977d5a4cfcbdf383a37b1fabc1f8267b6226128037544dbe": {
+        "captured_at": "1791960024",
+        "command": "spec-run --id HG-0024 --check HG-0024-C1",
+        "input_manifest_sha256": "622a6e8ee7edb7699cbdaf402149fb0338448a9c2d5606cb8bc9769217fa8a4e",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791960024812476047.log",
+        "scenario": "HG-0024-S2",
+        "scenario_sha256": "f94d9f87b3575d9f7f59f7a3dc899f30a4ee26600161fb529521fe8d8a1e3869"
       },
       "a50d3a044b6ea060264993d775e494dc94105d2dbbcdcfec3c94c9957dca4cac": {
         "captured_at": "1790403026",
@@ -219,6 +485,17 @@
         "scenario": "HG-0024-S3",
         "scenario_sha256": "fa6dbff1b0d84b3c2dfb7d3d0b4d14a4539ea0585d7ed463aac486571d5c8129"
       },
+      "b2a3127185cb6042c63bd4c18b03639f63f0652dd74ea44c2322c10f95b4b0fd": {
+        "captured_at": "2026-10-14T14:51:36.610078+00:00",
+        "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0024 --check HG-0024-C1 --expected 1cb1b49dccd65dead0b692f37edd845e9644915a6c883258e709d8f6ad62cee0",
+        "input_manifest_sha256": "6d1bbb337afb8ff7427fe84db5feb7397d1b1ca26acdb82a9bb94f68a9849ce8",
+        "method": "native_report",
+        "observation": "Фактические объявленные проверки HG-0024-C1 прошли без пропусков; исходные native reports и расширенные pre-run/after hashes сохранены. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "scenario": "HG-0024-S3",
+        "scenario_sha256": "8c7aadd4f55502651bb860e6ec5146dec0959e538198fba16c5419c7bc1ef8c8"
+      },
       "bbf2308d6f676cc1c79fc27fdc08b4ad7e3baea18d5a9f46f48f1b7929551f27": {
         "captured_at": "1790402400",
         "command": "spec-run --id HG-0024 --check HG-0024-C1",
@@ -229,6 +506,28 @@
         "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1790402400188994500.log",
         "scenario": "HG-0024-S2",
         "scenario_sha256": "0b90984af92b63c5148df243ed0fc15b1365825e7620eb1d59dc32544a30a31a"
+      },
+      "c53429140096055253ac989580c2fd1559eaae7b27449b261e46189b3540d77a": {
+        "captured_at": "2026-10-14T06:41:40.011656+00:00",
+        "command": "cargo nextest run --locked --profile highgrade",
+        "input_manifest_sha256": "a92124d39f6e242cf3eae96c7ab7e74bb7d63192754178a5ce0e9bc59ebca3c7",
+        "method": "native_report",
+        "observation": "237 actual Nextest cases passed without skips. test_dir_cleans_after_panic_and_keeps_foreign_directory asserted removal of its exact owned directory after caught panic and retention of the separate foreign directory. No global temporary-directory census or deletion of unknown data is claimed.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d.blob",
+        "scenario": "HG-0024-S4",
+        "scenario_sha256": "0e5fbf2c09dfbeb879f918bf142701b4142578c97c1a99fedc4e9f9f52263e61"
+      },
+      "cbf3d06d26f7c194d9b808729127f68d268c79a53ae780548a2b3e0a7b851cce": {
+        "captured_at": "1791989484",
+        "command": "spec-run --id HG-0024 --check HG-0024-C1",
+        "input_manifest_sha256": "b586ce0359982e06db1172f49c5252a3e0172f8f6396a04a74d70148db7fa43e",
+        "method": "native_report",
+        "observation": "Результаты всех привязанных проверок сохранены в runs; подготовка и полнота входов требуют ревью",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "scenario": "HG-0024-S3",
+        "scenario_sha256": "8c7aadd4f55502651bb860e6ec5146dec0959e538198fba16c5419c7bc1ef8c8"
       },
       "d7fa9d10f28447cc90e9e292050cde964418480c9ca6b8c51165a18ab46d9578": {
         "captured_at": "1790403026",
@@ -251,6 +550,17 @@
         "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1790402400188994500.log",
         "scenario": "HG-0024-S1",
         "scenario_sha256": "27668f28fd1568cc98a57b8064e3df7923c1dcb33837fa4ab6562236b7e86b0f"
+      },
+      "ef70b4ee6d733c6ff9a4a390774c03be220beb0142d44e7844a8bde8610c52e2": {
+        "captured_at": "2026-10-14T14:51:36.610078+00:00",
+        "command": "/home/lainterus/Projects/High Grade/target/debug/highgrade spec-run --root /home/lainterus/Projects/High Grade --id HG-0024 --check HG-0024-C1 --expected 1cb1b49dccd65dead0b692f37edd845e9644915a6c883258e709d8f6ad62cee0",
+        "input_manifest_sha256": "6d1bbb337afb8ff7427fe84db5feb7397d1b1ca26acdb82a9bb94f68a9849ce8",
+        "method": "native_report",
+        "observation": "Фактические объявленные проверки HG-0024-C1 прошли без пропусков; исходные native reports и расширенные pre-run/after hashes сохранены. Подтверждается наблюдаемый контракт этих assertions; отдельные manual/агентные/внешние методы не подменяются. Archived definitions сохранены. Runtime/ancestor Cargo config не запечатаны этой областью.",
+        "outcome": "passed",
+        "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "scenario": "HG-0024-S2",
+        "scenario_sha256": "f94d9f87b3575d9f7f59f7a3dc899f30a4ee26600161fb529521fe8d8a1e3869"
       },
       "fb5817fdd559c4ba58659a8174727358f814c8f863893586c9d44cc4565898c5": {
         "captured_at": "1790403026",
@@ -314,6 +624,71 @@
         "tests/trace_contracts.rs": "e87a00d63418c32c1da7c8bf71ab15ec177d93b04d3b97ef8f576e759fda616b"
       }
     },
+    "605b277751c36e16a7d8f1ada52d254e40ab5cd8edf905914f4f3daff52b507c": {
+      "files": {
+        ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+        "Cargo.lock": "2eba6e0de2b5b054aa5d4b0a685da68fd64133e5d41cc6222eb0e2749bfa66ad",
+        "Cargo.toml": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+        "docs/evidence/diff-cleanup-2026-10-14/checks.md": "ca614e47db477f3a2a02060aeed269c196a8df90a214fbae5721b1c230feca2d",
+        "docs/evidence/objects/1b44841c60ddb02dd4e60ace727262e897d3dbf883b3682e9c2e5ce83a66b4b9.json": "1b44841c60ddb02dd4e60ace727262e897d3dbf883b3682e9c2e5ce83a66b4b9",
+        "docs/evidence/objects/704b9345a483af7d63199c7deb52b5ec9faf6ed04f4fa2351df28881b6279900.json": "704b9345a483af7d63199c7deb52b5ec9faf6ed04f4fa2351df28881b6279900",
+        "docs/evidence/objects/739aea4ca65157466807eec2a7c39de52603498a0572418928b80634c19b6b11.blob": "739aea4ca65157466807eec2a7c39de52603498a0572418928b80634c19b6b11",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log": "a2fff11bcee30f54255e75bf3e5c77352f9f666e35a9ad60360dc308a3b89857",
+        "src/lib.rs": "d48544fe69585080d1288c14dca4520f7d648b889b18e1556a9e3b105f668a2b",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/trace.rs": "7514ac5dd23bc84731ac68d9bb49d6a447aeffbe54d6a5482c572a61aecec571",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "24baaef4ddbdf0b40bfcde44aca1b0365cf3009e838220a91a2fe9840eb7bdd9"
+      },
+      "input_paths": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "docs/evidence/objects/1b44841c60ddb02dd4e60ace727262e897d3dbf883b3682e9c2e5ce83a66b4b9.json",
+        "docs/evidence/objects/704b9345a483af7d63199c7deb52b5ec9faf6ed04f4fa2351df28881b6279900.json",
+        "docs/evidence/objects/739aea4ca65157466807eec2a7c39de52603498a0572418928b80634c19b6b11.blob",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/trace.rs",
+        "tests/support/mod.rs",
+        "tests/trace_contracts.rs"
+      ]
+    },
+    "622a6e8ee7edb7699cbdaf402149fb0338448a9c2d5606cb8bc9769217fa8a4e": {
+      "files": {
+        "scripts/source-scenarios.mjs": "2d336cd14209b6d6b2cc5f5035508b60bb16c141c13fd50b453b60cd6bfa0050",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791960024812476047.log": "85a9ef755724223484918d76ca2522e95ecb18051b3f3cfced0da225dfee4fa9",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/trace.rs": "bf0ce763766d4a939403270e00f7820d3af3ab3e5088831c101e362852f35bc4",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "e13cfb0c69600ef232b5e6aeb888e64e1d465e3bd2260247573e6ae5713af831"
+      },
+      "input_paths": [
+        "scripts/source-scenarios.mjs",
+        "specs/runners.json",
+        "src/trace.rs",
+        "tests/support/mod.rs",
+        "tests/trace_contracts.rs"
+      ]
+    },
+    "62f83b81ecb05352e88e7df5b5468d00fea25870f6b53c6c4be70add92c4c70f": {
+      "files": {
+        "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log": "a2fff11bcee30f54255e75bf3e5c77352f9f666e35a9ad60360dc308a3b89857",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/trace.rs": "7514ac5dd23bc84731ac68d9bb49d6a447aeffbe54d6a5482c572a61aecec571",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "24baaef4ddbdf0b40bfcde44aca1b0365cf3009e838220a91a2fe9840eb7bdd9"
+      },
+      "input_paths": [
+        "scripts/source-scenarios.mjs",
+        "specs/runners.json",
+        "src/trace.rs",
+        "tests/support/mod.rs",
+        "tests/trace_contracts.rs"
+      ]
+    },
     "680146f3f408d6537abf23d1d142dd026e794c80f1390f4382fad9199a17f4f7": {
       "files": {
         "scripts/source-scenarios.mjs": "58151ea2cdc62ec922bc644f22fa8cc4ca04211cc838b7ca749bfbb8eab8552d",
@@ -322,6 +697,22 @@
         "src/trace.rs": "9ef7a6dade7bed9b792dd30743bb4ad7c072bc62a66a5d512aa9f289a2442af5",
         "tests/trace_contracts.rs": "e87a00d63418c32c1da7c8bf71ab15ec177d93b04d3b97ef8f576e759fda616b"
       }
+    },
+    "6d1bbb337afb8ff7427fe84db5feb7397d1b1ca26acdb82a9bb94f68a9849ce8": {
+      "files": {
+        "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log": "85a9ef755724223484918d76ca2522e95ecb18051b3f3cfced0da225dfee4fa9",
+        "src/trace.rs": "bf0ce763766d4a939403270e00f7820d3af3ab3e5088831c101e362852f35bc4",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "e13cfb0c69600ef232b5e6aeb888e64e1d465e3bd2260247573e6ae5713af831"
+      },
+      "input_paths": [
+        "scripts/source-scenarios.mjs",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+        "src/trace.rs",
+        "tests/support/mod.rs",
+        "tests/trace_contracts.rs"
+      ]
     },
     "791491054fc782fae85c4147cfd8f04e0e544cd414ec0665c06ee307dc823ca1": {
       "files": {
@@ -336,12 +727,99 @@
         "tests/temp_contracts.rs": "4fc1ac197af44cbfe887a536918bc1275b69231833f6eb5de172a22fc5a30d3d",
         "tests/trace_contracts.rs": "3c71788f7d4de7f30e3ce04e44fdb7ae902d5ed6e9f26a0c0dace36469bbfdfe"
       }
+    },
+    "a92124d39f6e242cf3eae96c7ab7e74bb7d63192754178a5ce0e9bc59ebca3c7": {
+      "files": {
+        ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+        "Cargo.lock": "2eba6e0de2b5b054aa5d4b0a685da68fd64133e5d41cc6222eb0e2749bfa66ad",
+        "Cargo.toml": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+        "docs/evidence/objects/803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d.blob": "803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "src/lib.rs": "d48544fe69585080d1288c14dca4520f7d648b889b18e1556a9e3b105f668a2b",
+        "tests/bootstrap_contracts.rs": "09676e26a1acdfe20214d006bc2d32dad632a3ca44348a6a9ec39e0e9b296eb4",
+        "tests/catalog_contracts.rs": "3a8b7059347b9e749c37a7630ac06b411a2ae5690a71bbe6159b68c446e59a6d",
+        "tests/contracts.rs": "bc137d179cb38f7496e33d6325c23370fb492d44613b0a4ea7eb6e9eba174c46",
+        "tests/global_contracts.rs": "3ab5fb95d33f9e2d48c17d12b3dff7ab689ab0cc9731530cc30e6d9b59c2e3d0",
+        "tests/package_contracts.rs": "e4120dd860fa3f8c5652c231b768c546c79cd67457edb1450f72029084015dda",
+        "tests/spec_contracts.rs": "c875038ae23828b037adcf96c6bf31e369e4b5aecc38aa2ed49a0aef95831ed6",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/temp_contracts.rs": "4fc1ac197af44cbfe887a536918bc1275b69231833f6eb5de172a22fc5a30d3d",
+        "tests/trace_contracts.rs": "e13cfb0c69600ef232b5e6aeb888e64e1d465e3bd2260247573e6ae5713af831"
+      },
+      "input_paths": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "tests/bootstrap_contracts.rs",
+        "tests/catalog_contracts.rs",
+        "tests/contracts.rs",
+        "tests/global_contracts.rs",
+        "tests/package_contracts.rs",
+        "tests/spec_contracts.rs",
+        "tests/support/mod.rs",
+        "tests/temp_contracts.rs",
+        "tests/trace_contracts.rs"
+      ]
+    },
+    "b586ce0359982e06db1172f49c5252a3e0172f8f6396a04a74d70148db7fa43e": {
+      "files": {
+        "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log": "85a9ef755724223484918d76ca2522e95ecb18051b3f3cfced0da225dfee4fa9",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/trace.rs": "bf0ce763766d4a939403270e00f7820d3af3ab3e5088831c101e362852f35bc4",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "e13cfb0c69600ef232b5e6aeb888e64e1d465e3bd2260247573e6ae5713af831"
+      },
+      "input_paths": [
+        "scripts/source-scenarios.mjs",
+        "specs/runners.json",
+        "src/trace.rs",
+        "tests/support/mod.rs",
+        "tests/trace_contracts.rs"
+      ]
+    },
+    "ca61d41a0be305e6119f89c293a67d90d97b58c6e8e5836c308a1aebced76125": {
+      "files": {
+        ".config/nextest.toml": "291de3895b03ce91674f81b21dc5ee4592b747ecba99cff0f0a36d8001f8fb75",
+        "Cargo.lock": "2eba6e0de2b5b054aa5d4b0a685da68fd64133e5d41cc6222eb0e2749bfa66ad",
+        "Cargo.toml": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+        "docs/evidence/objects/1a78a86416a16e7e8bf35ea07c866f7dcc06d555911408273fcbca127df2532b.blob": "1a78a86416a16e7e8bf35ea07c866f7dcc06d555911408273fcbca127df2532b",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "src/lib.rs": "d48544fe69585080d1288c14dca4520f7d648b889b18e1556a9e3b105f668a2b",
+        "tests/bootstrap_contracts.rs": "09676e26a1acdfe20214d006bc2d32dad632a3ca44348a6a9ec39e0e9b296eb4",
+        "tests/catalog_contracts.rs": "3a8b7059347b9e749c37a7630ac06b411a2ae5690a71bbe6159b68c446e59a6d",
+        "tests/contracts.rs": "bc137d179cb38f7496e33d6325c23370fb492d44613b0a4ea7eb6e9eba174c46",
+        "tests/global_contracts.rs": "3ab5fb95d33f9e2d48c17d12b3dff7ab689ab0cc9731530cc30e6d9b59c2e3d0",
+        "tests/package_contracts.rs": "e4120dd860fa3f8c5652c231b768c546c79cd67457edb1450f72029084015dda",
+        "tests/spec_contracts.rs": "c875038ae23828b037adcf96c6bf31e369e4b5aecc38aa2ed49a0aef95831ed6",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/temp_contracts.rs": "4fc1ac197af44cbfe887a536918bc1275b69231833f6eb5de172a22fc5a30d3d",
+        "tests/trace_contracts.rs": "e13cfb0c69600ef232b5e6aeb888e64e1d465e3bd2260247573e6ae5713af831"
+      },
+      "input_paths": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "tests/bootstrap_contracts.rs",
+        "tests/catalog_contracts.rs",
+        "tests/contracts.rs",
+        "tests/global_contracts.rs",
+        "tests/package_contracts.rs",
+        "tests/spec_contracts.rs",
+        "tests/support/mod.rs",
+        "tests/temp_contracts.rs",
+        "tests/trace_contracts.rs"
+      ]
     }
   },
   "review": {
-    "change_sha256": "24ef3fdba1036ff905cae2540face00f146ed8944532479aa0f1bee4dc6b27ca",
-    "conclusion": "Независимое ревью GO: три найденные неоднозначности исправлены; адресные тесты, интегрированный Nextest 124/124, trace 48/48, нулевой прирост temp и обновлённые доказательства проверены. RAII не покрывает kill/abort.",
-    "reviewer": "subagent-hg0024_review",
+    "change_sha256": "a2dd0796598d3b9c13e8a9f56a7936eb739847a4573dbf46fd971a412f84d6be",
+    "conclusion": "Independent GO for diff-cleanup selected fixes and evidence selection; original report docs/evidence/objects/edb9c70955b33bd8763d9031cc4fc2dc9ae83a385b10c25bf70fdef7450daacf.json. Current seven affected records and old history/runs/acceptance verified. This is not a new actor/Windows replay or whole earlier Clear acceptance; other mandatory gaps remain.",
+    "reviewer": "independent /root/clear_review",
     "verdict": "go"
   },
   "runs": [
@@ -447,6 +925,111 @@
       "outcome": "passed",
       "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1790403026640217800.log",
       "started_at": 1790403026
+    },
+    {
+      "check": "HG-0024-C1",
+      "check_sha256": "3bd7f52a0c9eec32c9adac77aa0ec524cb6d069146ef7e04302c677534674116",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "trace_contracts",
+        "automatic_trace_keeps_scope_and_outcomes_distinct",
+        "--",
+        "--exact"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "duration_ms": 83,
+      "files": {
+        "scripts/source-scenarios.mjs": "2d336cd14209b6d6b2cc5f5035508b60bb16c141c13fd50b453b60cd6bfa0050",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791960024812476047.log": "85a9ef755724223484918d76ca2522e95ecb18051b3f3cfced0da225dfee4fa9",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/trace.rs": "bf0ce763766d4a939403270e00f7820d3af3ab3e5088831c101e362852f35bc4",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "e13cfb0c69600ef232b5e6aeb888e64e1d465e3bd2260247573e6ae5713af831"
+      },
+      "inputs_after": {
+        "scripts/source-scenarios.mjs": "2d336cd14209b6d6b2cc5f5035508b60bb16c141c13fd50b453b60cd6bfa0050",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/trace.rs": "bf0ce763766d4a939403270e00f7820d3af3ab3e5088831c101e362852f35bc4",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "e13cfb0c69600ef232b5e6aeb888e64e1d465e3bd2260247573e6ae5713af831"
+      },
+      "observation": "Process status: Some(ExitStatus(unix_wait_status(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791960024812476047.log",
+      "started_at": 1791960024
+    },
+    {
+      "check": "HG-0024-C1",
+      "check_sha256": "3bd7f52a0c9eec32c9adac77aa0ec524cb6d069146ef7e04302c677534674116",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "trace_contracts",
+        "automatic_trace_keeps_scope_and_outcomes_distinct",
+        "--",
+        "--exact"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "duration_ms": 82,
+      "files": {
+        "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log": "85a9ef755724223484918d76ca2522e95ecb18051b3f3cfced0da225dfee4fa9",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/trace.rs": "bf0ce763766d4a939403270e00f7820d3af3ab3e5088831c101e362852f35bc4",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "e13cfb0c69600ef232b5e6aeb888e64e1d465e3bd2260247573e6ae5713af831"
+      },
+      "inputs_after": {
+        "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/trace.rs": "bf0ce763766d4a939403270e00f7820d3af3ab3e5088831c101e362852f35bc4",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "e13cfb0c69600ef232b5e6aeb888e64e1d465e3bd2260247573e6ae5713af831"
+      },
+      "observation": "Process status: Some(ExitStatus(unix_wait_status(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791989484291066967.log",
+      "started_at": 1791989484
+    },
+    {
+      "check": "HG-0024-C1",
+      "check_sha256": "3bd7f52a0c9eec32c9adac77aa0ec524cb6d069146ef7e04302c677534674116",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "trace_contracts",
+        "automatic_trace_keeps_scope_and_outcomes_distinct",
+        "--",
+        "--exact"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "duration_ms": 83,
+      "files": {
+        "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+        "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log": "a2fff11bcee30f54255e75bf3e5c77352f9f666e35a9ad60360dc308a3b89857",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/trace.rs": "7514ac5dd23bc84731ac68d9bb49d6a447aeffbe54d6a5482c572a61aecec571",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "24baaef4ddbdf0b40bfcde44aca1b0365cf3009e838220a91a2fe9840eb7bdd9"
+      },
+      "inputs_after": {
+        "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+        "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+        "src/trace.rs": "7514ac5dd23bc84731ac68d9bb49d6a447aeffbe54d6a5482c572a61aecec571",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+        "tests/trace_contracts.rs": "24baaef4ddbdf0b40bfcde44aca1b0365cf3009e838220a91a2fe9840eb7bdd9"
+      },
+      "observation": "Process status: Some(ExitStatus(unix_wait_status(0)))",
+      "outcome": "passed",
+      "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log",
+      "started_at": 1791996162
     }
   ]
 }

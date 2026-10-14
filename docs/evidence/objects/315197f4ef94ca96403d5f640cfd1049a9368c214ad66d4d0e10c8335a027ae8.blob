@@ -1,0 +1,108 @@
+{
+  "subjectStarted": true,
+  "assertionsBeforeRelease": false,
+  "events": [
+    {
+      "at": 1791985769599,
+      "kind": "request",
+      "path": "/api/session",
+      "detail": "GET"
+    },
+    {
+      "at": 1791985769628,
+      "kind": "response",
+      "path": "/api/session",
+      "detail": 200
+    },
+    {
+      "at": 1791985769633,
+      "kind": "request",
+      "path": "/api/specs",
+      "detail": "GET"
+    },
+    {
+      "at": 1791985769641,
+      "kind": "response",
+      "path": "/api/specs",
+      "detail": 200
+    },
+    {
+      "at": 1791985769644,
+      "kind": "request",
+      "path": "/api/specs/HG-0001",
+      "detail": "GET"
+    },
+    {
+      "at": 1791985769650,
+      "kind": "response",
+      "path": "/api/specs/HG-0001",
+      "detail": 200
+    },
+    {
+      "at": 1791985769772,
+      "kind": "request",
+      "path": "/api/specs",
+      "detail": "GET"
+    },
+    {
+      "at": 1791985769781,
+      "kind": "response",
+      "path": "/api/specs",
+      "detail": 200
+    },
+    {
+      "at": 1791985769782,
+      "kind": "request",
+      "path": "/api/specs/HG-0001",
+      "detail": "GET"
+    },
+    {
+      "at": 1791985769782,
+      "kind": "poll_A_held"
+    },
+    {
+      "at": 1791985769815,
+      "kind": "selected_B"
+    },
+    {
+      "at": 1791985773317,
+      "kind": "dom_before_release",
+      "detail": {
+        "heading": [],
+        "loading": [
+          "Открываем HG-0002…"
+        ],
+        "selected": [
+          "HG-0002Спецификация 2В работе"
+        ],
+        "assertionsBeforeRelease": false
+      }
+    },
+    {
+      "at": 1791985773380,
+      "kind": "poll_A_released"
+    },
+    {
+      "at": 1791985773389,
+      "kind": "response",
+      "path": "/api/specs/HG-0001",
+      "detail": 200
+    },
+    {
+      "at": 1791985773391,
+      "kind": "request",
+      "path": "/api/specs/HG-0002",
+      "detail": "GET"
+    },
+    {
+      "at": 1791985773397,
+      "kind": "response",
+      "path": "/api/specs/HG-0002",
+      "detail": 200
+    },
+    {
+      "at": 1791985773408,
+      "kind": "B_visible_after_release"
+    }
+  ]
+}

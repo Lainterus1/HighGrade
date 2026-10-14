@@ -12,35 +12,35 @@
   ],
   "evidence": {
     "HG-0069-S1": {
-      "captured_at": "2026-10-09T09:29:48.472684+00:00",
-      "command": "PATH=target/highgrade/tools/bin:$PATH python3 scripts/verify.py tests",
-      "input_manifest_sha256": "1d81a12dee7bbc03adba78c39285f4e06d9017cc05ce7cebe551fdb5a000ba47",
+      "captured_at": "2026-10-14T06:49:47.566335+00:00",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "input_manifest_sha256": "5fda1212ec752ac7558d59ddd266fb1cab9887de083fbfd2f7ebca121e987675",
       "method": "native_report",
-      "observation": "evidence_cards_are_compact_preserve_outcome_and_detect_changed_report прошёл в полном Nextest; 222 passed.",
+      "observation": "evidence_cards_are_compact_preserve_outcome_and_detect_changed_report actually asserted failed remains failed, full file maps are absent, changed large report becomes stale, compact JSON remains below 2500 bytes and missing source is reported. No report authenticity or future agent reliability is inferred. Source: original 237-case JUnit, zero skips. This is local Linux evidence, not new-SHA Windows CI, activation or acceptance.",
       "outcome": "passed",
-      "report": "docs/evidence/objects/85a00250048e659533510b0098b3e3b44439d2452a544f3bcc183c1bde25d9be.blob",
+      "report": "docs/evidence/objects/803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d.blob",
       "scenario": "HG-0069-S1",
       "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
     },
     "HG-0069-S2": {
-      "captured_at": "2026-10-09T09:06:06.362467+00:00",
-      "command": "python -m unittest discover -s scripts/tests",
-      "input_manifest_sha256": "fd5d4c9a71f44e0b8cba7ec3d66e851b7f3310e53d65ce6ec0f0b427410f2999",
+      "captured_at": "2026-10-14T06:41:40.011656+00:00",
+      "command": "python -B -m unittest discover -s scripts/tests -v",
+      "input_manifest_sha256": "79310224b661efa2ff5b96d29bb328a13292da5a6188098ff2a3055353f4440a",
       "method": "native_report",
-      "observation": "67 Python tests passed. Выборка/повтор/повреждение, nested run.json, active/unknown/interruption/links и завершение владельца проверены реальными файловыми контрактами.",
+      "observation": "All 69 script tests passed. Evidence-store tests selected/idempotently exported originals and rejected both changed-length and same-length corruption by SHA256. The previously missed SHA-check removal is detected by the strengthened assertion; original sources remain unchanged.",
       "outcome": "passed",
-      "report": "docs/evidence/objects/bf5e72427c19b536e43e1358e152cf7e4c8338f5fda2760f17e7a2f5ea8b097f.blob",
+      "report": "docs/evidence/objects/f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6.blob",
       "scenario": "HG-0069-S2",
       "scenario_sha256": "820d6913d877d041746ce12375534a3072c65276ef6a9aa6d2e199b4ca296451"
     },
     "HG-0069-S3": {
-      "captured_at": "2026-10-09T09:06:06.362467+00:00",
-      "command": "python -m unittest discover -s scripts/tests",
-      "input_manifest_sha256": "38c5f4c4dfd569a209fe5681b17292354f54c5b94664c21fc41477dde2e1cc5a",
+      "captured_at": "2026-10-14T06:41:40.011656+00:00",
+      "command": "python -B -m unittest discover -s scripts/tests -v",
+      "input_manifest_sha256": "a1cee50addd7f5629827d7fd21dda2f9d69041d77e6e5f12c5b7a7bfd7f9881a",
       "method": "native_report",
-      "observation": "67 Python tests passed. Выборка/повтор/повреждение, nested run.json, active/unknown/interruption/links и завершение владельца проверены реальными файловыми контрактами.",
+      "observation": "Real filesystem/owned-run regression cases passed in the 69-test original: active/unknown/new or changed scratch survives; corrupt export and interrupted recovery prevent deletion. No unknown inherited run was removed. Managed-browser guard results are recorded separately in the task report.",
       "outcome": "passed",
-      "report": "docs/evidence/objects/bf5e72427c19b536e43e1358e152cf7e4c8338f5fda2760f17e7a2f5ea8b097f.blob",
+      "report": "docs/evidence/objects/f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6.blob",
       "scenario": "HG-0069-S3",
       "scenario_sha256": "61c8076675882e8ba11f7cb01ea70b8511843eafcdfb93b0ce636792de73c567"
     },
@@ -192,6 +192,36 @@
         },
         "recorded_at": 1791540433,
         "review": "ee07bb3bd7e99a49ce139e85e2e72dd2c9ad07ff270deddc39122652bdb6db7c"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "518361d76f58f8a39ee51ae4bdcf8f9236dbb56f4ffbc5f83213b03025d52c07",
+          "HG-0069-S2": "a7fa19b2d1cdb1b0977a83bb3ca7b5d722906e897e3903e5275a39c3b78c6e8e",
+          "HG-0069-S3": "6ee0d6e9e060929fc2dce3a40ac3e33fb38f5648a617649117044456198bdd12",
+          "HG-0069-S4": "c53c1fa76fd705d90caf2542739e2cd2f1769533f77ac14b08e67c8e20560cc8"
+        },
+        "recorded_at": 1791960106,
+        "review": "6f242115ba99a8f0dcd9f7dae249cf6c0857afa40811fbed97a6a8dd1fc6f8ee"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "518361d76f58f8a39ee51ae4bdcf8f9236dbb56f4ffbc5f83213b03025d52c07",
+          "HG-0069-S2": "a5501af605ec11d217bd8bddb186a527254ac35132d63d95509625cb0e92fadb",
+          "HG-0069-S3": "91683ec058416d40bf3fc9efd031f4a65c92c38a299b8d400b1ead20f80dfcf0",
+          "HG-0069-S4": "c53c1fa76fd705d90caf2542739e2cd2f1769533f77ac14b08e67c8e20560cc8"
+        },
+        "recorded_at": 1791960260,
+        "review": "6f242115ba99a8f0dcd9f7dae249cf6c0857afa40811fbed97a6a8dd1fc6f8ee"
+      },
+      {
+        "evidence": {
+          "HG-0069-S1": "518361d76f58f8a39ee51ae4bdcf8f9236dbb56f4ffbc5f83213b03025d52c07",
+          "HG-0069-S2": "a5501af605ec11d217bd8bddb186a527254ac35132d63d95509625cb0e92fadb",
+          "HG-0069-S3": "1f67559a8d94eb703063150debd61aea4d88f9c53f999d531e0ba6e67fa9b555",
+          "HG-0069-S4": "c53c1fa76fd705d90caf2542739e2cd2f1769533f77ac14b08e67c8e20560cc8"
+        },
+        "recorded_at": 1791960593,
+        "review": "6f242115ba99a8f0dcd9f7dae249cf6c0857afa40811fbed97a6a8dd1fc6f8ee"
       }
     ],
     "objects": {
@@ -216,6 +246,17 @@
         "report": "docs/releases/v0-3-10.md",
         "scenario": "HG-0069-S1",
         "scenario_sha256": "f20060cb2093ca5db056795edb6aba0da8fdfdc1b8d16aca14de5dc955dfb1b5"
+      },
+      "1f67559a8d94eb703063150debd61aea4d88f9c53f999d531e0ba6e67fa9b555": {
+        "captured_at": "2026-10-14T06:41:40.011656+00:00",
+        "command": "python -B -m unittest discover -s scripts/tests -v",
+        "input_manifest_sha256": "a1cee50addd7f5629827d7fd21dda2f9d69041d77e6e5f12c5b7a7bfd7f9881a",
+        "method": "native_report",
+        "observation": "Real filesystem/owned-run regression cases passed in the 69-test original: active/unknown/new or changed scratch survives; corrupt export and interrupted recovery prevent deletion. No unknown inherited run was removed. Managed-browser guard results are recorded separately in the task report.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6.blob",
+        "scenario": "HG-0069-S3",
+        "scenario_sha256": "61c8076675882e8ba11f7cb01ea70b8511843eafcdfb93b0ce636792de73c567"
       },
       "2aba865e956c513521d3b3a86fd6e50686a44c306a877362fb82a052adb21bb1": {
         "captured_at": "2026-10-02T05:33:45.566469+00:00",
@@ -344,6 +385,12 @@
         "scenario": "HG-0069-S3",
         "scenario_sha256": "61c8076675882e8ba11f7cb01ea70b8511843eafcdfb93b0ce636792de73c567"
       },
+      "6f242115ba99a8f0dcd9f7dae249cf6c0857afa40811fbed97a6a8dd1fc6f8ee": {
+        "change_sha256": "9db581a8e6ccad848b936cceea0aa04d56bf0fb45aec23bd51ca9e2e8e4371dc",
+        "conclusion": "GO: реализация эквивалентна показанному3376598; CI37913102915 точного3fa48e9 successful Windows/Ubuntu. Native UI29/installed1 на каждой ОС,0skip/flaky/errors; Nextest Ubuntu222/Windows225. CAS/source inputs current, T6true, история и сохранность проверены. Будущие metadata/mainSHA проверяются отдельно; локальная активация ещё не выполнена.",
+        "reviewer": "acceptance_review",
+        "verdict": "go"
+      },
       "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b": null,
       "7759cf4d58ac8893660ba7f41d04ed421f4ba747366344a3c9ac5d55ba26fdf3": {
         "captured_at": "2026-10-02T05:13:15.046313+00:00",
@@ -368,6 +415,17 @@
         "reviewer": "acceptance_review",
         "verdict": "no_go"
       },
+      "91683ec058416d40bf3fc9efd031f4a65c92c38a299b8d400b1ead20f80dfcf0": {
+        "captured_at": "2026-10-14T06:41:40.011656+00:00",
+        "command": "python -B -m unittest discover -s scripts/tests -v",
+        "input_manifest_sha256": "a1cee50addd7f5629827d7fd21dda2f9d69041d77e6e5f12c5b7a7bfd7f9881a",
+        "method": "native_report",
+        "observation": "Real filesystem/owned-run regression cases passed: active/unknown/new or changed scratch survives; corrupt export and interrupted recovery prevent deletion. Current browser guards separately reject foreign token, invalid schema/state/PID, dead owner and linked output without changing protected report bytes. No unknown inherited run was removed.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6.blob",
+        "scenario": "HG-0069-S3",
+        "scenario_sha256": "61c8076675882e8ba11f7cb01ea70b8511843eafcdfb93b0ce636792de73c567"
+      },
       "96a4c073912b16dc4be48a35a8fd2eafa4c9e9b07a7d3d2c181f8389eadbeb89": {
         "captured_at": "2026-10-09T09:07:07.521933+00:00",
         "command": "PATH=target/highgrade/tools/bin:$PATH python3 scripts/verify.py tests",
@@ -387,6 +445,17 @@
         "observation": "66 Python tests passed. Выборка/повтор/повреждение, nested run.json, active/unknown/interruption/links и завершение владельца проверены реальными файловыми контрактами.",
         "outcome": "passed",
         "report": "docs/evidence/objects/d6fcb56e35bd7bbbb5e785fde22c21f410c138f692ab6ed88fd439c93c2debf9.blob",
+        "scenario": "HG-0069-S2",
+        "scenario_sha256": "820d6913d877d041746ce12375534a3072c65276ef6a9aa6d2e199b4ca296451"
+      },
+      "a5501af605ec11d217bd8bddb186a527254ac35132d63d95509625cb0e92fadb": {
+        "captured_at": "2026-10-14T06:41:40.011656+00:00",
+        "command": "python -B -m unittest discover -s scripts/tests -v",
+        "input_manifest_sha256": "79310224b661efa2ff5b96d29bb328a13292da5a6188098ff2a3055353f4440a",
+        "method": "native_report",
+        "observation": "All 69 script tests passed. Evidence-store tests selected/idempotently exported originals and rejected both changed-length and same-length corruption by SHA256. The previously missed SHA-check removal is detected by the strengthened assertion; original sources remain unchanged.",
+        "outcome": "passed",
+        "report": "docs/evidence/objects/f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6.blob",
         "scenario": "HG-0069-S2",
         "scenario_sha256": "820d6913d877d041746ce12375534a3072c65276ef6a9aa6d2e199b4ca296451"
       },
@@ -938,6 +1007,47 @@
         "ui/scripts/tests/playwright-output.test.mjs"
       ]
     },
+    "5fda1212ec752ac7558d59ddd266fb1cab9887de083fbfd2f7ebca121e987675": {
+      "files": {
+        "Cargo.lock": "2eba6e0de2b5b054aa5d4b0a685da68fd64133e5d41cc6222eb0e2749bfa66ad",
+        "Cargo.toml": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+        "docs/evidence/objects/803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d.blob": "803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d",
+        "rust-toolchain.toml": "419fd1fb39e0b324902a547d477193d32d4526635d77c676563b78aa922f3cc8",
+        "src/lib.rs": "d48544fe69585080d1288c14dca4520f7d648b889b18e1556a9e3b105f668a2b",
+        "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+        "src/specs.rs": "9ef2a437e9af9a4dffd7b080c5107e801c9a1ea31b30d4cb3e3186eaed64802b",
+        "src/specs/attention.rs": "e2197ccda6227f07ac5778f7cadf681d93be6568d4520985d14277ab23301de6",
+        "src/specs/cards.rs": "1689cee70580b79710ecd312f12ba064bec39a8c0c69b476860126139e9ae80d",
+        "src/specs/checks.rs": "377d8ab634d99905bfaadc456cb147b61681152fe8f1de7e54977de129fb4df7",
+        "src/specs/delivery.rs": "fb5d033ea75c4e638322b889d8cd5d7f9e320789472b7673111d3dfe7d7f722f",
+        "src/specs/progress.rs": "bd76ef681653b51a10126bf1705171853d0fdfb0f63f06a0f0b15f265b9ad449",
+        "src/specs/relations.rs": "c320ab0012f173d3cdb983109880e9e5ad2372f3d86f225c64a3dd033d2897ac",
+        "src/specs/storage.rs": "f97716a69af8a2ffb01afbfee71a48a482503762ac286b5322601b75e05d40cb",
+        "src/specs/storage/shared_inputs.rs": "1a705e8ba1f6630c37979e8d04b8296d6fdca2d530bc187c40039bd6dcca6f31",
+        "tests/fixtures/native-v1/store.json": "bf51356bcaafec7e739cdaa1adc6cfd316496fafe46811847bb6cae90e6e597b",
+        "tests/spec_contracts.rs": "c875038ae23828b037adcf96c6bf31e369e4b5aecc38aa2ed49a0aef95831ed6",
+        "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156"
+      },
+      "input_paths": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/delivery.rs",
+        "src/specs/progress.rs",
+        "src/specs/relations.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "tests/fixtures/native-v1/store.json",
+        "tests/spec_contracts.rs",
+        "tests/support/mod.rs"
+      ]
+    },
     "748d73ce0d4d6bd4475dd5a866073b9bca1cb357351b5bcf83f236b78f50fd18": {
       "files": {
         "docs/evidence/objects/27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127.blob": "27ed6fdaeff9bbaf2786a8fe3be4e2628891aaf49d8608e1b8d3074b42a6c127",
@@ -957,6 +1067,17 @@
         "scripts/target-maintenance.py",
         "scripts/tests/test_evidence_store.py",
         "scripts/tests/test_target_maintenance.py"
+      ]
+    },
+    "79310224b661efa2ff5b96d29bb328a13292da5a6188098ff2a3055353f4440a": {
+      "files": {
+        "docs/evidence/objects/f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6.blob": "f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6",
+        "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+        "scripts/tests/test_evidence_store.py": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e"
+      },
+      "input_paths": [
+        "scripts/evidence_store.py",
+        "scripts/tests/test_evidence_store.py"
       ]
     },
     "7ca2a5b008c92f92b01c12c3f76b0a5a0d1d48a2fc4ca56cb4a9a65475d7510a": {
@@ -1167,6 +1288,25 @@
         "scripts/target-maintenance.py",
         "scripts/tests/test_evidence_store.py",
         "scripts/tests/test_target_maintenance.py"
+      ]
+    },
+    "a1cee50addd7f5629827d7fd21dda2f9d69041d77e6e5f12c5b7a7bfd7f9881a": {
+      "files": {
+        "docs/evidence/objects/f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6.blob": "f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6",
+        "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+        "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+        "scripts/tests/test_evidence_store.py": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e",
+        "scripts/tests/test_target_maintenance.py": "4b9ea3d3ff3a6c6aa35f17f3ea6fe442f0eb827a04973c66c92e30b48448d7b1",
+        "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb",
+        "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634"
+      },
+      "input_paths": [
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_evidence_store.py",
+        "scripts/tests/test_target_maintenance.py",
+        "scripts/tests/test_verify.py",
+        "scripts/verify.py"
       ]
     },
     "a54f3b01af011d4f5a6eae9a9663cb699046da0680c80e80341c9aa9a5b352c3": {

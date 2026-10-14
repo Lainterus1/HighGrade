@@ -115,7 +115,7 @@ jobs:
         working-directory: ui
         env:
           HIGHGRADE_UI_REPORT: ${{ github.workspace }}/target/highgrade/reports/native-playwright.json
-        run: npx playwright test native.spec.ts decision.spec.ts edit.spec.ts --fail-on-flaky-tests --output ../target/highgrade/ui-playwright/native
+        run: npx playwright test native.spec.ts decision.spec.ts edit.spec.ts api-client.spec.ts --fail-on-flaky-tests --output ../target/highgrade/ui-playwright/native
       - name: Build exact current candidate
         run: python scripts/build-release.py ${{ env.HIGHGRADE_UI_SOURCE_SHA }}
       - name: Check out pinned platform predecessor

@@ -1,0 +1,62 @@
+from pathlib import Path
+from datetime import datetime, timezone
+import importlib.util
+import json
+import subprocess
+import xml.etree.ElementTree as ET
+
+root = Path.cwd()
+local = root / '.highgrade/local/project-refresh-2026-10-14'
+cli = str(root / 'target/debug/highgrade')
+module = importlib.util.spec_from_file_location('storage', root / 'scripts/evidence_store.py')
+storage = importlib.util.module_from_spec(module)
+module.loader.exec_module(storage)
+run = 'target/highgrade/runs/rust-ed62931af2d249898adc78cd77b5c44a'
+junit = run + '/nextest/junit.xml'
+tree = ET.parse(root / junit)
+assert len(tree.findall('.//testcase')) == 237
+assert not any(tree.findall('.//' + name) for name in ['failure', 'error', 'skipped'])
+census = json.loads((local / 'native-census-original.json').read_text())
+assert census['exit_code'] == 0 and census['directories_and_files_unchanged'] and census['foreign_bytes_preserved']
+selected = [junit] + [str((local / name).relative_to(root)) for name in
+    ['native-census-original.json', 'nextest-final-census.json', 'native_census.py', 'native-scenario-run-receipts.json']]
+manifest = storage.export(root, selected, {
+    'purpose': 'Independent review corrections: complete Nextest directory census and HG-0002 support causal pin',
+    'outcome': 'passed',
+    'limits': 'Local Linux only; older partial S4 observation remains in history, not treated as complete census'})
+objects = {entry['source']: entry['path'] for entry in storage.verify(root, manifest)['files']}
+batch = []
+now = datetime.now(timezone.utc).isoformat()
+spec2 = json.loads((root / 'specs/changes/HG-0002/spec.json').read_text())
+inputs2 = sorted(set(path for check in spec2['checks'] for path in check['inputs']) |
+                 {'tests/support/mod.rs', 'rust-toolchain.toml', '.config/nextest.toml', 'specs/runners.json'})
+for scenario, observation in [
+    ('HG-0002-S1', 'Real catalog/CLI cases preserve a foreign catalog and independent sibling specification after service removal.'),
+    ('HG-0002-S2', 'Real migrations retain exact backups and decisions; transaction interruption and conflict preserve affected files. New two-target recovery conflict regression also passed.'),
+    ('HG-0002-S3', 'Real reconfirmation preserves prior evidence/review history and requirements, and does not carry human acceptance to changed inputs.')]:
+    batch.append({'id': 'HG-0002', 'evidence': {
+        'scenario': scenario, 'method': 'native_report',
+        'command': 'cargo nextest run --locked --profile highgrade; spec-run --id HG-0002 --check all',
+        'captured_at': now, 'outcome': 'passed', 'inputs': inputs2,
+        'report': objects[junit],
+        'observation': observation + ' Original full 237-case JUnit and all 10 selected spec-run checks passed. tests/support/mod.rs is explicitly pinned from unchanged pre/post source snapshots. Native execution receipts are preserved in ' + manifest + '. Existing check definitions and human decisions remain unchanged.'}})
+spec24 = json.loads((root / 'specs/changes/HG-0024/spec.json').read_text())
+c2 = next(check for check in spec24['checks'] if check['id'] == 'HG-0024-C2')
+batch.append({'id': 'HG-0024', 'evidence': {
+    'scenario': 'HG-0024-S4', 'method': 'native_report',
+    'command': 'python .highgrade/local/project-refresh-2026-10-14/native_census.py',
+    'captured_at': now, 'outcome': 'passed',
+    'inputs': sorted(set(c2['inputs']) | {'src/lib.rs', 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', '.config/nextest.toml'}),
+    'report': objects[str((local / 'native-census-original.json').relative_to(root))],
+    'observation': 'Full actual Nextest 237/237 passed with TMPDIR/TEMP/TMP directed to one owned test root. Before/after directory and file maps are identical; foreign sentinel bytes are unchanged. The panic cleanup regression passed in that run. Original JUnit and capture are preserved in ' + manifest + '. Earlier regression-only S4 record was incomplete for the mandatory census method and is retained as partial historical evidence. No global temp scan or deletion of unknown data is claimed.'}})
+path = local / 'review-corrections-evidence.json'
+path.write_text(json.dumps(batch, ensure_ascii=False, indent=2) + '\n')
+listing = json.loads(subprocess.check_output([cli, 'spec-list', '--root', str(root)]))
+expected = next(item['store_sha256'] for item in listing['measurements'] if 'store_sha256' in item)
+argv = [cli, 'spec-evidence-batch', '--root', str(root), '--expected', expected, '--input', str(path.relative_to(root))]
+result = subprocess.run(argv, capture_output=True, text=True)
+(local / 'review-corrections-receipt.json').write_text(json.dumps({
+    'manifest': manifest, 'argv': argv, 'exit_code': result.returncode,
+    'stdout': result.stdout, 'stderr': result.stderr}, ensure_ascii=False, indent=2) + '\n')
+assert result.returncode == 0, result.stdout + result.stderr
+print(json.dumps({'records': len(batch), 'manifest': manifest, 'exit_code': result.returncode}))

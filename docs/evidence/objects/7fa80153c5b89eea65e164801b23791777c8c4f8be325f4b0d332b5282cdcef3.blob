@@ -1,0 +1,39 @@
+"""Final preservation check of the exact initial scope; no broad deletion."""
+import hashlib, importlib.util, json, subprocess
+from pathlib import Path
+root=Path.cwd();base=root/'.highgrade/local/diff-cleanup-2026-10-14'
+old=json.loads((base/'before.json').read_bytes())
+prior=json.loads((base/'preservation-final.json').read_bytes())
+allowed=set(prior['modified']);removed=set(prior['removed_new_cas_only'])
+modified=[];missing=[]
+for rel,item in old['files'].items():
+    assert 'presentation' not in Path(rel).parts, 'Excluded surface in initial scope'
+    path=root/rel
+    if not path.is_file():missing.append(rel);continue
+    sha=hashlib.sha256(path.read_bytes()).hexdigest()
+    if sha!=item['sha256']:modified.append(rel)
+assert set(modified)==allowed,(set(modified)-allowed,allowed-set(modified))
+assert set(missing)==removed
+for rel in missing:
+    path=base/'recovery/objects'/Path(rel).name
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==old['files'][rel]['sha256']
+assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==old['head']
+for name in ('HG-0024','HG-0076'):
+    before=json.loads((base/'specs-before'/name/'results.json').read_bytes())
+    after=json.loads((root/'specs/changes'/name/'results.json').read_bytes())
+    for key in ('runs','acceptance'):assert after[key][:len(before[key])]==before[key]
+    assert after['history']['entries'][:len(before['history']['entries'])]==before['history']['entries']
+    for key in ('input_manifests',):assert all(after[key].get(k)==v for k,v in before[key].items())
+    assert all(after['history']['objects'].get(k)==v for k,v in before['history']['objects'].items())
+    pool=list(after['history']['objects'].values())+list(after['evidence'].values())
+    assert all(v in pool for v in before['evidence'].values())
+    assert before['review'] in pool or before['review']==after['review']
+spec=importlib.util.spec_from_file_location('storage',root/'scripts/evidence_store.py');storage=importlib.util.module_from_spec(spec);spec.loader.exec_module(storage)
+objects=list((root/'docs/evidence/objects').iterdir());manifests=0
+for path in objects:
+    assert path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest()==path.stem
+    if path.suffix=='.json':storage.verify(root,path.relative_to(root).as_posix());manifests+=1
+new=[p for p in objects if p.relative_to(root).as_posix() not in set(old['tracked'])]
+value={'status':'passed','modified':sorted(modified),'removed_new_cas_only':sorted(missing),'native_history_runs_input_manifests_old_evidence_review_acceptance':'preserved','cas_objects_checked':len(objects),'manifests_checked':manifests,'recovery_checked':len(missing),'new_cas_objects':len(new),'new_cas_bytes':sum(p.stat().st_size for p in new),'presentation':'excluded; no content read or changed','unrelated_initial_files':'unchanged','head':old['head']}
+(base/'preservation-closure.json').write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps({k:v for k,v in value.items() if k not in ('modified','removed_new_cas_only')}))

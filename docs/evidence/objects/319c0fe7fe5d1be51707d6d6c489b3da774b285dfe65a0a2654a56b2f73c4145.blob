@@ -1,0 +1,89 @@
+{
+  "captured_at": "2026-10-14T09:22:56.988298+00:00",
+  "mode": "actual bounded refresh under same root Goal; no extra Goal tool calls",
+  "sources_read": [
+    "README.md",
+    "requirements.json",
+    "sentinel",
+    "src/calc.py",
+    "tests/test_calc.py",
+    "docs/usage.md",
+    "docs/engineering.md",
+    ".config/tests.json"
+  ],
+  "methods": {
+    "prepared_before_baseline": true,
+    "mandatory_methods": [
+      "meaningful RED before implementation, PASS after",
+      "both selected requirement meanings",
+      "unlinked engineering invariant owner",
+      "same actual root Goal, no second Goal"
+    ],
+    "scope": "all main areas of this isolated minimal project",
+    "coordination": "real existing root Goal explicitly authorized for this chain",
+    "findings": [
+      "F-R1 current 2 vs green implementation/test/doc 1",
+      "F-R2 preservation test valid",
+      "roundtrip owned by engineering, no retirement"
+    ]
+  },
+  "commands": [
+    {
+      "phase": "green-stale-baseline",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0
+    },
+    {
+      "phase": "meaningful-red-before-source-fix",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1
+    },
+    {
+      "phase": "restored-contract-final",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0
+    }
+  ],
+  "requirements_audited": [
+    "F-R1",
+    "F-R2"
+  ],
+  "unlinked_test_owner": "engineering",
+  "sentinel_unchanged": true,
+  "completion": "selected bounded fixture refresh complete",
+  "limits": [
+    "executor exercise, not independent model benchmark",
+    "real root Goal created for entire user chain, not a new Goal for Clear",
+    "other controlled closure/refusal cases separately labelled"
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "source_revision": "591dcb1ece4739d27a2e00cd702657ed6c9e70e3",
+  "controls": "Fresh isolated source directories; Python -B and PYTHONDONTWRITEBYTECODE=1 from baseline onwards; no stale pyc can mask equal-size mutations",
+  "runs": [],
+  "initial_P4_classification": "invalid execution observation: equal-size rapid rewrite could reuse original pyc; not a survived violation",
+  "mutations": [
+    {
+      "id": "P1-strengthened",
+      "mutation_diff": "--- scripts/evidence_store.py\n+++ scripts/evidence_store.py\n@@ -93,7 +93,7 @@\n         if not re.fullmatch('[a-f0-9]{64}', sha) or item['path'] != f'{BASE}/{sha}.blob':\n             raise ValueError('Invalid evidence object')\n         content = safe(root, item['path']).read_bytes()\n-        if len(content) != item['bytes'] or digest(content) != sha:\n+        if len(content) != item['bytes']:\n             raise ValueError('Evidence hash mismatch: ' + item['path'])\n     return value\n \n",
+      "classification": "detected; relevant assertion failure",
+      "runs": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/usr/bin/python",
+            "-B",
+            "-m",
+            "unittest",
+            "scripts.tests.test_evidence_store",
+            "-v"
+          ],
+          "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P1-strengthened",
+          "started_at": "2026-10-14T05:33:27.696871+00:00",
+          "ended_at": "2026-10-14T05:33:28.008981+00:00",
+          "exit_code": 0,
+          "input_hashes": {
+            "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+            "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+            "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+            "scripts/tests/test_evidence_store.py": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e",
+            "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+          },
+          "stdout": "",
+          "stderr": "test_background_descendant_is_not_marked_ready_for_collection (scripts.tests.test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok\ntest_catalog_reference_blocks_deleting_exported_source (scripts.tests.test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok\ntest_damaged_export_blocks_collection_and_links_never_export (scripts.tests.test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok\ntest_explicit_discard_keeps_referenced_run_but_exports_nothing (scripts.tests.test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok\ntest_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok\ntest_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok\ntest_manifest_corruption_and_live_owner_refuse_finish (scripts.tests.test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok\ntest_nested_native_run_record_is_evidence_but_wrapper_state_is_not (scripts.tests.test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ok\ntest_real_wrapper_preserves_exit_code_and_finishes_selected_report (scripts.tests.test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok\ntest_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.260s\n\nOK\n"
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/usr/bin/python",
+            "-B",
+            "-m",
+            "unittest",
+            "scripts.tests.test_evidence_store",
+            "-v"
+          ],
+          "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P1-strengthened",
+          "started_at": "2026-10-14T05:33:28.010904+00:00",
+          "ended_at": "2026-10-14T05:33:28.331404+00:00",
+          "exit_code": 1,
+          "input_hashes": {
+            "scripts/evidence_store.py": "fa9bb71d72ed0ada0a61db479086df9a7adcb48a094936930f886d347c5b7a59",
+            "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+            "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+            "scripts/tests/test_evidence_store.py": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e",
+            "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+          },
+          "stdout": "",
+          "stderr": "test_background_descendant_is_not_marked_ready_for_collection (scripts.tests.test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok\ntest_catalog_reference_blocks_deleting_exported_source (scripts.tests.test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok\ntest_damaged_export_blocks_collection_and_links_never_export (scripts.tests.test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok\ntest_explicit_discard_keeps_referenced_run_but_exports_nothing (scripts.tests.test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok\ntest_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... \n  test_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) (same_size=True) ... FAIL\ntest_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok\ntest_manifest_corruption_and_live_owner_refuse_finish (scripts.tests.test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok\ntest_nested_native_run_record_is_evidence_but_wrapper_state_is_not (scripts.tests.test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ok\ntest_real_wrapper_preserves_exit_code_and_finishes_selected_report (scripts.tests.test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok\ntest_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok\n\n======================================================================\nFAIL: test_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) (same_size=True)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P1-strengthened/scripts/tests/test_evidence_store.py\", line 41, in test_export_is_selected_idempotent_and_detects_corruption\n    with self.assertRaisesRegex(ValueError, 'hash mismatch'):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 10 tests in 0.268s\n\nFAILED (failures=1)\n"
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/usr/bin/python",
+            "-B",
+            "-m",
+            "unittest",
+            "scripts.tests.test_evidence_store",
+            "-v"
+          ],
+          "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P1-strengthened",
+          "started_at": "2026-10-14T05:33:28.331841+00:00",
+          "ended_at": "2026-10-14T05:33:28.643683+00:00",
+          "exit_code": 0,
+          "input_hashes": {
+            "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+            "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+            "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+            "scripts/tests/test_evidence_store.py": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e",
+            "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+          },
+          "stdout": "",
+          "stderr": "test_background_descendant_is_not_marked_ready_for_collection (scripts.tests.test_evidence_store.EvidenceStorageTests.test_background_descendant_is_not_marked_ready_for_collection) ... ok\ntest_catalog_reference_blocks_deleting_exported_source (scripts.tests.test_evidence_store.EvidenceStorageTests.test_catalog_reference_blocks_deleting_exported_source) ... ok\ntest_damaged_export_blocks_collection_and_links_never_export (scripts.tests.test_evidence_store.EvidenceStorageTests.test_damaged_export_blocks_collection_and_links_never_export) ... ok\ntest_explicit_discard_keeps_referenced_run_but_exports_nothing (scripts.tests.test_evidence_store.EvidenceStorageTests.test_explicit_discard_keeps_referenced_run_but_exports_nothing) ... ok\ntest_export_is_selected_idempotent_and_detects_corruption (scripts.tests.test_evidence_store.EvidenceStorageTests.test_export_is_selected_idempotent_and_detects_corruption) ... ok\ntest_interruption_after_export_before_inventory_preserves_scratch (scripts.tests.test_evidence_store.EvidenceStorageTests.test_interruption_after_export_before_inventory_preserves_scratch) ... ok\ntest_manifest_corruption_and_live_owner_refuse_finish (scripts.tests.test_evidence_store.EvidenceStorageTests.test_manifest_corruption_and_live_owner_refuse_finish) ... ok\ntest_nested_native_run_record_is_evidence_but_wrapper_state_is_not (scripts.tests.test_evidence_store.EvidenceStorageTests.test_nested_native_run_record_is_evidence_but_wrapper_state_is_not) ... ok\ntest_real_wrapper_preserves_exit_code_and_finishes_selected_report (scripts.tests.test_evidence_store.EvidenceStorageTests.test_real_wrapper_preserves_exit_code_and_finishes_selected_report) ... ok\ntest_sweep_preserves_active_unknown_changed_and_unexported (scripts.tests.test_evidence_store.EvidenceStorageTests.test_sweep_preserves_active_unknown_changed_and_unexported) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.262s\n\nOK\n"
+        }
+      ]
+    },
+    {
+      "id": "P4-without-bytecode-cache",
+      "mutation_diff": "--- scripts/verify.py\n+++ scripts/verify.py\n@@ -120,7 +120,7 @@\n             collect_reports(managed)\n     elif step == 'specs':\n         validation = report('spec-validate')\n-        if validation['status'] != 'passed':\n+        if validation['status'] == 'failed':\n             raise RuntimeError(validation)\n     elif step == 'scenarios':\n         managed = managed_run()\n",
+      "classification": "detected; relevant assertion failure",
+      "runs": [
+        {
+          "stage": "baseline",
+          "argv": [
+            "/usr/bin/python",
+            "-B",
+            "-m",
+            "unittest",
+            "scripts.tests.test_verify",
+            "-v"
+          ],
+          "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P4-without-bytecode-cache",
+          "started_at": "2026-10-14T05:33:28.654056+00:00",
+          "ended_at": "2026-10-14T05:33:28.756854+00:00",
+          "exit_code": 0,
+          "input_hashes": {
+            "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+            "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+            "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+            "scripts/tests/test_evidence_store.py": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e",
+            "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+          },
+          "stdout": "",
+          "stderr": "test_default_test_command_enters_the_owned_run_wrapper (scripts.tests.test_verify.VerifyOutputTests.test_default_test_command_enters_the_owned_run_wrapper) ... ok\ntest_foreign_active_context_cannot_replace_another_runs_reports (scripts.tests.test_verify.VerifyOutputTests.test_foreign_active_context_cannot_replace_another_runs_reports) ... ok\ntest_foreign_or_finished_report_folder_refuses_before_running_checks (scripts.tests.test_verify.VerifyOutputTests.test_foreign_or_finished_report_folder_refuses_before_running_checks) ... ok\ntest_headroom_uses_cargo_target_and_accepts_exact_boundary (scripts.tests.test_verify.VerifyOutputTests.test_headroom_uses_cargo_target_and_accepts_exact_boundary) ... ok\ntest_inspect_report_round_trips_on_windows_legacy_console (scripts.tests.test_verify.VerifyOutputTests.test_inspect_report_round_trips_on_windows_legacy_console) ... ok\ntest_low_configured_target_refuses_even_when_project_has_space (scripts.tests.test_verify.VerifyOutputTests.test_low_configured_target_refuses_even_when_project_has_space) ... ok\ntest_low_space_refuses_before_capture_or_report_replacement (scripts.tests.test_verify.VerifyOutputTests.test_low_space_refuses_before_capture_or_report_replacement) ... ok\ntest_managed_test_attempt_keeps_native_outputs_even_on_failure (scripts.tests.test_verify.VerifyOutputTests.test_managed_test_attempt_keeps_native_outputs_even_on_failure) ... ok\ntest_spec_validation_propagates_batch_failure_without_reloading_ids (scripts.tests.test_verify.VerifyOutputTests.test_spec_validation_propagates_batch_failure_without_reloading_ids) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.028s\n\nOK\n"
+        },
+        {
+          "stage": "mutant",
+          "argv": [
+            "/usr/bin/python",
+            "-B",
+            "-m",
+            "unittest",
+            "scripts.tests.test_verify",
+            "-v"
+          ],
+          "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P4-without-bytecode-cache",
+          "started_at": "2026-10-14T05:33:28.758753+00:00",
+          "ended_at": "2026-10-14T05:33:28.858889+00:00",
+          "exit_code": 1,
+          "input_hashes": {
+            "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+            "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+            "scripts/verify.py": "ba14cf2ddab432107ccdd45fca4af2a150c28243f115219020ec2aba948bf90d",
+            "scripts/tests/test_evidence_store.py": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e",
+            "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+          },
+          "stdout": "",
+          "stderr": "test_default_test_command_enters_the_owned_run_wrapper (scripts.tests.test_verify.VerifyOutputTests.test_default_test_command_enters_the_owned_run_wrapper) ... ok\ntest_foreign_active_context_cannot_replace_another_runs_reports (scripts.tests.test_verify.VerifyOutputTests.test_foreign_active_context_cannot_replace_another_runs_reports) ... ok\ntest_foreign_or_finished_report_folder_refuses_before_running_checks (scripts.tests.test_verify.VerifyOutputTests.test_foreign_or_finished_report_folder_refuses_before_running_checks) ... ok\ntest_headroom_uses_cargo_target_and_accepts_exact_boundary (scripts.tests.test_verify.VerifyOutputTests.test_headroom_uses_cargo_target_and_accepts_exact_boundary) ... ok\ntest_inspect_report_round_trips_on_windows_legacy_console (scripts.tests.test_verify.VerifyOutputTests.test_inspect_report_round_trips_on_windows_legacy_console) ... ok\ntest_low_configured_target_refuses_even_when_project_has_space (scripts.tests.test_verify.VerifyOutputTests.test_low_configured_target_refuses_even_when_project_has_space) ... ok\ntest_low_space_refuses_before_capture_or_report_replacement (scripts.tests.test_verify.VerifyOutputTests.test_low_space_refuses_before_capture_or_report_replacement) ... ok\ntest_managed_test_attempt_keeps_native_outputs_even_on_failure (scripts.tests.test_verify.VerifyOutputTests.test_managed_test_attempt_keeps_native_outputs_even_on_failure) ... ok\ntest_spec_validation_propagates_batch_failure_without_reloading_ids (scripts.tests.test_verify.VerifyOutputTests.test_spec_validation_propagates_batch_failure_without_reloading_ids) ... \n  test_spec_validation_propagates_batch_failure_without_reloading_ids (scripts.tests.test_verify.VerifyOutputTests.test_spec_validation_propagates_batch_failure_without_reloading_ids) (status='unknown') ... FAIL\n\n======================================================================\nFAIL: test_spec_validation_propagates_batch_failure_without_reloading_ids (scripts.tests.test_verify.VerifyOutputTests.test_spec_validation_propagates_batch_failure_without_reloading_ids) (status='unknown')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P4-without-bytecode-cache/scripts/tests/test_verify.py\", line 27, in test_spec_validation_propagates_batch_failure_without_reloading_ids\n    with self.assertRaises(RuntimeError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: RuntimeError not raised\n\n----------------------------------------------------------------------\nRan 9 tests in 0.026s\n\nFAILED (failures=1)\n"
+        },
+        {
+          "stage": "restored",
+          "argv": [
+            "/usr/bin/python",
+            "-B",
+            "-m",
+            "unittest",
+            "scripts.tests.test_verify",
+            "-v"
+          ],
+          "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/project-refresh-python-mutations/P4-without-bytecode-cache",
+          "started_at": "2026-10-14T05:33:28.859365+00:00",
+          "ended_at": "2026-10-14T05:33:28.954499+00:00",
+          "exit_code": 0,
+          "input_hashes": {
+            "scripts/evidence_store.py": "a05269f85ad84a7444848808c00bc2e65fb40fc0ba15b7a25b9fcda94b19546f",
+            "scripts/target-maintenance.py": "c8e675b76945e7efcc6c1d5205b0daee94906abacab2b9968b48e46fac5f3d66",
+            "scripts/verify.py": "26b2ded2f9b8ec54317055956646874fbfdad792fbd30e48512b925e39303634",
+            "scripts/tests/test_evidence_store.py": "9bd496c538a8047551174e80e3024df3676851696ad3e706acb4adc8ca4ad85e",
+            "scripts/tests/test_verify.py": "06dc5cc8d9658e6525bd575de4d385af1c8172e3a5a43faf9fe6e0f87b7fcacb"
+          },
+          "stdout": "",
+          "stderr": "test_default_test_command_enters_the_owned_run_wrapper (scripts.tests.test_verify.VerifyOutputTests.test_default_test_command_enters_the_owned_run_wrapper) ... ok\ntest_foreign_active_context_cannot_replace_another_runs_reports (scripts.tests.test_verify.VerifyOutputTests.test_foreign_active_context_cannot_replace_another_runs_reports) ... ok\ntest_foreign_or_finished_report_folder_refuses_before_running_checks (scripts.tests.test_verify.VerifyOutputTests.test_foreign_or_finished_report_folder_refuses_before_running_checks) ... ok\ntest_headroom_uses_cargo_target_and_accepts_exact_boundary (scripts.tests.test_verify.VerifyOutputTests.test_headroom_uses_cargo_target_and_accepts_exact_boundary) ... ok\ntest_inspect_report_round_trips_on_windows_legacy_console (scripts.tests.test_verify.VerifyOutputTests.test_inspect_report_round_trips_on_windows_legacy_console) ... ok\ntest_low_configured_target_refuses_even_when_project_has_space (scripts.tests.test_verify.VerifyOutputTests.test_low_configured_target_refuses_even_when_project_has_space) ... ok\ntest_low_space_refuses_before_capture_or_report_replacement (scripts.tests.test_verify.VerifyOutputTests.test_low_space_refuses_before_capture_or_report_replacement) ... ok\ntest_managed_test_attempt_keeps_native_outputs_even_on_failure (scripts.tests.test_verify.VerifyOutputTests.test_managed_test_attempt_keeps_native_outputs_even_on_failure) ... ok\ntest_spec_validation_propagates_batch_failure_without_reloading_ids (scripts.tests.test_verify.VerifyOutputTests.test_spec_validation_propagates_batch_failure_without_reloading_ids) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.026s\n\nOK\n"
+        }
+      ]
+    }
+  ]
+}

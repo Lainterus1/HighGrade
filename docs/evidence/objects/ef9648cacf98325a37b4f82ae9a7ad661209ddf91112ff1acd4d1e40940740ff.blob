@@ -1,0 +1,112 @@
+{
+  "before": {
+    "mib": 801.69,
+    "logical_mib": 864.09,
+    "physical_mib": 828.24,
+    "hardlink_duplicates_mib": 62.41,
+    "areas": {
+      ".rustc_info.json": {
+        "mib": 0.0,
+        "logical_mib": 0.0,
+        "physical_mib": 0.0,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "debug": {
+        "mib": 356.49,
+        "logical_mib": 383.16,
+        "physical_mib": 358.96,
+        "hardlink_duplicates_mib": 26.66
+      },
+      "highgrade": {
+        "mib": 0.0,
+        "logical_mib": 0.0,
+        "physical_mib": 0.0,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "highgrade/build-cache": {
+        "mib": 288.3,
+        "logical_mib": 324.04,
+        "physical_mib": 290.91,
+        "hardlink_duplicates_mib": 35.74
+      },
+      "highgrade/candidate": {
+        "mib": 7.79,
+        "logical_mib": 7.79,
+        "physical_mib": 7.88,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "highgrade/reports": {
+        "mib": 1.06,
+        "logical_mib": 1.06,
+        "physical_mib": 1.24,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "highgrade/runs": {
+        "mib": 3.25,
+        "logical_mib": 3.25,
+        "physical_mib": 3.56,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "highgrade/tmp": {
+        "mib": 96.6,
+        "logical_mib": 96.6,
+        "physical_mib": 116.89,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "highgrade/tools": {
+        "mib": 47.87,
+        "logical_mib": 47.87,
+        "physical_mib": 48.45,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "highgrade/ui-playwright": {
+        "mib": 0.07,
+        "logical_mib": 0.07,
+        "physical_mib": 0.07,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "highgrade/work": {
+        "mib": 0.0,
+        "logical_mib": 0.0,
+        "physical_mib": 0.0,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "nextest": {
+        "mib": 0.26,
+        "logical_mib": 0.26,
+        "physical_mib": 0.28,
+        "hardlink_duplicates_mib": 0.0
+      },
+      "tmp": {
+        "mib": 0.0,
+        "logical_mib": 0.0,
+        "physical_mib": 0.0,
+        "hardlink_duplicates_mib": 0.0
+      }
+    },
+    "unknown_root": [],
+    "unknown_highgrade": [],
+    "links": [],
+    "scratch": [
+      "clear-audit-plugins",
+      "clear-audit-python",
+      "hg58"
+    ]
+  },
+  "budget_mib": 600,
+  "planned": [
+    "target/highgrade/tmp/clear-audit-python",
+    "target/highgrade/tmp/clear-audit-plugins"
+  ],
+  "cargo_commands": [
+    [
+      "cargo",
+      "clean",
+      "--target-dir",
+      "/home/lainterus/Projects/High Grade/target",
+      "--profile",
+      "test"
+    ]
+  ],
+  "status": "preview"
+}

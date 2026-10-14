@@ -32,8 +32,14 @@ class EvidenceStorageTests(unittest.TestCase):
         self.assertEqual(1, len(manifest['files']))
         self.assertEqual(1, manifest['metadata']['exit_code'])
         self.assertEqual(2, len(list((self.root / m.BASE).iterdir())))
-        (self.root / manifest['files'][0]['path']).write_text('corrupt')
-        with self.assertRaisesRegex(ValueError, 'hash mismatch'): m.verify(self.root, first)
+        stored = self.root / manifest['files'][0]['path']
+        original = stored.read_bytes()
+        # A size mismatch must not mask a missing content-hash check.
+        for corrupted in (b'corrupt', original[:-1] + bytes([original[-1] ^ 1])):
+            with self.subTest(same_size=len(corrupted) == len(original)):
+                stored.write_bytes(corrupted)
+                with self.assertRaisesRegex(ValueError, 'hash mismatch'):
+                    m.verify(self.root, first)
         self.assertTrue((self.root / run / 'result.log').exists())
 
     def test_sweep_preserves_active_unknown_changed_and_unexported(self):

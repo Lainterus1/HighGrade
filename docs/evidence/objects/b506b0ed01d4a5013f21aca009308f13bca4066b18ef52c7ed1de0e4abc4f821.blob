@@ -1,0 +1,36 @@
+from pathlib import Path
+import re,json,hashlib,subprocess
+root=Path.cwd();local=root/'.highgrade/local/project-refresh-2026-10-14';found=set();edges=[];pending=['ui/src/app/main.tsx']
+while pending:
+ name=pending.pop()
+ if name in found:continue
+ found.add(name);p=root/name
+ if p.suffix not in ['.ts','.tsx']:continue
+ for module in re.findall(r'(?:from\s*|import\s*)[\'"]([^\'"]+)[\'"]',p.read_text()):
+  if module.startswith('@/'):base=root/'ui/src'/module[2:]
+  elif module.startswith('.'):base=p.parent/module
+  else:continue
+  options=[base,*[Path(str(base)+ext) for ext in ['.ts','.tsx','.css']],base/'index.ts',base/'index.tsx']
+  target=next((f for f in options if f.is_file()),None)
+  assert target is not None,(name,module)
+  target=target.resolve().relative_to(root).as_posix();edges.append([name,target]);pending.append(target)
+before=json.loads((local/'browser-final-permitted.json').read_text())['inputs_before']
+checks={name:{'current_sha256':hashlib.sha256((root/name).read_bytes()).hexdigest(),'recorded_before_browser':name in before} for name in sorted(found)}
+for name,v in checks.items():
+ if name in before:assert v['current_sha256']==before[name],name
+ else:
+  # Supplementary source dependency analysis, not a fictitious pre-run snapshot.
+  assert subprocess.check_output(['git','show','HEAD:'+name])==(root/name).read_bytes(),name
+(local/'ui-input-closure.json').write_text(json.dumps({'basis':'Static import closure of the actual UI entrypoint. Previously unlisted sources are unchanged HEAD bytes; current bundle assets were pinned in the original Nextest attempt. This is not called a retrospective pre-execution capture.','edges':edges,'inputs':checks},indent=2)+'\n')
+batch=json.loads((local/'direct-evidence-batch.json').read_text())
+for row in batch:
+ ev=row['evidence']
+ if row['id']=='HG-0061':
+  ev['inputs']=sorted(set(ev['inputs'])|found|{'ui/src/styles/theme.css','ui/tsconfig.json','ui/dist/highgrade-ui.json'})
+ if ev['scenario']=='HG-0069-S3':
+  ev['observation']='Real filesystem/owned-run regression cases passed in the 69-test original: active/unknown/new or changed scratch survives; corrupt export and interrupted recovery prevent deletion. No unknown inherited run was removed. Managed-browser guard results are recorded separately in the task report.'
+path=local/'direct-evidence-causal-batch.json';path.write_text(json.dumps(batch,ensure_ascii=False,indent=2)+'\n')
+cli=str(root/'target/debug/highgrade');listing=json.loads(subprocess.check_output([cli,'spec-list','--root',str(root)]));expected=next(m['store_sha256'] for m in listing['measurements'] if 'store_sha256' in m)
+argv=[cli,'spec-evidence-batch','--root',str(root),'--expected',expected,'--input',str(path.relative_to(root))];r=subprocess.run(argv,capture_output=True,text=True)
+(local/'direct-evidence-causal-receipt.json').write_text(json.dumps({'argv':argv,'exit_code':r.returncode,'stdout':r.stdout,'stderr':r.stderr,'ui_static_sources':len(found)},ensure_ascii=False,indent=2)+'\n')
+print('UI causal closure',len(found),'sources; evidence exit',r.returncode);assert r.returncode==0,r.stdout+r.stderr

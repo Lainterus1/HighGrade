@@ -1,0 +1,71 @@
+import assert from 'node:assert/strict';
+import {EventEmitter} from 'node:events';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import vm from 'node:vm';
+import {stripTypeScriptTypes} from 'node:module';
+
+// Evaluate the exact current helper function. No project or UI process is run.
+const path = new URL('../../../ui/tests/native-fixture.ts', import.meta.url);
+const bytes = readFileSync(path);
+const source = bytes.toString();
+const match = source.match(/ async function start\(runtime=executable\)\{[\s\S]*?(?=\r?\n async function close)/);
+assert.ok(match, 'current start function must be selected exactly');
+const functionSource = stripTypeScriptTypes(match[0].trim(),{mode:'strip'}).replace(/^async function start/, 'async function');
+const observations = [];
+
+function fixture() {
+  const child = new EventEmitter();
+  child.stdout = new EventEmitter(); child.stderr = new EventEmitter();
+  let timeout, clears = 0;
+  const start = vm.runInNewContext(`let child; (${functionSource})`, {
+    spawn: (runtime, args, options) => {
+      assert.equal(runtime, 'fixture-executable');
+      assert.deepEqual(Array.from(args), ['ui','--root','fixture-root','--no-open','true']);
+      assert.equal(options.env.PATH, ''); return child;
+    }, executable:'fixture-executable', root:'fixture-root', process:{env:{}},
+    Promise, Error, setTimeout:(callback, delay) => {assert.equal(delay,10000); timeout=callback; return 1;},
+    clearTimeout:() => {clears++;},
+  });
+  return {child, start, timeout:()=>timeout(), clears:()=>clears};
+}
+
+{
+  const f=fixture(), pending=f.start();
+  f.child.stdout.emit('data',Buffer.from('{\n  "ui_'));
+  assert.equal(f.clears(),0,'partial JSON must not settle');
+  f.child.stdout.emit('data',Buffer.from('url": "http://127.0.0.1:12345"\n}\n'));
+  assert.equal(await pending,'http://127.0.0.1:12345');
+  f.child.emit('exit',0); f.child.stdout.emit('data',Buffer.from('late data'));
+  assert.equal(f.clears(),1,'settle once and cancel timeout');
+  observations.push('split multiline success JSON resolves once');
+}
+{
+  const f=fixture(), pending=f.start();
+  f.child.stdout.emit('data',Buffer.from('{\n "status":'));
+  f.child.stdout.emit('data',Buffer.from(' "failed",\n "reason": "fixture"\n}\n'));
+  await assert.rejects(pending,/UI startup rejected:.*\{/s);
+  assert.equal(f.clears(),1); observations.push('multiline failure JSON rejects');
+}
+{
+  const f=fixture(), pending=f.start();
+  f.child.stdout.emit('data',Buffer.from('{"partial":'));
+  f.child.stderr.emit('data',Buffer.from('fixture permission denied'));
+  f.child.emit('exit',2);
+  await assert.rejects(pending,/UI exited \(2\) before startup:.*partial.*permission denied/s);
+  assert.equal(f.clears(),1); observations.push('early exit keeps stdout and stderr diagnostics');
+}
+{
+  const f=fixture(), pending=f.start();
+  f.child.emit('error',new Error('fixture ENOENT'));
+  await assert.rejects(pending,/fixture ENOENT/);
+  assert.equal(f.clears(),1); observations.push('spawn error rejects without hanging');
+}
+{
+  const f=fixture(), pending=f.start();
+  f.child.stderr.emit('data',Buffer.from('x'.repeat(20000)));
+  f.timeout();
+  await assert.rejects(pending,error=>error.message.startsWith('UI startup timeout:')&&error.message.length<16100);
+  assert.equal(f.clears(),1); observations.push('timeout rejects with bounded stderr');
+}
+console.log(JSON.stringify({source: path.pathname, source_sha256:createHash('sha256').update(bytes).digest('hex'), extracted_function_sha256:createHash('sha256').update(match[0]).digest('hex'), runtime:process.version, observations, result:'PASS'},null,2));

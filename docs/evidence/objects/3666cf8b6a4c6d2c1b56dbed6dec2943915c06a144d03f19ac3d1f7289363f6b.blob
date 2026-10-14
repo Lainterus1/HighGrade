@@ -1,0 +1,27 @@
+# HG-0076: раннее независимое ревью
+
+Текущих блокирующих дефектов в прочитанной реализации не найдено. Это предварительный вывод. Финальный Rust run и сценарии ещё проверяются.
+
+Прочитаны AGENTS.md, README, местная инструкция, HG-0076/spec.json, selected-methods.json, процедуры Clear/Planner, references review/audit/documentation/clear-batches; affected helper, global candidate/journal/retire ветки, регрессии Python и global, template AGENTS, workflow assertion diff, registry и affected architecture. Происхождение generated skills проверено через renderer; повторяемые generated тела не считались независимыми нормативами.
+
+Helper проверяет реальный subprocess, exact selection, свежий adapter report и loaded-source witness. Компиляция, SIGTERM, timeout, skip, empty selection и чужое изменение не дают detected. Восстановление проверяется после каждого mutation. Копия не является системной песочницей: adapter, команды, причинное покрытие и отсутствие внешних writes требуют содержательного ревью. Изолированная serial граница и запрет shared workers в текущей реализации соответствуют выбранному контракту.
+
+Независимые subprocess пробы: SIGTERM с assertion report получил invalid; строковый scope_complete отвергнут; повторный argv разрешён. Исходники сохранены. Оригинал independent-helper-probes.json относится к версии до последнего env-fix, поэтому не является доказательством всей финальной версии. Защиты этих трёх веток в текущем коде сохранены.
+
+Ранние замечания: comparison не разделял probes и подготовку; route превышал бюджет на 204 bytes. comparison-final.json явно разделяет 3→1 probes/outer calls и неизвестную цену authoring. inspect-final.json показывает 95583≤95600 без budget findings. Эти два замечания устранены. Старые два FAIL global fixtures сохранены как история; их нельзя называть финальным PASS.
+
+Обязательное дополнение: прочитать финальные originals Rust/scenarios, актуальные fingerprints и actual Clear exercise. Нормативное описание не подтверждает будущую автономность; локальный fixture не подтверждает Windows, все проекты или deployed acceptance. Унаследованный storage остаток, HG-0063 вне выбранного task и исключённая presentation остаются отдельно.
+
+Текущие hashes:
+
+```json
+{
+  "kit/procedures/clear.md": "a3e44e3eb9452a69680930060b6e4e3d17a17c22c9a0b3ebe4d8ae356846c452",
+  "kit/references/review.md": "647ab5b9a513171aadde4a460cbb20ad13c12ecd82fd55f98615f4c947d4e2f6",
+  "kit/references/clear-batches.md": "6730ed440d1586c9037b457cd27dcef5b215062139e0cbc008e34b2a8d2caa08",
+  "kit/tools/clear_batch.py": "40f7bd6c015181badc6fc35a7f8a827d02aa4013c1935a77b26d22487335d2d8",
+  "src/global.rs": "74a54e5ffd7d0e62b3f640ea89f87d6cf0f8970821f0129227cfa35ec5a052d9",
+  "tests/global_contracts.rs": "18fc109e06d3fb2a310920437a51cafeebb83e637940880e18c8c25a2b7f124d",
+  "scripts/tests/test_clear_batch.py": "6c831dc803eadf5955d42685041eca313d606a7509baa94cc878832d4d1d07b2"
+}
+```

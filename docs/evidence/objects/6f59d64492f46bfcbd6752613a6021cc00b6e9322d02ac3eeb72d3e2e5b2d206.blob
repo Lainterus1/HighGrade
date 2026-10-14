@@ -1,0 +1,130 @@
+[
+  {
+    "operation": "spec-list",
+    "status": "passed",
+    "findings": [],
+    "run_measurements": []
+  },
+  {
+    "operation": "spec-run",
+    "status": "passed",
+    "findings": [],
+    "run_measurements": [
+      {
+        "check": "HG-0024-C1",
+        "run": {
+          "check": "HG-0024-C1",
+          "check_sha256": "3bd7f52a0c9eec32c9adac77aa0ec524cb6d069146ef7e04302c677534674116",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--test",
+            "trace_contracts",
+            "automatic_trace_keeps_scope_and_outcomes_distinct",
+            "--",
+            "--exact"
+          ],
+          "cwd": "/home/lainterus/Projects/High Grade",
+          "duration_ms": 83,
+          "files": {
+            "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+            "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log": "a2fff11bcee30f54255e75bf3e5c77352f9f666e35a9ad60360dc308a3b89857",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/trace.rs": "7514ac5dd23bc84731ac68d9bb49d6a447aeffbe54d6a5482c572a61aecec571",
+            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+            "tests/trace_contracts.rs": "24baaef4ddbdf0b40bfcde44aca1b0365cf3009e838220a91a2fe9840eb7bdd9"
+          },
+          "inputs_after": {
+            "scripts/source-scenarios.mjs": "66a64a82c0f0311ae075bda92a4ee5dad5732d1871bfd9948600554824d21775",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/trace.rs": "7514ac5dd23bc84731ac68d9bb49d6a447aeffbe54d6a5482c572a61aecec571",
+            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+            "tests/trace_contracts.rs": "24baaef4ddbdf0b40bfcde44aca1b0365cf3009e838220a91a2fe9840eb7bdd9"
+          },
+          "observation": "Process status: Some(ExitStatus(unix_wait_status(0)))",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0024/evidence/HG-0024-C1-1791996162122256074.log",
+          "started_at": 1791996162
+        }
+      }
+    ]
+  },
+  {
+    "operation": "spec-list",
+    "status": "passed",
+    "findings": [],
+    "run_measurements": []
+  },
+  {
+    "operation": "spec-run",
+    "status": "passed",
+    "findings": [],
+    "run_measurements": [
+      {
+        "check": "HG-0076-C1",
+        "run": {
+          "check": "HG-0076-C1",
+          "check_sha256": "fbf9726b2a3e90adf124deb83ceb056055f9045864966cd8d416d9e0a96113df",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--test",
+            "global_contracts",
+            "installed_clear_helper_runs_after_candidate_sources_are_removed",
+            "--",
+            "--exact"
+          ],
+          "cwd": "/home/lainterus/Projects/High Grade",
+          "duration_ms": 2113,
+          "files": {
+            "Cargo.lock": "2eba6e0de2b5b054aa5d4b0a685da68fd64133e5d41cc6222eb0e2749bfa66ad",
+            "Cargo.toml": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+            "build.rs": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+            "kit/manifest.json": "17f3086857b988f5dfc938dec71fa3e239e0f7675b4e0537679eb71cdfce11e3",
+            "kit/references/clear-batches.md": "e7884da81debfc91d819649948c04128b59f654c970876ef4a5a76e467af5b7f",
+            "kit/tools/clear_batch.py": "02fde5ff51dfdff5607c00140620adc06fe22db6dfcea0403b021cd539c50d02",
+            "specs/changes/HG-0076/evidence/HG-0076-C1-1791996182258140850.log": "1cb0a350181fa514a50026576119f041445f8c12832dd399ed705d4c637285fc",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/global.rs": "74a54e5ffd7d0e62b3f640ea89f87d6cf0f8970821f0129227cfa35ec5a052d9",
+            "src/lib.rs": "d48544fe69585080d1288c14dca4520f7d648b889b18e1556a9e3b105f668a2b",
+            "src/main.rs": "1fe647567e5172c1d7cea4e4f84db28ab09e19cb779beb56f10e6944c545e4ce",
+            "src/package.rs": "7188f9454a074a626ee025bd042a6117f9ff2c05b970ff04e39a24bc190cc292",
+            "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+            "src/release_notes.rs": "0d6364752592e14fdf1c26ff03cc70be90f84df8173038d5085db948898fc2d0",
+            "src/ui.rs": "a0d1b091355ef6353179330fa1ef02f1edf52b5816f759f954734f1fd28e3b09",
+            "src/ui/bundle.rs": "6caa17bfae762c66f8e870cd2a35b977d349299b1a726c1399d04103b8b7df3d",
+            "tests/global_contracts.rs": "2cb7807755b68bb12ba98cc5dc6281b4eb7565c66d7f82e30cba422bb147683e",
+            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+            "ui/dist/highgrade-ui.json": "fc0a9ae5c42cb33b3bbb7bbfab1d2f02e87024c0eba2519662e4d93d03c33732"
+          },
+          "inputs_after": {
+            "Cargo.lock": "2eba6e0de2b5b054aa5d4b0a685da68fd64133e5d41cc6222eb0e2749bfa66ad",
+            "Cargo.toml": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+            "build.rs": "6cd78525443c843aeabb36db5d5c1379e129f388684b7730acbcbd50b732d3f0",
+            "kit/manifest.json": "17f3086857b988f5dfc938dec71fa3e239e0f7675b4e0537679eb71cdfce11e3",
+            "kit/references/clear-batches.md": "e7884da81debfc91d819649948c04128b59f654c970876ef4a5a76e467af5b7f",
+            "kit/tools/clear_batch.py": "02fde5ff51dfdff5607c00140620adc06fe22db6dfcea0403b021cd539c50d02",
+            "specs/runners.json": "69e06b84a78731a960966832d9ff75195a99efc0eda50349c7682df6b5c508ab",
+            "src/global.rs": "74a54e5ffd7d0e62b3f640ea89f87d6cf0f8970821f0129227cfa35ec5a052d9",
+            "src/lib.rs": "d48544fe69585080d1288c14dca4520f7d648b889b18e1556a9e3b105f668a2b",
+            "src/main.rs": "1fe647567e5172c1d7cea4e4f84db28ab09e19cb779beb56f10e6944c545e4ce",
+            "src/package.rs": "7188f9454a074a626ee025bd042a6117f9ff2c05b970ff04e39a24bc190cc292",
+            "src/paths.rs": "3c74c09b4a7742c09c0ab68ed58871b42c956b56b8408bd75e00b0991aacfb00",
+            "src/release_notes.rs": "0d6364752592e14fdf1c26ff03cc70be90f84df8173038d5085db948898fc2d0",
+            "src/ui.rs": "a0d1b091355ef6353179330fa1ef02f1edf52b5816f759f954734f1fd28e3b09",
+            "src/ui/bundle.rs": "6caa17bfae762c66f8e870cd2a35b977d349299b1a726c1399d04103b8b7df3d",
+            "tests/global_contracts.rs": "2cb7807755b68bb12ba98cc5dc6281b4eb7565c66d7f82e30cba422bb147683e",
+            "tests/support/mod.rs": "a462e687c5795d30ae1d0f15a5c15b3c2568915b42e5bfd99b87595c3f5f2156",
+            "ui/dist/highgrade-ui.json": "fc0a9ae5c42cb33b3bbb7bbfab1d2f02e87024c0eba2519662e4d93d03c33732"
+          },
+          "observation": "Process status: Some(ExitStatus(unix_wait_status(0)))",
+          "outcome": "passed",
+          "report": "specs/changes/HG-0076/evidence/HG-0076-C1-1791996182258140850.log",
+          "started_at": 1791996182
+        }
+      }
+    ]
+  }
+]

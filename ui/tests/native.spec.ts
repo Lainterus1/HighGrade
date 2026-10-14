@@ -9,12 +9,41 @@ test.beforeEach(async()=>{f=fixture();url=await f.start()});test.afterEach(async
 test('HG55 S1 S2: real catalog filters counts and empty states preserve files',async({page})=>{
  const dated=path.join(f.root,'specs/changes/HG-0005/spec.json');const datedSpec=JSON.parse(readFileSync(dated,'utf8'));datedSpec.created_at+=3600;writeFileSync(dated,JSON.stringify(datedSpec));
  const before=f.hash();await page.goto(url);await expect(page.locator('.spec-row')).toHaveCount(3);
+ const expectedProjection=f.cli('spec-ui');
+ for(const [label,key] of [['Все спецификации','all'],['Нужно решение','needs_decision'],['В работе','in_work'],['Завершены','completed']])await expect(page.getByRole('button',{name:label}).locator('.count')).toHaveText(String(key==='all'?expectedProjection.changes.length:expectedProjection.counts[key]));
  await page.getByLabel('Тема',{exact:true}).selectOption('interface');await expect(page.locator('.spec-row')).toHaveCount(1);await expect(page.locator('.spec-row')).toContainText('HG-0002');
  await page.getByLabel('Поиск по спецификациям').fill('absent');await expect(page.getByRole('status')).toContainText('Ничего не найдено');await page.getByRole('button',{name:'Сбросить фильтры'}).click();
  await page.getByRole('button',{name:'Все спецификации'}).click();await expect(page.locator('.spec-row')).toHaveCount(5);await page.getByLabel('Показать отменённые').check();await expect(page.locator('.spec-row')).toHaveCount(6);await page.locator('.spec-row').filter({hasText:'HG-0007'}).click();await expect(page.locator('.document .eyebrow')).toContainText('Отменена');await page.getByLabel('Порядок').selectOption('date');await expect(page.locator('.spec-row').first()).toContainText('HG-0005');
  await page.getByRole('button',{name:'Завершены'}).click();await expect(page.locator('.spec-row')).toContainText('HG-0004');await expect(page.getByText('Прежний формат: 1')).toBeVisible();expect(f.hash()).toEqual(before);
  for(const id of ['HG-0001','HG-0002','HG-0003']){const r=f.row(id);f.attention(id,{action:'respond',request_id:r.primary_action.id,content_sha256:r.content_sha256,decision:r.primary_action.kind==='question'?'answer':'accepted',author:'Test user',comment:'Ответ теста',verified_revision:r.primary_action.verified_revision})}
  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await page.getByRole('button',{name:'Нужно решение'}).click();await expect(page.getByRole('status').filter({hasText:'Сейчас решений не требуется'})).toBeVisible();
+});
+test('HG55 R4: changing selection cancels an obsolete background read',async({page},info)=>{
+ let release!:()=>void,reached!:()=>void,finished!:()=>void;
+ const gate=new Promise<void>(resolve=>release=resolve),started=new Promise<void>(resolve=>reached=resolve),handled=new Promise<void>(resolve=>finished=resolve);
+ await page.goto(url);await expect(page.locator('.document h1')).toHaveText('Спецификация 1');
+ await page.getByRole('button',{name:'Все спецификации'}).click();
+ f.edit('HG-0002',{goal:'Unrelated CLI edit changes the catalog snapshot'});
+ const before=f.hash();const events:{kind:string;at:number}[]=[];
+ await page.route('**/api/specs/HG-0001',async route=>{
+  events.push({kind:'poll_A_held',at:Date.now()});reached();await gate;
+  try{await route.fulfill({response:await route.fetch({timeout:5000})})}catch{/* An obsolete read may already be cancelled. */}finally{finished()}
+ });
+ try{
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await started;
+  await page.locator('.spec-row').filter({hasText:'HG-0002'}).click();
+  events.push({kind:'selected_B',at:Date.now()});
+  await expect(page.locator('.document h1')).toHaveText('Спецификация 2',{timeout:3500});
+  events.push({kind:'B_visible_before_release_A',at:Date.now()});
+  await expect(page.getByRole('alert')).toHaveCount(0);
+  expect(f.hash()).toEqual(before);
+ }finally{
+  events.push({kind:'released_A',at:Date.now()});release();await handled;
+  await expect(page.locator('.document h1')).toHaveText('Спецификация 2');
+  await expect(page.getByRole('alert')).toHaveCount(0);
+  expect(f.hash()).toEqual(before);
+  await info.attach('background-read-order',{body:JSON.stringify(events),contentType:'application/json'});
+ }
 });
 test('HG59 S3 S4: integrated history stays visible without a false work selection',async({page})=>{
  for(const id of ['HG-0001','HG-0002'])f.cli('spec-abandon','--id',id,'--expected',f.sha(),'--reason','Fixture without current work');
@@ -58,7 +87,7 @@ test('HG55 S5: one actual handoff action or quiet reading',async({page})=>{
  await page.route('**/api/specs',async route=>{const response=await route.fetch();const body=await response.json();const list=body.result??body;const row=list.changes.find((r:any)=>r.id==='HG-0003');row.primary_action.reason='Результат готов: проверьте интерфейс и примите либо верните на доработку. Проверки и версия — docs/evidence/specification-ui/handoff.md.';await route.fulfill({response,json:body})});
  await page.goto(url);for(const [id,name] of [['HG-0001','Ответить на вопрос'],['HG-0002','Согласовать требования'],['HG-0003','Изменить статус']]){await page.locator('.spec-row').filter({hasText:id}).click();await expect(page.locator('.decision').getByRole('button',{name,exact:true})).toBeEnabled();await expect(page.locator('.decision button')).toHaveCount(1)}
  await expect(page.locator('.document .eyebrow .status-badge')).toHaveCount(0);await expect(page.locator('.spec-row[aria-current="true"] .status-badge')).toHaveText('Нужно решение');await expect(page.locator('.decision>.decision-heading .source-text, .decision>div>.source-text').first()).not.toContainText('handoff.md');await page.getByRole('button',{name:'Изменить статус',exact:true}).click();await expect(page.getByRole('dialog')).not.toContainText('handoff.md');await expect(page.getByLabel('Версия проверенного результата',{exact:true})).toHaveCount(0);await expect(page.getByLabel('Статус результата',{exact:true})).toBeVisible();expect((await page.getByRole('dialog').boundingBox())!.height).toBeLessThan(520);await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);
- await expect(page.getByRole('button',{name:'Результаты проверки',exact:true})).not.toBeVisible();await expect(page.getByRole('button',{name:'Результаты проверки',exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:'Задачи',exact:true})).toHaveCount(0);await expect(page.getByText('Объявленные проверки',{exact:true})).toHaveCount(0);await expect(page.getByRole('heading',{name:'Запуски',exact:true})).toHaveCount(0);await page.getByRole('button',{name:'В работе'}).click();await page.locator('.spec-row').filter({hasText:'HG-0005'}).click();await expect(page.locator('.decision')).toHaveCount(0);await page.screenshot({path:test.info().outputPath('reading.png'),fullPage:true});
+ await expect(page.getByRole('button',{name:'Результаты проверки',exact:true})).not.toBeVisible();await expect(page.getByRole('button',{name:'Результаты проверки',exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:'Задачи',exact:true})).toHaveCount(0);await expect(page.getByText('Объявленные проверки',{exact:true})).toHaveCount(0);await expect(page.getByRole('heading',{name:'Запуски',exact:true})).toHaveCount(0);await page.getByRole('button',{name:'В работе'}).click();await page.locator('.spec-row').filter({hasText:'HG-0005'}).click();await expect(page.locator('.document h1')).toHaveText('Спецификация 5');await expect(page.getByRole('button',{name:'Обновить',exact:true})).toBeEnabled();await expect(page.locator('.decision')).toHaveCount(0);await page.screenshot({path:test.info().outputPath('reading.png'),fullPage:true});
 });
 test('HG55 S6: context restored and external CLI edit requires explicit refresh',async({page})=>{
  f.edit('HG-0005',{scope:'Длинная область\n'.repeat(80)});await page.goto(url);await page.getByRole('button',{name:'Все спецификации'}).click();await page.locator('.spec-row').filter({hasText:'HG-0005'}).click();await expect(page.locator('.document h1')).toHaveText('Спецификация 5');await page.getByRole('button',{name:'Требование 5 Добавить',exact:true}).click();await page.evaluate(()=>window.scrollTo(0,600));await page.locator('.spec-row').filter({hasText:'HG-0002'}).click();await expect(page.locator('.document h1')).toHaveText('Спецификация 2');await page.locator('.spec-row').filter({hasText:'HG-0005'}).click();await expect(page.locator('.document h1')).toHaveText('Спецификация 5');await expect(page.getByRole('button',{name:'Требование 5 Добавить',exact:true})).toHaveAttribute('aria-expanded','true');await expect.poll(()=>page.evaluate(()=>window.scrollY)).toBeGreaterThan(400);

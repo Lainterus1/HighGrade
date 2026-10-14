@@ -1,0 +1,25 @@
+GO для текущей консолидации правил и исправления owned-report alias. Блокирующих замечаний к финальным bytes нет. Это узкий вердикт; он не закрывает весь HG-0076-C2 или readiness проекта.
+
+Семь before blobs сверены по SHA256 из before.json. Planner изменил только заголовок. Полная таблица полномочий осталась в kit/procedures/planner.md:15–17. Task:51, template AGENTS:7 и local INSTRUCTIONS:29 теперь направляют к этому владельцу. Clear:15 сохраняет план/охват/продолжение в ответе для strict read-only.
+
+Clear:24 и Review:44 сохраняют смысловой аудит каждого связанного текущего требования, включая неизменённые источники. Сохранились сверка цели и соседних контрактов, owner/gap теста без ID и обязательные методы до baseline. Clear:26 и Review:65 запрещают закрывать непрочитанное требование или обязательный метод зелёной мутационной выборкой. Planner:25,27 сохраняет continuation и первый неподтверждённый шаг.
+
+Уточнение Review:56 снова действует для compatible cases. Controlled edits остаются разрешены в Review:54. Специализированный mutation tool не стал обязательной зависимостью. Сохранились точное восстановление, классификация invalid/survived/detected, проверка причинных входов reuse и отдельный учёт полного смыслового охвата.
+
+kit/tools/clear_batch.py:65 проверяет casefold имени до чтения входа и создания output. scripts/tests/test_clear_batch.py:211 проверяет три регистра имени, exit 2, отсутствие output и сохранность bytes. В helper-red-final.log старый helper пропустил два регистра; отказ произошёл по нужному assertion. helper-pass.log подтверждает ту же регрессию после исправления. Snapshot hashes связывают старый helper и текущий тест с RED, текущий helper/тест — с pre-check snapshot. Это местное исполнение, не Windows проверка.
+
+Прочитаны оригинальные отчёты: Python 82 PASS; workflow structure 4 PASS; shipped_tool_references_resolve_without_repository_files 1 PASS. Independently computed manifest hashes и renderer content совпадают. #finish-storage ссылается на существующий heading Work. Полный финальный Nextest остаётся отдельным барьером.
+
+Методы HG-0076-C2, выполненные здесь:
+
+- Полное чтение девяти выбранных scenario expectations и их контрактов.
+- Независимая сверка смысла exact before/final sources и таблицы решений.
+- Сверка единого владельца, explicit Goal authority, plan-only, response-only read-only и continuation.
+- Сверка каждого attached unchanged requirement, ранних методов, owner gaps и partial completion.
+- Чтение оригинальных RED/PASS и структурных отчётов; статическая сверка утверждений теста с исправленным preflight.
+
+Новое controlled actor exercise не выполнялось. Live Goal API не вызывался и не наблюдался этим reviewer. Предыдущие упражнения не переименованы в исполнение финальных источников. Семантический slice C2 подтверждён; весь actor-execution C2 этим отчётом не закрыт. Устойчивость исполнения моделью, Windows, exact installed E2E, activation/publication и human acceptance не подтверждены.
+
+Изменены только эти два reviewer reports. Продукт, тесты, каталог, evidence и чужое state не изменялись. Проверяющий не запускал тесты и не создавал Goal.
+
+Прочитанный route: 95,346 / 95,600 bytes; запас 254 bytes. Сумма семи нормативных источников изменилась на -1397 bytes. Это размер текста, а не доказательство экономии токенов или времени.

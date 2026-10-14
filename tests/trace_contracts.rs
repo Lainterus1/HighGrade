@@ -276,12 +276,357 @@ fn rust_requires_real_listed_passing_result() {
     let mut changed = run.clone();
     changed["report_sha256"] = json!("wrong");
     save(&root, "run.json", &changed);
-    assert_eq!(trace(&root, "run.json").unwrap().status, "failed");
+    let invalid = trace(&root, "run.json").unwrap();
+    assert_eq!(invalid.status, "failed");
+    assert!(
+        invalid
+            .measurements
+            .iter()
+            .any(|row| row["scenario_id"] == "HG-MATH-001" && row["status"] == "unknown")
+    );
+    assert!(
+        invalid
+            .measurements
+            .iter()
+            .any(|row| row["automatic_passed"] == 0)
+    );
     save(&root, "run.json", &run);
     put(&root, src, b"// changed");
     let result = trace(&root, "run.json").unwrap();
     assert!(result.findings.iter().any(|f| f["code"] == "SourceChanged"));
     assert_ne!(result.status, "passed");
+}
+
+// Additional regression for HG-0024-R1; ambiguous provenance cannot certify a scenario.
+#[test]
+fn ambiguous_rust_source_stays_unknown_after_three_suites_and_preserves_neighbor() {
+    let root = root();
+    let first = "tests/math.rs";
+    let second = "tests/other.rs";
+    let list = "evidence/list.json";
+    let report = "evidence/junit.xml";
+    put(
+        &root,
+        first,
+        b"// highgrade: HG-MATH-001\n#[test]\nfn adds() {}\n",
+    );
+    put(
+        &root,
+        second,
+        b"// highgrade: HG-MATH-002\n#[test]\nfn other() {}\n",
+    );
+    let mut inventory = rust_list(&root);
+    inventory["rust-suites"]["math-b"] = inventory["rust-suites"]["math"].clone();
+    inventory["rust-suites"]["math-c"] = inventory["rust-suites"]["math"].clone();
+    inventory["rust-suites"]["other"] = json!({"kind":"test","cwd":root.to_string_lossy(),"binary-name":"other","testcases":{"other":{"filter-match":{"status":"matches"},"ignored":false}}});
+    save(&root, list, &inventory);
+    put(&root, report, br#"<testsuites><testsuite><testcase classname="math" name="adds"/><testcase classname="math-b" name="adds"/><testcase classname="math-c" name="adds"/><testcase classname="other" name="other"/></testsuite></testsuites>"#);
+    let mut run = base(&root, "rust-nextest", first, report, Some(list));
+    let spec_path = "openspec/specs/math/spec.md";
+    let text = [spec(), b"\n#### Scenario: [HG-MATH-002] Independent result\n- WHEN observed\n- THEN valid result\n\n#### Scenario: [HG-MATH-003] Manual result\n- WHEN observed\n- THEN separate proof\n"].concat();
+    put(&root, spec_path, &text);
+    run["source_hashes"][spec_path] = json!(hash(&text));
+    run["test_sources"] = json!([first, second]);
+    run["source_hashes"][second] = json!(hash(&fs::read(root.join(second)).unwrap()));
+    save(&root, "run.json", &run);
+    let traced = trace(&root, "run.json").unwrap();
+    assert_eq!(traced.status, "failed");
+    assert!(
+        traced
+            .findings
+            .iter()
+            .any(|row| row["code"] == "RustSourceAmbiguous")
+    );
+    for (id, status) in [
+        ("HG-MATH-001", "unknown"),
+        ("HG-MATH-002", "passed"),
+        ("HG-MATH-003", "outside_automatic_trace"),
+    ] {
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == id && row["status"] == status),
+            "{id}: {traced:?}"
+        );
+    }
+    assert!(
+        traced
+            .measurements
+            .iter()
+            .any(|row| row["automatic_passed"] == 1)
+    );
+}
+
+// Additional regression for HG-0024-R1; the declared selector remains unchanged.
+#[test]
+fn duplicate_rust_results_preserve_independent_outcomes_and_raw_counts() {
+    for (first, second) in [("<failure/>", ""), ("", "<failure/>")] {
+        let root = root();
+        let src = "tests/math.rs";
+        let list = "evidence/list.json";
+        let report = "evidence/junit.xml";
+        put(&root, src, b"// highgrade: HG-MATH-001\n#[test]\nfn adds() {}\n// highgrade: HG-MATH-002\n#[test]\nfn other() {}\n");
+        let mut inventory = rust_list(&root);
+        inventory["rust-suites"]["math"]["testcases"]["other"] =
+            json!({"filter-match":{"status":"matches"},"ignored":false});
+        save(&root, list, &inventory);
+        put(&root, report, format!("<testsuites><testsuite><testcase classname=\"math\" name=\"adds\">{first}</testcase><testcase classname=\"math\" name=\"adds\">{second}</testcase><testcase classname=\"math\" name=\"other\"/></testsuite></testsuites>").as_bytes());
+        let mut run = base(&root, "rust-nextest", src, report, Some(list));
+        let text = [spec(), b"\n#### Scenario: [HG-MATH-002] Independent result\n- WHEN observed\n- THEN valid result\n"].concat();
+        put(&root, "openspec/specs/math/spec.md", &text);
+        run["source_hashes"]["openspec/specs/math/spec.md"] = json!(hash(&text));
+        save(&root, "run.json", &run);
+        let traced = trace(&root, "run.json").unwrap();
+        assert_eq!(traced.status, "failed");
+        assert!(
+            traced
+                .findings
+                .iter()
+                .any(|row| row["code"] == "DuplicateTestResult")
+        );
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == "HG-MATH-001" && row["status"] == "unknown")
+        );
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == "HG-MATH-002" && row["status"] == "passed")
+        );
+        let counts = traced
+            .measurements
+            .iter()
+            .find(|row| row.get("test_cases_reported").is_some())
+            .unwrap();
+        assert_eq!(counts["test_cases_reported"], 3);
+        assert_eq!(counts["test_cases_executed"], 3);
+        assert_eq!(counts["linked_test_cases"], 2);
+        assert_eq!(counts["unlinked_test_cases"], 0);
+        assert_eq!(counts["automatic_passed"], 1);
+    }
+}
+
+#[test]
+fn unverified_rust_provenance_does_not_confirm_neighboring_scenarios() {
+    for (case, independent_passes) in [
+        ("test-source", true),
+        ("inventory", false),
+        ("spec-source", true),
+        ("unlisted", true),
+    ] {
+        let root = root();
+        let first = "tests/math.rs";
+        let second = "tests/other.rs";
+        let list = "evidence/list.json";
+        let report = "evidence/junit.xml";
+        put(
+            &root,
+            first,
+            b"// highgrade: HG-MATH-001\n#[test]\nfn adds() {}\n",
+        );
+        put(
+            &root,
+            second,
+            b"// highgrade: HG-MATH-002\n#[test]\nfn other() {}\n",
+        );
+        let mut inventory = rust_list(&root);
+        inventory["rust-suites"]["other"] = json!({"kind":"test","cwd":root.to_string_lossy(),"binary-name":"other","testcases":{"other":{"filter-match":{"status":"matches"},"ignored":false}}});
+        if case == "unlisted" {
+            inventory["rust-suites"]["math"]["testcases"]["adds"]["filter-match"]["status"] =
+                json!("mismatch");
+        }
+        save(&root, list, &inventory);
+        put(&root, report, br#"<testsuites><testsuite><testcase classname="math" name="adds"/><testcase classname="other" name="other"/></testsuite></testsuites>"#);
+        let mut run = base(&root, "rust-nextest", first, report, Some(list));
+        let spec_path = "openspec/specs/math/spec.md";
+        let text = [spec(), b"\n#### Scenario: [HG-MATH-003] Manual result\n- WHEN observed\n- THEN separate proof\n"].concat();
+        let second_owner = "openspec/specs/other/spec.md";
+        let independent = b"### Requirement: [HG-OTHER-REQ] Independent rule\nThe independent rule remains.\n\n#### Scenario: [HG-MATH-002] Independent result\n- WHEN observed\n- THEN valid result\n";
+        put(&root, second_owner, independent);
+        run["spec_files"]
+            .as_array_mut()
+            .unwrap()
+            .push(json!(second_owner));
+        run["source_hashes"][second_owner] = json!(hash(independent));
+        put(&root, spec_path, &text);
+        run["source_hashes"][spec_path] = json!(hash(&text));
+        run["test_sources"] = json!([first, second]);
+        run["source_hashes"][second] = json!(hash(&fs::read(root.join(second)).unwrap()));
+        let unpinned = match case {
+            "test-source" => Some(first),
+            "inventory" => Some(list),
+            "spec-source" => Some(spec_path),
+            _ => None,
+        };
+        if let Some(path) = unpinned {
+            run["source_hashes"].as_object_mut().unwrap().remove(path);
+        }
+        save(&root, "run.json", &run);
+        let traced = trace(&root, "run.json").unwrap();
+        assert_ne!(traced.status, "passed", "{case}: {traced:?}");
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == "HG-MATH-001" && row["status"] == "unknown"),
+            "{case}: {traced:?}"
+        );
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == "HG-MATH-002"
+                    && row["status"]
+                        == if independent_passes {
+                            "passed"
+                        } else {
+                            "unknown"
+                        }),
+            "{case}: {traced:?}"
+        );
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == "HG-MATH-003"
+                    && row["status"] == "outside_automatic_trace")
+        );
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["automatic_passed"] == usize::from(independent_passes))
+        );
+    }
+}
+
+#[test]
+fn ambiguous_playwright_results_retain_all_annotations_and_raw_cases() {
+    for (first_outcome, second_outcome) in [("failed", "passed"), ("passed", "failed")] {
+        let root = root();
+        let source = "tests/math.spec.ts";
+        let report = "evidence/pw.json";
+        put(&root, source, b"test('fixture trace source');");
+        let observed = |id: &str, scenario: &str, outcome: &str| json!({"id":id,"file":source,"tests":[{"projectName":"chromium","expectedStatus":"passed","status":if outcome == "passed" {"expected"} else {"unexpected"},"annotations":[{"type":"highgrade","description":scenario}],"results":[{"status":outcome}]}]});
+        save(
+            &root,
+            report,
+            &json!({"config":{"rootDir":root.to_string_lossy()},"suites":[{"specs":[observed("duplicate", "HG-MATH-001", first_outcome),observed("duplicate", "HG-MATH-002", second_outcome),observed("independent", "HG-MATH-003", "passed")]}]}),
+        );
+        let mut run = base(&root, "playwright", source, report, None);
+        let spec_path = "openspec/specs/math/spec.md";
+        let text = [spec(), b"\n#### Scenario: [HG-MATH-002] Second annotation\n- WHEN observed\n- THEN unconfirmed\n\n#### Scenario: [HG-MATH-003] Independent result\n- WHEN observed\n- THEN valid result\n"].concat();
+        put(&root, spec_path, &text);
+        run["source_hashes"][spec_path] = json!(hash(&text));
+        save(&root, "run.json", &run);
+        let traced = trace(&root, "run.json").unwrap();
+        assert_eq!(traced.status, "failed");
+        for scenario in ["HG-MATH-001", "HG-MATH-002"] {
+            assert!(
+                traced
+                    .measurements
+                    .iter()
+                    .any(|row| row["scenario_id"] == scenario && row["status"] == "unknown"),
+                "{traced:?}"
+            );
+        }
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == "HG-MATH-003" && row["status"] == "passed")
+        );
+        let counts = traced
+            .measurements
+            .iter()
+            .find(|row| row.get("test_cases_reported").is_some())
+            .unwrap();
+        assert_eq!(counts["test_cases_reported"], 3);
+        assert_eq!(counts["test_cases_executed"], 3);
+        assert_eq!(counts["linked_test_cases"], 2);
+        assert_eq!(counts["unlinked_test_cases"], 0);
+        assert_eq!(counts["automatic_passed"], 1);
+    }
+}
+
+#[test]
+fn invalid_playwright_report_and_source_preserve_only_verified_results() {
+    for (case, independent_passes) in [
+        ("unselected-source", true),
+        ("unpinned-source", true),
+        ("report-hash", false),
+        ("run-error", false),
+    ] {
+        let root = root();
+        let first = "tests/math.spec.ts";
+        let second = "tests/other.spec.ts";
+        let report = "evidence/pw.json";
+        put(&root, first, b"test('first source');");
+        put(&root, second, b"test('independent source');");
+        let observed = |id: &str, file: &str, scenario: &str| json!({"id":id,"file":file,"tests":[{"projectName":"chromium","expectedStatus":"passed","status":"expected","annotations":[{"type":"highgrade","description":scenario}],"results":[{"status":"passed"}]}]});
+        let mut native = json!({"config":{"rootDir":root.to_string_lossy()},"suites":[{"specs":[observed("first",first,"HG-MATH-001"),observed("second",second,"HG-MATH-002")]}]});
+        if case == "run-error" {
+            native["errors"] = json!([{"message":"Runner setup failed"}]);
+        }
+        save(&root, report, &native);
+        let mut run = base(&root, "playwright", first, report, None);
+        let spec_path = "openspec/specs/math/spec.md";
+        let text = [spec(), b"\n#### Scenario: [HG-MATH-002] Independent result\n- WHEN observed\n- THEN valid result\n\n#### Scenario: [HG-MATH-003] Manual result\n- WHEN observed\n- THEN separate proof\n"].concat();
+        put(&root, spec_path, &text);
+        run["source_hashes"][spec_path] = json!(hash(&text));
+        run["test_sources"] = if case == "unselected-source" {
+            json!([second])
+        } else {
+            json!([first, second])
+        };
+        run["source_hashes"][second] = json!(hash(&fs::read(root.join(second)).unwrap()));
+        if case == "unpinned-source" {
+            run["source_hashes"].as_object_mut().unwrap().remove(first);
+        }
+        if case == "report-hash" {
+            run["report_sha256"] = json!("wrong");
+        }
+        save(&root, "run.json", &run);
+        let traced = trace(&root, "run.json").unwrap();
+        assert_ne!(traced.status, "passed", "{case}: {traced:?}");
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == "HG-MATH-001" && row["status"] == "unknown"),
+            "{case}: {traced:?}"
+        );
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == "HG-MATH-002"
+                    && row["status"]
+                        == if independent_passes {
+                            "passed"
+                        } else {
+                            "unknown"
+                        }),
+            "{case}: {traced:?}"
+        );
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["scenario_id"] == "HG-MATH-003"
+                    && row["status"] == "outside_automatic_trace")
+        );
+        assert!(
+            traced
+                .measurements
+                .iter()
+                .any(|row| row["automatic_passed"] == usize::from(independent_passes))
+        );
+    }
 }
 // highgrade: HG-0024-S1, HG-0024-S2, HG-0024-S3
 #[test]
@@ -668,4 +1013,38 @@ fn native_reports_remain_readable_after_checkout_moves() {
             "{tool}"
         );
     }
+}
+
+#[test]
+fn playwright_retries_are_attempts_of_one_reported_case() {
+    let root = root();
+    let source = "tests/math.spec.ts";
+    let report = "evidence/pw.json";
+    put(&root, source, b"test('retry fixture');");
+    save(
+        &root,
+        report,
+        &json!({"config":{"rootDir":root.to_string_lossy()},"suites":[{"specs":[{"id":"retry","file":source,"tests":[{"projectName":"chromium","expectedStatus":"passed","status":"flaky","annotations":[{"type":"highgrade","description":"HG-MATH-001"}],"results":[{"status":"failed"},{"status":"passed"}]}]}]}]}),
+    );
+    save(
+        &root,
+        "run.json",
+        &base(&root, "playwright", source, report, None),
+    );
+    let traced = trace(&root, "run.json").unwrap();
+    assert!(
+        traced
+            .measurements
+            .iter()
+            .any(|row| row["scenario_id"] == "HG-MATH-001" && row["status"] == "failed")
+    );
+    let counts = traced
+        .measurements
+        .iter()
+        .find(|row| row.get("test_cases_reported").is_some())
+        .unwrap();
+    assert_eq!(counts["test_cases_reported"], 1);
+    assert_eq!(counts["test_cases_executed"], 1);
+    assert_eq!(counts["linked_test_cases"], 1);
+    assert_eq!(counts["automatic_passed"], 0);
 }

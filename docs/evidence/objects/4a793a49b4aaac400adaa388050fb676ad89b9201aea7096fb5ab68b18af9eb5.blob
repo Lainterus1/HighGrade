@@ -1,0 +1,113 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: poll-repro.spec.ts >> HG55 R4: selection B finishes before an obsolete background poll A is released
+- Location: ../.highgrade/local/clear-audit-2026-10-14/poll-repro.spec.ts:6:1
+
+# Error details
+
+```
+Test timeout of 60000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - complementary "Навигация проекта" [ref=e4]:
+    - img "HighGrade" [ref=e6]
+    - generic [ref=e7]:
+      - generic [ref=e8]: native-ui-8uMhrk
+      - generic [ref=e11]:
+        - textbox "Поиск по спецификациям" [ref=e15]:
+          - /placeholder: Поиск по спекам
+        - generic [ref=e16]: Ctrl K
+    - navigation "Категории спецификаций" [ref=e17]:
+      - button "Все спецификации 6" [ref=e18] [cursor=pointer]:
+        - text: Все спецификации
+        - generic [ref=e23]: "6"
+      - button "Нужно решение 3" [pressed] [ref=e24] [cursor=pointer]:
+        - text: Нужно решение
+        - generic [ref=e28]: "3"
+      - button "В работе 1" [ref=e29] [cursor=pointer]:
+        - text: В работе
+        - generic [ref=e33]: "1"
+      - button "Завершены 1" [ref=e34] [cursor=pointer]:
+        - text: Завершены
+        - generic [ref=e38]: "1"
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - text: Тема
+        - combobox "Тема" [ref=e41]:
+          - option "Все темы" [selected]
+          - option "interface"
+      - generic [ref=e42]:
+        - text: Порядок
+        - combobox "Порядок" [ref=e43]:
+          - option "По вниманию" [selected]
+          - option "Сначала новые"
+    - generic [ref=e44]:
+      - button "HG-0001 Спецификация 1 Нужно решение" [ref=e45] [cursor=pointer]:
+        - text: HG-0001
+        - generic [ref=e46]: Спецификация 1
+        - generic [ref=e47]: Нужно решение
+      - button "HG-0002 Спецификация 2 Нужно решение" [ref=e48] [cursor=pointer]:
+        - text: HG-0002
+        - generic [ref=e49]: Спецификация 2
+        - generic [ref=e50]: Нужно решение
+      - button "HG-0003 Спецификация 3 Нужно решение" [ref=e51] [cursor=pointer]:
+        - text: HG-0003
+        - generic [ref=e52]: Спецификация 3
+        - generic [ref=e53]: Нужно решение
+    - group [ref=e54]:
+      - 'generic "Прежний формат: 1" [ref=e55]'
+    - paragraph [ref=e57]: /home/lainterus/Projects/High Grade/target/highgrade/tmp/native-ui-8uMhrk
+  - separator "Ширина списка спецификаций" [ref=e58]
+  - main [ref=e59]:
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - generic [ref=e62]: Спецификации
+        - generic [aria-hidden] [ref=e63]: /
+        - generic [ref=e64]: HG-0001
+      - generic [ref=e65]:
+        - button "Обновить" [ref=e66] [cursor=pointer]
+        - button "Редактировать" [ref=e67] [cursor=pointer]
+    - article [ref=e68]:
+      - generic [ref=e69]: HG-0001
+      - heading "Спецификация 1" [level=1] [ref=e71]
+      - region "Ожидаемое решение" [ref=e72]:
+        - generic [ref=e73]:
+          - heading "Нужно ваше решение" [level=2] [ref=e74]
+          - paragraph [ref=e75]: Как сохранить правки?
+        - button "Ответить на вопрос" [ref=e76] [cursor=pointer]
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - heading "Цель" [level=2] [ref=e80]
+            - 'button "Изменить: Цель" [ref=e81] [cursor=pointer]': Изменить
+          - paragraph [ref=e82]: Цель 1
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - heading "Что изменится" [level=2] [ref=e85]
+            - 'button "Изменить: Требования" [ref=e86] [cursor=pointer]': Изменить
+          - heading [level=3] [ref=e89]:
+            - button "Требование 1 Добавить" [ref=e90] [cursor=pointer]:
+              - generic [ref=e91]:
+                - generic [ref=e92]: Требование 1
+                - img "Добавить" [ref=e93]
+        - generic [ref=e95]:
+          - generic [ref=e96]:
+            - heading "Границы и ограничения" [level=2] [ref=e97]
+            - 'button "Изменить: Границы" [ref=e98] [cursor=pointer]': Изменить
+          - paragraph [ref=e99]: Только текущий проект
+        - generic [ref=e100]:
+          - heading "Готово, когда" [level=2] [ref=e101]
+          - list [ref=e102]:
+            - listitem [ref=e103]:
+              - paragraph [ref=e104]: Все поля видны
+```

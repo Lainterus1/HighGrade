@@ -1,0 +1,23 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import subprocess,hashlib,json,shutil,difflib,sys,os
+ROOT=Path.cwd(); LOCAL=ROOT/'.highgrade/local/project-refresh-2026-10-14'; SCRATCH=ROOT/'target/highgrade/tmp/project-refresh-python-mutations'
+files=['scripts/evidence_store.py','scripts/target-maintenance.py','scripts/verify.py','scripts/tests/test_evidence_store.py','scripts/tests/test_verify.py']
+selections=[('P1-strengthened','scripts/evidence_store.py',"if len(content) != item['bytes'] or digest(content) != sha:","if len(content) != item['bytes']:",'scripts.tests.test_evidence_store'),('P4-without-bytecode-cache','scripts/verify.py',"if validation['status'] != 'passed':","if validation['status'] == 'failed':",'scripts.tests.test_verify')]
+report={'source_revision':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'controls':'Fresh isolated source directories; Python -B and PYTHONDONTWRITEBYTECODE=1 from baseline onwards; no stale pyc can mask equal-size mutations','runs':[],'initial_P4_classification':'invalid execution observation: equal-size rapid rewrite could reuse original pyc; not a survived violation','mutations':[]}
+for name,path,before,after,module in selections:
+ base=SCRATCH/name; assert not base.exists(); base.mkdir()
+ for f in files:
+  dst=base/f;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/f,dst)
+ original=(base/path).read_text();assert original.count(before)==1
+ runs=[]
+ for stage in ['baseline','mutant','restored']:
+  (base/path).write_text(original.replace(before,after) if stage=='mutant' else original)
+  argv=[sys.executable,'-B','-m','unittest',module,'-v'];start=datetime.now(timezone.utc).isoformat()
+  r=subprocess.run(argv,cwd=base,capture_output=True,text=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+  assert not list(base.rglob('__pycache__'))
+  runs.append({'stage':stage,'argv':argv,'cwd':str(base),'started_at':start,'ended_at':datetime.now(timezone.utc).isoformat(),'exit_code':r.returncode,'input_hashes':{f:hashlib.sha256((base/f).read_bytes()).hexdigest() for f in files},'stdout':r.stdout,'stderr':r.stderr})
+ assert [r['exit_code'] for r in runs]==[0,1,0],name
+ report['mutations'].append({'id':name,'mutation_diff':''.join(difflib.unified_diff(original.splitlines(True),original.replace(before,after).splitlines(True),fromfile=path,tofile=path)),'classification':'detected; relevant assertion failure','runs':runs})
+ (LOCAL/'python-mutations-final.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+ print(json.dumps({'id':name,'outcomes':[r['exit_code'] for r in runs],'mutation_failure_tail':runs[1]['stderr'][-1500:]},ensure_ascii=False),flush=True)

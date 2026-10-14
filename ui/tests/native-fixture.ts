@@ -34,7 +34,22 @@ export function fixture(executable=exe){
  const old=path.join(root,'specs/changes/HG-0006/spec.json');const v=JSON.parse(readFileSync(old,'utf8'));delete v.scoped_baseline;writeFileSync(old,JSON.stringify(v));
  function hash(){const files:Record<string,string>={};const walk=(folder:string)=>{for(const e of readdirSync(folder,{withFileTypes:true})){const p=path.join(folder,e.name);if(e.isDirectory())walk(p);else files[path.relative(root,p)]=createHash('sha256').update(readFileSync(p)).digest('hex')}};walk(path.join(root,'specs'));return files}
  let child:ChildProcess|undefined;
- async function start(runtime=executable){child=spawn(runtime,['ui','--root',root,'--no-open','true'],{env:{...process.env,PATH:''},stdio:['ignore','pipe','pipe'],windowsHide:true});return await new Promise<string>((resolve,reject)=>{child!.stdout!.once('data',d=>{const result=JSON.parse(String(d).split('\n')[0]);if(result.ui_url)resolve(result.ui_url);else reject(Error(JSON.stringify(result)))});child!.once('error',reject)})}
+ async function start(runtime=executable){
+  child=spawn(runtime,['ui','--root',root,'--no-open','true'],{env:{...process.env,PATH:''},stdio:['ignore','pipe','pipe'],windowsHide:true});
+  return await new Promise<string>((resolve,reject)=>{
+   let output='',errors='',settled=false;
+   const finish=(error?:Error,url?:string)=>{if(settled)return;settled=true;clearTimeout(timer);error?reject(error):resolve(url!)};
+   const timer=setTimeout(()=>finish(Error(`UI startup timeout: ${output} ${errors}`)),10000);
+   child!.stderr!.on('data',data=>{errors=(errors+String(data)).slice(-16000)});
+   child!.stdout!.on('data',data=>{
+    if(settled)return;output+=String(data);
+    let result;try{result=JSON.parse(output)}catch{return}
+    if(result.ui_url)finish(undefined,result.ui_url);else finish(Error(`UI startup rejected: ${output}`));
+   });
+   child!.once('error',error=>finish(error));
+   child!.once('exit',code=>finish(Error(`UI exited (${code}) before startup: ${output} ${errors}`)));
+  });
+ }
  async function close(){if(child&&child.exitCode===null){child.kill();await new Promise(resolve=>child!.once('exit',resolve))}if(path.dirname(root)!==parent)throw Error('unsafe fixture cleanup');rmSync(root,{recursive:true,force:true})}
  return {root,cli,sha,edit,row,handoff,attention,ready,hash,start,close};
 }

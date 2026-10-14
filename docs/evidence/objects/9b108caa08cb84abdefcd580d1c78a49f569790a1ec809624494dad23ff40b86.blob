@@ -1,0 +1,18 @@
+[
+  {
+    "id": "HG-0002",
+    "argv": [
+      "/home/lainterus/Projects/High Grade/target/debug/highgrade",
+      "spec-run-import",
+      "--root",
+      "/home/lainterus/Projects/High Grade",
+      "--expected",
+      "96ba771c1f0569a611c9273fc62081e60840b5ed6f39f870bc29cada1d2a5f14",
+      "--input",
+      ".highgrade/local/project-refresh-2026-10-14/import-HG-0002.json"
+    ],
+    "exit_code": 1,
+    "stdout": "{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [\n    {\n      \"code\": \"OperationFailed\",\n      \"location\": \"arguments-or-input\",\n      \"message\": \"ReportImportRequiresJUnit\",\n      \"status\": \"failed\"\n    }\n  ],\n  \"limitations\": [],\n  \"measurements\": [\n    {\n      \"input_schema\": \"highgrade spec-schema --root PATH\",\n      \"next\": \"highgrade <command> --help\"\n    }\n  ],\n  \"operation\": \"error\",\n  \"result\": {\n    \"input_schema\": \"highgrade spec-schema --root PATH\",\n    \"next\": \"highgrade <command> --help\"\n  },\n  \"status\": \"failed\"\n}\n",
+    "stderr": ""
+  }
+]

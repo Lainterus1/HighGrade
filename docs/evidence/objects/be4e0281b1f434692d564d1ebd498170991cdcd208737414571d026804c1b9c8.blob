@@ -1,0 +1,103 @@
+# Независимое ревью исходных плагинов
+
+Дата: 2026-10-14. Исполнитель: `clear_forward`. Область: репозиторные SVG Vectorizer и Code Health Audit. Навыки этих плагинов прочитаны как исходные документы; они не вызваны для аудита High Grade или иных проектов. Исполнитель не изменял tracked исходники. Основной агент изменил два тестовых файла CHA; исполнитель синхронизировал только эти файлы в собственной временной копии после точного поручения.
+
+## Итоговая сверка после исправлений
+
+**REVIEW_GO для выбранных локальных docs/tests плагинов.** P1, P2 и P3 закрыты указанными далее исходными данными. Production runtime и pins сохранены. Это не GO для валидации Linux runtime CHA, обновления установленных копий, публикации или приёмки. P4 — отдельный подтверждённый dependency remainder, без доказанной достижимости через raster CLI.
+
+Основной агент добавил пакетную команду в CHA `references/toolchain.md`. Итоговый файл перечитан; точная команда `-B -m unittest discover -s skills/code-health-audit/scripts/tests -v` и unsupported-runtime граница соответствуют реализации. Его SHA-256: `50cd7a88a31fff1f0d1804b25a3896fc752320eb05c74659bf9d8d2d7f92fa36`.
+
+Основной агент добавил один содержательный SVG test с controlled optimizer. RGB изменение +2 допускается, +3 вызывает отказ; реальные resvg, production bridge comparison и atomic output остаются в работе. Тест проверяет сохранение existing output и отсутствие нового output parent. Итоговый test SHA-256: `d593b747861bd7e8604b0929dce39cb912110a02ba39e5fb2814dc6dbf5d9286`. `svg-unit-strengthened`: 34 tests PASS, 0 skip, 10.609 s.
+
+Проведённая основным агентом изолированная мутация S1 `if (maxDifference > 2)` → `if (false)` проверена исполнителем по оригинальным argv, source/test hashes и byte streams:
+
+| Оригинальный запуск | Результат |
+|---|---|
+| `svg-mutation-old-baseline` | 33 tests PASS, 10.334 s; исходная защита |
+| `svg-mutation-old-survivor` | 33 tests PASS, 11.136 s; старая suite пережила реальное отключение защиты |
+| `svg-mutation-strengthened-detected` | 34 tests / 1 FAIL, 11.073 s; `VectorizeError not raised` для +3/255 |
+| `svg-mutation-restored` | 34 tests PASS, 10.407 s; защита восстановлена |
+
+Исходный/восстановленный bridge SHA-256 `e2ef71388bfb9b37c543077e9769168882828b5b7330eff6c088db4ff3ec4714`; mutant `ceb7e89fd5d418d2f4abd1d39b1b2a7312cccdc6862fa6f0e7518842761a3cb5`. Восстановленная source copy совпадает с tracked source; финальный test совпадает с tracked test. Данные: `svg-mutation-results.json`, `plugin-checks/svg-mutation-independent-verification.json` и четыре `svg-mutation-*.{json,stdout,stderr}`. Исполнитель не запускал саму мутацию; он независимо прочитал и проверил первичные результаты основного агента.
+
+Далее сохранены первоначальные выводы и диагнозы. Формулировки «открыто» в P2/P3 относятся к начальному состоянию, а не к итоговому GO.
+
+## Выводы по областям
+
+- **SVG Vectorizer:** штатные 33 теста, smoke и установленная CLI-конвертация PASS в указанной ниже Linux-среде. Документированные параметры и pipeline соответствуют реализации. Открыт пробел отрицательных тестов защиты от повреждения при SVGO (P3). npm подтвердил отдельное сообщение о транзитивной уязвимости (P4). Проверки не подтверждают художественную эквивалентность всех растров, регистрацию Codex или установленную копию плагина.
+- **Code Health Audit:** исходный набор имел пять непереносимых ожиданий после исправления изоляции Git. После правки двух тестовых файлов основным агентом полный набор **59/59 PASS, 0 skip**. Проверки требуют `validated=false`, `INCOMPLETE`, exit 2 и одну точную причину `RUNTIME_UNVERIFIED` на текущей среде. Это **не валидация Linux runtime релиза**. Production runtime, toolchain и pins не менялись.
+- Это отдельное ревью плагинов. Финальный GO по UI не выдан этим отчётом. Commit, activation, push и приёмка не выполнялись.
+
+## Среда и исходные результаты
+
+Собственная копия: `target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/{svg,audit}`. Marker: `owner=clear_forward-plugin-package-review-v1`. Отдельный `.venv` для каждого пакета. Python — bundled CPython **3.12.14**, Linux x86_64, ядро `7.2.5-3-omarchy`, glibc 2.44. Node **26.8.2**, npm **11.19.1**. Изменений production deps или installed plugins нет.
+
+SVG: VTracer `1.0.0a4`, Pillow `12.3.0`, SVGO `4.1.0`, resvg-js `2.6.2`. CHA: все 20 exact pins из канонического `toolchain.json` получены в отдельном venv. `pip check` обоих venv PASS. `npm ls --all` SVG PASS; отсутствующие optional binaries относятся к другим платформам.
+
+| Оригинальный запуск | Результат | Причинные входы |
+|---|---|---|
+| `svg-unit` | 33 tests / PASS / 0 skip, 11.737 s | Исходная копия SVG; реальные VTracer/SVGO/resvg |
+| `svg-smoke` | PASS | Тот же pipeline; отверстие alpha=0 и частичная непрозрачность |
+| `svg-cli-help`, `svg-cli-convert-correct-input` | exit 0 | Editable install в собственной копии; реальная CLI |
+| `audit-unit` | 59 tests / 8 FAIL / 0 skip, 21.795 s | Исходные тесты; fixtures наследовали внешний Git |
+| `audit-unit-ceiling` | 59 tests / 5 FAIL / 0 skip, 22.230 s | Только исправление среды `GIT_CEILING_DIRECTORIES=<owned scratch>` |
+| `audit-unit-updated` | 59 tests / PASS / 0 skip, 20.357 s | Только два обновлённых tests; та же изолированная среда и pins |
+| `svg-npm-audit-network` | exit 1, 1 high vulnerability | Первичный npm audit JSON; lock и pins не изменены |
+
+Точные argv, cwd, даты, source SHA-256, runtime и byte streams находятся в `plugin-checks/<name>.json`, `.stdout`, `.stderr`. Полные исходные версии двух изменённых тестов сохранены как `before-test_*.py`; проверенные версии — `after-test_*.py`. `audit-test-sync.json` содержит before/after hashes и проверку неизменности production runtime/pins.
+
+## Причины исходных восьми FAIL
+
+| Тест | Проверенный механизм отказа | Классификация и минимальное исправление |
+|---|---|---|
+| `test_failure_report_uses_effective_snapshot_policy` | Ожидал exit 3, получил 2: non-Git fixture внутри ignored `target/` обнаружил внешний `.git`, потерял Python scope | Ошибка первоначальной среды исполнителя. В повторе с Git ceiling PASS. Production source fix не требуется |
+| `test_non_git_policy_can_include_build_and_snapshot_new_files` | `['build/m.py']` превратился в `[]` из-за внешнего Git | Та же ошибка среды; повтор PASS |
+| `test_scope_and_configured_test_paths` | `['checks/contract.py','src/a.py']` превратился в `[]` | Та же ошибка среды; повтор PASS |
+| `test_active_dependency_closure_is_fully_pinned` | Linux marker исключил colorama из активного closure; тест сравнивал его с полным Windows pin-set | Ошибка тестового ожидания. Каждый активный dependency должен иметь exact reviewed pin; полный declared set остаётся установлен и равен requirements |
+| `test_preflight_reports_runtime_scope_without_changing_repository` | Ожидал ready/exit 0, фактически ready=false/exit 2 при одной точной причине неподдержанного runtime | Переносимые условные ожидания; scope и snapshot assertions сохранены |
+| `test_diff_real_changed_line_coverage_and_stable_digest` | Ожидал COMPLETE/exit 0, получил INCOMPLETE/exit 2 | Та же runtime граница; реальные line coverage, отсутствие branch coverage в diff и стабильный digest должны проверяться в обеих ветках |
+| `test_touch_without_content_change_keeps_observed_coverage_valid` | Ожидал COMPLETE/exit 0, получил INCOMPLETE/exit 2 | Та же граница; unchanged-content provenance остаётся действительным. Новая проверка также требует line coverage=100 и отсутствия provenance error |
+| `test_observed_capture_and_repeat_audit` | Ожидал HEALTHY/exit 0, получил INCOMPLETE/exit 2, health=OK | Та же граница; итоговый verdict остаётся INCOMPLETE и digest стабилен |
+
+Первые три результата не переименованы в дефекты пакета и не удалены. Четыре runtime отказа не обходились добавлением Linux в `tested_runtimes` или подменой production `runtime_evidence`. В проверенных новых тестах Windows branch по-прежнему требует COMPLETE/HEALTHY. Фактического исполнения этой ветки здесь нет.
+
+## Расхождения и слабые ожидания
+
+**P1 — переносимые ожидания CHA, устранено в проверенных тестах.** `test_workflows.py` теперь сравнивает результат с независимо вычисленным наличием реального runtime в каноническом `tested_runtimes`. Unsupported branch допускает ровно одну строку platform problem и ровно один error `RUNTIME_UNVERIFIED`. Иные analyzer/coverage ошибки не проходят под видом ожидаемого runtime отказа. `test_preflight.py` сохраняет scope и read-only snapshots, diff coverage/digest, missing-base и provenance negatives. Closure проверяет активный subset, exact версии всего declared set и равенство requirements. Production pins и authority сохранены.
+
+**P2 — нет действующей команды package tests CHA в документации, на момент чтения открыто.** `plugins/README.md` и `docs/DEVELOPMENT.md` ведут на Skill; Skill/toolchain описывают аудит пользовательского проекта и pins, но не команду собственных regression tests. Штатная команда из корня пакета: `<explicit pinned python> -m unittest discover -s skills/code-health-audit/scripts/tests -v`. Документация должна указать, что unit PASS на ином runtime не сертифицирует runtime релиза. SVG аналогичную команду документирует. Основной агент сообщил, что добавит команду в toolchain reference; это требует отдельного перечитывания итогового файла.
+
+**P3 — нет отрицательного теста SVGO render-change guard.** README требует отказ при изменении любого RGBA канала более чем на 2/255. `scripts/svg_tools.mjs` выполняет реальное сравнение и отказ `maxDifference > 2`. Все штатные успехи проходят эту проверку; тест повреждённой оптимизации отсутствует. Это пробел защиты от регрессии, а не обнаруженная текущая ошибка pipeline. Кандидат мутации: удалить только `if (maxDifference > 2) ... fail` в собственной isolated source copy. Ожидание из README независимо от mutant: optimizer fixture изменяет RGB при сохранных viewport/alpha; реальные resvg renders должны вызвать ошибку и сохранить прежний output. Дополнительно граница 2 допустима, 3 отклоняется. Проверить отсутствующий output/parent, а также отсутствие оставшегося `.vectorize-*`. Мутация в этом read-only поручении не запускалась.
+
+**P4 — отдельный npm material remainder.** Первичный `npm audit --json` обнаружил indirect `source-map-js@1.2.1`, severity high, advisory `GHSA-68fv-2mgg-jv7q`, CVSS 7.5, диапазон `>=1.0.0 <1.2.2`: event-loop DoS через offsets секций indexed source map. `fixAvailable=true`. Это фактический dependency finding, а не доказательство достижимости через raster CLI; exploit/reachability не проверялись. Не выполнялись `npm audit fix`, обновление lock или installed plugin. Точный JSON сохранён отдельно от PASS функциональных тестов.
+
+Проверка base resolution CHA не выявила расхождения: для `base_name='main'` source сначала ищет `refs/remotes/origin/main`, затем `refs/heads/main`, как Skill и report contract. Исторический SVG `VERIFICATION.md` явно относится к Windows и дате; текущие Linux результаты его не подменяют. Документация ограничивает artistic fidelity, размер растра и отсутствие отдельного VTracer timeout; source соответствует этим границам.
+
+## Фактическое покрытие чтением
+
+- Полностью: `plugins/README.md`; SVG README, VERIFICATION, manifest, Skill entry, pyproject, requirements, package.json, Python vectorize, Node bridge, fixtures, smoke, все 33 test definitions.
+- Полностью: CHA Skill entry и три references, manifest, toolchain, requirements, пять test modules (исходные versions), audit/capture_coverage/analyzer_worker/pylint_entry и все `code_health` modules. Два обновлённых tests прочитаны полностью перед повтором.
+- Полностью: CHA default-policy, policy schema, provenance schema, accepted-findings schema. `report.schema.json` был сохранён и hashed; семантическое чтение полного schema не выполнено. Его потребление validation и тестовые negative assertions прочитаны.
+- Выборочно: affected plugin строки ARCHITECTURE и DEVELOPMENT, repository/local instructions в рамках предшествующего UI review. Не читалась вся история/spec archive. Binary examples только hashed; художественная оценка изображений не выполнена.
+- Installed plugin versions, marketplaces, registration, other projects и platform certification вне области. External source links из README не открывались; проверялись локальные source/contracts, а не современное содержание внешних сайтов.
+
+## Ошибки подготовки и сохранение
+
+System Python 3.14.7 не содержит зависимостей; mise shim `python3.12` не имел выбранной версии. Конфигурация машины не менялась. Использован существующий bundled Python 3.12.14. Исходные sandbox fetch попытки дали DNS/EAI_AGAIN и offline ENOTCACHED; затем exact pinned fetch прошёл в собственных venv через scoped escalation. Отказы не считаются skips или дефектами функций. Самая ранняя ошибочно процитированная команда исполняла путь `/home/lainterus/Projects/High`; pip не стартовал. Это ошибка исполнителя, описана в `setup-quoting-error.md`; исходный traceback был только в tool output, файл child report отсутствует. CLI conversion с неверным именем `input.png` дала ожидаемый missing-input exit 1; повтор с фактическим `smoke-input.png` PASS. Оба CLI вывода сохранены.
+
+На момент этого отчёта собственные env/source copies **сохранены по точному поручению основного агента** для последующей проверки. Удаление не выполнено. Перед удалением нужны owner/link/usage checks и сохранение требуемых outputs. Оригинальные streams и causal hashes остаются в `plugin-checks/` независимо от будущего удаления среды.
+
+## Оригинальные отчёты
+
+Каталог: `/home/lainterus/Projects/High Grade/.highgrade/local/project-refresh-2026-10-14/plugin-checks/`.
+
+- `original-sources.json`, `owner-original.json`, `audit-test-sync.json`: provenance исходников и двух разрешённых sync.
+- `svg-unit.{json,stdout,stderr}`, `svg-smoke.{json,stdout,stderr}`, `svg-cli-help.{json,stdout,stderr}`, `svg-cli-convert-correct-input.{json,stdout,stderr}`: реальные package результаты.
+- `audit-unit.{json,stdout,stderr}`, `audit-unit-ceiling.{json,stdout,stderr}`, `audit-unit-updated.{json,stdout,stderr}`: все три исходных результата без переписывания.
+- `svg-runtime.stdout`, `audit-runtime.stdout`, `svg-pip-check.*`, `audit-pip-check.*`, `svg-node-tree.*`: среда и pins.
+- `svg-npm-audit-network.stdout`: первичный audit JSON; `svg-npm-audit-network.json`: exact argv/metadata; `svg-npm-audit.*`: исходный DNS отказ.
+- `svg-artifacts/`: копии оригинального smoke и успешной installed CLI, hashes в `artifacts-manifest.json`.
+- `evidence-index.json`: hashes сохранённых оригинальных результатов.
+
+Текущее продолжение: локальные fixes P1–P3 и отдельная проверка SVG мутации завершены. P4 сохранён как отдельный material remainder. Own env/source copies пока сохранены по поручению основного агента; cleanup не выполнен. Финальный UI review следует отдельным поручением.

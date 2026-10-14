@@ -1,0 +1,21 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import subprocess,os,json,hashlib
+root=Path.cwd();local=root/'.highgrade/local/project-refresh-2026-10-14';report=json.loads((local/'mutations-results-rebuilt.json').read_text());subject=Path(report['mutations'][0]['runs'][0]['cwd']);records=[]
+for entry in report['mutations']:
+ if entry['id'] not in ['U3','U4','U5','U6']:continue
+ file=subject/entry['subject'];original=file.read_text();mutant=entry['runs'][1]['inputs_before'][entry['subject']]
+ # Reconstruct the same original production change from the declared diff.
+ import difflib
+ removed=[s[1:] for s in entry['mutation_diff'].splitlines() if s.startswith('-') and not s.startswith('---')];added=[s[1:] for s in entry['mutation_diff'].splitlines() if s.startswith('+') and not s.startswith('+++')]
+ assert len(removed)==len(added)==1
+ changed=original.replace(removed[0],added[0],1);assert hashlib.sha256(changed.encode()).hexdigest()==mutant
+ argv=entry['runs'][0]['argv'];argv.insert(2,'--test-isolation=none');runs=[]
+ for stage in ['baseline','mutant','restored']:
+  file.write_text(changed if stage=='mutant' else original);start=datetime.now(timezone.utc).isoformat()
+  r=subprocess.run(argv,cwd=subject,capture_output=True,text=True,env={**os.environ,'HIGHGRADE_TEST_EXE':str(root/'target/debug/highgrade')})
+  runs.append({'stage':stage,'argv':argv,'cwd':str(subject),'started_at':start,'ended_at':datetime.now(timezone.utc).isoformat(),'exit_code':r.returncode,'subject_sha256':hashlib.sha256(file.read_bytes()).hexdigest(),'stdout':r.stdout,'stderr':r.stderr})
+ assert [r['exit_code'] for r in runs]==[0,1,0],entry['id']
+ records.append({'id':entry['id'],'mutation_diff':entry['mutation_diff'],'source_inputs':entry['runs'][0]['inputs_before'],'runs':runs})
+ (local/'node-mutations-expanded.json').write_text(json.dumps({'reason':'Expanded original assertion output under test-isolation=none; same actual violations/tests','mutations':records},ensure_ascii=False,indent=2)+'\n')
+ print(json.dumps({'id':entry['id'],'failure':(runs[1]['stdout']+runs[1]['stderr'])[-1700:]},ensure_ascii=False),flush=True)

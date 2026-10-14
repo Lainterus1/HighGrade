@@ -1,0 +1,71 @@
+0 verbose cli /home/lainterus/.local/share/mise/installs/node/26.8.2/bin/node /home/lainterus/.local/share/mise/installs/node/26.8.2/bin/npm
+1 info using npm@11.19.1
+2 info using node@v26.8.2
+3 silly config load:file:/home/lainterus/.local/share/mise/installs/node/26.8.2/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/svg/.npmrc
+5 silly config load:file:/home/lainterus/.npmrc
+6 silly config load:file:/home/lainterus/.local/share/mise/installs/node/26.8.2/etc/npmrc
+7 verbose title npm audit
+8 verbose argv "audit" "--json" "--fetch-retries" "0" "--fetch-timeout" "15000"
+9 verbose logfile logs-max:10 dir:/home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/cache/npm/_logs/2026-10-14T06_23_01_834Z-
+10 verbose logfile /home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/cache/npm/_logs/2026-10-14T06_23_01_834Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4395630592 maxSize:1098907648 maxEntrySize:549453824
+13 silly audit bulk request {
+13 silly audit   '@resvg/resvg-js': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-android-arm-eabi': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-android-arm64': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-darwin-arm64': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-darwin-x64': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-arm-gnueabihf': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-arm64-gnu': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-arm64-musl': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-x64-gnu': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-linux-x64-musl': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-win32-arm64-msvc': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-win32-ia32-msvc': [ '2.6.2' ],
+13 silly audit   '@resvg/resvg-js-win32-x64-msvc': [ '2.6.2' ],
+13 silly audit   boolbase: [ '1.0.0' ],
+13 silly audit   commander: [ '11.1.0' ],
+13 silly audit   'css-select': [ '6.0.0' ],
+13 silly audit   'css-tree': [ '3.2.1', '2.2.1' ],
+13 silly audit   'css-what': [ '7.0.0' ],
+13 silly audit   csso: [ '5.0.5' ],
+13 silly audit   'mdn-data': [ '2.0.28', '2.27.1' ],
+13 silly audit   'dom-serializer': [ '2.0.0' ],
+13 silly audit   domelementtype: [ '2.3.0' ],
+13 silly audit   domhandler: [ '5.0.3' ],
+13 silly audit   domutils: [ '3.2.2' ],
+13 silly audit   entities: [ '4.5.0' ],
+13 silly audit   'nth-check': [ '2.1.1' ],
+13 silly audit   picocolors: [ '1.1.1' ],
+13 silly audit   sax: [ '1.6.1' ],
+13 silly audit   'source-map-js': [ '1.2.1' ],
+13 silly audit   svgo: [ '4.1.0' ]
+13 silly audit }
+14 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 398ms
+15 silly audit report {
+15 silly audit report   'source-map-js': [
+15 silly audit report     {
+15 silly audit report       id: 1241209,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-68fv-2mgg-jv7q',
+15 silly audit report       title: 'source-map-js allows event-loop denial of service through indexed source-map section offsets',
+15 silly audit report       severity: 'high',
+15 silly audit report       vulnerable_versions: '>=1.0.0 <1.2.2',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     }
+15 silly audit report   ]
+15 silly audit report }
+16 silly packumentCache corgi:https://registry.npmjs.org/source-map-js cache-miss
+17 http fetch GET 200 https://registry.npmjs.org/source-map-js 57ms (cache revalidated)
+18 silly packumentCache corgi:https://registry.npmjs.org/source-map-js set size:8534 disposed:false
+19 silly packumentCache corgi:https://registry.npmjs.org/css-tree cache-miss
+20 http fetch GET 200 https://registry.npmjs.org/css-tree 52ms (cache revalidated)
+21 silly packumentCache corgi:https://registry.npmjs.org/css-tree set size:71902 disposed:false
+22 verbose cwd /home/lainterus/Projects/High Grade/target/highgrade/tmp/plugin-review-2026-10-14-clear-forward/svg
+23 verbose os Linux 7.2.5-3-omarchy
+24 verbose node v26.8.2
+25 verbose npm  v11.19.1
+26 verbose exit 1
+27 verbose code 1

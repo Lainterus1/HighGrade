@@ -1,0 +1,156 @@
+[
+  {
+    "id": "HG-0024",
+    "evidence": {
+      "scenario": "HG-0024-S4",
+      "method": "native_report",
+      "command": "cargo nextest run --locked --profile highgrade",
+      "captured_at": "2026-10-14T06:41:40.011656+00:00",
+      "outcome": "passed",
+      "observation": "237 actual Nextest cases passed without skips. test_dir_cleans_after_panic_and_keeps_foreign_directory asserted removal of its exact owned directory after caught panic and retention of the separate foreign directory. No global temporary-directory census or deletion of unknown data is claimed.",
+      "inputs": [
+        ".config/nextest.toml",
+        "Cargo.lock",
+        "Cargo.toml",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "tests/bootstrap_contracts.rs",
+        "tests/catalog_contracts.rs",
+        "tests/contracts.rs",
+        "tests/global_contracts.rs",
+        "tests/package_contracts.rs",
+        "tests/spec_contracts.rs",
+        "tests/support/mod.rs",
+        "tests/temp_contracts.rs",
+        "tests/trace_contracts.rs"
+      ],
+      "report": "docs/evidence/objects/803082acba49dcc2564f055779362559f97ade9804d45111cd7ed2c461b1970d.blob"
+    }
+  },
+  {
+    "id": "HG-0061",
+    "evidence": {
+      "scenario": "HG-0061-S1",
+      "method": "native_report",
+      "command": "npm --prefix ui test -- native.spec.ts decision.spec.ts edit.spec.ts api-client.spec.ts editorial.spec.ts hg58.spec.ts hg58-keyboard.spec.ts visual.spec.ts --fail-on-flaky-tests",
+      "captured_at": "2026-10-14T06:41:40.011656+00:00",
+      "outcome": "passed",
+      "observation": "Real browser Close/Escape/unmount and navigation preserved the same draft, isolated project/spec/request, and sent no POST. Pure identity assertions now require every causal revision to differ. Actual 41-case Linux browser report: zero skips, failures or flakes; no human acceptance or new release certification.",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "build.rs",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "src/ui.rs",
+        "src/ui/bundle.rs",
+        "ui/package-lock.json",
+        "ui/package.json",
+        "ui/playwright.config.ts",
+        "ui/src/api/client.ts",
+        "ui/src/features/specs/DecisionDialog.tsx",
+        "ui/src/features/specs/DecisionReason.tsx",
+        "ui/src/features/specs/NativeDocument.tsx",
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "ui/src/features/specs/ResultStatusSelect.tsx",
+        "ui/src/features/specs/SpecEditor.tsx",
+        "ui/src/features/specs/decisionCopy.ts",
+        "ui/src/features/specs/decisionDrafts.ts",
+        "ui/tests/api-client.spec.ts",
+        "ui/tests/decision.spec.ts",
+        "ui/tests/native-fixture.ts",
+        "ui/vite.config.ts"
+      ],
+      "report": "docs/evidence/objects/65838e094dca8698189421df66dd5a9b94f5fa2ae037b973bb662edb4df16c36.blob"
+    }
+  },
+  {
+    "id": "HG-0061",
+    "evidence": {
+      "scenario": "HG-0061-S2",
+      "method": "native_report",
+      "command": "npm --prefix ui test -- native.spec.ts decision.spec.ts edit.spec.ts api-client.spec.ts editorial.spec.ts hg58.spec.ts hg58-keyboard.spec.ts visual.spec.ts --fail-on-flaky-tests",
+      "captured_at": "2026-10-14T06:41:40.011656+00:00",
+      "outcome": "passed",
+      "observation": "Real lost-unwritten/lost-committed responses, failed GET inspection, pending writes and input drift preserved text/status and blocked automatic retries. Explicit GET and confirmed absence permitted only an explicit submit. api-client StoreBusy POST test asserted one request; GET retry and abort also passed. Actual 41-case Linux browser report: zero skips, failures or flakes; no human acceptance or new release certification.",
+      "inputs": [
+        "Cargo.lock",
+        "Cargo.toml",
+        "build.rs",
+        "rust-toolchain.toml",
+        "src/lib.rs",
+        "src/paths.rs",
+        "src/specs.rs",
+        "src/specs/attention.rs",
+        "src/specs/cards.rs",
+        "src/specs/checks.rs",
+        "src/specs/progress.rs",
+        "src/specs/storage.rs",
+        "src/specs/storage/shared_inputs.rs",
+        "src/ui.rs",
+        "src/ui/bundle.rs",
+        "ui/package-lock.json",
+        "ui/package.json",
+        "ui/playwright.config.ts",
+        "ui/src/api/client.ts",
+        "ui/src/features/specs/DecisionDialog.tsx",
+        "ui/src/features/specs/DecisionReason.tsx",
+        "ui/src/features/specs/NativeDocument.tsx",
+        "ui/src/features/specs/NativeWorkspace.tsx",
+        "ui/src/features/specs/ResultStatusSelect.tsx",
+        "ui/src/features/specs/SpecEditor.tsx",
+        "ui/src/features/specs/decisionCopy.ts",
+        "ui/src/features/specs/decisionDrafts.ts",
+        "ui/tests/api-client.spec.ts",
+        "ui/tests/decision.spec.ts",
+        "ui/tests/native-fixture.ts",
+        "ui/vite.config.ts"
+      ],
+      "report": "docs/evidence/objects/65838e094dca8698189421df66dd5a9b94f5fa2ae037b973bb662edb4df16c36.blob"
+    }
+  },
+  {
+    "id": "HG-0069",
+    "evidence": {
+      "scenario": "HG-0069-S2",
+      "method": "native_report",
+      "command": "python -B -m unittest discover -s scripts/tests -v",
+      "captured_at": "2026-10-14T06:41:40.011656+00:00",
+      "outcome": "passed",
+      "observation": "All 69 script tests passed. Evidence-store tests selected/idempotently exported originals and rejected both changed-length and same-length corruption by SHA256. The previously missed SHA-check removal is detected by the strengthened assertion; original sources remain unchanged.",
+      "inputs": [
+        "scripts/evidence_store.py",
+        "scripts/tests/test_evidence_store.py"
+      ],
+      "report": "docs/evidence/objects/f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6.blob"
+    }
+  },
+  {
+    "id": "HG-0069",
+    "evidence": {
+      "scenario": "HG-0069-S3",
+      "method": "native_report",
+      "command": "python -B -m unittest discover -s scripts/tests -v",
+      "captured_at": "2026-10-14T06:41:40.011656+00:00",
+      "outcome": "passed",
+      "observation": "Real filesystem/owned-run regression cases passed: active/unknown/new or changed scratch survives; corrupt export and interrupted recovery prevent deletion. Current browser guards separately reject foreign token, invalid schema/state/PID, dead owner and linked output without changing protected report bytes. No unknown inherited run was removed.",
+      "inputs": [
+        "scripts/evidence_store.py",
+        "scripts/target-maintenance.py",
+        "scripts/tests/test_evidence_store.py",
+        "scripts/tests/test_target_maintenance.py",
+        "scripts/tests/test_verify.py",
+        "scripts/verify.py"
+      ],
+      "report": "docs/evidence/objects/f897fd652bc174e839d4eeab44bb8191df8f79830c9028afc53062fbfdfaead6.blob"
+    }
+  }
+]

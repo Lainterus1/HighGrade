@@ -1,0 +1,13 @@
+# Независимое раннее ревью выбранных исправлений
+
+GO по смыслу текущей реализации и выбранной очистке. Блокирующих замечаний в этом срезе нет. Финальный GO по evidence и закрытию задачи пока не дан.
+
+Сравнение выполнено с `before.json` и точными `red-inputs`. Новая Rust-регрессия дала RED из-за ложного PASS при неоднозначном источнике, затем PASS. Guard снимает связь после второго suite; последующие suite её не восстанавливают. Проверка сохраняет независимый PASS и ручной outside. Helper даёт отказ для трёх вариантов регистра owned report до создания output и сохраняет исходные байты. Два alias имели meaningful RED.
+
+После удаления только новых regression blocks старые trace/helper tests дают точные before SHA. Workflow test потерял только две повторные строки renderer equality; отдельный тест продолжает проверять все generated skills. Planner остаётся владельцем явного выбора Goal. Review сохраняет аудит смысла, независимый выбор метода, RED причины, restore и обязательные барьеры. Исправленный Work link использует существующий `finish-storage` anchor.
+
+Все 22 wrapper blobs и две старые выборки восстановимы из точных recovery-копий. Старый audit index тоже сохранён в точных before bytes. Новые выборки содержат ровно 284 и 5 прежних записей после удаления выбранных wrapper entries. Все retained payload SHA и 26 native raw logs совпадают. Из начального CAS отсутствуют ровно эти 24 пути. 617 файлов specs были неизменны до последующих заявленных append; они требуют отдельной сверки.
+
+Прочитан текущий полный Nextest `rust-1d6c1132babd4aec960f1276f717a82a`: 242 raw cases, без failure/error/skip. SHA report/list и attempt identity совпадают с completion. Все 482 source pins актуальны. Python содержит 82 PASS; Node — четыре PASS. Старые sandbox и missing-anchor failures остаются оригинальными неуспешными прогонами.
+
+Пределы: reviewer не запускал новые тесты. Финальные helper records, affected evidence/review append, serial project barriers и сохранность после обслуживания ещё проверяются отдельно. Compact receipts являются производными наблюдениями. Exact wrappers сохраняются вне Git; они не заменяют необходимые опубликованные runner originals. Presentation исключён. Это не приёмка, установка, Windows-проверка или закрытие прежних внешних/ручных критериев.

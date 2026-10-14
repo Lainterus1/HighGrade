@@ -104,6 +104,7 @@ const MATERIALS: [&str; 21] = [
     "references/documentation.md",
     crate::release_notes::PATH,
 ];
+const CLEAR_MATERIALS: [&str; 2] = ["references/clear-batches.md", "tools/clear_batch.py"];
 const APPROVE_MATERIALS: [&str; 19] = [
     "rules.md",
     "procedures/init.md",
@@ -294,6 +295,7 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
             + FIXER_MATERIALS.len()
             + SURVEY_MATERIALS.len()
             + REVIEW_MATERIALS.len()
+            + CLEAR_MATERIALS.len()
     {
         return Err("GlobalManifestFilesInvalid".into());
     }
@@ -304,6 +306,7 @@ fn candidate(source: &Path, executable: &Path) -> Result<Candidate> {
         .chain(FIXER_MATERIALS.iter())
         .chain(SURVEY_MATERIALS.iter())
         .chain(REVIEW_MATERIALS.iter())
+        .chain(CLEAR_MATERIALS.iter())
         .map(|s| s.to_string())
         .chain(SKILLS.iter().map(|s| format!("skills/{s}/SKILL.md")))
     {
@@ -407,6 +410,8 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
             .chain([COMMIT_SKILL, PUSH_SKILL].iter())
             .map(|rel| release_file(release, rel)),
     );
+    let mut with_clear = commit.clone();
+    with_clear.extend(CLEAR_MATERIALS.iter().map(|rel| release_file(release, rel)));
     let mut before_notes = commit.clone();
     before_notes.remove(&release_file(release, crate::release_notes::PATH));
     let mut before_documentation = before_notes.clone();
@@ -420,7 +425,8 @@ fn verify_release(profile: &Path, release: &str) -> Result<Vec<u8>> {
     let mut legacy = expected(&LEGACY_SKILLS, &DEPLOY_MATERIALS);
     legacy.insert(release_file(release, LEGACY_DEPLOY_SKILL));
     let previous = expected(&PREVIOUS_SKILLS, &PREVIOUS_MATERIALS);
-    if actual != commit.iter().map(String::as_str).collect()
+    if actual != with_clear.iter().map(String::as_str).collect()
+        && actual != commit.iter().map(String::as_str).collect()
         && actual != before_notes.iter().map(String::as_str).collect()
         && actual != before_documentation.iter().map(String::as_str).collect()
         && actual != current.iter().map(String::as_str).collect()
@@ -685,6 +691,7 @@ fn retire_release(profile: &Path, release: &str) -> Result<()> {
         .chain(TOOL_REFERENCES.iter())
         .chain(FIXER_MATERIALS.iter())
         .chain(REVIEW_MATERIALS.iter())
+        .chain(CLEAR_MATERIALS.iter())
         .chain(APPROVE_MATERIALS.iter())
         .chain(PRIOR_MATERIALS.iter())
         .chain(SURVEY_MATERIALS.iter())

@@ -8,14 +8,15 @@ HighGrade/                       имя репозитория High Grade на G
   .highgrade/project/            местная инструкция и реестр документов
   specs/                         требования, отдельные spec/results и приёмка
   docs/archive/legacy-openspec/   неизменённые прежние требования и история
-  docs/                           требования, политика контекста, план, доказательства, архив
+  docs/                           владельцы знаний, доказательства и архив
   Cargo.toml, Cargo.lock          Rust CLI и закреплённые зависимости
   src/                            doctor, inspect с bootstrap, trace, безопасные пути, global install/update
   tests/                          контрактные проверки на изолированных данных
-  kit/                            девять глобальных навыков, процедуры, шаблоны, manifest v3
+  kit/                            девять глобальных навыков, процедуры, tools, шаблоны, manifest v3
   bundle/                         исторический проектный кандидат manifest v2
   plugins/                        отдельные исходники SVG и Code Health Audit
-  scripts/check-repository.mjs    структурная проверка исходного проекта
+  scripts/                        сборка, проверка, экспорт evidence и обслуживание target
+  ui/                             React/TypeScript, ресурсы, Storybook и тесты
 ```
 
 Общий набор устанавливается в профиль пользователя: полные инструкции навыков — в `.agents/skills/highgrade-*`, неизменяемые материалы и CLI — в `.highgrade/global/releases/<release>/`, активный указатель — в `.highgrade/global/active.json`. Проектный `.highgrade/project/INSTRUCTIONS.md` содержит только местную адаптацию. CLI работает с явно выбранными корнями. Глобальная установка не меняет проект; чтение нативных спек использует временный lock.
@@ -32,9 +33,9 @@ SVG Vectorizer и Code Health Audit имеют отдельные зависим
 
 ## Нативные спецификации Поставки
 
-Формат 4 (`--to compact`) хранит общие объекты истории. Метаданные отделены от редакции; новые baseline фиксируют только modify/remove с общим CAS.
+Формат 4 (`--to compact`) хранит общие объекты истории; формат 5 добавляет общие объекты входов доказательств. Метаданные отделены от редакции; baseline modify/remove защищены CAS.
 
-`specs.rs` — модели/команды; `presentation.rs` — порядок JSON; `progress.rs` — нумерация и решения; `storage.rs` — проектные spec/results, миграция и журнал восстановления; `relations.rs` — связи/теги; `checks.rs` — запуск проверок; `delivery.rs` — состав передачи evidence. Каталог `specs/` независим от служебной `.highgrade`; нестандартный путь задаёт проектный `specs-location.json`. JSON-сводка вычисляется. Lock/CAS и журнал защищают согласованность: прерывание требует явного восстановления, а не чтения смеси файлов. Лимит отдельного документа/транзакции — 8 МиБ. Legacy store читается совместимо до явной миграции; после неё остаётся историческим источником, дрейф которого обнаруживается.
+В `src/specs/`: `presentation.rs` задаёт порядок JSON; `progress.rs` — решения; `storage.rs` — spec/results, миграцию и восстановление; `relations.rs` — связи/теги; `checks.rs` — проверки; `delivery.rs` — передачу evidence; `cards.rs` и `attention.rs` — UI/решения. `specs.rs` содержит модели/команды. `specs/` независим от `.highgrade`; иной путь задаёт `specs-location.json`. Lock/CAS и журнал защищают согласованность. Прерывание требует явного восстановления. Лимит документа/транзакции — 8 МиБ. Legacy store читается до миграции; затем остаётся историческим источником с проверкой дрейфа.
 
 CLI не сертифицирует смысл и подлинность отчёта. История форматов — в [архиве](archive/legacy-native-specs/2026-09-25/); команды — в [справочнике](../kit/references/tools/specifications.md#structured-specifications).
 

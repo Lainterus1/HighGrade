@@ -1,0 +1,26 @@
+test_owned_report_case_aliases_are_rejected_before_output (test_clear_batch.ClearBatchTests.test_owned_report_case_aliases_are_rejected_before_output) ... 
+  test_owned_report_case_aliases_are_rejected_before_output (test_clear_batch.ClearBatchTests.test_owned_report_case_aliases_are_rejected_before_output) (name='.HG-CLEAR-REPORT.JSON') ... FAIL
+  test_owned_report_case_aliases_are_rejected_before_output (test_clear_batch.ClearBatchTests.test_owned_report_case_aliases_are_rejected_before_output) (name='.Hg-Clear-Report.json') ... FAIL
+
+======================================================================
+FAIL: test_owned_report_case_aliases_are_rejected_before_output (test_clear_batch.ClearBatchTests.test_owned_report_case_aliases_are_rejected_before_output) (name='.HG-CLEAR-REPORT.JSON')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_clear_batch.py", line 220, in test_owned_report_case_aliases_are_rejected_before_output
+    self.assertEqual(2, process.returncode, process.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : 
+
+======================================================================
+FAIL: test_owned_report_case_aliases_are_rejected_before_output (test_clear_batch.ClearBatchTests.test_owned_report_case_aliases_are_rejected_before_output) (name='.Hg-Clear-Report.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lainterus/Projects/High Grade/scripts/tests/test_clear_batch.py", line 220, in test_owned_report_case_aliases_are_rejected_before_output
+    self.assertEqual(2, process.returncode, process.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : 
+
+----------------------------------------------------------------------
+Ran 1 test in 0.821s
+
+FAILED (failures=2)

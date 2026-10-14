@@ -113,7 +113,11 @@ fn command_help(op: &str) -> Result<Report> {
     if options.contains(&"--input") {
         required.push("--input");
     }
-    if options.contains(&"--id") && !matches!(op, "spec-new" | "spec-read" | "spec-list" | "doctor")
+    if options.contains(&"--id")
+        && !matches!(
+            op,
+            "spec-new" | "spec-read" | "spec-list" | "spec-validate" | "doctor"
+        )
     {
         required.push("--id");
     }
@@ -186,7 +190,7 @@ fn command_help(op: &str) -> Result<Report> {
         "spec-runner-set" => "runner",
         _ => "",
     };
-    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"ui"=>"--root defaults to current directory '.'; --no-open true prevents opening the browser; --check true validates embedded UI without a project, browser or listener and cannot be combined with --root or --no-open", "spec-read"=>"--id or --requirement; --view requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read; first modify/remove baseline capture requires --expected","doctor"=>"Optional --action spec-read|spec-run|spec-delivery; spec-run and spec-delivery require --id; delivery uses Git index or --bundle JSON path list","spec-metadata"=>"Preview by default; --apply true commits the entire validated batch with --expected CAS", "global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":if op.starts_with("survey-") {"highgrade survey-schema --root PATH"} else if op.starts_with("issue-") {"highgrade issue-schema --root PATH"} else {"highgrade spec-schema --root PATH"}}));
+    r.measurements.push(json!({"command":op,"options":options,"required":required,"example":example,"conditions":match op {"ui"=>"--root defaults to current directory '.'; --no-open true prevents opening the browser; --check true validates embedded UI without a project, browser or listener and cannot be combined with --root or --no-open", "spec-read"=>"--id or --requirement, or --view requirements without --id; requirements may use --tag","spec-new"=>"--title required when allocating an ID","spec-edit"=>"Exactly one of --expected or --expected-local from spec-read; first modify/remove baseline capture requires --expected","doctor"=>"Optional --action spec-read|spec-run|spec-delivery; spec-run and spec-delivery require --id; delivery uses Git index or --bundle JSON path list","spec-metadata"=>"Preview by default; --apply true commits the entire validated batch with --expected CAS", "global-update"=>"--apply true requires --candidate-sha256 from preview",_=>"See parameter values and JSON schemas"},"compatibility":op.starts_with("legacy-"),"input_schema":schemas.get(key),"schemas_command":if op.starts_with("survey-") {"highgrade survey-schema --root PATH"} else if op.starts_with("issue-") {"highgrade issue-schema --root PATH"} else {"highgrade spec-schema --root PATH"}}));
     Ok(r)
 }
 

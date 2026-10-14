@@ -189,18 +189,41 @@ fn rust_links(
 fn load(root: &Path, rel: &str, max: u64) -> Result<Vec<u8>> {
     paths::read_limited(&paths::safe(root, rel)?, max)
 }
+#[derive(Default)]
+struct CaseCounts {
+    reported: usize,
+    executed: usize,
+    skipped: usize,
+    unknown: usize,
+}
+impl CaseCounts {
+    fn observe(&mut self, outcome: &str) {
+        self.reported += 1;
+        match outcome {
+            "passed" | "failed" => self.executed += 1,
+            "skipped" => self.skipped += 1,
+            _ => self.unknown += 1,
+        }
+    }
+}
 fn rust_results(
     root: &Path,
     capture: &Path,
     run: &Value,
     sources: &[String],
     r: &mut Report,
-) -> Result<(BTreeMap<String, String>, BTreeMap<String, String>, usize)> {
+) -> Result<(
+    BTreeMap<String, String>,
+    BTreeMap<String, String>,
+    usize,
+    CaseCounts,
+)> {
     let inventory = run["inventory"].as_str().ok_or("RunInvalid: inventory")?;
     let list = read_json(&paths::safe(root, inventory)?)?;
     let suites = list["rust-suites"].as_object().ok_or("RustListInvalid")?;
     let mut known = BTreeSet::new();
     let mut source_bins: BTreeMap<String, String> = BTreeMap::new();
+    let mut ambiguous_sources = BTreeSet::new();
     for (binary, details) in suites {
         if details["kind"] == "test" {
             if let (Some(cwd), Some(name)) =
@@ -216,7 +239,12 @@ fn rust_results(
                             if paths::safe(root, rel)?.canonicalize().ok().as_ref()
                                 == Some(&expected)
                             {
-                                if source_bins.insert(rel.clone(), binary.clone()).is_some() {
+                                // Later suites must not restore an ambiguous association.
+                                if !ambiguous_sources.contains(rel)
+                                    && source_bins.insert(rel.clone(), binary.clone()).is_some()
+                                {
+                                    source_bins.remove(rel);
+                                    ambiguous_sources.insert(rel.clone());
                                     r.finding("failed", "RustSourceAmbiguous", rel, binary);
                                 }
                             }
@@ -242,6 +270,7 @@ fn rust_results(
     let text = std::str::from_utf8(&data).map_err(|e| e.to_string())?;
     let xml = roxmltree::Document::parse(text).map_err(|e| format!("JUnitInvalid: {e}"))?;
     let mut actual = BTreeMap::new();
+    let mut counts = CaseCounts::default();
     for test in xml.descendants().filter(|n| n.has_tag_name("testcase")) {
         let name = test
             .attribute("name")
@@ -267,8 +296,15 @@ fn rust_results(
         } else {
             "passed"
         };
+        counts.observe(outcome);
+        let outcome = if known.contains(&key) {
+            outcome
+        } else {
+            "unknown"
+        };
         if actual.insert(key.clone(), outcome.into()).is_some() {
             r.finding("failed", "DuplicateTestResult", path, &key);
+            actual.insert(key.clone(), "unknown".into());
         }
         if !known.contains(&key) {
             r.finding("failed", "TestNotInInventory", path, &key);
@@ -281,16 +317,21 @@ fn rust_results(
             r.finding("unknown", "TestNotExecuted", path, &key);
         }
     }
-    Ok((actual, source_bins, missing))
+    Ok((actual, source_bins, missing, counts))
+}
+struct PlaywrightScope<'a> {
+    root: &'a Path,
+    report_root: &'a Path,
+    sources: &'a BTreeSet<String>,
+    source_hashes: &'a serde_json::Map<String, Value>,
 }
 fn pw_walk(
     node: &Value,
     results: &mut BTreeMap<String, (String, BTreeSet<String>)>,
     r: &mut Report,
     where_: &str,
-    root: &Path,
-    report_root: &Path,
-    sources: &BTreeSet<String>,
+    scope: &PlaywrightScope<'_>,
+    counts: &mut CaseCounts,
 ) {
     if let Some(specs) = node["specs"].as_array() {
         for spec in specs {
@@ -301,18 +342,21 @@ fn pw_walk(
             let file = spec["file"].as_str().unwrap_or("");
             let normalized = paths::relative(file)
                 .ok()
-                .and_then(|_| report_root.join(file).canonicalize().ok())
+                .and_then(|_| scope.report_root.join(file).canonicalize().ok())
                 .and_then(|p| {
-                    p.strip_prefix(root)
+                    p.strip_prefix(scope.root)
                         .ok()
                         .map(|rel| rel.to_string_lossy().replace('\\', "/"))
                 });
             if normalized
                 .as_ref()
-                .is_none_or(|path| !sources.contains(path))
+                .is_none_or(|path| !scope.sources.contains(path))
             {
                 r.finding("failed", "PlaywrightSourceUnpinned", where_, file);
             }
+            let source_verified = normalized.as_ref().is_some_and(|path| {
+                scope.sources.contains(path) && scope.source_hashes.contains_key(path)
+            });
             let Some(tests) = spec["tests"].as_array() else {
                 r.finding("failed", "PlaywrightInvalid", where_, spec_id);
                 continue;
@@ -359,18 +403,21 @@ fn pw_walk(
                 } else {
                     "unknown"
                 };
-                if results
-                    .insert(key.clone(), (outcome.into(), linked))
-                    .is_some()
-                {
+                counts.observe(outcome);
+                let outcome = if source_verified { outcome } else { "unknown" };
+                if let Some((status, annotations)) = results.get_mut(&key) {
                     r.finding("failed", "DuplicateTestResult", where_, &key);
+                    *status = "unknown".into();
+                    annotations.extend(linked);
+                } else {
+                    results.insert(key, (outcome.into(), linked));
                 }
             }
         }
     }
     if let Some(children) = node["suites"].as_array() {
         for child in children {
-            pw_walk(child, results, r, where_, root, report_root, sources);
+            pw_walk(child, results, r, where_, scope, counts);
         }
     }
 }
@@ -400,7 +447,8 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
     let report_path = run["report"].as_str().ok_or("RunInvalid: report")?;
     let report_bytes = load(&root, report_path, 32 * 1024 * 1024)?;
     let mut r = Report::new("trace");
-    if run["report_sha256"].as_str() != Some(&hash(&report_bytes)) {
+    let mut report_verified = run["report_sha256"].as_str() == Some(&hash(&report_bytes));
+    if !report_verified {
         r.finding(
             "failed",
             "ReportHashMismatch",
@@ -435,11 +483,13 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
     }
     let specs = ids(&run, "spec_files")?;
     let sources = ids(&run, "test_sources")?;
+    let mut unpinned_sources = BTreeSet::new();
     if specs.is_empty() || sources.is_empty() {
         return Err("RunInvalid: spec_files/test_sources empty".into());
     }
     for rel in specs.iter().chain(&sources) {
         if !source_hashes.contains_key(rel) {
+            unpinned_sources.insert(rel.clone());
             r.finding(
                 "unknown",
                 "SourceUnpinned",
@@ -451,6 +501,7 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
     if tool == "rust-nextest" {
         let inventory = run["inventory"].as_str().ok_or("RunInvalid: inventory")?;
         if !source_hashes.contains_key(inventory) {
+            unpinned_sources.insert(inventory.to_owned());
             r.finding(
                 "unknown",
                 "SourceUnpinned",
@@ -564,23 +615,16 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
     let test_cases_missing;
     let test_names: BTreeSet<String>;
     if tool == "rust-nextest" {
-        let (actual, source_bins, missing) = rust_results(&root, capture, &run, &sources, &mut r)?;
-        test_cases_reported = actual.len();
+        let (actual, source_bins, missing, counts) =
+            rust_results(&root, capture, &run, &sources, &mut r)?;
+        test_cases_reported = counts.reported;
         test_cases_missing = Some(missing);
-        test_cases_executed = actual
-            .values()
-            .filter(|status| *status == "passed" || *status == "failed")
-            .count();
-        test_cases_skipped = actual
-            .values()
-            .filter(|status| *status == "skipped")
-            .count();
-        test_cases_unknown = actual
-            .values()
-            .filter(|status| *status == "unknown")
-            .count();
+        test_cases_executed = counts.executed;
+        test_cases_skipped = counts.skipped;
+        test_cases_unknown = counts.unknown;
         test_names = actual.keys().cloned().collect();
         let mut named = BTreeMap::new();
+        let mut unverified_tests = BTreeSet::new();
         for rel in &sources {
             let binary = source_bins.get(rel);
             if binary.is_none() {
@@ -596,10 +640,13 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
             );
             for (name, ids) in local {
                 if let Some(binary) = binary {
-                    named
-                        .entry(format!("{binary}::{name}"))
-                        .or_insert_with(BTreeSet::new)
-                        .extend(ids);
+                    let key = format!("{binary}::{name}");
+                    if unpinned_sources.contains(rel)
+                        || unpinned_sources.contains(run["inventory"].as_str().unwrap())
+                    {
+                        unverified_tests.insert(key.clone());
+                    }
+                    named.entry(key).or_insert_with(BTreeSet::new).extend(ids);
                 } else {
                     for id in ids {
                         links
@@ -611,15 +658,19 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
             }
         }
         for (name, ids) in named {
-            let status = actual.get(&name).cloned().unwrap_or_else(|| {
-                r.finding(
-                    "unknown",
-                    "RustTestMissing",
-                    &name,
-                    "Нет результата для теста из указанного binary.",
-                );
+            let status = if unverified_tests.contains(&name) {
                 "unknown".into()
-            });
+            } else {
+                actual.get(&name).cloned().unwrap_or_else(|| {
+                    r.finding(
+                        "unknown",
+                        "RustTestMissing",
+                        &name,
+                        "Нет результата для теста из указанного binary.",
+                    );
+                    "unknown".into()
+                })
+            };
             for id in ids {
                 links
                     .entry(id)
@@ -635,20 +686,26 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
             .ok_or("PlaywrightRootMissing")?;
         let report_root = relocated_root(report_root, capture, &root)?;
         let mut actual = BTreeMap::new();
+        let mut counts = CaseCounts::default();
         let source_set: BTreeSet<_> = sources.iter().map(|s| s.replace('\\', "/")).collect();
         pw_walk(
             &report,
             &mut actual,
             &mut r,
             report_path,
-            &root,
-            &report_root,
-            &source_set,
+            &PlaywrightScope {
+                root: &root,
+                report_root: &report_root,
+                sources: &source_set,
+                source_hashes,
+            },
+            &mut counts,
         );
         if report["errors"]
             .as_array()
             .is_some_and(|errors| !errors.is_empty())
         {
+            report_verified = false;
             r.finding(
                 "failed",
                 "PlaywrightRunErrors",
@@ -659,20 +716,11 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
         if actual.is_empty() {
             r.finding("failed", "EmptySuite", report_path, "Нет тестов.");
         }
-        test_cases_reported = actual.len();
+        test_cases_reported = counts.reported;
         test_cases_missing = None::<usize>;
-        test_cases_executed = actual
-            .values()
-            .filter(|(status, _)| status == "passed" || status == "failed")
-            .count();
-        test_cases_skipped = actual
-            .values()
-            .filter(|(status, _)| status == "skipped")
-            .count();
-        test_cases_unknown = actual
-            .values()
-            .filter(|(status, _)| status == "unknown")
-            .count();
+        test_cases_executed = counts.executed;
+        test_cases_skipped = counts.skipped;
+        test_cases_unknown = counts.unknown;
         test_names = actual.keys().cloned().collect();
         for (test, (status, ids)) in actual {
             for id in ids {
@@ -704,6 +752,8 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
         let linked = links.get(id).cloned().unwrap_or_default();
         let status = if linked.is_empty() {
             "outside_automatic_trace"
+        } else if !report_verified || unpinned_sources.contains(path) {
+            "unknown"
         } else if linked.iter().any(|(_, s)| s == "failed") {
             "failed"
         } else if linked.iter().any(|(_, s)| s == "unknown") {
@@ -741,7 +791,7 @@ pub fn trace(root: &Path, record_rel: &str) -> Result<Report> {
         "test_cases_unknown": test_cases_unknown,
         "test_cases_missing": test_cases_missing,
         "linked_test_cases": linked_test_cases.len(),
-        "unlinked_test_cases": test_cases_reported.saturating_sub(linked_test_cases.len()),
+        "unlinked_test_cases": test_names.len().saturating_sub(linked_test_cases.len()),
         "scenarios_total": scenarios.len(),
         "automatic_scenarios": scenarios.len() - outside_automatic_trace,
         "automatic_passed": automatic_passed,

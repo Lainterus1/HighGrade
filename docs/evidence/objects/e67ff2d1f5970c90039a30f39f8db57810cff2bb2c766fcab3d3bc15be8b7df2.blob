@@ -1,0 +1,4 @@
+from pathlib import Path
+import subprocess,sys
+root=Path.cwd();exe=root/'target/highgrade/tmp/clear-audit-plugins/.venv/bin/python';cwd=root/'target/highgrade/tmp/clear-audit-plugins/svg'
+raise SystemExit(subprocess.run([str(exe),'-B','-m','unittest','discover','-s','tests','-v'],cwd=cwd).returncode)

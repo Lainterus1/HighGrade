@@ -1,0 +1,11 @@
+--- scripts/source-scenarios.mjs
++++ scripts/source-scenarios.mjs
+@@ -128,7 +128,7 @@
+     ...files('kit'), ...files('bundle'), ...files('tests/fixtures'),
+     'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', '.config/nextest.toml', '.gitattributes',
+     // Optional project configuration is causal too, including creation/deletion.
+-    ...['.cargo/config.toml', '.cargo/config'].filter((file) => existsSync(abs(file))),
++    // Mutant omits project Cargo configuration.
+     'scripts/source-scenarios.mjs', 'scripts/verify.py'];
+   return Object.fromEntries(pinned.sort().map((file) => [file, sha(file)]));
+ }
