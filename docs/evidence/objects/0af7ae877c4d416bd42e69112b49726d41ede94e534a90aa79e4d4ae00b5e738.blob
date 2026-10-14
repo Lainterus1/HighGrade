@@ -1,0 +1,66 @@
+import os
+import sys
+from pathlib import Path
+import tempfile
+import unittest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from stock import reserve
+
+
+class StockTests(unittest.TestCase):
+    def test_returns_remainder(self):
+        for stock, quantity, remaining in [(10, 3, 7), (1, 0.5, 0.5)]:
+            with self.subTest(stock=stock, quantity=quantity):
+                self.assertEqual(reserve(stock, quantity), {"remaining": remaining})
+
+    def test_reserves_full_stock(self):
+        self.assertEqual(reserve(10, 10), {"remaining": 0})
+
+    def test_rejects_zero(self):
+        with self.assertRaises(ValueError):
+            reserve(10, 0)
+
+    def test_rejects_negative_quantity(self):
+        with self.assertRaises(ValueError):
+            reserve(10, -1)
+
+    def test_rejects_quantity_above_stock(self):
+        for stock, quantity in [(10, 11), (0, 1)]:
+            with self.subTest(stock=stock, quantity=quantity):
+                with self.assertRaises(ValueError):
+                    reserve(stock, quantity)
+
+    def test_preserves_input_stock(self):
+        stock = 10
+        reserve(stock, 3)
+        self.assertEqual(stock, 10)
+        with self.assertRaises(ValueError):
+            reserve(stock, 11)
+        self.assertEqual(stock, 10)
+
+    def test_does_not_change_files(self):
+        project = Path(__file__).resolve().parents[1]
+        for quantity in (3, 0, -1, 11):
+            with self.subTest(quantity=quantity):
+                with tempfile.TemporaryDirectory(dir=project) as directory:
+                    subject = Path(directory)
+                    (subject / "stock.json").write_bytes(b'{"remaining": 99}\n')
+                    (subject / "keep.txt").write_bytes(b"keep exact bytes\n")
+                    before = {p.name: p.read_bytes() for p in subject.iterdir()}
+                    previous = Path.cwd()
+                    try:
+                        os.chdir(subject)
+                        if 0 < quantity <= 10:
+                            reserve(10, quantity)
+                        else:
+                            with self.assertRaises(ValueError):
+                                reserve(10, quantity)
+                        after = {p.name: p.read_bytes() for p in subject.iterdir()}
+                        self.assertEqual(after, before)
+                    finally:
+                        os.chdir(previous)
+
+
+if __name__ == "__main__":
+    unittest.main()

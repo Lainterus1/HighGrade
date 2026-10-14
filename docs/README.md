@@ -7,6 +7,7 @@
 | Устройство, инженерные правила, команды и сборка Проекта | [ARCHITECTURE](ARCHITECTURE.md), [ENGINEERING](ENGINEERING.md), [DEVELOPMENT](DEVELOPMENT.md), [BUILD](BUILD.md) |
 | Действующий маршрут, качество и контекст | [GLOBAL](workflow/GLOBAL.md), [QUALITY](workflow/QUALITY.md), [CONTEXT](workflow/CONTEXT.md) |
 | Техническая справка инструментов Поставки | [Tools](../kit/references/cli.md): спецификации, проверки, установка, диагностика, проблемы |
+| Поэтапная актуализация проекта | [Clear](../kit/procedures/clear.md); для выбранных тестов — [метод проверки](../kit/references/review.md#test-currency-and-effectiveness) |
 | Текущая многоэтапная работа | Основные задачи — в `specs/`; местное состояние — `.highgrade/local/`. `plans/` хранит незавершённые отдельные планы и ссылки на архив, если прежний путь указан в интегрированных спеках |
 | Проверки и выпуски | `evidence/`, `reviews/`, [записи выпусков](releases/) |
 | Примеры и машинные записи переноса | `examples/`, `imports/` |

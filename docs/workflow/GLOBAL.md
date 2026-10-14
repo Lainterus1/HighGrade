@@ -22,7 +22,7 @@ Nine common skills/CLI install into the user profile. Connected projects keep th
 
 [Common rules](../../kit/rules.md) define routing. [Init](../../kit/procedures/init.md) adapts; [task](../../kit/procedures/task.md) refines; [spec](../../kit/procedures/spec.md) defines requirement changes; [work](../../kit/procedures/work.md) implements/checks. [Planner](../../kit/procedures/planner.md) coordinates dependent tasks/specs when project routing accepts it; user request/Planner determine Goal authority. Technical tasks/fixes under unchanged contracts need no new spec.
 
-[Commit](../../kit/procedures/commit.md) records exact local scope. [Push](../../kit/procedures/push.md) separately publishes selected ranges. [Clear](../../kit/procedures/clear.md) reviews on request. [Update](../../kit/procedures/update.md) separately updates installation. Procedures own details/authority, not this document.
+[Commit](../../kit/procedures/commit.md) records exact local scope. [Push](../../kit/procedures/push.md) separately publishes selected ranges. [Clear](../../kit/procedures/clear.md) reviews or refreshes requested scope through Planner. [Update](../../kit/procedures/update.md) separately updates installation. Procedures own details/authority, not this document.
 
 <a id="инструмент-и-доказательства"></a>
 

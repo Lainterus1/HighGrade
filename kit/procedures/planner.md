@@ -4,6 +4,8 @@
 
 Planner coordinates sequential work; requirements and tasks remain in their primary sources. Use it when explicitly called or when an accepted project rule assigns it to a dependent chain: technical stages, one specification's tasks or related specifications. File count, complexity or independent tasks alone do not trigger it. Apply [route selection](task.md#choose-a-sufficient-route): requirements through spec, implementation and checks through work. A plan-only request limits the result to a plan.
 
+[Clear](clear.md#scope-and-plan) assigns Planner to each requested review or refresh, including a short plan for focused coverage. This specific route changes neither Goal authority nor ordinary direct Work. Strict read-only calls keep the plan and continuation in the response.
+
 <a id="цель-и-полномочия"></a>
 
 ## Goal and authority

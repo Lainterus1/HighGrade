@@ -1,0 +1,162 @@
+{
+  "release": "v0-4-0",
+  "cli_version": "0.4.0",
+  "inputs_before": {
+    "Cargo.toml": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+    "Cargo.lock": "2eba6e0de2b5b054aa5d4b0a685da68fd64133e5d41cc6222eb0e2749bfa66ad",
+    "kit/manifest.json": "413c41bfe0eaeeb57bc8ef7448a53dd5299f8e675a2e43058de8af9a73732981",
+    "kit/references/release-notes.json": "855c939e301242efe0e0bd0a93dfbb32e75515b84379117bdc9f370439ef00b6",
+    "kit/procedures/clear.md": "372a1c45c4917916f40ed38baadc2edbe9347e18328b4ceb9d9a171c6b0040c8",
+    "kit/procedures/planner.md": "893c420d2038cc97dd9032007d8d2f9c8e847bc487c8bc687baeb8a731660d09",
+    "kit/references/review.md": "ca670e51356b1fa46662a2e134d04576d5e2f392bfc3500014781e423b17749d",
+    "kit/skills/highgrade-clear/SKILL.md": "bd24dda456b43dd32b92f29b064c16efba552424e8de1df28c7e9ddc82dbdb2c",
+    "kit/skills/highgrade-planner/SKILL.md": "bea02e9be2fce74dc58faa912161d569feff23cd3750358da24e1a51843a29fc",
+    ".highgrade/project/documents.json": "92e34a898bb12b947fac9918858e99a1e6cce36e7a9733765c78747232812439",
+    "README.md": "0969df4f93ffdafac8c89f13fa4bac0e4f6177090d8db7ed80a89633899bf808"
+  },
+  "runs": [
+    {
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade/ui",
+      "started_at": "2026-10-14T04:26:26.556120+00:00",
+      "ended_at": "2026-10-14T04:26:27.494646+00:00",
+      "exit_code": 0,
+      "stdout": "\n> highgrade-ui@0.1.0 build\n> node scripts/bundle.mjs prepare && tsc --noEmit && vite build && node scripts/bundle.mjs manifest\n\nvite v8.3.1 building client environment for production...\ntransforming...\n✓ 2005 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                      0.44 kB │ gzip:   0.33 kB\ndist/assets/mark-iVh24ir5.svg       10.18 kB │ gzip:   2.76 kB\ndist/assets/wordmark-DaoQrXCV.svg   12.90 kB │ gzip:   4.40 kB\ndist/assets/Manrope-DIRNzeTG.ttf   164.70 kB\ndist/assets/Lora-C1B0tkav.ttf      212.19 kB\ndist/assets/index-ODlF3-na.css      38.96 kB │ gzip:   8.59 kB\ndist/assets/index-DSEHGftw.js      346.83 kB │ gzip: 108.82 kB\n\n✓ built in 228ms\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "scripts.tests.test_workflow_contract",
+        "scripts.tests.test_render_skills",
+        "scripts.tests.test_document_budget",
+        "-v"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "started_at": "2026-10-14T04:26:27.495177+00:00",
+      "ended_at": "2026-10-14T04:26:27.607481+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_all_current_kit_markdown_links_resolve_after_the_rename (scripts.tests.test_workflow_contract.WorkflowContractTests.test_all_current_kit_markdown_links_resolve_after_the_rename) ... ok\ntest_canonical_commit_skill_is_rendered_without_a_second_approve_route (scripts.tests.test_workflow_contract.WorkflowContractTests.test_canonical_commit_skill_is_rendered_without_a_second_approve_route) ... ok\ntest_init_links_the_adaptation_that_commit_and_push_consume (scripts.tests.test_workflow_contract.WorkflowContractTests.test_init_links_the_adaptation_that_commit_and_push_consume) ... ok\ntest_planner_route_does_not_grant_goal_or_plan_only_execution (scripts.tests.test_workflow_contract.WorkflowContractTests.test_planner_route_does_not_grant_goal_or_plan_only_execution) ... ok\ntest_other_skills_keep_their_project_entry (scripts.tests.test_render_skills.RenderSkillsTests.test_other_skills_keep_their_project_entry) ... ok\ntest_update_body_and_metadata_come_from_their_editable_sources (scripts.tests.test_render_skills.RenderSkillsTests.test_update_body_and_metadata_come_from_their_editable_sources) ... ok\ntest_update_entry_does_not_require_a_project (scripts.tests.test_render_skills.RenderSkillsTests.test_update_entry_does_not_require_a_project) ... ok\ntest_development_budget_survives_git_checkout_line_endings (scripts.tests.test_document_budget.DocumentBudgetTests.test_development_budget_survives_git_checkout_line_endings) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.023s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--locked",
+        "--test",
+        "global_contracts",
+        "--test",
+        "package_contracts",
+        "--test",
+        "release_notes_contracts"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "started_at": "2026-10-14T04:26:27.608021+00:00",
+      "ended_at": "2026-10-14T04:27:00.491139+00:00",
+      "exit_code": 0,
+      "stdout": "\nrunning 36 tests\ntest global_update_rejects_manual_rollback_option ... ok\ntest doctor_reports_unavailable_tool_without_claiming_version ... ok\ntest kit_manifest_uses_stable_lf_bytes ... ok\ntest global_install_rejects_hash_and_foreign_router_without_activation ... ok\ntest interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route ... ok\ntest interrupted_approve_era_transaction_remains_recoverable ... ok\ntest installed_runtime_references_survive_removal_of_source_copy ... ok\ntest interrupted_skill_update_recovers_without_overwriting_user_edit ... ok\ntest invalid_candidate_notes_preserve_active_profile ... ok\ntest planner_router_is_portable ... ok\ntest shipped_tool_references_resolve_without_repository_files ... ok\ntest global_install_does_not_touch_project_and_checks_adapter ... ok\ntest failed_stage_preserves_foreign_candidate_journal ... ok\ntest supported_adapter_does_not_claim_semantic_readiness ... ok\ntest shipped_registry_example_is_accepted_without_inventing_budgets ... ok\ntest legacy_deploy_migrates_to_commit_push_and_cleans_old_release ... ok\ntest unsupported_project_adapter_is_a_failure ... ok\ntest managed_approve_migrates_to_commit_without_aliases ... ok\ntest approve_migration_preserves_modified_managed_and_foreign_paths ... ok\ntest failed_candidate_stage_restores_changed_skill ... ok\n{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [],\n  \"limitations\": [],\n  \"measurements\": [\n    {\n      \"version\": \"0.4.0\"\n    }\n  ],\n  \"operation\": \"version\",\n  \"result\": {\n    \"version\": \"0.4.0\"\n  },\n  \"status\": \"passed\"\n}\ntest global_update_preserves_project_adaptation_in_profile ... ok\ntest unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills ... ok\ntest nine_skill_release_upgrades_to_thematic_tool_references ... ok\ntest planner_update_accepts_prior_eight_skill_release ... ok\ntest post_switch_commit_recovery_retires_only_unchanged_owned_approve ... ok\ntest failed_stage_does_not_leave_new_routers ... ok\ntest release_without_documentation_reference_can_update ... ok\ntest global_update_preview_switch_and_cleanup_keep_unrelated_files ... ok\ntest six_skill_release_preserves_owned_crlf_routers ... ok\ntest thematic_tools_release_upgrades_to_fixer_materials ... ok\ntest six_skill_release_updates_to_commit_push_and_cleans_old_release ... ok\ntest v026_deploy_migrates_to_two_routes_and_removes_old_release ... ok\ntest failed_approve_migration_preserves_old_route_and_can_retry ... ok\ntest update_replaces_owned_skill_and_preserves_user_edit ... ok\ntest update_reports_notes_without_switching_and_keeps_them_offline ... ok\ntest update_preserves_foreign_file_in_old_release ... ok\n\ntest result: ok. 36 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 20.00s\n\n\nrunning 7 tests\ntest bundled_skill_frontmatter_uses_safe_scalars ... ok\ntest full_install_rejects_pending_audit_and_foreign_skill ... ok\ntest project_exclusions_require_an_explicit_reason_and_fresh_audit ... ok\ntest full_install_keeps_project_files_and_repeats ... ok\ntest candidate_conflict_never_changes_active_release ... ok\ntest update_rejects_manifest_cli_version_mismatch ... ok\ntest update_requires_fresh_explicit_decision_and_preserves_adaptation ... ok\n\ntest result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.32s\n\n\nrunning 5 tests\ntest absent_history_and_cycles_outside_transition_are_explicit ... ok\ntest malformed_history_is_rejected_instead_of_invented ... ok\ntest summary_covers_skipped_releases_and_keeps_all_actions ... ok\ntest empty_complete_transition_retains_all_required_information ... ok\ntest summary_states_gaps_unknown_reverse_and_empty_changes ... ok\n\ntest result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "stderr": "   Compiling highgrade v0.4.0 (/home/lainterus/Projects/High Grade)\n    Finished `test` profile [unoptimized] target(s) in 5.49s\n     Running tests/global_contracts.rs (target/debug/deps/global_contracts-3feb587a83d0bef4)\n     Running tests/package_contracts.rs (target/debug/deps/package_contracts-5b3800228c6221d1)\n     Running tests/release_notes_contracts.rs (target/debug/deps/release_notes_contracts-d319c23a25bee653)\n"
+    },
+    {
+      "argv": [
+        "python",
+        "scripts/render-skills.py",
+        "--check"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "started_at": "2026-10-14T04:27:00.491845+00:00",
+      "ended_at": "2026-10-14T04:27:00.539594+00:00",
+      "exit_code": 0,
+      "stdout": "Skills and manifest are current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/check-repository.mjs"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "started_at": "2026-10-14T04:27:00.540335+00:00",
+      "ended_at": "2026-10-14T04:27:00.570470+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"scope\": \"repository-structure\",\n  \"status\": \"PASSED\",\n  \"observations\": [\n    {\n      \"path\": \"README.md\",\n      \"bytes\": 8894,\n      \"lines\": 133,\n      \"budget\": \"not-assessed\"\n    },\n    {\n      \"path\": \"AGENTS.md\",\n      \"bytes\": 2295,\n      \"lines\": 33,\n      \"budget\": \"not-assessed\"\n    },\n    {\n      \"path\": \"docs/ARCHITECTURE.md\",\n      \"bytes\": 6911,\n      \"lines\": 48,\n      \"budget\": \"not-assessed\"\n    },\n    {\n      \"path\": \"docs/ENGINEERING.md\",\n      \"bytes\": 2582,\n      \"lines\": 30,\n      \"budget\": \"not-assessed\"\n    },\n    {\n      \"path\": \"docs/DEVELOPMENT.md\",\n      \"bytes\": 6784,\n      \"lines\": 123,\n      \"budget\": \"not-assessed\"\n    }\n  ],\n  \"import_files_verified\": 0,\n  \"errors\": [],\n  \"limitations\": [\n    \"No functional plugin tests executed\",\n    \"No semantic documentation review\",\n    \"Document budgets are not assessed here; run highgrade inspect\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python",
+        "scripts/verify.py",
+        "specs"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "started_at": "2026-10-14T04:27:00.571067+00:00",
+      "ended_at": "2026-10-14T04:27:03.214045+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/lainterus/.highgrade/global/releases/v0-3-13/highgrade",
+        "spec-check",
+        "--root",
+        "/home/lainterus/Projects/High Grade",
+        "--id",
+        "HG-0075",
+        "--brief",
+        "true"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "started_at": "2026-10-14T04:27:03.214778+00:00",
+      "ended_at": "2026-10-14T04:27:03.541970+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"ambiguous_result_keys\": [],\n  \"findings\": [],\n  \"limitations\": [\n    \"Structure, recorded observations and fingerprints do not certify semantic correctness, report authenticity, user acceptance or publication. Review declared input coverage.\"\n  ],\n  \"measurements\": [\n    {\n      \"brief\": {\n        \"id\": \"HG-0075\",\n        \"blockers\": [],\n        \"change_sha256\": \"5be80f87248483c45a3767df95595439a17a255fa28fddfc33979ad953ed812a\",\n        \"contract_sha256\": \"2050e7106bea0d188bd3e4509abfa0d63f8b898354a5485274c85e33d75f6de3\",\n        \"human\": \"pending\",\n        \"inputs_sha256\": \"e1c1715efa23ec1c505b7e6f7f4c5261cd264f7a795cd23f0d8beb2a58639576\",\n        \"technical\": \"ready\",\n        \"verified_revision\": null,\n        \"review\": \"go\"\n      }\n    },\n    {\n      \"schema_version\": 3,\n      \"store_sha256\": \"96ba771c1f0569a611c9273fc62081e60840b5ed6f39f870bc29cada1d2a5f14\"\n    }\n  ],\n  \"operation\": \"spec-check\",\n  \"result\": {\n    \"brief\": {\n      \"id\": \"HG-0075\",\n      \"blockers\": [],\n      \"change_sha256\": \"5be80f87248483c45a3767df95595439a17a255fa28fddfc33979ad953ed812a\",\n      \"contract_sha256\": \"2050e7106bea0d188bd3e4509abfa0d63f8b898354a5485274c85e33d75f6de3\",\n      \"human\": \"pending\",\n      \"inputs_sha256\": \"e1c1715efa23ec1c505b7e6f7f4c5261cd264f7a795cd23f0d8beb2a58639576\",\n      \"technical\": \"ready\",\n      \"verified_revision\": null,\n      \"review\": \"go\"\n    },\n    \"schema_version\": 3,\n    \"store_sha256\": \"96ba771c1f0569a611c9273fc62081e60840b5ed6f39f870bc29cada1d2a5f14\"\n  },\n  \"status\": \"passed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python",
+        ".highgrade/local/clear-refresh/inspect_scope.py"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "started_at": "2026-10-14T04:27:03.542641+00:00",
+      "ended_at": "2026-10-14T04:27:03.589364+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"scope\": \"HG-0075 changed sources and registry; comparison on the same working project\",\n  \"baseline_registry_source\": \"git show HEAD:.highgrade/project/documents.json\",\n  \"whole_project_status\": \"unknown\",\n  \"inherited_unknown\": [\n    [\n      \"AreaUnclassified\",\n      \"presentation\"\n    ]\n  ],\n  \"current_unknown\": [\n    [\n      \"AreaUnclassified\",\n      \"presentation\"\n    ]\n  ],\n  \"new_unknown\": [],\n  \"current_errors\": [],\n  \"budget_warnings\": [],\n  \"limitations\": [\n    \"The baseline uses prior registry ownership on current files, not a historical content test.\",\n    \"presentation is outside HG-0075; UNKNOWN remains UNKNOWN and no exclusion was added.\",\n    \"External links remain unverified by inspect.\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/home/lainterus/Projects/High Grade",
+      "started_at": "2026-10-14T04:27:03.590043+00:00",
+      "ended_at": "2026-10-14T04:27:03.599400+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "inputs_after": {
+    "Cargo.toml": "a27bec38a8b3ace15b33432c99080a04ad3b79fd58d127c076af4ec304ef77d1",
+    "Cargo.lock": "2eba6e0de2b5b054aa5d4b0a685da68fd64133e5d41cc6222eb0e2749bfa66ad",
+    "kit/manifest.json": "413c41bfe0eaeeb57bc8ef7448a53dd5299f8e675a2e43058de8af9a73732981",
+    "kit/references/release-notes.json": "855c939e301242efe0e0bd0a93dfbb32e75515b84379117bdc9f370439ef00b6",
+    "kit/procedures/clear.md": "372a1c45c4917916f40ed38baadc2edbe9347e18328b4ceb9d9a171c6b0040c8",
+    "kit/procedures/planner.md": "893c420d2038cc97dd9032007d8d2f9c8e847bc487c8bc687baeb8a731660d09",
+    "kit/references/review.md": "ca670e51356b1fa46662a2e134d04576d5e2f392bfc3500014781e423b17749d",
+    "kit/skills/highgrade-clear/SKILL.md": "bd24dda456b43dd32b92f29b064c16efba552424e8de1df28c7e9ddc82dbdb2c",
+    "kit/skills/highgrade-planner/SKILL.md": "bea02e9be2fce74dc58faa912161d569feff23cd3750358da24e1a51843a29fc",
+    ".highgrade/project/documents.json": "92e34a898bb12b947fac9918858e99a1e6cce36e7a9733765c78747232812439",
+    "README.md": "0969df4f93ffdafac8c89f13fa4bac0e4f6177090d8db7ed80a89633899bf808"
+  }
+}

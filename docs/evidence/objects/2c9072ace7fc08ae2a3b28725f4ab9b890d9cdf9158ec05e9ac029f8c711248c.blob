@@ -1,0 +1,9 @@
+--- src/stock.py
++++ mutated/write-file/src/stock.py
+@@ -1,4 +1,6 @@
+ def reserve(stock, quantity):
+     if quantity <= 0 or quantity > stock:
+         raise ValueError("quantity")
++    from pathlib import Path
++    Path("stock.json").write_text(str(stock - quantity))
+     return {"remaining": stock - quantity}

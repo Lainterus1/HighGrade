@@ -1,0 +1,12 @@
+import sys
+from pathlib import Path
+import unittest
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from stock import reserve
+
+class StockTests(unittest.TestCase):
+    def test_returns_remainder(self):
+        self.assertIn("remaining", reserve(10, 3))
+
+if __name__ == "__main__":
+    unittest.main()

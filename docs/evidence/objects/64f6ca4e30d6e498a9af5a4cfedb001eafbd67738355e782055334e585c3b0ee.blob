@@ -1,0 +1,94 @@
+"""Check project navigation, evidence freshness and scoped preservation."""
+import hashlib
+import json
+from pathlib import Path
+import re
+
+ROOT = Path(__file__).resolve().parents[3]
+BASE = Path(__file__).parent
+INITIAL = json.loads((BASE / "initial-inputs.json").read_text())
+EXPECTED_CHANGED = {"README.md", "docs/api.md", "ops/README.md", "tests/test_stock.py"}
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+changed = {p for p, expected in INITIAL.items() if sha(ROOT / p) != expected}
+assert changed == EXPECTED_CHANGED, changed
+original_paths = {str(p.relative_to(ROOT)) for p in ROOT.rglob("*")
+                  if p.is_file() and BASE not in p.parents}
+assert original_paths == set(INITIAL), original_paths.symmetric_difference(INITIAL)
+assert not (BASE / "tmp").exists(), "mutation workspace left behind"
+assert not (BASE / "__pycache__").exists(), "generated driver cache left behind"
+
+links = []
+markdown = [ROOT / p for p in INITIAL if p.endswith(".md")]
+markdown += [BASE / p for p in ("plan.md", "state.md", "result.md")]
+for document in markdown:
+    for target in re.findall(r"\[[^\]]*\]\(([^)]+)\)", document.read_text()):
+        assert "://" not in target, "unexpected external navigation"
+        relative = target.split("#", 1)[0]
+        selected = (document.parent / relative).resolve()
+        assert selected == ROOT or ROOT in selected.parents, (document, target)
+        assert selected.exists(), (document, target)
+        links.append({"from": str(document.relative_to(ROOT)), "to": target})
+
+snapshots = {}
+for phase in ("baseline", "final"):
+    folder = BASE / "inputs" / phase
+    snapshots[phase] = {str(p.relative_to(folder)): sha(p)
+                        for p in folder.rglob("*") if p.is_file()}
+    for relative, expected in snapshots[phase].items():
+        if phase == "baseline":
+            assert expected == INITIAL[relative], relative
+        else:
+            assert expected == sha(ROOT / relative), relative
+
+observations = json.loads((BASE / "observations.json").read_text())
+for name, observation in observations.items():
+    assert sha(BASE / "reports" / name) == observation["sha256"], name
+
+mutations = ["wrong-remainder", "allow-zero", "allow-negative", "allow-overstock",
+             "reject-full-stock", "reference-minimum", "write-file"]
+results = []
+for mutation in mutations:
+    initial = json.loads((BASE / "reports" / f"initial-mutation-{mutation}.json").read_text())
+    final = json.loads((BASE / "reports" / f"final-mutation-{mutation}.json").read_text())
+    assert initial["exit_code"] == 0 and "Ran 1 test" in initial["stderr"]
+    assert final["exit_code"] == 1 and "Ran 7 tests" in final["stderr"]
+    for report, phase in ((initial, "baseline"), (final, "final")):
+        for relative in ("requirements.md", "tests/test_stock.py"):
+            assert report["input_sha256"][relative] == snapshots[phase][relative]
+        assert "skipped" not in report["stderr"].lower()
+        assert report["command_argv"] == ["python", "-m", "unittest", "discover", "-s", "tests", "-v"]
+    assert (BASE / "mutation-diffs" / f"{mutation}.patch").is_file()
+    results.append({"mutation": mutation, "initial": "missed",
+                    "final": "relevant failure confirmed by executor"})
+
+final = json.loads((BASE / "reports" / "final-unmutated.json").read_text())
+assert final["exit_code"] == 0 and "Ran 7 tests" in final["stderr"]
+assert "OK" in final["stderr"] and "skipped" not in final["stderr"].lower()
+for relative in ("requirements.md", "src/stock.py", "tests/test_stock.py"):
+    assert final["input_sha256"][relative] == sha(ROOT / relative), relative
+
+final_profile = json.loads((BASE / "profile-final-inputs.json").read_text())
+profile_root = Path(final_profile["profile"])
+for relative, expected in final_profile["sha256"].items():
+    assert sha(profile_root / relative) == expected, relative
+
+assert "discover -s tests -v" in (ROOT / "README.md").read_text()
+assert "discover -s checks" not in (ROOT / "README.md").read_text()
+api = json.loads((BASE / "reports" / "api-example.json").read_text())
+assert api["exit_code"] == 0 and api["stdout"] == "{'remaining': 7}\n"
+
+print(json.dumps({"status": "passed", "original_files": len(INITIAL),
+                  "changed_original_files": sorted(changed),
+                  "preserved_original_files": sorted(set(INITIAL) - changed),
+                  "checked_links": links, "mutations": results,
+                  "preserved_reports": len(observations),
+                  "profile": final_profile["profile"],
+                  "document_sizes_bytes": {p: (ROOT / p).stat().st_size
+                                           for p in INITIAL if p.endswith(".md")},
+                  "document_budgets": "not assigned; no ceiling changed"},
+                 ensure_ascii=False, indent=2))

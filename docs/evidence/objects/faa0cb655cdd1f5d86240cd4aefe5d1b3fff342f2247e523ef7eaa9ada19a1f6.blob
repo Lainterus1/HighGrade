@@ -1,0 +1,38 @@
+[
+  {
+    "command_argv": [
+      "python",
+      "-m",
+      "unittest",
+      "scripts.tests.test_workflow_contract",
+      "scripts.tests.test_render_skills",
+      "scripts.tests.test_document_budget",
+      "-v"
+    ],
+    "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/independent-HG0075-8w37gp9x/checks-project",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_all_current_kit_markdown_links_resolve_after_the_rename (scripts.tests.test_workflow_contract.WorkflowContractTests.test_all_current_kit_markdown_links_resolve_after_the_rename) ... ok\ntest_canonical_commit_skill_is_rendered_without_a_second_approve_route (scripts.tests.test_workflow_contract.WorkflowContractTests.test_canonical_commit_skill_is_rendered_without_a_second_approve_route) ... ok\ntest_init_links_the_adaptation_that_commit_and_push_consume (scripts.tests.test_workflow_contract.WorkflowContractTests.test_init_links_the_adaptation_that_commit_and_push_consume) ... ok\ntest_planner_route_does_not_grant_goal_or_plan_only_execution (scripts.tests.test_workflow_contract.WorkflowContractTests.test_planner_route_does_not_grant_goal_or_plan_only_execution) ... ok\ntest_other_skills_keep_their_project_entry (scripts.tests.test_render_skills.RenderSkillsTests.test_other_skills_keep_their_project_entry) ... ok\ntest_update_body_and_metadata_come_from_their_editable_sources (scripts.tests.test_render_skills.RenderSkillsTests.test_update_body_and_metadata_come_from_their_editable_sources) ... ok\ntest_update_entry_does_not_require_a_project (scripts.tests.test_render_skills.RenderSkillsTests.test_update_entry_does_not_require_a_project) ... ok\ntest_development_budget_survives_git_checkout_line_endings (scripts.tests.test_document_budget.DocumentBudgetTests.test_development_budget_survives_git_checkout_line_endings) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.021s\n\nOK\n"
+  },
+  {
+    "command_argv": [
+      "python",
+      "scripts/render-skills.py",
+      "--check"
+    ],
+    "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/independent-HG0075-8w37gp9x/checks-project",
+    "exit_code": 0,
+    "stdout": "Skills and manifest are current\n",
+    "stderr": ""
+  },
+  {
+    "command_argv": [
+      "node",
+      "scripts/check-repository.mjs"
+    ],
+    "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/independent-HG0075-8w37gp9x/checks-project",
+    "exit_code": 0,
+    "stdout": "{\n  \"scope\": \"repository-structure\",\n  \"status\": \"PASSED\",\n  \"observations\": [\n    {\n      \"path\": \"README.md\",\n      \"bytes\": 8894,\n      \"lines\": 133,\n      \"budget\": \"not-assessed\"\n    },\n    {\n      \"path\": \"AGENTS.md\",\n      \"bytes\": 2295,\n      \"lines\": 33,\n      \"budget\": \"not-assessed\"\n    },\n    {\n      \"path\": \"docs/ARCHITECTURE.md\",\n      \"bytes\": 6911,\n      \"lines\": 48,\n      \"budget\": \"not-assessed\"\n    },\n    {\n      \"path\": \"docs/ENGINEERING.md\",\n      \"bytes\": 2582,\n      \"lines\": 30,\n      \"budget\": \"not-assessed\"\n    },\n    {\n      \"path\": \"docs/DEVELOPMENT.md\",\n      \"bytes\": 6784,\n      \"lines\": 123,\n      \"budget\": \"not-assessed\"\n    }\n  ],\n  \"import_files_verified\": 0,\n  \"errors\": [],\n  \"limitations\": [\n    \"No functional plugin tests executed\",\n    \"No semantic documentation review\",\n    \"Document budgets are not assessed here; run highgrade inspect\"\n  ]\n}\n",
+    "stderr": ""
+  }
+]

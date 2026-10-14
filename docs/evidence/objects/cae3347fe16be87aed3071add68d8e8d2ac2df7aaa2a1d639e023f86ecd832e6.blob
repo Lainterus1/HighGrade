@@ -1,0 +1,71 @@
+    Finished `test` profile [unoptimized] target(s) in 0.06s
+     Running tests/global_contracts.rs (target/debug/deps/global_contracts-62f0de994d510722)
+
+running 36 tests
+test doctor_reports_unavailable_tool_without_claiming_version ... ok
+test global_update_rejects_manual_rollback_option ... ok
+test kit_manifest_uses_stable_lf_bytes ... ok
+test global_install_rejects_hash_and_foreign_router_without_activation ... ok
+test interrupted_approve_era_transaction_remains_recoverable ... ok
+test interrupted_commit_migration_recovery_preserves_user_edits_and_removes_new_route ... ok
+test installed_runtime_references_survive_removal_of_source_copy ... ok
+test interrupted_skill_update_recovers_without_overwriting_user_edit ... ok
+test invalid_candidate_notes_preserve_active_profile ... ok
+test planner_router_is_portable ... ok
+test shipped_tool_references_resolve_without_repository_files ... FAILED
+test global_install_does_not_touch_project_and_checks_adapter ... ok
+test failed_stage_preserves_foreign_candidate_journal ... ok
+test supported_adapter_does_not_claim_semantic_readiness ... ok
+test shipped_registry_example_is_accepted_without_inventing_budgets ... ok
+test managed_approve_migrates_to_commit_without_aliases ... ok
+test unsupported_project_adapter_is_a_failure ... ok
+test legacy_deploy_migrates_to_commit_push_and_cleans_old_release ... ok
+test approve_migration_preserves_modified_managed_and_foreign_paths ... ok
+test failed_candidate_stage_restores_changed_skill ... ok
+{
+  "ambiguous_result_keys": [],
+  "findings": [],
+  "limitations": [],
+  "measurements": [
+    {
+      "version": "0.3.13"
+    }
+  ],
+  "operation": "version",
+  "result": {
+    "version": "0.3.13"
+  },
+  "status": "passed"
+}
+test global_update_preserves_project_adaptation_in_profile ... ok
+test unix_install_executes_with_unicode_paths_and_preserves_neighbor_skills ... ok
+test nine_skill_release_upgrades_to_thematic_tool_references ... ok
+test planner_update_accepts_prior_eight_skill_release ... ok
+test failed_stage_does_not_leave_new_routers ... ok
+test post_switch_commit_recovery_retires_only_unchanged_owned_approve ... ok
+test six_skill_release_preserves_owned_crlf_routers ... ok
+test global_update_preview_switch_and_cleanup_keep_unrelated_files ... ok
+test release_without_documentation_reference_can_update ... ok
+test thematic_tools_release_upgrades_to_fixer_materials ... ok
+test six_skill_release_updates_to_commit_push_and_cleans_old_release ... ok
+test v026_deploy_migrates_to_two_routes_and_removes_old_release ... ok
+test failed_approve_migration_preserves_old_route_and_can_retry ... ok
+test update_replaces_owned_skill_and_preserves_user_edit ... ok
+test update_reports_notes_without_switching_and_keeps_them_offline ... ok
+test update_preserves_foreign_file_in_old_release ... ok
+
+failures:
+
+---- shipped_tool_references_resolve_without_repository_files stdout ----
+
+thread 'shipped_tool_references_resolve_without_repository_files' panicked at tests/global_contracts.rs:1825:21:
+procedures/clear.md -> ../references/review.md#актуальность-и-сила-тестов: missing heading
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    shipped_tool_references_resolve_without_repository_files
+
+test result: FAILED. 35 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 20.28s
+
+error: test failed, to rerun pass `--test global_contracts`

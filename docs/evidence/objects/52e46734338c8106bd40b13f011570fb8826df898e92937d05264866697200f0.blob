@@ -1,0 +1,47 @@
+"""Save immutable original output for local project checks."""
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+ROOT = Path(__file__).resolve().parents[3]
+REPORTS = Path(__file__).parent / "reports"
+CAUSAL = ("requirements.md", "src/stock.py", "tests/test_stock.py")
+
+
+def run(name, command, cwd=ROOT, causal=CAUSAL):
+    REPORTS.mkdir(parents=True, exist_ok=True)
+    path = REPORTS / f"{name}.json"
+    if path.exists():
+        raise FileExistsError(path)
+    started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    inputs = {str(p): hashlib.sha256((cwd / p).read_bytes()).hexdigest()
+              for p in causal if (cwd / p).is_file()}
+    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
+    result = subprocess.run(command, cwd=cwd, env=env, text=True,
+                            capture_output=True, timeout=60)
+    record = {"command_argv": list(command), "cwd": str(cwd),
+              "started_at": started,
+              "finished_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "python": sys.version, "input_sha256": inputs,
+              "exit_code": result.returncode, "stdout": result.stdout,
+              "stderr": result.stderr}
+    path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n")
+    print(json.dumps({"report": str(path), "exit_code": result.returncode,
+                      "stdout": result.stdout, "stderr": result.stderr},
+                     ensure_ascii=False))
+    return result
+
+
+if __name__ == "__main__":
+    name = sys.argv[1]
+    arguments = sys.argv[2:]
+    if arguments[0] == "--inputs":
+        causal = arguments[1].split(",")
+        arguments = arguments[2:]
+    else:
+        causal = CAUSAL
+    run(name, arguments, causal=causal)

@@ -1,0 +1,58 @@
+"""Run selected contract violations in isolated project copies."""
+import difflib
+import json
+from pathlib import Path
+import shutil
+import sys
+
+sys.dont_write_bytecode = True
+from run_check import ROOT, run
+
+BASE = Path(__file__).parent
+SOURCE = (ROOT / "src/stock.py").read_text()
+MUTATIONS = {
+    "wrong-remainder": SOURCE.replace("stock - quantity", "stock + quantity"),
+    "allow-zero": SOURCE.replace("quantity <= 0", "quantity < 0"),
+    "allow-negative": SOURCE.replace("quantity <= 0", "quantity == 0"),
+    "allow-overstock": SOURCE.replace("quantity <= 0 or quantity > stock", "quantity <= 0"),
+    "reject-full-stock": SOURCE.replace("quantity > stock", "quantity >= stock"),
+    "reference-minimum": SOURCE.replace("quantity <= 0", "quantity < 1"),
+    "write-file": SOURCE.replace('    return {"remaining": stock - quantity}',
+                                 '    from pathlib import Path\n'
+                                 '    Path("stock.json").write_text(str(stock - quantity))\n'
+                                 '    return {"remaining": stock - quantity}'),
+}
+
+
+if __name__ == "__main__":
+    phase = sys.argv[1]
+    results = []
+    selected = sys.argv[2:] or list(MUTATIONS)
+    for name in selected:
+        mutated = MUTATIONS[name]
+        assert mutated != SOURCE, name
+        workspace = BASE / "tmp" / f"{phase}-{name}"
+        workspace.mkdir(parents=True, exist_ok=False)
+        try:
+            for relative in ("requirements.md", "src/stock.py", "tests/test_stock.py"):
+                target = workspace / relative
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / relative, target)
+            (workspace / "src/stock.py").write_text(mutated)
+            diff = "".join(difflib.unified_diff(
+                SOURCE.splitlines(keepends=True), mutated.splitlines(keepends=True),
+                fromfile="src/stock.py", tofile=f"mutated/{name}/src/stock.py"))
+            patch = BASE / "mutation-diffs" / f"{name}.patch"
+            patch.parent.mkdir(exist_ok=True)
+            if patch.exists():
+                assert patch.read_text() == diff, "mutation changed"
+            else:
+                patch.write_text(diff)
+            report = run(f"{phase}-mutation-{name}",
+                         ["python", "-m", "unittest", "discover", "-s", "tests", "-v"],
+                         cwd=workspace)
+            results.append({"mutation": name, "exit_code": report.returncode})
+        finally:
+            shutil.rmtree(workspace)
+    (BASE / "tmp").rmdir()
+    print(json.dumps(results, indent=2))

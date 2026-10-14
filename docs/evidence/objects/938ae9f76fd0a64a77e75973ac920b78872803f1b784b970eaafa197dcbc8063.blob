@@ -1,0 +1,23 @@
+{
+  "command_argv": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/clear-refresh/project/.highgrade/local/clear-refresh/tmp/final-allow-overstock",
+  "started_at": "2026-10-13T13:52:25.715845+00:00",
+  "finished_at": "2026-10-13T13:52:25.768347+00:00",
+  "python": "3.14.7 (main, Aug 10 2026, 07:46:56) [GCC 16.1.1 20260728]",
+  "input_sha256": {
+    "requirements.md": "86abc246cd8ebd5ba5af6f73aefd681d7701f32fbda9a19e4506ee91f3ec66f4",
+    "src/stock.py": "8c60463be617201ecee0f780ec1a3e7930bf7fc372027d5895280553be851e0e",
+    "tests/test_stock.py": "0af7ae877c4d416bd42e69112b49726d41ede94e534a90aa79e4d4ae00b5e738"
+  },
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_does_not_change_files (test_stock.StockTests.test_does_not_change_files) ... \n  test_does_not_change_files (test_stock.StockTests.test_does_not_change_files) (quantity=11) ... FAIL\ntest_preserves_input_stock (test_stock.StockTests.test_preserves_input_stock) ... FAIL\ntest_rejects_negative_quantity (test_stock.StockTests.test_rejects_negative_quantity) ... ok\ntest_rejects_quantity_above_stock (test_stock.StockTests.test_rejects_quantity_above_stock) ... \n  test_rejects_quantity_above_stock (test_stock.StockTests.test_rejects_quantity_above_stock) (stock=10, quantity=11) ... FAIL\n  test_rejects_quantity_above_stock (test_stock.StockTests.test_rejects_quantity_above_stock) (stock=0, quantity=1) ... FAIL\ntest_rejects_zero (test_stock.StockTests.test_rejects_zero) ... ok\ntest_reserves_full_stock (test_stock.StockTests.test_reserves_full_stock) ... ok\ntest_returns_remainder (test_stock.StockTests.test_returns_remainder) ... ok\n\n======================================================================\nFAIL: test_does_not_change_files (test_stock.StockTests.test_does_not_change_files) (quantity=11)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/clear-refresh/project/.highgrade/local/clear-refresh/tmp/final-allow-overstock/tests/test_stock.py\", line 57, in test_does_not_change_files\n    with self.assertRaises(ValueError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_preserves_input_stock (test_stock.StockTests.test_preserves_input_stock)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/clear-refresh/project/.highgrade/local/clear-refresh/tmp/final-allow-overstock/tests/test_stock.py\", line 38, in test_preserves_input_stock\n    with self.assertRaises(ValueError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_quantity_above_stock (test_stock.StockTests.test_rejects_quantity_above_stock) (stock=10, quantity=11)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/clear-refresh/project/.highgrade/local/clear-refresh/tmp/final-allow-overstock/tests/test_stock.py\", line 31, in test_rejects_quantity_above_stock\n    with self.assertRaises(ValueError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_quantity_above_stock (test_stock.StockTests.test_rejects_quantity_above_stock) (stock=0, quantity=1)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/clear-refresh/project/.highgrade/local/clear-refresh/tmp/final-allow-overstock/tests/test_stock.py\", line 31, in test_rejects_quantity_above_stock\n    with self.assertRaises(ValueError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 7 tests in 0.002s\n\nFAILED (failures=4)\n"
+}

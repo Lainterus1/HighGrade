@@ -1,0 +1,4 @@
+def reserve(stock, quantity):
+    if quantity <= 0 or quantity > stock:
+        raise ValueError("quantity")
+    return {"remaining": stock - quantity}

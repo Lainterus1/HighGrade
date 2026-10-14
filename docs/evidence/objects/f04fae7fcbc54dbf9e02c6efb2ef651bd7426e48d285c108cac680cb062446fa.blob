@@ -1,0 +1,8 @@
+--- src/stock.py
++++ mutated/allow-overstock/src/stock.py
+@@ -1,4 +1,4 @@
+ def reserve(stock, quantity):
+-    if quantity <= 0 or quantity > stock:
++    if quantity <= 0:
+         raise ValueError("quantity")
+     return {"remaining": stock - quantity}

@@ -1,0 +1,23 @@
+{
+  "command_argv": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/home/lainterus/Projects/High Grade/target/highgrade/tmp/clear-refresh/project/.highgrade/local/clear-refresh/tmp/final-reference-minimum",
+  "started_at": "2026-10-13T13:52:25.819304+00:00",
+  "finished_at": "2026-10-13T13:52:25.870850+00:00",
+  "python": "3.14.7 (main, Aug 10 2026, 07:46:56) [GCC 16.1.1 20260728]",
+  "input_sha256": {
+    "requirements.md": "86abc246cd8ebd5ba5af6f73aefd681d7701f32fbda9a19e4506ee91f3ec66f4",
+    "src/stock.py": "11f7529a8beb95af980dddeb3046623ecb608187fc799fcebbdae66b0bf54a9f",
+    "tests/test_stock.py": "0af7ae877c4d416bd42e69112b49726d41ede94e534a90aa79e4d4ae00b5e738"
+  },
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_does_not_change_files (test_stock.StockTests.test_does_not_change_files) ... ok\ntest_preserves_input_stock (test_stock.StockTests.test_preserves_input_stock) ... ok\ntest_rejects_negative_quantity (test_stock.StockTests.test_rejects_negative_quantity) ... ok\ntest_rejects_quantity_above_stock (test_stock.StockTests.test_rejects_quantity_above_stock) ... ok\ntest_rejects_zero (test_stock.StockTests.test_rejects_zero) ... ok\ntest_reserves_full_stock (test_stock.StockTests.test_reserves_full_stock) ... ok\ntest_returns_remainder (test_stock.StockTests.test_returns_remainder) ... \n  test_returns_remainder (test_stock.StockTests.test_returns_remainder) (stock=1, quantity=0.5) ... ERROR\n\n======================================================================\nERROR: test_returns_remainder (test_stock.StockTests.test_returns_remainder) (stock=1, quantity=0.5)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/clear-refresh/project/.highgrade/local/clear-refresh/tmp/final-reference-minimum/tests/test_stock.py\", line 15, in test_returns_remainder\n    self.assertEqual(reserve(stock, quantity), {\"remaining\": remaining})\n                     ~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/home/lainterus/Projects/High Grade/target/highgrade/tmp/clear-refresh/project/.highgrade/local/clear-refresh/tmp/final-reference-minimum/src/stock.py\", line 3, in reserve\n    raise ValueError(\"quantity\")\nValueError: quantity\n\n----------------------------------------------------------------------\nRan 7 tests in 0.002s\n\nFAILED (errors=1)\n"
+}

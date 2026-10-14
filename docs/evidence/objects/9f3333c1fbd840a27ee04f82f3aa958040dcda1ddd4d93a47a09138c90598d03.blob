@@ -1,0 +1,661 @@
+{
+  "ambiguous_result_keys": [],
+  "findings": [],
+  "limitations": [
+    "Проверены локальные файлы и выбранный состав; внешняя доступность, срок хранения, отправка и приёмка не подтверждаются. Bundle — JSON-массив относительных путей, не загрузка. Все закреплённые входы проверяются консервативно; воспроизводимость не угадывается. Байты blob в Git index должны совпасть с закреплёнными хешами; фильтры не запускаются. Различие нормализации остаётся явным index_differs."
+  ],
+  "measurements": [
+    {
+      "id": "HG-0075",
+      "action": "spec-delivery",
+      "composition": "git_index",
+      "delivery_ready": true,
+      "files": [
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/clear-refresh/verification.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/01ec624cbd2ddc71c778b1d9997d515139c34f32c53a4d4cd2e44b0bbdc5ba32.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/0745b2874c4f3e49487c8ead05be0d16e395846e3d68af506cec07c0195ae997.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/075347dc6c25440e7f76794a64f96743e12dc16a6c186b2ebbfdae4fd797c6ae.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/07b4fee432f42087c21da89ef3f78d0503287af0ac9283bfe614536b2298077e.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/0af7ae877c4d416bd42e69112b49726d41ede94e534a90aa79e4d4ae00b5e738.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/0e39755183509fa50d43f131e9429dc0a7bfc74edcedb9ab1dd3b49842f4e904.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/0efcade26bfc7a50d20f0fadc33c6e6ebb071050d9f437cb9fd81ff53f3987e6.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/10c12348eb51da6de694772779fbf52c7cf0dbcadfc705445c49d6766715d185.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/157571b41f29f7a18a4918f37ce533972b1149d31e9a45b5a522c140b862eab4.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/20aebf50ddb566b2331fa6a320d26123587d40913f9a26baa9ec0b13ecb8a7d4.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/27a7b0bff7d891ff74e521c81eaf8b51db0b644ca9a6a5b1c2238f0adda1c410.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/2895855d6ffdf207bf41feba3cf5b8eff6a7076a3d2c354c1f3e47d75769b30b.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/2c9072ace7fc08ae2a3b28725f4ab9b890d9cdf9158ec05e9ac029f8c711248c.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/2d1713b58e9afa7232c1646a08307a0a8f1e58c7b44ed94069e230823c7dd1c5.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/321dae5bec7a308dab7c3699fb3fde741ecac1235cec3c2f0ac0bdf0e01f29c7.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/3ccf31544e9cceb239c8c355995450412479c989b5f8ccf6846bdaa0db07699c.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/3d2f7cb227aec8511b9dc773ef2c136db6eb2215c1c8bf9ac921949470447dae.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/42aeb8011f5967b5e9e492338bae878babffc5b82239a3e5d3d1d311a053ec1c.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/43739fa156b76fa70baefa2ec059755779a68844e716006fa7693a6f7db329c5.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/44f3e288ef2dfe6f65449b283769eb4cab53807724be451b3061744a0fc738b3.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/48aef256812e213471615671f03a36548e655fd78fd485f7051150da902c4df9.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/493e38f639b8d5a5837dca96c6a93ead158b554f632e3ad5168e13493f81b18d.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/52e46734338c8106bd40b13f011570fb8826df898e92937d05264866697200f0.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/571b85fed4db440cfe15365b9b062578ba866a785fd6c3ec1cdebc522617c3c7.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/58c440dd74f33f7c3995aed25241bcb18a1e9daa658caad3a427a5bf40a42d51.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/58f57ae518ee2a4ef9df9259be053aeccf9ee8bdef32cdaa8555766e64f9a2b4.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/5da7637b6f7540ce2fa60bf0d94a9e0e9e4fff2ccf7a08b8b7c4a619aa0f8b87.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/64eb203b0d97466bb2d221e6288c32f6ae96dfed7c047b5f2da0e124e2b8ebbf.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/68694765eae28bb1b482be00269677cff1feba9adadcfacd7409f96cc8d2a636.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/80d7e395ee92bad00b2bdab54fbf5cca1ad9305ca7fcfc515b3738ac7a4ff465.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/832e25076d52d4a658dacf7ab5bc8c1a74f73acc414ece9a6c47a383442606d9.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/83ad0524d68b71716f8bba7ed1959b8f287de2f02fe1b593cbe6d1cb82da4700.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/86abc246cd8ebd5ba5af6f73aefd681d7701f32fbda9a19e4506ee91f3ec66f4.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/870e1416f775f9802eefab7c64a358c9b28f7be601cf952818e6198be5426152.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/8f4c1af4fcdb6e76cd89d23266cefe940f2f7736cf0031dc216992b0ec685204.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/938ae9f76fd0a64a77e75973ac920b78872803f1b784b970eaafa197dcbc8063.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/93da41fdb5495dc366445eee6100587d77cac41b659ce82fd50d9929fbf426e4.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/9b2fc16f074b7968530a1f0fd9a778765df3ccaaf7ca4e552ea683105a5d91bf.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/addc7aaa07c99c569ad52b8b1c22d24561b092fdcf2b0e25c09bdd2f7402f23e.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/b11fa7009b59bc15137a687d76c5bcf7f098556c16be8bd8dd9e94e42a478129.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/b33b706d491ad85c7f73f7bb0ecc4b8bee0a45f64a663ca79b5f0b995d0e5b4d.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/b83d3a4d17ea7bec45f66475310af29b7e48d405d06f1dceaf82ddbe6afd16c4.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/c20ef27e9706564fec73e6cf7aa96fef3ca123ec349863b83f2a6dc59b42e09c.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/c9c55a49e5fc5375f7913d9961f2344514bfc9ca973271024860d38caca9e267.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/d3ea72bffe3ddf987a0385a784a77029c664adda43835075ae698bcbe2f8aba9.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/e08ee01da1871fb97d6fa5b6599728f57d417e4c7aebe1bbd6382cd533ded37f.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/e3a61b314be905bf6e89767629b418c3a74f2c64b6af229a366321033561de62.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/e5cb6038d25e4d58bc6f22b15efd13a6509eca4a58f2efd3495dd9addd677754.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/ebae31deaf8760695b3561c53ad97bc2f4acf2a7162105cce0898b733c80be70.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/ec0c2b5fb2a446d85d12dfe5aa26fb1b2ecc0739d4a434f0fd5c080dd3170da0.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/ec7787ff8993cc6a48dfe2860afe62a407bb45d986c80efee50b9cf631331ff1.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "docs/evidence/objects/f04fae7fcbc54dbf9e02c6efb2ef651bd7426e48d285c108cac680cb062446fa.blob"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/procedures/clear.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/procedures/planner.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/procedures/task.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/procedures/work.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/references/audit.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/references/documentation.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/references/review.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/rules.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/skills/highgrade-clear/SKILL.md"
+        },
+        {
+          "composition": "selected",
+          "current": true,
+          "path": "kit/skills/highgrade-planner/SKILL.md"
+        }
+      ],
+      "human_acceptance": "unchanged",
+      "technical_readiness": "use_spec_check"
+    }
+  ],
+  "operation": "doctor",
+  "result": {
+    "id": "HG-0075",
+    "action": "spec-delivery",
+    "composition": "git_index",
+    "delivery_ready": true,
+    "files": [
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/clear-refresh/verification.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/01ec624cbd2ddc71c778b1d9997d515139c34f32c53a4d4cd2e44b0bbdc5ba32.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/0745b2874c4f3e49487c8ead05be0d16e395846e3d68af506cec07c0195ae997.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/075347dc6c25440e7f76794a64f96743e12dc16a6c186b2ebbfdae4fd797c6ae.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/07b4fee432f42087c21da89ef3f78d0503287af0ac9283bfe614536b2298077e.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/0af7ae877c4d416bd42e69112b49726d41ede94e534a90aa79e4d4ae00b5e738.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/0e39755183509fa50d43f131e9429dc0a7bfc74edcedb9ab1dd3b49842f4e904.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/0efcade26bfc7a50d20f0fadc33c6e6ebb071050d9f437cb9fd81ff53f3987e6.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/10c12348eb51da6de694772779fbf52c7cf0dbcadfc705445c49d6766715d185.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/157571b41f29f7a18a4918f37ce533972b1149d31e9a45b5a522c140b862eab4.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/20aebf50ddb566b2331fa6a320d26123587d40913f9a26baa9ec0b13ecb8a7d4.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/27a7b0bff7d891ff74e521c81eaf8b51db0b644ca9a6a5b1c2238f0adda1c410.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/2895855d6ffdf207bf41feba3cf5b8eff6a7076a3d2c354c1f3e47d75769b30b.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/2c9072ace7fc08ae2a3b28725f4ab9b890d9cdf9158ec05e9ac029f8c711248c.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/2d1713b58e9afa7232c1646a08307a0a8f1e58c7b44ed94069e230823c7dd1c5.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/321dae5bec7a308dab7c3699fb3fde741ecac1235cec3c2f0ac0bdf0e01f29c7.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/3ccf31544e9cceb239c8c355995450412479c989b5f8ccf6846bdaa0db07699c.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/3d2f7cb227aec8511b9dc773ef2c136db6eb2215c1c8bf9ac921949470447dae.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/42aeb8011f5967b5e9e492338bae878babffc5b82239a3e5d3d1d311a053ec1c.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/43739fa156b76fa70baefa2ec059755779a68844e716006fa7693a6f7db329c5.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/44f3e288ef2dfe6f65449b283769eb4cab53807724be451b3061744a0fc738b3.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/48aef256812e213471615671f03a36548e655fd78fd485f7051150da902c4df9.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/493e38f639b8d5a5837dca96c6a93ead158b554f632e3ad5168e13493f81b18d.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/52e46734338c8106bd40b13f011570fb8826df898e92937d05264866697200f0.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/571b85fed4db440cfe15365b9b062578ba866a785fd6c3ec1cdebc522617c3c7.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/58c440dd74f33f7c3995aed25241bcb18a1e9daa658caad3a427a5bf40a42d51.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/58f57ae518ee2a4ef9df9259be053aeccf9ee8bdef32cdaa8555766e64f9a2b4.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/5da7637b6f7540ce2fa60bf0d94a9e0e9e4fff2ccf7a08b8b7c4a619aa0f8b87.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/64eb203b0d97466bb2d221e6288c32f6ae96dfed7c047b5f2da0e124e2b8ebbf.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/68694765eae28bb1b482be00269677cff1feba9adadcfacd7409f96cc8d2a636.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/80d7e395ee92bad00b2bdab54fbf5cca1ad9305ca7fcfc515b3738ac7a4ff465.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/832e25076d52d4a658dacf7ab5bc8c1a74f73acc414ece9a6c47a383442606d9.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/83ad0524d68b71716f8bba7ed1959b8f287de2f02fe1b593cbe6d1cb82da4700.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/86abc246cd8ebd5ba5af6f73aefd681d7701f32fbda9a19e4506ee91f3ec66f4.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/870e1416f775f9802eefab7c64a358c9b28f7be601cf952818e6198be5426152.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/8f4c1af4fcdb6e76cd89d23266cefe940f2f7736cf0031dc216992b0ec685204.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/938ae9f76fd0a64a77e75973ac920b78872803f1b784b970eaafa197dcbc8063.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/93da41fdb5495dc366445eee6100587d77cac41b659ce82fd50d9929fbf426e4.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/9b2fc16f074b7968530a1f0fd9a778765df3ccaaf7ca4e552ea683105a5d91bf.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/addc7aaa07c99c569ad52b8b1c22d24561b092fdcf2b0e25c09bdd2f7402f23e.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/b11fa7009b59bc15137a687d76c5bcf7f098556c16be8bd8dd9e94e42a478129.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/b33b706d491ad85c7f73f7bb0ecc4b8bee0a45f64a663ca79b5f0b995d0e5b4d.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/b83d3a4d17ea7bec45f66475310af29b7e48d405d06f1dceaf82ddbe6afd16c4.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/c20ef27e9706564fec73e6cf7aa96fef3ca123ec349863b83f2a6dc59b42e09c.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/c9c55a49e5fc5375f7913d9961f2344514bfc9ca973271024860d38caca9e267.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/d3ea72bffe3ddf987a0385a784a77029c664adda43835075ae698bcbe2f8aba9.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/e08ee01da1871fb97d6fa5b6599728f57d417e4c7aebe1bbd6382cd533ded37f.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/e3a61b314be905bf6e89767629b418c3a74f2c64b6af229a366321033561de62.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/e5cb6038d25e4d58bc6f22b15efd13a6509eca4a58f2efd3495dd9addd677754.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/ebae31deaf8760695b3561c53ad97bc2f4acf2a7162105cce0898b733c80be70.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/ec0c2b5fb2a446d85d12dfe5aa26fb1b2ecc0739d4a434f0fd5c080dd3170da0.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/ec7787ff8993cc6a48dfe2860afe62a407bb45d986c80efee50b9cf631331ff1.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "docs/evidence/objects/f04fae7fcbc54dbf9e02c6efb2ef651bd7426e48d285c108cac680cb062446fa.blob"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/procedures/clear.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/procedures/planner.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/procedures/task.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/procedures/work.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/references/audit.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/references/documentation.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/references/review.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/rules.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/skills/highgrade-clear/SKILL.md"
+      },
+      {
+        "composition": "selected",
+        "current": true,
+        "path": "kit/skills/highgrade-planner/SKILL.md"
+      }
+    ],
+    "human_acceptance": "unchanged",
+    "technical_readiness": "use_spec_check"
+  },
+  "status": "passed"
+}

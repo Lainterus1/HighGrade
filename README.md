@@ -67,7 +67,7 @@ Init адаптирует правила и готовит спеки; реал�
 | Вести зависимые задачи | `highgrade-planner` |
 | Изменить требования | `highgrade-spec` → `highgrade-work` |
 | Исправить код по действующим требованиям | `highgrade-work` |
-| Обзор проекта | `highgrade-clear` |
+| Актуализация проекта | `highgrade-clear` |
 | Локальный коммит | `highgrade-commit` |
 | Отправка коммитов | `highgrade-push` |
 | Обновление установки | `highgrade-update` |
